@@ -1,0 +1,39 @@
+.clearfix {
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+._no-break {
+    white-space: nowrap;
+}
+
+.transition-all {
+    transition: all @hover-animation-duration @hover-animation-function;
+}
+
+.shadow {
+    box-shadow: 0 0 3px @shadow-color;
+}
+
+.css-debug(@debug) when (@debug = true) {
+    *             { visibility: visible !important;      }
+    
+    *             { background: rgba(0, 0, 0, .1);       }
+    * *           { background: rgba(0, 0, 0, .2);       }
+    * * *         { background: rgba(0, 0, 0, .3);       }
+    * * * *       { background: rgba(0, 0, 0, .4);       }
+    * * * * *     { background: rgba(0, 0, 0, .5);       }
+    * * * * * *   { background: rgba(39, 162, 208, 0.3); }
+    * * * * * * * { background: rgba(39, 162, 208, 0.3); }
+    
+    a {
+        &[href=''],
+        &[href='#'],
+        &[href='#!'] {
+            text-decoration: line-through !important;
+        }
+    }
+}
