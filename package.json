@@ -1,12 +1,12 @@
 {
   "name": "template",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "Gruntfile.js",
   "scripts": {
     "test": "echo \"No test specified\"",
     "preversion": "npm test",
-    "version": "git add .",
+    "version": "echo $(git add .)",
     "postversion": ""
   },
   "author": "Ivan Bogachev <sfi0zy@gmail.com>",
