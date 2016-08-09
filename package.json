@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"No test specified\"",
     "preversion": "npm test",
-    "version": "echo $(git add .)",
+    "version": "git add .",
     "postversion": ""
   },
   "author": "Ivan Bogachev <sfi0zy@gmail.com>",
