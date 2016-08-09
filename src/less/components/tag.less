@@ -1,3 +1,25 @@
 .@{muilessium-classes-prefix}-tag {
+    font-family: @sans-serif-font-family;
+    font-size: .7rem;
+    line-height: 1.2;
+    text-decoration: none;
+    display: inline-block;
+    color: @tag-color;
+    .transition-all;
     
+    &:visited {
+        color: @tag-color;
+    }
+    
+    &:hover,
+    &:focus {
+        cursor: pointer;
+        color: @tag-color__focus;
+        outline: none;
+    }
+    
+    &:active {
+        cursor: pointer;
+        color: @tag-color__active;
+    }
 }
