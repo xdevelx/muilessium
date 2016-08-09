@@ -1,7 +1,7 @@
 {
     "brackets-file-tree-exclude.excludeList": [
         "/.git/",
-        "/dist/"
+        "/dist/",
         "/node_modules/"
     ]
 }
