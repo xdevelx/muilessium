@@ -1,10 +1,13 @@
 {
   "name": "template",
-  "version": "0.0.1",
-  "description": "Template Grunt + HTML + LESS + JS",
+  "version": "0.0.2",
+  "description": "",
   "main": "Gruntfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No test specified\"",
+    "preversion": "npm test",
+    "version": "git add .",
+    "postversion": ""
   },
   "author": "Ivan Bogachev <sfi0zy@gmail.com>",
   "license": "MIT",
@@ -21,6 +24,7 @@
     "grunt-contrib-uglify": "~1.0.1",
     "grunt-contrib-watch": "~1.0.0",
     "less-plugin-autoprefix": "~1.5.1",
-    "load-grunt-tasks": "~3.5.0"
+    "load-grunt-tasks": "~3.5.0",
+    "npm-version": "^1.1.0"
   }
 }
