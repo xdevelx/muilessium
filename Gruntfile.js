@@ -28,6 +28,16 @@ module.exports = function(grunt) {
                 files: {
                     'dist/css/main.css': 'src/less/main.less'
                 }
+            },
+            preview: {
+                options: {
+                    plugins: [
+                        new (require('less-plugin-autoprefix'))({browsers: ["last 2 versions"]})
+                    ]
+                },
+                files: {
+                    'dist/css/preview.css': 'src/less/preview.less'
+                }
             }
         },
         
@@ -35,6 +45,11 @@ module.exports = function(grunt) {
             dist: {
                 files: {
                     'dist/css/main.min.css': ['dist/css/main.css']
+                }
+            },
+            preview: {
+                files: {
+                    'dist/css/preview.min.css': ['dist/css/preview.css']
                 }
             }
         },
