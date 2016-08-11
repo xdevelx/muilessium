@@ -1,5 +1,27 @@
 .@{muilessium-prefix}-textarea {
-    &.-scroll {
+    color: @textarea-color;
+    width: 100%;
+    max-width: 100%;
+    min-height: 10rem;
+    padding: 1em;
+    outline: none;
+    border: 1px solid @textarea-color;
+    resize: none;
+    overflow: auto;
+    
+    &::placeholder {
+        color: @textarea-color;
+        text-indent: 0;
+        opacity: 1;
+        .transition-all;
+    }
+    
+    &:focus {
+        color: @textarea-color__focus;
         
+        &::placeholder {
+            text-indent: -30rem;
+            opacity: 0;
+        }
     }
 }
