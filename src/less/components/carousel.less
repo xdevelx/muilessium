@@ -1,3 +1,166 @@
 .@{muilessium-prefix}-carousel {
+    height: 20rem;
+    width: 100%;
+    position: relative;
+}
+
+.@{muilessium-prefix}-slides {
+    height: inherit;
+    width: inherit;
+    position: inherit;
+    list-style: none;
+    margin: 0;
+}
+
+.@{muilessium-prefix}-slide {
+    height: inherit;
+    width: inherit;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
     
+    > .background {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+        min-width: 100%;
+    }
+}
+
+.@{muilessium-prefix}-slide-content {
+    width: inherit;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    padding: 1rem 6rem;
+    text-align: center;
+    color: @carousel-color;
+
+    &.-content-center {
+        text-align: center;
+    }
+
+    &.-content-left {
+        text-align: left;
+    }
+
+    &.-content-right {
+        text-align: right;
+    }
+
+    @media screen and (max-width: 40rem) {
+        text-align: center !important;
+    }
+    
+     > .title {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+    
+    > .text {
+        
+    }
+}
+
+.@{muilessium-prefix}-carousel-controls {
+    height: inherit;
+    width: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    > .prev,
+    > .next {
+        height: inherit;
+        width: 5rem;
+        position: absolute;
+        top: 0;
+        line-height: 20rem;
+        text-align: center;
+        font-size: 4rem;
+        color: @carousel-color;
+        background: fade(@carousel-controls-background, 30%);
+        .transition-all;
+        
+        &:hover,
+        &:focus {
+            cursor: pointer;
+            background: fade(@carousel-controls-background, 80%);
+            outline: none;
+        }
+    }
+    
+    > .prev {
+        left: 0;
+    }
+    
+    > .next {
+        right: 0;
+    }
+}
+
+.@{muilessium-prefix}-carousel-indicators {
+    width: inherit;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2rem;
+    list-style: none;
+    margin: 0;
+    text-align: center;
+    padding: .5rem;
+
+    > .indicator {
+        display: inline-block;
+        position: relative;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: fade(@carousel-controls-background, 30%);
+        margin: 0 .2rem;
+        .transition-all;
+
+        &:hover,
+        &:focus {
+            background: fade(@carousel-controls-background, 50%);
+            cursor: pointer;
+            outline: none;
+
+            &:after {
+                background: @snow;
+            }
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            height: 50%;
+            width: 50%;
+            border-radius: 50%;
+            background: fade(@carousel-color, 20%);
+            .transition-all;
+        }
+
+        &.-active {
+            &:after {
+                background: fade(@carousel-color, 50%);
+            }
+
+            &:hover,
+            &:focus {
+                &:after {
+                    background: @carousel-color;
+                }
+            }
+        }
+    }
 }
