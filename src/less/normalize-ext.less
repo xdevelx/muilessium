@@ -20,3 +20,26 @@ html {
     color: @selection-color;
     background: @selection-background-color;
 }
+
+a {
+    color: @default-link-color;
+    
+    &:hover,
+    &:focus {
+        color: @default-link-color__focus;
+    }
+    
+    &:visited {
+        color: @default-color;
+    }
+    
+    &:empty {
+        &:after {
+            content: attr(href)
+        }
+    }
+}
+
+div:empty:not(.indicator) {
+    display: none;
+}

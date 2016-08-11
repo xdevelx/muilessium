@@ -1,16 +1,19 @@
 /* https://coolors.co/000d11-073b4c-fffcf7-bc162f-00752b */
 
-@snow:           #FFFCF7;
-@rich-black:     #000D11;
-@prussian-blue:  #073B4C;
-@cardinal:       #BC162F;
-@la-salle-green: #00752B;
-@sonic-silver:   #777777;
+@snow:            #FFFCF7;
+@rich-black:      #000D11;
+@dartmouth-green: #04773B;
+@cardinal:        #BC162F;
+@sonic-silver:    #777777;
+@viridian-green:  #00A098;
 
 @shadow-color: rgba(0, 0, 0, .3);
 
 @default-color:              @rich-black;
 @default-background-color:   @snow;
+
+@default-link-color:        @viridian-green;
+@default-link-color__focus: darken(@viridian-green, 5%);
 
 @selection-color:            @snow;
 @selection-background-color: @rich-black;
@@ -23,19 +26,19 @@
 @button-color-dangerous__focus:    @snow;
 @button-color-dangerous__active:   @snow;
 @button-color-ghost:               @rich-black;
-@button-bgcolor:                   @prussian-blue;
+@button-bgcolor:                   @dartmouth-green;
 @button-bgcolor__focus:            darken(@button-bgcolor, 5%);
 @button-bgcolor__active:           darken(@button-bgcolor, 15%);
 @button-bgcolor-dangerous:         @cardinal;
 @button-bgcolor-dangerous__focus:  darken(@button-bgcolor-dangerous, 5%);
 @button-bgcolor-dangerous__active: darken(@button-bgcolor-dangerous, 15%);
-@button-bgcolor-ghost__focus:      lighten(@sonic-silver, 30%);
+@button-bgcolor-ghost__focus:      fade(@dartmouth-green, 30%);
 
 @tag-color:           @sonic-silver;
-@tag-color__focus:    @prussian-blue;
-@tag-color__active:   darken(@prussian-blue, 15%);
+@tag-color__focus:    @dartmouth-green;
+@tag-color__active:   darken(@dartmouth-green, 15%);
 
-@progress-bar-color: @prussian-blue;
+@progress-bar-color: @dartmouth-green;
 
 @media-description-color: @sonic-silver;
 
@@ -47,15 +50,18 @@
 @rating-color1: @sonic-silver;
 @rating-color2: @cardinal;
 
-@radio-button-color1:         @prussian-blue;
-@radio-button-color1__focus:  darken(@prussian-blue, 5%);
-@radio-button-color1__active: darken(@prussian-blue, 15%);
+@radio-button-color1:         @dartmouth-green;
+@radio-button-color1__focus:  darken(@dartmouth-green, 5%);
+@radio-button-color1__active: darken(@dartmouth-green, 15%);
 @radio-button-color2:         @snow;
 
-@checkbox-color1:         @prussian-blue;
-@checkbox-color1__focus:  darken(@prussian-blue, 5%);
-@checkbox-color1__active: darken(@prussian-blue, 15%);
-@checkbox-color2: @snow;
+@checkbox-color1:         @dartmouth-green;
+@checkbox-color1__focus:  darken(@dartmouth-green, 5%);
+@checkbox-color1__active: darken(@dartmouth-green, 15%);
+@checkbox-color2:         @snow;
 
-@badge-color: @rich-black;
+@badge-color:   @rich-black;
 @badge-bgcolor: @snow;
+
+@marker-color:   @snow;
+@marker-bgcolor: @dartmouth-green;
