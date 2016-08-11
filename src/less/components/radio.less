@@ -6,8 +6,17 @@
     & > label {
         display: inline-block;
         
-        &:hover {
+        &:hover,
+        &:focus {
             cursor: pointer;
+            
+            & > .icon {
+                border-color: @radio-button-color1__focus;
+                
+                &:after {
+                    background: @radio-button-color1__focus;
+                }
+            }
         }
     }
     

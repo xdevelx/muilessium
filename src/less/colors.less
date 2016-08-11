@@ -22,12 +22,14 @@
 @button-color-dangerous:           @snow;
 @button-color-dangerous__focus:    @snow;
 @button-color-dangerous__active:   @snow;
+@button-color-ghost:               @rich-black;
 @button-bgcolor:                   @prussian-blue;
 @button-bgcolor__focus:            darken(@button-bgcolor, 5%);
 @button-bgcolor__active:           darken(@button-bgcolor, 15%);
 @button-bgcolor-dangerous:         @cardinal;
 @button-bgcolor-dangerous__focus:  darken(@button-bgcolor-dangerous, 5%);
 @button-bgcolor-dangerous__active: darken(@button-bgcolor-dangerous, 15%);
+@button-bgcolor-ghost__focus:      lighten(@sonic-silver, 30%);
 
 @tag-color:           @sonic-silver;
 @tag-color__focus:    @prussian-blue;
@@ -45,8 +47,15 @@
 @rating-color1: @sonic-silver;
 @rating-color2: @cardinal;
 
-@radio-button-color1: @prussian-blue;
-@radio-button-color2: @snow;
+@radio-button-color1:         @prussian-blue;
+@radio-button-color1__focus:  darken(@prussian-blue, 5%);
+@radio-button-color1__active: darken(@prussian-blue, 15%);
+@radio-button-color2:         @snow;
 
-@checkbox-color1: @prussian-blue;
+@checkbox-color1:         @prussian-blue;
+@checkbox-color1__focus:  darken(@prussian-blue, 5%);
+@checkbox-color1__active: darken(@prussian-blue, 15%);
 @checkbox-color2: @snow;
+
+@badge-color: @rich-black;
+@badge-bgcolor: @snow;

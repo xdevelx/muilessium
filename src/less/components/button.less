@@ -59,4 +59,15 @@
             background: @button-bgcolor-dangerous__active;
         }
     }
+    
+    &.-ghost {
+        color: @button-color-ghost;
+        background: transparent;
+        border: 1px solid @button-color-ghost;
+        
+        &:hover,
+        &:focus {
+            background: @button-bgcolor-ghost__focus;
+        }
+    }
 }
