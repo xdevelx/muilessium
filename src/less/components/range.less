@@ -1,5 +1,133 @@
+// There is a lot of hacks here.
+// See https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
+// for more information.
+
 .@{muilessium-prefix}-range {
-    &.-info {
+    -webkit-appearance: none;
+    width: 100%;
+    background: transparent;
+    outline: none;
+    
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+    }
+    
+    &:focus {
+        &::-webkit-slider-runnable-track {
+            background: @range-track-bgcolor__focus;
+        }
         
+        &::-webkit-slider-thumb {
+            border-color: @range-thumb-color__focus;
+            background: @range-thumb-bgcolor__focus;
+        }
+        
+        &::-moz-range-thumb {
+            border-color: @range-thumb-color__focus;
+            background: @range-thumb-bgcolor__focus;
+        }
+        
+        &::-ms-thumb {
+            border-color: @range-thumb-color__focus;
+            background: @range-thumb-bgcolor__focus;
+        }
+        
+        &::-webkit-slider-runnable-track {
+            border-color: @range-track-color__focus;
+            background: @range-track-bgcolor__focus;
+        }
+        
+        &::-moz-range-track {
+            border-color: @range-track-color__focus;
+            background: @range-track-bgcolor__focus;
+        }
+        
+        &::-ms-track {
+            border-color: @range-track-color__focus;
+            background: @range-track-bgcolor__focus;
+        }
+        
+        &::-ms-fill-lower,
+        &::-ms-fill-upper {
+            background: @range-track-bgcolor__focus;
+        }
+    }
+    
+    &::-ms-track {
+        width: 100%;
+        cursor: pointer;
+        background: transparent; 
+        border-color: transparent;
+        color: transparent;
+    }
+    
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 3rem;
+        width: 3rem;
+        border: 1px solid @range-thumb-color;
+        background: @range-thumb-bgcolor;
+        border-radius: 50%;
+        cursor: pointer;
+        transform: translateY(-50%);
+        .transition-all;
+    }
+    
+    &::-moz-range-thumb {
+        height: 3rem;
+        width: 3rem;
+        border: 1px solid @range-thumb-color;
+        background: @range-thumb-bgcolor;
+        border-radius: 50%;
+        cursor: pointer;
+        .transition-all;
+    }
+    
+    &::-ms-thumb {
+        height: 3rem;
+        width: 3rem;
+        border: 1px solid @range-thumb-color;
+        background: @range-thumb-bgcolor;
+        border-radius: 50%;
+        cursor: pointer;
+        .transition-all;
+    }
+    
+    &::-webkit-slider-runnable-track {
+        width: 100%;
+        height: .5rem;
+        cursor: pointer;
+        background: @range-track-bgcolor;
+        border-radius: 0;
+        border: 1px solid @range-track-color;
+        .transition-all;
+    }
+    
+    &::-moz-range-track {
+        width: 100%;
+        height: .5rem;
+        cursor: pointer;
+        background: @range-track-bgcolor;
+        border-radius: 0;
+        border: 1px solid @range-track-color;
+        .transition-all;
+    }
+    
+    &::-ms-track {
+        width: 100%;
+        height: .5rem;
+        cursor: pointer;
+        background: @range-track-bgcolor;
+        border-radius: 0;
+        border: 1px solid @range-track-color;
+        .transition-all;
+    }
+    
+    &::-ms-fill-lower,
+    &::-ms-fill-upper {
+        background: @range-track-bgcolor;
+        border: 1px solid @range-track-color;
+        border-radius: 0;
+        .transition-all;
     }
 }
