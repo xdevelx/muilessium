@@ -1,3 +1,50 @@
 .@{muilessium-prefix}-radio {
+    & > input[type=radio] {
+        display: none;
+    }
     
+    & > label {
+        display: inline-block;
+        
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    
+    & > label > .icon {
+        display: inline-block;
+        height: 2rem;
+        width: 2rem;
+        border: 2px solid @radio-button-color1;
+        border-radius: 50%;
+        position: relative;
+        vertical-align: middle;
+        
+        &:after {
+            content: '';
+            display: block;
+            height: 0;
+            width: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            background: @radio-button-color1;
+            border-radius: 50%;
+            opacity: 0;
+            .transition-all;
+        }
+    }
+    
+    & > input[type=radio]:checked + label > .icon {
+        &:after {
+            opacity: 1;
+            height: 1rem;
+            width: 1rem;
+        }
+    }
+    
+    & > label > .text {
+        padding: 0 1rem;
+    }
 }
