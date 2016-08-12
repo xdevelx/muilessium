@@ -1,14 +1,18 @@
 .@{muilessium-prefix}-button {
+    display: inline-block;
+    
+    padding: 0 1em;
+    
     font-family: @sans-serif-font-family;
     font-size: 1rem;
     line-height: 2.2;
     text-transform: uppercase;
     text-decoration: none;
     text-align: center;
-    padding: 0 1em;
-    display: inline-block;
+
     color: @button-color;
     background: @button-bgcolor;
+    
     border: none;
     border-radius: @global-border-radius;
     
@@ -20,15 +24,15 @@
     &:hover,
     &:focus {
         cursor: pointer;
-        background: @button-bgcolor__focus;
         color: @button-color__focus;
+        background: @button-bgcolor__focus;
         outline: none;
     }
     
     &:active {
         cursor: pointer;
-        background: @button-bgcolor__active;
         color: @button-color__active;
+        background: @button-bgcolor__active;
     }
     
     &.-small {

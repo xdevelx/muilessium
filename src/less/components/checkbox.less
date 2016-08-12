@@ -1,9 +1,9 @@
 .@{muilessium-prefix}-checkbox {
-    & > input[type=checkbox] {
+    > input[type=checkbox] {
         display: none;
     }
     
-    & > label {
+    > label {
         display: inline-block;
         
         &:hover,
@@ -11,52 +11,59 @@
             cursor: pointer;
             outline: none;
             
-            & > .icon {
+            > .icon {
                 border-color: @radio-button-color1__focus;
                 
-                & > .fa {
+                > .fa {
                     color: @radio-button-color1__focus;
                 }
             }
         }
     }
     
-    & > label > .icon {
+    > label > .icon {
         display: inline-block;
-        height: 2rem;
-        width: 2rem;
-        border: 2px solid @radio-button-color1;
         position: relative;
         vertical-align: middle;
-        background: @radio-button-color2;
         
-        & > .fa {
+        height: 2rem;
+        width: 2rem;
+        
+        background: @radio-button-color2;
+        border: 2px solid @radio-button-color1;
+        
+        > .fa {
             content: '';
+            
             display: block;
+            #utils > .absolute-center;
+            
             height: 0;
             width: 0;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translateX(-50%) translateY(-50%);
-            opacity: 0;
+            
             font-size: 0;
-            color: @radio-button-color1;
             text-align: center;
-            .transition-all;
+            
+            color: @radio-button-color1;
+            
+            opacity: 0;
+            
+            #utils > .transition-all;
         }
     }
     
-    & > input[type=checkbox]:checked + label > .icon {
-        & > .fa {
-            opacity: 1;
+    > input[type=checkbox]:checked + label > .icon {
+        > .fa {
             height: 1.6rem;
             width: 1.6rem;
+            
             font-size: 1.6rem;
+            
+            opacity: 1;
         }
     }
     
-    & > label > .text {
+    > label > .text {
         padding: 0 1rem;
     }
 }

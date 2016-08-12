@@ -1,45 +1,48 @@
 .@{muilessium-prefix}-carousel {
+    position: relative;
+    
     height: 20rem;
     width: 100%;
-    position: relative;
 }
 
 .@{muilessium-prefix}-slides {
+    position: inherit;
+    
     height: inherit;
     width: inherit;
-    position: inherit;
-    list-style: none;
+    
     margin: 0;
+    
+    list-style: none;
 }
 
 .@{muilessium-prefix}-slide {
+    #utils > .absolute-zero;
+    
     height: inherit;
     width: inherit;
-    position: absolute;
-    left: 0;
-    top: 0;
+    
     overflow: hidden;
     
     > .background {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        width: 100%;
+        #utils > .absolute-center;
+        
         height: auto;
+        width: 100%;
         min-height: 100%;
         min-width: 100%;
     }
 }
 
 .@{muilessium-prefix}-slide-content {
+    #utils > .absolute-center;
+    
     width: inherit;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    
     padding: 1rem 6rem;
+    
     text-align: center;
+    
     color: @carousel-color;
 
     &.-content-center {
@@ -58,7 +61,7 @@
         text-align: center !important;
     }
     
-     > .title {
+    > .title {
         font-size: 2rem;
         line-height: 1.2;
     }
@@ -69,24 +72,27 @@
 }
 
 .@{muilessium-prefix}-carousel-controls {
+    #utils > .absolute-zero;
+    
     height: inherit;
     width: inherit;
-    position: absolute;
-    top: 0;
-    left: 0;
     
     > .prev,
     > .next {
-        height: inherit;
-        width: 5rem;
         position: absolute;
         top: 0;
+        
+        height: inherit;
+        width: 5rem;
+        
+        font-size: 4rem;
         line-height: 20rem;
         text-align: center;
-        font-size: 4rem;
+        
         color: @carousel-color;
         background: fade(@carousel-controls-background, 30%);
-        .transition-all;
+        
+        #utils > .transition-all;
         
         &:hover,
         &:focus {
@@ -106,25 +112,33 @@
 }
 
 .@{muilessium-prefix}-carousel-indicators {
-    width: inherit;
     position: absolute;
     left: 0;
     bottom: 0;
+    
+    width: inherit;
     height: 2rem;
-    list-style: none;
+
     margin: 0;
-    text-align: center;
     padding: .5rem;
+
+    text-align: center;
+    
+    list-style: none;
 
     > .indicator {
         display: inline-block;
         position: relative;
+        
         height: 16px;
         width: 16px;
-        border-radius: 50%;
-        background: fade(@carousel-controls-background, 30%);
+        
         margin: 0 .2rem;
-        .transition-all;
+        
+        background: fade(@carousel-controls-background, 30%);
+        border-radius: 50%;
+        
+        #utils > .transition-all;
 
         &:hover,
         &:focus {
@@ -139,15 +153,16 @@
 
         &:after {
             content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translateX(-50%) translateY(-50%);
+            
+            #utils > .absolute-center;
+            
             height: 50%;
             width: 50%;
-            border-radius: 50%;
+            
             background: fade(@carousel-color, 20%);
-            .transition-all;
+            border-radius: 50%;
+            
+            #utils > .transition-all;
         }
 
         &.-active {

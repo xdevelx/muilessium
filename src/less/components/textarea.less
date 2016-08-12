@@ -1,11 +1,15 @@
 .@{muilessium-prefix}-textarea {
-    color: @textarea-color;
     width: 100%;
     max-width: 100%;
     min-height: 10rem;
+    
     padding: 1em;
-    outline: none;
+    
+    color: @textarea-color;
+    
     border: 1px solid @textarea-color;
+    
+    outline: none;
     resize: none;
     overflow: auto;
     
@@ -13,7 +17,8 @@
         color: @textarea-color;
         text-indent: 0;
         opacity: 1;
-        .transition-all;
+        
+        #utils > .transition-all;
     }
     
     &:focus {

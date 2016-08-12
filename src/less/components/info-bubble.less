@@ -1,23 +1,29 @@
 .@{muilessium-prefix}-info-bubble {
     display: inline-block;
     position: relative;
+    
     min-height: 1rem;
     min-width: 4rem;
     max-width: 20rem;
-    font-size: .8rem;
+
     padding: .8rem;
+    
     font-family: @sans-serif-font-family;
+    font-size: .8rem;
+    text-align: justify;
+    
     color: @info-bubble-color;
     background: @info-bubble-bgcolor;
-    text-align: justify;
     
     &:after {
         content: '';
+        
         display: block;
         position: absolute;
         bottom: -1rem;
         left: 50%;
         transform: translateX(-50%);
+        
         border-top: 1rem solid @info-bubble-bgcolor;
         border-left: 1rem solid transparent;
         border-right: 1rem solid transparent;

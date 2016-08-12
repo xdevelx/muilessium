@@ -1,17 +1,22 @@
 .@{muilessium-prefix}-input {
-    width: 100%;
     position: relative;
+    
+    width: 100%;
     
     &:hover {
         cursor: pointer;
     }
     
-    & > input {
+    > input {
         width: 100%;
+        
         padding: 0 1rem;
+        
         line-height: 3rem;
+        
         color: @input-color;
         border: 1px solid @input-color;
+        
         outline: none;
         overflow: hidden;
 
@@ -19,7 +24,8 @@
             color: @input-color;
             text-indent: 0;
             opacity: 1;
-            .transition-all;
+            
+            #utils > .transition-all;
         }
 
         &:focus {
@@ -33,7 +39,7 @@
     }
     
     &.-icon-left {
-        & > input {
+        > input {
             text-indent: 3rem;
             
             &::placeholder {
@@ -41,16 +47,19 @@
             }
         }
         
-        & > .icon {
+        > .icon {
             position: absolute;
-            color: @input-icon-color;
-            background: @input-icon-bgcolor;
             left: 1px;
             top: 1px;
+            
+            width: 3rem;
+
+            font-size: 1.6rem;
             line-height: 3rem;
             text-align: center;
-            font-size: 1.6rem;
-            width: 3rem;
+            
+            color: @input-icon-color;
+            background: @input-icon-bgcolor;
             
             &:hover {
                 cursor: pointer;
@@ -59,17 +68,20 @@
     }
     
     &.-icon-right {
-        & > .icon {
+        > .icon {
             position: absolute;
-            color: @input-icon-color;
-            background: @input-icon-bgcolor;
             right: 1px;
             top: 1px;
-            line-height: 3rem;
-            text-align: center;
-            font-size: 1.6rem;
+            
             width: 3rem;
             
+            font-size: 1.6rem;
+            line-height: 3rem;
+            text-align: center;
+            
+            color: @input-icon-color;
+            background: @input-icon-bgcolor;
+ 
             &:hover {
                 cursor: pointer;
             }

@@ -1,11 +1,14 @@
 .@{muilessium-prefix}-progress-bar {
-    height: 1rem;
-    width: 100%;
-    border: 1px solid @shadow-color;
     position: relative;
     
-    & > .indicator {
+    height: 1rem;
+    width: 100%;
+    
+    border: 1px solid @shadow-color;
+    
+    > .indicator {
         height: 100%;
+        
         background: @progress-bar-color;
     }
     
@@ -15,7 +18,7 @@
             to   { background-position: 2rem 0; }
         }
         
-        & > .indicator {
+        > .indicator {
             background-image: linear-gradient(45deg,
                 @progress-bar-color 0%,
                 @progress-bar-color 33%,

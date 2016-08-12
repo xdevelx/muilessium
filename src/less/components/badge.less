@@ -1,19 +1,25 @@
 .@{muilessium-prefix}-badge {
     display: inline-block;
+    
     height: 1.2em;
     min-width: 1.2em;
-    border-radius: 0;
-    text-align: center;
-    line-height: 1.2em;
-    font-size: .8em;
+    
     padding: 0 .2em;
     margin-left: .3em;
-    vertical-align: middle;
-    transform: translateY(-.1em);
+    
+    font-size: .8em;
+    line-height: 1.2em;
+    text-align: center;
+    
     color: @badge-color;
     background: @badge-bgcolor;
     
-    &.-circle {
+    border-radius: 0;
+
+    vertical-align: middle;
+    transform: translateY(-.1em);
+    
+    &.-rounded {
         border-radius: .6em;
     }
 }

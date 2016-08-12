@@ -1,0 +1,30 @@
+#utils {
+    .clearfix {
+        &:after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+    }
+    
+    .absolute-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+    
+    .absolute-zero {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    
+    .transition-all {
+        transition: all @hover-animation-duration @hover-animation-function;
+    }
+
+    .shadow {
+        box-shadow: 0 0 3px @shadow-color;
+    }
+}

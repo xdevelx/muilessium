@@ -5,10 +5,12 @@
 
 .@{muilessium-prefix}-spinner {
     display: inline-block;
+    
     animation: 1.5s spinner-rotate linear infinite;
     
-    & > .fa {
-        color: @spinner-color;
+    > .fa {
         font-size: 2rem;
+        
+        color: @spinner-color;
     }
 }
