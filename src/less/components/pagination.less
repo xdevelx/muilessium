@@ -19,6 +19,7 @@
         text-decoration: none;
         
         color: @pagination-color;
+        background: @pagination-bgcolor;
         
         &:visited,
         &:active {
@@ -28,6 +29,7 @@
         &:hover,
         &:focus {
             color: @pagination-color__focus;
+            background: @pagination-bgcolor__focus;
         }
     }
     
@@ -38,7 +40,8 @@
         #utils > .transition-all;
         
         &:hover {
-            background: @pagination-color;
+            color: @pagination-current-color__focus;
+            background: @pagination-current-bgcolor__focus;
         }
     }
     
@@ -49,5 +52,20 @@
     .fa {
         display: inline-block;
         vertical-align: middle;
+    }
+    
+    &.-bordered {
+        > .page-link {
+            border: 1px solid @pagination-border-color;
+            
+            &:hover {
+                background: @pagination-border-color;
+                
+                > a {
+                    color: @pagination-bordered-color__focus;
+                    background: @pagination-bordered-bgcolor__focus;
+                }
+            }
+        }
     }
 }
