@@ -27,7 +27,7 @@
         <div class="mui-row">
             <div class="mui-column -s6">
                 <code>
-                    <pre>&lt;p class="mui-p"&gt;&lt;/p&gt;</pre>
+                    <pre>p.mui-p&gt;lorem25</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
@@ -38,7 +38,7 @@
         <div class="mui-row">
             <div class="mui-column -s6">
                 <code>
-                    <pre>&lt;a href="http://empty-link"&gt;&lt;/a&gt;</pre>
+                    <pre>a[href="http://empty-link"]</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
@@ -49,7 +49,7 @@
         <div class="mui-row">
             <div class="mui-column -s6">
                 <code>
-                    <pre>&lt;a href=""&gt;visited link&lt;/a&gt;</pre>
+                    <pre>a{visited link}</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
@@ -60,7 +60,7 @@
         <div class="mui-row">
             <div class="mui-column -s6">
                 <code>
-                    <pre>&lt;span class="mui-marker"&gt;markered text&lt;/span&gt;</pre>
+                    <pre>span.mui-marker{markered text}</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
@@ -72,12 +72,11 @@
             <div class="mui-column -s6">
                 <code>
                     <pre>
-&lt;ul class="mui-tags-list"&gt;
-    &lt;li class="mui-tag-wrapper"&gt;&lt;i class="fa fa-tags"&gt;&lt;/i&gt;&lt;/li&gt;
-    &lt;li class="mui-tag-wrapper"&gt;&lt;a href="" class="mui-tag"&gt;tag&lt;/a&gt;&lt;/li&gt;
-    &lt;li class="mui-tag-wrapper"&gt;&lt;a href="" class="mui-tag"&gt;another&lt;/a&gt;&lt;/li&gt;
-    &lt;li class="mui-tag-wrapper"&gt;&lt;a href="" class="mui-tag"&gt;and another one&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</pre>
+ui.mui-tags-list>
+    li.mui-tag-wrapper>
+        i.fa.fa-tags^
+    li.mui-tag-wrapper*4>
+        a.mui-tag</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
@@ -96,9 +95,8 @@
             <div class="mui-column -s6">
                 <code>
                     <pre>
-&lt;div class="mui-progress-bar"&gt;
-    &lt;div class="indicator" style="width:60%"&gt;&lt;/div&gt;
-&lt;/div&gt;</pre>
+.mui-progress-bar>
+    .indicator[style="width:60%"]</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
@@ -112,9 +110,8 @@
             <div class="mui-column -s6">
                 <code>
                     <pre>
-&lt;div class="mui-progress-bar -animated"&gt;
-    &lt;div class="indicator" style="width:60%"&gt;&lt;/div&gt;
-&lt;/div&gt;</pre>
+.mui-progress-bar.-animated>
+    .indicator[style="width:60%"]</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
@@ -128,9 +125,7 @@
             <div class="mui-column -s6">
                 <code>
                     <pre>
-&lt;div class="mui-spinner"&gt;
-    &lt;i class="fa fa-spinner">&lt;/i&gt;
-&lt;/div&gt;</pre>
+.mui-spinner>i.fa.fa-spinner</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
@@ -153,8 +148,7 @@
             <div class="mui-column -s6">
                 <code>
                     <pre>
-&lt;div class="mui-info-bubble"&gt;Lorem ipsum..&lt;/div&gt;</pre>
-                </code>
+.mui-info-bubble>lorem10</pre></code>
             </div>
             <div class="mui-column -s6">
                 <div class="mui-info-bubble">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, sunt?</div>
@@ -164,14 +158,9 @@
         <div class="mui-row">
             <div class="mui-column -s6">
                 <code>
-                    <pre>                   
-&lt;ul class="mui-rating -r4"&gt;
-    &lt;li&gt;&lt;i class="fa fa-star"&gt;&lt;/i&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;i class="fa fa-star"&gt;&lt;/i&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;i class="fa fa-star"&gt;&lt;/i&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;i class="fa fa-star"&gt;&lt;/i&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;i class="fa fa-star"&gt;&lt;/i&gt;&lt;/li&gt;
-&lt;/ul&gt;</pre>
+                    <pre>
+ul.mui-rating.-r4>
+    li*5>i.fa.fa-star</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
@@ -189,14 +178,11 @@
             <div class="mui-column -s6">
                 <code>
                     <pre>
-&lt;div class="mui-radio"&gt;
-    &lt;input id="radio1" name="test" type="radio" checked&gt;
-    &lt;label for="radio1" tabindex="1"&gt;
-        &lt;span class="icon"&gt;&lt;/span&gt;
-        &lt;span class="text"&gt;Lorem ipsum.&lt;/span&gt;
-    &lt;/label&gt;
-&lt;/div&gt;
-                    </pre>
+.mui-radio>
+    input:r#radio1+
+    label[for="radio1" tabindex="1"]>
+        span.icon+
+        span.text{lorem}</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
@@ -223,21 +209,18 @@
             <div class="mui-column -s6">
                 <code>
                     <pre>
-&lt;div class="mui-checkbox"&gt;
-    &lt;input id="checkbox1" type="checkbox" checked&gt;
-    &lt;label for="checkbox1" tabindex="1"&gt;
-        &lt;span class="icon"&gt;&lt;span class="fa fa-check"&gt;&lt;/span&gt;&lt;/span&gt;
-        &lt;span class="text"&gt;Lorem ipsum.&lt;/span&gt;
-    &lt;/label&gt;
-&lt;/div&gt;
-                    </pre>
+.mui-checkbox>
+    input:c#checkbox1+
+    label[for="checkbox1" tabindex="1"]>
+        span.icon>i.fa.fa-check^
+        span.text{lorem}</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
                 <div class="mui-checkbox">
                     <input id="checkbox1" type="checkbox" checked>
                     <label for="checkbox1" tabindex="1">
-                        <span class="icon"><span class="fa fa-check"></span></span>
+                        <span class="icon"><i class="fa fa-check"></i></span>
                         <span class="text">Lorem ipsum.</span>
                     </label>
                 </div>
@@ -247,7 +230,7 @@
         <div class="mui-row">
             <div class="mui-column -s6">
                 <code>
-                    <pre>&lt;input type="range" class="mui-range"&gt;</pre>
+                    <pre>input:range.mui-range</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
@@ -258,7 +241,7 @@
         <div class="mui-row">
             <div class="mui-column -s6">
                 <code>
-                    <pre>&lt;a href="" class="mui-button -small"&gt;small&lt;/a&gt;</pre>
+                    <pre>a.mui-button.-small{small}</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
@@ -269,7 +252,7 @@
         <div class="mui-row">
             <div class="mui-column -s6">
                 <code>
-                    <pre>&lt;a href="" class="mui-button"&gt;default&lt;/a&gt;</pre>
+                    <pre>a.mui-button{default}</pre>
                 </code>
             </div>
             <div class="mui-column -s6">  
@@ -280,7 +263,7 @@
         <div class="mui-row">
             <div class="mui-column -s6">
                 <code>
-                    <pre>&lt;a href="" class="mui-button -dangerous"&gt;dangerous&lt;/a&gt;</pre>
+                    <pre>a.mui-button.-dangerous{dangerous}</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
@@ -291,7 +274,7 @@
         <div class="mui-row">
             <div class="mui-column -s6">
                 <code>
-                    <pre>&lt;a href="" class="mui-button -ghost"&gt;ghost&lt;/a&gt;</pre>
+                    <pre>a.mui-button.-ghost{ghost}</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
@@ -302,7 +285,7 @@
         <div class="mui-row">
             <div class="mui-column -s6">
                 <code>
-                    <pre>&lt;a href="" class="mui-button -large"&gt;large&lt;/a&gt;</pre>
+                    <pre>a.mui-button.-large{large}</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
@@ -313,7 +296,9 @@
         <div class="mui-row">
             <div class="mui-column -s6">
                 <code>
-                    <pre>&lt;a href="" class="mui-button"&gt;square badge &lt;span class="mui-badge"&gt;5&lt;/span&gt;&lt;/a&gt;</pre>
+                    <pre>
+a.mui-button>{square badge }+
+    span.mui-badge{5}</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
@@ -324,7 +309,9 @@
         <div class="mui-row">
             <div class="mui-column -s6">
                 <code>
-                    <pre>&lt;a href="" class="mui-button"&gt;rounded badge &lt;span class="mui-badge -rounded"&gt;116&lt;/span&gt;&lt;/a&gt;</pre>
+                    <pre>
+a.mui-button>{rounded badge }+
+    span.mui-badge.-rounded{116}</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
@@ -335,7 +322,7 @@
         <div class="mui-row">
             <div class="mui-column -s6">
                 <code>
-                    <pre>&lt;textarea class="mui-textarea -resizable" placeholder="Your text is here!"&gt;&lt;/textarea&gt;</pre>
+                    <pre>textarea.mui-textarea.-resizable[placeholder="Your text is here!"]</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
@@ -347,9 +334,8 @@
             <div class="mui-column -s6">
                 <code>
                     <pre>
-&lt;div class="mui-input"&gt;
-    &lt;input type="text" placeholder="Standart input"&gt;
-&lt;/div&gt;</pre>
+.mui-input>
+    input:text[placeholder="..."]</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
@@ -363,11 +349,10 @@
             <div class="mui-column -s6">
                 <code>
                     <pre>
-&lt;div class="mui-input -icon-left"&gt;
-    &lt;input type="text" id="text1" placeholder="Input with icon"&gt;
-    &lt;label class="icon" for="text1"&gt;&lt;i class="fa fa-user"&gt;&lt;/i&gt;&lt;/label&gt;
-&lt;/div&gt;
-                    </pre>
+.mui-input.-icon-left>
+    input:text#text1[placeholder="..."]+
+    label.icon[for="text1"]>
+        i.fa.fa-user</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
@@ -382,15 +367,15 @@
             <div class="mui-column -s6">
                 <code>
                     <pre>
-&lt;div class="mui-input -icon-right"&gt;
-    &lt;input type="text" id="text2" placeholder="Search"&gt;
-    &lt;label class="icon" for="text2"&gt;&lt;i class="fa fa-search"&gt;&lt;/i&gt;&lt;/label&gt;
-&lt;/div&gt;</pre>
+.mui-input.-icon-right>
+    input:search#text2[placeholder="..."]+
+    label.icon[for="text2"]>
+        i.fa.fa-search</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
                 <div class="mui-input -icon-right">
-                    <input type="text" id="text2" placeholder="Search">
+                    <input type="search" id="text2" placeholder="Search">
                     <label class="icon" for="text2"><i class="fa fa-search"></i></label>
                 </div>
             </div>
@@ -400,11 +385,9 @@
             <div class="mui-column -s6">
                 <code>
                     <pre>
-&lt;div class="mui-media-view -full-width"&gt;
-    &lt;img src="https://" alt="" onerror="this.className='not-loaded';"&gt;
-    &lt;div class="description">Lorem ipsum...&lt;/div&gt;
-&lt;/div&gt;
-                    </pre>
+.mui-media-view.-full-width>
+    img[src="..." onerror="this.className='not-loaded';"]+
+    .description>lorem10</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
@@ -419,30 +402,18 @@
             <div class="mui-column -s6">
                 <code>
                     <pre>
-&lt;div class="mui-carousel"&gt;
-    &lt;ul class="mui-slides"&gt;
-        &lt;li class="mui-slide"&gt;
-            &lt;img src="https://" alt="" class="background"&gt;
-            &lt;div class="mui-slide-content -center"&gt;
-                &lt;div class="title"&gt;Lorem ipsum dolor.&lt;/div&gt;
-                &lt;div class="text"&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, ipsa.&lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/li&gt;
-    &lt;/ul&gt;
-    ....
-
-    &lt;div class="mui-carousel-controls"&gt;
-        &lt;div class="prev" tabindex="1"&gt;&lsaquo;&lt;/div&gt;
-        &lt;div class="next" tabindex="1"&gt;&rsaquo;&lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;ul class="mui-carousel-indicators"&gt;
-        &lt;li class="indicator -active" tabindex="1"&gt;&lt;/li&gt;
-        &lt;li class="indicator" tabindex="1"&gt;&lt;/li&gt;
-        &lt;li class="indicator" tabindex="1"&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/div&gt;
-                    </pre>
+.mui-carousel>
+    (ul.mui-slides>
+        li.mui-slide*3>
+            img.background[src="..."]+
+            .mui-slide-content>
+                .title>lorem5^
+                .text>lorem10)+
+    (.mui-carousel-controls>
+        .prev[tabindex="1"]{&lsaquo;}+
+        .next[tabindex="1"]{&rsaquo;})+
+    (ul.mui-carousel-indicators>
+        li.indicator[tabindex="1"]*3)</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
