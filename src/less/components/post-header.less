@@ -1,0 +1,44 @@
+.@{muilessium-prefix}-post-header {
+    > .title {
+        font-size: 2rem;
+        line-height: 1.5;
+    }
+    
+    > .title > a {
+        color: @post-header-title-color;
+        text-decoration: none;
+        
+        &:visited {
+            color: @post-header-title-color;
+        }
+        
+        &:hover,
+        &:focus {
+            color: @post-header-title-color__focus;
+        }
+    }
+    
+    > .info {
+        font-size: .9rem;
+        line-height: 1.5;
+        color: @post-header-info-color;
+    }
+    
+    > .info a {
+        text-decoration: none;
+        color: @post-header-info-color;
+        
+        &:active {
+            color: @post-header-info-color__active;
+        }
+        
+        &:visited {
+            color: @post-header-info-color;
+        }
+        
+        &:hover,
+        &:focus {
+            color: @post-header-info-color__focus;
+        }
+    }
+}

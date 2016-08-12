@@ -1,0 +1,22 @@
+.@{muilessium-prefix}-post-footer {
+    border-top: 1px solid @post-footer-border-color;
+    padding: 1rem 0;
+    #utils > .clearfix;
+    
+    > .mui-tags-list {
+        display: inline-block;
+        max-width: 80%;
+        
+        @media screen and (max-width: 50rem) {
+            max-width: 70%;
+        }
+
+        @media screen and (max-width: 40rem) {
+            max-width: 60%;
+        }
+    }
+    
+    > .-read-more {
+        float: right;
+    }
+}
