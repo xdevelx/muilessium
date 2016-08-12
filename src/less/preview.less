@@ -1,3 +1,8 @@
+header {
+    background: #fff;
+    margin-bottom: 3rem;
+}
+
 .logo {
     display: block;
     margin: 3rem auto;
@@ -8,6 +13,10 @@
     padding: 1rem;
 }
 
+body {
+    background: linear-gradient(to right, #777 0%, #777 50%, #fff 50%, #fff 100%);
+}
+
 pre {
     background: #333;
     color: #fff;
@@ -15,7 +24,7 @@ pre {
     font-family: monospace;
     font-size: .8rem;
     width: 100%;
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 .mui-content-container {
@@ -23,6 +32,10 @@ pre {
 
     &.-limit-width {
         max-width: 1200px;
+    }
+    
+    .mui-row:not(:last-of-type) {
+        border-bottom: 1px solid #ccc;
     }
 }
 
@@ -32,6 +45,13 @@ pre {
 
 .mui-radio {
     margin-bottom: 1rem;
+}
+
+footer {
+    background: #fff;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+    height: 3rem;
+    margin-top: 2rem;
 }
 
 @media screen and (max-width: 600px) {
