@@ -1,0 +1,53 @@
+.@{muilessium-prefix}-pagination {
+    position: relative;
+    
+    text-align: center;
+    list-style: none;
+    
+    > .page-link {
+        display: inline-block;
+        margin: 0;
+    }
+    
+    > .page-link > a {
+        display: inline-block;
+        
+        padding: 0 1rem;
+        
+        font-size: 1.3rem;
+        line-height: 1.6;
+        text-decoration: none;
+        
+        color: @pagination-color;
+        
+        &:visited,
+        &:active {
+            color: @pagination-color;
+        }
+        
+        &:hover,
+        &:focus {
+            color: @pagination-color__focus;
+        }
+    }
+    
+    > .page-link.-current {
+        color: @pagination-current-color;
+        background: @pagination-current-bgcolor;
+        
+        #utils > .transition-all;
+        
+        &:hover {
+            background: @pagination-color;
+        }
+    }
+    
+    > .page-link.-current > a {
+        color: @pagination-current-color;
+    }
+    
+    .fa {
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
