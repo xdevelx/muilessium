@@ -1,0 +1,48 @@
+.@{muilessium-prefix}-comment {
+    padding: 1rem;
+    
+    > .avatar {
+        display: inline-block;
+        
+        height: 3rem;
+        width: 3rem;
+        
+        background: @comment-avatar-bgcolor;
+    }
+    
+    > .info {
+        display: inline-block;
+        vertical-align: top;
+        
+        padding: 0 1rem;
+    }
+    
+    > .info > .author {
+        font-weight: 600;
+    }
+    
+    > .info > .author > a {
+        text-decoration: none;
+        color: @comment-color;
+        
+        &:visited {
+            color: @comment-color;
+        }
+        
+        &:hover,
+        &:focus {
+            color: @comment-color__focus;
+        }
+    }
+    
+    > .info > .date {
+        font-size: .9rem;
+        margin-bottom: .3rem;
+        color: @comment-date-color;
+    }
+    
+    > .text {
+        text-align: justify;
+        padding: .5rem 0;
+    }
+}
