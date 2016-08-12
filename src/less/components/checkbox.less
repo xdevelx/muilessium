@@ -26,11 +26,13 @@
         position: relative;
         vertical-align: middle;
         
-        height: 2rem;
-        width: 2rem;
+        height: @global-ui-height;
+        width: @global-ui-height;
         
         background: @radio-button-color2;
         border: 2px solid @radio-button-color1;
+        
+        border-radius: @global-border-radius;
         
         > .fa {
             content: '';
@@ -54,10 +56,10 @@
     
     > input[type=checkbox]:checked + label > .icon {
         > .fa {
-            height: 1.6rem;
-            width: 1.6rem;
+            height: @global-ui-height * .8;
+            width: @global-ui-height * .8;
             
-            font-size: 1.6rem;
+            font-size: @global-ui-height * .8;
             
             opacity: 1;
         }

@@ -26,8 +26,8 @@
         position: relative;
         vertical-align: middle;
         
-        height: 2rem;
-        width: 2rem;
+        height: @global-ui-height;
+        width: @global-ui-height;
         
         background: @radio-button-color2;
         
@@ -55,8 +55,8 @@
     > input[type=radio]:checked + label > .icon {
         &:after {
             opacity: 1;
-            height: 1rem;
-            width: 1rem;
+            height: @global-ui-height * .4;
+            width: @global-ui-height * .4;
         }
     }
     

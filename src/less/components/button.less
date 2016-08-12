@@ -4,9 +4,9 @@
     padding: 0 1em;
     
     font-family: @sans-serif-font-family;
-    font-size: 1rem;
-    line-height: 2.2;
-    text-transform: uppercase;
+    font-size: @global-ui-height * .5;
+    line-height: @global-ui-height;
+    
     text-decoration: none;
     text-align: center;
 
@@ -36,16 +36,20 @@
     }
     
     &.-small {
-        font-size: .7rem;
+        font-size: @global-ui-height * .3;
+        line-height: @global-ui-height * .7;
     }
     
     &.-large {
-        font-size: 1.5rem;
+        font-size: @global-ui-height * 1.2;
+        line-height: @global-ui-height * 2;
     }
     
     &.-dangerous {
         color: @button-color-dangerous;
         background: @button-bgcolor-dangerous;
+        
+        text-transform: uppercase;
         
         &:visited {
             color: @button-color-dangerous;

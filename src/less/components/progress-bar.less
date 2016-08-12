@@ -6,10 +6,15 @@
     
     border: 1px solid @shadow-color;
     
+    border-radius: @global-border-radius;
+    overflow: hidden;
+    
     > .indicator {
         height: 100%;
         
         background: @progress-bar-color;
+        
+        border-radius: @global-border-radius;
     }
     
     &.-animated {
