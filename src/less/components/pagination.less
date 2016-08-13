@@ -58,7 +58,7 @@
     
     &.-bordered {
         > .page-link {
-            border: 1px solid @pagination-border-color;
+            border: @global-border-width solid @pagination-border-color;
             
             &:first-child {
                 border-top-left-radius: @global-border-radius;
@@ -72,6 +72,7 @@
             
             &:hover {
                 background: @pagination-border-color;
+                border-color: @pagination-border-color__focus;
                 
                 > a {
                     color: @pagination-bordered-color__focus;

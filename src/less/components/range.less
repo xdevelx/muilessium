@@ -67,7 +67,7 @@
         -webkit-appearance: none;
         height: @global-ui-height;
         width: @global-ui-height;
-        border: 2px solid @range-thumb-border-color;
+        border: @global-border-width solid @range-thumb-border-color;
         background: @range-thumb-bgcolor;
         border-radius: 50%;
         cursor: pointer;
@@ -78,7 +78,7 @@
     &::-moz-range-thumb {
         height: @global-ui-height;
         width: @global-ui-height;
-        border: 2px solid @range-thumb-border-color;
+        border: @global-border-width solid @range-thumb-border-color;
         background: @range-thumb-bgcolor;
         border-radius: 50%;
         cursor: pointer;
@@ -88,7 +88,7 @@
     &::-ms-thumb {
         height: @global-ui-height;
         width: @global-ui-height;
-        border: 2px solid @range-thumb-border-color;
+        border: @global-border-width solid @range-thumb-border-color;
         background: @range-thumb-bgcolor;
         border-radius: 50%;
         cursor: pointer;
@@ -101,7 +101,7 @@
         cursor: pointer;
         background: @range-track-bgcolor;
         border-radius: 0;
-        border: 1px solid @range-track-color;
+        border: @global-border-width solid @range-track-color;
         #utils > .transition-all;
     }
     
@@ -111,7 +111,7 @@
         cursor: pointer;
         background: @range-track-bgcolor;
         border-radius: 0;
-        border: 1px solid @range-track-color;
+        border: @global-border-width solid @range-track-color;
         #utils > .transition-all;
     }
     
@@ -121,14 +121,14 @@
         cursor: pointer;
         background: @range-track-bgcolor;
         border-radius: 0;
-        border: 1px solid @range-track-color;
+        border: @global-border-width solid @range-track-color;
         #utils > .transition-all;
     }
     
     &::-ms-fill-lower,
     &::-ms-fill-upper {
         background: @range-track-bgcolor;
-        border: 1px solid @range-track-color;
+        border: @global-border-width solid @range-track-color;
         border-radius: 0;
         #utils > .transition-all;
     }

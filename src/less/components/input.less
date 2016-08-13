@@ -3,6 +3,7 @@
     
     width: 100%;
     
+    border: @global-border-width solid @input-color;
     border-radius: @global-border-radius;
     overflow: hidden;
     
@@ -18,11 +19,11 @@
         line-height: @global-ui-height;
         
         color: @input-color;
-        border: 1px solid @input-color;
         
         outline: none;
         overflow: hidden;
         border-radius: @global-border-radius;
+        border: none;
 
         &::placeholder {
             color: @input-color;
@@ -53,8 +54,8 @@
         
         > .icon {
             position: absolute;
-            left: 1px;
-            top: 1px;
+            left: 0;
+            top: 0;
             
             width: @global-ui-height;
 
@@ -65,9 +66,6 @@
             color: @input-icon-color;
             background: @input-icon-bgcolor;
             
-            border-top-left-radius: @global-border-radius - 1;
-            border-bottom-left-radius: @global-border-radius - 1;
-            
             &:hover {
                 cursor: pointer;
             }
@@ -77,8 +75,8 @@
     &.-icon-right {
         > .icon {
             position: absolute;
-            right: 1px;
-            top: 1px;
+            right: 0;
+            top: 0;
             
             width: @global-ui-height;
             
@@ -88,10 +86,6 @@
             
             color: @input-icon-color;
             background: @input-icon-bgcolor;
-            
-            
-            border-top-right-radius: @global-border-radius - 1;
-            border-bottom-right-radius: @global-border-radius - 1;
  
             &:hover {
                 cursor: pointer;
