@@ -1,26 +1,26 @@
-.@{muilessium-prefix}-tags-list {
+.@{muilessium-prefix}tags-list {
     list-style: none;
     
-    > .@{muilessium-prefix}-tag-wrapper {
+    > .@{muilessium-prefix}tag-wrapper {
         display: inline;
         
-        &:first-of-type > .@{muilessium-prefix}-tag {
+        &:first-of-type > .@{muilessium-prefix}tag {
             &::first-letter {
                 text-transform: uppercase;
             }
         }
         
-        &:last-of-type > .@{muilessium-prefix}-tag:after {
+        &:last-of-type > .@{muilessium-prefix}tag:after {
             content: '.';
         }
         
-        &:not(:last-of-type) > .@{muilessium-prefix}-tag:after  {
+        &:not(:last-of-type) > .@{muilessium-prefix}tag:after  {
             content: ',';
             padding-right: .1rem;
         }
     }
 
-    > .@{muilessium-prefix}-tag-wrapper > .fa {
+    > .@{muilessium-prefix}tag-wrapper > .fa {
         font-size: .7rem;
         color: @tag-color;
     }
