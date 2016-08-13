@@ -1,0 +1,32 @@
+.@{muilessium-prefix}-header-navigation {
+    height: @header-height;
+    
+    background: @header-navigation-bgcolor;
+    
+    overflow: hidden;
+    
+    > .nav-links {
+        list-style: none;
+        margin: 0;
+    }
+    
+    > .nav-links > li {
+        display: inline-block;
+    }
+    
+    > .nav-links > li > a {
+        padding: calc((@header-height - 1em) / 2);
+        
+        line-height: @header-height;
+        text-decoration: none;
+        
+        color: @header-navigation-color;
+        
+        #utils > .transition-all;
+        
+        &:hover {
+            color: @header-navigation-color__focus;
+            background: @header-navigation-bgcolor__focus;
+        }
+    }
+}
