@@ -671,7 +671,8 @@ article.mui-post
 form.mui-new-comment-form
     .mui-input-wrapper
         label.mui-input-label(for="textarea2") New comment
-        textarea#textarea2.mui-textarea.-resizable(placeholder="...")
+        .mui-textarea.-resizable
+            textarea#textarea2(placeholder="...")
     input.mui-button(type="submit" value="Comment")</pre>
                 </code>
             </div>
@@ -679,7 +680,9 @@ form.mui-new-comment-form
                 <form action="" class="mui-new-comment-form">
                     <div class="mui-input-wrapper">
                         <label for="textarea2" class="mui-input-label">New comment</label>
-                        <textarea id="textarea2" class="mui-textarea -resizable" placeholder="New comment"></textarea>
+                        <div class="mui-textarea -resizable">   
+                            <textarea id="textarea2" placeholder="New comment"></textarea>
+                        </div>
                     </div>
                     <input type="submit" class="mui-button" value="Comment">
                 </form>
