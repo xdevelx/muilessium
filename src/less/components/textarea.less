@@ -2,35 +2,34 @@
     width: 100%;
     max-width: 100%;
     min-height: 10rem;
-    
+
     padding: 1em;
-    
+
     color: @textarea-color;
-    
+
     border: @global-border-width solid @textarea-color;
-    
+
     outline: none;
     resize: none;
     overflow: auto;
     border-radius: @global-border-radius;
-    
+
     &::placeholder {
         color: @textarea-color;
         text-indent: 0;
         opacity: 1;
-        
+
         #utils > .transition-all;
     }
-    
+
     &:focus {
         color: @textarea-color__focus;
-        
+
         &::placeholder {
-            text-indent: -30rem;
             opacity: 0;
         }
     }
-    
+
     &.-resizable {
         resize: vertical;
     }

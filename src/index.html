@@ -371,25 +371,16 @@ a.mui-button rounded badge
         <div class="mui-row">
             <div class="mui-column -s6">
                 <code>
-                    <pre>textarea.mui-textarea.-resizable(placeholder="Your text is here!")</pre>
-                </code>
-            </div>
-            <div class="mui-column -s6">
-                <textarea class="mui-textarea -resizable" placeholder="Your text is here!"></textarea>
-            </div>
-        </div>
-        
-        <div class="mui-row">
-            <div class="mui-column -s6">
-                <code>
                     <pre>
-.mui-input
-    input(type="text" placeholder="...")</pre>
+.mui-input-wrapper
+    label.mui-input-label(for="textarea1") Your text
+    textarea#textarea1.mui-textarea.-resizable(placeholder="Your text is here!")</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
-                <div class="mui-input">
-                    <input type="text" placeholder="Standart input">
+                <div class="mui-input-wrapper">
+                    <label class="mui-input-label" for="textarea1">Your text</label>
+                    <textarea id="textarea1" class="mui-textarea -resizable" placeholder="Your text is here!"></textarea>
                 </div>
             </div>
         </div>
@@ -398,15 +389,18 @@ a.mui-button rounded badge
             <div class="mui-column -s6">
                 <code>
                     <pre>
-.mui-input.-icon-left
-    input#text1(type="text" placeholder="...")
-    label.icon(for="text1"): i.fa.fa-user</pre>
+.mui-input-wrapper
+    label.mui-input-label(for="text1") First name
+    .mui-input
+        input#text1(type="text" placeholder="...")</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
-                <div class="mui-input -icon-left">
-                    <input type="text" id="text1" placeholder="Input with icon">
-                    <label class="icon" for="text1"><i class="fa fa-user"></i></label>
+                <div class="mui-input-wrapper">
+                    <label class="mui-input-label" for="text1">First name</label>
+                    <div class="mui-input">
+                        <input id="text1" type="text" placeholder="Standart input">
+                    </div>
                 </div>
             </div>
         </div>
@@ -415,15 +409,42 @@ a.mui-button rounded badge
             <div class="mui-column -s6">
                 <code>
                     <pre>
-.mui-input.-icon-right
-    input#text2(type="search" placeholder="...")
-    label.icon(for="text2"): i.fa.fa-search</pre>
+.mui-input-wrapper
+    label.mui-input-label(for="text2") Username
+    .mui-input.-icon-left
+        input#text2(type="text" placeholder="...")
+        label.icon(for="text1"): i.fa.fa-user</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
-                <div class="mui-input -icon-right">
-                    <input type="search" id="text2" placeholder="Search">
-                    <label class="icon" for="text2"><i class="fa fa-search"></i></label>
+                <div class="mui-input-wrapper">
+                    <label for="text2" class="mui-input-label">Username</label>
+                    <div class="mui-input -icon-left">
+                        <input type="text" id="text2" placeholder="Input with icon">
+                        <label class="icon" for="text2"><i class="fa fa-user"></i></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mui-row">
+            <div class="mui-column -s6">
+                <code>
+                    <pre>
+.mui-input-wrapper
+    label.mui-input-label(for="text3") Search
+    .mui-input.-icon-right
+        input#text3(type="search" placeholder="...")
+        label.icon(for="text3"): i.fa.fa-search</pre>
+                </code>
+            </div>
+            <div class="mui-column -s6">
+                <div class="mui-input-wrapper">
+                    <label for="text3" class="mui-input-label">Search</label>
+                    <div class="mui-input -icon-right">
+                        <input type="search" id="text3" placeholder="Search">
+                        <label class="icon" for="text3"><i class="fa fa-search"></i></label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -604,13 +625,18 @@ article.mui-post
                 <code>
                     <pre>
 form.mui-new-comment-form
-    textarea.mui-textarea.-resizable(placeholder="...")
+    .mui-input-wrapper
+        label.mui-input-label(for="textarea2") New comment
+        textarea#textarea2.mui-textarea.-resizable(placeholder="...")
     input.mui-button(type="submit" value="Comment")</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
                 <form action="" class="mui-new-comment-form">
-                    <textarea class="mui-textarea -resizable" placeholder="New comment"></textarea>
+                    <div class="mui-input-wrapper">
+                        <label for="textarea2" class="mui-input-label">New comment</label>
+                        <textarea id="textarea2" class="mui-textarea -resizable" placeholder="New comment"></textarea>
+                    </div>
                     <input type="submit" class="mui-button" value="Comment">
                 </form>
             </div>
