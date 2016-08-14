@@ -59,7 +59,11 @@ module.exports = function(grunt) {
                 separator: ';',
             },
             dist: {
-                src: ['src/js/*.js'],
+                src: [
+                    'src/js/utils.js',
+                    'src/js/*/*.js',
+                    'src/js/muilessium.js'
+                ],
                 dest: 'dist/js/main.js',
             },
         },
