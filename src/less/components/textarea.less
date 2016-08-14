@@ -1,36 +1,81 @@
 .@{muilessium-prefix}textarea {
-    width: 100%;
-    max-width: 100%;
-    min-height: 10rem;
+    position: relative;
+    
+    > textarea {
+        width: 100%;
+        max-width: 100%;
+        min-height: 10rem;
 
-    padding: 1em;
+        padding: 1em;
 
-    color: @textarea-color;
-
-    border: @global-border-width solid @textarea-color;
-
-    outline: none;
-    resize: none;
-    overflow: auto;
-    border-radius: @global-border-radius;
-
-    &::placeholder {
         color: @textarea-color;
-        text-indent: 0;
-        opacity: 1;
 
-        #utils > .transition-all;
-    }
+        border: @global-border-width solid @textarea-color;
 
-    &:focus {
-        color: @textarea-color__focus;
+        outline: none;
+        resize: none;
+        overflow: auto;
+        border-radius: @global-border-radius;
 
         &::placeholder {
-            opacity: 0;
+            color: @textarea-color;
+            text-indent: 0;
+            opacity: 1;
+
+            #utils > .transition-all;
+        }
+
+        &:focus {
+            color: @textarea-color__focus;
+
+            &::placeholder {
+                opacity: 0;
+            }
+        }
+    }
+    
+    &.-resizable {
+        > textarea {
+            resize: vertical;
         }
     }
 
-    &.-resizable {
-        resize: vertical;
+    &.-material {
+        margin-top: 1rem;
+
+        overflow: visible;
+        
+        > textarea {
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            border-radius: 0;
+        }
+
+        > textarea:focus + label {
+            top: -.7rem;
+            font-size: .7rem;
+
+            color: @input-placeholder-color;
+        }
+
+        > label {
+            display: block;
+
+            position: absolute;
+            left: 1rem;
+            top: 1.5rem;
+            transform: translateY(-50%);
+
+            font-size: 1rem;
+
+            color: @input-color;
+
+            #utils > .transition-all;
+
+            &:hover {
+                cursor: text;
+            }
+        }
     }
 }

@@ -374,13 +374,36 @@ a.mui-button rounded badge
                     <pre>
 .mui-input-wrapper
     label.mui-input-label(for="textarea1") Your text
-    textarea#textarea1.mui-textarea.-resizable(placeholder="Your text is here!")</pre>
+    .mui-textarea.-resizable
+        textarea#textarea1(placeholder="Your text is here!")</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
                 <div class="mui-input-wrapper">
                     <label class="mui-input-label" for="textarea1">Your text</label>
-                    <textarea id="textarea1" class="mui-textarea -resizable" placeholder="Your text is here!"></textarea>
+                    <div class="mui-textarea -resizable">
+                        <textarea id="textarea1" placeholder="Your text is here!"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mui-row">
+            <div class="mui-column -s6">
+                <code>
+                    <pre>
+.mui-input-wrapper
+    .mui-textarea.-resizable.-material
+        textarea#textarea3
+        label.mui-input-label(for="textarea3") Your text</pre>
+                </code>
+            </div>
+            <div class="mui-column -s6">
+                <div class="mui-input-wrapper">
+                    <div class="mui-textarea -resizable -material">
+                        <textarea id="textarea3"></textarea>
+                        <label class="mui-input-label" for="textarea3">Your text</label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -444,6 +467,27 @@ a.mui-button rounded badge
                     <div class="mui-input -icon-right">
                         <input type="search" id="text3" placeholder="Search">
                         <label class="icon" for="text3"><i class="fa fa-search"></i></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mui-row">
+            <div class="mui-column -s6">
+                <code>
+                    <pre>
+.mui-input-wrapper
+    .mui-input.-material
+        input#text4(type="text")
+        label(for="text4") First name
+                    </pre>
+                </code>
+            </div>
+            <div class="mui-column -s6">
+                <div class="mui-input-wrapper">
+                    <div class="mui-input -material">
+                        <input type="text" id="text4">
+                        <label for="text4">First name</label>
                     </div>
                 </div>
             </div>

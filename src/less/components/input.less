@@ -26,7 +26,7 @@
         border: none;
 
         &::placeholder {
-            color: @input-color;
+            color: @input-placeholder-color;
             text-indent: 0;
             opacity: 1;
             
@@ -88,6 +88,42 @@
  
             &:hover {
                 cursor: pointer;
+            }
+        }
+    }
+    
+    &.-material {
+        margin-top: 1rem;
+        
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+        overflow: visible;
+        
+        > input:focus + label {
+            top: -.7rem;
+            font-size: .7rem;
+            
+            color: @input-placeholder-color;
+        }
+        
+        > label {
+            display: block;
+            
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            
+            font-size: 1rem;
+            
+            color: @input-color;
+            
+            #utils > .transition-all;
+            
+            &:hover {
+                cursor: text;
             }
         }
     }
