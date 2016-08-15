@@ -25,6 +25,7 @@ var Muilessium = (function(options) {
     
     Muilessium.prototype.init = function() {
         this.options.initialized = true;
+        
         return this;
     };
     
@@ -42,6 +43,18 @@ var Muilessium = (function(options) {
     
     Muilessium.components = {
         input: function(element, options) {
+            Utils.console.log('creating mui-input for ' + element +
+                              ' with options ' + Utils.stringify(options));
+            
+            element.getElementsByTagName('input')[0].addEventListener('change', function() {
+                Utils.console.log('input value changed to "' + this.value + '"');
+                
+                if (this.value == '') {
+                    Utils.removeClass(element, '-has-value');
+                } else {
+                    Utils.addClass(element, '-has-value');
+                }
+            });
         }
     };
     
@@ -49,3 +62,5 @@ var Muilessium = (function(options) {
 }());
 
 window.Muilessium = new Muilessium;
+
+window.Muilessium.create('input', '.mui-input', {});
