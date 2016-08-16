@@ -7,6 +7,8 @@
     border-radius: @global-border-radius;
     overflow: hidden;
     
+    background: @input-bgcolor;
+    
     &:hover {
         cursor: pointer;
     }
@@ -19,10 +21,10 @@
         line-height: @global-ui-height;
         
         color: @input-color;
+        background: transparent;
         
         outline: none;
         overflow: hidden;
-        border-radius: @global-border-radius;
         border: none;
 
         &::placeholder {
@@ -43,6 +45,13 @@
     }
     
     &.-icon-left {
+        // This background is fix for chrome 1px bug
+        background: linear-gradient(to right,
+            @input-icon-bgcolor,
+            @input-icon-bgcolor @global-ui-height,
+            @input-bgcolor @global-ui-height,
+            @input-bgcolor 100%);
+        
         > input {
             text-indent: @global-ui-height;
             
@@ -72,6 +81,13 @@
     }
     
     &.-icon-right {
+        // This background is fix for chrome 1px bug
+        background: linear-gradient(to right,
+            @input-bgcolor,
+            @input-bgcolor ~'calc(100% - ' @global-ui-height ~')',
+            @input-icon-bgcolor @global-ui-height,
+            @input-icon-bgcolor 100%);
+        
         > .icon {
             position: absolute;
             right: 0;

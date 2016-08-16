@@ -8,10 +8,10 @@ var Muilessium = (function(options) {
         
         this.options = Utils.extend(Muilessium.defaults, options);
         
-        var that = this;
+        var _this = this;
         
         document.addEventListener('DOMContentLoaded', function() {
-            that.init();
+            _this.init();
         });
         
         Muilessium.instance = this;
