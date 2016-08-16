@@ -55,6 +55,21 @@ var Muilessium = (function(options) {
                     Utils.addClass(element, '-has-value');
                 }
             });
+        },
+        
+        textarea: function(element, options) {
+            Utils.console.log('creating mui-textarea for ' + element +
+                              ' with options ' + Utils.stringify(options));
+            
+            element.getElementsByTagName('textarea')[0].addEventListener('change', function() {
+                Utils.console.log('textarea value changed to "' + this.value + '"');
+                
+                if (this.value == '') {
+                    Utils.removeClass(element, '-has-value');
+                } else {
+                    Utils.addClass(element, '-has-value');
+                }
+            });
         }
     };
     
@@ -64,3 +79,4 @@ var Muilessium = (function(options) {
 window.Muilessium = new Muilessium;
 
 window.Muilessium.create('input', '.mui-input', {});
+window.Muilessium.create('textarea', '.mui-textarea', {});

@@ -19,7 +19,7 @@ var Utils = (function() {
         },
         
         warning: function(message) {
-            console.warning('[WARNING] Muilessium: ' + message);
+            console.warn('[WARNING] Muilessium: ' + message);
         },
         
         error: function(message) {
