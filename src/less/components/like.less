@@ -1,0 +1,32 @@
+@keyframes like {
+    from { transform: scale(1);   }
+    50%  { transform: scale(1.2); }
+    to   { transform: scale(1);   }
+}
+
+.@{muilessium-prefix}like {
+    display: inline-block;
+    
+    color: @like-color;
+    background: transparent;
+    
+    border: none;
+    outline: none;
+    
+    #utils > .transition-all;
+
+    &:hover,
+    &:focus {
+        color: @like-color__focus;
+        cursor: pointer;
+    }
+    
+    &:active {
+        color: @like-color__active;
+    }
+    
+    &.-liked {
+        color: @like-color__liked;
+        animation: @like-animation-duration like @like-animation-function;
+    }
+}

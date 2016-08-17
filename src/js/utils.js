@@ -58,5 +58,13 @@ var Utils = (function() {
         element.className = element.className.replace(classForRemoving, '');
     };
     
+    Utils.toggleClass = function(element, classforToggle) {
+        if (element.className.indexOf(classforToggle) === -1) {
+            Utils.addClass(element, classforToggle);
+        } else {
+            Utils.removeClass(element, classforToggle);
+        }
+    };
+    
     return Utils;
 }());

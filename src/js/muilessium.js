@@ -70,6 +70,16 @@ var Muilessium = (function(options) {
                     Utils.addClass(element, '-has-value');
                 }
             });
+        },
+        
+        like: function(element, options) {
+            Utils.console.log('creating mui-like for ' + element +
+                              ' with options ' + Utils.stringify(options));
+            
+            element.addEventListener('click', function() {
+                Utils.console.log('like button clicked');
+                Utils.toggleClass(element, '-liked');
+            });
         }
     };
     
@@ -80,3 +90,4 @@ window.Muilessium = new Muilessium;
 
 window.Muilessium.create('input', '.mui-input', {});
 window.Muilessium.create('textarea', '.mui-textarea', {});
+window.Muilessium.create('like', '.mui-like', {});
