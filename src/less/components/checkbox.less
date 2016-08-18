@@ -30,7 +30,7 @@
         width: @global-ui-height;
         
         background: @checkbox-color2;
-        border: @global-border-width solid @radio-button-color1;
+        border: @global-border-width solid @checkbox-color1;
         
         border-radius: @global-border-radius;
         
@@ -67,5 +67,61 @@
     
     > label > .text {
         padding: 0 1rem;
+    }
+    
+    &.-toggle {
+        > label > .icon {
+            background: @checkbox-color3;
+            width: @global-ui-height * 2;
+            overflow: hidden;
+            
+            #utils > .transition-all;
+            
+            &:before,
+            &:after {
+                display: block;
+                position: absolute;
+                top: -@global-border-width;
+                left: 0;
+                
+                height: @global-ui-height;
+                width: @global-ui-height;
+                
+                font-family: @sans-serif-font-family;
+                line-height: @global-ui-height;
+                font-size: @global-ui-height * .4;
+                text-align: center;
+                text-transform: uppercase;
+
+                background: @checkbox-color2;
+                color: @input-label-color;
+                
+                border-radius: @global-border-radius;
+                
+                transition: all @toggle-animation-duration @toggle-animation-function;
+            }
+            
+            &:before {
+                content: 'off';
+            }
+            
+            &:after {
+                content: 'on';
+                opacity: 0;
+            }
+        }
+        
+        > input[type=checkbox]:checked + label > .icon {
+            background: @checkbox-color1;
+            
+            &:before,
+            &:after {
+                left: ~'calc(100% - ' @global-ui-height ~')';
+            }
+            
+            &:after {
+                opacity: 1;
+            }
+        }
     }
 }
