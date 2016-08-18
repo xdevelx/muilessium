@@ -289,7 +289,7 @@ ul.mui-rating.-r4
             </div>
             <div class="mui-column -s6">
                 <div class="mui-checkbox -toggle">
-                    <input id="checkbox2" type="checkbox">
+                    <input id="checkbox2" type="checkbox" checked>
                     <label for="checkbox2" tabindex="1">
                         <span class="icon"></span>
                         <span class="text">Lorem ipsum.</span>
@@ -400,6 +400,38 @@ button.mui-like
             </div>
             <div class="mui-column -s6">
                 <button class="mui-like"><i class="fa fa-heart"></i></button>
+            </div>
+        </div>
+        
+        <div class="mui-row">
+            <div class="mui-column -s6">
+                <code>
+                    <pre>
+.mui-card
+    p.mui-p lorem</pre>
+                </code>
+            </div>
+            <div class="mui-column -s6">
+                <div class="mui-card">
+                    <p class="mui-p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni repellendus reiciendis eveniet, nostrum labore fuga debitis quos suscipit! Nihil, fugit.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mui-row">
+            <div class="mui-column -s6">
+                <code>
+                    <pre>
+.mui-card
+    .card-header Card title
+    p.mui-p lorem</pre>
+                </code>
+            </div>
+            <div class="mui-column -s6">
+                <div class="mui-card">
+                    <div class="card-header">Card title</div>
+                    <p class="mui-p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni repellendus reiciendis eveniet, nostrum labore fuga debitis quos suscipit! Nihil, fugit.</p>
+                </div>
             </div>
         </div>
         
@@ -525,6 +557,53 @@ button.mui-like
                         <label for="text4">First name</label>
                     </div>
                 </div>
+            </div>
+        </div>
+        
+        <div class="mui-row">
+            <div class="mui-column -s6">
+                <code>
+                    <pre>
+form.mui-card.mui-login-form
+    .card-title Login form
+    .mui-input-wrapper
+        label.mui-input-label(for="text1") Username
+        .mui-input.-icon-left
+            input#text2(type="text" placeholder="...")
+            label.icon(for="text1"): i.fa.fa-user
+    .mui-input-wrapper
+        label.mui-input-label(for="text2") Paswword
+        .mui-input.-icon-left
+            input#text2(type="text" placeholder="...")
+            label.icon(for="text2"): i.fa.fa-key
+    input.mui-button(type="submit" value="Login)
+    a.forgot-password(href="") Forgot Your password
+</pre>
+                </code>
+            </div>
+            <div class="mui-column -s6">
+                <form class="mui-card mui-login-form">
+                    <div class="card-header">Login form</div>
+                    
+                    <div class="mui-input-wrapper">
+                        <label for="text2" class="mui-input-label">Username</label>
+                        <div class="mui-input -icon-left">
+                            <input type="text" id="text4" placeholder="Input with icon">
+                            <label class="icon" for="text4"><i class="fa fa-user"></i></label>
+                        </div>
+                    </div>
+                    
+                    <div class="mui-input-wrapper">
+                        <label for="text2" class="mui-input-label">Password</label>
+                        <div class="mui-input -icon-left">
+                            <input type="password" id="text5" placeholder="Input with icon">
+                            <label class="icon" for="text5"><i class="fa fa-key"></i></label>
+                        </div>
+                    </div>
+                    
+                    <input type="submit" value="Login" class="mui-button">
+                    <a href="" class="forgot-password">Forgot your password</a>
+                </form>
             </div>
         </div>
         
