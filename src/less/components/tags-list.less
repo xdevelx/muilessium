@@ -24,4 +24,30 @@
         font-size: .7rem;
         color: @tag-color;
     }
+    
+    &.-solid {
+        > .@{muilessium-prefix}tag-wrapper {
+            background: @solid-tag-bgcolor;
+            padding: 0 .5rem;
+            
+            > .@{muilessium-prefix}tag:after {
+                content: '';
+            }
+        }
+    }
+    
+    &.-with-close {
+        > .@{muilessium-prefix}tag-wrapper {
+            .fa {
+                color: @tag-color;
+                font-size: .7rem;
+                margin-left: .3rem;
+                
+                &:hover,
+                &:focus {
+                    color: @tag-color__focus;
+                }
+            }
+        }
+    }
 }
