@@ -1,3 +1,51 @@
 .@{muilessium-prefix}select-dropdown {
+    position: relative;
     
+    height: @global-ui-height;
+    width: 100%;
+    
+    
+    > select {
+        height: @global-ui-height;
+        width: 100%;
+
+        padding: 0 1rem;
+        margin: 0;
+
+        font-size: 1rem;
+        line-height: @global-ui-height;
+
+        color: @select-color;
+        background: @select-bgcolor;
+
+        appearance: none;
+        border: solid @global-border-width @select-border-color;
+        border-radius: @global-border-radius;
+        outline: none;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    
+    > .icon {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        
+        height: @global-ui-height;
+        width: @global-ui-height;
+        
+        line-height: @global-ui-height;
+        text-align: center;
+        
+        color: @select-icon-color;
+        background: @select-icon-bgcolor;
+        
+        border-top-right-radius: @global-border-radius;
+        border-bottom-right-radius: @global-border-radius;
+        
+        pointer-events: none;
+    }
 }
