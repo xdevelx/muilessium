@@ -1,6 +1,7 @@
 .@{muilessium-prefix}input {
     position: relative;
     
+    height: @global-ui-height;
     width: 100%;
     
     border: @global-border-width solid @input-color;
@@ -14,6 +15,7 @@
     }
     
     > input {
+        height: @global-ui-height;
         width: 100%;
         
         padding: 0 1rem;
@@ -82,6 +84,7 @@
     
     &.-icon-right {
         // This background is fix for chrome 1px bug
+        // TODO: Fix calc bug on hover in IE11
         background: linear-gradient(to right,
             @input-bgcolor,
             @input-bgcolor ~'calc(100% - ' @global-ui-height ~')',
