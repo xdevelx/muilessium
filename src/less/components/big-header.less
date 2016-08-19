@@ -1,0 +1,34 @@
+.@{muilessium-prefix}big-header {
+    position: relative;
+    
+    height: 20rem;
+    width: 100%;
+    
+    overflow: hidden;
+    
+    > .background {
+        height: inherit;
+        width: inherit;
+        
+        // TODO: Add polyfill for IE and Edge
+        object-fit: cover;
+        
+        filter: @big-header-background-filter;
+    }
+    
+    > .content {
+        #utils > .absolute-center;
+        
+        width: 100%;
+        
+        padding: 1rem 4rem;
+        
+        text-align: center;
+        
+        color: @big-header-color;
+    }
+    
+    &.-full-height {
+        min-height: 100vh;
+    }
+}
