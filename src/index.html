@@ -862,10 +862,14 @@ form.mui-new-comment-form
 header.mui-page-header
     .mui-header-logo: a logo
     nav.mui-header-navigation
+        input#mobile-navigation-checkbox(type="checkbox")
+        label.mobile-navigation-toggle(for=""mobile-navigation-checkbox)
+            i.fa.fa-bars
         ul.nav-links
             li: a home
             li: a about
-            li: a contacts</pre>
+            li: a contacts
+        label.shadow-toggle(for="mobile-navigation-checkbox")</pre>
                 </code>
             </div>
             <div class="mui-column -s6">
@@ -873,12 +877,18 @@ header.mui-page-header
                     <div class="mui-header-logo">
                         <a href="">Logo</a>
                     </div>
+                    
                     <nav class="mui-header-navigation">
+                        <input type="checkbox" id="mobile-navigation-checkbox">
+                        <label for="mobile-navigation-checkbox" class="mobile-navigation-toggle">
+                            <i class="fa fa-bars" aria-hidden="true"></i>
+                        </label>
                         <ul class="nav-links">
                             <li><a href="">home</a></li>
                             <li><a href="">about</a></li>
                             <li><a href="">contacts</a></li>
                         </ul>
+                        <label for="mobile-navigation-checkbox" class="shadow-toggle"></label>
                     </nav>
                 </header>
             </div>
