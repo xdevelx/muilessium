@@ -26,6 +26,26 @@
     text-transform: lowercase;
 }
 
+._z-depth-1 {
+    box-shadow: 0 0 3px @shadow-color;
+}
+
+._z-depth-2 {
+    box-shadow: 0 2px 5px @shadow-color;
+}
+
+._z-depth-3 {
+    box-shadow: 0 3px 10px @shadow-color;
+}
+
+._z-depth-4 {
+    box-shadow: 0 4px 15px @shadow-color;
+}
+
+._z-depth-5 {
+    box-shadow: 0 10px 20px @shadow-color;
+}
+
 .css-debug(@debug) when (@debug = true) {
     *             { visibility: visible !important;      }
     
