@@ -1,0 +1,20 @@
+.@{muilessium-prefix}breadcrumb {
+    height: @global-ui-height;
+    
+    padding: 0 1rem;
+    
+    line-height: @global-ui-height;
+    
+    background: @breadcrumb-bgcolor;
+    border-radius: @global-border-radius;
+    
+    > a {
+        color: @breadcrumb-color;
+        text-decoration: none;
+        
+        &:not(:last-of-type):after {
+                content: '\0203A';
+                padding: 0 .5rem;
+        }
+    }
+}
