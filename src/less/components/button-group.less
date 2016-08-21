@@ -1,0 +1,24 @@
+.@{muilessium-prefix}button-group {
+    > .@{muilessium-prefix}button {
+        border-radius: 0;
+        
+        &:first-of-type {
+            border-top-left-radius: @global-border-radius;
+            border-bottom-left-radius: @global-border-radius;
+        }
+        
+        &:last-of-type {
+            border-top-right-radius: @global-border-radius;
+            border-bottom-right-radius: @global-border-radius;
+        }
+        
+        &:not(:first-of-type) {
+            border-left: @global-border-width solid @button-group-border-color;
+            margin-left: -.4rem; // hack?
+        }
+        
+        &:not(:last-of-type) {
+            border-right: @global-border-width solid @button-group-border-color;
+        }
+    }
+}
