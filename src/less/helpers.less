@@ -46,6 +46,11 @@
     box-shadow: 0 10px 20px @shadow-color;
 }
 
+._disabled {
+    color: @default-link-color__disabled !important;
+    pointer-events: none !important;
+}
+
 .css-debug(@debug) when (@debug = true) {
     *             { visibility: visible !important;      }
     
