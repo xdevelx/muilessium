@@ -1012,6 +1012,68 @@ header.mui-page-header
             <div class="mui-column -s6">
                 <code>
                     <pre>
+.mui-carousel
+    ul.mui-slides
+        li.mui-slide
+            img.background(src="...")
+            .mui-slide-content
+                .title lorem5
+                .text lorem10
+        li.mui-slide
+            img.background(src="...")
+            .mui-slide-content
+                .title lorem5
+                .text lorem10
+    .mui-carousel-controls
+        .prev(tabindex="1") &lsaquo;
+        .next(tabindex="1") &rsaquo;
+    ul.mui-carousel-indicators
+        li.indicator(tabindex="1")
+        li.indicator(tabindex="1")</pre>
+                </code>
+            </div>
+            <div class="mui-column -s6">
+                <div class="mui-carousel">
+                    <ul class="mui-slides">
+                        <li class="mui-slide">
+                            <img src="https://habrastorage.org/files/402/f81/d67/402f81d674904708a88cbf2280678550.jpg" alt="" class="background">
+                            <div class="mui-slide-content -center">
+                                <div class="title">Lorem ipsum dolor.</div>
+                                <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, ipsa.</div>
+                            </div>
+                        </li>
+                        <li class="mui-slide -content-left">
+                            <img src="https://habrastorage.org/files/402/f81/d67/402f81d674904708a88cbf2280678550.jpg" alt="" class="background">
+                            <div class="mui-slide-content">
+                                <div class="title">Lorem ipsum dolor sit amet.</div>
+                                <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, illo.</div>
+                            </div>
+                        </li>
+                        <li class="mui-slide">
+                            <img src="https://habrastorage.org/files/402/f81/d67/402f81d674904708a88cbf2280678550.jpg" alt="" class="background">
+                            <div class="mui-slide-content -content-right">
+                                <div class="title">Lorem ipsum dolor sit.</div>
+                                <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, aliquam.</div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="mui-carousel-controls">
+                        <div class="prev" tabindex="1">&lsaquo;</div>
+                        <div class="next" tabindex="1">&rsaquo;</div>
+                    </div>
+                    <ul class="mui-carousel-indicators">
+                        <li class="indicator -active" tabindex="1"></li>
+                        <li class="indicator" tabindex="1"></li>
+                        <li class="indicator" tabindex="1"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mui-row">
+            <div class="mui-column -s6">
+                <code>
+                    <pre>
 img.mui-image.-rounded(src="...")
 img.mui-image.-circle(src="...")
                     </pre>
@@ -1045,71 +1107,6 @@ div._z-depth-5 z5
                 <div class="sample-block _z-depth-5">z5</div>
             </div>
         </div>
-        
-        <!--
-        <div class="mui-row">
-            <div class="mui-column -s6">
-                <code>
-                    <pre>
-.mui-carousel
-    ul.mui-slides
-        li.mui-slide
-            img.background(src="...")
-            .mui-slide-content
-                .title lorem5
-                .text lorem10
-        li.mui-slide
-            img.background(src="...")
-            .mui-slide-content
-                .title lorem5
-                .text lorem10
-    .mui-carousel-controls
-        .prev(tabindex="1") &lsaquo;
-        .next(tabindex="1") &rsaquo;
-    ul.mui-carousel-indicators
-        li.indicator(tabindex="1")
-        li.indicator(tabindex="1")</pre>
-                </code>
-            </div>
-            <div class="mui-column -s6">
-                <div class="mui-carousel">
-                    <ul class="mui-slides">
-                        <li class="mui-slide">
-                            <img src="https://habrastorage.org/files/0e4/19b/d6f/0e419bd6fef24d70930c06f1ad125e05.jpg" alt="" class="background">
-                            <div class="mui-slide-content -center">
-                                <div class="title">Lorem ipsum dolor.</div>
-                                <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, ipsa.</div>
-                            </div>
-                        </li>
-                        <li class="mui-slide -content-left">
-                            <img src="https://habrastorage.org/files/0e4/19b/d6f/0e419bd6fef24d70930c06f1ad125e05.jpg" alt="" class="background">
-                            <div class="mui-slide-content">
-                                <div class="title">Lorem ipsum dolor sit amet.</div>
-                                <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, illo.</div>
-                            </div>
-                        </li>
-                        <li class="mui-slide">
-                            <img src="https://habrastorage.org/files/0e4/19b/d6f/0e419bd6fef24d70930c06f1ad125e05.jpg" alt="" class="background">
-                            <div class="mui-slide-content -content-right">
-                                <div class="title">Lorem ipsum dolor sit.</div>
-                                <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, aliquam.</div>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="mui-carousel-controls">
-                        <div class="prev" tabindex="1">&lsaquo;</div>
-                        <div class="next" tabindex="1">&rsaquo;</div>
-                    </div>
-                    <ul class="mui-carousel-indicators">
-                        <li class="indicator -active" tabindex="1"></li>
-                        <li class="indicator" tabindex="1"></li>
-                        <li class="indicator" tabindex="1"></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        -->
-        
         
         <!--
         <div class="mui-row">
