@@ -80,7 +80,7 @@ module.exports = function(grunt) {
                     ]
                 },
                 files: {
-                    'dist/js/main.js': ['src/js/muilessium.js']
+                    'dist/js/main.js': ['src/js/main.js']
                 }
             }
         },
@@ -108,7 +108,7 @@ module.exports = function(grunt) {
                 tasks: ['less', 'cssmin']
             },
             js: {
-                files: ['src/js/*.js'],
+                files: ['src/js/*.js', 'src/js/*/*.js'],
                 tasks: ['browserify', 'uglify']
             }
         },
