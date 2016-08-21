@@ -1,72 +1,55 @@
-var Utils = (function() {
-    function Utils() {
-        return this;
-    }
-    
-    Utils.extend = function(a, b){
-        for(var key in b) {
-            if(b.hasOwnProperty(key)) {
-                a[key] = b[key];
-            }
-        }
-        
-        return a;
-    };
-    
-    Utils.console = {
-        log: function(message) {
-            console.log('Muilessium: ' + message);
-        },
-        
-        warning: function(message) {
-            console.warn('[WARNING] Muilessium: ' + message);
-        },
-        
-        error: function(message) {
-            console.error('[ERROR] Muilessium: ' + message);
-        }
-    };
-    
-    Utils.stringify = function(object) {
-        if (typeof object !== 'object') {
-            Utils.console.warning('object for stringifying is not an object');
-        }
-        
-        return JSON.stringify(object);
-    };
-    
-    Utils.addClass = function(element, newClass) {
-        if (!document.contains(element)) {
-            Utils.console.error('cannot add class to element ' + element + '. No such element');
-            throw new Error();
-        }
-        
-        if (element.className.indexOf(newClass) !== -1) {
-            Utils.console.log('class ' + newClass + ' already added to element ' + element);
-            return;
-        }
-        
-        element.className += ' ' + newClass;
-    };
-    
-    Utils.removeClass = function(element, classForRemoving) {
-        if (!document.contains(element)) {
-            Utils.console.error('cannot add class to element ' + element + '. No such element');
-            throw new Error();
-        }
-        
-        element.className = element.className.replace(classForRemoving, '');
-    };
-    
-    Utils.toggleClass = function(element, classforToggle) {
-        if (element.className.indexOf(classforToggle) === -1) {
-            Utils.addClass(element, classforToggle);
-        } else {
-            Utils.removeClass(element, classforToggle);
-        }
-    };
-    
-    return Utils;
-}());
+const console = {
+    log: (message) => {
+        window.console.log('Muilessium: ' + message);
+    },
 
-export default Utils;
+    warning: (message) => {
+        window.console.warn('[WARNING] Muilessium: ' + message);
+    },
+
+    error: (message) => {
+        window.console.error('[ERROR] Muilessium: ' + message);
+    }
+};
+
+
+function addClass(element, newClass) {
+    if (!document.contains(element)) {
+        console.error('cannot add class to element ' + element + '. No such element');
+        throw new Error();
+    }
+
+    if (element.className.indexOf(newClass) !== -1) {
+        console.log('class ' + newClass + ' already added to element ' + element);
+        return;
+    }
+
+    element.className += ' ' + newClass;
+};
+
+
+function removeClass(element, classForRemoving) {
+    if (!document.contains(element)) {
+        console.error('cannot add class to element ' + element + '. No such element');
+        throw new Error();
+    }
+
+    element.className = element.className.replace(classForRemoving, '');
+};
+
+
+function toggleClass(element, classforToggle) {
+    if (element.className.indexOf(classforToggle) === -1) {
+        addClass(element, classforToggle);
+    } else {
+        removeClass(element, classforToggle);
+    }
+};
+
+
+export {
+    console,
+    addClass,
+    removeClass,
+    toggleClass
+};
