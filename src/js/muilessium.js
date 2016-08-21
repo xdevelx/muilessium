@@ -1,3 +1,5 @@
+import Utils from "./utils";
+
 var Muilessium = (function(options) {
     'use strict';
     

@@ -67,6 +67,23 @@ module.exports = function(grunt) {
                 dest: 'dist/js/main.js',
             },
         },
+
+        browserify: {
+            dist: {
+                options: {
+                    transform: [
+                        [
+                            'babelify', {
+                                presets: ['es2015']
+                            }
+                        ]
+                    ]
+                },
+                files: {
+                    'dist/js/main.js': ['src/js/muilessium.js']
+                }
+            }
+        },
         
         uglify: {
             dist: {
@@ -92,7 +109,7 @@ module.exports = function(grunt) {
             },
             js: {
                 files: ['src/js/*.js'],
-                tasks: ['concat', 'uglify']
+                tasks: ['browserify', 'uglify']
             }
         },
         
@@ -121,7 +138,7 @@ module.exports = function(grunt) {
         }
     });
     
-    grunt.registerTask('default', ['copy', 'less', 'cssmin', 'concat', 'uglify']);
-    grunt.registerTask('server',  ['copy', 'less', 'cssmin', 'concat', 'uglify', 'browserSync', 'watch']);
+    grunt.registerTask('default', ['copy', 'less', 'cssmin', 'browserify', 'uglify']);
+    grunt.registerTask('server',  ['copy', 'less', 'cssmin', 'browserify', 'uglify', 'browserSync', 'watch']);
     grunt.registerTask('rebuild', ['clean', 'default']);
 };

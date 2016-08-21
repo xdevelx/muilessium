@@ -1,6 +1,6 @@
 {
   "name": "template",
-  "version": "0.0.63",
+  "version": "0.0.64",
   "description": "",
   "main": "Gruntfile.js",
   "scripts": {
@@ -12,9 +12,12 @@
   "author": "Ivan Bogachev <sfi0zy@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "babel-preset-es2015": "^6.13.2",
+    "babelify": "^7.3.0",
     "browser-sync": "~2.12.3",
     "grunt": "~1.0.1",
     "grunt-browser-sync": "~2.2.0",
+    "grunt-browserify": "^5.0.0",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-copy": "^1.0.0",

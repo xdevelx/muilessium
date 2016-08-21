@@ -68,3 +68,5 @@ var Utils = (function() {
     
     return Utils;
 }());
+
+export default Utils;
