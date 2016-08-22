@@ -1,0 +1,37 @@
+.@{muilessium-prefix}collection {
+    margin: 0;
+    
+    list-style: none;
+    
+    > .item {
+        display: block;
+        position: relative;
+        
+        padding: 1rem 3rem 1rem 1rem;
+        
+        border: solid @global-border-width @collection-border-color;
+        
+        &:first-of-type {
+            border-top-left-radius: @global-border-radius;    
+            border-top-right-radius: @global-border-radius;    
+        }
+        
+        &:not(:first-of-type) {
+            border-top: none;
+        }
+        
+        &:last-of-type {
+            border-bottom-left-radius: @global-border-radius;    
+            border-bottom-right-radius: @global-border-radius;    
+        }
+    }
+    
+    > .item > .@{muilessium-prefix}badge {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        
+        color: @collection-badge-color;
+        background: @collection-badge-bgcolor;
+    }
+}
