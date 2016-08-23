@@ -1,0 +1,44 @@
+.@{muilessium-prefix}ribbon {
+    position: absolute;
+    
+    color: @ribbon-color;
+    background: @ribbon-bgcolor;
+    
+    &.-left   { left:   0; }
+    &.-right  { right:  0; }
+    &.-top    { top:    0; }
+    &.-bottom { bottom: 0; }
+    
+    &.-bookmark {
+        @width: 50px;
+        
+        top: 0;
+        width: @width;
+        
+        font-size: .8rem;
+        text-transform: uppercase;
+        
+        &.-left {
+            left: 1rem;
+        }
+        
+        &.-right {
+            right: 1rem;
+        }
+        
+        &:after {
+            content: '';
+            
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            
+            height: 0;
+            width: 0;
+            
+            border-left: @width / 2 solid @ribbon-bgcolor;
+            border-right: @width / 2 solid @ribbon-bgcolor;
+            border-bottom: @width / 2 solid transparent;
+        }
+    }
+}
