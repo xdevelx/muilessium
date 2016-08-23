@@ -588,6 +588,52 @@ button.mui-like
             <div class="mui-column -s6">
                 
                     <pre><code>
+ul.mui-accordion
+    li.item
+        input#ac1(type="radio" name="accordion1" checked)
+        label.title(for="acc1") lorem
+        .content lorem
+    li.item
+        input#ac2(type="radio" name="accordion1")
+        label.title(for="acc2") lorem
+        .content lorem
+    li.item
+        input#ac3(type="radio" name="accordion1")
+        label.title(for="acc3") lorem
+        .content lorem
+                    </code></pre>
+                
+            </div>
+            <div class="mui-column -s6">
+                <ul class="mui-accordion">
+                    <li class="item">
+                        <input type="radio" name="accordion1" id="accordion1-1" checked>
+                        <label for="accordion1-1" class="title">Lorem ipsum dolor sit amet.</label>
+                        <div class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum tempore, incidunt tenetur ut sint repudiandae eos. Consectetur mollitia eos dolorum, quasi eaque exercitationem, hic ex, deleniti fuga id aliquid unde.</div>
+                    </li>
+                    <li class="item">
+                        <input type="radio" name="accordion1" id="accordion1-2">
+                        <label for="accordion1-2" class="title">Lorem ipsum dolor sit.</label>
+                        <div class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. In, dignissimos omnis, officiis distinctio est mollitia, ea blanditiis reprehenderit, accusamus animi eos facilis repudiandae error alias natus. Quis nulla fugit nam fugiat illum.</div>
+                    </li>
+                    <li class="item">
+                        <input type="radio" name="accordion1" id="accordion1-3">
+                        <label for="accordion1-3" class="title">Lorem ipsum dolor sit amet.</label>
+                        <div class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cumque dignissimos eos fugit fuga deserunt incidunt, quo laborum voluptatem modi a in, repudiandae nostrum aperiam labore, quidem nam doloribus quos.</div>
+                    </li>
+                    <li class="item">
+                        <input type="radio" name="accordion1" id="accordion1-4">
+                        <label for="accordion1-4" class="title">Lorem ipsum dolor sit amet, consectetur.</label>
+                        <div class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque vitae officiis magnam quis incidunt fuga. Commodi similique sunt excepturi, alias dicta cum eius explicabo, eos animi quos laudantium minima aspernatur, ipsum sit.</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="mui-row">
+            <div class="mui-column -s6">
+                
+                    <pre><code>
 .mui-input-wrapper
     label.mui-input-label(for="textarea1") Your text
     .mui-textarea.-resizable

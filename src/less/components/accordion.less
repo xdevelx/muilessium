@@ -1,0 +1,54 @@
+.@{muilessium-prefix}accordion {
+    list-style: none;
+    
+    > .item {
+        display: block;
+        position: relative;
+        
+        padding: 1rem 3rem 1rem 1rem;
+        
+        color: @accordion-color;
+        background: @accordion-bgcolor;
+        border: solid @global-border-width @accordion-border-color;
+        
+        &:first-of-type {
+            border-top-left-radius: @global-border-radius;    
+            border-top-right-radius: @global-border-radius;    
+        }
+        
+        &:not(:first-of-type) {
+            border-top: none;
+        }
+        
+        &:last-of-type {
+            border-bottom-left-radius: @global-border-radius;    
+            border-bottom-right-radius: @global-border-radius;    
+        }
+    }
+    
+    > .item > .title {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    
+    > .item > .content {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        
+        transition: all @accordion-animation-duration @accordion-animation-function;
+    }
+    
+    > .item > input {
+        display: none;
+        
+        &:checked + .title + .content {
+            max-height: 30rem;
+            margin-top: 1rem;
+            opacity: 1;
+            
+            transition: all @accordion-animation-duration @accordion-animation-function;
+        }
+    }
+}
