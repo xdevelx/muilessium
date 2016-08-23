@@ -11,15 +11,16 @@ header.preview-header {
 
 .mui-column {
     padding: 1rem;
+    width: 100% !important;
 }
 
 body {
-    background: linear-gradient(to right, #777 0%, #777 50%, #fff 50%, #fff 100%);
+    background: #fff;
 }
 
 pre {
-    background: #333;
-    color: #fff;
+    background: #cecece;
+    color: #434343;
     padding: 1rem;
     font-family: monospace;
     font-size: .8rem;
@@ -28,14 +29,10 @@ pre {
 }
 
 .mui-content-container {
-    max-width: 1200px;
+    max-width: 960px;
 
     &.-limit-width {
-        max-width: 1200px;
-    }
-    
-    .mui-row:not(:last-of-type) {
-        border-bottom: 1px solid #ccc;
+        max-width: 960px;
     }
 }
 
@@ -47,21 +44,15 @@ pre {
     margin-bottom: 1rem;
 }
 
+.mui-post {
+    margin: 1rem auto;
+}
+
 footer.page-footer {
     background: #fff;
     box-shadow: 0 0 3px rgba(0, 0, 0, .3);
     height: 3rem;
     margin-top: 2rem;
-}
-
-@media screen and (max-width: 1024px) {
-    .mui-column {
-        width: 100% !important;
-    }
-    
-    body {
-        background: #fff;
-    }
 }
 
 .sample-block {
@@ -80,5 +71,6 @@ footer.page-footer {
         position: relative;
         height: 10rem;
         width: 100%;
+        margin: 1rem 0;
     }
 }
