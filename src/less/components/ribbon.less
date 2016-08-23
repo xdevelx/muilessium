@@ -1,6 +1,10 @@
 .@{muilessium-prefix}ribbon {
     position: absolute;
     
+    text-align: center;
+    font-size: .8rem;
+    text-transform: uppercase;
+    
     color: @ribbon-color;
     background: @ribbon-bgcolor;
     
@@ -17,6 +21,7 @@
         
         font-size: .8rem;
         text-transform: uppercase;
+        line-height: 4;
         
         &.-left {
             left: 1rem;
@@ -30,7 +35,7 @@
             content: '';
             
             position: absolute;
-            bottom: -25px;
+            bottom: -@width / 2;
             left: 0;
             
             height: 0;
@@ -39,6 +44,28 @@
             border-left: @width / 2 solid @ribbon-bgcolor;
             border-right: @width / 2 solid @ribbon-bgcolor;
             border-bottom: @width / 2 solid transparent;
+        }
+    }
+    
+    &.-classic {
+        line-height: 2;
+        
+        width: 8rem;
+        
+        &.-top.-left {
+            transform: translateX(-25%) translateY(50%) rotate(-45deg);
+        }
+        
+        &.-bottom.-right {
+            transform: translateX(25%) translateY(-50%) rotate(-45deg);
+        }
+        
+        &.-top.-right {
+            transform: translateX(25%) translateY(50%) rotate(45deg);
+        }
+        
+        &.-bottom.-left {
+            transform: translateX(-25%) translateY(-50%) rotate(45deg);
         }
     }
 }
