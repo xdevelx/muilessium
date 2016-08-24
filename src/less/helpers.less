@@ -55,6 +55,12 @@
     overflow: hidden;
 }
 
+._truncate-line {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .css-debug(@debug) when (@debug = true) {
     *             { visibility: visible !important;      }
     

@@ -26,15 +26,19 @@
     }
 
     > .labels {
-        display: flex;
-        flex-flow: row wrap;
+        display: table; // using table because flex works very bad with truncate
+        width: 100%;
+        table-layout: fixed;
         margin-right: -.5px; // hack for 1px bug in Chrome
     }
     
     > .labels > label {
-        text-align: center;
-        flex-grow: 1;
+        display: table-cell;
+        width: 1px;
         
+        padding: 0 1rem;
+        
+        text-align: center;
         line-height: @global-ui-height;
         
         color: @tabs-color;
@@ -45,6 +49,7 @@
         border-top-right-radius: @global-border-radius;
         
         #utils > .transition-all;
+        &:extend(._truncate-line);
 
         
         &:not(:first-of-type) {
