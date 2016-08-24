@@ -25,7 +25,7 @@ function addClass(element, newClass) {
     }
 
     element.className += ' ' + newClass;
-};
+}
 
 
 function removeClass(element, classForRemoving) {
@@ -35,7 +35,7 @@ function removeClass(element, classForRemoving) {
     }
 
     element.className = element.className.replace(classForRemoving, '');
-};
+}
 
 
 function toggleClass(element, classforToggle) {
@@ -44,12 +44,24 @@ function toggleClass(element, classforToggle) {
     } else {
         removeClass(element, classforToggle);
     }
-};
+}
+
+
+function normalizeTabIndex() {
+    var focusableElements = [].slice.call(
+        document.querySelectorAll('a, button, input, select, textarea, object')
+    );
+    
+    focusableElements.map(function(element) {
+        element.tabIndex = 1;
+    });
+}
 
 
 export {
     console,
     addClass,
     removeClass,
-    toggleClass
+    toggleClass,
+    normalizeTabIndex
 };

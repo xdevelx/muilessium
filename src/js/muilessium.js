@@ -13,6 +13,8 @@ class Muilessium {
         
         this.options = Object.assign(Muilessium.defaults, options);
         
+        Utils.normalizeTabIndex();
+        
         Muilessium.instance = this;
         
         return this;
