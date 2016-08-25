@@ -155,4 +155,20 @@
             color: @input-placeholder-color;
         }
     }
+    
+    &.-valid {
+        border-color: @input-color__valid;
+        
+        > input::placeholder {
+            color: @input-color__valid;
+        }
+    }
+    
+    &.-invalid {
+        border-color: @input-color__invalid;
+        
+        > input::placeholder {
+            color: @input-color__invalid;
+        }
+    }
 }
