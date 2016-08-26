@@ -1,7 +1,10 @@
-import * as Utils from "../utils";
+import * as Utils from '../utils';
+import { component } from '../component';
 
-export class input {
+export class input extends component {
     constructor(element, options) {
+        super();
+        
         Utils.console.log('creating mui-input for ' + element +
                       ' with options ' + JSON.stringify(options));
 

@@ -1,7 +1,10 @@
-import * as Utils from "../utils";
+import * as Utils from '../utils';
+import { component } from '../component';
 
-export class textarea {
+export class textarea extends component {
     constructor(element, options) {
+        super();
+        
         Utils.console.log('creating mui-textarea for ' + element +
                           ' with options ' + JSON.stringify(options));
 

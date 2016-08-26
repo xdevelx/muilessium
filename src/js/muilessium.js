@@ -1,4 +1,4 @@
-import * as Utils from "./utils";
+import * as Utils from './utils';
 
 import { input    as inputComponent }    from './components/input';
 import { textarea as textareaComponent } from './components/textarea';
