@@ -58,10 +58,22 @@ function normalizeTabIndex() {
 }
 
 
+function stringify(object) {
+    return JSON.stringify(object, function(key, value) {
+        if (typeof value === 'function') {
+            return 'function';
+        }
+        
+        return value;
+    });
+}
+
+
 export {
     console,
     addClass,
     removeClass,
     toggleClass,
-    normalizeTabIndex
+    normalizeTabIndex,
+    stringify
 };
