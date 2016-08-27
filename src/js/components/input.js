@@ -3,7 +3,7 @@ import { component } from '../component';
 
 export class input extends component {
     constructor(element, options) {
-        super();
+        super(element, options);
         
         Utils.console.log('creating mui-input for ' + element +
                       ' with options ' + JSON.stringify(options));
