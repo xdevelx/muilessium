@@ -5,7 +5,8 @@ export class component {
         Utils.console.log('creating component');
         
         this.element = element;
-        this.eventListeners = {};
+        this.userEventListeners = {};
+        this.observerEventListeners = [];
         
         var _this = this;
         
@@ -16,23 +17,52 @@ export class component {
         }
     }
     
-    addEventListener(event, callback) {
-        if (!this.eventListeners.hasOwnProperty(event)) {
-            this.eventListeners[event] = [];    
+    addEventListener(event, listener) {
+        if (!this.userEventListeners.hasOwnProperty(event)) {
+            this.userEventListeners[event] = [];    
         }
 
-        this.eventListeners[event].push(callback);
+        this.userEventListeners[event].push(listener);
+        this.updateEventListenerHandlers();
     }
     
-    startEventListening() {
+    removeEventListener(event, listener) {
+        if (this.userEventListeners.hasOwnProperty(event)) {
+            var indexOfListener = this.userEventListeners[event].findIndex(function(func) {
+                return func.name === listener.name;
+            });
+            
+            if (indexOfListener > -1) {
+                this.userEventListeners[event].splice(indexOfListener, 1);
+                this.updateEventListenerHandlers();
+            }
+        }
+    }
+    
+    updateEventListenerHandlers() {
         var _this = this;
         
-        Object.keys(this.eventListeners).forEach(function(event) {
-            _this.element.addEventListener(event, function() {
-                _this.eventListeners[event].forEach(function(callback) {
+        this.observerEventListeners.forEach(function(listenerInfo) {
+            _this.element.removeEventListener(
+                listenerInfo.event, listenerInfo.listener);
+        });
+        
+        _this.observerEventListeners = [];
+        
+        Object.keys(this.userEventListeners).forEach(function(event) {
+            var listener = function() {
+                _this.userEventListeners[event].forEach(function(callback) {
                     callback();
                 });
-            });
+            };
+            
+            var listenerInfo = {
+                'event': event,
+                'listener': listener
+            };
+            
+            _this.element.addEventListener(event, listener);
+            _this.observerEventListeners.push(listenerInfo);
         });
     }
 }

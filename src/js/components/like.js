@@ -8,11 +8,11 @@ export class like extends component {
         
         super(element, options);
         
-        this.addEventListener('click', function() {
-            Utils.console.log('like button clicked');
-            Utils.toggleClass(element, '-liked');
-        });
-        
-        this.startEventListening();
+        this.addEventListener('click', this.clickEventListener.bind(this));
+    }
+  
+    clickEventListener() {
+        Utils.console.log('like button clicked');
+        Utils.toggleClass(this.element, '-liked');
     }
 }
