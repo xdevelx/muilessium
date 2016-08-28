@@ -14,6 +14,7 @@ class Muilessium {
         this.options = Object.assign(Muilessium.defaults, options);
         
         Utils.normalizeTabIndex();
+        Utils.objectFitImages();
         
         Muilessium.instance = this;
         

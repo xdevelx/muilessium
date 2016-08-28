@@ -1,6 +1,6 @@
 {
   "name": "template",
-  "version": "0.0.81",
+  "version": "0.0.82",
   "description": "",
   "main": "Gruntfile.js",
   "scripts": {
@@ -28,6 +28,7 @@
     "grunt-contrib-watch": "~1.0.0",
     "less-plugin-autoprefix": "~1.5.1",
     "load-grunt-tasks": "~3.5.0",
-    "npm-version": "^1.1.0"
+    "npm-version": "^1.1.0",
+    "object-fit-images": "^2.5.6"
   }
 }

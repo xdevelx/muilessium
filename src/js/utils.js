@@ -1,3 +1,5 @@
+var objectFitImages = require('object-fit-images');
+
 const console = {
     log: (message) => {
         window.console.log('Muilessium: ' + message);
@@ -75,5 +77,6 @@ export {
     removeClass,
     toggleClass,
     normalizeTabIndex,
-    stringify
+    stringify,
+    objectFitImages
 };
