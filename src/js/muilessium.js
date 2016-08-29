@@ -1,6 +1,7 @@
 import * as Utils from './utils';
 
 import { input    as inputComponent }    from './components/input';
+import { button   as buttonComponent }   from './components/button';
 import { textarea as textareaComponent } from './components/textarea';
 import { like     as likeComponent }     from './components/like';
 
@@ -38,7 +39,8 @@ class Muilessium {
 Muilessium.components = {
     input: inputComponent,
     textarea: textareaComponent,
-    like: likeComponent
+    like: likeComponent,
+    button: buttonComponent
 };
 
 

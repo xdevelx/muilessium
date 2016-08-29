@@ -13,4 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+    window.Muilessium.create('button', '.mui-button', {
+        'eventListeners': {
+            'click': () => {
+                console.log('button click callback....');
+            }
+        }
+    });
 });
