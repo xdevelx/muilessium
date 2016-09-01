@@ -1,7 +1,7 @@
 import * as Utils from '../utils';
-import { component } from '../component';
+import { Component } from '../component';
 
-export class button extends component {
+export class Button extends Component {
     constructor(element, options) {
         super(element, options);
         

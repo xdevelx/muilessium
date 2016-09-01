@@ -1,7 +1,7 @@
 import * as Utils from '../utils';
-import { component } from '../component';
+import { Component } from '../component';
 
-export class like extends component {
+export class Like extends Component {
     constructor(element, options) {
         Utils.console.log('creating mui-like for ' + element +
                           ' with options ' + Utils.stringify(options));

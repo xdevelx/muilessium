@@ -1,7 +1,7 @@
 import * as Utils from '../utils';
-import { component } from '../component';
+import { Component } from '../component';
 
-export class input extends component {
+export class Input extends Component {
     constructor(element, options) {
         super(element, options);
         
