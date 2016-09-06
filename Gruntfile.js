@@ -135,6 +135,7 @@ module.exports = function(grunt) {
                     'docs/': 'src/less/**/*.less'
                 },
                 options: {
+                    template: 'src/docs_template/',
                     parsers: {
                         link: function(i, line, block){
                             var exp = new RegExp('(b(https?|ftp|file)://[-A-Z0-9+&@#/%?=~_|!:,.;]*[-A-Z0-9+&@#/%=~_|])', 'ig');
