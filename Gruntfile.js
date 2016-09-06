@@ -129,6 +129,23 @@ module.exports = function(grunt) {
             }
         },
         
+        dss: {
+            docs: {
+                files: {
+                    'docs/': 'src/less/**/*.less'
+                },
+                options: {
+                    parsers: {
+                        link: function(i, line, block){
+                            var exp = new RegExp('(b(https?|ftp|file)://[-A-Z0-9+&@#/%?=~_|!:,.;]*[-A-Z0-9+&@#/%=~_|])', 'ig');
+                            line.replace(exp, '<a href="$1">$1</a>');
+                            return line;
+                        }
+                    }
+                }
+            }
+        },
+        
         clean: {
             build: {
                 src: [
@@ -141,4 +158,5 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['copy', 'less', 'cssmin', 'browserify', 'uglify']);
     grunt.registerTask('server',  ['copy', 'less', 'cssmin', 'browserify', 'uglify', 'browserSync', 'watch']);
     grunt.registerTask('rebuild', ['clean', 'default']);
+    grunt.registerTask('docs',    ['dss']);
 };
