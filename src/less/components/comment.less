@@ -1,3 +1,16 @@
+// @name Comment
+// @description Comment component
+//
+// @markup
+//      <div class="mui-comment">
+//          <img src="https://habrastorage.org/files/2d2/05b/860/2d205b860dea4e85bdbc0db7260f9ffb.jpg" alt="" class="avatar">
+//          <div class="comment-info">
+//              <div class="author"><a href="">Arianna Grey</a></div>
+//              <div class="date">26 Jul 2016</div>
+//          </div>
+//          <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto animi beatae minima, earum eligendi. Corporis mollitia illo, temporibus nesciunt. Illum optio placeat maxime, earum cupiditate!</div>
+//      </div>
+
 .@{muilessium-prefix}comment {
     padding: 1rem;
     
@@ -10,18 +23,18 @@
         background: @comment-avatar-bgcolor;
     }
     
-    > .info {
+    > .comment-info {
         display: inline-block;
         vertical-align: top;
         
         padding: 0 1rem;
     }
     
-    > .info > .author {
+    > .comment-info > .author {
         font-weight: 600;
     }
     
-    > .info > .author > a {
+    > .comment-info > .author > a {
         text-decoration: none;
         color: @comment-color;
         
@@ -35,7 +48,7 @@
         }
     }
     
-    > .info > .date {
+    > .comment-info > .date {
         font-size: .9rem;
         margin-bottom: .3rem;
         color: @comment-date-color;
