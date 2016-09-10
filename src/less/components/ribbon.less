@@ -1,15 +1,17 @@
 // @name Ribbon
 // @description Ribbon component
 //
-// @state -left     - On the left side of container
-// @state -right    - On the right side of container
-// @state -top      - At the top of container (classic ribbon only)
-// @state -bottom   - At the bottom of container (classic ribbon only)
-// @state -bookmark - Bookmark ribbon
-// @state -classic  - Classic ribbon
+// @state -classic -top -left      - Classic ribbon On the top left courner
+// @state -classic -top -right     - Classic ribbon On the top right
+// @state -classic -bottom -left   - Classic ribbon On the top left courner
+// @state -classic -bottom -right  - Classic ribbon On the top right
+// @state -bookmark -left          - Bookmark ribbon on the left side
+// @state -bookmark -right         - Bookmark ribbon on the right side
 //
 // @markup
-//      <div class="mui-ribbon">new</div>
+//      <div class="relative-no-overflow-wrapper docs-only-wrapper docs-remove-default-example">
+//          <div class="mui-ribbon">new</div>
+//      </div>
 
 .@{muilessium-prefix}ribbon {
     position: absolute;

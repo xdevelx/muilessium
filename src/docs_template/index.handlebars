@@ -9,74 +9,94 @@
     <link rel="stylesheet" href="assets/css/styles.css"/>
     <link rel="stylesheet" href="../dist/css/main.css">
     
-    <script src="assets/js/prettify/prettify.js?v=1"></script>
-    <script src="../dist/js/main.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 </head>
-<body onload="prettyPrint()">
+<body>
 
-    <header>
-        <h1>{{project.name}} styleguide</h1>
-        <p class="version">v.<strong>{{project.version}}</strong></p>
-        <p class="description">{{project.description}}</p>
+    <header class="mui-page-header">
+        <div class="mui-content-container">
+            <h1 class="mui-header-logo"><img   src="https://habrastorage.org/files/3b8/599/32f/3b859932fb9b496d87eecae4db3efa3e.png" alt="">{{project.name}} v.{{project.version}}</h1>
+        </div>
     </header>
 
-    <div id="wrapper">
-        <nav role="main">
-            <h2>Table of Contents</h2>
-            <ul>
+    <main>
+        <div class="mui-content-container">
+            <nav class="table-of-contents">
+                <h2>Table of Contents</h2>
+                <ul>
+                    {{#files}}
+                        <li><a href="#{{file}}" data-file="{{file}}">{{file}}</a></li>
+                    {{/files}}
+                </ul>
+            </nav>
+
+            <div class="styleguide">
                 {{#files}}
-                    <li><a href="#{{file}}" data-file="{{file}}">{{file}}</a></li>
-                {{/files}}
-            </ul>
-        </nav>
+                    <div class="file-docs">
+                        <h3 id="{{file}}">{{file}}</h3>
+                        {{#blocks}}
+                            <div class="block">
+                                <div class="info">
+                                    <h4>{{name}}</h4>
+                                    {{#if description}}
+                                        <p class="description">{{description}}</p>
+                                    {{/if}}
+                                    {{#state}}
+                                        <p class="state"><span>{{name}}</span> - {{description}}</p>
+                                    {{/state}}
+                                </div>
 
-        <div class="styleguide">
-            {{#files}}
-                <div class="file">
-                    <h3 id="{{file}}">{{file}}</h3>
-                    {{#blocks}}
-                        <div class="block">
-                            <div class="info">
-                                <h4>{{name}}</h4>
-                                {{#if description}}
-                                    <p class="description">{{description}}</p>
+                                {{#if markup}}
+                                    <div class="example">{{{markup.example}}}</div>
+
+                                    {{#state}}
+                                        <div class="example state {{class}}">
+                                            <div class="name">{{name}}</div>{{{../markup.example}}}
+                                        </div>
+                                    {{/state}}
+
+                                    <pre class="prettyprint lang-html markup">{{{markup.escaped}}}</pre>
                                 {{/if}}
-                                {{#state}}
-                                    <p class="state"><span>{{name}}</span> - {{description}}</p>
-                                {{/state}}
                             </div>
-
-                            {{#if markup}}
-                                <div class="example">{{{markup.example}}}</div>
-
-                                {{#state}}
-                                    <div class="example state {{class}}">
-                                        <div class="name">{{name}}</div>
-{{{../markup.example}}}
-                                    </div>
-                                {{/state}}
-
-                                <pre class="prettyprint lang-html markup">{{{markup.escaped}}}</pre>
-                            {{/if}}
-                        </div>
-                    {{/blocks}}
-                </div>
-            {{/files}}
+                        {{/blocks}}
+                    </div>
+                {{/files}}
+            </div>
         </div>
-    </div>
+    </main>
 
     <footer></footer>
     
+    <script src="assets/js/prettify/prettify.js?v=1"></script>
+    <script src="../dist/js/main.js"></script>
     <script>
-        document.querySelectorAll('.example.state').forEach(function(example) {
-            var c = example.childNodes,
-                name = c[1].innerHTML;
+        // Some dirty fixes for better docs experience
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.example:not(.state) .docs-remove-default-example').forEach(function(element){
+                element.parentElement.style.display = 'none';
+            });
+
+            document.querySelectorAll('.example.state').forEach(function(example) {
+                var c = example.childNodes,
+                    name = c[1].innerHTML;
+
+                if (name[0] === ':') {
+                    example.style.display = 'none';
+                } else {
+                    if (c[3].className && c[3].className.indexOf('docs-only-wrapper') != -1) {
+                        c[3].childNodes[1].className += ' ' + name;
+                    } else {
+                        c[3].className += ' ' + name;
+                    }
+                }
+            });
+
+            document.querySelectorAll('pre').forEach(function(atv){
+                atv.innerHTML = atv.innerHTML.replace(new RegExp(" docs-[a-z-]*", "g"), "");
+            });
             
-            if (name[0] === ':') {
-                example.style.display = 'none';
-            } else {
-                c[3].className += ' ' + name;
-            }
+            prettyPrint();
         });
     </script>
 </body>

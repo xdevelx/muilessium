@@ -1,9 +1,6 @@
 // @name Tags list
 // @description Tags list component
 //
-// @state -solid      - Solid tags
-// @state -with-close - Tags with close button
-//
 // @markup
 //      <ul class="mui-tags-list">
 //          <li class="mui-tag-wrapper -icon"><i class="fa fa-tags" aria-hidden="true"></i></li>
@@ -13,6 +10,34 @@
 //          <li class="mui-tag-wrapper -selected"><a href="" class="mui-tag">mountains</a></li>
 //          <li class="mui-tag-wrapper"><a href="" class="mui-tag">sea</a></li>
 //      </ul>
+
+
+// @name Solid tags list
+// @description Tags list component (variation with solid tags)
+//
+// @markup
+//      <ul class="mui-tags-list -solid">
+//          <li class="mui-tag-wrapper"><a href="" class="mui-tag">nature</a></li>
+//          <li class="mui-tag-wrapper"><a href="" class="mui-tag">art</a></li>
+//          <li class="mui-tag-wrapper"><a href="" class="mui-tag">photography</a></li>
+//          <li class="mui-tag-wrapper -selected"><a href="" class="mui-tag">mountains</a></li>
+//          <li class="mui-tag-wrapper"><a href="" class="mui-tag">sea</a></li>
+//      </ul>
+
+
+// @name Solid tags list with close icon
+// @description Tags list component (variation with solid tags with close icon)
+//
+//
+// @markup
+//      <ul class="mui-tags-list -solid -with-close">
+//          <li class="mui-tag-wrapper"><a href="" class="mui-tag">tag</a><a href=""><i class="fa fa-times"></i></a></li>
+//          <li class="mui-tag-wrapper"><a href="" class="mui-tag">another</a><a href=""><i class="fa fa-times"></i></a></li>
+//          <li class="mui-tag-wrapper"><a href="" class="mui-tag">and another one</a><a href=""><i class="fa fa-times"></i></a></li>
+//          <li class="mui-tag-wrapper"><a href="" class="mui-tag">blah-blah</a><a href=""><i class="fa fa-times"></i></a></li>
+//          <li class="mui-tag-wrapper"><a href="" class="mui-tag">aaaaa</a><a href=""><i class="fa fa-times"></i></a></li>
+//      </ul>
+
 
 .@{muilessium-prefix}tags-list {
     list-style: none;
@@ -28,7 +53,7 @@
             }
         }
         
-        &:last-of-type > .@{muilessium-prefix}tag:after {
+        &:last-of-type > .@{muilessium-prefix}tag:after  {
             content: '.';
         }
         
