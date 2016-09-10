@@ -5,13 +5,27 @@ module.exports = function(grunt) {
     
     grunt.initConfig({
         copy: {
-            dist: {
+            docs: {
                 files: [
                     {
                         expand: true,
                         cwd: 'src',
                         src: ['*'],
-                        dest: 'dist/',
+                        dest: 'docs/',
+                        filter: 'isFile'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'dist/js',
+                        src: ['*.js'],
+                        dest: 'docs/assets/js',
+                        filter: 'isFile'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'dist/css',
+                        src: ['*.css'],
+                        dest: 'docs/assets/css',
                         filter: 'isFile'
                     }
                 ]
@@ -28,16 +42,6 @@ module.exports = function(grunt) {
                 files: {
                     'dist/css/main.css': 'src/less/main.less'
                 }
-            },
-            preview: {
-                options: {
-                    plugins: [
-                        new (require('less-plugin-autoprefix'))({browsers: ["last 2 versions"]})
-                    ]
-                },
-                files: {
-                    'dist/css/preview.css': 'src/less/preview.less'
-                }
             }
         },
         
@@ -45,11 +49,6 @@ module.exports = function(grunt) {
             dist: {
                 files: {
                     'dist/css/main.min.css': ['dist/css/main.css']
-                }
-            },
-            preview: {
-                files: {
-                    'dist/css/preview.min.css': ['dist/css/preview.css']
                 }
             }
         },
@@ -97,34 +96,39 @@ module.exports = function(grunt) {
         
         watch: {
             html: {
-                files: ['src/index.html'],
-                tasks: ['copy']
+                files: ['src/docs_template/index.handlebars'],
+                tasks: ['dss']
+            },
+            css: {
+                files: ['src/docs_template/assets/css/*.css'],
+                tasks: ['dss']
             },
             less: {
                 files: [
                     'src/less/*.less',
                     'src/less/*/*.less'
                 ],
-                tasks: ['less', 'cssmin']
+                tasks: ['less', 'cssmin', 'dss', 'copy']
             },
             js: {
                 files: ['src/js/*.js', 'src/js/*/*.js'],
-                tasks: ['browserify', 'uglify']
+                tasks: ['browserify', 'uglify', 'dss', 'copy']
             }
         },
         
         browserSync: {
-            dist: {
+            docs: {
                 bsFiles: {
                     src : [
-                        'dist/*.html',
+                        'docs/*.html',
+                        'docs/assets/css/*.css',
                         'dist/css/*.css',
                         'dist/js/*.js'
                     ]
                 },
                 options: {
                     watchTask: true,
-                    server: './dist'
+                    server: './docs'
                 }
             }
         },
@@ -150,14 +154,15 @@ module.exports = function(grunt) {
         clean: {
             build: {
                 src: [
-                    'dist'
+                    'dist',
+                    'docs'
                 ]
             }
         }
     });
     
-    grunt.registerTask('default', ['copy', 'less', 'cssmin', 'browserify', 'uglify']);
-    grunt.registerTask('server',  ['copy', 'less', 'cssmin', 'browserify', 'uglify', 'browserSync', 'watch']);
+    grunt.registerTask('default', ['less', 'cssmin', 'browserify', 'uglify', 'dss', 'copy']);
+    grunt.registerTask('server',  ['default', 'browserSync', 'watch']);
     grunt.registerTask('rebuild', ['clean', 'default']);
     grunt.registerTask('docs',    ['dss']);
 };
