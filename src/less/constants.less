@@ -1,29 +1,131 @@
-@hover-animation-duration:             180ms;
-@like-animation-duration:              500ms;
-@toggle-animation-duration:            300ms;
-@mobile-navigation-animation-duration: 600ms;
-@accordion-animation-duration:         600ms;
-@tabs-animation-duration:              600ms;
-
-@hover-animation-function:     cubic-bezier(.53, .05, .13, .94);
-@like-animation-function:      cubic-bezier(.53, .05, .13, .94);
-@toggle-animation-function:    cubic-bezier(.85, .11, .46, .98);
-@accordion-animation-function: cubic-bezier(.85, .11, .46, .98);
-@tabs-animation-function:      cubic-bezier(.85, .11, .46, .98);
-
-@mobile-navigation__max-screen-width: 50rem;
-
+// @name muilessium-prefix
+// @description Prefix for Muilessium css classes
+//
+// @state default - mui-
 @muilessium-prefix: mui-;
 
+// @name hover-animation-duration
+// @description Default animation duratio for hover effect
+//
+// @state default - 180ms
+@hover-animation-duration:             180ms;
+
+// @name like-animation-duration
+// @description Animation duration for like component
+//
+// @state default - 500ms
+@like-animation-duration:              500ms;
+
+// @name toggle-animation-duration
+// @description Animation duration for toggle checkbox
+//
+// @state default - 300ms
+@toggle-animation-duration:            300ms;
+
+// @name mobile-navigation-animation-duration
+// @description Animation duration for mobile menu
+//
+// @state default - 600ms
+@mobile-navigation-animation-duration: 600ms;
+
+// @name accordion-animation-duration
+// @description Animation duration for accordion component
+//
+// @state default - 600ms
+@accordion-animation-duration:         600ms;
+
+// @name tabs-animation-duration
+// @description Animation duration for tabs component
+//
+// @state default - 600ms
+@tabs-animation-duration:              600ms;
+
+// @name hover-animation-function
+// @description Default animation function for hover effect
+//
+// @state default - cubic-bezier(.53, .05, .13, .94)
+@hover-animation-function:     cubic-bezier(.53, .05, .13, .94);
+
+// @name like-animation-function
+// @description Animation function for like component
+//
+// @state default - cubic-bezier(.53, .05, .13, .94)
+@like-animation-function:      cubic-bezier(.53, .05, .13, .94);
+
+// @name toggle-animation-function
+// @description Animation function for toggle checkbox component
+//
+// @state default - cubic-bezier(.85, .11, .46, .98)
+@toggle-animation-function:    cubic-bezier(.85, .11, .46, .98);
+
+// @name accordion-animation-function
+// @description Animation function for accordion component
+//
+// @state default - cubic-bezier(.85, .11, .46, .98)
+@accordion-animation-function: cubic-bezier(.85, .11, .46, .98);
+
+// @name tabs-animation-function
+// @description Animation function for tabs component
+//
+// @state default - cubic-bezier(.85, .11, .46, .98)
+@tabs-animation-function:      cubic-bezier(.85, .11, .46, .98);
+
+// @name mobile-navigation__max-screen-width
+// @description Max screen width where mobile navigation appears instead of desctop navigation
+//
+// @state default - 50rem
+@mobile-navigation__max-screen-width: 50rem;
+
+// @name global-border-radius
+// @description Default border radius for all muilessium components
+//
+// @state default - 3px
 @global-border-radius: 3px;
+
+// @name global-border-width
+// @description Default border width for all muilessium components
+//
+// @state default - 1px
 @global-border-width:  1px;
+
+// @name global-ui-height
+// @description Default height for most of Muilessium UI components
+//
+// @state default - 2rem
 @global-ui-height:     2rem;
+
+// @name header-height
+// @description Height of page header
+//
+// @state default - global-ui-height * 2
 @header-height:        @global-ui-height * 2;
+
+// @name global-width-limit
+// @description Global width limit (for better reading experience should be under 70rem)
+//
+// @state default - 50rem
 @global-width-limit:   50rem;
 
+// @name big-header-background-filter
+// @description Filter for big header background
+// 
+// @state default - brightness(0.4)
 @big-header-background-filter: brightness(0.4);
 
-
+// @name grid-breakpoint-small
+// @description Breakpoint for grid system (small screens)
+//
+// @state default - 400px
 @grid-breakpoint-small:  400px;
+
+// @name grid-breakpoint-small
+// @description Breakpoint for grid system (medium screens)
+//
+// @state default - 600px
 @grid-breakpoint-medium: 600px;
+
+// @name grid-breakpoint-small
+// @description Breakpoint for grid system (large screens)
+//
+// @state default - 1200px
 @grid-breakpoint-large:  1200px;
