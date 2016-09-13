@@ -1,31 +1,77 @@
+// @name No-break helper
+// @description Sets white-space property to nowrap
+//
+// @markup
+//      <div class="_no-break"></div>
 ._no-break {
     white-space: nowrap;
 }
 
+// @name Text-left helper
+// @description Sets text-align property to left
+//
+// @markup
+//     <div class="_text-left"></div>
 ._text-left {
     text-align: left;
 }
 
+// @name Text-right helper
+// @description Sets text-align property to right
+//
+// @markup
+//     <div class="_text-right"></div>
 ._text-right {
     text-align: right;
 }
 
+// @name Text-center helper
+// @description Sets text-align property to center
+//
+// @markup
+//     <div class="_text-center"></div>
 ._text-center {
     text-align: center;
 }
 
+// @name Text-justify helper
+// @description Sets text-align property to justify
+//
+// @markup
+//     <div class="_text-justify"></div>
 ._text-justify {
     text-align: justify;
 }
 
+// @name Uppercase helper
+// @description Sets text-transform property to uppercase
+//
+// @markup
+//     <div class="_uppercase"></div>
 ._uppercase {
     text-transform: uppercase;
 }
 
+// @name Lowercase helper
+// @description Sets text-transform property to lowercase
+//
+// @markup
+//     <div class="_lowercase"></div>
 ._lowercase {
     text-transform: lowercase;
 }
 
+// @name Z-depth helpers
+// @description Sets box-shadow property
+//
+// @state _z-depth-1 - Sets box-shadow property to '0 0    3px  shadow-color'
+// @state _z-depth-2 - Sets box-shadow property to '0 2px  5px  shadow-color'
+// @state _z-depth-3 - Sets box-shadow property to '0 3px  10px shadow-color'
+// @state _z-depth-4 - Sets box-shadow property to '0 4px  15px shadow-color'
+// @state _z-depth-5 - Sets box-shadow property to '0 10px 20px shadow-color'
+//
+// @markup
+//     <div class=""></div>
 ._z-depth-1 {
     box-shadow: 0 0 3px @shadow-color;
 }
@@ -46,14 +92,30 @@
     box-shadow: 0 10px 20px @shadow-color;
 }
 
+// @name Disable helper
+// @description Sets link color and pointer-events property to none
+//
+// @markup
+//     <a href="" class="_disabled">disabled link</a>
 ._disabled {
     color: @default-link-color__disabled !important;
     pointer-events: none !important;
 }
 
+// @name No-overflow helper
+// @description Sets overflow property to hidden
+//
+// @markup
+//     <div class="_no-overflow"></div>
 ._no-overflow {
     overflow: hidden;
 }
+
+// @name Truncate-line helper
+// @descriptioon Creates truncated line
+//
+// @markup
+//     <p class="_truncate-line">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, doloribus nostrum ab tenetur minima, cum quidem impedit! Officia totam, laudantium iste reiciendis deserunt autem quae, eius quidem repudiandae nobis placeat.<p>
 
 ._truncate-line {
     white-space: nowrap;
@@ -61,6 +123,7 @@
     text-overflow: ellipsis;
 }
 
+// @name [DEBUG-ONLY] .css-debug(...)
 .css-debug(@debug) when (@debug = true) {
     *             { visibility: visible !important;      }
     
@@ -81,6 +144,7 @@
     }
 }
 
+// @name [DEBUG-ONLY] .outline-ui-on-focus (...)
 .outline-ui-on-focus(@outline) when (@outline = true) {
     *:focus {
         outline: 2px solid @default-link-color__focus !important;

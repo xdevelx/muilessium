@@ -1,4 +1,8 @@
+// @name #utils
+// @description Utils namespace
 #utils {
+    // @name #utils > .clearfix
+    // @description Clearfix for float
     .clearfix {
         &:after {
             content: '';
@@ -7,6 +11,8 @@
         }
     }
     
+    // @name #utils > .absolute-center
+    // @description Sets element position to absolute center
     .absolute-center {
         position: absolute;
         top: 50%;
@@ -14,20 +20,28 @@
         transform: translateX(-50%) translateY(-50%);
     }
     
+    // @name #utils > .absolute-zero
+    // @description Sets element position to absolute zero
     .absolute-zero {
         position: absolute;
         top: 0;
         left: 0;
     }
     
+    // @name #utils > .transition-all
+    // @description Sets transition for all element properties
     .transition-all {
         transition: all @hover-animation-duration @hover-animation-function;
     }
 
+    // @name #utils > .shadow
+    // @description Sets box-shadow property for element
     .shadow {
         box-shadow: 0 0 3px @shadow-color;
     }
     
+    // @name #utils > .object-fix-cover
+    // @description This is a part of fix for object-fit property see object-fit-images package for more information
     .object-fit-cover {
         object-fit: cover;
         font-family: 'object-fit: cover;';
