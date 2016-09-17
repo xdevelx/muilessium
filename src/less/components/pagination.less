@@ -24,6 +24,7 @@
     
     > .page-link {
         display: inline-block;
+        height: @global-ui-height;
         margin: 0;
     }
     
@@ -96,6 +97,10 @@
                     color: @pagination-bordered-color__focus;
                     background: @pagination-bordered-bgcolor__focus;
                 }
+            }
+            
+            > a {
+                line-height: ~'calc(' @global-ui-height ~' - ' 2 * @global-border-width ~')';
             }
         }
     }

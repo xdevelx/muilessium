@@ -39,6 +39,7 @@
             display: block;
             width: 100%;
             border-radius: 0;
+            border: none;
 
             &:first-of-type {
                 border-top-left-radius: @global-border-radius;
@@ -53,10 +54,6 @@
             &:not(:first-of-type) {
                 border-top: @global-border-width solid @button-group-border-color;
                 margin-left: 0; // hack?
-            }
-
-            &:not(:last-of-type) {
-                border-right: @global-border-width solid @button-group-border-color;
             }
         }
     }
