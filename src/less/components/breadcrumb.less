@@ -1,6 +1,8 @@
 // @name Breadcrumb
 // @description Breadcrumb component
 //
+// @state -slash-delimiter - Breadcrumbs with slash delimiter
+//
 // @markup
 //      <div class="mui-breadcrumb">
 //          <a href="">category</a>
@@ -23,8 +25,14 @@
         text-decoration: none;
         
         &:not(:last-of-type):after {
-                content: '\0203A';
-                padding: 0 .5rem;
+            content: '\0203A';
+            padding: 0 .5rem;
+        }
+    }
+    
+    &.-slash-delimiter {
+        > a:not(:last-of-type):after {
+            content: '/';
         }
     }
 }
