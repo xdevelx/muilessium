@@ -227,3 +227,12 @@ ol.linenums {
     width: 100%;
     overflow: hidden;
 }
+
+._allow-empty {
+    display: block;
+    background: #ffffff;
+    height: 50px;
+    width: 50px;
+    min-height: 50px;
+    min-width: 50px;
+}

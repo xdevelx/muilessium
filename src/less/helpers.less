@@ -71,7 +71,7 @@
 // @state _z-depth-5 - Sets box-shadow property to '0 10px 20px shadow-color'
 //
 // @markup
-//     <div class=""></div>
+//     <div class="_allow-empty"></div>
 ._z-depth-1 {
     box-shadow: 0 0 3px @shadow-color;
 }
@@ -121,6 +121,16 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+
+// @name Allow-empty helper
+// @description All empty divs will be hidden by default, _allow-empty class allows to show div without content.
+//
+// @markup
+//     <div class="_allow-empty"></div>
+._allow-empty {
+    
 }
 
 // @name [DEBUG-ONLY] .css-debug(...)
