@@ -1,3 +1,42 @@
+// @name Carousel
+// @description Carousel component
+//
+// @markup
+//      <div class="mui-carousel">
+//          <ul class="mui-slides">
+//              <li class="mui-slide">
+//                  <img src="https://placehold.it/1200x800" alt="" class="background">
+//                  <div class="mui-slide-content -center">
+//                      <div class="title">Lorem ipsum dolor.</div>
+//                      <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, ipsa.</div>
+//                  </div>
+//              </li>
+//              <li class="mui-slide">
+//                  <img src="https://placehold.it/1200x800" alt="" class="background">
+//                  <div class="mui-slide-content -content-left">
+//                      <div class="title">Lorem ipsum dolor sit amet.</div>
+//                      <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, illo.</div>
+//                  </div>
+//              </li>
+//              <li class="mui-slide">
+//                  <img src="https://placehold.it/1200x800" alt="" class="background">
+//                  <div class="mui-slide-content -content-right">
+//                      <div class="title">Lorem ipsum dolor sit.</div>
+//                      <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, aliquam.</div>
+//                  </div>
+//              </li>
+//          </ul>
+//          <div class="mui-carousel-controls">
+//              <div class="prev" tabindex="1">&lsaquo;</div>
+//              <div class="next" tabindex="1">&rsaquo;</div>
+//          </div>
+//          <ul class="mui-carousel-indicators">
+//              <li class="indicator -active" tabindex="1"></li>
+//              <li class="indicator" tabindex="1"></li>
+//              <li class="indicator" tabindex="1"></li>
+//          </ul>
+//      </div>
+
 .@{muilessium-prefix}carousel {
     position: relative;
     
@@ -24,9 +63,11 @@
     
     overflow: hidden;
     
-    > .background {
-        min-height: 100%;
-        min-width: 100%;
+    margin: 0 !important;
+    
+    > img.background {
+        height: inherit;
+        width: inherit;
         
         #utils > .object-fit-cover;
     }
