@@ -4,7 +4,7 @@
 // @markup
 //      <div class="mui-carousel">
 //          <ul class="mui-slides">
-//              <li class="mui-slide">
+//              <li class="mui-slide -active">
 //                  <img src="https://placehold.it/1200x800" alt="" class="background">
 //                  <div class="mui-slide-content -center">
 //                      <div class="title">Lorem ipsum dolor.</div>
@@ -64,6 +64,13 @@
     overflow: hidden;
     
     margin: 0 !important;
+
+    opacity: 0;
+    transition: opacity @carousel-animation-duration @carousel-animation-function;
+
+    &.-active {
+        opacity: 1;
+    }
     
     > img.background {
         height: inherit;

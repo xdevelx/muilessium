@@ -4,6 +4,7 @@ import { Input    as inputComponent    } from './components/input';
 import { Button   as buttonComponent   } from './components/button';
 import { Textarea as textareaComponent } from './components/textarea';
 import { Like     as likeComponent     } from './components/like';
+import { Carousel as carouselComponent } from './components/carousel';
 
 
 class Muilessium {
@@ -40,7 +41,8 @@ Muilessium.components = {
     input:    inputComponent,
     textarea: textareaComponent,
     like:     likeComponent,
-    button:   buttonComponent
+    button:   buttonComponent,
+    carousel: carouselComponent
 };
 
 
