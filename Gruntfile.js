@@ -136,7 +136,7 @@ module.exports = function(grunt) {
         dss: {
             docs: {
                 files: {
-                    'docs/': 'src/less/**/*.less'
+                    'docs/': 'src/less/components/*.less'
                 },
                 options: {
                     template: 'src/docs_template/',
