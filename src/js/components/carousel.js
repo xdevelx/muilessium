@@ -23,7 +23,35 @@ export class Carousel extends Component {
             Utils.console.warning('number of slides and number of indicators are not equal');
         }
 
-        setInterval(this.rotate.bind(this, 'next'), 1500);
+        this.rotateInterval = setInterval(this.rotate.bind(this, 'next'), 1500);
+
+        let _this = this;
+
+        element.addEventListener('mouseover', function() {
+            clearInterval(_this.rotateInterval);
+        });
+
+        element.addEventListener('mouseout', function() {
+            _this.rotateInterval = setInterval(_this.rotate.bind(_this, 'next'), 1500);
+        });
+
+        [].forEach.call(this.dom.controls.prev, function(element) {
+            element.addEventListener('click', function() {
+                _this.rotate('prev');
+            });
+        });
+
+        [].forEach.call(this.dom.controls.next, function(element) {
+            element.addEventListener('click', function() {
+                _this.rotate('next');
+            });
+        });
+
+        [].forEach.call(this.dom.indicators, function(element, index) {
+            element.addEventListener('click', function() {
+                _this.rotate(index);
+            });
+        });
     }
 
     rotate(param) {
@@ -57,6 +85,5 @@ export class Carousel extends Component {
 
         this.state.currentSlide = nextSlide;
     }
-
 }
 

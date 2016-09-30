@@ -7,21 +7,21 @@
 //              <li class="mui-slide -active">
 //                  <img src="https://placehold.it/1200x800" alt="" class="background">
 //                  <div class="mui-slide-content -center">
-//                      <div class="title">Lorem ipsum dolor.</div>
+//                      <div class="title">1. Lorem ipsum dolor.</div>
 //                      <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, ipsa.</div>
 //                  </div>
 //              </li>
 //              <li class="mui-slide">
 //                  <img src="https://placehold.it/1200x800" alt="" class="background">
 //                  <div class="mui-slide-content -content-left">
-//                      <div class="title">Lorem ipsum dolor sit amet.</div>
+//                      <div class="title">2. Lorem ipsum dolor sit amet.</div>
 //                      <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, illo.</div>
 //                  </div>
 //              </li>
 //              <li class="mui-slide">
 //                  <img src="https://placehold.it/1200x800" alt="" class="background">
 //                  <div class="mui-slide-content -content-right">
-//                      <div class="title">Lorem ipsum dolor sit.</div>
+//                      <div class="title">3. Lorem ipsum dolor sit.</div>
 //                      <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, aliquam.</div>
 //                  </div>
 //              </li>
@@ -143,8 +143,11 @@
         &:hover,
         &:focus {
             cursor: pointer;
-            background: fade(@carousel-controls-background, 80%);
             outline: none;
+        }
+
+        &:hover {
+            background: fade(@carousel-controls-background, 80%);
         }
     }
     
@@ -188,9 +191,12 @@
 
         &:hover,
         &:focus {
-            background: fade(@carousel-controls-background, 50%);
             cursor: pointer;
             outline: none;
+        }
+
+        &:hover {
+            background: fade(@carousel-controls-background, 50%);
 
             &:after {
                 background: @carousel-color;
