@@ -76,11 +76,11 @@
         // Some dirty fixes for better docs experience
         
         document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.example:not(.state) .docs-remove-default-example').forEach(function(element){
+            [].forEach.call(document.querySelectorAll('.example:not(.state) .docs-remove-default-example'), function(element){
                 element.parentElement.style.display = 'none';
             });
 
-            document.querySelectorAll('.example.state').forEach(function(example) {
+            [].forEach.call(document.querySelectorAll('.example.state'), function(example) {
                 var c = example.childNodes,
                     name = c[1].innerHTML;
 
@@ -99,7 +99,7 @@
                 }
             });
 
-            document.querySelectorAll('pre').forEach(function(atv){
+            [].forEach.call(document.querySelectorAll('pre'), function(atv){
                 atv.innerHTML = atv.innerHTML.replace(new RegExp(" docs-[a-z-]*", "g"), "");
             });
             

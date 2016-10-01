@@ -30,7 +30,7 @@ class Muilessium {
         
         var components = document.querySelectorAll(selector);
         
-        return components.forEach(function(element) {
+        return [].forEach.call(components, function(element) {
             new Muilessium.components[type](element, options);
         });
     };
