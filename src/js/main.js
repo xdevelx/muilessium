@@ -21,4 +21,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     window.Muilessium.create('carousel', '.mui-carousel', {});
+    window.Muilessium.create('piechart', '.mui-pie-chart', {});
 });

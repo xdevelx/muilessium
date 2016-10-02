@@ -1,0 +1,52 @@
+// @name Pie Chart
+// @description Pie chart
+//
+// @state -bagel - Pie chart with a hole in the center
+//
+// @markup
+// 	<div class="mui-pie-chart" data-pie="#4E5166 5, #7C90A0 3, #B5AA9D 3, #747274 3, #549274 1"></div>
+
+.@{muilessium-prefix}pie-chart {
+    position: relative;
+    height: 10rem;
+    width: 10rem;
+
+    > svg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+    > svg > .graph {
+        visibility: hidden;
+    }
+
+    > svg > .graph > * { 
+        visibility: visible;
+        transition: all @pie-chart-animation-duration @pie-chart-animation-function;
+    }
+
+    svg > .graph:hover > * {
+        opacity: 0.5;
+    }
+
+    svg > .graph > .graph-percent:hover {
+        stroke: @pie-chart-color__hover;
+        opacity: 1;
+    }
+
+    &.-bagel {
+        &:after {
+            content: '';
+            display: block;
+            height: 50%;
+            width: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            border-radius: 50%;
+            background: @pie-chart-hole-bgcolor;
+        }
+    }
+}
