@@ -3,9 +3,9 @@ import { Component } from '../component';
 
 
 let template = {
-    open: '<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><circle id="graph" r="15.9154943092" cx="16" cy="16" transform="rotate(-90 16 16)" /><mask id="clip"><use xlink:href="#graph" fill="#FFF" /></mask></defs><g class="graph" mask="url(#clip)" stroke-width="32">',
-    piece: '<use class="graph-percent -n{{num}}" xlink:href="#graph" fill="none" stroke="{{color}}" stroke-dasharray="0 {{offset}} {{percent}} 100" />',
-    close: '</g></svg>'
+    open:  '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">',
+    piece: '<path class="segment -n{{num}}" fill="{{color}}" fill-opacity="1" d="M50,50 L{{start-x}},{{start-y}} A50,50 0 0,1 {{end-x}}, {{end-y}} Z" data-value="{{value}}"></path>',
+    close: '</svg>'
 };
 
 
@@ -19,11 +19,19 @@ class Piece {
     }
 
     render(total, num) {
+        let startX = Math.cos(2 * Math.PI * (this.offset / total)) * 50 + 50,
+            startY = Math.sin(2 * Math.PI * (this.offset / total)) * 50 + 50,
+            endX   = Math.cos(2 * Math.PI * ((this.number + this.offset) / total)) * 50 + 50,
+            endY   = Math.sin(2 * Math.PI * ((this.number + this.offset) / total)) * 50 + 50;
+
         return template.piece
             .replace('{{num}}',     num)
             .replace('{{color}}',   this.color)
-            .replace('{{offset}}',  (this.offset / total) * 100)
-            .replace('{{percent}}', (this.number / total) * 100);
+            .replace('{{start-x}}', startX)
+            .replace('{{start-y}}', startY)
+            .replace('{{end-x}}',   endX)
+            .replace('{{end-y}}',   endY)
+            .replace('{{value}}',   this.number);
     }
 }
 

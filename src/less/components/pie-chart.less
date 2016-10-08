@@ -17,22 +17,20 @@
         height: 100%;
     }
 
-    > svg > .graph {
-        visibility: hidden;
-    }
-
-    > svg > .graph > * { 
-        visibility: visible;
+    > svg > .segment {
+        position: relative; 
         transition: all @pie-chart-animation-duration @pie-chart-animation-function;
     }
 
-    svg > .graph:hover > * {
-        opacity: 0.5;
+    > svg:hover {
+        > .segment {
+            fill-opacity: .5;
+        }
     }
 
-    svg > .graph > .graph-percent:hover {
-        stroke: @pie-chart-color__hover;
-        opacity: 1;
+    svg > .segment:hover {
+        fill: @pie-chart-color__hover;
+        fill-opacity: 1;
     }
 
     &.-bagel {
