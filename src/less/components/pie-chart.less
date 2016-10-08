@@ -17,18 +17,18 @@
         height: 100%;
     }
 
-    > svg > .segment {
+    > svg > .piece {
         position: relative; 
         transition: all @pie-chart-animation-duration @pie-chart-animation-function;
     }
 
     > svg:hover {
-        > .segment {
+        > .piece {
             fill-opacity: .5;
         }
     }
 
-    svg > .segment:hover {
+    svg > .piece:hover {
         fill: @pie-chart-color__hover;
         fill-opacity: 1;
     }

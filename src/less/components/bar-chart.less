@@ -1,0 +1,40 @@
+// @name Bar Chart
+// @description Bar chart
+//
+// @state -vertical - Vertical bars
+// @state -horizontal - Horizontal bars
+//
+// @markup
+//  <div class="mui-bar-chart docs-remove-default-example" data-chart="#4E5166 5, #7C90A0 3, #B5AA9D 4, #747274 3, #549274 1"></div>
+
+.@{muilessium-prefix}bar-chart {
+    position: relative;
+    height: 10rem;
+    width: 10rem;
+
+    &.-vertical {
+        transform: rotate(-90deg);
+    }
+
+    > svg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+    > svg > .bar {
+        position: relative;
+        transition: all @bar-chart-animation-duration @bar-chart-animation-function;
+    }
+
+    > svg:hover {
+        > .bar {
+            fill-opacity: .5;
+        }
+    }
+
+    > svg > .bar:hover {
+        fill: @bar-chart-color__hover;
+        fill-opacity: 1;
+    }
+}
