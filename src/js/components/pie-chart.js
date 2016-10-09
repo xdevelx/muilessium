@@ -45,7 +45,7 @@ export class PieChart extends Component {
         Utils.console.log('creating mui-pie-chart for ' + element +
                         ' with options ' + JSON.stringify(options));
 
-        this.data       = element.getAttribute('data-pie').split(',');
+        this.data       = element.getAttribute('data-chart').split(',');
         this.pieces     = [];
         this.totalValue = 0;
 
