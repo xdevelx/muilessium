@@ -7,6 +7,7 @@ import { Like     as likeComponent     } from './components/like';
 import { Carousel as carouselComponent } from './components/carousel';
 import { PieChart as pieChartComponent } from './components/pie-chart';
 import { BarChart as barChartComponent } from './components/bar-chart';
+import { LineChart as lineChartComponent } from './components/line-chart';
 
 class Muilessium {
     constructor(options) {
@@ -45,7 +46,8 @@ Muilessium.components = {
     button:   buttonComponent,
     carousel: carouselComponent,
     piechart: pieChartComponent,
-    barchart: barChartComponent
+    barchart: barChartComponent,
+    linechart: lineChartComponent
 };
 
 
