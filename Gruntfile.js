@@ -145,6 +145,9 @@ module.exports = function(grunt) {
                             var exp = new RegExp('(b(https?|ftp|file)://[-A-Z0-9+&@#/%?=~_|!:,.;]*[-A-Z0-9+&@#/%=~_|])', 'ig');
                             line.replace(exp, '<a href="$1">$1</a>');
                             return line;
+                        },
+                        see: function(i, line, block) {
+                            return line;
                         }
                     }
                 }

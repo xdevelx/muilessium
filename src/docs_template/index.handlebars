@@ -47,6 +47,9 @@
                                     {{#state}}
                                         <p class="state"><span>{{name}}</span> - {{description}}</p>
                                     {{/state}}
+                                    {{#if see}}
+                                        <p class="see-also"><span>See also:</span> {{see}}</p>
+                                    {{/if}}
                                 </div>
 
                                 {{#if markup}}

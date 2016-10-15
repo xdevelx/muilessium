@@ -236,3 +236,10 @@ ol.linenums {
     min-height: 50px;
     min-width: 50px;
 }
+
+.see-also {
+    margin-top: 1rem;
+    font-size: .8em;
+    color: #777;
+    font-style: italic;
+}
