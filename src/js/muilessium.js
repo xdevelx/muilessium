@@ -8,6 +8,7 @@ import { Carousel as carouselComponent } from './components/carousel';
 import { PieChart as pieChartComponent } from './components/pie-chart';
 import { BarChart as barChartComponent } from './components/bar-chart';
 import { LineChart as lineChartComponent } from './components/line-chart';
+import { SelectDropdown as selectDropdownComponent } from './components/select-dropdown';
 
 class Muilessium {
     constructor(options) {
@@ -47,7 +48,8 @@ Muilessium.components = {
     carousel: carouselComponent,
     piechart: pieChartComponent,
     barchart: barChartComponent,
-    linechart: lineChartComponent
+    linechart: lineChartComponent,
+    selectdropdown: selectDropdownComponent
 };
 
 

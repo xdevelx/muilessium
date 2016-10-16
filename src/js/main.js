@@ -24,4 +24,5 @@ document.addEventListener('DOMContentLoaded', () => {
     window.Muilessium.create('piechart', '.mui-pie-chart', {});
     window.Muilessium.create('barchart', '.mui-bar-chart', {});
     window.Muilessium.create('linechart', '.mui-line-chart', {});
+    window.Muilessium.create('selectdropdown', '.mui-select-dropdown', {});
 });

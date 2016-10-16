@@ -20,7 +20,8 @@
     
     user-select: none;
     
-    > select {
+    > select,
+    > .select {
         height: @global-ui-height;
         width: 100%;
 
@@ -62,5 +63,59 @@
         border-bottom-right-radius: @global-border-radius;
         
         pointer-events: none;
+    }
+
+    .options {
+        display: none;
+        position: relative;
+        top: @global-ui-height * .7;
+
+        list-style: none;
+
+        background: #fff;
+        border: 1px solid #555;
+        border-radius: @global-border-radius;
+
+        #utils > .shadow;
+
+        &:before {
+            content: '';
+            display: block;
+            height: @global-ui-height;
+            width: @global-ui-height;
+
+            position: absolute;
+            top: -@global-ui-height *.55;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+
+            background: #fff;
+            border-top: 1px solid #555;
+            border-left: 1px solid #555;
+
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .option {
+            margin: 0;
+            padding: 0 1rem;
+            line-height: 2.2;
+
+            &:not(:last-of-type) {
+                border-bottom: 1px solid #555;
+            }
+
+            &:hover,
+            &:focus {
+                background: #777;
+            }
+        }
+    }
+
+    &.-opened {
+        .options {
+            display: block;
+        }
     }
 }
