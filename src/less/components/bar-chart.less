@@ -4,10 +4,20 @@
 // @state -vertical - Vertical bars
 // @state -horizontal - Horizontal bars
 //
+// @lvar bar-chart-color__hover - primary-color
+// @lvar bar-chart-animation-duration - 200ms
+// @lvar bar-chart-animation-function - cubic-bezier(.85, .11, .46, .98)
+//
 // @see line-chart, pie-chart
 //
 // @markup
 //  <div class="mui-bar-chart docs-remove-default-example" data-chart="#4E5166 5, #7C90A0 3, #B5AA9D 4, #747274 3, #549274 1"></div>
+
+
+@bar-chart-color__hover:       @primary-color;
+@bar-chart-animation-duration: 200ms;
+@bar-chart-animation-function: cubic-bezier(.85, .11, .46, .98);
+
 
 .@{muilessium-prefix}bar-chart {
     position: relative;

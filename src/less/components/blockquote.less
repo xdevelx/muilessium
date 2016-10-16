@@ -1,16 +1,28 @@
 // @name Blockquote
 // @description Blockquote component
 //
+// @lvar blockquote-text-color - default-color
+// @lvar blockquote-author-color - grey
+// @lvar blockquote-bgcolor - white
+//
 // @markup
 //      <blockquote class="mui-blockquote">
 //          <span class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, fugit?</span>
 //          <span class="author">John Doe</span>
 //      </blockquote>
 
+
+@blockquote-text-color:   @default-color;
+@blockquote-author-color: @grey;
+@blockquote-bgcolor: @white;
+
+
 .@{muilessium-prefix}blockquote {
     display: block;
     
     padding: 1rem 2rem;
+
+    background: @blockquote-bgcolor;
     
     .text {
         display: block;
