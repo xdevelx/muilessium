@@ -47,6 +47,16 @@
                                     {{#state}}
                                         <p class="state"><span>{{name}}</span> - {{description}}</p>
                                     {{/state}}
+                                    {{#lvar}}
+                                        <p class="lvar"><span class="name">@{{name}}</span>
+                                            {{#if defaults}}
+                                                <span class="defaults"> ({{defaults}}) </span>
+                                            {{/if}}
+                                            {{#if description}}
+                                                - <span class="description"> {{description}}</span>
+                                            {{/if}}
+                                        </p>
+                                    {{/lvar}}
                                     {{#if see}}
                                         <p class="see-also"><span>See also:</span> {{see}}</p>
                                     {{/if}}

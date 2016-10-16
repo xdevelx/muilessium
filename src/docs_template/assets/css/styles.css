@@ -243,3 +243,19 @@ ol.linenums {
     color: #777;
     font-style: italic;
 }
+
+.lvar {
+}
+
+.lvar .name {
+    font-weight: bold;
+}
+
+.lvar .defaults {
+    color: #777;
+}
+
+.lvar .description {
+    color: #777;
+    font-style: italic;
+}

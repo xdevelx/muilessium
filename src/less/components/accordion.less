@@ -1,10 +1,22 @@
 // @name Accordion
 // @description Accordion component
 //
+// @lvar accordion-color - black
+// @lvar accordion-bgcolor - white
+// @lvar accordion-label-color - black
+// @lvar accordion-label-color__focus - white
+// @lvar accordion-label-bgcolor - lighten(grey, 50%)
+// @lvar accordion-label-bgcolor__focus - primary-color
+// @lvar accordion-border-color - lighten(grey, 30%)
+// @lvar accordion-border-radius - global-border-radius
+// @lvar accordion-border-width - global-border-width
+// @lvar accordion-animation-duration - 600ms
+// @lvar accordion-animation-function - cubic-bezier(.85, .11, .46, .98)
+//
 // @markup
 //      <ul class="mui-accordion">
 //          <li class="item">
-//              <input type="radio" name="accordion-qptl" id="accordion-ctcq" checked>
+//              <input type="radio" name="accordion-qptl" id="accordion-ctcq">
 //              <label for="accordion-ctcq" class="title">Lorem</label>
 //              <div class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, quaerat!</div>
 //          </li>
@@ -14,6 +26,20 @@
 //              <div class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, quaerat!</div>
 //          </li>
 //      </ul>
+
+
+@accordion-color:                @black;
+@accordion-bgcolor:              @white;
+@accordion-label-color:          @black;
+@accordion-label-color__focus:   @white;
+@accordion-label-bgcolor:        lighten(@grey, 50%);
+@accordion-label-bgcolor__focus: @primary-color;
+@accordion-border-color:         lighten(@grey, 30%);
+@accordion-border-radius:        @global-border-radius;
+@accordion-border-width:         @global-border-width;
+@accordion-animation-duration:   600ms;
+@accordion-animation-function:   cubic-bezier(.85, .11, .46, .98);
+
 
 .@{muilessium-prefix}accordion {
     list-style: none;
@@ -27,11 +53,11 @@
         
         color: @accordion-color;
         background: @accordion-bgcolor;
-        border: solid @global-border-width @accordion-border-color;
+        border: solid @accordion-border-width @accordion-border-color;
         
         &:first-of-type {
-            border-top-left-radius: @global-border-radius;    
-            border-top-right-radius: @global-border-radius;    
+            border-top-left-radius: @accordion-border-radius;    
+            border-top-right-radius: @accordion-border-radius;    
         }
         
         &:not(:first-of-type) {
@@ -39,8 +65,8 @@
         }
         
         &:last-of-type {
-            border-bottom-left-radius: @global-border-radius;    
-            border-bottom-right-radius: @global-border-radius;    
+            border-bottom-left-radius: @accordion-border-radius;    
+            border-bottom-right-radius: @accordion-border-radius;    
         }
     }
     
@@ -52,12 +78,15 @@
         width: ~'calc(100% + 2rem)';
         
         padding: 1rem;
+
+        color: @accordion-label-color;
+        background: @accordion-label-bgcolor;
         
         &:hover,
         &:focus {
             cursor: pointer;
-            color: @accordion-color__focus;
-            background: @accordion-bgcolor__focus;
+            color: @accordion-label-color__focus;
+            background: @accordion-label-bgcolor__focus;
         }
     }
     

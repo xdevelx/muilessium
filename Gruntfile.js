@@ -146,6 +146,15 @@ module.exports = function(grunt) {
                             line.replace(exp, '<a href="$1">$1</a>');
                             return line;
                         },
+                        lvar: function(i, line, block) {
+                            var lvar = line.split(' - ');
+
+                            return {
+                                name:        lvar[0] ? lvar[0] : '',
+                                defaults:    lvar[1] ? lvar[1] : '',
+                                description: lvar[2] ? lvar[2] : ''
+                            };
+                        },
                         see: function(i, line, block) {
                             return line;
                         }
