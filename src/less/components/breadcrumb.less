@@ -3,6 +3,11 @@
 //
 // @state -slash-delimiter - Breadcrumbs with slash delimiter
 //
+// @lvar breadcrumb-color - white
+// @lvar breadcrumb-bgcolor - primary-color
+// @lvar breadcrumb-height - global-ui-height
+// @lvar breadcrumb-border-radius - global-border-radius
+//
 // @markup
 //      <div class="mui-breadcrumb">
 //          <a href="">category</a>
@@ -10,15 +15,22 @@
 //          <a href="">title</a>
 //      </div>
 
+
+@breadcrumb-color:         @white;
+@breadcrumb-bgcolor:       @primary-color;
+@breadcrumb-height:        @global-ui-height;
+@breadcrumb-border-radius: @global-border-radius;
+
+
 .@{muilessium-prefix}breadcrumb {
-    height: @global-ui-height;
+    height: @breadcrumb-height;
     
     padding: 0 1rem;
     
-    line-height: @global-ui-height;
+    line-height: @breadcrumb-height;
     
     background: @breadcrumb-bgcolor;
-    border-radius: @global-border-radius;
+    border-radius: @breadcrumb-border-radius;
     
     > a {
         color: @breadcrumb-color;

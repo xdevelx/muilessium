@@ -3,6 +3,10 @@
 //
 // @state -vertical - Vertical button group
 //
+// @lvar button-group-border-color - lighten(button-color, 10%)
+// @lvar button-group-border-radius - global-border-radius
+// @lvar button-group-border-width - global-border-width
+//
 // @see button
 //
 // @markup
@@ -12,27 +16,33 @@
 //          <button class="mui-button">and third</button>
 //      </div>
 
+
+@button-group-border-color:  lighten(@button-bgcolor, 10%);
+@button-group-border-radius: @global-border-radius;
+@button-group-border-width:  @global-border-width;
+
+
 .@{muilessium-prefix}button-group {
     > .@{muilessium-prefix}button {
         border-radius: 0;
         
         &:first-of-type {
-            border-top-left-radius: @global-border-radius;
-            border-bottom-left-radius: @global-border-radius;
+            border-top-left-radius: @button-group-border-radius;
+            border-bottom-left-radius: @button-group-border-radius;
         }
         
         &:last-of-type {
-            border-top-right-radius: @global-border-radius;
-            border-bottom-right-radius: @global-border-radius;
+            border-top-right-radius: @button-group-border-radius;
+            border-bottom-right-radius: @button-group-border-radius;
         }
         
         &:not(:first-of-type) {
-            border-left: @global-border-width solid @button-group-border-color;
+            border-left: @button-group-border-width solid @button-group-border-color;
             margin-left: -.4rem; // hack?
         }
         
         &:not(:last-of-type) {
-            border-right: @global-border-width solid @button-group-border-color;
+            border-right: @button-group-border-width solid @button-group-border-color;
         }
     }
     
@@ -44,17 +54,17 @@
             border: none;
 
             &:first-of-type {
-                border-top-left-radius: @global-border-radius;
-                border-top-right-radius: @global-border-radius;
+                border-top-left-radius: @button-group-border-radius;
+                border-top-right-radius: @button-group-border-radius;
             }
 
             &:last-of-type {
-                border-bottom-left-radius: @global-border-radius;
-                border-bottom-right-radius: @global-border-radius;
+                border-bottom-left-radius: @button-group-border-radius;
+                border-bottom-right-radius: @button-group-border-radius;
             }
 
             &:not(:first-of-type) {
-                border-top: @global-border-width solid @button-group-border-color;
+                border-top: @button-group-border-width solid @button-group-border-color;
                 margin-left: 0; // hack?
             }
         }

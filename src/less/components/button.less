@@ -9,11 +9,51 @@
 // @state -dangerous - Indicates danderous action
 // @state -ghost     - Button with transparent background
 //
+//
+// @lvar button-color - white;
+// @lvar button-color__focus - button-color;
+// @lvar button-color__active - button-color;
+// @lvar button-color-dangerous - button-color;
+// @lvar button-color-dangerous__focus - button-color;
+// @lvar button-color-dangerous__active - button-color;
+// @lvar button-color-ghost - black;
+// @lvar button-bgcolor - primary-color;
+// @lvar button-bgcolor__focus - darken(button-bgcolor, 5%);
+// @lvar button-bgcolor__active - darken(button-bgcolor, 15%);
+// @lvar button-bgcolor-dangerous - accent-color;
+// @lvar button-bgcolor-dangerous__focus - darken(button-bgcolor-dangerous, 5%);
+// @lvar button-bgcolor-dangerous__active - darken(button-bgcolor-dangerous, 15%);
+// @lvar button-color-ghost__focus - white;
+// @lvar button-bgcolor-ghost__focus - primary-color;
+// @lvar button-height - global-ui-height;
+// @lvar button-border-radius - global-border-radius;
+// @lvar button-border-width - global-border-width;
+//
 // @see button-group
 //
 // @markup
 //      <button class="mui-button">button</button>
 //      <!-- or <a href="" class="mui-button">button</a>-->
+
+
+@button-color:                     @white;
+@button-color__focus:              @button-color;
+@button-color__active:             @button-color;
+@button-color-dangerous:           @button-color;
+@button-color-dangerous__focus:    @button-color;
+@button-color-dangerous__active:   @button-color;
+@button-color-ghost:               @black;
+@button-bgcolor:                   @primary-color;
+@button-bgcolor__focus:            darken(@button-bgcolor, 5%);
+@button-bgcolor__active:           darken(@button-bgcolor, 15%);
+@button-bgcolor-dangerous:         @accent-color;
+@button-bgcolor-dangerous__focus:  darken(@button-bgcolor-dangerous, 5%);
+@button-bgcolor-dangerous__active: darken(@button-bgcolor-dangerous, 15%);
+@button-color-ghost__focus:        @white;
+@button-bgcolor-ghost__focus:      @primary-color;
+@button-height:                    @global-ui-height;
+@button-border-radius:             @global-border-radius;
+@button-border-width:              @global-border-width;
 
 .@{muilessium-prefix}button {
     display: inline-block;
@@ -21,8 +61,8 @@
     padding: 0 1em;
     
     font-family: @sans-serif-font-family;
-    font-size: @global-ui-height * .5;
-    line-height: @global-ui-height;
+    font-size: @button-height * .5;
+    line-height: @button-height;
     
     text-decoration: none;
     text-align: center;
@@ -31,7 +71,7 @@
     background: @button-bgcolor;
     
     border: none;
-    border-radius: @global-border-radius;
+    border-radius: @button-border-radius;
     
     user-select: none;
     
@@ -92,7 +132,7 @@
     &.-ghost {
         color: @button-color-ghost;
         background: transparent;
-        border: @global-border-width solid @button-color-ghost;
+        border: @button-border-width solid @button-color-ghost;
         
         &:hover,
         &:focus {
