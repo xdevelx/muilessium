@@ -1,10 +1,25 @@
 // @name Card
 // @description Card component
 //
+// @lvar card-color - black
+// @lvar card-bgcolor - white
+// @lvar card-header-color - white
+// @lvar card-header-bgcolor - primary-color
+// @lvar card-border-radius - global-border-radius
+//
 // @markup
 //      <div class="mui-card">
+//          <div class="card-header">Lorem ipsum</div>
 //          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt, magni.</p>
 //      </div>
+
+
+@card-color:          @black;
+@card-bgcolor:        @white;
+@card-header-color:   @white;
+@card-header-bgcolor: @primary-color;
+@card-border-radius:  @global-border-radius;
+
 
 .@{muilessium-prefix}card {
     display: block;
@@ -12,7 +27,9 @@
     
     padding: 1rem;
     
-    border-radius: @global-border-radius;
+    color: @card-color;
+    background: @card-bgcolor;
+    border-radius: @card-border-radius;
     
     #utils > .shadow;
     
@@ -30,7 +47,7 @@
         color: @card-header-color;
         background: @card-header-bgcolor;
         
-        border-top-left-radius: @global-border-radius;
-        border-top-right-radius: @global-border-radius;
+        border-top-left-radius: @card-border-radius;
+        border-top-right-radius: @card-border-radius;
     }
 }
