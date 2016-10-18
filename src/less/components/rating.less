@@ -1,11 +1,15 @@
 // @name Rating
-// @description Rating component (requires FontAwesome)
+// @description Rating component
+// @requires FontAwesome
 //
-// @state -r1 One star
-// @state -r2 Two stars
-// @state -r3 Three stars
-// @state -r4 Four stars
-// @state -r5 Five stars
+// @state -r1 - One star
+// @state -r2 - Two stars
+// @state -r3 - Three stars
+// @state -r4 - Four stars
+// @state -r5 - Five stars
+//
+// @lvar rating-color           - grey
+// @lvar rating-color__selected - accent-color
 //
 // @markup
 //  <ul class="mui-rating">
@@ -16,8 +20,13 @@
 //      <li><i class="fa fa-star"></i></li>
 //  </ul>
 
+
+@rating-color:           @grey;
+@rating-color__selected: @accent-color;
+
+
 .@{muilessium-prefix}rating {
-    color: @rating-color1;
+    color: @rating-color;
     
     list-style: none;
     
@@ -29,14 +38,14 @@
     
     &.-r1 {
         > li:nth-of-type(1) {
-            color: @rating-color2;
+            color: @rating-color__selected;
         }
     }
     
     &.-r2 {
         > li:nth-of-type(1),
         > li:nth-of-type(2) {
-            color: @rating-color2;
+            color: @rating-color__selected;
         }
     }
     
@@ -44,7 +53,7 @@
         > li:nth-of-type(1),
         > li:nth-of-type(2),
         > li:nth-of-type(3) {
-            color: @rating-color2;
+            color: @rating-color__selected;
         }
     }
     
@@ -53,13 +62,13 @@
         > li:nth-of-type(2),
         > li:nth-of-type(3),
         > li:nth-of-type(4) {
-            color: @rating-color2;
+            color: @rating-color__selected;
         }
     }
     
     &.-r5 {
         > li {
-            color: @rating-color2;
+            color: @rating-color__selected;
         }
     }
 }

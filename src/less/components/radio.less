@@ -1,6 +1,15 @@
 // @name Radio
 // @description Radio input component
 //
+// @lvar radio-button-color               - primary-color
+// @lvar radio-button-color__focus        - primary-color
+// @lvar radio-button-color__active       - arken(primary-color, 5%)
+// @lvar radio-button-bgcolor             - white
+// @lvar radio-button-border-color        - grey
+// @lvar radio-button-border-color__focus - primary-color
+// @lvar radio-button-border-width        - global-border-width
+// @lvar radio-button-height              - global-ui-height
+//
 // @markup
 //      <div class="mui-radio">
 //          <input id="radio-byrg" name="test-ldkf" type="radio" checked>
@@ -14,6 +23,17 @@
 //              <span class="text">Lorem ipsum.</span>
 //          </label>
 //      </div>
+
+
+@radio-button-color:               @primary-color;
+@radio-button-color__focus:        @primary-color;
+@radio-button-color__active:       darken(@primary-color, 5%);
+@radio-button-bgcolor:             @white;
+@radio-button-border-color:        @grey;
+@radio-button-border-color__focus: @primary-color;
+@radio-button-border-width:        @global-border-width;
+@radio-button-height:              @global-ui-height;
+
 
 .@{muilessium-prefix}radio {
     user-select: none;
@@ -31,10 +51,10 @@
             outline: none;
             
             > .icon {
-                border-color: @radio-button-color1__focus;
+                border-color: @radio-button-border-color__focus;
                 
                 &:after {
-                    background: @radio-button-color1__focus;
+                    background: @radio-button-color__focus;
                 }
             }
         }
@@ -45,12 +65,12 @@
         position: relative;
         vertical-align: middle;
         
-        height: @global-ui-height;
-        width: @global-ui-height;
+        height: @radio-button-height;
+        width: @radio-button-height;
         
-        background: @radio-button-color2;
+        background: @radio-button-bgcolor;
         
-        border: @global-border-width solid @radio-button-color1;
+        border: @radio-button-border-width solid @radio-button-border-color;
         border-radius: 50%;
         
         &:after {
@@ -62,7 +82,7 @@
             height: 0;
             width: 0;
             
-            background: @radio-button-color1;
+            background: @radio-button-color;
             
             border-radius: 50%;
             opacity: 0;
@@ -74,8 +94,8 @@
     > input[type=radio]:checked + label > .icon {
         &:after {
             opacity: 1;
-            height: @global-ui-height * .4;
-            width: @global-ui-height * .4;
+            height: @radio-button-height * .4;
+            width: @radio-button-height * .4;
         }
     }
     

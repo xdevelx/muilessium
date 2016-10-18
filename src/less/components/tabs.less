@@ -1,6 +1,19 @@
 // @name Tabs
 // @description Tabs component
 //
+// @lvar tabs-color              - black
+// @lvar tabs-bgcolor            - white
+// @lvar tabs-color__focus       - white
+// @lvar tabs-color__current     - black
+// @lvar tabs-bgcolor__focus     - primary-color
+// @lvar tabs-bgcolor__current   - white
+// @lvar tabs-border-color       - lighten(grey, 30%)
+// @lvar tabs-label-height       - global-ui-height
+// @lvar tabs-border-width       - global-border-width
+// @lvar tabs-border-radius      - global-border-radius
+// @lvar tabs-animation-duration - 600ms
+// @lvar tabs-animation-function - cubic-bezier(.85, .11, .46, .98)
+//
 // @markup
 //      <div class="mui-tabs">
 //          <input type="radio" name="tab" id="tab-8c64" checked>
@@ -17,6 +30,21 @@
 //              <li class="tab">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam et minus explicabo consectetur reprehenderit dolor dolorem quaerat necessitatibus optio aut, quas cum ex eveniet, quidem. Sunt ad eligendi numquam cupiditate asperiores quod, aspernatur delectus labore est? Nisi sapiente, doloremque cupiditate vel eos numquam aliquam possimus? Ex officia debitis facere recusandae, reiciendis ullam praesentium ratione dolor eveniet nesciunt natus tempora, blanditiis obcaecati at impedit cupiditate adipisci corporis. Blanditiis nam facere impedit necessitatibus, assumenda quis. Eveniet veniam odio ducimus, debitis reprehenderit? Quasi, perferendis culpa magni deleniti dolorum sit voluptatem fugiat distinctio odio ipsa nemo qui, beatae aperiam! A harum tempora cupiditate consectetur.</li>
 //          </ul>
 //      </div>
+
+
+@tabs-color:              @black;
+@tabs-bgcolor:            @white;
+@tabs-color__focus:       @white;
+@tabs-color__current:     @black;
+@tabs-bgcolor__focus:     @primary-color;
+@tabs-bgcolor__current:   @white;
+@tabs-border-color:       lighten(@grey, 30%);
+@tabs-label-height:       @global-ui-height;
+@tabs-border-width:       @global-border-width;
+@tabs-border-radius:      @global-border-radius;
+@tabs-animation-duration: 600ms;
+@tabs-animation-function: cubic-bezier(.85, .11, .46, .98);
+
 
 .@{muilessium-prefix}tabs {
     > input {
@@ -59,14 +87,14 @@
         padding: 0 1rem;
         
         text-align: center;
-        line-height: @global-ui-height;
+        line-height: @tabs-label-height;
         
         color: @tabs-color;
         background: @tabs-bgcolor;
         
-        border: solid @global-border-width @tabs-border-color;
-        border-top-left-radius: @global-border-radius;
-        border-top-right-radius: @global-border-radius;
+        border: solid @tabs-border-width @tabs-border-color;
+        border-top-left-radius: @tabs-border-radius;
+        border-top-right-radius: @tabs-border-radius;
         
         #utils > .transition-all;
         &:extend(._truncate-line);
@@ -89,10 +117,10 @@
         
         list-style: none;
         
-        border: solid @global-border-width @tabs-border-color;
+        border: solid @tabs-border-width @tabs-border-color;
         border-top: none;
-        border-bottom-left-radius: @global-border-radius;
-        border-bottom-right-radius: @global-border-radius;
+        border-bottom-left-radius: @tabs-border-radius;
+        border-bottom-right-radius: @tabs-border-radius;
         
         #utils > .clearfix;
     }

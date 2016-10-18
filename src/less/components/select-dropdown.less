@@ -1,5 +1,15 @@
 // @name Select dropdown
 // @description Select dropdown component
+// TODO: Add styles for generated dropdown, Add fullscreen invisible close label
+//
+// @lvar select-color         - black
+// @lvar select-icon-color    - white
+// @lvar select-bgcolor       - white
+// @lvar select-icon-bgcolor  - primary-color
+// @lvar select-border-color  - secondary-color
+// @lvar select-height        - global-ui-height
+// @lvar select-border-width  - global-border-width
+// @lvar select-border-radius - global-border-radius
 //
 // @markup
 //      <div class="mui-select-dropdown">
@@ -12,31 +22,42 @@
 //          <div class="icon"><i class="fa fa-angle-double-down"></i></div>
 //      </div>
 
+
+@select-color:         @black;
+@select-icon-color:    @white;
+@select-bgcolor:       @white;
+@select-icon-bgcolor:  @primary-color;
+@select-border-color:  @secondary-color;
+@select-height:        @global-ui-height;
+@select-border-width:  @global-border-width;
+@select-border-radius: @global-border-radius;
+
+
 .@{muilessium-prefix}select-dropdown {
     position: relative;
     
-    height: @global-ui-height;
+    height: @select-height;
     width: 100%;
     
     user-select: none;
     
     > select,
     > .select {
-        height: @global-ui-height;
+        height: @select-height;
         width: 100%;
 
         padding: 0 1rem;
         margin: 0;
 
         font-size: 1rem;
-        line-height: @global-ui-height;
+        line-height: @select-height;
 
         color: @select-color;
         background: @select-bgcolor;
 
         appearance: none;
-        border: solid @global-border-width @select-border-color;
-        border-radius: @global-border-radius;
+        border: solid @select-border-width @select-border-color;
+        border-radius: @select-border-radius;
         outline: none;
 
         &:hover {
@@ -50,17 +71,17 @@
         top: 0;
         right: 0;
         
-        height: @global-ui-height;
-        width: @global-ui-height;
+        height: @select-height;
+        width: @select-height;
         
-        line-height: @global-ui-height;
+        line-height: @select-height;
         text-align: center;
         
         color: @select-icon-color;
         background: @select-icon-bgcolor;
         
-        border-top-right-radius: @global-border-radius;
-        border-bottom-right-radius: @global-border-radius;
+        border-top-right-radius: @select-border-radius;
+        border-bottom-right-radius: @select-border-radius;
         
         pointer-events: none;
     }
@@ -68,24 +89,24 @@
     .options {
         display: none;
         position: relative;
-        top: @global-ui-height * .7;
+        top: @select-height * .7;
 
         list-style: none;
 
         background: #fff;
         border: 1px solid #555;
-        border-radius: @global-border-radius;
+        border-radius: @select-border-radius;
 
         #utils > .shadow;
 
         &:before {
             content: '';
             display: block;
-            height: @global-ui-height;
-            width: @global-ui-height;
+            height: @select-height;
+            width: @select-height;
 
             position: absolute;
-            top: -@global-ui-height *.55;
+            top: -@select-height *.55;
             left: 50%;
             transform: translateX(-50%) rotate(45deg);
 

@@ -3,13 +3,30 @@
 //
 // @state -resizable - Resizable textare
 //
+// @lvar textarea-color             - grey
+// @lvar textarea-color__focus      - black
+// @lvar textarea-border-color      - black
+// @lvar textarea-border-radius     - global-border-radius
+// @lvar textarea-border-width      - global-border-width
+// @lvar textarea-placeholder-color - grey
+//
 // @markup
 //      <div class="mui-textarea">   
 //          <textarea id="textarea" placeholder="textarea"></textarea>
 //      </div>
 
+
+@textarea-color:             @grey;
+@textarea-color__focus:      @black;
+@textarea-border-color:      @black;
+@textarea-border-radius:     @global-border-radius;
+@textarea-border-width:      @global-border-width;
+@textarea-placeholder-color: @grey;
+
+
 // @name Material textarea
 // @description Textarea component (material-style variation)
+// @depends textarea
 //
 // @state -has-value - Has value
 //
@@ -31,12 +48,12 @@
 
         color: @textarea-color;
 
-        border: @global-border-width solid @textarea-color;
+        border: @textarea-border-width solid @textarea-color;
 
         outline: none;
         resize: none;
         overflow: auto;
-        border-radius: @global-border-radius;
+        border-radius: @textarea-border-radius;
 
         &::placeholder {
             color: @textarea-color;
@@ -77,7 +94,7 @@
             top: -.7rem;
             font-size: .7rem;
 
-            color: @input-placeholder-color;
+            color: @textarea-placeholder-color;
         }
 
         > label {
@@ -90,7 +107,7 @@
 
             font-size: 1rem;
 
-            color: @input-color;
+            color: @textarea-color;
 
             #utils > .transition-all;
 
@@ -109,7 +126,7 @@
             top: -.7rem;
             font-size: .7rem;
 
-            color: @input-placeholder-color;
+            color: @textarea-placeholder-color;
         }
     }
 }

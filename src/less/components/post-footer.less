@@ -3,6 +3,9 @@
 //
 // @see post, post-header, post-content
 //
+// @lvar post-footer-border-top-width - global-border-width
+// @lvar post-footer-border-top-color - grey
+//
 // @markup
 //      <footer class="mui-post-footer">
 //          <ul class="mui-tags-list">
@@ -16,8 +19,13 @@
 //          <a href="" class="mui-button -read-more">read more</a>
 //      </footer>
 
+
+@post-footer-border-top-width: @global-border-width;
+@post-footer-border-top-color: @grey;
+
+
 .@{muilessium-prefix}post-footer {
-    border-top: @global-border-width solid @post-footer-border-color;
+    border-top: @post-footer-border-top-width solid @post-footer-border-top-color;
     padding: 1rem 0;
     #utils > .clearfix;
     

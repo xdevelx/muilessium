@@ -1,12 +1,19 @@
 // @name Progress bar
 // @description Progres bar component
+// TODO: Rewrite this component using SVG
 //
 // @state -animated - Animated progress bar
+//
+// @lvar progress-bar-color - primary-color
 //
 // @markup
 //      <div class="mui-progress-bar">
 //          <div class="indicator" style="width:60%"></div>
 //      </div>
+
+
+@progress-bar-color: @primary-color;
+
 
 .@{muilessium-prefix}progress-bar {
     position: relative;

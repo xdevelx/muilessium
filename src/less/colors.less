@@ -1,138 +1,20 @@
-/* https://coolors.co/222222-183e63-1c5d99-4d4f51-ff4444 */
-
 @white:            #FFFFFF;
 @black:            #222222;
 @grey:             #4D4F51;
-
-// @name primary-color
-// @description Primary color
-//
-// @state default - #1C5D99
 @primary-color:    #1C5D99;
-
-// @name secondary-color
-// @description Secondary color
-//
-// @state default - #183E63
 @secondary-color:  #183E63;
-
-// @name accent-color
-// @description Accent-color
-//
-// @state default - #FF4444
 @accent-color:     #FF4444;
-
-// @name valid-color
-// @description Color for valid inputs and success messages
-//
-// @state default - #1C7722
 @valid-color:      #1C7722;
-
-// @name invalid-color
-// @description Color for invalid inputs and failure messages
-//
-// @state default - #D10018
 @invalid-color:    #D10018;
+@shadow-color:     rgba(0, 0, 0, .3);
 
-// @name shadow-color
-// @description Shadow color
-//
-// @state default - rgba(0, 0, 0, .3)
-@shadow-color: rgba(0, 0, 0, .3);
+@default-color:            @black;
+@default-background-color: @white;
 
-// @name default-color
-// @description Default text color
-//
-// @state default - #222222
-@default-color:                    @black;
+@default-link-color:           @secondary-color;
+@default-link-color__focus:    darken(@secondary-color, 5%);
+@default-link-color__disabled: @grey;
 
-// @name default-background-color
-// @description Default background color
-//
-// @state default - #FFFFFF
-@default-background-color:         @white;
-
-@default-link-color:               @secondary-color;
-@default-link-color__focus:        darken(@secondary-color, 5%);
-@default-link-color__disabled:     @grey;
-
-@selection-color:                  @white;
-@selection-background-color:       @black;
-
-@bar-chart-color__hover:           @primary-color;
-
-
-@pagination-color:                   @black;
-@pagination-bgcolor:                 transparent;
-@pagination-color__focus:            @primary-color;
-@pagination-bgcolor__focus:          transparent;
-@pagination-current-color:           @white;
-@pagination-current-bgcolor:         @primary-color;
-@pagination-current-color__focus:    @white;
-@pagination-current-bgcolor__focus:  @primary-color;
-@pagination-border-color:            @grey;
-@pagination-border-color__focus:     @black;
-@pagination-bordered-color__focus:   @white;
-@pagination-bordered-bgcolor__focus: @black;
-
-@pie-chart-color__hover:           @primary-color;
-@pie-chart-hole-bgcolor:           @white;
-
-@post-header-title-color:          @black;
-@post-header-title-color__focus:   @primary-color;
-@post-header-info-color:           @grey;
-@post-header-info-color__focus:    darken(@post-header-info-color, 20%);
-@post-header-info-color__active:   darken(@post-header-info-color, 30%);
-
-@post-footer-border-color:         @grey;
-
-@post-background-color:            @white;
-
-@progress-bar-color:               @primary-color;
-
-@radio-button-color1:              @primary-color;
-@radio-button-color1__focus:       darken(@primary-color, 5%);
-@radio-button-color1__active:      darken(@primary-color, 15%);
-@radio-button-color2:              @white;
-
-@range-thumb-color:                @grey;
-@range-thumb-bgcolor:              @white;
-@range-thumb-border-color:         @primary-color;
-@range-thumb-border-color__focus:  @black;
-@range-track-color:                @white;
-@range-track-bgcolor:              @grey;
-@range-thumb-color__focus:         @grey;
-@range-thumb-bgcolor__focus:       @white;
-@range-track-color__focus:         @white;
-@range-track-bgcolor__focus:       @primary-color;
-
-@rating-color1:                    @grey;
-@rating-color2:                    @accent-color;
-
-@ribbon-color:                     @white;
-@ribbon-bgcolor:                   @accent-color;
-
-@select-color:                     @black;
-@select-icon-color:                @white;
-@select-bgcolor:                   @white;
-@select-icon-bgcolor:              @primary-color;
-@select-border-color:              @secondary-color;
-
-@spinner-color:                    @black;
-
-@tabs-color:                       @black;
-@tabs-bgcolor:                     @white;
-@tabs-color__focus:                @white;
-@tabs-color__current:              @black;
-@tabs-bgcolor__focus:              @primary-color;
-@tabs-bgcolor__current:            @white;
-@tabs-border-color:                lighten(@grey, 30%);
-
-@tag-color:                        @grey;
-@tag-color__focus:                 @primary-color;
-@tag-color__active:                darken(@primary-color, 15%);
-@solid-tag-bgcolor:                lighten(@grey, 50%);
-
-@textarea-color:                   @grey;
-@textarea-color__focus:            @black;
+@selection-color:            @white;
+@selection-background-color: @black;
 
