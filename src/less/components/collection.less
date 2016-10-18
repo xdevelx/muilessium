@@ -1,6 +1,14 @@
 // @name Collection
 // @description Collection component
 //
+// @lvar collection-color         - black
+// @lvar collection-bgcolor       - white
+// @lvar collection-badge-color   - white
+// @lvar collection-badge-bgcolor - primary-color
+// @lvar collection-border-color  - lighten(grey, 30%)
+// @lvar collection-border-radius - global-border-radius
+// @lvar collection-border-width  - global-border-width
+//
 // @markup
 //      <ul class="mui-collection">
 //          <li class="item">Lorem ipsum dolor sit amet. <span class="mui-badge">2</span></li>
@@ -8,6 +16,16 @@
 //          <li class="item">Lorem ipsum dolor sit. <span class="mui-badge">5</span></li>
 //          <li class="item">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur repellendus nulla eos deleniti ullam! Aliquid voluptate dicta cupiditate accusamus odit. <span class="mui-badge">106</span></li>
 //      </ul>
+
+
+@collection-color:         @black;
+@collection-bgcolor:       @white;
+@collection-badge-color:   @white;
+@collection-badge-bgcolor: @primary-color;
+@collection-border-color:  lighten(@grey, 30%);
+@collection-border-radius: @global-border-radius;
+@collection-border-width:  @global-border-width;
+
 
 .@{muilessium-prefix}collection {
     margin: 0;
@@ -21,11 +39,14 @@
         margin: 0;
         padding: 1rem 3rem 1rem 1rem;
         
-        border: solid @global-border-width @collection-border-color;
+        border: solid @collection-border-width @collection-border-color;
+
+        color: @collection-color;
+        background: @collection-bgcolor;
         
         &:first-of-type {
-            border-top-left-radius: @global-border-radius;    
-            border-top-right-radius: @global-border-radius;    
+            border-top-left-radius: @collection-border-radius;    
+            border-top-right-radius: @collection-border-radius;    
         }
         
         &:not(:first-of-type) {
@@ -33,8 +54,8 @@
         }
         
         &:last-of-type {
-            border-bottom-left-radius: @global-border-radius;    
-            border-bottom-right-radius: @global-border-radius;    
+            border-bottom-left-radius: @collection-border-radius;    
+            border-bottom-right-radius: @collection-border-radius;    
         }
     }
     
