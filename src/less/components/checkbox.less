@@ -1,6 +1,17 @@
 // @name Checkbox
 // @description Checkbox component
 //
+// @lvar checkbox-border-color        - grey
+// @lvar checkbox-border-color__focus - primary-color
+// @lvar checkbox-icon-color          - grey
+// @lvar checkbox-icon-color__focus   - primary-color
+// @lvar checkbox-bgcolor             - white
+// @lvar checkbox-height              - global-ui-height
+// @lvar checkbox-border-radius       - global-border-radius
+// @lvar checkbox-border-width        - global-border-width
+//
+// @see toggle-checkbox
+//
 // @markup
 //      <div class="mui-checkbox">
 //          <input id="checkbox-5hdz" type="checkbox" checked>
@@ -11,8 +22,34 @@
 //      </div>
 
 
+@checkbox-border-color:        @grey;
+@checkbox-border-color__focus: @primary-color;
+@checkbox-icon-color:          @grey;
+@checkbox-icon-color__focus:   @primary-color;
+@checkbox-bgcolor:             @white;
+@checkbox-height:              @global-ui-height;
+@checkbox-border-radius:       @global-border-radius;
+@checkbox-border-width:        @global-border-width;
+
+
 // @name Toggle checkbox
 // @description Checkbox component (Toggle variation)
+//
+// @lvar toggle-checkbox-height                  - global-ui-height
+// @lvar toggle-checkbox-bgcolor                 - white
+// @lvar toggle-checkbox-bgcolor__checked        - white
+// @lvar toggle-checkbox-toggle-color            - white
+// @lvar toggle-checkbox-toggle-bgcolor          - grey
+// @lvar toggle-checkbox-toggle-color__checked   - white
+// @lvar toggle-checkbox-toggle-bgcolor__checked - primary-color
+// @lvar toggle-checkbox-border-color            - grey
+// @lvar toggle-checkbox-border-color__focus     - primary-color
+// @lvar toggle-checkbox-border-radius           - global-border-radius
+// @lvar toggle-checkbox-border-width            - global-border-width
+// @lvar toggle-checkbox-animation-duration      - 300ms
+// @lvar toggle-checkbox-animation-function      - cubic-bezier(.85, .11, .46, .98)
+//
+// @see checkbox
 //
 // @markup
 //      <div class="mui-checkbox -toggle">
@@ -22,6 +59,22 @@
 //              <span class="text">Lorem ipsum.</span>
 //          </label>
 //      </div>
+
+
+@toggle-checkbox-height:                  @global-ui-height;
+@toggle-checkbox-bgcolor:                 @white;
+@toggle-checkbox-bgcolor__checked:        @white;
+@toggle-checkbox-toggle-color:            @white;
+@toggle-checkbox-toggle-bgcolor:          @grey;
+@toggle-checkbox-toggle-color__checked:   @white;
+@toggle-checkbox-toggle-bgcolor__checked: @primary-color;
+@toggle-checkbox-border-color:            @grey;
+@toggle-checkbox-border-color__focus:     @primary-color;
+@toggle-checkbox-border-radius:           @global-border-radius;
+@toggle-checkbox-border-width:            @global-border-width;
+@toggle-checkbox-animation-duration:      300ms;
+@toggle-checkbox-animation-function:      cubic-bezier(.85, .11, .46, .98);
+
 
 .@{muilessium-prefix}checkbox {
     user-select: none;
@@ -39,10 +92,10 @@
             outline: none;
             
             > .icon {
-                border-color: @checkbox-color1__focus;
+                border-color: @checkbox-border-color__focus;
                 
                 > .fa {
-                    color: @checkbox-color1__focus;
+                    color: @checkbox-icon-color__focus;
                 }
             }
         }
@@ -53,13 +106,13 @@
         position: relative;
         vertical-align: middle;
         
-        height: @global-ui-height;
-        width: @global-ui-height;
+        height: @checkbox-height;
+        width: @checkbox-height;
         
-        background: @checkbox-color2;
-        border: @global-border-width solid @checkbox-color1;
+        background: @checkbox-bgcolor;
+        border: @checkbox-border-width solid @checkbox-border-color;
         
-        border-radius: @global-border-radius;
+        border-radius: @checkbox-border-radius;
         
         > .fa {
             content: '';
@@ -73,7 +126,7 @@
             font-size: 0;
             text-align: center;
             
-            color: @radio-button-color1;
+            color: @checkbox-icon-color;
             
             opacity: 0;
             
@@ -83,10 +136,10 @@
     
     > input[type=checkbox]:checked + label > .icon {
         > .fa {
-            height: @global-ui-height * .8;
-            width: @global-ui-height * .8;
+            height: @checkbox-height * .8;
+            width: @checkbox-height * .8;
             
-            font-size: @global-ui-height * .8;
+            font-size: @checkbox-height * .8;
             
             opacity: 1;
         }
@@ -98,8 +151,8 @@
     
     &.-toggle {
         > label > .icon {
-            background: @checkbox-color3;
-            width: @global-ui-height * 2;
+            background: @toggle-checkbox-bgcolor;
+            width: @toggle-checkbox-height * 2;
             overflow: hidden;
             
             #utils > .transition-all;
@@ -108,24 +161,24 @@
             &:after {
                 display: block;
                 position: absolute;
-                top: -@global-border-width;
+                top: -@toggle-checkbox-border-width;
                 left: 0;
                 
-                height: @global-ui-height;
-                width: @global-ui-height;
+                height: @toggle-checkbox-height;
+                width: @toggle-checkbox-height;
                 
                 font-family: @sans-serif-font-family;
-                line-height: @global-ui-height;
-                font-size: @global-ui-height * .4;
+                line-height: @toggle-checkbox-height;
+                font-size: @toggle-checkbox-height * .4;
                 text-align: center;
                 text-transform: uppercase;
 
-                background: @checkbox-color2;
-                color: @input-label-color;
+                background: @toggle-checkbox-toggle-bgcolor;
+                color: @toggle-checkbox-toggle-color;
                 
-                border-radius: @global-border-radius;
+                border-radius: @checkbox-border-radius;
                 
-                transition: all @toggle-animation-duration @toggle-animation-function;
+                transition: all @toggle-checkbox-animation-duration @toggle-checkbox-animation-function;
             }
             
             &:before {
@@ -139,11 +192,14 @@
         }
         
         > input[type=checkbox]:checked + label > .icon {
-            background: @checkbox-color1;
+            background: @toggle-checkbox-bgcolor__checked;
             
             &:before,
             &:after {
-                left: ~'calc(100% - ' @global-ui-height ~')';
+                left: ~'calc(100% - ' @checkbox-height ~')';
+
+                background: @toggle-checkbox-toggle-bgcolor__checked;
+                color: @toggle-checkbox-toggle-color__checked;
             }
             
             &:after {
