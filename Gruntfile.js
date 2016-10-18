@@ -157,6 +157,16 @@ module.exports = function(grunt) {
                         },
                         see: function(i, line, block) {
                             return line;
+                        },
+                        depends: function(i, line, block) {
+                            return {
+                                depends: line
+                            };
+                        },
+                        requires: function(i, line, block) {
+                            return {
+                                requires: line
+                            };
                         }
                     }
                 }

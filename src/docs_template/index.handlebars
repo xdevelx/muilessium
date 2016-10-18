@@ -44,6 +44,12 @@
                                     {{#if description}}
                                         <p class="description">{{description}}</p>
                                     {{/if}}
+                                    {{#depends}}
+                                        <p class="depends">Depends on {{depends}}</p>
+                                    {{/depends}}
+                                    {{#requires}}
+                                        <p class="requires">Requires {{requires}}</p>
+                                    {{/requires}}
                                     {{#state}}
                                         <p class="state"><span>{{name}}</span> - {{description}}</p>
                                     {{/state}}

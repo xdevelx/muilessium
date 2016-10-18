@@ -237,6 +237,16 @@ ol.linenums {
     min-width: 50px;
 }
 
+.depends {
+    color: #777;
+    margin-bottom: 1rem;
+}
+
+.requires {
+    color: #777;
+    margin-bottom: 1rem;
+}
+
 .see-also {
     margin-top: 1rem;
     font-size: .8em;

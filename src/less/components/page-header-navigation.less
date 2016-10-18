@@ -1,6 +1,22 @@
 // @name Header navigation
 // @description Header navigation component
+// @depends page-header
+// @requires FontAwesome
 //
+// @lvar header-navigation-color              - header-color
+// @lvar header-navigation-bgcolor            - header-bgcolor
+// @lvar header-navigation-color__focus       - white
+// @lvar header-navigation-bgcolor__focus     - primary-color
+// @lvar mobile-navigation-color              - black
+// @lvar mobile-navigation-bgcolor            - white
+// @lvar mobile-navigation-border-color       - darken(shadow-color, 10%)
+// @lvar hamburger-color                      - black
+// @lvar hamburger-color__focus               - primary-color
+// @lvar mobile-navigation-animation-duration - 600ms
+// @lvar mobile-navigation__max-screen-width  - 50rem
+//
+// @see page-header, header-logo
+// 
 // @markup
 //      <nav class="mui-header-navigation">
 //          <input type="checkbox" id="mobile-navigation-checkbox-rg8p">
@@ -14,6 +30,23 @@
 //          </ul>
 //          <label for="mobile-navigation-checkbox-rg8p" class="shadow-toggle"></label>
 //      </nav>
+
+
+@header-navigation-color:              @header-color;
+@header-navigation-bgcolor:            @header-bgcolor;
+@header-navigation-color__focus:       @white;
+@header-navigation-bgcolor__focus:     @primary-color;
+
+@mobile-navigation-color:              @black;
+@mobile-navigation-bgcolor:            @white;
+@mobile-navigation-border-color:       darken(@shadow-color, 10%);
+
+@hamburger-color:                      @black;
+@hamburger-color__focus:               @primary-color;
+
+@mobile-navigation-animation-duration: 600ms;
+@mobile-navigation__max-screen-width:  50rem;
+
 
 .@{muilessium-prefix}header-navigation {
     height: @header-height;
@@ -86,6 +119,8 @@
         padding: 0 1rem;
         
         font-size: 2rem;
+
+        color: @hamburger-color;
 
         #utils > .transition-all;
         

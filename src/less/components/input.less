@@ -4,17 +4,47 @@
 // @state -valid      - Input value is valid
 // @state -invalid    - Input value is invalid
 //
+// @lvar input-color             - black
+// @lvar input-bgcolor           - white
+// @lvar input-color__focus      - black
+// @lvar input-placeholder-color - grey
+// @lvar input-color__valid      - valid-color
+// @lvar input-color__invalid    - invalid-color
+// @lvar input-height            - global-ui-height
+// @lvar input-border-radius     - global-border-radius
+// @lvar input-border-width      - global-border-width
+//
+// @see input-wrapper, input-label
+//
 // @markup
 //      <div class="mui-input">
 //          <input id="text-nqcl" type="text" placeholder="Input">
 //      </div>
 
 
+@input-color:             @black;
+@input-bgcolor:           @white;
+@input-color__focus:      @black;
+@input-placeholder-color: @grey;
+@input-color__valid:      @valid-color;
+@input-color__invalid:    @invalid-color;
+@input-height:            @global-ui-height;
+@input-border-radius:     @global-border-radius;
+@input-border-width:      @global-border-width;
+
+
 // @name Input with icon
 // @description Input component with icon
+// @depends input
+// @requires FontAwesome
 //
 // @state -icon-left  - Input with icon on the left side
 // @state -icon-right - Input with icon on the right side
+//
+// @lvar input-icon-color   - white
+// @lvar input-icon-bgcolor - primary-color
+//
+// @see input
 //
 // @markup
 //      <div class="mui-input docs-remove-default-example">
@@ -23,10 +53,17 @@
 //      </div>
 
 
+@input-icon-color:   @white;
+@input-icon-bgcolor: @primary-color;
+
+
 // @name Material input
 // @description Input component (material-style variation)
+// @depends input
 //
 // @state -has-value  - Input has value
+//
+// @see input
 //
 // @markup
 //      <div class="mui-input -material">
@@ -37,11 +74,11 @@
 .@{muilessium-prefix}input {
     position: relative;
     
-    height: @global-ui-height;
+    height: @input-height;
     width: 100%;
     
-    border: @global-border-width solid @input-color;
-    border-radius: @global-border-radius;
+    border: @input-border-width solid @input-color;
+    border-radius: @input-border-radius;
     overflow: hidden;
     
     background: @input-bgcolor;
@@ -51,12 +88,12 @@
     }
     
     > input {
-        height: ~'calc(' @global-ui-height ~' - ' 2 * @global-border-width ~')';
+        height: ~'calc(' @input-height ~' - ' 2 * @input-border-width ~')';
         width: 100%;
         
         padding: 0 1rem;
         
-        line-height: ~'calc(' @global-ui-height ~' - ' 2 * @global-border-width ~')';
+        line-height: ~'calc(' @input-height ~' - ' 2 * @input-border-width ~')';
         
         color: @input-color;
         background: transparent;
@@ -86,15 +123,15 @@
         // This background is fix for chrome 1px bug
         background: linear-gradient(to right,
             @input-icon-bgcolor,
-            @input-icon-bgcolor @global-ui-height,
-            @input-bgcolor @global-ui-height,
+            @input-icon-bgcolor @input-height,
+            @input-bgcolor @input-height,
             @input-bgcolor 100%);
         
         > input {
-            text-indent: @global-ui-height;
+            text-indent: @input-height;
             
             &::placeholder {
-                text-indent: @global-ui-height;
+                text-indent: @input-height;
             }
         }
         
@@ -104,10 +141,10 @@
             top: 0;
             z-index: 1;
             
-            width: @global-ui-height;
+            width: @input-height;
 
-            font-size: @global-ui-height * .5;
-            line-height: @global-ui-height;
+            font-size: @input-height * .5;
+            line-height: @input-height;
             text-align: center;
             
             color: @input-icon-color;
@@ -124,8 +161,8 @@
         // TODO: Fix calc bug on hover in IE11
         background: linear-gradient(to right,
             @input-bgcolor,
-            @input-bgcolor ~'calc(100% - ' @global-ui-height ~')',
-            @input-icon-bgcolor @global-ui-height,
+            @input-bgcolor ~'calc(100% - ' @input-height ~')',
+            @input-icon-bgcolor @input-height,
             @input-icon-bgcolor 100%);
         
         > .icon {
@@ -133,10 +170,10 @@
             right: 0;
             top: 0;
             
-            width: @global-ui-height;
+            width: @input-height;
             
-            font-size: @global-ui-height * .5;
-            line-height: @global-ui-height;
+            font-size: @input-height * .5;
+            line-height: @input-height;
             text-align: center;
             
             color: @input-icon-color;
