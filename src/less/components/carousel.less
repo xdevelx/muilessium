@@ -3,6 +3,7 @@
 //
 // @lvar carousel-color               - white
 // @lvar carousel-controls-background - black
+// @lvar carousel-controls-background__focus - primary-color
 // @lvar carousel-animation-duration  - 500ms
 // @lvar carousel-animation-function  - cubic-bezier(.85, .11, .46, .98)
 //
@@ -45,6 +46,7 @@
 
 @carousel-color:               @white;
 @carousel-controls-background: @black;
+@carousel-controls-background__focus: @primary-color;
 @carousel-animation-duration:  500ms;
 @carousel-animation-function:  cubic-bezier(.85, .11, .46, .98);
 
@@ -156,10 +158,7 @@
         &:focus {
             cursor: pointer;
             outline: none;
-        }
-
-        &:hover {
-            background: fade(@carousel-controls-background, 80%);
+            background: @carousel-controls-background__focus;
         }
     }
     
@@ -205,11 +204,10 @@
         &:focus {
             cursor: pointer;
             outline: none;
+            background: @carousel-controls-background__focus;
         }
 
         &:hover {
-            background: fade(@carousel-controls-background, 50%);
-
             &:after {
                 background: @carousel-color;
             }

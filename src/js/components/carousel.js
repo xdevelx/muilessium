@@ -36,19 +36,19 @@ export class Carousel extends Component {
         });
 
         [].forEach.call(this.dom.controls.prev, function(element) {
-            element.addEventListener('click', function() {
+            Utils.makeElementClickable(element, function() {
                 _this.rotate('prev');
             });
         });
 
         [].forEach.call(this.dom.controls.next, function(element) {
-            element.addEventListener('click', function() {
+            Utils.makeElementClickable(element, function() {
                 _this.rotate('next');
             });
         });
 
         [].forEach.call(this.dom.indicators, function(element, index) {
-            element.addEventListener('click', function() {
+            Utils.makeElementClickable(element, function() {
                 _this.rotate(index);
             });
         });

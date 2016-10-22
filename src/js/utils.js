@@ -71,6 +71,26 @@ function stringify(object) {
 }
 
 
+function isEnterPressed(e) {
+    return (e.keyCode == 13);
+}
+
+
+function makeElementClickable(element, callback) {
+    element.tabIndex = 1;
+
+    element.addEventListener('click', function() {
+        callback();
+    });
+
+    element.addEventListener('keypress', function(e) {
+        if (isEnterPressed(e)) {
+            callback();
+        }
+    });
+}
+
+
 export {
     console,
     addClass,
@@ -78,5 +98,6 @@ export {
     toggleClass,
     normalizeTabIndex,
     stringify,
-    objectFitImages
+    objectFitImages,
+    makeElementClickable
 };
