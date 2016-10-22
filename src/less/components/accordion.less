@@ -10,19 +10,17 @@
 // @lvar accordion-border-color         - lighten(grey, 30%)
 // @lvar accordion-border-radius        - global-border-radius
 // @lvar accordion-border-width         - global-border-width
-// @lvar accordion-animation-duration   - 600ms
+// @lvar accordion-animation-duration   - 200ms
 // @lvar accordion-animation-function   - cubic-bezier(.85, .11, .46, .98)
 //
 // @markup
 //      <ul class="mui-accordion">
-//          <li class="item">
-//              <input type="radio" name="accordion-qptl" id="accordion-ctcq">
-//              <label for="accordion-ctcq" class="title">Lorem</label>
+//          <li class="item -unfold">
+//              <div class="title">Lorem</div>
 //              <div class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, quaerat!</div>
 //          </li>
 //          <li class="item">
-//              <input type="radio" name="accordion-qptl" id="accordion-ncez">
-//              <label for="accordion-ncez" class="title">Lorem</label>
+//              <div class="title">Lorem</div>
 //              <div class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, quaerat!</div>
 //          </li>
 //      </ul>
@@ -37,7 +35,7 @@
 @accordion-border-color:         lighten(@grey, 30%);
 @accordion-border-radius:        @global-border-radius;
 @accordion-border-width:         @global-border-width;
-@accordion-animation-duration:   600ms;
+@accordion-animation-duration:   200ms;
 @accordion-animation-function:   cubic-bezier(.85, .11, .46, .98);
 
 
@@ -97,18 +95,16 @@
         transform: rotateX(90deg);
         
         transition: all @accordion-animation-duration @accordion-animation-function;
+        will-change: max-height, margin, opacity, transform;
     }
     
-    > .item > input {
-        display: none;
         
-        &:checked + .title + .content {
-            max-height: 30rem;
-            margin: 1rem 0;
-            opacity: 1;
-            transform: rotateX(0);
+    > .item.-unfold > .content {
+        max-height: 30rem;
+        margin: 1rem 0;
+        opacity: 1;
+        transform: rotateX(0);
             
-            transition: all @accordion-animation-duration @accordion-animation-function;
-        }
+        transition: all @accordion-animation-duration @accordion-animation-function;
     }
 }
