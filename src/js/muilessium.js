@@ -11,6 +11,7 @@ import { LineChart as lineChartComponent } from './components/line-chart';
 import { SelectDropdown as selectDropdownComponent } from './components/select-dropdown';
 import { Accordion as accordionComponent } from './components/accordion';
 import { Checkbox as checkboxComponent } from './components/checkbox';
+import { Tabs as tabsComponent } from './components/tabs';
 
 class Muilessium {
     constructor(options) {
@@ -53,7 +54,8 @@ Muilessium.components = {
     linechart: lineChartComponent,
     selectdropdown: selectDropdownComponent,
     accordion: accordionComponent,
-    checkbox: checkboxComponent
+    checkbox: checkboxComponent,
+    tabs: tabsComponent
 };
 
 

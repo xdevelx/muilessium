@@ -26,6 +26,9 @@ export class Carousel extends Component {
             Utils.console.warning('number of slides and number of indicators are not equal');
         }
 
+        Utils.addClass(this.dom.slides[0], '-active');
+        Utils.addClass(this.dom.indicators[0], '-active');
+
         this.rotateInterval = setInterval(this.rotate.bind(this, 'next'), 1500);
 
         let _this = this;

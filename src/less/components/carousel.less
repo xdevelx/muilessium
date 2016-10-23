@@ -1,6 +1,8 @@
 // @name Carousel
 // @description Carousel component
 //
+// @state -long-indicators - Carousel with long indicators
+//
 // @lvar carousel-color               - white
 // @lvar carousel-controls-background - black
 // @lvar carousel-controls-background__focus - primary-color
@@ -10,7 +12,7 @@
 // @markup
 //      <div class="mui-carousel">
 //          <ul class="mui-slides">
-//              <li class="mui-slide -active">
+//              <li class="mui-slide">
 //                  <img src="https://placehold.it/1200x800" alt="" class="background">
 //                  <div class="mui-slide-content -center">
 //                      <div class="title">1. Lorem ipsum dolor.</div>
@@ -33,13 +35,13 @@
 //              </li>
 //          </ul>
 //          <div class="mui-carousel-controls">
-//              <div class="prev" tabindex="1">&lsaquo;</div>
-//              <div class="next" tabindex="1">&rsaquo;</div>
+//              <div class="prev">&lsaquo;</div>
+//              <div class="next">&rsaquo;</div>
 //          </div>
 //          <ul class="mui-carousel-indicators">
-//              <li class="indicator -active" tabindex="1"></li>
-//              <li class="indicator" tabindex="1"></li>
-//              <li class="indicator" tabindex="1"></li>
+//              <li class="indicator"></li>
+//              <li class="indicator"></li>
+//              <li class="indicator"></li>
 //          </ul>
 //      </div>
 
@@ -49,13 +51,46 @@
 @carousel-controls-background__focus: @primary-color;
 @carousel-animation-duration:  500ms;
 @carousel-animation-function:  cubic-bezier(.85, .11, .46, .98);
-
+@carousel-indicator-height:    1rem;
+@carousel-long-indicator-width: 3rem;
 
 .@{muilessium-prefix}carousel {
     position: relative;
     
     height: 20rem;
     width: 100%;
+
+    &.-long-indicators {
+        .indicator {
+            width: @carousel-long-indicator-width;
+            border-radius: 0;
+
+            &:after {
+                border-radius: 0;
+                width: calc(@carousel-long-indicator-width - @carousel-indicator-height);
+            }
+
+            &:first-of-type {
+                border-top-left-radius: @carousel-indicator-height / 2;
+                border-bottom-left-radius: @carousel-indicator-height / 2;
+
+                &:after {
+                    border-top-left-radius: @carousel-indicator-height / 4;
+                    border-bottom-left-radius: @carousel-indicator-height / 4;
+                }
+            }
+
+            &:last-of-type {
+                border-top-right-radius: @carousel-indicator-height / 2;
+                border-bottom-right-radius: @carousel-indicator-height / 2;
+
+                &:after {
+                    border-top-right-radius: @carousel-indicator-height / 4;
+                    border-bottom-right-radius: @carousel-indicator-height / 4;
+                }
+            }
+        }
+    }
 }
 
 .@{muilessium-prefix}slides {
@@ -181,7 +216,7 @@
     bottom: 0;
     
     width: inherit;
-    height: 2rem;
+    height: @carousel-indicator-height * 2;
 
     margin: 0;
     padding: .5rem;
@@ -194,8 +229,8 @@
         display: inline-block;
         position: relative;
         
-        height: 16px;
-        width: 16px;
+        height: @carousel-indicator-height;
+        width: @carousel-indicator-height;
         
         margin: 0 .2rem;
         
@@ -226,8 +261,8 @@
             
             #utils > .absolute-center;
             
-            height: 50%;
-            width: 50%;
+            height: @carousel-indicator-height / 2;
+            width: @carousel-indicator-height / 2;
             
             background: fade(@carousel-color, 20%);
             border-radius: 50%;

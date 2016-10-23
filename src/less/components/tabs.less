@@ -16,13 +16,10 @@
 //
 // @markup
 //      <div class="mui-tabs">
-//          <input type="radio" name="tab" id="tab-8c64" checked>
-//          <input type="radio" name="tab" id="tab-r2tw">
-//          <input type="radio" name="tab" id="tab-croc">
 //          <div class="labels">
-//              <label for="tab-8c64">Tab 1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, rerum?</label>
-//              <label for="tab-r2tw">Tab 2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, repellat!</label>
-//              <label for="tab-croc">Tab 3</label>
+//              <div class="label">Tab 1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, rerum?</div>
+//              <div class="label">Tab 2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, repellat!</div>
+//              <div class="label">Tab 3</div>
 //          </div>
 //          <ul class="tabs">
 //              <li class="tab">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, iste ipsa, deleniti perferendis nam commodi et odit, voluptates illum accusamus, nesciunt voluptatem id aliquid tempora. Quas at blanditiis expedita, placeat!</li>
@@ -47,32 +44,6 @@
 
 
 .@{muilessium-prefix}tabs {
-    > input {
-        display: none;
-    }
-    
-    > input:nth-of-type(1):checked ~ .tabs > .tab:nth-of-type(1) { opacity: 1; transform: rotateX(0); }
-    > input:nth-of-type(2):checked ~ .tabs > .tab:nth-of-type(2) { opacity: 1; transform: rotateX(0); }
-    > input:nth-of-type(3):checked ~ .tabs > .tab:nth-of-type(3) { opacity: 1; transform: rotateX(0); }
-    
-    > input:nth-of-type(1):checked ~ .labels > label:nth-of-type(1) {
-        color: @tabs-color__current;
-        background: @tabs-bgcolor__current;
-        border-bottom-color: @tabs-bgcolor__current;
-    }
-    
-    > input:nth-of-type(2):checked ~ .labels > label:nth-of-type(2) {
-        color: @tabs-color__current;
-        background: @tabs-bgcolor__current;
-        border-bottom-color: @tabs-bgcolor__current;
-    }
-    
-    > input:nth-of-type(3):checked ~ .labels > label:nth-of-type(3) {
-        color: @tabs-color__current;
-        background: @tabs-bgcolor__current;
-        border-bottom-color: @tabs-bgcolor__current;
-    }
-
     > .labels {
         display: table; // using table because flex works very bad with truncate
         width: 100%;
@@ -80,7 +51,7 @@
         margin-right: -.5px; // hack for 1px bug in Chrome
     }
     
-    > .labels > label {
+    > .labels > .label {
         display: table-cell;
         width: 1px;
         
@@ -113,6 +84,12 @@
 
         &:focus {
             #utils > .outline-on-focus;
+        }
+
+        &.-active {
+            color: @tabs-color__current;
+            background: @tabs-bgcolor__current;
+            border-bottom-color: @tabs-bgcolor__current;
         }
     }
     
@@ -147,6 +124,11 @@
         
         &:not(:first-of-type) {
             margin-left: -100%;
+        }
+
+        &.-active {
+            transform: rotateX(0);
+            opacity: 1;
         }
     }
 }
