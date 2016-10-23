@@ -8,16 +8,19 @@ export class Carousel extends Component {
         Utils.console.log('creating mui-carousel for ' + element +
                         ' with options ' + JSON.stringify(options));
 
-        this.dom               = {};
-        this.dom.slides        = element.getElementsByClassName('mui-slide');
-        this.dom.controls      = {};
-        this.dom.controls.prev = element.getElementsByClassName('prev');
-        this.dom.controls.next = element.getElementsByClassName('next');
-        this.dom.indicators    = element.getElementsByClassName('indicator');
+        this.dom = {
+            slides: element.getElementsByClassName('mui-slide'),
+            controls: {
+                prev: element.getElementsByClassName('prev'),
+                next: element.getElementsByClassName('next')
+            },
+            indicators: element.getElementsByClassName('indicator')
+        };
 
-        this.state = {};
-        this.state.numberOfSlides = this.dom.slides.length;
-        this.state.currentSlide = 0;
+        this.state = {
+            numberOfSlides: this.dom.slides.length,
+            currentSlide: 0
+        };
 
         if (this.dom.indicators.length !== this.dom.slides.length) {
             Utils.console.warning('number of slides and number of indicators are not equal');

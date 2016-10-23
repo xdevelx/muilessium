@@ -7,7 +7,7 @@ export class Component {
         
         this.element = element;
         this.eventsObserver = new EventsObserver(element);
-        
+
         var _this = this;
         
         if (options && options.eventListeners) {

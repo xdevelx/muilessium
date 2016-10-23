@@ -32,9 +32,11 @@ export class SelectDropdown extends Component {
                         template.close +
                         sourceIconHTML;
 
-        this.dom             = {};
-        this.dom.state       = this.element.getElementsByClassName('state')[0];
-        this.dom.options     = this.element.getElementsByClassName('options')[0];
+        this.dom = {
+            state:   this.element.getElementsByClassName('state')[0],
+            options: this.element.getElementsByClassName('options')[0]
+        };
+
         this.dom.optionsList = this.dom.options.getElementsByClassName('option');
 
         this.isOpened = false;

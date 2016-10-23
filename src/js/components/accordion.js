@@ -8,9 +8,10 @@ export class Accordion extends Component {
         Utils.console.log('creating mui-accordion for ' + element +
                         ' with options ' + JSON.stringify(options));
 
-        this.dom = {};
-        this.dom.items = element.getElementsByClassName('item');
-        this.dom.titles = element.getElementsByClassName('title');
+        this.dom = {
+            items:  element.getElementsByClassName('item'),
+            titles: element.getElementsByClassName('title')
+        };
 
         let _this = this;
 
