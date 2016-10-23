@@ -99,5 +99,6 @@ export {
     normalizeTabIndex,
     stringify,
     objectFitImages,
+    isEnterPressed,
     makeElementClickable
 };

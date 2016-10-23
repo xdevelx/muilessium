@@ -10,6 +10,7 @@ import { BarChart as barChartComponent } from './components/bar-chart';
 import { LineChart as lineChartComponent } from './components/line-chart';
 import { SelectDropdown as selectDropdownComponent } from './components/select-dropdown';
 import { Accordion as accordionComponent } from './components/accordion';
+import { Checkbox as checkboxComponent } from './components/checkbox';
 
 class Muilessium {
     constructor(options) {
@@ -51,7 +52,8 @@ Muilessium.components = {
     barchart: barChartComponent,
     linechart: lineChartComponent,
     selectdropdown: selectDropdownComponent,
-    accordion: accordionComponent
+    accordion: accordionComponent,
+    checkbox: checkboxComponent
 };
 
 

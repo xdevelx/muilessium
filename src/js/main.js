@@ -26,4 +26,5 @@ document.addEventListener('DOMContentLoaded', () => {
     window.Muilessium.create('linechart', '.mui-line-chart', {});
     window.Muilessium.create('selectdropdown', '.mui-select-dropdown', {});
     window.Muilessium.create('accordion', '.mui-accordion', {});
+    window.Muilessium.create('checkbox', '.mui-checkbox', {});
 });
