@@ -8,7 +8,7 @@ export class Like extends Component {
         
         super(element, options);
         
-        this.addEventListener('click', this.clickEventListener.bind(this));
+        element.addEventListener('click', this.clickEventListener.bind(this));
     }
   
     clickEventListener() {

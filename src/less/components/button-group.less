@@ -24,7 +24,9 @@
 
 .@{muilessium-prefix}button-group {
     > .@{muilessium-prefix}button {
+        position: relative;
         border-radius: 0;
+        z-index: 0;
         
         &:first-of-type {
             border-top-left-radius: @button-group-border-radius;
@@ -43,6 +45,10 @@
         
         &:not(:last-of-type) {
             border-right: @button-group-border-width solid @button-group-border-color;
+        }
+
+        &:focus {
+            z-index: 1;
         }
     }
     

@@ -24,7 +24,7 @@ class Muilessium {
         Utils.objectFitImages();
         
         Muilessium.instance = this;
-        
+
         return this;
     }
 
