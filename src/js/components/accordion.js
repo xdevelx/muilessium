@@ -15,10 +15,8 @@ export class Accordion extends Component {
 
         let _this = this;
 
-        [].forEach.call(this.dom.titles, function(title, index) {
-            Utils.makeElementClickable(title, function() {
-                Utils.toggleClass(_this.dom.items[index], '-unfold');
-            });
+        Utils.makeChildElementsClickable(this.element, this.dom.titles, function(index) {
+            Utils.toggleClass(_this.dom.items[index], '-unfold');
         });
     }
 }

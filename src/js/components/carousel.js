@@ -38,22 +38,16 @@ export class Carousel extends Component {
             _this.rotateInterval = setInterval(_this.rotate.bind(_this, 'next'), 1500);
         });
 
-        [].forEach.call(this.dom.controls.prev, function(element) {
-            Utils.makeElementClickable(element, function() {
-                _this.rotate('prev');
-            });
+        Utils.makeChildElementsClickable(this.element, this.dom.controls.prev, function() {
+            _this.rotate('prev');
         });
 
-        [].forEach.call(this.dom.controls.next, function(element) {
-            Utils.makeElementClickable(element, function() {
-                _this.rotate('next');
-            });
+        Utils.makeChildElementsClickable(this.element, this.dom.controls.next, function() {
+            _this.rotate('next');
         });
 
-        [].forEach.call(this.dom.indicators, function(element, index) {
-            Utils.makeElementClickable(element, function() {
-                _this.rotate(index);
-            });
+        Utils.makeChildElementsClickable(this.element, this.dom.indicators, function(index) {
+            _this.rotate(index);
         });
     }
 

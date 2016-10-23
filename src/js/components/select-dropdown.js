@@ -44,32 +44,13 @@ export class SelectDropdown extends Component {
 
         let _this = this;
 
-        this.dom.state.tabIndex = 1;
-
-        this.dom.state.addEventListener('click', function() {
+        Utils.makeElementClickable(this.dom.state, function() {
             _this.toggleDropdown();
         });
 
-        this.dom.state.addEventListener('keyup', function(e) {
-            if (e.keyCode == 13) {
-                _this.toggleDropdown();
-            }
-        });
-
-        [].forEach.call(this.dom.optionsList, function(option, index) {
-            option.tabIndex = 1;
-
-            option.addEventListener('click', function() {
-                _this.updateState(index);
-                _this.closeDropdown();
-            });
-
-            option.addEventListener('keyup', function(e) {
-                if (e.keyCode == 13) {
-                    _this.updateState(index);
-                    _this.closeDropdown();
-                }
-            });
+        Utils.makeChildElementsClickable(this.element, this.dom.optionsList, function(index) {
+            _this.updateState(index);
+            _this.closeDropdown();
         });
     }
 

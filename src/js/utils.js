@@ -91,6 +91,31 @@ function makeElementClickable(element, callback) {
 }
 
 
+function makeChildElementsClickable(element, childs, callback) {
+    [].forEach.call(childs, function(child) {
+        child.tabIndex = 1;
+    });
+
+    element.addEventListener('click', function(e) {
+        let index = [].indexOf.call(childs, e.target);
+
+        if (index >= 0) {
+            callback(index);
+        }
+    });
+
+    element.addEventListener('keypress', function(e) {
+        if (isEnterPressed(e)) {
+            let index = [].indexOf.call(childs, e.target);
+
+            if (index >= 0) {
+                callback(index);
+            }
+        }
+    });
+}
+
+
 export {
     console,
     addClass,
@@ -100,5 +125,6 @@ export {
     stringify,
     objectFitImages,
     isEnterPressed,
-    makeElementClickable
+    makeElementClickable,
+    makeChildElementsClickable
 };
