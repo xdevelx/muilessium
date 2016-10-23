@@ -48,7 +48,6 @@
         &:hover,
         &:focus {
             cursor: pointer;
-            outline: none;
             
             > .icon {
                 border-color: @radio-button-border-color__focus;
@@ -57,6 +56,10 @@
                     background: @radio-button-color__focus;
                 }
             }
+        }
+
+        &:focus {
+            #utils > .outline-on-focus;
         }
     }
     

@@ -35,6 +35,10 @@ a {
     &:focus {
         color: @default-link-color__focus;
     }
+
+    &:focus {
+        #utils > .outline-on-focus;
+    }
     
     &:visited {
         color: @default-color;
@@ -45,6 +49,10 @@ a {
             content: attr(href)
         }
     }
+}
+
+label:focus {
+    outline: none;
 }
 
 div:empty:not(.indicator):not(._allow-empty) {
