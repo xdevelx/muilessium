@@ -7,8 +7,8 @@
     <title>{{project.name}} styleguide</title>  
     
     <link rel="stylesheet" href="assets/js/prettify/prettify.css"/>
-    <link rel="stylesheet" href="assets/css/styles.css"/>
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/styles.css"/>
     
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     
@@ -24,21 +24,28 @@
 
     <main>
         <div class="mui-content-container">
-            <nav class="table-of-contents">
-                <h2>Table of Contents</h2>
-                <ul>
-                    {{#files}}
-                        <li><a href="#{{file}}" data-file="{{file}}">{{file}}</a></li>
-                    {{/files}}
-                </ul>
-            </nav>
+            <!--
+            <div class="mui-post">
+                <nav>
+                    <h2>Table of Contents</h2>
+                    <ul>
+                        {{#files}}
+                            <li><a href="#{{file}}" data-file="{{file}}">{{file}}</a></li>
+                        {{/files}}
+                    </ul>
+                </nav>
+            </div>
+            -->
 
-            <div class="styleguide">
+            <div>
                 {{#files}}
-                    <div class="file-docs">
-                        <h3 id="{{file}}">{{file}}</h3>
+                    {{#if blocks}}
+                    <article class="mui-post -d">
+                        <header class="mui-post-header -d">
+                            <h3 id="{{file}}" class="title">{{file}}</h3>
+                        </header>
                         {{#blocks}}
-                            <div class="block">
+                            <div class="mui-post-content">
                                 <div class="info">
                                     <h4>{{name}}</h4>
                                     {{#if description}}
@@ -50,41 +57,65 @@
                                     {{#requires}}
                                         <p class="requires">Requires {{requires}}</p>
                                     {{/requires}}
-                                    {{#state}}
-                                        <p class="state"><span>{{name}}</span> - {{description}}</p>
-                                    {{/state}}
-                                    {{#if lvar}}
-                                        <p>LESS</p>
-                                    {{/if}}
-                                    {{#lvar}}
-                                        <p class="lvar"><span class="name">@{{name}}</span>
-                                            {{#if defaults}}
-                                                <span class="defaults"> ({{defaults}}) </span>
-                                            {{/if}}
-                                            {{#if description}}
-                                                - <span class="description"> {{description}}</span>
-                                            {{/if}}
-                                        </p>
-                                    {{/lvar}}
+                                    <ul class="mui-accordion -d">
+                                        {{#if state}}
+                                        <li class="item">
+                                            <div class="title">States</div>
+                                            <div class="content">
+                                                <table class="states">
+                                                    {{#state}}
+                                                        <tr>
+                                                            <td>{{name}}</td>
+                                                            <td>{{description}}</td>
+                                                        <tr>
+                                                    {{/state}}
+                                                </table>
+                                            </div>
+                                        </li>
+                                        {{/if}}
+                                        {{#if lvar}}
+                                        <li class="item">
+                                            <div class="title">LESS variables</div>
+                                            <div class="content">
+                                                <table>
+                                                {{#lvar}}
+                                                    <tr>
+                                                        <td>@{{name}}</td>
+                                                        {{#if defaults}}
+                                                            <td>{{defaults}}</td>
+                                                        {{/if}}
+                                                        {{#if description}}
+                                                            <td> {{description}}</td>
+                                                        {{/if}}
+                                                    </tr>
+                                                {{/lvar}}
+                                                </table>
+                                            </div>
+                                        </li>
+                                        {{/if}}
+                                    </ul>
                                     {{#if see}}
                                         <p class="see-also"><span>See also:</span> {{see}}</p>
                                     {{/if}}
                                 </div>
 
                                 {{#if markup}}
-                                    <div class="example">{{{markup.example}}}</div>
+                                    <div class="examples">
+                                        <div class="example">{{{markup.example}}}</div>
 
-                                    {{#state}}
-                                        <div class="example state {{class}}">
-                                            <div class="name">{{name}}</div>{{{../markup.example}}}
-                                        </div>
-                                    {{/state}}
+                                        {{#state}}
+                                            <div class="example state {{class}}">
+                                                <div class="name">{{name}}</div>{{{../markup.example}}}
+                                            </div>
+                                        {{/state}}
+                                    </div>
 
                                     <pre class="prettyprint lang-html markup">{{{markup.escaped}}}</pre>
                                 {{/if}}
                             </div>
                         {{/blocks}}
-                    </div>
+                    </article>
+                    {{/if}}
                 {{/files}}
             </div>
         </div>

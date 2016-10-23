@@ -1,67 +1,19 @@
-a:hover {
-    cursor: pointer;
+body {
+    background: #e5e5e5;
 }
 
-.table-of-contents {
-    margin-bottom: 3rem;
-}
-
-.table-of-contents h2 {
-    margin-bottom: 1.5rem;
-}
-
-.mui-page-header {
-    margin-bottom: 3rem;    
-}
-
-.mui-header-logo img {
-    height: 4rem;
-    display: inline-block;
-    float: left;
-    vertical-align: middle;
-}
-
-.file-docs {
-    margin-bottom: 5rem;
-}
-
-.file-docs h3 {
-    margin-bottom: 1.3rem;
-}
-
-.file-docs .block {
-    border: 1px solid #ccc;
-    margin: 1rem 0 2rem;
-}
-
-.file-docs .info {
-    background: #ddd;
-    padding: 1rem;
-    border-bottom: 1px solid #ccc;
-}
-
-.file-docs .info .name {
-    margin-bottom: .5rem;
-}
-
-.file-docs .info .description {
+.examples {
+    display: block;
+    width: calc(100% + 6rem);
+    position: relative;
+    margin-left: -3rem;
     margin-bottom: 1rem;
-    color: #555;
-    font-size: .9rem;
-    font-style: italic;
+    min-height: 3rem;
+    background: #fff;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, .5);
 }
 
-.file-docs .info .state {
-    margin-bottom: .5rem;
-    font-size: .8rem;
-}
-
-.file-docs .info .state span {
-    font-weight: 600;
-    font-family: Consolas, "Liberation Mono", Courier, monospace;
-}
-
-.file-docs .example {
+.example {
     display: block;
     padding: 1.5rem 1rem;
     position: relative;
@@ -69,7 +21,7 @@ a:hover {
     border-bottom: 1px solid #ccc;
 }
 
-.file-docs .state .name {
+.state .name {
     position: absolute;
     top: 0;
     right: 0;
@@ -220,6 +172,45 @@ ol.linenums {
     margin-bottom: 0;
 }
 
+.mui-post.-d {
+    margin: 2rem auto;
+    padding: 2rem 0 0;
+}
+
+.mui-post-header.-d {
+    padding: 0 2rem;
+}
+
+.mui-post-content > .info {
+    margin: 1rem 0;
+    padding: 0 2rem 1.5rem;
+}
+
+.mui-post-content p {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.mui-post-content table td:first-of-type {
+    font-weight: bold;
+    padding-right: 1rem;
+}
+
+
+.mui-accordion.-d {
+    margin: 1rem 0;
+}
+
+.mui-accordion.-d .title {
+    background: #eee;
+}
+
+.mui-accordion.-d .title:hover,
+.mui-accordion.-d .title:focus {
+    background: #eee;
+    color: #000;
+}
+
 .relative-no-overflow-wrapper {
     background: #c3c3c3;
     position: relative;
@@ -235,38 +226,4 @@ ol.linenums {
     width: 50px;
     min-height: 50px;
     min-width: 50px;
-}
-
-.depends {
-    color: #777;
-    margin-bottom: 1rem;
-}
-
-.requires {
-    color: #777;
-    margin-bottom: 1rem;
-}
-
-.see-also {
-    margin-top: 1rem;
-    font-size: .8em;
-    color: #777;
-    font-style: italic;
-}
-
-.lvar {
-    font-size: .8em;
-}
-
-.lvar .name {
-    font-weight: bold;
-}
-
-.lvar .defaults {
-    color: #777;
-}
-
-.lvar .description {
-    color: #777;
-    font-style: italic;
 }
