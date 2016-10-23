@@ -110,17 +110,20 @@
             #utils > .transition-all;
         }
 
-        &:focus {
-            color: @input-color__focus;
+    }
+    
+    &.-focused {
+        #utils > .outline-on-focus;
 
-            #utils > .outline-on-focus;
+        > input {
+            color: @input-color__focus;
 
             &::placeholder {
                 opacity: 0;
             }
         }
     }
-    
+
     &.-icon-left {
         // This background is fix for chrome 1px bug
         background: linear-gradient(to right,
@@ -196,7 +199,7 @@
         border-radius: 0;
         overflow: visible;
         
-        > input:focus + label {
+        &.-focused > label {
             top: -.7rem;
             font-size: .7rem;
             

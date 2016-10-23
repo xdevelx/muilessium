@@ -1,11 +1,15 @@
 // @name Card
 // @description Card component
 //
+// @state -line-after-header - Add line after card header
+//
 // @lvar card-color          - black
 // @lvar card-bgcolor        - white
 // @lvar card-header-color   - white
 // @lvar card-header-bgcolor - primary-color
 // @lvar card-border-radius  - global-border-radius
+// @lvar card-line-after-header-color - lighten(primary-color, 30%)
+// @lvar card-line-after-header-width - 4px
 //
 // @markup
 //      <div class="mui-card">
@@ -18,6 +22,8 @@
 @card-bgcolor:        @white;
 @card-header-color:   @white;
 @card-header-bgcolor: @primary-color;
+@card-line-after-header-color: lighten(@primary-color, 30%);
+@card-line-after-header-width: 4px;
 @card-border-radius:  @global-border-radius;
 
 
@@ -49,5 +55,11 @@
         
         border-top-left-radius: @card-border-radius;
         border-top-right-radius: @card-border-radius;
+    }
+
+    &.-line-after-header {
+        > .card-header {
+            border-bottom: @card-line-after-header-width solid @card-line-after-header-color;
+        }
     }
 }

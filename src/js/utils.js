@@ -79,12 +79,14 @@ function isEnterPressed(e) {
 function makeElementClickable(element, callback) {
     element.tabIndex = 1;
 
-    element.addEventListener('click', function() {
+    element.addEventListener('click', function(e) {
+        e.preventDefault();
         callback();
     });
 
     element.addEventListener('keypress', function(e) {
         if (isEnterPressed(e)) {
+            e.preventDefault();
             callback();
         }
     });
@@ -100,6 +102,7 @@ function makeChildElementsClickable(element, childs, callback) {
         let index = [].indexOf.call(childs, e.target);
 
         if (index >= 0) {
+            e.preventDefault();
             callback(index);
         }
     });
@@ -109,6 +112,7 @@ function makeChildElementsClickable(element, childs, callback) {
             let index = [].indexOf.call(childs, e.target);
 
             if (index >= 0) {
+                e.preventDefault();
                 callback(index);
             }
         }
