@@ -167,6 +167,14 @@ module.exports = function(grunt) {
                             return {
                                 requires: line
                             };
+                        },
+                        method: function(i, line, block) {
+                            var method = line.split(' - ');
+
+                            return {
+                                name:        method[0] ? method[0] : '',
+                                description: method[1] ? method[1] : ''
+                            };
                         }
                     }
                 }

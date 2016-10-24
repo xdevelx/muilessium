@@ -7,5 +7,7 @@ export class Button extends Component {
         
         Utils.console.log('creating mui-button for ' + element +
                       ' with options ' + JSON.stringify(options));
+
+        this.state.initialized = true;
     }
 }

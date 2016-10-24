@@ -32,10 +32,10 @@ export class SelectDropdown extends Component {
                         template.close +
                         sourceIconHTML;
 
-        this.dom = {
+        this.dom = Object.assign(this.dom, {
             state:   this.element.getElementsByClassName('state')[0],
             options: this.element.getElementsByClassName('options')[0]
-        };
+        });
 
         this.dom.optionsList = this.dom.options.getElementsByClassName('option');
 
@@ -52,6 +52,8 @@ export class SelectDropdown extends Component {
             _this.updateState(index);
             _this.closeDropdown();
         });
+
+        this.state.initialized = true;
     }
 
     toggleDropdown() {

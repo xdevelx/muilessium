@@ -5,5 +5,11 @@ export class Component {
         Utils.console.log('creating component');
         
         this.element = element;
+
+        this.dom = {};
+
+        this.state = {
+            initialized: false
+        };
     }
 }

@@ -2,14 +2,12 @@
 // @description Progres bar component
 // TODO: Rewrite this component using SVG
 //
-// @state -animated - Animated progress bar
-//
 // @lvar progress-bar-color - primary-color
 //
+// @method update(percents) - Update progress bar
+//
 // @markup
-//      <div class="mui-progress-bar">
-//          <div class="indicator" style="width:60%"></div>
-//      </div>
+//      <div class="mui-progress-bar" data-percents="30"></div>
 
 
 @progress-bar-color: @primary-color;
@@ -26,33 +24,15 @@
     border-radius: @global-border-radius;
     overflow: hidden;
     
-    > .indicator {
-        height: 100%;
-        
-        background: @progress-bar-color;
+    > svg {
+        position: absolute;
+        width: 100%;
     }
-    
-    &.-animated {
-        @keyframes progress-bar-animate {
-            from { background-position: 0 0; }
-            to   { background-position: 2rem 0; }
-        }
-        
-        > .indicator {
-            background-image: linear-gradient(45deg,
-                @progress-bar-color 0%,
-                @progress-bar-color 33%,
-                darken(@progress-bar-color, 10%) 34%,
-                darken(@progress-bar-color, 10%) 66%,
-                @progress-bar-color 67%,
-                @progress-bar-color 100%);
-            background-size: 2rem 1rem;
-            animation: 1s progress-bar-animate linear infinite;
-        }
-        
-    }
-    
-    &.-info {
-        
+
+    > svg > .indicator {
+        height: 100;
+
+        fill-opacity: 1;
+        fill: @progress-bar-color;
     }
 }

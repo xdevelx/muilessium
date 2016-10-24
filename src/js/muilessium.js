@@ -1,26 +1,44 @@
 import * as Utils from './utils';
 
-import { Input    as inputComponent    } from './components/input';
-import { Button   as buttonComponent   } from './components/button';
-import { Textarea as textareaComponent } from './components/textarea';
-import { Like     as likeComponent     } from './components/like';
-import { Carousel as carouselComponent } from './components/carousel';
-import { PieChart as pieChartComponent } from './components/pie-chart';
-import { BarChart as barChartComponent } from './components/bar-chart';
-import { LineChart as lineChartComponent } from './components/line-chart';
-import { SelectDropdown as selectDropdownComponent } from './components/select-dropdown';
-import { Accordion as accordionComponent } from './components/accordion';
-import { Checkbox as checkboxComponent } from './components/checkbox';
-import { Tabs as tabsComponent } from './components/tabs';
-import { HeaderNavigation as headerNavComponent } from './components/header-navigation';
+import { Accordion        } from './components/accordion';
+import { BarChart         } from './components/bar-chart';
+import { Button           } from './components/button';
+import { Carousel         } from './components/carousel';
+import { Checkbox         } from './components/checkbox';
+import { HeaderNavigation } from './components/header-navigation';
+import { Input            } from './components/input';
+import { Like             } from './components/like';
+import { LineChart        } from './components/line-chart';
+import { PieChart         } from './components/pie-chart';
+import { ProgressBar      } from './components/progress-bar';
+import { SelectDropdown   } from './components/select-dropdown';
+import { Tabs             } from './components/tabs';
+import { Textarea         } from './components/textarea';
+
+
+let components = {
+    'accordion':         Accordion,
+    'bar-chart':         BarChart,
+    'button':            Button,
+    'carousel':          Carousel,
+    'checkbox':          Checkbox,
+    'header-navigation': HeaderNavigation,
+    'input':             Input,
+    'like':              Like,
+    'line-chart':        LineChart,
+    'pie-chart':         PieChart,
+    'progress-bar':      ProgressBar,
+    'select-dropdown':   SelectDropdown,
+    'tabs':              Tabs,
+    'textarea':          Textarea
+};
+
 
 class Muilessium {
-    constructor(options) {
+    constructor() {
         if (typeof Muilessium.instance === 'object') {
             return Muilessium.instance;
         }
-        
-        this.options = Object.assign(Muilessium.defaults, options);
         
         Utils.normalizeTabIndex();
         Utils.objectFitImages();
@@ -31,36 +49,17 @@ class Muilessium {
     }
 
     create(type, selector, options) {
-        if (typeof Muilessium.components[type] !== 'function') {
+        if (typeof components[type] !== 'function') {
             throw new Error('No such component: ' + type);
         }
         
-        var components = document.querySelectorAll(selector);
+        var elements = document.querySelectorAll(selector);
         
-        return [].forEach.call(components, function(element) {
-            new Muilessium.components[type](element, options);
+        return [].map.call(elements, function(element) {
+            return new components[type](element, options);
         });
     };
 }
 
-
-Muilessium.components = {
-    input:    inputComponent,
-    textarea: textareaComponent,
-    like:     likeComponent,
-    button:   buttonComponent,
-    carousel: carouselComponent,
-    piechart: pieChartComponent,
-    barchart: barChartComponent,
-    linechart: lineChartComponent,
-    selectdropdown: selectDropdownComponent,
-    accordion: accordionComponent,
-    checkbox: checkboxComponent,
-    tabs: tabsComponent,
-    headernavigation: headerNavComponent
-};
-
-
-Muilessium.defaults = {};
 
 export default Muilessium;

@@ -8,14 +8,14 @@ export class Tabs extends Component {
         Utils.console.log('creating mui-tabs for ' + element +
                       ' with options ' + JSON.stringify(options));
 
-        this.dom = {
+        this.dom = Object.assign(this.dom, {
             tabs: this.element.getElementsByClassName('tab'),
             labels: this.element.getElementsByClassName('label')
-        };
+        });
 
-        this.state = {
+        this.state = Object.assign(this.state, {
             current: 0
-        };
+        });
 
         Utils.addClass(this.dom.tabs[0], '-active');
         Utils.addClass(this.dom.labels[0], '-active');
@@ -31,5 +31,7 @@ export class Tabs extends Component {
 
             _this.state.current = index;
         });
+
+        this.state.initialized = true;
     }
 }

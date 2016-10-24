@@ -62,5 +62,7 @@ export class BarChart extends Component {
         }
 
         element.innerHTML = template.open + output + template.close;
+
+        this.state.initialized = true;
     }
 }

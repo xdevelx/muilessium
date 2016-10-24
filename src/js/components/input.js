@@ -8,10 +8,9 @@ export class Input extends Component {
         Utils.console.log('creating mui-input for ' + element +
                       ' with options ' + JSON.stringify(options));
 
-
-        this.dom = {
+        this.dom = Object.assign(this.dom, {
             input: element.getElementsByTagName('input')[0]
-        };
+        });
 
         let _this = this;
 
@@ -32,5 +31,7 @@ export class Input extends Component {
                 Utils.addClass(element, '-has-value');
             }
         });
+
+        this.state.initialized = true;
     }
 }

@@ -8,10 +8,10 @@ export class Checkbox extends Component {
         Utils.console.log('creating mui-checkbox for ' + element +
                         ' with options ' + JSON.stringify(options));
 
-        this.dom = {
+        this.dom = Object.assign(this.dom, {
             input: element.getElementsByTagName('input')[0],
             label: element.getElementsByTagName('label')[0]
-        };
+        });
 
         let _this = this;
 
@@ -19,5 +19,7 @@ export class Checkbox extends Component {
             _this.dom.input.checked = !_this.dom.input.checked;
             Utils.toggleClass(element, '-checked');
         });
+
+        this.state.initialized = true;
     }
 }

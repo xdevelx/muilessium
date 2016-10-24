@@ -93,6 +93,21 @@
                                             </div>
                                         </li>
                                         {{/if}}
+                                        {{#if method}}
+                                        <li class="item">
+                                            <div class="title">JS Methods</div>
+                                            <div class="content">
+                                                <table>
+                                                {{#method}}
+                                                    <tr>
+                                                        <td>{{name}}</td>
+                                                        <td>{{description}}</td>
+                                                    </tr>
+                                                {{/method}}
+                                                </table>
+                                            </div>
+                                        </li>
+                                        {{/if}}
                                     </ul>
                                     {{#if see}}
                                         <p class="see-also"><span>See also:</span> {{see}}</p>

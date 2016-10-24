@@ -10,11 +10,11 @@ export class Like extends Component {
 
         let _this = this;
         
-        //element.addEventListener('click', this.clickEventListener.bind(this));
-
         Utils.makeElementClickable(this.element, function() {
             Utils.toggleClass(_this.element, '-liked');
         });
+
+        this.state.initialized = true;
     }
   
     clickEventListener() {

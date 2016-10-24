@@ -17,5 +17,7 @@ export class Textarea extends Component {
                 Utils.addClass(element, '-has-value');
             }
         });
+
+        this.state.initialized = true;
     }
 }

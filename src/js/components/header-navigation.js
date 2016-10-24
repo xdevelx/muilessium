@@ -8,14 +8,14 @@ export class HeaderNavigation extends Component {
         Utils.console.log('creating mui-header-navigation for ' + element +
                       ' with options ' + JSON.stringify(options));
 
-        this.dom = {
+        this.dom = Object.assign(this.dom, {
             toggles: element.getElementsByClassName('mui-navigation-toggle'),
             shadow: element.getElementsByClassName('-shadow')[0]
-        };
+        });
 
-        this.state = {
+        this.state = Object.assign(this.state, {
             opened: false
-        };
+        });
 
         let _this = this;
 
@@ -26,5 +26,7 @@ export class HeaderNavigation extends Component {
 
             Utils.toggleClass(_this.element, '-opened');
         });
+
+        this.state.initialized = true;
     }
 }
