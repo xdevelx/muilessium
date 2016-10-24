@@ -13,6 +13,13 @@ body {
     box-shadow: 0 0 1rem rgba(0, 0, 0, .5);
 }
 
+@media screen and (max-width: 65rem) {
+    .examples {
+        width: calc(100% + 1rem);
+        margin-left: -.5rem;
+    }
+}
+
 .example {
     display: block;
     padding: 1.5rem 1rem;

@@ -12,6 +12,7 @@ import { SelectDropdown as selectDropdownComponent } from './components/select-d
 import { Accordion as accordionComponent } from './components/accordion';
 import { Checkbox as checkboxComponent } from './components/checkbox';
 import { Tabs as tabsComponent } from './components/tabs';
+import { HeaderNavigation as headerNavComponent } from './components/header-navigation';
 
 class Muilessium {
     constructor(options) {
@@ -55,7 +56,8 @@ Muilessium.components = {
     selectdropdown: selectDropdownComponent,
     accordion: accordionComponent,
     checkbox: checkboxComponent,
-    tabs: tabsComponent
+    tabs: tabsComponent,
+    headernavigation: headerNavComponent
 };
 
 

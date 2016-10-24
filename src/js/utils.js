@@ -76,6 +76,21 @@ function isEnterPressed(e) {
 }
 
 
+function isDescendant(parent, child) {
+    let node = child.parentNode;
+
+    while (node != null) {
+        if (node == parent) {
+            return true;
+        }
+
+        node = node.parentNode;
+    }
+
+    return false;
+}
+
+
 function makeElementClickable(element, callback) {
     element.tabIndex = 1;
 
@@ -99,7 +114,13 @@ function makeChildElementsClickable(element, childs, callback) {
     });
 
     element.addEventListener('click', function(e) {
-        let index = [].indexOf.call(childs, e.target);
+        let index = -1;
+
+        [].forEach.call(childs, function(child, i) {
+            if ((child == e.target) || isDescendant(child, e.target)) {
+                index = i;
+            }
+        });
 
         if (index >= 0) {
             e.preventDefault();
@@ -129,6 +150,7 @@ export {
     stringify,
     objectFitImages,
     isEnterPressed,
+    isDescendant,
     makeElementClickable,
     makeChildElementsClickable
 };

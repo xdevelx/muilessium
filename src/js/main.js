@@ -16,4 +16,5 @@ document.addEventListener('DOMContentLoaded', () => {
     window.Muilessium.create('accordion', '.mui-accordion', {});
     window.Muilessium.create('checkbox', '.mui-checkbox', {});
     window.Muilessium.create('tabs', '.mui-tabs', {});
+    window.Muilessium.create('headernavigation', '.mui-header-navigation', {});
 });

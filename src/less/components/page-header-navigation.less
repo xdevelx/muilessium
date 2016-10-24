@@ -19,16 +19,15 @@
 // 
 // @markup
 //      <nav class="mui-header-navigation">
-//          <input type="checkbox" id="mobile-navigation-checkbox-rg8p">
-//          <label for="mobile-navigation-checkbox-rg8p" class="mobile-navigation-toggle">
+//          <div class="mui-navigation-toggle -hamburger">
 //              <i class="fa fa-bars" aria-hidden="true"></i>
-//          </label>
-//          <ul class="nav-links">
+//          </div>
+//          <ul class="links-list">
 //              <li><a href="">home</a></li>
 //              <li><a href="">about</a></li>
 //              <li><a href="">contacts</a></li>
 //          </ul>
-//          <label for="mobile-navigation-checkbox-rg8p" class="shadow-toggle"></label>
+//          <div class="mui-navigation-toggle -shadow"></div>
 //      </nav>
 
 
@@ -57,17 +56,17 @@
     
     user-select: none;
     
-    > .nav-links {
+    > .links-list {
         list-style: none;
         margin: 0;
     }
     
-    > .nav-links > li {
+    > .links-list > li {
         display: inline-block;
         margin: 0;
     }
     
-    > .nav-links > li > a {
+    > .links-list > li > a {
         padding: calc((@header-height - 1em) / 2);
         
         line-height: @header-height;
@@ -85,64 +84,8 @@
         }
     }
     
-    > input[type="checkbox"] {
-        display: none;
-    }
-    
-    > .shadow-toggle {
-        position: fixed;
-        left: 0;
-        top: 0;
-        z-index: 10;
-        
-        height: 100%;
-        width: 100%;
-        
-        background: @shadow-color;
-        opacity: 0;
-        pointer-events: none;
-        
-        #utils > .transition-all;
-        transition-duration: @mobile-navigation-animation-duration;
-        
-        &:hover {
-            cursor: pointer;
-        }
-    }
-    
-    > .mobile-navigation-toggle {
-        display: inline-block;
-        position: relative;
-        float: right;
-        
-        height: @header-height;
-        line-height: @header-height;
-        
-        padding: 0 1rem;
-        
-        font-size: 2rem;
-
-        color: @hamburger-color;
-
-        #utils > .transition-all;
-        
-        @media screen and (min-width: @mobile-navigation__max-screen-width) {
-            display: none;
-        }
-        
-        &:hover {
-            cursor: pointer;
-            color: @hamburger-color__focus;
-        }
-        
-        &:active {
-            transform: scale(.5);
-        }
-    }
-    
-    
     @media screen and (max-width: @mobile-navigation__max-screen-width) {
-        > .nav-links {
+        > .links-list {
             display: block;
             visibility: hidden;
             position: fixed;
@@ -167,7 +110,7 @@
             transition-duration: @mobile-navigation-animation-duration;
         }
         
-        > .nav-links > li {
+        > .links-list > li {
             display: block;
             overflow: hidden;
             
@@ -182,28 +125,85 @@
             }
         }
         
-        > .nav-links > li > a {
+        > .links-list > li > a {
             display: block;
             padding: .5rem 1rem;
         }
         
-        > input[type="checkbox"] {
-            display: inline-block;
-            opacity: 0;
-        }
-        
-        > input[type="checkbox"]:checked ~ .nav-links {
+        &.-opened > .links-list {
             right: 0;
             visibility: visible;
         }
         
-        > input[type="checkbox"]:focus + .mobile-navigation-toggle {
+        &.-opened > .-hamburger {
             color: @hamburger-color__focus;
         }
         
-        > input[type="checkbox"]:checked ~ .shadow-toggle {
+        &.-opened > .-shadow {
             opacity: 1;
             pointer-events: auto;
+        }
+    }
+}
+
+.@{muilessium-prefix}navigation-toggle {
+    &.-shadow {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 10;
+        
+        height: 100%;
+        width: 100%;
+        
+        background: @shadow-color;
+        opacity: 0;
+        pointer-events: none;
+        
+        #utils > .transition-all;
+        transition-duration: @mobile-navigation-animation-duration;
+        
+        &:hover {
+            cursor: pointer;
+        }
+
+        &:hover,
+        &:focus {
+            background: fade(@outline-color, 40%);
+        }
+    }
+    
+    &.-hamburger {
+        display: inline-block;
+        position: relative;
+        float: right;
+        
+        height: @header-height;
+        line-height: @header-height;
+        
+        padding: 0 1rem;
+        
+        font-size: 2rem;
+
+        color: @hamburger-color;
+
+        #utils > .transition-all;
+        
+        @media screen and (min-width: @mobile-navigation__max-screen-width) {
+            display: none;
+        }
+        
+        &:hover {
+            cursor: pointer;
+        }
+        
+        &:hover,
+        &:focus {
+            color: @hamburger-color__focus;
+        }
+
+        &:active {
+            transform: scale(.5);
         }
     }
 }
