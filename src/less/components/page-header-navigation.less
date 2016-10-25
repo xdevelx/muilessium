@@ -90,8 +90,9 @@
             visibility: hidden;
             position: fixed;
             top: 0;
-            right: -100%;
+            right: 0;
             z-index: 11;
+            overflow-y: scroll;
             
             height: 100%;
             width: 80%;
@@ -103,6 +104,8 @@
         
             font-size: 2rem;
             text-align: right;
+
+            transform: translateX(100%);
             
             box-shadow: 0 0 10rem darken(@shadow-color, 10%);
             
@@ -131,7 +134,7 @@
         }
         
         &.-opened > .links-list {
-            right: 0;
+            transform: translateX(0);
             visibility: visible;
         }
         
