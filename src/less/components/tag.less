@@ -12,10 +12,10 @@
 //      <a class="mui-tag">lorem</a>
 
 
-@tag-color:         @grey;
+@tag-color:         @dark-grey;
 @tag-color__focus:  @primary-color;
 @tag-color__active: darken(@primary-color, 15%);
-@solid-tag-bgcolor: lighten(@grey, 50%);
+@solid-tag-bgcolor: @light-grey;
 
 
 .@{muilessium-prefix}tag {
@@ -38,10 +38,6 @@
     &:focus {
         cursor: pointer;
         color: @tag-color__focus;
-    }
-
-    &:focus {
-        #utils > .outline-on-focus;
     }
     
     &:active {

@@ -7,7 +7,7 @@
 // @lvar tabs-color__current     - black
 // @lvar tabs-bgcolor__focus     - primary-color
 // @lvar tabs-bgcolor__current   - white
-// @lvar tabs-border-color       - lighten(grey, 30%)
+// @lvar tabs-border-color       - light-grey
 // @lvar tabs-label-height       - global-ui-height
 // @lvar tabs-border-width       - global-border-width
 // @lvar tabs-border-radius      - global-border-radius
@@ -35,7 +35,7 @@
 @tabs-color__current:     @black;
 @tabs-bgcolor__focus:     @primary-color;
 @tabs-bgcolor__current:   @white;
-@tabs-border-color:       lighten(@grey, 30%);
+@tabs-border-color:       @light-grey;
 @tabs-label-height:       @global-ui-height;
 @tabs-border-width:       @global-border-width;
 @tabs-border-radius:      @global-border-radius;
@@ -80,10 +80,6 @@
             cursor: pointer;
             color: @tabs-color__focus;
             background: @tabs-bgcolor__focus;
-        }
-
-        &:focus {
-            #utils > .outline-on-focus;
         }
 
         &.-active {

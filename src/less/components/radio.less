@@ -5,7 +5,7 @@
 // @lvar radio-button-color__focus        - primary-color
 // @lvar radio-button-color__active       - arken(primary-color, 5%)
 // @lvar radio-button-bgcolor             - white
-// @lvar radio-button-border-color        - grey
+// @lvar radio-button-border-color        - dark-grey
 // @lvar radio-button-border-color__focus - primary-color
 // @lvar radio-button-border-width        - global-border-width
 // @lvar radio-button-height              - global-ui-height
@@ -29,7 +29,7 @@
 @radio-button-color__focus:        @primary-color;
 @radio-button-color__active:       darken(@primary-color, 5%);
 @radio-button-bgcolor:             @white;
-@radio-button-border-color:        @grey;
+@radio-button-border-color:        @dark-grey;
 @radio-button-border-color__focus: @primary-color;
 @radio-button-border-width:        @global-border-width;
 @radio-button-height:              @global-ui-height;
@@ -56,10 +56,6 @@
                     background: @radio-button-color__focus;
                 }
             }
-        }
-
-        &:focus {
-            #utils > .outline-on-focus;
         }
     }
     

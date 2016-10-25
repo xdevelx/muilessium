@@ -18,7 +18,18 @@ h3.title {
     box-shadow: 0 0 1rem rgba(0, 0, 0, .5);
 }
 
-@media screen and (max-width: 65rem) {
+.mui-post {
+    max-width: 50rem;
+}
+
+@media screen and (max-width: 1200px) {
+    .examples {
+        width: calc(100% + 2rem);
+        margin-left: -1rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
     .examples {
         width: calc(100% + 1rem);
         margin-left: -.5rem;

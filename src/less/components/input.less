@@ -7,7 +7,7 @@
 // @lvar input-color             - black
 // @lvar input-bgcolor           - white
 // @lvar input-color__focus      - black
-// @lvar input-placeholder-color - grey
+// @lvar input-placeholder-color - dark-grey
 // @lvar input-color__valid      - valid-color
 // @lvar input-color__invalid    - invalid-color
 // @lvar input-height            - global-ui-height
@@ -25,7 +25,7 @@
 @input-color:             @black;
 @input-bgcolor:           @white;
 @input-color__focus:      @black;
-@input-placeholder-color: @grey;
+@input-placeholder-color: @dark-grey;
 @input-color__valid:      @valid-color;
 @input-color__invalid:    @invalid-color;
 @input-height:            @global-ui-height;
@@ -113,8 +113,6 @@
     }
     
     &.-focused {
-        #utils > .outline-on-focus;
-
         > input {
             color: @input-color__focus;
 
@@ -131,7 +129,7 @@
             @input-icon-bgcolor @input-height,
             @input-bgcolor @input-height,
             @input-bgcolor 100%);
-        
+
         > input {
             text-indent: @input-height;
             
@@ -154,6 +152,8 @@
             
             color: @input-icon-color;
             background: @input-icon-bgcolor;
+
+            border-radius: @input-border-radius;
             
             &:hover {
                 cursor: pointer;
@@ -184,6 +184,8 @@
             color: @input-icon-color;
             background: @input-icon-bgcolor;
  
+            border-radius: @input-border-radius;
+
             &:hover {
                 cursor: pointer;
             }

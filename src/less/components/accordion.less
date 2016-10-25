@@ -5,9 +5,9 @@
 // @lvar accordion-bgcolor              - white
 // @lvar accordion-label-color          - black
 // @lvar accordion-label-color__focus   - white
-// @lvar accordion-label-bgcolor        - lighten(grey, 50%)
+// @lvar accordion-label-bgcolor        - light-grey
 // @lvar accordion-label-bgcolor__focus - primary-color
-// @lvar accordion-border-color         - lighten(grey, 30%)
+// @lvar accordion-border-color         - dark-grey
 // @lvar accordion-border-radius        - global-border-radius
 // @lvar accordion-border-width         - global-border-width
 // @lvar accordion-animation-duration   - 200ms
@@ -30,9 +30,9 @@
 @accordion-bgcolor:              @white;
 @accordion-label-color:          @black;
 @accordion-label-color__focus:   @white;
-@accordion-label-bgcolor:        lighten(@grey, 50%);
+@accordion-label-bgcolor:        @light-grey;
 @accordion-label-bgcolor__focus: @primary-color;
-@accordion-border-color:         lighten(@grey, 30%);
+@accordion-border-color:         @dark-grey;
 @accordion-border-radius:        @global-border-radius;
 @accordion-border-width:         @global-border-width;
 @accordion-animation-duration:   200ms;
@@ -52,6 +52,8 @@
         color: @accordion-color;
         background: @accordion-bgcolor;
         border: solid @accordion-border-width @accordion-border-color;
+
+        overflow: hidden;
         
         &:first-of-type {
             border-top-left-radius: @accordion-border-radius;    
@@ -79,6 +81,9 @@
 
         color: @accordion-label-color;
         background: @accordion-label-bgcolor;
+
+        transition: border-bottom-left-radius  @accordion-animation-duration @accordion-animation-function,
+                    border-bottom-right-radius @accordion-animation-duration @accordion-animation-function;
         
         &:hover,
         &:focus {
@@ -86,12 +91,18 @@
             color: @accordion-label-color__focus;
             background: @accordion-label-bgcolor__focus;
         }
-
-        &:focus {
-            #utils > .outline-on-focus;
-        }
     }
-    
+
+    > .item:first-of-type > .title {
+        border-top-left-radius: @accordion-border-radius;
+        border-top-right-radius: @accordion-border-radius;
+    }
+
+    > .item:last-of-type:not(.-opened) > .title {
+        border-bottom-left-radius: @accordion-border-radius;
+        border-bottom-right-radius: @accordion-border-radius;
+    }
+
     > .item > .content {
         max-height: 0;
         overflow: hidden;
@@ -100,8 +111,7 @@
         
         transition: all @accordion-animation-duration @accordion-animation-function;
         will-change: max-height, margin, opacity, transform;
-    }
-    
+    } 
         
     > .item.-unfold > .content {
         max-height: 30rem;
@@ -110,5 +120,10 @@
         transform: rotateX(0);
             
         transition: all @accordion-animation-duration @accordion-animation-function;
+    }
+
+    > .item.-unfold > .title {
+        border-bottom-left-radius: @accordion-border-radius;
+        border-bottom-right-radius: @accordion-border-radius;
     }
 }
