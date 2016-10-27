@@ -22,7 +22,7 @@ h3.title {
     max-width: 50rem;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1300px) {
     .examples {
         width: calc(100% + 2rem);
         margin-left: -1rem;
