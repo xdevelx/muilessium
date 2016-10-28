@@ -28,12 +28,39 @@
 // @lvar button-height                    - global-ui-height
 // @lvar button-border-radius             - global-border-radius
 // @lvar button-border-width              - global-border-width
+// @lvar button-badge-color               - black
+// @lvar button-badge-bgcolor             - white
 //
 // @see button-group
 //
 // @markup
-//      <button class="mui-button">button</button>
-//      <!-- or <a href="" class="mui-button">button</a>-->
+//      <a class="mui-button" href="">button</a>
+
+// @name Button
+// @description Button can have an icon
+//
+// @markup
+//      <a class="mui-button" href="">
+//          <i class="fa fa-user" aria-hidden="true"></i> button
+//      </a>
+
+// @name Button
+// @description Button can have only an icon
+//
+// @state -icon - Button with icon
+//
+// @markup
+//      <a class="mui-button -icon docs-remove-default-example" href="">
+//          <i class="fa fa-bell" aria-hidden="true"></i>
+//      </a>
+
+// @name Button
+// @description Button with badge
+//
+// @see badge
+//
+// @markup
+//      <a class="mui-button" href="">button <span class="mui-badge">5</span></a>
 
 
 @button-color:                     @white;
@@ -54,6 +81,8 @@
 @button-height:                    @global-ui-height;
 @button-border-radius:             @global-border-radius;
 @button-border-width:              @global-border-width;
+@button-badge-color:               @black;
+@button-badge-bgcolor:             @white;
 
 
 .@{muilessium-prefix}button {
@@ -141,5 +170,17 @@
             background: @button-bgcolor-ghost__focus;
             border-color: @button-bgcolor-ghost__focus;
         }
+    }
+
+    &.-icon {
+        height: @global-ui-height;
+        width:  @global-ui-height;
+
+        padding: 0;
+    }
+
+    > .mui-badge {
+        color: @button-badge-color;
+        background: @button-badge-bgcolor;
     }
 }
