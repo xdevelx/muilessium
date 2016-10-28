@@ -1,12 +1,14 @@
 import * as Utils from '../utils';
 import { Component } from '../component';
 
-let template = {
+
+const template = {
     open: '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><line stroke-width="1" stroke="#777" x1="0" x2="100" y1="0" y2="0"></line><line stroke-width="1" stroke="#777" x1="0" x2="0" y1="0" y2="100"></line>',
     line: '<polyline fill="none" stroke-width="1" stroke="{{color}}" points="{{points}}"></polyline>',
     filledLine: '<polygon fill="{{color}}" fill-opacity=".5" stroke="none" points="{{points}}"></polygon>',
     close: '</svg>'
 };
+
 
 class Line {
     constructor(data, isFilled) {
@@ -16,6 +18,7 @@ class Line {
         this.values = data.replace(this.color, '').trim().split(' ');
         this.isFilled = isFilled;
     }
+
 
     render(maxValue) {
         let step = 100 / (this.values.length - 1),

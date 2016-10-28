@@ -1,6 +1,7 @@
 import * as Utils from '../utils';
 import { Component } from '../component';
 
+
 export class Checkbox extends Component {
     constructor(element, options) {
         super(element, options);
@@ -15,7 +16,7 @@ export class Checkbox extends Component {
 
         let _this = this;
 
-        Utils.makeElementClickable(this.dom.label, function() {
+        Utils.makeElementClickable(this.dom.label, () => {
             _this.dom.input.checked = !_this.dom.input.checked;
             Utils.toggleClass(element, '-checked');
         });

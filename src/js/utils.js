@@ -1,5 +1,6 @@
 var objectFitImages = require('object-fit-images');
 
+
 const console = {
     log: (message) => {
         window.console.log('Muilessium: ' + message);
@@ -54,14 +55,14 @@ function normalizeTabIndex() {
         document.querySelectorAll('a, button, input, select, textarea, object')
     );
     
-    focusableElements.map(function(element) {
+    focusableElements.map((element) => {
         element.tabIndex = 1;
     });
 }
 
 
 function stringify(object) {
-    return JSON.stringify(object, function(key, value) {
+    return JSON.stringify(object, (key, value) => {
         if (typeof value === 'function') {
             return 'function';
         }
@@ -94,12 +95,12 @@ function isDescendant(parent, child) {
 function makeElementClickable(element, callback) {
     element.tabIndex = 1;
 
-    element.addEventListener('click', function(e) {
+    element.addEventListener('click', (e) => {
         e.preventDefault();
         callback();
     });
 
-    element.addEventListener('keypress', function(e) {
+    element.addEventListener('keypress', (e) => {
         if (isEnterPressed(e)) {
             e.preventDefault();
             callback();
@@ -109,14 +110,14 @@ function makeElementClickable(element, callback) {
 
 
 function makeChildElementsClickable(element, childs, callback) {
-    [].forEach.call(childs, function(child) {
+    [].forEach.call(childs, (child) => {
         child.tabIndex = 1;
     });
 
-    element.addEventListener('click', function(e) {
+    element.addEventListener('click', (e) => {
         let index = -1;
 
-        [].forEach.call(childs, function(child, i) {
+        [].forEach.call(childs, (child, i) => {
             if ((child == e.target) || isDescendant(child, e.target)) {
                 index = i;
             }
@@ -128,7 +129,7 @@ function makeChildElementsClickable(element, childs, callback) {
         }
     });
 
-    element.addEventListener('keypress', function(e) {
+    element.addEventListener('keypress', (e) => {
         if (isEnterPressed(e)) {
             let index = [].indexOf.call(childs, e.target);
 

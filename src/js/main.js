@@ -1,5 +1,6 @@
 import Muilessium from './muilessium';
 
+
 document.addEventListener('DOMContentLoaded', () => {
     if (window.Muilessium) {
         console.error('Muilessium already initialized');

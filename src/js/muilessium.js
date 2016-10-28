@@ -16,7 +16,7 @@ import { Tabs             } from './components/tabs';
 import { Textarea         } from './components/textarea';
 
 
-let components = {
+const components = {
     'accordion':         Accordion,
     'bar-chart':         BarChart,
     'button':            Button,

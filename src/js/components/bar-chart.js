@@ -1,7 +1,8 @@
 import * as Utils from '../utils';
 import { Component } from '../component';
 
-let template = {
+
+const template = {
     open: '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">',
     bar: '<rect class="bar -n{{num}}" x="{{x}}" y="{{y}}" height="{{height}}" width="{{width}}" fill="{{color}}" fill-opacity="1" data-value="{{value}}" />',
     close: '</svg>'

@@ -1,6 +1,7 @@
 import * as Utils from '../utils';
 import { Component } from '../component';
 
+
 export class Accordion extends Component {
     constructor(element, options) {
         super(element, options);
@@ -15,7 +16,7 @@ export class Accordion extends Component {
 
         let _this = this;
 
-        Utils.makeChildElementsClickable(this.element, this.dom.titles, function(index) {
+        Utils.makeChildElementsClickable(this.element, this.dom.titles, (index) => {
             Utils.toggleClass(_this.dom.items[index], '-unfold');
         });
 

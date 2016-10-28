@@ -2,7 +2,7 @@ import * as Utils from '../utils';
 import { Component } from '../component';
 
 
-let template = {
+const template = {
     open:  '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">',
     piece: '<path class="piece -n{{num}}" fill="{{color}}" fill-opacity="1" d="M50,50 L{{start-x}},{{start-y}} A50,50 0 {{large-arc-flag}},1 {{end-x}}, {{end-y}} Z" data-value="{{value}}"></path>',
     close: '</svg>'

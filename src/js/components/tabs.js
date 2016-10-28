@@ -1,6 +1,7 @@
 import * as Utils from '../utils';
 import { Component } from '../component';
 
+
 export class Tabs extends Component {
     constructor(element, options) {
         super(element, options);
@@ -22,7 +23,7 @@ export class Tabs extends Component {
 
         let _this = this;
 
-        Utils.makeChildElementsClickable(this.element, this.dom.labels, function(index) {
+        Utils.makeChildElementsClickable(this.element, this.dom.labels, (index) => {
             Utils.removeClass(_this.dom.labels[_this.state.current], '-active');
             Utils.removeClass(_this.dom.tabs[_this.state.current], '-active');
 

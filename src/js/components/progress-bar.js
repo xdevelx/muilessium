@@ -1,11 +1,13 @@
 import * as Utils from '../utils';
 import { Component } from '../component';
 
-let template = {
+
+const template = {
     open:  '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">',
     indicator: '<rect class="indicator" x="0" y="0" height="100" width="{{width}}" />',
     close: '</svg>'
 };
+
 
 export class ProgressBar extends Component {
     constructor(element, options) {
@@ -30,9 +32,8 @@ export class ProgressBar extends Component {
         this.state.initialized = true;
     }
 
-    update(percents) {
-        console.log('updating');
 
+    update(percents) {
         if (percents) {
             this.state.percents = percents;
             this.element.setAttribute('data-percents', percents);
@@ -41,5 +42,7 @@ export class ProgressBar extends Component {
         }
 
         this.dom.indicator.setAttribute('width', this.state.percents);
+ 
+        return this; 
     }
 }

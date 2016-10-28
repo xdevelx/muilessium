@@ -1,6 +1,7 @@
 import * as Utils from '../utils';
 import { Component } from '../component';
 
+
 export class Carousel extends Component {
     constructor(element, options) {
         super(element, options);
@@ -33,28 +34,29 @@ export class Carousel extends Component {
 
         let _this = this;
 
-        element.addEventListener('mouseover', function() {
+        element.addEventListener('mouseover', () => {
             clearInterval(_this.rotateInterval);
         });
 
-        element.addEventListener('mouseout', function() {
+        element.addEventListener('mouseout', () => {
             _this.rotateInterval = setInterval(_this.rotate.bind(_this, 'next'), 1500);
         });
 
-        Utils.makeChildElementsClickable(this.element, this.dom.controls.prev, function() {
+        Utils.makeChildElementsClickable(this.element, this.dom.controls.prev, () => {
             _this.rotate('prev');
         });
 
-        Utils.makeChildElementsClickable(this.element, this.dom.controls.next, function() {
+        Utils.makeChildElementsClickable(this.element, this.dom.controls.next, () => {
             _this.rotate('next');
         });
 
-        Utils.makeChildElementsClickable(this.element, this.dom.indicators, function(index) {
+        Utils.makeChildElementsClickable(this.element, this.dom.indicators, (index) => {
             _this.rotate(index);
         });
 
         this.state.initialized = true;
     }
+
 
     rotate(param) {
         let currentSlide = this.state.currentSlide,
@@ -86,6 +88,8 @@ export class Carousel extends Component {
         Utils.addClass(this.dom.indicators[nextSlide], '-active');
 
         this.state.currentSlide = nextSlide;
+
+        return this;
     }
 }
 

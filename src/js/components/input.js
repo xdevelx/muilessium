@@ -1,6 +1,7 @@
 import * as Utils from '../utils';
 import { Component } from '../component';
 
+
 export class Input extends Component {
     constructor(element, options) {
         super(element, options);
@@ -14,15 +15,15 @@ export class Input extends Component {
 
         let _this = this;
 
-        this.dom.input.addEventListener('focus', function() {
+        this.dom.input.addEventListener('focus', () => {
             Utils.addClass(_this.element, '-focused');
         });
 
-        this.dom.input.addEventListener('blur', function() {
+        this.dom.input.addEventListener('blur', () => {
             Utils.removeClass(_this.element, '-focused');
         });
 
-        this.dom.input.addEventListener('change', function() {
+        this.dom.input.addEventListener('change', () => {
             Utils.console.log('input value changed to "' + this.value + '"');
 
             if (this.value == '') {

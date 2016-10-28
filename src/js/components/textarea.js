@@ -1,6 +1,7 @@
 import * as Utils from '../utils';
 import { Component } from '../component';
 
+
 export class Textarea extends Component {
     constructor(element, options) {
         super(element, options);
@@ -8,7 +9,7 @@ export class Textarea extends Component {
         Utils.console.log('creating mui-textarea for ' + element +
                           ' with options ' + JSON.stringify(options));
 
-        element.getElementsByTagName('textarea')[0].addEventListener('change', function() {
+        element.getElementsByTagName('textarea')[0].addEventListener('change', () => {
             Utils.console.log('textarea value changed to "' + this.value + '"');
 
             if (this.value == '') {
