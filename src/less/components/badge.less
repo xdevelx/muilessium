@@ -2,6 +2,8 @@
 // @description Badge component
 //
 // @state -rounded - Badge with rounded courners
+// @state -new     - Add "new" after badge content
+// @state -rounded -new - Rounded badge with "new" mark
 //
 // @lvar badge-color   - white
 // @lvar badge-bgcolor - accent-color
@@ -20,7 +22,7 @@
     height: 1.4em;
     min-width: 1.4em;
     
-    padding: 0 .2em;
+    padding: 0 .5em;
     margin-left: .3em;
     
     font-size: .8em;
@@ -37,5 +39,11 @@
     
     &.-rounded {
         border-radius: .6em;
+    }
+
+    &.-new {
+        &:after {
+            content: ' new';
+        }
     }
 }
