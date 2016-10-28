@@ -16,11 +16,21 @@
 // @markup
 //      <ul class="mui-accordion">
 //          <li class="item -unfold">
-//              <div class="title">Lorem</div>
+//              <div class="title">
+//                  <div class="indicator">
+//                      <i class="fa fa-arrow-right" aria-hidden="true"></i>
+//                  </div>
+//                  Lorem
+//              </div>
 //              <div class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, quaerat!</div>
 //          </li>
 //          <li class="item">
-//              <div class="title">Lorem</div>
+//              <div class="title">
+//                  <div class="indicator">
+//                      <i class="fa fa-arrow-right" aria-hidden="true"></i>
+//                  </div>
+//                  Lorem
+//              </div>
 //              <div class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, quaerat!</div>
 //          </li>
 //      </ul>
@@ -79,6 +89,8 @@
         
         padding: 1rem;
 
+        line-height: 1;
+
         color: @accordion-label-color;
         background: @accordion-label-bgcolor;
 
@@ -103,6 +115,15 @@
         border-bottom-right-radius: @accordion-border-radius;
     }
 
+    > .item > .title > .indicator {
+        display: inline-block;
+        height: 1em;
+        width: 1em;
+        vertical-align: middle;
+
+        transition: transform @accordion-animation-duration @accordion-animation-function;
+    }
+
     > .item > .content {
         max-height: 0;
         overflow: hidden;
@@ -125,5 +146,9 @@
     > .item.-unfold > .title {
         border-bottom-left-radius: @accordion-border-radius;
         border-bottom-right-radius: @accordion-border-radius;
+    }
+
+    > .item.-unfold > .title > .indicator {
+        transform: rotate(90deg);
     }
 }
