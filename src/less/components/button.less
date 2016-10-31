@@ -59,10 +59,22 @@
 // @name Button
 // @description Button with badge
 //
+// @state -badge-on-top
+//
 // @see badge
 //
 // @markup
 //      <a class="mui-button" href="">button <span class="mui-badge">5</span></a>
+
+
+// @name Button
+// @description Button with label
+//
+// @state -label-left  - button with label on the left side
+// @state -label-right - button with label on the right side
+//
+// @markup
+//      <a class="mui-button docs-remove-default-example" href="">button<span class="label">label</span></a>
 
 
 @button-color:                     @white;
@@ -85,10 +97,13 @@
 @button-border-width:              @global-border-width;
 @button-badge-color:               @black;
 @button-badge-bgcolor:             @white;
+@button-label-color:               @white;
+@button-label-bgcolor:             @secondary-color;
 
 
 .@{muilessium-prefix}button {
     display: inline-block;
+    position: relative;
     
     padding: 0 1em;
     
@@ -184,5 +199,51 @@
     > .mui-badge {
         color: @button-badge-color;
         background: @button-badge-bgcolor;
+    }
+
+    &.-badge-on-top {
+        > .mui-badge {
+            position: absolute;
+            top: -.5em;
+            right: -.5em;
+
+            #utils > .shadow;
+        }
+    }
+
+    > .label {
+        display: inline-block;
+        height: 100%;
+
+        padding: 0 1rem;
+
+        color: @button-label-color;
+        background: @button-label-bgcolor;
+    }
+
+    &.-label-right {
+        padding-right: 0;
+
+        #utils > .clearfix;
+
+        > .label {
+            float: right;
+            margin-left: 1rem;
+
+            border-radius: 0 @button-border-radius @button-border-radius 0;
+        }
+    }
+
+    &.-label-left {
+        padding-left: 0;
+
+        #utils > .clearfix;
+
+        > .label {
+            float: left;
+            margin-right: 1rem;
+
+            border-radius: @button-border-radius 0 0 @button-border-radius;
+        }
     }
 }
