@@ -2,6 +2,7 @@
 // @description Carousel component
 //
 // @state -long-indicators - Carousel with long indicators
+// @state -circle-controls
 //
 // @lvar carousel-color               - white
 // @lvar carousel-controls-background - black
@@ -89,6 +90,29 @@
                     border-bottom-right-radius: @carousel-indicator-height / 4;
                 }
             }
+        }
+    }
+
+    &.-circle-controls {
+        .prev,
+        .next {
+            top: 50%;
+            transform: translateY(-50%);
+
+            height: 4rem;
+            width: 4rem;
+
+            line-height: 3.5rem;
+
+            border-radius: 50%;
+        }
+
+        .prev {
+            left: 1rem;
+        }
+
+        .next {
+            right: 1rem;
         }
     }
 }
