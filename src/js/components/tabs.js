@@ -9,12 +9,12 @@ export class Tabs extends Component {
         Utils.console.log('creating mui-tabs for ' + element +
                       ' with options ' + JSON.stringify(options));
 
-        this.dom = Object.assign(this.dom, {
+        this.dom = Utils.extend(this.dom, {
             tabs: this.element.getElementsByClassName('tab'),
             labels: this.element.getElementsByClassName('label')
         });
 
-        this.state = Object.assign(this.state, {
+        this.state = Utils.extend(this.state, {
             current: 0
         });
 

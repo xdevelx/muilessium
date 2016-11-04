@@ -9,7 +9,7 @@ export class Carousel extends Component {
         Utils.console.log('creating mui-carousel for ' + element +
                         ' with options ' + JSON.stringify(options));
 
-        this.dom = Object.assign(this.dom, {
+        this.dom = Utils.extend(this.dom, {
             slides: element.getElementsByClassName('mui-slide'),
             controls: {
                 prev: element.getElementsByClassName('prev'),
@@ -18,7 +18,7 @@ export class Carousel extends Component {
             indicators: element.getElementsByClassName('indicator')
         });
 
-        this.state = Object.assign(this.state, {
+        this.state = Utils.extend(this.state, {
             numberOfSlides: this.dom.slides.length,
             currentSlide: 0
         });

@@ -9,7 +9,7 @@ export class Checkbox extends Component {
         Utils.console.log('creating mui-checkbox for ' + element +
                         ' with options ' + JSON.stringify(options));
 
-        this.dom = Object.assign(this.dom, {
+        this.dom = Utils.extend(this.dom, {
             input: element.getElementsByTagName('input')[0],
             label: element.getElementsByTagName('label')[0]
         });

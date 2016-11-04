@@ -27,6 +27,7 @@ function addClass(element, newClass) {
         return;
     }
 
+    // Use className instead of classList because IE11 does not have support for slassList on SVG
     element.className += ' ' + newClass;
 }
 
@@ -37,11 +38,13 @@ function removeClass(element, classForRemoving) {
         throw new Error();
     }
 
+    // Use className instead of classList because IE11 does not have support for slassList on SVG
     element.className = element.className.replace(classForRemoving, '');
 }
 
 
 function toggleClass(element, classforToggle) {
+    // Use className instead of classList because IE11 does not have support for slassList on SVG
     if (element.className.indexOf(classforToggle) === -1) {
         addClass(element, classforToggle);
     } else {
@@ -69,6 +72,19 @@ function stringify(object) {
         
         return value;
     });
+}
+
+
+// Use this function instead of Object.assign because IE11 has no support for Object.assign
+// https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+function extend(target, source) {
+    target = target || {};
+
+    for (let prop in source) {
+        target[prop] = source[prop];
+    }
+
+    return target;
 }
 
 
@@ -149,6 +165,7 @@ export {
     toggleClass,
     normalizeTabIndex,
     stringify,
+    extend,
     objectFitImages,
     isEnterPressed,
     isDescendant,

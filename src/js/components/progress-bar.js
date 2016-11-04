@@ -16,7 +16,7 @@ export class ProgressBar extends Component {
         Utils.console.log('creating mui-progress-bar for ' + element +
                       ' with options ' + JSON.stringify(options));
 
-        this.state = Object.assign(this.state, {
+        this.state = Utils.extend(this.state, {
             percents: this.element.getAttribute('data-percents')
         });
 
@@ -25,7 +25,7 @@ export class ProgressBar extends Component {
 
         this.element.innerHTML = template.open + output + template.close;
 
-        this.dom = Object.assign(this.dom, {
+        this.dom = Utils.extend(this.dom, {
             indicator: element.getElementsByClassName('indicator')[0]
         });
 

@@ -9,7 +9,7 @@ export class Accordion extends Component {
         Utils.console.log('creating mui-accordion for ' + element +
                         ' with options ' + JSON.stringify(options));
 
-        this.dom = Object.assign(this.dom, {
+        this.dom = Utils.extend(this.dom, {
             items:  element.getElementsByClassName('item'),
             titles: element.getElementsByClassName('title')
         });

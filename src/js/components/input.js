@@ -9,7 +9,7 @@ export class Input extends Component {
         Utils.console.log('creating mui-input for ' + element +
                       ' with options ' + JSON.stringify(options));
 
-        this.dom = Object.assign(this.dom, {
+        this.dom = Utils.extend(this.dom, {
             input: element.getElementsByTagName('input')[0]
         });
 

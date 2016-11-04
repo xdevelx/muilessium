@@ -34,7 +34,7 @@ export class SelectDropdown extends Component {
                         template.close +
                         sourceIconHTML;
 
-        this.dom = Object.assign(this.dom, {
+        this.dom = Utils.extend(this.dom, {
             state:   this.element.getElementsByClassName('state')[0],
             options: this.element.getElementsByClassName('options')[0]
         });

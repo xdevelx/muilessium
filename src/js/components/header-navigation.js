@@ -9,12 +9,12 @@ export class HeaderNavigation extends Component {
         Utils.console.log('creating mui-header-navigation for ' + element +
                       ' with options ' + JSON.stringify(options));
 
-        this.dom = Object.assign(this.dom, {
+        this.dom = Utils.extend(this.dom, {
             toggles: element.getElementsByClassName('mui-navigation-toggle'),
             shadow: element.getElementsByClassName('-shadow')[0]
         });
 
-        this.state = Object.assign(this.state, {
+        this.state = Utils.extend(this.state, {
             opened: false
         });
 
