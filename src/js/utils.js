@@ -16,8 +16,19 @@ const console = {
 };
 
 
+function isInPage(element) {
+    // Use this instead of document.contains because IE has only partial support of Node.contains.
+    return (element === document.body) || document.body.contains(element);
+}
+
+
+function isNotInPage(element) {
+    return !isInPage(element);
+}
+
+
 function addClass(element, newClass) {
-    if (!document.contains(element)) {
+    if (isNotInPage(element)) {
         console.error('cannot add class to element ' + element + '. No such element');
         throw new Error();
     }
@@ -33,7 +44,7 @@ function addClass(element, newClass) {
 
 
 function removeClass(element, classForRemoving) {
-    if (!document.contains(element)) {
+    if (isNotInPage(element)) {
         console.error('cannot add class to element ' + element + '. No such element');
         throw new Error();
     }
@@ -160,6 +171,8 @@ function makeChildElementsClickable(element, childs, callback) {
 
 export {
     console,
+    isInPage,
+    isNotInPage,
     addClass,
     removeClass,
     toggleClass,
