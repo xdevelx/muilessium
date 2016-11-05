@@ -42,6 +42,8 @@ class Muilessium {
         
         Utils.normalizeTabIndex();
         Utils.objectFitImages();
+
+        this.Utils = Utils;
         
         Muilessium.instance = this;
 
