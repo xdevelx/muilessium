@@ -73,13 +73,24 @@ function isNotInPage(element) {
 }
 
 
+function hasClass(element, classForTest) {
+    // Use className instead of classList because IE11 does not have support for slassList on SVG
+    return (element.className.indexOf(classForTest) !== -1);
+}
+
+
+function hasNotClass(element, classForTest) {
+    return !hasClass(element, classForTest);
+}
+
+
 function addClass(element, newClass) {
     if (isNotInPage(element)) {
         console.error('cannot add class to element ' + element + '. No such element');
         throw new Error();
     }
 
-    if (element.className.indexOf(newClass) !== -1) {
+    if (hasClass(element, newClass)) {
         console.log('class ' + newClass + ' already added to element ' + element);
         return;
     }
@@ -100,12 +111,11 @@ function removeClass(element, classForRemoving) {
 }
 
 
-function toggleClass(element, classforToggle) {
-    // Use className instead of classList because IE11 does not have support for slassList on SVG
-    if (element.className.indexOf(classforToggle) === -1) {
-        addClass(element, classforToggle);
+function toggleClass(element, classForToggle) {
+    if (hasNotClass(element, classForToggle)) {
+        addClass(element, classForToggle);
     } else {
-        removeClass(element, classforToggle);
+        removeClass(element, classForToggle);
     }
 }
 
