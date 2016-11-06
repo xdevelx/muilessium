@@ -65,7 +65,7 @@
     
     > .page-link > a {
         display: inline-block;
-        
+        height: ~'calc(' @pagination-height ~' - ' 2*@pagination-border-width ~')';
         padding: 0 1rem;
 
         font-size: @pagination-height * .5;
