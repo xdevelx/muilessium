@@ -27,7 +27,8 @@
 @select-icon-color:    @white;
 @select-bgcolor:       @white;
 @select-icon-bgcolor:  @primary-color;
-@select-border-color:  @secondary-color;
+@select-border-color:  @black;
+@select-border-color__focus: @primary-color;
 @select-height:        @global-ui-height;
 @select-border-width:  @global-border-width;
 @select-border-radius: @global-border-radius;
@@ -60,8 +61,10 @@
         border-radius: @select-border-radius;
         outline: none;
 
-        &:hover {
+        &:hover,
+        &:focus {
             cursor: pointer;
+            border-color: @select-border-color__focus;
         }
     }
     
@@ -89,7 +92,7 @@
     .options {
         display: none;
         position: relative;
-        top: @select-height * .7;
+        top: 0;
 
         list-style: none;
 

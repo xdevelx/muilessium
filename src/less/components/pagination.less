@@ -10,7 +10,7 @@
 // @lvar pagination-current-color           - white
 // @lvar pagination-current-bgcolor         - primary-color
 // @lvar pagination-current-color__focus    - white
-// @lvar pagination-current-bgcolor__focus  - primary-color
+// @lvar pagination-current-bgcolor__focus  - black
 // @lvar pagination-border-color            - grey
 // @lvar pagination-border-color__focus     - black
 // @lvar pagination-bordered-color__focus   - white
@@ -38,7 +38,7 @@
 @pagination-current-color:           @white;
 @pagination-current-bgcolor:         @primary-color;
 @pagination-current-color__focus:    @white;
-@pagination-current-bgcolor__focus:  @primary-color;
+@pagination-current-bgcolor__focus:  @black;
 @pagination-border-color:            @grey;
 @pagination-border-color__focus:     @black;
 @pagination-bordered-color__focus:   @white;
@@ -90,14 +90,15 @@
     }
     
     > .page-link.-current {
-        color: @pagination-current-color;
-        background: @pagination-current-bgcolor;
+        > a { 
+            color: @pagination-current-color;
+            background: @pagination-current-bgcolor;
         
-        #utils > .transition-all;
-        
-        &:hover {
-            color: @pagination-current-color__focus;
-            background: @pagination-current-bgcolor__focus;
+            &:hover,
+            &:focus {
+                color: @pagination-current-color__focus;
+                background: @pagination-current-bgcolor__focus;
+            }
         }
     }
     
@@ -112,30 +113,26 @@
     
     &.-bordered {
         > .page-link {
-            border: @pagination-border-width solid @pagination-border-color;
-            
-            &:first-child {
+            &:first-child > a {
                 border-top-left-radius: @pagination-border-radius;
                 border-bottom-left-radius: @pagination-border-radius;
             }
             
-            &:last-child {
+            &:last-child > a {
                 border-top-right-radius: @pagination-border-radius;
                 border-bottom-right-radius: @pagination-border-radius;
             }
             
-            &:hover {
-                background: @pagination-border-color;
-                border-color: @pagination-border-color__focus;
-                
-                > a {
+            > a {
+                border: @pagination-border-width solid @pagination-border-color;
+                line-height: ~'calc(' @pagination-height ~' - ' 2 * @pagination-border-width ~')';
+
+                &:hover,
+                &:focus {
                     color: @pagination-bordered-color__focus;
                     background: @pagination-bordered-bgcolor__focus;
+                    border-color: @pagination-border-color__focus;
                 }
-            }
-            
-            > a {
-                line-height: ~'calc(' @pagination-height ~' - ' 2 * @pagination-border-width ~')';
             }
         }
     }

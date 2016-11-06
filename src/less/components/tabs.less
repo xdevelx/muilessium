@@ -86,6 +86,13 @@
             color: @tabs-color__current;
             background: @tabs-bgcolor__current;
             border-bottom-color: @tabs-bgcolor__current;
+        
+            &:hover,
+            &:focus {
+                cursor: pointer;
+                color: @tabs-color__focus;
+                background: @tabs-bgcolor__focus;
+            }
         }
     }
     

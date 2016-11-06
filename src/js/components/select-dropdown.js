@@ -35,6 +35,7 @@ export class SelectDropdown extends Component {
                         sourceIconHTML;
 
         this.dom = Utils.extend(this.dom, {
+            select:  this.element.getElementsByClassName('select')[0],
             state:   this.element.getElementsByClassName('state')[0],
             options: this.element.getElementsByClassName('options')[0]
         });
@@ -46,7 +47,7 @@ export class SelectDropdown extends Component {
 
         let _this = this;
 
-        Utils.makeElementClickable(this.dom.state, () => {
+        Utils.makeElementClickable(this.dom.select, () => {
             _this.toggleDropdown();
         });
 
