@@ -17,15 +17,23 @@
 <body>
 
     <header class="mui-page-header">
-        <div class="mui-content-container">
-            <h1 class="mui-header-logo">{{project.name}} v.{{project.version}}</h1>
-        </div>
+        <h1 class="mui-header-logo">{{project.name}} v.{{project.version}}</h1>
+        <nav class="mui-header-navigation">
+            <div class="mui-navigation-toggle -hamburger">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </div>
+            <ul class="links-list">
+                <li><a href="https://github.com/sfi0zy/muilessium">See on GitHub</a></li>
+            </ul>
+            <div class="mui-navigation-toggle -shadow"></div>
+        </nav>
     </header>
 
     <main>
-        <div class="mui-content-container">
-            <!--
-            <div class="mui-post">
+        <div class="mui-row">
+        <div class="mui-column -s12 -m4">
+            
+            <div class="aside">
                 <nav>
                     <h2>Table of Contents</h2>
                     <ul>
@@ -35,8 +43,10 @@
                     </ul>
                 </nav>
             </div>
-            -->
-
+            
+        </div>
+        <div class="mui-column -s12 -m8">
+            <div class="mui-content-container">
             <div>
                 {{#files}}
                     {{#if blocks}}
@@ -143,6 +153,7 @@
                     {{/if}}
                 {{/files}}
             </div>
+            </div>
         </div>
     </main>
 
@@ -179,6 +190,10 @@
 
             [].forEach.call(document.querySelectorAll('pre'), function(atv){
                 atv.innerHTML = atv.innerHTML.replace(new RegExp(" docs-[a-z-]*", "g"), "");
+            });
+
+            [].forEach.call(document.querySelectorAll('a[data-file]'), function(a) {
+                a.innerHTML = a.innerHTML.split('/').reverse()[0];
             });
             
             prettyPrint();

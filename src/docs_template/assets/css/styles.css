@@ -2,16 +2,31 @@ body {
     background: #e5e5e5;
 }
 
+
+.mui-page-header {
+    box-shadow: none;
+}
+
+
 h3.title {
     text-overflow: ellipsis;
     overflow: hidden;
 }
 
+.aside {
+    background: #fff;
+    padding: 2rem;
+}
+
+h2 {
+    margin-bottom: 1rem;
+}
+
 .examples {
     display: block;
-    width: calc(100% + 6rem);
+    width: 105%;
     position: relative;
-    margin-left: -3rem;
+    margin-left: -2.5%;
     margin-bottom: 1rem;
     min-height: 3rem;
     background: #fff;
@@ -19,6 +34,7 @@ h3.title {
 }
 
 .mui-post {
+    width: 90%;
     max-width: 50rem;
 }
 
