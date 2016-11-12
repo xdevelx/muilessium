@@ -1,17 +1,627 @@
+// ===================================================================
+// GLOBAL CONSTANTS
+// ===================================================================
+
+
+// -------------------------------------
+// Prefix for muilessium components
+// -------------------------------------
+
 @muilessium-prefix: mui-;
 
-@global-border-radius: .2rem;
-@global-border-width:  1px;
-@global-ui-height:     2rem;
-@global-width-limit:   1100px;
 
-@grid-breakpoint-small:     400;
-@grid-breakpoint-small-px:  400px;
-@grid-breakpoint-medium:    600;
-@grid-breakpoint-medium-px: 600px;
-@grid-breakpoint-large:     1200;
-@grid-breakpoint-large-px:  1200px;
 
-@hover-animation-duration: 180ms;
-@hover-animation-function: cubic-bezier(.53, .05, .13, .94);
+// -------------------------------------
+// Grid breakpoints
+// -------------------------------------
+
+@grid-breakpoint-small:                 400;
+@grid-breakpoint-small-px:              400px;
+@grid-breakpoint-medium:                600;
+@grid-breakpoint-medium-px:             600px;
+@grid-breakpoint-large:                 1200;
+@grid-breakpoint-large-px:              1200px;
+
+
+
+// -------------------------------------
+// Colors
+// -------------------------------------
+
+@white:                                 #FFFFFF;
+@black:                                 #252422;
+@grey:                                  #CCC5B9;
+@light-grey:                            #CCC5B9;
+@dark-grey:                             #403D39;
+@primary-color:                         #1A7099;
+@secondary-color:                       #1A9992;
+@accent-color:                          #ED1C1C;
+@valid-color:                           #0A9951;
+@invalid-color:                         #ED1C1C;
+@outline-color:                         #2BBBFF;
+@shadow-color:                          rgba(0, 0, 0, .3);
+
+@default-color:                         @black;
+@default-background-color:              @white;
+
+@default-link-color:                    @secondary-color;
+@default-link-color__focus:             darken(@secondary-color, 5%);
+@default-link-color__disabled:          @grey;
+
+@selection-color:                       @white;
+@selection-background-color:            @black;
+
+
+
+// -------------------------------------
+// Default hover animation settings
+// -------------------------------------
+
+@hover-animation-function:              cubic-bezier(.53, .05, .13, .94);
+@hover-animation-duration:              180ms;
+
+
+
+// -------------------------------------
+// Other global constants
+// -------------------------------------
+
+@global-border-radius:                  .2rem;
+@global-border-width:                   1px;
+@global-ui-height:                      2rem;
+@global-width-limit:                    1100px;
+
+
+
+
+// ===================================================================
+// COMPONENTS
+// ===================================================================
+
+
+// -------------------------------------
+// Accordion
+// src/less/components/accordion.less
+// -------------------------------------
+
+@accordion-color:                       @black;
+@accordion-bgcolor:                     @white;
+@accordion-label-color:                 @black;
+@accordion-label-color__focus:          @white;
+@accordion-label-bgcolor:               @light-grey;
+@accordion-label-bgcolor__focus:        @primary-color;
+@accordion-border-color:                @dark-grey;
+@accordion-border-radius:               @global-border-radius;
+@accordion-border-width:                @global-border-width;
+@accordion-animation-duration:          200ms;
+@accordion-animation-function:          cubic-bezier(.85, .11, .46, .98);
+
+
+
+// -------------------------------------
+// Badge
+// src/less/components/badge.less
+// -------------------------------------
+
+@badge-color:                           @white;
+@badge-bgcolor:                         @accent-color;
+
+
+
+// -------------------------------------
+// Bar chart
+// src/less/components/bar-chart.less
+// -------------------------------------
+
+@bar-chart-color__hover:                @primary-color;
+@bar-chart-animation-duration:          200ms;
+@bar-chart-animation-function:          cubic-bezier(.85, .11, .46, .98);
+
+
+
+// -------------------------------------
+// Big header
+// src/less/components/big-header.less
+// -------------------------------------
+@big-header-color:                      @white;
+@big-header-background-filter:          brightness(.4);
+
+
+
+// -------------------------------------
+// Blockquote
+// src/less/components/blockquote.less
+// -------------------------------------
+@blockquote-text-color:                 @default-color;
+@blockquote-author-color:               @grey;
+@blockquote-bgcolor:                    @white;
+
+
+
+// -------------------------------------
+// Breadcrumb
+// src/less/components/breadcrumb.less
+// -------------------------------------
+
+@breadcrumb-color:                      @white;
+@breadcrumb-color__focus:               lighten(@primary-color, 50%);
+@breadcrumb-bgcolor:                    @primary-color;
+@breadcrumb-height:                     @global-ui-height;
+@breadcrumb-border-radius:              @global-border-radius;
+
+
+
+// -------------------------------------
+// Button group
+// src/less/components/button-group.less
+// -------------------------------------
+
+@button-group-border-color:             lighten(@button-bgcolor, 10%);
+@button-group-border-radius:            @global-border-radius;
+@button-group-border-width:             @global-border-width;
+
+
+
+// -------------------------------------
+// Button
+// src/less/components/.less
+// -------------------------------------
+
+@button-color:                          @white;
+@button-color__focus:                   @button-color;
+@button-color__active:                  @button-color;
+@button-color-dangerous:                @button-color;
+@button-color-dangerous__focus:         @button-color;
+@button-color-dangerous__active:        @button-color;
+@button-color-ghost:                    @black;
+@button-bgcolor:                        @primary-color;
+@button-bgcolor__focus:                 darken(@button-bgcolor, 5%);
+@button-bgcolor__active:                darken(@button-bgcolor, 15%);
+@button-bgcolor-dangerous:              @accent-color;
+@button-bgcolor-dangerous__focus:       darken(@button-bgcolor-dangerous, 5%);
+@button-bgcolor-dangerous__active:      darken(@button-bgcolor-dangerous, 15%);
+@button-color-ghost__focus:             @white;
+@button-bgcolor-ghost__focus:           @primary-color;
+@button-height:                         @global-ui-height;
+@button-border-radius:                  @global-border-radius;
+@button-border-width:                   @global-border-width;
+@button-badge-color:                    @black;
+@button-badge-bgcolor:                  @white;
+@button-label-color:                    @white;
+@button-label-bgcolor:                  @secondary-color;
+
+
+
+// -------------------------------------
+// Card
+// src/less/components/card.less
+// -------------------------------------
+
+@card-color:                            @black;
+@card-bgcolor:                          @white;
+@card-header-color:                     @white;
+@card-header-bgcolor:                   @primary-color;
+@card-line-after-header-color:          lighten(@primary-color, 30%);
+@card-line-after-header-width:          4px;
+@card-border-radius:                    @global-border-radius;
+@card-padding:                          1rem;
+
+
+
+// -------------------------------------
+// Carousel
+// src/less/components/carousel.less
+// -------------------------------------
+
+@carousel-color:                        @white;
+@carousel-controls-background:          @black;
+@carousel-controls-background__focus:   @primary-color;
+@carousel-animation-duration:           500ms;
+@carousel-animation-function:           cubic-bezier(.85, .11, .46, .98);
+@carousel-indicator-height:             1rem;
+@carousel-long-indicator-width:         3rem;
+
+
+
+// -------------------------------------
+// Checkbox (classic)
+// src/less/components/checkbox.less
+// -------------------------------------
+
+@checkbox-border-color:                 @dark-grey;
+@checkbox-border-color__focus:          @primary-color;
+@checkbox-icon-color:                   @primary-color;
+@checkbox-icon-color__focus:            @primary-color;
+@checkbox-bgcolor:                      @white;
+@checkbox-height:                       @global-ui-height;
+@checkbox-border-radius:                @global-border-radius;
+@checkbox-border-width:                 @global-border-width;
+
+
+
+// -------------------------------------
+// Checkbox (toggle)
+// src/less/components/checkbox.less
+// -------------------------------------
+
+@toggle-checkbox-height:                @global-ui-height;
+@toggle-checkbox-bgcolor:               @white;
+@toggle-checkbox-bgcolor__checked:      @white;
+@toggle-checkbox-toggle-color:          @white;
+@toggle-checkbox-toggle-bgcolor:        @dark-grey;
+@toggle-checkbox-toggle-color__checked: @white;
+@toggle-checkbox-toggle-bgcolor__checked: @primary-color;
+@toggle-checkbox-border-color:          @dark-grey;
+@toggle-checkbox-border-color__focus:   @primary-color;
+@toggle-checkbox-border-radius:         @global-border-radius;
+@toggle-checkbox-border-width:          @global-border-width;
+@toggle-checkbox-animation-duration:    300ms;
+@toggle-checkbox-animation-function:    cubic-bezier(.85, .11, .46, .98);
+
+
+
+// -------------------------------------
+// Collection
+// src/less/components/collection.less
+// -------------------------------------
+
+@collection-color:                      @black;
+@collection-bgcolor:                    @white;
+@collection-badge-color:                @white;
+@collection-badge-bgcolor:              @primary-color;
+@collection-border-color:               @light-grey;
+@collection-border-radius:              @global-border-radius;
+@collection-border-width:               @global-border-width;
+
+
+
+// -------------------------------------
+// Comment
+// src/less/components/comment.less
+// -------------------------------------
+
+@comment-color:                         @black;
+@comment-bgcolor:                       @white;
+@comment-author-color:                  @black;
+@comment-author-color__focus:           lighten(@black, 20%);
+@comment-date-color:                    @grey;
+@comment-avatar-bgcolor:                lighten(@comment-color, 20%);
+
+
+
+// -------------------------------------
+// Image
+// src/less/components/image.less
+// -------------------------------------
+
+@image-border-radius:                   @global-border-radius;
+
+
+
+// -------------------------------------
+// Info bubble
+// src/less/components/info-bubble.less
+// -------------------------------------
+
+@info-bubble-color:                     @white;
+@info-bubble-bgcolor:                   fade(@black, 80%);
+
+
+
+// -------------------------------------
+// Label for input 
+// src/less/components/input-label.less
+// -------------------------------------
+
+@input-label-color:                     @black;
+
+
+
+// -------------------------------------
+// Input
+// src/less/components/input.less
+// -------------------------------------
+
+@input-color:                           @black;
+@input-bgcolor:                         @white;
+@input-color__focus:                    @black;
+@input-placeholder-color:               @dark-grey;
+@input-color__valid:                    @valid-color;
+@input-color__invalid:                  @invalid-color;
+@input-height:                          @global-ui-height;
+@input-border-radius:                   @global-border-radius;
+@input-border-width:                    @global-border-width;
+
+@input-icon-color:                      @white;
+@input-icon-bgcolor:                    @primary-color;
+
+
+
+// -------------------------------------
+// Like
+// src/less/components/like.less
+// -------------------------------------
+
+@like-color:                            @grey;
+@like-color__focus:                     darken(@grey, 10%);
+@like-color__active:                    darken(@grey, 20%);
+@like-color__liked:                     @accent-color;
+@like-animation-duration:               500ms;
+@like-animation-function:               cubic-bezier(.53, .05, .13, .94);
+
+
+
+// -------------------------------------
+// Marker
+// src/less/components/marker.less
+// -------------------------------------
+
+@marker-color:                          @white;
+@marker-bgcolor:                        @primary-color;
+
+
+
+// -------------------------------------
+// Media-view
+// src/less/components/media-view.less
+// -------------------------------------
+
+@media-description-color:               @grey;
+
+
+
+// -------------------------------------
+// Logo in page header
+// src/less/components/page-header-logo.less
+// -------------------------------------
+
+@header-logo-height:                    @header-height;
+@header-logo-color:                     @header-color;
+@header-logo-bgcolor:                   @header-bgcolor;
+
+
+
+// -------------------------------------
+// Navigation in page header
+// src/less/components/page-header-navigation.less
+// -------------------------------------
+
+@header-navigation-color:               @header-color;
+@header-navigation-bgcolor:             @header-bgcolor;
+@header-navigation-color__focus:        @white;
+@header-navigation-bgcolor__focus:      @primary-color;
+
+@mobile-navigation-color:               @black;
+@mobile-navigation-bgcolor:             @white;
+@mobile-navigation-border-color:        darken(@shadow-color, 10%);
+
+@hamburger-color:                       @black;
+@hamburger-color__focus:                @primary-color;
+
+@mobile-navigation-animation-duration:  600ms;
+@mobile-navigation__max-screen-width:   50rem;
+
+
+
+// -------------------------------------
+// Page header
+// src/less/components/page-header.less
+// -------------------------------------
+
+@header-color:                          @black;
+@header-bgcolor:                        @white;
+@header-height:                         @global-ui-height * 2;
+
+
+
+// -------------------------------------
+// Pagination
+// src/less/components/pagination.less
+// -------------------------------------
+
+@pagination-color:                      @black;
+@pagination-bgcolor:                    transparent;
+@pagination-color__focus:               @primary-color;
+@pagination-bgcolor__focus:             transparent;
+@pagination-current-color:              @white;
+@pagination-current-bgcolor:            @primary-color;
+@pagination-current-color__focus:       @white;
+@pagination-current-bgcolor__focus:     @black;
+@pagination-border-color:               @grey;
+@pagination-border-color__focus:        @black;
+@pagination-bordered-color__focus:      @white;
+@pagination-bordered-bgcolor__focus:    @black;
+@pagination-height:                     @global-ui-height;
+@pagination-border-radius:              @global-border-radius;
+@pagination-border-width:               @global-border-width;
+
+
+
+// -------------------------------------
+// Paragraph
+// src/less/components/paragraph.less
+// -------------------------------------
+
+@p-width-limit:                         @global-width-limit;
+
+
+
+// -------------------------------------
+// Pie chart
+// src/less/components/pie-chart.less
+// -------------------------------------
+
+@pie-chart-color__hover:                @primary-color;
+@pie-chart-hole-bgcolor:                @white;
+@pie-chart-animation-duration:          200ms;
+@pie-chart-animation-function:          cubic-bezier(.85, .11, .46, .98);
+
+
+
+// -------------------------------------
+// Post footer
+// src/less/components/post-footer.less
+// -------------------------------------
+
+@post-footer-border-top-width:          @global-border-width;
+@post-footer-border-top-color:          @grey;
+
+
+
+// -------------------------------------
+// Post header
+// src/less/components/post-header.less
+// -------------------------------------
+
+@post-header-bgcolor:                   @white;
+@post-header-title-color:               @black;
+@post-header-title-color__focus:        @primary-color;
+@post-header-info-color:                @dark-grey;
+@post-header-info-color__focus:         darken(@post-header-info-color, 20%);
+@post-header-info-color__active:        darken(@post-header-info-color, 30%);
+
+
+
+// -------------------------------------
+// Post
+// src/less/components/post.less
+// -------------------------------------
+
+@post-background-color:                 @white;
+
+
+
+// -------------------------------------
+// Progress bar
+// src/less/components/proress-bar.less
+// -------------------------------------
+
+@progress-bar-color:                    @primary-color;
+
+
+
+// -------------------------------------
+// Radio button
+// src/less/components/radio.less
+// -------------------------------------
+
+@radio-button-color:                    @primary-color;
+@radio-button-color__focus:             @primary-color;
+@radio-button-color__active:            darken(@primary-color, 5%);
+@radio-button-bgcolor:                  @white;
+@radio-button-border-color:             @dark-grey;
+@radio-button-border-color__focus:      @primary-color;
+@radio-button-border-width:             @global-border-width;
+@radio-button-height:                   @global-ui-height;
+
+
+
+// -------------------------------------
+// Range input
+// src/less/components/range.less
+// -------------------------------------
+
+@range-thumb-color:                     @grey;
+@range-thumb-bgcolor:                   @white;
+@range-thumb-border-color:              @primary-color;
+@range-thumb-color__focus:              @grey;
+@range-thumb-bgcolor__focus:            @white;
+@range-thumb-border-color__focus:       @black;
+@range-track-color:                     @white;
+@range-track-bgcolor:                   @grey;
+@range-track-color__focus:              @white;
+@range-track-bgcolor__focus:            @primary-color;
+
+
+
+// -------------------------------------
+// Rating
+// src/less/components/rating.less
+// -------------------------------------
+
+@rating-color:                          @grey;
+@rating-color__selected:                @accent-color;
+
+
+
+// -------------------------------------
+// Ribbon
+// src/less/components/ribbon.less
+// -------------------------------------
+
+@ribbon-color:                          @white;
+@ribbon-bgcolor:                        @accent-color;
+
+
+
+// -------------------------------------
+// Select dropdown
+// src/less/components/select-dropdown.less
+// -------------------------------------
+
+@select-color:                          @black;
+@select-icon-color:                     @white;
+@select-bgcolor:                        @white;
+@select-icon-bgcolor:                   @primary-color;
+@select-border-color:                   @black;
+@select-border-color__focus:            @primary-color;
+@select-height:                         @global-ui-height;
+@select-border-width:                   @global-border-width;
+@select-border-radius:                  @global-border-radius;
+
+
+
+// -------------------------------------
+// Spinner
+// src/less/components/.less
+// -------------------------------------
+
+@spinner-color:                         @black;
+@spinner-height:                        @global-ui-height;
+
+
+
+// -------------------------------------
+// Tabs
+// src/less/components/tabs.less
+// -------------------------------------
+
+@tabs-color:                            @black;
+@tabs-bgcolor:                          @white;
+@tabs-color__focus:                     @white;
+@tabs-color__current:                   @black;
+@tabs-bgcolor__focus:                   @primary-color;
+@tabs-bgcolor__current:                 @white;
+@tabs-border-color:                     @light-grey;
+@tabs-label-height:                     @global-ui-height;
+@tabs-border-width:                     @global-border-width;
+@tabs-border-radius:                    @global-border-radius;
+@tabs-animation-duration:               600ms;
+@tabs-animation-function:               cubic-bezier(.85, .11, .46, .98);
+
+
+
+// -------------------------------------
+// Tag
+// src/less/components/tag.less
+// -------------------------------------
+
+@tag-color:                             @dark-grey;
+@tag-color__focus:                      @primary-color;
+@tag-color__active:                     darken(@primary-color, 15%);
+@solid-tag-bgcolor:                     @light-grey;
+
+
+
+// -------------------------------------
+// Textarea
+// src/less/components/textarea.less
+// -------------------------------------
+
+@textarea-color:                        @dark-grey;
+@textarea-color__focus:                 @black;
+@textarea-border-color:                 @black;
+@textarea-border-radius:                @global-border-radius;
+@textarea-border-width:                 @global-border-width;
+@textarea-placeholder-color:            @dark-grey;
 

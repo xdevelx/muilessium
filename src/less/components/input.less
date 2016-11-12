@@ -4,16 +4,6 @@
 // @state -valid      - Input value is valid
 // @state -invalid    - Input value is invalid
 //
-// @lvar input-color             - black
-// @lvar input-bgcolor           - white
-// @lvar input-color__focus      - black
-// @lvar input-placeholder-color - dark-grey
-// @lvar input-color__valid      - valid-color
-// @lvar input-color__invalid    - invalid-color
-// @lvar input-height            - global-ui-height
-// @lvar input-border-radius     - global-border-radius
-// @lvar input-border-width      - global-border-width
-//
 // @see input-wrapper, input-label
 //
 // @markup
@@ -22,20 +12,8 @@
 //      </div>
 
 
-@input-color:             @black;
-@input-bgcolor:           @white;
-@input-color__focus:      @black;
-@input-placeholder-color: @dark-grey;
-@input-color__valid:      @valid-color;
-@input-color__invalid:    @invalid-color;
-@input-height:            @global-ui-height;
-@input-border-radius:     @global-border-radius;
-@input-border-width:      @global-border-width;
-
-
 // @name Input with icon
 // @description Input component with icon
-// @depends input
 // @requires FontAwesome
 //
 // @state -icon-left  - Input with icon on the left side
@@ -53,13 +31,8 @@
 //      </div>
 
 
-@input-icon-color:   @white;
-@input-icon-bgcolor: @primary-color;
-
-
 // @name Material input
 // @description Input component (material-style variation)
-// @depends input
 //
 // @state -has-value  - Input has value
 //
@@ -70,6 +43,7 @@
 //          <input id="text-phg8" type="text">
 //          <label for="text-phg8">First name</label>
 //      </div>
+
 
 .@{muilessium-prefix}input {
     position: relative;

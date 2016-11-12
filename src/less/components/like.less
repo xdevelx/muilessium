@@ -2,23 +2,9 @@
 // @description Like component
 // @requires FontAwesome
 //
-// @lvar like-color              - grey
-// @lvar like-color__focus       - darken(grey, 10%)
-// @lvar like-color__active      - darken(grey, 20%)
-// @lvar like-color__liked       - accent-color
-// @lvar like-animation-duration - 500ms
-// @lvar like-animation-function - cubic-bezier(.53, .05, .13, .94)
-//
 // @markup
 //      <button class="mui-like"><i class="fa fa-heart"></i></button>
 
-
-@like-color:              @grey;
-@like-color__focus:       darken(@grey, 10%);
-@like-color__active:      darken(@grey, 20%);
-@like-color__liked:       @accent-color;
-@like-animation-duration: 500ms;
-@like-animation-function: cubic-bezier(.53, .05, .13, .94);
 
 @keyframes like {
     from { transform: scale(1);   }

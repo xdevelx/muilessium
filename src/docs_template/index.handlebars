@@ -68,6 +68,7 @@
                                         <p class="requires">Requires {{requires}}</p>
                                     {{/requires}}
                                     <ul class="mui-accordion -d">
+                                        <!--
                                         {{#if state}}
                                         <li class="item">
                                             <div class="title">
@@ -88,31 +89,7 @@
                                             </div>
                                         </li>
                                         {{/if}}
-                                        {{#if lvar}}
-                                        <li class="item">
-                                            <div class="title">
-                                                <div class="indicator">
-                                                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                                                </div>
-                                                LESS variables
-                                            </div>
-                                            <div class="content">
-                                                <table>
-                                                {{#lvar}}
-                                                    <tr>
-                                                        <td>@{{name}}</td>
-                                                        {{#if defaults}}
-                                                            <td>{{defaults}}</td>
-                                                        {{/if}}
-                                                        {{#if description}}
-                                                            <td> {{description}}</td>
-                                                        {{/if}}
-                                                    </tr>
-                                                {{/lvar}}
-                                                </table>
-                                            </div>
-                                        </li>
-                                        {{/if}}
+                                        -->
                                         {{#if method}}
                                         <li class="item">
                                             <div class="title">JS Methods</div>
