@@ -1,8 +1,7 @@
-@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro|Source+Serif+Pro';
+@import 'https://fonts.googleapis.com/css?family=Raleway:400,600';
 
 
-@serif-font-family:      'Source Serif Pro', serif;
-@sans-serif-font-family: 'Source Sans Pro', sans-serif;
+@default-font-family: 'Raleway', sans-serif;
 
 @min-font-size: 12;
 @min-font-size-px: 12px;
@@ -11,7 +10,7 @@
 
 
 html {
-    font-family: @serif-font-family;
+    font-family: @default-font-family;
 
     // Font size formula (for default values):
     // size = ( 12px + (20 - 12) * ((100vw - 400px) / ( 1200 - 400)))
