@@ -1,6 +1,5 @@
 // @name Select dropdown
 // @description Select dropdown component
-// TODO: Add styles for generated dropdown, Add fullscreen invisible close label
 //
 // @markup
 //      <div class="mui-select-dropdown">
@@ -69,58 +68,12 @@
         pointer-events: none;
     }
 
-    .options {
+    .mui-dropdown-options {
         display: none;
-        position: relative;
-        top: 0;
-
-        list-style: none;
-
-        background: #fff;
-        border: 1px solid #555;
-        border-radius: @select-border-radius;
-
-        overflow: hidden;
-
-        #utils > .shadow;
-
-        &:before {
-            content: '';
-            display: block;
-            height: @select-height;
-            width: @select-height;
-
-            position: absolute;
-            top: -@select-height *.55;
-            left: 50%;
-            transform: translateX(-50%) rotate(45deg);
-
-            background: #fff;
-            border-top: 1px solid #555;
-            border-left: 1px solid #555;
-
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .option {
-            margin: 0;
-            padding: 0 1rem;
-            line-height: 2.2;
-
-            &:not(:last-of-type) {
-                border-bottom: 1px solid #555;
-            }
-
-            &:hover,
-            &:focus {
-                background: #777;
-            }
-        }
     }
 
     &.-opened {
-        .options {
+        .mui-dropdown-options {
             display: block;
         }
     }

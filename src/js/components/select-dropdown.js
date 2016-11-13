@@ -3,8 +3,8 @@ import { Component } from '../component';
 
 
 const template = {
-    open: '<div class="select" id="{{id}}"><div class="state"></div><ul class="options">',
-    option: '<li class="option" value="{{value}}">{{text}}</li>',
+    open: '<div class="select" id="{{id}}"><div class="state"></div><ul class="mui-dropdown-options">',
+    option: '<li class="option" data-value="{{value}}">{{text}}</li>',
     close: '</ul></div>'
 };
 
@@ -37,7 +37,7 @@ export class SelectDropdown extends Component {
         this.dom = Utils.extend(this.dom, {
             select:  this.element.getElementsByClassName('select')[0],
             state:   this.element.getElementsByClassName('state')[0],
-            options: this.element.getElementsByClassName('options')[0]
+            options: this.element.getElementsByClassName('mui-dropdown-options')[0]
         });
 
         this.dom.optionsList = this.dom.options.getElementsByClassName('option');

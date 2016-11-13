@@ -1,0 +1,36 @@
+// @name Dropdown options
+//
+// @markup
+//      <ul class="mui-dropdown-options">
+//          <li class="option">Option #1</li>
+//          <li class="option">Option #2</li>
+//          <li class="option">Option #3</li>
+//      </ul>
+
+
+
+.@{muilessium-prefix}dropdown-options {
+    position: relative;
+    width: 100%;
+
+    padding: 1rem;
+
+    list-style: none;
+
+    background: @dropdown-options-bgcolor;
+
+    text-align: left;
+    border-radius: @dropdown-options-border-radius;
+
+    #utils > .shadow;
+
+    > .option {
+        font: 600 1.1rem / 1.6 @sans-serif-font-family;
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+            color: @dropdown-options-color__focus;
+        }
+    }
+}
