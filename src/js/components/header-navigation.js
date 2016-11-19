@@ -11,7 +11,7 @@ export class HeaderNavigation extends Component {
 
         this.dom = Utils.extend(this.dom, {
             toggles: element.getElementsByClassName('mui-navigation-toggle'),
-            shadow: element.getElementsByClassName('-shadow')[0]
+            shadow: element.getElementsByClassName('mui-shadow-toggle')[0]
         });
 
         this.state = Utils.extend(this.state, {
@@ -26,6 +26,7 @@ export class HeaderNavigation extends Component {
             _this.dom.shadow.tabIndex = _this.state.opened ? 1 : 0;
 
             Utils.toggleClass(_this.element, '-opened');
+            Utils.toggleClass(_this.dom.shadow, '-visible');
         });
 
         this.state.initialized = true;

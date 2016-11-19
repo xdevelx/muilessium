@@ -1,0 +1,46 @@
+// @name ButtonDropdown
+// @description Dropdown button component
+// @depends button, dropdown-options
+//
+// @see button
+//
+// @markup
+//      <div class="mui-button-dropdown">
+//          <a class="mui-button" href="">button <i class="fa fa-arrow-down"></i></a>          
+//          <ul class="mui-dropdown-options">
+//              <li class="option"><a href="">Link #1</a></li>
+//              <li class="option"><a href="">Link #2</a></li>
+//              <li class="option"><a href="">Link #3</a></li>
+//          </ul>
+//          <div class="mui-shadow-toggle"></div>
+//      </div>
+
+
+.@{muilessium-prefix}button-dropdown {
+    display: inline-block;
+    position: relative;
+
+    > .@{muilessium-prefix}button {
+        position: relative;
+    }
+
+    > .@{muilessium-prefix}dropdown-options {
+        display: none;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        transform: translateY(100%);
+        width: 100%;
+        z-index: 11;
+    }
+
+    &.-opened {
+        > .@{muilessium-prefix}button {
+            z-index: 11;
+        }
+
+        > .@{muilessium-prefix}dropdown-options {
+            display: block;
+        }
+    }
+}

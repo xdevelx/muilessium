@@ -5,7 +5,7 @@ import { Component } from '../component';
 const template = {
     open: '<div class="select" id="{{id}}"><div class="state"></div><ul class="mui-dropdown-options">',
     option: '<li class="option" data-value="{{value}}">{{text}}</li>',
-    close: '</ul></div>'
+    close: '</ul></div><div class="mui-shadow-toggle"></div>'
 };
 
 
@@ -37,7 +37,8 @@ export class SelectDropdown extends Component {
         this.dom = Utils.extend(this.dom, {
             select:  this.element.getElementsByClassName('select')[0],
             state:   this.element.getElementsByClassName('state')[0],
-            options: this.element.getElementsByClassName('mui-dropdown-options')[0]
+            options: this.element.getElementsByClassName('mui-dropdown-options')[0],
+            shadow:  this.element.getElementsByClassName('mui-shadow-toggle')[0]
         });
 
         this.dom.optionsList = this.dom.options.getElementsByClassName('option');
@@ -48,6 +49,10 @@ export class SelectDropdown extends Component {
         let _this = this;
 
         Utils.makeElementClickable(this.dom.select, () => {
+            _this.toggleDropdown();
+        });
+
+        Utils.makeElementClickable(this.dom.shadow, () => {
             _this.toggleDropdown();
         });
 
@@ -62,6 +67,7 @@ export class SelectDropdown extends Component {
 
     toggleDropdown() {
         Utils.toggleClass(this.element, '-opened');
+        Utils.toggleClass(this.dom.shadow, '-visible');
 
         return this;
     }
@@ -69,6 +75,7 @@ export class SelectDropdown extends Component {
 
     closeDropdown() {
         Utils.removeClass(this.element, '-opened');
+        Utils.removeClass(this.dom.shadow, '-visible');
 
         return this;
     }

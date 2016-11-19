@@ -3,6 +3,7 @@ import * as Utils from './utils';
 import { Accordion        } from './components/accordion';
 import { BarChart         } from './components/bar-chart';
 import { Button           } from './components/button';
+import { ButtonDropdown   } from './components/button-dropdown';
 import { Carousel         } from './components/carousel';
 import { Checkbox         } from './components/checkbox';
 import { HeaderNavigation } from './components/header-navigation';
@@ -20,6 +21,7 @@ const components = {
     'accordion':         Accordion,
     'bar-chart':         BarChart,
     'button':            Button,
+    'button-dropdown':   ButtonDropdown,
     'carousel':          Carousel,
     'checkbox':          Checkbox,
     'header-navigation': HeaderNavigation,

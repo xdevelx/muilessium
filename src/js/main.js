@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         textareas:    window.Muilessium.create('textarea',          '.mui-textarea',          {}),
         likes:        window.Muilessium.create('like',              '.mui-like',              {}),
         buttons:      window.Muilessium.create('button',            '.mui-button',            {}),
+        buttonsd:     window.Muilessium.create('button-dropdown',   '.mui-button-dropdown',   {}),
         carousels:    window.Muilessium.create('carousel',          '.mui-carousel',          {}),
         piecharts:    window.Muilessium.create('pie-chart',         '.mui-pie-chart',         {}),
         barcharts:    window.Muilessium.create('bar-chart',         '.mui-bar-chart',         {}),

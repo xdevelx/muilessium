@@ -15,7 +15,7 @@
 //              <li><a href="">about</a></li>
 //              <li><a href="">contacts</a></li>
 //          </ul>
-//          <div class="mui-navigation-toggle -shadow"></div>
+//          <div class="mui-navigation-toggle mui-shadow-toggle"></div>
 //      </nav>
 
 
@@ -122,32 +122,6 @@
 }
 
 .@{muilessium-prefix}navigation-toggle {
-    &.-shadow {
-        position: fixed;
-        left: 0;
-        top: 0;
-        z-index: 10;
-        
-        height: 100%;
-        width: 100%;
-        
-        background: @shadow-color;
-        opacity: 0;
-        pointer-events: none;
-        
-        #utils > .transition-all;
-        transition-duration: @mobile-navigation-animation-duration;
-        
-        &:hover {
-            cursor: pointer;
-        }
-
-        &:hover,
-        &:focus {
-            background: fade(@outline-color, 40%);
-        }
-    }
-    
     &.-hamburger {
         display: inline-block;
         position: relative;
