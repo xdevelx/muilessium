@@ -27,34 +27,47 @@ export class Carousel extends Component {
             Utils.console.warning('number of slides and number of indicators are not equal');
         }
 
-        Utils.addClass(this.dom.slides[0], '-active');
-        Utils.addClass(this.dom.indicators[0], '-active');
+        this.makeSlideActive(0);
 
         this.rotateInterval = setInterval(this.rotate.bind(this, 'next'), 1500);
 
-        let _this = this;
-
         element.addEventListener('mouseover', () => {
-            clearInterval(_this.rotateInterval);
+            clearInterval(this.rotateInterval);
         });
 
         element.addEventListener('mouseout', () => {
-            _this.rotateInterval = setInterval(_this.rotate.bind(_this, 'next'), 1500);
+            this.rotateInterval = setInterval(this.rotate.bind(this, 'next'), 1500);
         });
 
         Utils.makeChildElementsClickable(this.element, this.dom.controls.prev, () => {
-            _this.rotate('prev');
+            this.rotate('prev');
         });
 
         Utils.makeChildElementsClickable(this.element, this.dom.controls.next, () => {
-            _this.rotate('next');
+            this.rotate('next');
         });
 
         Utils.makeChildElementsClickable(this.element, this.dom.indicators, (index) => {
-            _this.rotate(index);
+            this.rotate(index);
         });
 
         this.state.initialized = true;
+    }
+
+
+    makeSlideActive(index) {
+        Utils.addClass(this.dom.slides[index],     '-active');
+        Utils.addClass(this.dom.indicators[index], '-active');
+
+        return this;
+    }
+
+
+    makeSlideInactive(index) {
+        Utils.removeClass(this.dom.slides[index],     '-active');
+        Utils.removeClass(this.dom.indicators[index], '-active');
+
+        return this;
     }
 
 
@@ -81,11 +94,8 @@ export class Carousel extends Component {
             return;
         }
 
-        Utils.removeClass(this.dom.slides[currentSlide],     '-active');
-        Utils.removeClass(this.dom.indicators[currentSlide], '-active');
-
-        Utils.addClass(this.dom.slides[nextSlide],     '-active');
-        Utils.addClass(this.dom.indicators[nextSlide], '-active');
+        this.makeSlideInactive(currentSlide);
+        this.makeSlideActive(nextSlide);
 
         this.state.currentSlide = nextSlide;
 

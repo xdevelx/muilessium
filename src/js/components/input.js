@@ -13,14 +13,12 @@ export class Input extends Component {
             input: element.getElementsByTagName('input')[0]
         });
 
-        let _this = this;
-
         this.dom.input.addEventListener('focus', () => {
-            Utils.addClass(_this.element, '-focused');
+            Utils.addClass(this.element, '-focused');
         });
 
         this.dom.input.addEventListener('blur', () => {
-            Utils.removeClass(_this.element, '-focused');
+            Utils.removeClass(this.element, '-focused');
         });
 
         this.dom.input.addEventListener('change', () => {

@@ -14,13 +14,37 @@ export class Checkbox extends Component {
             label: element.getElementsByTagName('label')[0]
         });
 
-        let _this = this;
-
         Utils.makeElementClickable(this.dom.label, () => {
-            _this.dom.input.checked = !_this.dom.input.checked;
-            Utils.toggleClass(element, '-checked');
+            this.toggleCheckbox();
         });
 
         this.state.initialized = true;
+    }
+
+
+    setCheckbox() {
+        this.dom.input.checked = true;
+
+        Utils.addClass(this.element, '-checked');
+
+        return this;
+    }
+
+
+    unsetCheckbox() {
+        this.dom.input.checked = false;
+
+        Utils.removeClass(this.element, '-checked');
+
+        return this;
+    }
+
+
+    toggleCheckbox() {
+        this.dom.input.checked = !this.dom.input.checked;
+
+        Utils.toggleClass(this.element, '-checked');
+
+        return this;
     }
 }

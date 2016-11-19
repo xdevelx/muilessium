@@ -14,12 +14,44 @@ export class Accordion extends Component {
             titles: element.getElementsByClassName('title')
         });
 
-        let _this = this;
-
         Utils.makeChildElementsClickable(this.element, this.dom.titles, (index) => {
-            Utils.toggleClass(_this.dom.items[index], '-unfold');
+            this.toggleItem(index);
         });
 
         this.state.initialized = true;
+    }
+
+    foldItem(index) {
+        Utils.removeClass(this.dom.items[index], '-unfold');
+
+        return this;
+    }
+
+    foldAllItems() {
+        [].forEach.call(this.dom.items, (item, index) => {
+            this.foldItem(index);
+        });
+
+        return this;
+    }
+
+    unfoldItem(index) {
+        Utils.addClass(this.dom.items[index], '-unfold');
+
+        return this;
+    }
+
+    unfoldAllItems() {
+        [].forEach.call(this.dom.items, (item, index) => {
+            this.unfoldItem(index);
+        });
+
+        return this;
+    }
+
+    toggleItem(index) {
+        Utils.toggleClass(this.dom.items[index], '-unfold');
+
+        return this;
     }
 }

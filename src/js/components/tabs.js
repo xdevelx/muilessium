@@ -18,17 +18,15 @@ export class Tabs extends Component {
             current: 0
         });
 
-        Utils.addClass(this.dom.tabs[0], '-active');
+        Utils.addClass(this.dom.tabs[0],   '-active');
         Utils.addClass(this.dom.labels[0], '-active');
 
-        let _this = this;
-
         Utils.makeChildElementsClickable(this.element, this.dom.labels, (index) => {
-            Utils.removeClass(_this.dom.labels[_this.state.current], '-active');
-            Utils.removeClass(_this.dom.tabs[_this.state.current], '-active');
+            Utils.removeClass(this.dom.labels[this.state.current], '-active');
+            Utils.removeClass(this.dom.tabs[this.state.current],   '-active');
 
-            Utils.addClass(_this.dom.labels[index], '-active');
-            Utils.addClass(_this.dom.tabs[index], '-active');
+            Utils.addClass(this.dom.labels[index], '-active');
+            Utils.addClass(this.dom.tabs[index],   '-active');
 
             _this.state.current = index;
         });

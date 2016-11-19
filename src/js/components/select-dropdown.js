@@ -46,19 +46,17 @@ export class SelectDropdown extends Component {
         this.isOpened = false;
         this.updateState();
 
-        let _this = this;
-
         Utils.makeElementClickable(this.dom.select, () => {
-            _this.toggleDropdown();
+            this.toggleDropdown();
         });
 
         Utils.makeElementClickable(this.dom.shadow, () => {
-            _this.toggleDropdown();
+            this.toggleDropdown();
         });
 
         Utils.makeChildElementsClickable(this.element, this.dom.optionsList, (index) => {
-            _this.updateState(index);
-            _this.closeDropdown();
+            this.updateState(index);
+            this.closeDropdown();
         });
 
         this.state.initialized = true;

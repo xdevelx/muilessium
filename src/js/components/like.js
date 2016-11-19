@@ -9,10 +9,8 @@ export class Like extends Component {
         
         super(element, options);
 
-        let _this = this;
-        
         Utils.makeElementClickable(this.element, () => {
-            Utils.toggleClass(_this.element, '-liked');
+            Utils.toggleClass(this.element, '-liked');
         });
 
         this.state.initialized = true;
