@@ -2,6 +2,7 @@
 // @description Button group component
 //
 // @state -vertical - Vertical button group
+// @state -or - Button group with "or" between buttons
 //
 // @see button
 //
@@ -37,10 +38,6 @@
         &:not(:last-of-type) {
             border-right: @button-group-border-width solid @button-group-border-color;
         }
-
-        &:focus {
-            z-index: 1;
-        }
     }
     
     &.-vertical {
@@ -64,6 +61,38 @@
                 border-top: @button-group-border-width solid @button-group-border-color;
                 margin-left: 0; // hack?
             }
+        }
+    }
+
+    &.-or {
+        > .@{muilessium-prefix}button:not(:first-of-type) {
+            padding-left: 1.2rem;
+
+            &:before {
+                content: 'or';
+
+                position: absolute;
+                left: -.6rem;
+                top: 50%;
+                z-index: 1;
+                transform: translateY(-50%);
+
+                display: block;
+                height: 1.2rem;
+                width: 1.2rem;
+                border-radius: 50%;
+
+                font-size: .7rem;
+                line-height: 1.2rem;
+                text-align: center;
+
+                background: @button-group-or-bgcolor;
+                color: @button-group-or-color;
+            }
+        }
+
+        > .@{muilessium-prefix}button:not(:last-of-type) {
+            padding-right: 1.2rem;
         }
     }
 }
