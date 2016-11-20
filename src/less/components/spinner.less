@@ -1,27 +1,49 @@
 // @name Spinner
 // @description Spinner component
-// @requires FontAwesome
 //
 // @markup
-//      <div class="mui-spinner">
-//          <i class="fa fa-spinner"></i>
-//      </div>
+//      <svg class="mui-spinner" viewBox="0 0 100 100">
+//          <circle class="path" cx="50" cy="50" r="40" fill="none" stroke-width="10"></circle>
+//      </svg>
+
 
 
 @keyframes spinner-rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg);}
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+@keyframes spinner-dash-animation {
+    0% {
+        stroke-dasharray: 1, 300;
+        stroke-dashoffset: 0;
+    }
+
+    50% {
+        stroke-dasharray: 180, 300;
+        stroke-dashoffset: -70;
+    }
+
+    100% {
+        stroke-dasharray: 180, 300;
+        stroke-dashoffset: -250;
+    }
 }
 
 
 .@{muilessium-prefix}spinner {
     display: inline-block;
     
-    animation: 1.5s spinner-rotate linear infinite;
+    height: @spinner-height;
+    width: @spinner-height;
+
+    animation: spinner-rotate 2s linear infinite;
     
-    > .fa {
-        font-size: @spinner-height;
-        
-        color: @spinner-color;
+    > .path {
+        stroke: @spinner-color;
+        stroke-linecap: round;
+        animation: spinner-dash-animation 1.5s linear infinite;
     }
 }
