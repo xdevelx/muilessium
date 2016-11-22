@@ -28,7 +28,7 @@ export class Tabs extends Component {
             Utils.addClass(this.dom.labels[index], '-active');
             Utils.addClass(this.dom.tabs[index],   '-active');
 
-            _this.state.current = index;
+            this.state.current = index;
         });
 
         this.state.initialized = true;
