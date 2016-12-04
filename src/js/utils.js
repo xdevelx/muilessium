@@ -225,6 +225,21 @@ function makeChildElementsClickable(element, childs, callback) {
 }
 
 
+function lazyLoadImages(callback) {
+    [].forEach.call(document.querySelectorAll('.mui-lazy-load'), (image) => {
+        image.src = image.getAttribute('data-src');
+
+        image.addEventListener('load', function() {
+            addClass(this, '-loaded'); 
+        });
+    });
+
+    if (typeof callback === 'function') {
+        callback();
+    }
+}
+
+
 export {
     console,
     ajax,
@@ -241,5 +256,6 @@ export {
     isEnterPressed,
     isDescendant,
     makeElementClickable,
-    makeChildElementsClickable
+    makeChildElementsClickable,
+    lazyLoadImages
 };

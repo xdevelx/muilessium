@@ -43,7 +43,10 @@ class Muilessium {
         }
         
         Utils.normalizeTabIndex();
-        Utils.objectFitImages();
+
+        Utils.lazyLoadImages(() => {
+            Utils.objectFitImages();
+        });
 
         this.Utils = Utils;
         
