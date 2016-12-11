@@ -73,8 +73,19 @@ const aria = {
         console.log('getting aria-' + property + ' value from element: ' + element);
 
         return element.getAttribute('aria-' + property);
+    },
+
+    toggleState: (element, state) => {
+        console.log('toggling aria-' + state + ' value for element: ' + element);
+
+        element.setAttribute('aria-' + state, !stringToBoolean(element.getAttribute('aria-' + state)));
     }
 };
+
+
+function stringToBoolean(str) {
+    return str === 'true';
+}
 
 
 function isInPage(element) {
