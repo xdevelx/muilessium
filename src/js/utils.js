@@ -126,7 +126,7 @@ function normalizeTabIndex() {
     );
     
     focusableElements.map((element) => {
-        element.tabIndex = 1;
+        element.tabIndex = 0;
     });
 }
 
@@ -176,7 +176,7 @@ function isDescendant(parent, child) {
 
 
 function makeElementClickable(element, callback) {
-    element.tabIndex = 1;
+    element.tabIndex = 0;
 
     element.addEventListener('click', (e) => {
         e.preventDefault();
@@ -194,7 +194,7 @@ function makeElementClickable(element, callback) {
 
 function makeChildElementsClickable(element, childs, callback) {
     [].forEach.call(childs, (child) => {
-        child.tabIndex = 1;
+        child.tabIndex = 0;
     });
 
     element.addEventListener('click', (e) => {
