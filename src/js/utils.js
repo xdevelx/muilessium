@@ -62,6 +62,32 @@ const ajax = {
 };
 
 
+const aria = {
+    set: (element, property, value = true) => {
+        console.log('setting aria-' + property + ' = ' + value + ' to element: ' + element);
+
+        element.setAttribute('aria-' + property, value);
+    },
+
+    get: (element, property) => {
+        console.log('getting aria-' + property + ' value from element: ' + element);
+
+        return element.getAttribute('aria-' + property);
+    },
+
+    toggleState: (element, state) => {
+        console.log('toggling aria-' + state + ' value for element: ' + element);
+
+        element.setAttribute('aria-' + state, !stringToBoolean(element.getAttribute('aria-' + state)));
+    }
+};
+
+
+function stringToBoolean(str) {
+    return str === 'true';
+}
+
+
 function isInPage(element) {
     // Use this instead of document.contains because IE has only partial support of Node.contains.
     return (element === document.body) || document.body.contains(element);
@@ -243,6 +269,7 @@ function lazyLoadImages(callback) {
 export {
     console,
     ajax,
+    aria,
 
     isInPage,
     isNotInPage,
