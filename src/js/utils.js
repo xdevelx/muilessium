@@ -148,7 +148,7 @@ function toggleClass(element, classForToggle) {
 
 function normalizeTabIndex() {
     var focusableElements = [].slice.call(
-        document.querySelectorAll('a, button, input, select, textarea, object')
+        document.querySelectorAll('a, button, input, label, select, textarea, object')
     );
     
     focusableElements.map((element) => {
