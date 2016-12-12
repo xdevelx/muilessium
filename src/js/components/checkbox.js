@@ -27,6 +27,8 @@ export class Checkbox extends Component {
 
         Utils.addClass(this.element, '-checked');
 
+        Utils.aria.set(this.dom.label, 'checked', true);
+
         return this;
     }
 
@@ -36,14 +38,18 @@ export class Checkbox extends Component {
 
         Utils.removeClass(this.element, '-checked');
 
+        Utils.aria.set(this.dom.label, 'checked', false);
+
         return this;
     }
 
 
     toggleCheckbox() {
-        this.dom.input.checked = !this.dom.input.checked;
-
-        Utils.toggleClass(this.element, '-checked');
+        if (this.dom.input.checked) {
+            this.unsetCheckbox();
+        } else {
+            this.setCheckbox();
+        }
 
         return this;
     }
