@@ -201,6 +201,11 @@ function isDescendant(parent, child) {
 }
 
 
+function makeElementFocusable(element) {
+    element.tabIndex = 0;
+}
+
+
 function makeElementClickable(element, callback) {
     element.tabIndex = 0;
 
@@ -282,6 +287,7 @@ export {
     objectFitImages,
     isEnterPressed,
     isDescendant,
+    makeElementFocusable,
     makeElementClickable,
     makeChildElementsClickable,
     lazyLoadImages

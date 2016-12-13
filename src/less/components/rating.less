@@ -9,58 +9,58 @@
 // @state -r5 - Five stars
 //
 // @markup
-//  <ul class="mui-rating">
-//      <li><i class="fa fa-star"></i></li>
-//      <li><i class="fa fa-star"></i></li>
-//      <li><i class="fa fa-star"></i></li>
-//      <li><i class="fa fa-star"></i></li>
-//      <li><i class="fa fa-star"></i></li>
-//  </ul>
+//  <div class="mui-rating" aria-label="Rating: 5 stars of 5">
+//      <i class="fa fa-star" aria-hidden="true"></i>
+//      <i class="fa fa-star" aria-hidden="true"></i>
+//      <i class="fa fa-star" aria-hidden="true"></i>
+//      <i class="fa fa-star" aria-hidden="true"></i>
+//      <i class="fa fa-star" aria-hidden="true"></i>
+//  </div>
 
 
 .@{muilessium-prefix}rating {
     color: @rating-color;
     
-    list-style: none;
-    
     user-select: none;
-    
-    > li {
-        display: inline-block;
+
+    &:hover,
+    &:focus {
+        text-shadow: 0 0 3px @rating-color__selected;
+        cursor: pointer;
     }
     
     &.-r1 {
-        > li:nth-of-type(1) {
+        > .fa:nth-of-type(1) {
             color: @rating-color__selected;
         }
     }
     
     &.-r2 {
-        > li:nth-of-type(1),
-        > li:nth-of-type(2) {
+        > .fa:nth-of-type(1),
+        > .fa:nth-of-type(2) {
             color: @rating-color__selected;
         }
     }
     
     &.-r3 {
-        > li:nth-of-type(1),
-        > li:nth-of-type(2),
-        > li:nth-of-type(3) {
+        > .fa:nth-of-type(1),
+        > .fa:nth-of-type(2),
+        > .fa:nth-of-type(3) {
             color: @rating-color__selected;
         }
     }
     
     &.-r4 {
-        > li:nth-of-type(1),
-        > li:nth-of-type(2),
-        > li:nth-of-type(3),
-        > li:nth-of-type(4) {
+        > .fa:nth-of-type(1),
+        > .fa:nth-of-type(2),
+        > .fa:nth-of-type(3),
+        > .fa:nth-of-type(4) {
             color: @rating-color__selected;
         }
     }
     
     &.-r5 {
-        > li {
+        > .fa {
             color: @rating-color__selected;
         }
     }

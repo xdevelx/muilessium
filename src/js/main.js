@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         checkboxes:   window.Muilessium.create('checkbox',          '.mui-checkbox',          {}),
         tabs:         window.Muilessium.create('tabs',              '.mui-tabs',              {}),
         navigations:  window.Muilessium.create('header-navigation', '.mui-header-navigation', {}),
-        progressbars: window.Muilessium.create('progress-bar',      '.mui-progress-bar',      {})
+        progressbars: window.Muilessium.create('progress-bar',      '.mui-progress-bar',      {}),
+        ratings:      window.Muilessium.create('rating',            '.mui-rating',            {})
     };
 });
