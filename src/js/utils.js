@@ -223,11 +223,7 @@ function makeElementClickable(element, callback) {
 }
 
 
-function makeChildElementsClickable(element, childs, callback) {
-    [].forEach.call(childs, (child) => {
-        child.tabIndex = 0;
-    });
-
+function makeChildElementsClickable(element, childs, callback, mouseOnly = false) {
     element.addEventListener('click', (e) => {
         let index = -1;
 
@@ -243,16 +239,22 @@ function makeChildElementsClickable(element, childs, callback) {
         }
     });
 
-    element.addEventListener('keypress', (e) => {
-        if (isEnterPressed(e)) {
-            let index = [].indexOf.call(childs, e.target);
+    if (!mouseOnly) {
+        [].forEach.call(childs, (child) => {
+            child.tabIndex = 0;
+        });
 
-            if (index >= 0) {
-                e.preventDefault();
-                callback(index);
+        element.addEventListener('keypress', (e) => {
+            if (isEnterPressed(e)) {
+                let index = [].indexOf.call(childs, e.target);
+
+                if (index >= 0) {
+                    e.preventDefault();
+                    callback(index);
+                }
             }
-        }
-    });
+        });
+    }
 }
 
 
