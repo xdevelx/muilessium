@@ -15,6 +15,10 @@ export class ButtonDropdown extends Button {
             shadow:   element.getElementsByClassName('mui-shadow-toggle')[0]
         });
 
+        this.state = Utils.extend(this.state, {
+            opened: false
+        });
+
         Utils.makeChildElementsClickable(this.element, [this.dom.button, this.dom.shadow], () => {
             this.toggleDropdown();
         });
@@ -26,6 +30,14 @@ export class ButtonDropdown extends Button {
         Utils.addClass(this.element,    '-opened');
         Utils.addClass(this.dom.shadow, '-visible');
 
+        Utils.aria.set(this.dom.button,   'hidden', true);
+        Utils.aria.set(this.dom.dropdown, 'hidden', false);
+        Utils.aria.set(this.dom.shadow,   'hidden', false);
+
+        this.dom.dropdown.getElementsByTagName('a')[0].focus()
+
+        this.state.opened = true;
+
         return this;
     }
 
@@ -33,12 +45,23 @@ export class ButtonDropdown extends Button {
         Utils.removeClass(this.element,    '-opened');
         Utils.removeClass(this.dom.shadow, '-visible');
 
+        Utils.aria.set(this.dom.button,   'hidden', false);
+        Utils.aria.set(this.dom.dropdown, 'hidden', true);
+        Utils.aria.set(this.dom.shadow,   'hidden', true);
+
+        this.dom.button.focus();
+
+        this.state.opened = false;
+
         return this;
     }
 
     toggleDropdown() {
-        Utils.toggleClass(this.element,    '-opened');
-        Utils.toggleClass(this.dom.shadow, '-visible');
+        if (this.state.opened) {
+            this.closeDropdown();
+        } else {
+            this.openDropdown();
+        }
 
         return this;
     }

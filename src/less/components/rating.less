@@ -2,65 +2,59 @@
 // @description Rating component
 // @requires FontAwesome
 //
-// @state -r1 - One star
-// @state -r2 - Two stars
-// @state -r3 - Three stars
-// @state -r4 - Four stars
-// @state -r5 - Five stars
-//
 // @markup
-//  <ul class="mui-rating">
-//      <li><i class="fa fa-star"></i></li>
-//      <li><i class="fa fa-star"></i></li>
-//      <li><i class="fa fa-star"></i></li>
-//      <li><i class="fa fa-star"></i></li>
-//      <li><i class="fa fa-star"></i></li>
-//  </ul>
+//  <div class="mui-rating" data-rating="3" aria-label="Rating: 3 stars of 5">
+//      <span class="star fa fa-star" aria-hidden="true"></span>
+//      <span class="star fa fa-star" aria-hidden="true"></span>
+//      <span class="star fa fa-star" aria-hidden="true"></span>
+//      <span class="star fa fa-star" aria-hidden="true"></span>
+//      <span class="star fa fa-star" aria-hidden="true"></span>
+//  </div>
 
 
 .@{muilessium-prefix}rating {
     color: @rating-color;
     
-    list-style: none;
-    
     user-select: none;
-    
-    > li {
-        display: inline-block;
+
+    &:hover,
+    &:focus {
+        text-shadow: 0 0 3px @rating-color__selected;
+        cursor: pointer;
     }
     
     &.-r1 {
-        > li:nth-of-type(1) {
+        > .fa:nth-of-type(1) {
             color: @rating-color__selected;
         }
     }
     
     &.-r2 {
-        > li:nth-of-type(1),
-        > li:nth-of-type(2) {
+        > .fa:nth-of-type(1),
+        > .fa:nth-of-type(2) {
             color: @rating-color__selected;
         }
     }
     
     &.-r3 {
-        > li:nth-of-type(1),
-        > li:nth-of-type(2),
-        > li:nth-of-type(3) {
+        > .fa:nth-of-type(1),
+        > .fa:nth-of-type(2),
+        > .fa:nth-of-type(3) {
             color: @rating-color__selected;
         }
     }
     
     &.-r4 {
-        > li:nth-of-type(1),
-        > li:nth-of-type(2),
-        > li:nth-of-type(3),
-        > li:nth-of-type(4) {
+        > .fa:nth-of-type(1),
+        > .fa:nth-of-type(2),
+        > .fa:nth-of-type(3),
+        > .fa:nth-of-type(4) {
             color: @rating-color__selected;
         }
     }
     
     &.-r5 {
-        > li {
+        > .fa {
             color: @rating-color__selected;
         }
     }

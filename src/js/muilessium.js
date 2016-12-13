@@ -15,6 +15,7 @@ import { ProgressBar      } from './components/progress-bar';
 import { SelectDropdown   } from './components/select-dropdown';
 import { Tabs             } from './components/tabs';
 import { Textarea         } from './components/textarea';
+import { Rating           } from './components/rating';
 
 
 const components = {
@@ -32,7 +33,8 @@ const components = {
     'progress-bar':      ProgressBar,
     'select-dropdown':   SelectDropdown,
     'tabs':              Tabs,
-    'textarea':          Textarea
+    'textarea':          Textarea,
+    'rating':            Rating
 };
 
 
