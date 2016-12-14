@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         checkboxes:   window.Muilessium.create('checkbox',          '.mui-checkbox',          {}),
         navigations:  window.Muilessium.create('header-navigation', '.mui-header-navigation', {}),
         inputs:       window.Muilessium.create('input',             '.mui-input',             {}),
+        ratings:      window.Muilessium.create('rating',            '.mui-rating',            {}),
         dropdowns:    window.Muilessium.create('select-dropdown',   '.mui-select-dropdown',   {}),
         tabs:         window.Muilessium.create('tabs',              '.mui-tabs',              {}),
         textareas:    window.Muilessium.create('textarea',          '.mui-textarea',          {})

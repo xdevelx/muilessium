@@ -10,6 +10,7 @@ import { Input            } from './components/input';
 import { SelectDropdown   } from './components/select-dropdown';
 import { Tabs             } from './components/tabs';
 import { Textarea         } from './components/textarea';
+import { Rating           } from './components/rating';
 
 
 const components = {
@@ -22,7 +23,8 @@ const components = {
     'input':             Input,
     'select-dropdown':   SelectDropdown,
     'tabs':              Tabs,
-    'textarea':          Textarea
+    'textarea':          Textarea,
+    'rating':            Rating
 };
 
 

@@ -62,6 +62,32 @@ const ajax = {
 };
 
 
+const aria = {
+    set: (element, property, value = true) => {
+        console.log('setting aria-' + property + ' = ' + value + ' to element: ' + element);
+
+        element.setAttribute('aria-' + property, value);
+    },
+
+    get: (element, property) => {
+        console.log('getting aria-' + property + ' value from element: ' + element);
+
+        return element.getAttribute('aria-' + property);
+    },
+
+    toggleState: (element, state) => {
+        console.log('toggling aria-' + state + ' value for element: ' + element);
+
+        element.setAttribute('aria-' + state, !stringToBoolean(element.getAttribute('aria-' + state)));
+    }
+};
+
+
+function stringToBoolean(str) {
+    return str === 'true';
+}
+
+
 function isInPage(element) {
     // Use this instead of document.contains because IE has only partial support of Node.contains.
     return (element === document.body) || document.body.contains(element);
@@ -122,7 +148,7 @@ function toggleClass(element, classForToggle) {
 
 function normalizeTabIndex() {
     var focusableElements = [].slice.call(
-        document.querySelectorAll('a, button, input, select, textarea, object')
+        document.querySelectorAll('a, button, input, label, select, textarea, object')
     );
     
     focusableElements.map((element) => {
@@ -175,6 +201,30 @@ function isDescendant(parent, child) {
 }
 
 
+function makeElementFocusable(element) {
+    element.tabIndex = 0;
+}
+
+
+function makeElementsFocusable(elements) {
+    [].forEach.call(elements, (element) => {
+        makeElementFocusable(element);
+    });
+}
+
+
+function makeElementNotFocusable(element) {
+    element.tabIndex = -1;
+}
+
+
+function makeElementsNotFocusable(elements) {
+    [].forEach.call(elements, (element) => {
+        makeElementNotFocusable(element);
+    });
+}
+
+
 function makeElementClickable(element, callback) {
     element.tabIndex = 0;
 
@@ -192,11 +242,7 @@ function makeElementClickable(element, callback) {
 }
 
 
-function makeChildElementsClickable(element, childs, callback) {
-    [].forEach.call(childs, (child) => {
-        child.tabIndex = 0;
-    });
-
+function makeChildElementsClickable(element, childs, callback, mouseOnly = false) {
     element.addEventListener('click', (e) => {
         let index = -1;
 
@@ -212,16 +258,22 @@ function makeChildElementsClickable(element, childs, callback) {
         }
     });
 
-    element.addEventListener('keypress', (e) => {
-        if (isEnterPressed(e)) {
-            let index = [].indexOf.call(childs, e.target);
+    if (!mouseOnly) {
+        [].forEach.call(childs, (child) => {
+            child.tabIndex = 0;
+        });
 
-            if (index >= 0) {
-                e.preventDefault();
-                callback(index);
+        element.addEventListener('keypress', (e) => {
+            if (isEnterPressed(e)) {
+                let index = [].indexOf.call(childs, e.target);
+
+                if (index >= 0) {
+                    e.preventDefault();
+                    callback(index);
+                }
             }
-        }
-    });
+        });
+    }
 }
 
 
@@ -243,6 +295,7 @@ function lazyLoadImages(callback) {
 export {
     console,
     ajax,
+    aria,
 
     isInPage,
     isNotInPage,
@@ -255,6 +308,10 @@ export {
     objectFitImages,
     isEnterPressed,
     isDescendant,
+    makeElementFocusable,
+    makeElementsFocusable,
+    makeElementNotFocusable,
+    makeElementsNotFocusable,
     makeElementClickable,
     makeChildElementsClickable,
     lazyLoadImages
