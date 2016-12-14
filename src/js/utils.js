@@ -206,6 +206,11 @@ function makeElementFocusable(element) {
 }
 
 
+function makeElementNotFocusable(element) {
+    element.tabIndex = -1;
+}
+
+
 function makeElementClickable(element, callback) {
     element.tabIndex = 0;
 
@@ -290,6 +295,7 @@ export {
     isEnterPressed,
     isDescendant,
     makeElementFocusable,
+    makeElementNotFocusable,
     makeElementClickable,
     makeChildElementsClickable,
     lazyLoadImages
