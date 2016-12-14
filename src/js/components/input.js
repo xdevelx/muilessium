@@ -10,15 +10,24 @@ export class Input extends Component {
                       ' with options ' + JSON.stringify(options));
 
         this.dom = Utils.extend(this.dom, {
-            input: element.getElementsByTagName('input')[0]
+            input: element.getElementsByTagName('input')[0],
+            labels: element.parentNode.getElementsByTagName('label')
         });
 
         this.dom.input.addEventListener('focus', () => {
             Utils.addClass(this.element, '-focused');
+            Utils.makeElementsNotFocusable(this.dom.labels);
         });
 
         this.dom.input.addEventListener('blur', () => {
             Utils.removeClass(this.element, '-focused');
+            Utils.makeElementsFocusable(this.dom.labels);
+        });
+
+        [].forEach.call(this.dom.labels, (label) => {
+            label.addEventListener('focus', () => {
+                this.dom.input.focus();
+            });
         });
 
         this.dom.input.addEventListener('change', () => {

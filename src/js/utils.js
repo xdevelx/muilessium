@@ -206,8 +206,22 @@ function makeElementFocusable(element) {
 }
 
 
+function makeElementsFocusable(elements) {
+    [].forEach.call(elements, (element) => {
+        makeElementFocusable(element);
+    });
+}
+
+
 function makeElementNotFocusable(element) {
     element.tabIndex = -1;
+}
+
+
+function makeElementsNotFocusable(elements) {
+    [].forEach.call(elements, (element) => {
+        makeElementNotFocusable(element);
+    });
 }
 
 
@@ -295,7 +309,9 @@ export {
     isEnterPressed,
     isDescendant,
     makeElementFocusable,
+    makeElementsFocusable,
     makeElementNotFocusable,
+    makeElementsNotFocusable,
     makeElementClickable,
     makeChildElementsClickable,
     lazyLoadImages
