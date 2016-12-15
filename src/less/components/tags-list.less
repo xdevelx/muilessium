@@ -1,48 +1,56 @@
 // @name Tags list
 // @description Tags list component
-// @depends tag
-//
-// @see tag
 //
 // @markup
 //      <ul class="mui-tags-list" role="navigation" aria-label="Tags list">
-//          <li class="mui-tag-wrapper -icon" role="presentation"><i class="fa fa-tags" role="presentation"></i></li>
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Link to the tag nature">nature</a></li>
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Link to the tag art">art</a></li>
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Link to the tag photography">photography</a></li>
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Link to the tag mountains">mountains</a></li>
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Link to the tag sea">sea</a></li>
+//          <li class="mui-tag-wrapper -icon" role="presentation"><i class="fa fa-tags" aria-hidden="true"></i></li>
+//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag nature">nature</a></li>
+//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag art">art</a></li>
+//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag photography">photography</a></li>
+//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag mountains">mountains</a></li>
+//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag sea">sea</a></li>
 //      </ul>
 
 
 // @name Solid tags list
 // @description Tags list component (variation with solid tags)
 //
-// @see tag
-//
 // @markup
 //      <ul class="mui-tags-list -solid" role="navigation" aria-label="Tags list">
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Link to the tag nature">nature</a></li>
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Link to the tag art">art</a></li>
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Link to the tag photography">photography</a></li>
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Link to the tag mountains">mountains</a></li>
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Link to the tag sea">sea</a></li>
+//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag nature">nature</a></li>
+//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag art">art</a></li>
+//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag photography">photography</a></li>
+//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag mountains">mountains</a></li>
+//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag sea">sea</a></li>
 //      </ul>
 
 
-// @name Solid tags list with close icon
-// @description Tags list component (variation with solid tags with close icon)
-//
-// @see tag
-//
-// @markup
-//      <ul class="mui-tags-list -solid -with-close">
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag">tag</a><a href=""><i class="fa fa-times"></i></a></li>
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag">another</a><a href=""><i class="fa fa-times"></i></a></li>
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag">and another one</a><a href=""><i class="fa fa-times"></i></a></li>
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag">blah-blah</a><a href=""><i class="fa fa-times"></i></a></li>
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag">aaaaa</a><a href=""><i class="fa fa-times"></i></a></li>
-//      </ul>
+.@{muilessium-prefix}tag {
+    display: inline-block;
+    
+    font-size: .7rem;
+    line-height: 1.2;
+    text-decoration: none;
+    
+    color: @tag-color;
+    
+    #utils > .transition-all;
+    
+    &:visited {
+        color: @tag-color;
+    }
+    
+    &:hover,
+    &:focus {
+        cursor: pointer;
+        color: @tag-color__focus;
+    }
+    
+    &:active {
+        cursor: pointer;
+        color: @tag-color__active;
+    }
+}
 
 
 .@{muilessium-prefix}tags-list {
@@ -81,21 +89,6 @@
             
             > .@{muilessium-prefix}tag:after {
                 content: '';
-            }
-        }
-    }
-    
-    &.-with-close {
-        > .@{muilessium-prefix}tag-wrapper {
-            .fa {
-                color: @tag-color;
-                font-size: .7rem;
-                margin-left: .3rem;
-                
-                &:hover,
-                &:focus {
-                    color: @tag-color__focus;
-                }
             }
         }
     }
