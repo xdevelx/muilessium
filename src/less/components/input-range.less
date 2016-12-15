@@ -2,7 +2,12 @@
 // @component Range input
 //
 // @markup
-//      <input type="range" class="mui-range">
+//      <div class="mui-input-wrapper">
+//          <label class="mui-input-label" for="wa-dfds" id="wa-fdsd">Select price</label>
+//          <div class="mui-input-range">
+//              <input type="range" id="wa-dfds" aria-labelledby="wa-fdsd">
+//          </div>
+//      </div>
 
 
 // There is a lot of hacks here.
@@ -11,7 +16,7 @@
 //
 // TODO: Fix slider thumb height in IE11
 
-.@{muilessium-prefix}range {
+.@{muilessium-prefix}input-range input {
     width: 100%;
     
     background: transparent;

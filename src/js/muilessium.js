@@ -7,6 +7,7 @@ import { Carousel         } from './components/carousel';
 import { Checkbox         } from './components/checkbox';
 import { HeaderNavigation } from './components/header-navigation';
 import { Input            } from './components/input';
+import { InputRange       } from './components/input-range';
 import { SelectDropdown   } from './components/select-dropdown';
 import { Tabs             } from './components/tabs';
 import { Textarea         } from './components/textarea';
@@ -21,6 +22,7 @@ const components = {
     'checkbox':          Checkbox,
     'header-navigation': HeaderNavigation,
     'input':             Input,
+    'input-range':       InputRange,
     'select-dropdown':   SelectDropdown,
     'tabs':              Tabs,
     'textarea':          Textarea,
