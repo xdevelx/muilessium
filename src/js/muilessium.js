@@ -8,6 +8,7 @@ import { Carousel         } from './components/carousel';
 import { Checkbox         } from './components/checkbox';
 import { HeaderNavigation } from './components/header-navigation';
 import { Input            } from './components/input';
+import { InputRange       } from './components/input-range';
 import { Like             } from './components/like';
 import { LineChart        } from './components/line-chart';
 import { PieChart         } from './components/pie-chart';
@@ -27,6 +28,7 @@ const components = {
     'checkbox':          Checkbox,
     'header-navigation': HeaderNavigation,
     'input':             Input,
+    'input-range':       InputRange,
     'like':              Like,
     'line-chart':        LineChart,
     'pie-chart':         PieChart,

@@ -271,3 +271,13 @@ ol.linenums {
 .requires {
     color: #CC2936;
 }
+
+
+.mui-ribbon-wrapper {
+    height: 10rem;
+    background: #c3c3c3;
+}
+
+.mui-input-wrapper + .mui-input-wrapper {
+    margin-top: 1rem;
+}

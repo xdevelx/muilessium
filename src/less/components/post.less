@@ -1,10 +1,29 @@
 // @name Post
 // @description Post component
 //
-// @see post-header, post-content, post-footer
-//
 // @markup
-//      <article class="mui-post"></article>
+//      <article class="mui-post">
+//          <header class="mui-post-header">
+//              <div class="title">
+//                  <a href="" aria-label="Link to the post Lorem ipsum dolor">Lorem ipsum dolor</a>
+//              </div>
+//              <div class="information">Post by<span class="author"><a href="" aria-label="Link to the author page">John Doe</a></span>, <span class="date">27 Jul 2016</span></div>
+//          </header>
+//          <div class="mui-post-content">
+//              ...
+//          </div>
+//          <footer class="mui-post-footer">
+//              <ul class="mui-tags-list" role="navigation" aria-label="Tags list">
+//                  <li class="mui-tag-wrapper -icon" role="presentation"><i class="fa fa-tags" aria-hidden="true"></i></li>
+//                  <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag nature">nature</a></li>
+//                  <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag art">art</a></li>
+//                  <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag photography">photography</a></li>
+//                  <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag mountains">mountains</a></li>
+//                  <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag sea">sea</a></li>
+//              </ul>
+//              <a href="" class="mui-button -read-more">read more</a>
+//          </footer>
+//      </article>
 
 
 .@{muilessium-prefix}post {
@@ -17,4 +36,85 @@
     background: @post-background-color;
     
     #utils > .shadow;
+}
+
+
+.@{muilessium-prefix}post-header {
+    margin: 0;
+
+    background: @post-header-bgcolor;
+    
+    > .title {
+        font-size: 2rem;
+        line-height: 1.5;
+    }
+    
+    > .title > a {
+        color: @post-header-title-color;
+        text-decoration: none;
+        
+        &:visited {
+            color: @post-header-title-color;
+        }
+        
+        &:hover,
+        &:focus {
+            color: @post-header-title-color__focus;
+        }
+    }
+    
+    > .information {
+        font-size: .9rem;
+        line-height: 1.5;
+        color: @post-header-info-color;
+    }
+    
+    > .information a {
+        text-decoration: none;
+        color: @post-header-info-color;
+        
+        &:active {
+            color: @post-header-info-color__active;
+        }
+        
+        &:visited {
+            color: @post-header-info-color;
+        }
+        
+        &:hover,
+        &:focus {
+            color: @post-header-info-color__focus;
+        }
+    }
+}
+
+
+
+.@{muilessium-prefix}post-content {
+    margin: 2rem 0;
+}
+
+
+
+.@{muilessium-prefix}post-footer {
+    border-top: @post-footer-border-top-width solid @post-footer-border-top-color;
+    padding: 1rem 0;
+    #utils > .clearfix;
+    
+    > .mui-tags-list {
+        display: inline-block;
+        max-width: 80%;
+        
+        @media screen and (max-width: 50rem) {
+            max-width: 70%;
+        }
+
+        @media screen and (max-width: 40rem) {
+            max-width: 60%;
+        }
+    }
+    
+    > .-read-more {
+        float: right;
+    }
 }

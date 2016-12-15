@@ -1,17 +1,25 @@
 // @name Ribbon
 // @description Ribbon component
 //
-// @state -classic -top -left      - Classic ribbon On the top left courner
-// @state -classic -top -right     - Classic ribbon On the top right
-// @state -classic -bottom -left   - Classic ribbon On the top left courner
-// @state -classic -bottom -right  - Classic ribbon On the top right
-// @state -bookmark -left          - Bookmark ribbon on the left side
-// @state -bookmark -right         - Bookmark ribbon on the right side
-//
 // @markup
-//      <div class="relative-no-overflow-wrapper docs-only-wrapper docs-remove-default-example">
-//          <div class="mui-ribbon">new</div>
+//      <div class="mui-ribbon-wrapper">
+//          <div class="mui-ribbon -classic -top -left" aria-hidden="true">new</div>
+//          <div class="mui-ribbon -classic -top -right" aria-hidden="true">new</div>
+//          <div class="mui-ribbon -classic -bottom -left" aria-hidden="true">new</div>
+//          <div class="mui-ribbon -classic -bottom -right" aria-hidden="true">new</div>
 //      </div>
+//      <div class="mui-ribbon-wrapper">
+//          <div class="mui-ribbon -bookmark -left" aria-hidden="true">new</div>
+//          <div class="mui-ribbon -bookmark -right" aria-hidden="true">new</div>
+//      </div>
+
+
+.@{muilessium-prefix}ribbon-wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
 
 
 .@{muilessium-prefix}ribbon {
