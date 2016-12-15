@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.Muilessium.components = {
         inputs:       window.Muilessium.create('input',             '.mui-input',             {}),
+        inputRange:   window.Muilessium.create('input-range',       '.mui-input-range',       {}),
         textareas:    window.Muilessium.create('textarea',          '.mui-textarea',          {}),
         likes:        window.Muilessium.create('like',              '.mui-like',              {}),
         buttons:      window.Muilessium.create('button',            '.mui-button',            {}),
