@@ -281,3 +281,7 @@ ol.linenums {
 .mui-input-wrapper + .mui-input-wrapper {
     margin-top: 1rem;
 }
+
+.example > .mui-button {
+    margin: 1rem 1rem 0 0;
+}

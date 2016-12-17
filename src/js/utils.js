@@ -69,10 +69,22 @@ const aria = {
         element.setAttribute('aria-' + property, value);
     },
 
+    setRole: (element, role) => {
+        console.log('setting role ' + role + ' to element ' + element);
+
+        element.setAttribute('role', role);
+    },
+
     get: (element, property) => {
         console.log('getting aria-' + property + ' value from element: ' + element);
 
         return element.getAttribute('aria-' + property);
+    },
+
+    getRole: (element) => {
+        console.log('getting role from element ' + element);
+
+        return element.getAttribute('role');
     },
 
     toggleState: (element, state) => {

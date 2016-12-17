@@ -1,63 +1,24 @@
 // @name Button
-// @description Button component
+// @description Button component. Should be initialized. Button can include an icon, a badge or a label. WAI-ARIA label shoud be added manually.
 //
-// @state :hover     - Highlights when hovered
-// @state :focus     - Highlights when focused
-// @state :active    - Indicates button is clicked
-// @state -small     - Smaller button
-// @state -large     - Larger button
-// @state -dangerous - Indicates danderous action
-// @state -ghost     - Button with transparent background
-//
-// @see button-group
+// @see button-group, badge
 //
 // @markup
-//      <a class="mui-button" role="button" aria-label="click to ...">button</a>
-
-
-// @name Button
-// @description Button can have an icon
-// @requires FontAwesome
-//
-// @markup
-//      <a class="mui-button" role="button" aria-label="click to ...">
-//          <i class="fa fa-user" aria-hidden="true"></i> button
+//      <a class="mui-button"            aria-label="click to ...">button</a>
+//      <a class="mui-button -small"     aria-label="click to ...">button</a>
+//      <a class="mui-button -large"     aria-label="click to ...">button</a>
+//      <a class="mui-button -dangerous" aria-label="click to ...">button</a>
+//      <a class="mui-button -ghost"     aria-label="click to ...">button</a>
+//      <a class="mui-button" aria-label="click to ...">
+//          <i class="fa fa-user"></i> button
 //      </a>
-
-
-// @name Button
-// @description Button can have only an icon
-// @requires FontAwesome
-//
-// @state -icon - Button with icon
-// @state -ghost -icon - Ghost button with icon
-// @state -dangerous -icon - Dangerous button with icon
-//
-// @markup
-//      <a class="mui-button -icon docs-remove-default-example" role="button" aria-label="click to ...">
-//          <i class="fa fa-bell" aria-hidden="true"></i>
+//      <a class="mui-button -icon" aria-label="click to ...">
+//          <i class="fa fa-bell"></i>
 //      </a>
-
-
-// @name Button
-// @description Button with badge
-//
-// @state -badge-on-top
-//
-// @see badge
-//
-// @markup
-//      <a class="mui-button" role="button" aria-label="click to...">button <span class="mui-badge" aria-label="5 messages total">5</span></a>
-
-
-// @name Button
-// @description Button with label
-//
-// @state -label-left  - button with label on the left side
-// @state -label-right - button with label on the right side
-//
-// @markup
-//      <a class="mui-button docs-remove-default-example" role="button" aria-label="click to ...">button<span class="label">label</span></a>
+//      <a class="mui-button" aria-label="click to...">button <span class="mui-badge" aria-label="5 messages total">5</span></a>
+//      <a class="mui-button -badge-on-top" aria-label="click to...">button <span class="mui-badge" aria-label="5 messages total">5</span></a>
+//      <a class="mui-button -label-left" aria-label="click to ...">button<span class="label">label</span></a>
+//      <a class="mui-button -label-right" aria-label="click to ...">button<span class="label">label</span></a>
 
 
 .@{muilessium-prefix}button {
