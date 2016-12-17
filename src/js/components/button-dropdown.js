@@ -11,6 +11,7 @@ export class ButtonDropdown extends Button {
 
         this.dom = Utils.extend(this.dom, {
             button:   element.getElementsByClassName('mui-button')[0],
+            icon:     element.getElementsByClassName('fa')[0],
             dropdown: element.getElementsByClassName('mui-dropdown-options')[0],
             shadow:   element.getElementsByClassName('mui-shadow-toggle')[0]
         });
@@ -22,6 +23,13 @@ export class ButtonDropdown extends Button {
         Utils.makeChildElementsClickable(this.element, [this.dom.button, this.dom.shadow], () => {
             this.toggleDropdown();
         });
+
+        Utils.aria.removeRole(this.element); // Remove role='button' added in base component
+        Utils.aria.set(this.dom.button,   'haspopup', true);
+        Utils.aria.set(this.dom.icon,     'hidden', true);
+        Utils.aria.set(this.dom.dropdown, 'labelledby', Utils.aria.setId(this.dom.button));
+        Utils.aria.set(this.dom.dropdown, 'hidden', true);
+        Utils.aria.set(this.dom.shadow,   'hidden', true);
 
         this.state.initialized = true;
     }

@@ -67,12 +67,28 @@ const aria = {
         console.log('setting aria-' + property + ' = ' + value + ' to element: ' + element);
 
         element.setAttribute('aria-' + property, value);
+
+        return value;
     },
 
     setRole: (element, role) => {
         console.log('setting role ' + role + ' to element ' + element);
 
         element.setAttribute('role', role);
+
+        return role;
+    },
+
+    removeRole: (element) => {
+        element.removeAttribute('role');
+    },
+
+    setId: (element, id) => {
+        let newId = id || ('wa-' + generateRandomString(6));
+
+        element.setAttribute('id', newId);
+
+        return newId;
     },
 
     get: (element, property) => {
@@ -301,6 +317,18 @@ function lazyLoadImages(callback) {
     if (typeof callback === 'function') {
         callback();
     }
+}
+
+
+function generateRandomString(length = 8) {
+    let str = '',
+        possibleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    for (let i = 0; i < length; i++) {
+        str += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length));
+    }
+
+    return str;
 }
 
 

@@ -1,18 +1,16 @@
 // @name ButtonDropdown
-// @description Dropdown button component
-// @depends button, dropdown-options
-//
-// @see button
+// @description Dropdown button component. Should be initialized. WAI-ARIA labels should be added manually.
+// @depends button, dropdown-options, shadow-toggle
 //
 // @markup
 //      <div class="mui-button-dropdown">
-//          <a class="mui-button" role="button" aria-haspopup="true" id="wa-cvfd" aria-label="Dropdown menu for ...">button <i class="fa fa-arrow-down" aria-hidden="true"></i></a>          
-//          <ul class="mui-dropdown-options" aria-labelledby="wa-cvfd" aria-hidden="true">
+//          <a class="mui-button" aria-label="Dropdown menu for ...">button <i class="fa fa-arrow-down"></i></a>          
+//          <ul class="mui-dropdown-options">
 //              <li class="option"><a href="" aria-label="Link to the ...">Link #1</a></li>
 //              <li class="option"><a href="" aria-label="Link to the ...">Link #2</a></li>
 //              <li class="option"><a href="" aria-label="Link to the ...">Link #3</a></li>
 //          </ul>
-//          <div class="mui-shadow-toggle" aria-hidden="true" aria-label="Close dropdown menu"></div>
+//          <div class="mui-shadow-toggle" aria-label="Close dropdown menu"></div>
 //      </div>
 
 
@@ -32,6 +30,11 @@
         transform: translateY(100%);
         width: 100%;
         z-index: 11;
+
+        a:hover,
+        a:focus {
+            color: @dropdown-options-color__focus;
+        }
     }
 
     &.-opened {
