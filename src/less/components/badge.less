@@ -1,12 +1,13 @@
 // @name Badge
-// @description Badge component
+// @description Badge component. WAI-ARIA label should be added manually.
 //
-// @state -rounded - Badge with rounded courners
-// @state -new     - Add "new" after badge content
-// @state -rounded -new - Rounded badge with "new" mark
+// @see button, collection
 //
 // @markup
-//      <span class="mui-badge" aria-label="5 items total">5</span>
+//      <span class="mui-badge"               aria-label="5 items total">5</span>
+//      <span class="mui-badge -rounded"      aria-label="5 items total">5</span>
+//      <span class="mui-badge -new"          aria-label="5 items total">5</span>
+//      <span class="mui-badge -new -rounded" aria-label="5 items total">5</span>
 
 
 .@{muilessium-prefix}badge {
