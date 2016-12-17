@@ -11,8 +11,25 @@ export class Checkbox extends Component {
 
         this.dom = Utils.extend(this.dom, {
             input: element.getElementsByTagName('input')[0],
-            label: element.getElementsByTagName('label')[0]
+            label: element.getElementsByTagName('label')[0],
+            icon:  element.getElementsByClassName('fa')[0]
         });
+
+        Utils.aria.setRole(this.dom.label, 'checkbox');
+
+        let inputId = Utils.aria.setId(this.dom.input);
+
+        this.dom.input.checked = false;
+        this.dom.label.setAttribute('for', inputId);
+
+        Utils.aria.set(this.dom.label, 'controls', inputId);
+        Utils.aria.set(this.dom.label, 'checked', false);
+
+        Utils.aria.set(this.dom.input, 'labelledby', Utils.aria.setId(this.dom.label));
+
+        if (this.dom.icon) {
+            Utils.aria.set(this.dom.icon, 'hidden', true);
+        }
 
         Utils.makeElementClickable(this.dom.label, () => {
             this.toggleCheckbox();
