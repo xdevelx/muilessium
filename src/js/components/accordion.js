@@ -12,12 +12,33 @@ export class Accordion extends Component {
         this.dom = Utils.extend(this.dom, {
             items:  element.getElementsByClassName('item'),
             titles: element.getElementsByClassName('title'),
+            indicators: element.getElementsByClassName('indicator'),
             contents: element.getElementsByClassName('content')
         });
 
         Utils.makeChildElementsClickable(this.element, this.dom.titles, (index) => {
             this.toggleItem(index);
         });
+
+        Utils.aria.setRole(this.element, 'tablist');
+        this.element.setAttribute('multiselectable', true);
+        
+        [].forEach.call(this.dom.titles, (title, index) => {
+            Utils.aria.setRole(title, 'tab');
+            Utils.aria.set(title, 'expanded', false);
+            Utils.aria.set(title, 'controls', Utils.aria.setId(this.dom.contents[index]));
+        });
+
+        [].forEach.call(this.dom.contents, (content, index) => {
+            Utils.aria.setRole(content, 'tabpanel');
+            Utils.aria.set(content, 'hidden', true);
+            Utils.aria.set(content, 'labelledby', Utils.aria.setId(this.dom.titles[index]));
+        });
+
+        [].forEach.call(this.dom.indicators, (indicator) => {
+            Utils.aria.set(indicator.getElementsByClassName('fa')[0], 'hidden', true);
+        });
+
 
         this.state.initialized = true;
     }
