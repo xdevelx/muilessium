@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.Muilessium.components = {
         accordions:   window.Muilessium.create('accordion',         '.mui-accordion',         {}),
+        breadcrumbs:  window.Muilessium.create('breadcrumb',        '.mui-breadcrumb',        {}),
         buttonsd:     window.Muilessium.create('button-dropdown',   '.mui-button-dropdown',   {}),
         buttons:      window.Muilessium.create('button',            '.mui-button',            {}),
         carousels:    window.Muilessium.create('carousel',          '.mui-carousel',          {}),

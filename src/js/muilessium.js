@@ -1,6 +1,7 @@
 import * as Utils from './utils';
 
 import { Accordion        } from './components/accordion';
+import { Breadcrumb       } from './components/breadcrumb';
 import { ButtonDropdown   } from './components/button-dropdown';
 import { Button           } from './components/button';
 import { Carousel         } from './components/carousel';
@@ -16,6 +17,7 @@ import { Rating           } from './components/rating';
 
 const components = {
     'accordion':         Accordion,
+    'breadcrumb':        Breadcrumb,
     'button-dropdown':   ButtonDropdown,
     'button':            Button,
     'carousel':          Carousel,
