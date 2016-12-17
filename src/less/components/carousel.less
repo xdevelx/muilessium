@@ -1,10 +1,5 @@
 // @name Carousel
-// @description Carousel component
-//
-// @state -long-indicators - Carousel with long indicators
-// @state -circle-controls
-//
-// @requires FontAwesome
+// @description Carousel component. TODO: Add WAI-ARIA support and automatic generation of controls.
 //
 // @markup
 //      <div class="mui-carousel">
@@ -48,61 +43,6 @@
     
     height: 20rem;
     width: 100%;
-
-    &.-long-indicators {
-        .indicator {
-            width: @carousel-long-indicator-width;
-            border-radius: 0;
-
-            &:after {
-                border-radius: 0;
-                width: calc(@carousel-long-indicator-width - @carousel-indicator-height);
-            }
-
-            &:first-of-type {
-                border-top-left-radius: @carousel-indicator-height / 2;
-                border-bottom-left-radius: @carousel-indicator-height / 2;
-
-                &:after {
-                    border-top-left-radius: @carousel-indicator-height / 4;
-                    border-bottom-left-radius: @carousel-indicator-height / 4;
-                }
-            }
-
-            &:last-of-type {
-                border-top-right-radius: @carousel-indicator-height / 2;
-                border-bottom-right-radius: @carousel-indicator-height / 2;
-
-                &:after {
-                    border-top-right-radius: @carousel-indicator-height / 4;
-                    border-bottom-right-radius: @carousel-indicator-height / 4;
-                }
-            }
-        }
-    }
-
-    &.-circle-controls {
-        .prev,
-        .next {
-            top: 50%;
-            transform: translateY(-50%);
-
-            height: 3rem;
-            width: 3rem;
-
-            line-height: 3.5rem;
-
-            border-radius: 50%;
-        }
-
-        .prev {
-            left: 1rem;
-        }
-
-        .next {
-            right: 1rem;
-        }
-    }
 }
 
 .@{muilessium-prefix}slides {
