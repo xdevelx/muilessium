@@ -11,15 +11,33 @@ export class Tabs extends Component {
 
         this.dom = Utils.extend(this.dom, {
             tabs: this.element.getElementsByClassName('tab'),
-            labels: this.element.getElementsByClassName('label')
+            labels: this.element.getElementsByClassName('label'),
+            labelsWrapper: this.element.getElementsByClassName('labels')[0]
         });
 
         this.state = Utils.extend(this.state, {
             current: 0
         });
 
+        Utils.aria.setRole(this.dom.labelsWrapper, 'tablist');
+
+        [].forEach.call(this.dom.labels, (label, index) => {
+            Utils.aria.setRole(label, 'tab');
+            Utils.aria.set(label, 'selected', false);
+            Utils.aria.set(label, 'controls', Utils.aria.setId(this.dom.tabs[index]));
+        });
+
+        [].forEach.call(this.dom.tabs, (tab, index) => {
+            Utils.aria.setRole(tab, 'tabpanel');
+            Utils.aria.set(tab, 'hidden', true);
+            Utils.aria.set(tab, 'labelledby', Utils.aria.setId(this.dom.labels[index]));
+        });
+
         Utils.addClass(this.dom.tabs[0],   '-active');
+        Utils.aria.set(this.dom.tabs[0],   'hidden', false);
         Utils.addClass(this.dom.labels[0], '-active');
+        Utils.aria.set(this.dom.labels[0], 'selected', true);
+        
 
         Utils.makeChildElementsClickable(this.element, this.dom.labels, (index) => {
             this.makeTabInactive(this.state.current);
