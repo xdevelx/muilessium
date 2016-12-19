@@ -1,0 +1,22 @@
+.__css-debug(@debug) when (@debug = true) {
+    *             { visibility: visible !important;      }
+    
+    *                   { background: rgba(0,   0,   0,   .05) !important; }
+    * *                 { background: rgba(0,   0,   0,   .1)  !important; }
+    * * *               { background: rgba(0,   0,   0,   .15) !important; }
+    * * * *             { background: rgba(0,   0,   0,   .2)  !important; }
+    * * * * *           { background: rgba(0,   0,   0,   .3)  !important; }
+    * * * * * *         { background: rgba(39,  162, 208, .3)  !important; }
+    * * * * * * *       { background: rgba(39,  162, 208, .3)  !important; }
+    * * * * * * * *     { background: rgba(255, 255, 255, .3)  !important; }
+    * * * * * * * * *   { background: rgba(255, 255, 255, .3)  !important; }
+    * * * * * * * * * * { background: rgba(0,   0,   0,   .1)  !important; }
+    
+    a {
+        &[href=''],
+        &[href='#'],
+        &[href='#!'] {
+            text-decoration: line-through !important;
+        }
+    }
+}
