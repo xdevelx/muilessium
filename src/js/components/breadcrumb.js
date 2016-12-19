@@ -6,8 +6,7 @@ export class Breadcrumb extends Component {
     constructor(element, options) {
         super(element, options);
 
-        Utils.console.log('creating mui-breadcrumb for ' + element +
-                        ' with options ' + JSON.stringify(options));
+        Utils.console.info(`creating breadcrumb for the ${element} with options ${JSON.stringify(options)}`);
 
         Utils.aria.setRole(element, 'navigation');
 

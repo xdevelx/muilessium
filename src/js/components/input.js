@@ -6,12 +6,24 @@ export class Input extends Component {
     constructor(element, options) {
         super(element, options);
         
-        Utils.console.log('creating mui-input for ' + element +
-                      ' with options ' + JSON.stringify(options));
+        Utils.console.info(`creating input for the ${element} with options ${JSON.stringify(options)}`);
 
         this.dom = Utils.extend(this.dom, {
             input: element.getElementsByTagName('input')[0],
-            labels: element.parentNode.getElementsByTagName('label')
+            labels: element.parentNode.getElementsByTagName('label'),
+            icons: element.getElementsByClassName('fa')
+        });
+
+        let inputId = Utils.aria.setId(this.dom.input);
+
+        [].forEach.call(this.dom.labels, (label) => {
+            label.setAttribute('for', inputId);
+        });
+
+        Utils.aria.set(this.dom.input, 'labelledby', Utils.aria.setId(this.dom.labels[0]));
+
+        [].forEach.call(this.dom.icons, (icon) => {
+            Utils.aria.set(icon, 'hidden', true);
         });
 
         this.dom.input.addEventListener('focus', () => {

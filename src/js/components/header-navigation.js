@@ -6,8 +6,7 @@ export class HeaderNavigation extends Component {
     constructor(element, options) {
         super(element, options);
         
-        Utils.console.log('creating mui-header-navigation for ' + element +
-                      ' with options ' + JSON.stringify(options));
+        Utils.console.info(`creating header-navigation for the ${element} with options ${JSON.stringify(options)}`);
 
         this.dom = Utils.extend(this.dom, {
             toggles:   element.getElementsByClassName('mui-navigation-toggle'),

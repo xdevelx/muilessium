@@ -6,8 +6,7 @@ export class Tabs extends Component {
     constructor(element, options) {
         super(element, options);
         
-        Utils.console.log('creating mui-tabs for ' + element +
-                      ' with options ' + JSON.stringify(options));
+        Utils.console.info(`creating mui-tabs for the <${element}> with options ${JSON.stringify(options)}`);
 
         this.dom = Utils.extend(this.dom, {
             tabs: this.element.getElementsByClassName('tab'),

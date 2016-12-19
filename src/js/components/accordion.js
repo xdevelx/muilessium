@@ -6,8 +6,7 @@ export class Accordion extends Component {
     constructor(element, options) {
         super(element, options);
 
-        Utils.console.log('creating mui-accordion for ' + element +
-                        ' with options ' + JSON.stringify(options));
+        Utils.console.info(`creating acccordion for the ${element} with options ${JSON.stringify(options)}`);
 
         this.dom = Utils.extend(this.dom, {
             items:  element.getElementsByClassName('item'),

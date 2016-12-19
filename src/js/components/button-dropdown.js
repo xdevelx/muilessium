@@ -6,8 +6,7 @@ export class ButtonDropdown extends Button {
     constructor(element, options) {
         super(element, options);
 
-        Utils.console.log('creating mui-button-dropdown for ' + element +
-                        ' with options ' + JSON.stringify(options));
+        Utils.console.info(`creating button-dropdown for the ${element} with options ${JSON.stringify(options)}`);
 
         this.dom = Utils.extend(this.dom, {
             button:   element.getElementsByClassName('mui-button')[0],

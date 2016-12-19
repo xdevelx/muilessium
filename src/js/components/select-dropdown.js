@@ -13,8 +13,7 @@ export class SelectDropdown extends Component {
     constructor(element, options) {
         super(element, options);
 
-        Utils.console.log('creating mui-select-dropdown for ' + element +
-                        ' with options ' + JSON.stringify(options));
+        Utils.console.info(`creating mui-select-dropdown for the ${element} with options ${JSON.stringify(options)}`);
 
         let sourceSelect = element.getElementsByTagName('select')[0],
             sourceOptions = sourceSelect.options,

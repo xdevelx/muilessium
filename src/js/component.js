@@ -3,7 +3,7 @@ import * as Utils from './utils';
 
 export class Component {
     constructor(element, options) {
-        Utils.console.log('creating component');
+        Utils.console.info('creating component');
         
         this.element = element;
 

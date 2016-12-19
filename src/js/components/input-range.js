@@ -6,7 +6,6 @@ export class InputRange extends Input {
     constructor(element, options) {
         super(element, options);
 
-        Utils.console.log('creating mui-range (mui-input extended) for ' + element +
-                        ' with options ' + JSON.stringify(options));
+        Utils.console.info(`creating input-range for the ${element} with options ${JSON.stringify(options)}`);
     }
 }

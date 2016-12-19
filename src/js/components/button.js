@@ -6,8 +6,7 @@ export class Button extends Component {
     constructor(element, options) {
         super(element, options);
         
-        Utils.console.log('creating mui-button for ' + element +
-                      ' with options ' + JSON.stringify(options));
+        Utils.console.info(`creating button for the ${element} with options ${JSON.stringify(options)}`);
 
         Utils.aria.setRole(element, 'button');
 

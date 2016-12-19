@@ -6,8 +6,7 @@ export class Carousel extends Component {
     constructor(element, options) {
         super(element, options);
 
-        Utils.console.log('creating mui-carousel for ' + element +
-                        ' with options ' + JSON.stringify(options));
+        Utils.console.info(`creating carousel for the ${element} with options ${JSON.stringify(options)}`);
 
         this.dom = Utils.extend(this.dom, {
             slides: element.getElementsByClassName('mui-slide'),

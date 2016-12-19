@@ -6,8 +6,7 @@ export class Rating extends Component {
     constructor(element, options) {
         super(element, options);
 
-        Utils.console.log('creating rating for ' + element +
-                        ' with options ' + JSON.stringify(options));
+        Utils.console.info(`creating mui-rating for the ${element} with options ${JSON.stringify(options)}`);
 
         this.dom = Utils.extend(this.dom, {
             stars: element.getElementsByClassName('star')

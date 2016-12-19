@@ -3,15 +3,23 @@ var objectFitImages = require('object-fit-images');
 
 const console = {
     log: (message) => {
-        window.console.log('Muilessium: ' + message);
+        window.console.log(`Muilessium: ${message}`);
+    },
+
+    ulog: (message) => {
+        window.console.log(`Muilessium: ---> ${message}`);
+    },
+
+    info: (message) => {
+        window.console.info(`Muilessium: ${message}`);
     },
 
     warning: (message) => {
-        window.console.warn('[WARNING] Muilessium: ' + message);
+        window.console.warn(`[WARNING] Muilessium: ${message}`);
     },
 
     error: (message) => {
-        window.console.error('[ERROR] Muilessium: ' + message);
+        window.console.error(`[ERROR] Muilessium: ${message}`);
     }
 };
 
@@ -29,8 +37,7 @@ const ajax = {
                 if ((request.status >= 200) && (request.status < 300)) {
                     successCallback(request.responseText);
                 } else {
-                    console.error('POST (' + url + '): error ' +
-                                    request.status + ' ' + request.statusText);
+                    console.error(`POST (${url}): error ${request.status} ${request.statusText}`);
                     errorCallback(request.status, request.statusText);
                 }
             }
@@ -50,8 +57,7 @@ const ajax = {
                 if (((request.status >= 200) && (request.status < 300)) || (request.status === 304)) {
                     successCallback(request.responseText);
                 } else {
-                    console.error('GET (' + url + '): error ' +
-                                    request.status + ' ' + request.statusText);
+                    console.error(`GET (${url}): error ${request.status} ${request.statusText}`);
                     errorCallback(request.status, request.statusText);
                 }
             }
@@ -64,51 +70,81 @@ const ajax = {
 
 const aria = {
     set: (element, property, value = true) => {
-        console.log('setting aria-' + property + ' = ' + value + ' to element: ' + element);
+        console.ulog(`setting aria-${property} = ${value} to the element: ${element}`);
 
-        element.setAttribute('aria-' + property, value);
+        return ifExists(element, () => {
+            element.setAttribute(`aria-${property}`, value);
 
-        return value;
+            return value;
+        });
     },
 
     setRole: (element, role) => {
-        console.log('setting role ' + role + ' to element ' + element);
+        console.ulog(`setting role ${role} to the element ${element}`);
 
-        element.setAttribute('role', role);
+        return ifExists(element, () => {
+            element.setAttribute('role', role);
 
-        return role;
+            return role;
+        });
     },
 
     removeRole: (element) => {
-        element.removeAttribute('role');
+        console.ulog(`removing role from the element ${element}`);
+
+        return ifExists(element, () => {
+            element.removeAttribute('role');
+        });
     },
 
     setId: (element, id) => {
-        let newId = id || ('wa-' + generateRandomString(6));
+        console.ulog(`setting ID to the element ${element}`);
 
-        element.setAttribute('id', newId);
+        return ifExists(element, () => {
+            let newId = id || (`wa-${generateRandomString(6)}`);
 
-        return newId;
+            console.ulog(`new ID for the element ${element} is #${newId}`);
+
+            element.setAttribute('id', newId);
+
+            return newId;
+        });
     },
 
     get: (element, property) => {
-        console.log('getting aria-' + property + ' value from element: ' + element);
+        console.ulog(`getting aria-${property} value from the element ${element}`);
 
-        return element.getAttribute('aria-' + property);
+        return ifExists(element, () => {
+            return element.getAttribute(`aria-${property}`);
+        });
     },
 
     getRole: (element) => {
-        console.log('getting role from element ' + element);
+        console.ulog(`getting role from element ${element}`);
 
-        return element.getAttribute('role');
+        return ifExists(element, () => {
+            return element.getAttribute('role');
+        });
     },
 
     toggleState: (element, state) => {
-        console.log('toggling aria-' + state + ' value for element: ' + element);
+        console.ulog(`toggling aria-${state} value for the element ${element}`);
 
-        element.setAttribute('aria-' + state, !stringToBoolean(element.getAttribute('aria-' + state)));
+        return ifExists(element, () => {
+            element.setAttribute(`aria-${state}`, !stringToBoolean(element.getAttribute(`aria-${state}`)));
+        });
     }
 };
+
+
+function ifExists(element, callback) {
+    if (isInPage(element)) {
+        return callback();
+    } else {
+        console.warning('element does not exists');
+        return null;
+    }
+}
 
 
 function stringToBoolean(str) {
@@ -128,49 +164,59 @@ function isNotInPage(element) {
 
 
 function hasClass(element, classForTest) {
-    // Use className instead of classList because IE11 does not have support for slassList on SVG
-    return (element.className.indexOf(classForTest) !== -1);
+    console.ulog(`checking for the element ${element} has class .${classForTest}`);
+
+    return ifExists(element, () => {
+        // Use className instead of classList because IE11 does not have support for slassList on SVG
+        return (element.className.indexOf(classForTest) !== -1);
+    });
 }
 
 
 function hasNotClass(element, classForTest) {
-    return !hasClass(element, classForTest);
+    console.ulog(`checking for element ${element} has not class ${classForTest}`);
+
+    return ifExists(element, () => {
+        return !hasClass(element, classForTest);
+    });
 }
 
 
 function addClass(element, newClass) {
-    if (isNotInPage(element)) {
-        console.error('cannot add class to element ' + element + '. No such element');
-        throw new Error();
-    }
+    console.ulog(`adding class ${newClass} to the element ${element}`);
 
-    if (hasClass(element, newClass)) {
-        console.log('class ' + newClass + ' already added to element ' + element);
-        return;
-    }
+    return ifExists(element, () => {
+        if (hasClass(element, newClass)) {
+            console.ulog(`class ${newClass} already added to the element ${element}`);
+            return;
+        }
 
-    // Use className instead of classList because IE11 does not have support for slassList on SVG
-    element.className += ' ' + newClass;
+        // Use className instead of classList because IE11 does not have support for slassList on SVG
+        element.className += ' ' + newClass;
+    });
 }
 
 
 function removeClass(element, classForRemoving) {
-    if (isNotInPage(element)) {
-        console.error('cannot add class to element ' + element + '. No such element');
-        throw new Error();
-    }
+    console.ulog(`removing class ${classForRemoving} from the element ${element}`);
 
-    // Use className instead of classList because IE11 does not have support for slassList on SVG
-    element.className = element.className.replace(classForRemoving, '');
+    return ifExists(element, () => {
+        // Use className instead of classList because IE11 does not have support for slassList on SVG
+        element.className = element.className.replace(classForRemoving, '');
+    });
 }
 
 
 function toggleClass(element, classForToggle) {
-    if (hasNotClass(element, classForToggle)) {
-        addClass(element, classForToggle);
-    } else {
-        removeClass(element, classForToggle);
-    }
+    console.ulog(`togle class ${classForToggle} for element ${element}`);
+
+    return ifExists(element, () => {
+        if (hasNotClass(element, classForToggle)) {
+            addClass(element, classForToggle);
+        } else {
+            removeClass(element, classForToggle);
+        }
+    });
 }
 
 
@@ -230,7 +276,11 @@ function isDescendant(parent, child) {
 
 
 function makeElementFocusable(element) {
-    element.tabIndex = 0;
+    console.ulog(`making element ${element} focusable`);
+
+    return ifExists(element, () => {
+        element.tabIndex = 0;
+    });
 }
 
 

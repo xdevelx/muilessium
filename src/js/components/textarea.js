@@ -6,8 +6,7 @@ export class Textarea extends Component {
     constructor(element, options) {
         super(element, options);
         
-        Utils.console.log('creating mui-textarea for ' + element +
-                          ' with options ' + JSON.stringify(options));
+        Utils.console.info(`creating mui-textarea for the <${element}> with options ${JSON.stringify(options)}`);
 
         element.getElementsByTagName('textarea')[0].addEventListener('change', () => {
             Utils.console.log('textarea value changed to "' + this.value + '"');
