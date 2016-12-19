@@ -1,81 +1,98 @@
-body {
-    background: #e5e5e5;
+html {
+    font-size: calc(14px + (22 - 14) * ((100vw - 400px) / (1200 - 400)));
 }
 
-
-.mui-page-header {
-    box-shadow: none;
+.mui-hero-header.-blueprint {
+    background-color: #269;
+    background-image: linear-gradient(white 2px, transparent 2px),
+        linear-gradient(90deg, white 2px, transparent 2px),
+        linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
 }
 
-
-h3.title {
-    text-overflow: ellipsis;
-    overflow: hidden;
+.mui-hero-header.-blueprint .content {
+    text-shadow: 0 30px 200px #000, 0 15px 100px #000;
 }
 
-.aside {
-    background: #fff;
-    padding: 2rem;
+.mui-hero-header.-blueprint .project {
+    font-size: 3.6rem;
 }
 
-h2 {
-    margin-bottom: 1rem;
-}
-
-.examples {
-    display: block;
-    width: 105%;
+.mui-hero-header.-blueprint .version {
+    font-size:  .9rem;
+    vertical-align: baseline;
     position: relative;
-    margin-left: -2.5%;
-    margin-bottom: 1rem;
-    min-height: 3rem;
-    background: #fff;
-    box-shadow: 0 0 1rem rgba(0, 0, 0, .5);
+    top: -1.2rem;
 }
 
-.mui-post {
-    width: 90%;
-    max-width: 50rem;
+.mui-hero-header.-blueprint .description {
+    font-size: 1.8rem;
 }
 
-@media screen and (max-width: 1300px) {
-    .examples {
-        width: calc(100% + 2rem);
-        margin-left: -1rem;
-    }
+.mui-content-container.-separate {
+    margin: 5rem auto;
 }
 
-@media screen and (max-width: 800px) {
-    .examples {
-        width: calc(100% + 1rem);
-        margin-left: -.5rem;
-    }
+.component-preview {
+    margin: 3rem 0 5rem;
 }
 
-.example {
-    display: block;
-    padding: 1.5rem 1rem;
-    position: relative;
-    min-height: 3rem;
-    border-bottom: 1px solid #ccc;
+.component-preview > .name {
+    margin-bottom: -.1rem;
 }
 
-.state .name {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 1rem;
-    font-size: .8rem;
-    background: #fff;
-    border-left: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    z-index: 1;
+.component-preview > .filename {
+    font-size: .7rem;
+    font-style: italic;
+    color: #777;
+    margin-bottom: .5rem;
 }
 
-/* GitHub Theme */
-/* Pretty printing styles. Used with prettify.js. */
-/* SPAN elements with the classes below are added by prettyprint. */
-/* plain text */
+.component-preview > .description {
+    font-size: .9rem;
+    color: #5c5c5c;
+    margin-bottom: .3rem;
+}
+
+.component-preview > .depends {
+    color: #0123ab;
+    font-size: .7rem;
+    margin-bottom: .3rem;
+}
+
+.component-preview > .requires {
+    color: #ab0123;
+    font-size: .7rem;
+    margin-bottom: .3rem;
+}
+
+.component-preview > .example-container {
+
+}
+
+.component-preview .example {
+    margin: 2rem auto;
+}
+
+.component-preview .code {    
+    border-left: 3px solid #333;
+}
+
+
+.component-preview .example > .mui-button {
+    margin: 0 1rem 1rem 0;
+}
+
+
+.mui-page-footer {
+    height: 3rem;
+    line-height: 3rem;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+}
+
+
 .pln {
     color: #333333;
 }
@@ -152,7 +169,6 @@ h2 {
     }
 }
 
-/* Use higher contrast and text-weight for printable form. */
 @media print, projection {
     .str {
         color: #006600;
@@ -195,93 +211,16 @@ h2 {
     }
 }
 
-/* Style */
 pre.prettyprint {
-    background: #eee;
+    background: #eaeaea;
     font-family: Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, monospace;
-    font-size: .7rem;
+    font-size: .6rem;
     padding: 1rem;
     line-height: 1.5;
     overflow-x: scroll;
 }
 
-/* Specify class=linenums on a pre to get line numbering */
 ol.linenums {
     margin-top: 0;
     margin-bottom: 0;
-}
-
-.mui-post.-d {
-    margin: 2rem auto;
-    padding: 2rem 0 0;
-}
-
-.mui-post-header.-d {
-    padding: 0 2rem;
-}
-
-.mui-post-content > .info {
-    margin: 1rem 0;
-    padding: 0 2rem 1.5rem;
-}
-
-.mui-post-content p {
-    display: block;
-    margin-bottom: 1rem;
-}
-
-.mui-post-content table td:first-of-type {
-    font-weight: bold;
-    padding-right: 1rem;
-}
-
-
-.mui-accordion.-d {
-    margin: 1rem 0;
-}
-
-.mui-accordion.-d .title {
-    background: #eee;
-}
-
-.mui-accordion.-d .title:hover,
-.mui-accordion.-d .title:focus {
-    background: #ccc;
-    color: #000;
-}
-
-.relative-no-overflow-wrapper {
-    background: #c3c3c3;
-    position: relative;
-    height: 10rem;
-    width: 100%;
-    overflow: hidden;
-}
-
-._allow-empty {
-    display: block;
-    background: #ffffff;
-    height: 50px;
-    width: 50px;
-    min-height: 50px;
-    min-width: 50px;
-}
-
-.depends,
-.requires {
-    color: #CC2936;
-}
-
-
-.mui-ribbon-wrapper {
-    height: 10rem;
-    background: #c3c3c3;
-}
-
-.mui-input-wrapper + .mui-input-wrapper {
-    margin-top: 1rem;
-}
-
-.example > .mui-button {
-    margin: 1rem 1rem 0 0;
 }

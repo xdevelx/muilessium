@@ -1,172 +1,141 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv='content-type' content='text/html;charset=UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     
     <title>{{project.name}} styleguide</title>  
     
-    <link rel="stylesheet" href="assets/js/prettify/prettify.css"/>
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/styles.css"/>
+    <link rel='stylesheet' href='assets/css/main.css'>
+    <link rel='stylesheet' href='assets/css/styles.css'/>
     
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel='icon' href='favicon.ico' type='image/x-icon' />
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
 </head>
 <body>
-
-    <header class="mui-page-header">
-        <h1 class="mui-header-logo">{{project.name}} v.{{project.version}}</h1>
-    </header>
-
-    <main>
-        <div class="mui-row">
-        <div class="mui-column -s12 -m4">
-            
-            <div class="aside">
-                <nav>
-                    <h2>Table of Contents</h2>
-                    <ul>
-                        {{#files}}
-                            <li><a href="#{{file}}" data-file="{{file}}">{{file}}</a></li>
-                        {{/files}}
-                    </ul>
-                </nav>
+    <!-- page-container -->
+    <div class='mui-page-container'>
+        <!-- page-header -->
+        <header class='mui-page-header'>
+            <!-- header-logo -->
+            <div class='mui-header-logo'>
+                <a href=''>
+                    <h1>{{ project.name }}</h1>
+                </a>
             </div>
-            
+            <!-- /header-logo -->
+            <!-- header-navigation -->
+            <nav class='mui-header-navigation'>
+                <div class='mui-navigation-toggle -hamburger' role='button' aria-hidden='true' id='wa-ghap' aria-haspopup='true' aria-label='Open navigation'>
+                    <i class='fa fa-bars' aria-hidden='true'></i>
+                </div>
+                <ul class='links-list' aria-labelledby='wa-ghap'>
+                    <li><a href='#overview' aria-label='Link to the framework overview'>Overview</a></li>
+                    <li><a href='#faq' aria-label='Link to the f.a.q.'>F.A.Q.</a></li>
+                </ul>
+                <div class='mui-navigation-toggle mui-shadow-toggle' role='button' aria-hidden='true' aria-label='Close navigation'></div>
+            </nav>
+            <!-- /header-navigation -->
+        </header>
+        <!-- /page-header -->
+
+
+        <!-- hero-header -->
+        <div class='mui-hero-header -blueprint'>
+            <div class='content'>
+                <h2 class='project'>{{ project.name }} <sup class='version'>v{{ project.version }}</sup></h2>
+                <p class='description'>Simple UI Framework for simple websites</p>
+            </div>
         </div>
-        <div class="mui-column -s12 -m8">
-            <div class="mui-content-container">
-            <div>
+        <!-- /hero-header -->
+
+
+        <!-- main -->
+        <main>
+            <!-- content-section -->
+            <div class='mui-content-container -separate'>
+                <h3 id='overview'>Overview</h3>
+                <p class='mui-p -limit-width'></p>
+            </div>
+            <!-- content-section -->
+
+
+            <!-- content-section -->
+            <div class='mui-content-container -separate'>
+                <h4>Components</h4>
+
                 {{#files}}
-                    {{#if blocks}}
-                    <article class="mui-post -d">
-                        <header class="mui-post-header -d">
-                            <h3 id="{{file}}" class="title">{{file}}</h3>
-                        </header>
-                        {{#blocks}}
-                            <div class="mui-post-content">
-                                <div class="info">
-                                    <h4>{{name}}</h4>
-                                    {{#if description}}
-                                        <p class="description">{{description}}</p>
-                                    {{/if}}
-                                    {{#depends}}
-                                        <p class="depends">Depends on {{depends}}</p>
-                                    {{/depends}}
-                                    {{#requires}}
-                                        <p class="requires">Requires {{requires}}</p>
-                                    {{/requires}}
-                                    <ul class="mui-accordion -d">
-                                        <!--
-                                        {{#if state}}
-                                        <li class="item">
-                                            <div class="title">
-                                                <div class="indicator">
-                                                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                                                </div>
-                                                States
-                                            </div>
-                                            <div class="content">
-                                                <table class="states">
-                                                    {{#state}}
-                                                        <tr>
-                                                            <td>{{name}}</td>
-                                                            <td>{{description}}</td>
-                                                        <tr>
-                                                    {{/state}}
-                                                </table>
-                                            </div>
-                                        </li>
-                                        {{/if}}
-                                        -->
-                                        {{#if method}}
-                                        <li class="item">
-                                            <div class="title">JS Methods</div>
-                                            <div class="content">
-                                                <table>
-                                                {{#method}}
-                                                    <tr>
-                                                        <td>{{name}}</td>
-                                                        <td>{{description}}</td>
-                                                    </tr>
-                                                {{/method}}
-                                                </table>
-                                            </div>
-                                        </li>
-                                        {{/if}}
-                                    </ul>
-                                    {{#if see}}
-                                        <p class="see-also"><span>See also:</span> {{see}}</p>
-                                    {{/if}}
-                                </div>
-
-                                {{#if markup}}
-                                    <div class="examples">
-                                        <div class="example">{{{markup.example}}}</div>
-
-                                        {{#state}}
-                                            <div class="example state {{class}}">
-                                                <div class="name">{{name}}</div>{{{../markup.example}}}
-                                            </div>
-                                        {{/state}}
+                    {{#blocks }}
+                    <!-- component-preview -->
+                    <div class='component-preview'>
+                        <h5 class='name'>{{ name }}</h5>
+                        <div class='filename'>{{ ../file }}</div>
+                        {{#if description }}
+                            <p class='mui-p description'>{{ description }}</p>
+                        {{/if}}
+                        {{#depends }}
+                            <div class='depends'>Depends on {{ depends }}</div>
+                        {{/depends}}
+                        {{#requires}}
+                            <div class='requires'>Requires {{ requires }}</div>
+                        {{/requires}}
+                        {{#if markup}}
+                            <div class='example-container'>
+                                <div class='example'>{{{ markup.example }}}</div>
+                                {{#state}}
+                                    <div class='state'>
+                                        <h6>{{ ../../name }} with {{name}} option</h6>
+                                        <div class='example' data-class='{{name}}'>{{{ ../markup.example }}}</div>
                                     </div>
-
-                                    <pre class="prettyprint lang-html markup">{{{markup.escaped}}}</pre>
-                                {{/if}}
+                                {{/state}}
+                                <div class='code'>
+                                    <pre class='( prettyprint lang-html )'>{{{markup.escaped}}}</pre>
+                                </div>
                             </div>
-                        {{/blocks}}
-                    </article>
-                    {{/if}}
+                        {{/if}}
+                    </div>
+                    <!-- /component-preview -->
+                    {{/blocks}}
                 {{/files}}
             </div>
+            <!-- /content-section -->
+
+
+            <!-- content-section -->
+            <div class="mui-content-container -separate">
+                <h3 id="faq">F.A.Q.</h3>
             </div>
-        </div>
-    </main>
+            <!-- /content-section -->
+        </main>
+        <!-- /main -->
+    </div>
+    <!-- /page-container -->
 
-    <footer></footer>
-    
-    <script src="assets/js/prettify/prettify.js?v=1"></script>
-    <!--<script src="assets/js/main.js"></script>-->
+    <!-- page-footer -->
+    <footer class='mui-page-footer _text-center'>
+        <span>Copyright &copy; Ivan Bogachev, 2016</span>
+    </footer>
+    <!-- /page-footer -->
+
+
+    <script src='assets/js/prettify/prettify.js?v=1'></script>
     <script>
-        // Some dirty fixes for better docs experience
-        
         document.addEventListener('DOMContentLoaded', function() {
-            [].forEach.call(document.querySelectorAll('.example:not(.state) .docs-remove-default-example'), function(element){
-                element.parentElement.style.display = 'none';
-            });
+            [].forEach.call(document.querySelectorAll('.state .example'), function(example) {
+                var stateClass = example.getAttribute('data-class'),
+                    targetChild = 0;
 
-            [].forEach.call(document.querySelectorAll('.example.state'), function(example) {
-                var c = example.childNodes,
-                    name = c[1].innerHTML;
-
-                if (name[0] === ':') {
-                    example.style.display = 'none';
-                } else {
-                    if (c[2].nodeName !== '#text') {
-                        c[2].className += ' ' + name;
-                    } else {
-                        if (c[3].className && c[3].className.indexOf('docs-only-wrapper') != -1) {
-                            c[3].childNodes[1].className += ' ' + name;
-                        } else {
-                            c[3].className += ' ' + name;
-                        }
-                    }
+                if (example.childNodes[1]) {
+                    targetChild = 1;
                 }
+
+                example.childNodes[targetChild].className += ' ' + stateClass;
             });
 
-            [].forEach.call(document.querySelectorAll('pre'), function(atv){
-                atv.innerHTML = atv.innerHTML.replace(new RegExp(" docs-[a-z-]*", "g"), "");
-            });
-
-            [].forEach.call(document.querySelectorAll('a[data-file]'), function(a) {
-                a.innerHTML = a.innerHTML.split('/').reverse()[0];
-            });
-            
             prettyPrint();
         });
     </script>
-    <script src="assets/js/main.js"></script>
+    <script src='assets/js/main.js'></script>
 </body>
 </html>
