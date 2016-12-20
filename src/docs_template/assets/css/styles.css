@@ -1,7 +1,3 @@
-html {
-    font-size: calc(14px + (22 - 14) * ((100vw - 400px) / (1200 - 400)));
-}
-
 aside {
     background: #222;
     color: #fff;
@@ -12,9 +8,13 @@ body {
     background: linear-gradient(to right, #222 0%, #222 33.3333%, #fff 33.3333%, #fff 100%);
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 600px) {
     body {
         background: #fff;
+    }
+
+    aside {
+        display: none;
     }
 }
 
@@ -52,8 +52,32 @@ body {
     content: '- ';
 }
 
+.grid-preview {
+    margin: 2rem 0;
+}
+
+.grid-preview .mui-column {
+    background: #269;
+    color: #fff;
+    text-align: center;
+    font-size: .9rem;
+    height: 2rem;
+    line-height: 2rem;
+    margin-top: .5rem;
+}
+
+.grid-preview .mui-column:first-of-type {
+    border-right: 2px solid #fff;
+}
+
+.mui-p.-b {
+    margin: 1rem 0;
+}
 
 .mui-hero-header.-blueprint {
+    height: calc(100vh - 4rem);
+    min-height: 400px;
+
     background-color: #269;
     background-image: linear-gradient(white 2px, transparent 2px),
         linear-gradient(90deg, white 2px, transparent 2px),
@@ -64,7 +88,7 @@ body {
 }
 
 .mui-hero-header.-blueprint .content {
-    text-shadow: 0 30px 200px #000, 0 15px 100px #000;
+    text-shadow: 0 45px 300px #000, 0 30px 200px #000, 0 15px 100px #000;
 }
 
 .mui-hero-header.-blueprint .project {
