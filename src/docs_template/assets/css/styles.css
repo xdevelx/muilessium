@@ -88,7 +88,7 @@ body {
 }
 
 .mui-hero-header.-blueprint .content {
-    text-shadow: 0 45px 300px #000, 0 30px 200px #000, 0 15px 100px #000;
+    text-shadow: 0 30px 200px #000, 0 15px 100px #000;
 }
 
 .mui-hero-header.-blueprint .project {
@@ -104,6 +104,18 @@ body {
 
 .mui-hero-header.-blueprint .description {
     font-size: 1.8rem;
+}
+
+.mui-hero-header.-blueprint .mui-button {
+    margin-top: 1.5rem;
+    color: #fff;
+    border-color: #fff;
+    background: #ED1C1C;
+}
+
+.mui-hero-header.-blueprint .mui-button:hover,
+.mui-hero-header.-blueprint .mui-button:focus {
+    background: #000;
 }
 
 .mui-content-container.-separate {
