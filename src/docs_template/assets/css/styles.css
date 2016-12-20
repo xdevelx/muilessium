@@ -2,6 +2,57 @@ html {
     font-size: calc(14px + (22 - 14) * ((100vw - 400px) / (1200 - 400)));
 }
 
+aside {
+    background: #222;
+    color: #fff;
+    padding: 5rem 1rem;
+}
+
+body {
+    background: linear-gradient(to right, #222 0%, #222 33.3333%, #fff 33.3333%, #fff 100%);
+}
+
+@media screen and (max-width: 400px) {
+    body {
+        background: #fff;
+    }
+}
+
+.aside-navigation a {
+    display: block;
+    margin: 1rem 0 .5rem;
+    color: #fff;
+    text-decoration: none;
+    font-size: .9rem;
+}
+
+.aside-navigation a:first-of-type {
+    margin-top: 0;
+}
+
+.aside-navigation a:visited {
+    color: #fff;
+}
+
+.aside-navigation a:hover,
+.aside-navigation a:focus {
+    color: #269;
+}
+
+.aside-navigation .sub-list {
+    list-style: none;
+}
+
+.aside-navigation .sub-list a {
+    font-size: .7rem;
+    margin: 0 0 .2rem;
+}
+
+.aside-navigation .sub-list a:before {
+    content: '- ';
+}
+
+
 .mui-hero-header.-blueprint {
     background-color: #269;
     background-image: linear-gradient(white 2px, transparent 2px),

@@ -14,8 +14,6 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
 </head>
 <body>
-    <!-- page-container -->
-    <div class='mui-page-container'>
         <!-- page-header -->
         <header class='mui-page-header'>
             <!-- header-logo -->
@@ -50,9 +48,29 @@
         </div>
         <!-- /hero-header -->
 
+        <!-- row -->
+        <div class='mui-row'>
+        <!-- aside -->
+        <aside class='mui-column -s12 -m4'>
+            <div class='aside-navigation' role='navigation'>
+                <a href='#overview'>Overview</a>
+                <a href='#components'>Components</a>
+                <ul class='sub-list'>
+                {{#files}}
+                    {{#blocks}}
+                        <li>
+                            <a href='#{{../file}}'>{{ name }}</a>
+                        </li>
+                    {{/blocks}}
+                {{/files}}
+                </ul>
+                <a href='#faq'>F.A.Q.</a>
+            </div>
+        </aside>
+        <!-- /aside -->
 
         <!-- main -->
-        <main>
+        <main class='mui-column -s12 -m8'>
             <!-- content-section -->
             <div class='mui-content-container -separate'>
                 <h3 id='overview'>Overview</h3>
@@ -63,9 +81,10 @@
 
             <!-- content-section -->
             <div class='mui-content-container -separate'>
-                <h4>Components</h4>
+                <h4 id='components'>Components</h4>
 
                 {{#files}}
+                    <div id='{{file}}' class='_allow-empty'></div>
                     {{#blocks }}
                     <!-- component-preview -->
                     <div class='component-preview'>
@@ -107,16 +126,17 @@
                 <h3 id="faq">F.A.Q.</h3>
             </div>
             <!-- /content-section -->
+
+            <!-- page-footer -->
+            <div class='mui-page-footer _text-center'>
+                <span>Copyright &copy; Ivan Bogachev, 2016</span>
+            </div>
+            <!-- /page-footer -->
         </main>
         <!-- /main -->
-    </div>
-    <!-- /page-container -->
+        </div>
+        <!-- /columns-fix -->
 
-    <!-- page-footer -->
-    <footer class='mui-page-footer _text-center'>
-        <span>Copyright &copy; Ivan Bogachev, 2016</span>
-    </footer>
-    <!-- /page-footer -->
 
 
     <script src='assets/js/prettify/prettify.js?v=1'></script>
