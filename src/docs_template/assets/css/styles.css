@@ -137,6 +137,12 @@ body {
 }
 
 
+.component-preview .example > .mui-ribbon-wrapper {
+    height: 10rem;
+    margin-top: 1rem;
+    background: #eaeaea;
+}
+
 .mui-page-footer {
     height: 3rem;
     line-height: 3rem;
