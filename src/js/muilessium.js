@@ -9,6 +9,7 @@ import { Checkbox         } from './components/checkbox';
 import { HeaderNavigation } from './components/header-navigation';
 import { Input            } from './components/input';
 import { InputRange       } from './components/input-range';
+import { Pagination       } from './components/pagination';
 import { SelectDropdown   } from './components/select-dropdown';
 import { Tabs             } from './components/tabs';
 import { Textarea         } from './components/textarea';
@@ -25,6 +26,7 @@ const components = {
     'header-navigation': HeaderNavigation,
     'input':             Input,
     'input-range':       InputRange,
+    'pagination':        Pagination,
     'select-dropdown':   SelectDropdown,
     'tabs':              Tabs,
     'textarea':          Textarea,
