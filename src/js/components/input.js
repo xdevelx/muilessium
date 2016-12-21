@@ -16,33 +16,41 @@ export class Input extends Component {
 
         let inputId = this.dom.input.getAttribute('id') || Utils.aria.setId(this.dom.input);
 
-        [].forEach.call(this.dom.labels, (label) => {
-            label.setAttribute('for', inputId);
+        Utils.ifNodeList(this.dom.labels, () => {
+            Utils.aria.set(this.dom.input, 'labelledby', Utils.aria.setId(this.dom.labels[0]));
+
+            [].forEach.call(this.dom.labels, (label) => {
+                label.setAttribute('for', inputId);
+
+                label.addEventListener('focus', () => {
+                    this.dom.input.focus();
+                });
+            });
         });
 
-        Utils.aria.set(this.dom.input, 'labelledby', Utils.aria.setId(this.dom.labels[0]));
-
-        [].forEach.call(this.dom.icons, (icon) => {
-            Utils.aria.set(icon, 'hidden', true);
-        });
+        Utils.ifNodeList(this.dom.icons, () => {
+            [].forEach.call(this.dom.icons, (icon) => {
+                Utils.aria.set(icon, 'hidden', true);
+            });
+        }, false);
 
         this.dom.input.addEventListener('focus', () => {
             Utils.addClass(this.element, '-focused');
-            Utils.makeElementsNotFocusable(this.dom.labels);
+
+            Utils.ifNodeList(this.dom.labels, () => {
+                Utils.makeElementsNotFocusable(this.dom.labels);
+            });
         });
 
         this.dom.input.addEventListener('blur', () => {
             Utils.removeClass(this.element, '-focused');
-            Utils.makeElementsFocusable(this.dom.labels);
-        });
 
-        [].forEach.call(this.dom.labels, (label) => {
-            label.addEventListener('focus', () => {
-                this.dom.input.focus();
+            Utils.ifNodeList(this.dom.labels, () => {
+                Utils.makeElementsFocusable(this.dom.labels);
             });
         });
 
-        this.dom.input.addEventListener('change', () => {
+        this.dom.input.addEventListener('change', function() {
             Utils.console.log('input value changed to "' + this.value + '"');
 
             if (this.value == '') {

@@ -137,11 +137,27 @@ const aria = {
 };
 
 
-function ifExists(element, callback) {
+function ifExists(element, callback, printWarning = true) {
     if (isInPage(element)) {
         return callback();
     } else {
-        console.warning('element does not exists');
+        if (printWarning) {
+            console.warning('element does not exists');
+        }
+
+        return null;
+    }
+}
+
+
+function ifNodeList(x, callback, printWarning = true) {
+    if (((x instanceof NodeList) || (x instanceof HTMLCollection)) && (x.length > 0)) {
+        return callback();
+    } else {
+        if (printWarning) {
+            console.warning('element is not an instance of NodeList or HTMLCollection');
+        }
+
         return null;
     }
 }
@@ -387,6 +403,9 @@ export {
     ajax,
     aria,
 
+    ifExists,
+    ifNodeList,
+    stringToBoolean,
     isInPage,
     isNotInPage,
     addClass,
@@ -404,5 +423,6 @@ export {
     makeElementsNotFocusable,
     makeElementClickable,
     makeChildElementsClickable,
-    lazyLoadImages
+    lazyLoadImages,
+    generateRandomString
 };

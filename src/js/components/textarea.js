@@ -8,8 +8,43 @@ export class Textarea extends Component {
         
         Utils.console.info(`creating mui-textarea for the <${element}> with options ${JSON.stringify(options)}`);
 
-        element.getElementsByTagName('textarea')[0].addEventListener('change', () => {
-            Utils.console.log('textarea value changed to "' + this.value + '"');
+        this.dom = Utils.extend(this.dom, {
+            textarea: element.getElementsByTagName('textarea')[0],
+            labels: element.parentNode.getElementsByTagName('label')
+        });
+
+        let textareaId = this.dom.textarea.getAttribute('id') || Utils.aria.setId(this.dom.textarea);
+
+        Utils.ifNodeList(this.dom.labels, () => {
+            Utils.aria.set(this.dom.textarea, 'labelledby', Utils.aria.setId(this.dom.labels[0]));
+
+            [].forEach.call(this.dom.labels, (label) => {
+                label.setAttribute('for', textareaId);
+
+                label.addEventListener('focus', () => {
+                    this.dom.textarea.focus();
+                });
+            });
+        }, false);
+
+        this.dom.textarea.addEventListener('focus', () => {
+            Utils.addClass(this.element, '-focused');
+
+            Utils.ifNodeList(this.dom.labels, () => {
+                Utils.makeElementsNotFocusable(this.dom.labels);
+            });
+        });
+
+        this.dom.textarea.addEventListener('blur', () => {
+            Utils.removeClass(this.element, '-focused');
+
+            Utils.ifNodeList(this.dom.labels, () => {
+                Utils.makeElementsFocusable(this.dom.labels);
+            });
+        });
+
+        this.dom.textarea.addEventListener('change', function() {
+            Utils.console.log(`textarea value changed to ${this.value}`);
 
             if (this.value == '') {
                 Utils.removeClass(element, '-has-value');
