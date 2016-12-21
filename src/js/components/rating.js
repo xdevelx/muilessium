@@ -30,6 +30,10 @@ export class Rating extends Component {
             this.updateRating(index + 1);
         }, true);
 
+        [].forEach.call(this.dom.stars, (star) => {
+            Utils.aria.set(star, 'hidden', true);
+        });
+
         this.state.initialized = true;
     }
 
