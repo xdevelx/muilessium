@@ -14,7 +14,7 @@ export class Input extends Component {
             icons: element.getElementsByClassName('fa')
         });
 
-        let inputId = Utils.aria.setId(this.dom.input);
+        let inputId = this.dom.input.getAttribute('id') || Utils.aria.setId(this.dom.input);
 
         [].forEach.call(this.dom.labels, (label) => {
             label.setAttribute('for', inputId);
