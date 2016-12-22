@@ -1,17 +1,25 @@
 // @name Select dropdown
-// @description Select dropdown component
+// @description Select dropdown component. Should be initialized, data-id attribute should be used to select id and name attributes for the hidden html select element. Should be usew with label for the better accessibility.
+// @depends input
 // @depends dropdown-options
 // @depends shadow-toggle
 //
 // @markup
-//  <div class='mui-select-dropdown'>
-//      <select name='select-4ukd' id='select-4ukd' >
-//          <option value=''>Option #1</option>
-//          <option value=''>Option #2</option>
-//          <option value=''>Option #3</option>
-//          <option value=''>Option #4</option>
-//      </select>
-//      <div class='icon'><i class='fa fa-angle-double-down'></i></div>
+//  <div class='mui-input-wrapper'>
+//      <label class='mui-input-label'>Select color</label>
+//      <div class='mui-select-dropdown'>
+//          <div class='select' data-id='fGrt3'>
+//              <div class='state'></div>
+//              <div class='mui-dropdown-options'>
+//                  <div class='option -selected' data-value='red'>Option 1</div>
+//                  <div class='option' data-value='green'>Option 2</div>
+//                  <div class='option' data-value='blue'>Option 3</div>
+//                  <div class='option' data-value='orange'>Option 4</div>
+//              </div>
+//          </div>
+//          <div class='mui-shadow-toggle'></div>
+//          <div class='icon'><i class='fa fa-angle-double-down'></i></div>
+//      </div>
 //  </div>
 
 
@@ -23,7 +31,6 @@
     
     user-select: none;
     
-    > select,
     > .select {
         height: @select-height;
         width: 100%;

@@ -2,49 +2,93 @@ import * as Utils from '../utils';
 import { Component } from '../component';
 
 
-const template = {
-    open: `<div class='select' id='{{id}}'><div class='state'></div><ul class='mui-dropdown-options'>`,
-    option: `<li class='option' data-value='{{value}}'>{{text}}</li>`,
-    close: `</ul></div><div class='mui-shadow-toggle'></div>`
-};
-
-
 export class SelectDropdown extends Component {
     constructor(element, options) {
         super(element, options);
 
         Utils.console.info(`creating mui-select-dropdown for the ${element} with options ${JSON.stringify(options)}`);
 
-        let sourceSelect = element.getElementsByTagName('select')[0],
-            sourceOptions = sourceSelect.options,
-            sourceIconHTML = element.getElementsByClassName('icon')[0].outerHTML,
-            newOptions = '';
-
-        this.selectedIndex = sourceSelect.selectedIndex || 0;
-
-        [].forEach.call(sourceOptions, function(option) {
-            newOptions += template.option
-                            .replace('{{value}}', option.value)
-                            .replace('{{text}}', option.text);
-        });
-
-        element.innerHTML = template.open.replace('{{id}}', sourceSelect.id) +
-                        newOptions +
-                        template.close +
-                        sourceIconHTML;
-
         this.dom = Utils.extend(this.dom, {
-            select:  this.element.getElementsByClassName('select')[0],
-            state:   this.element.getElementsByClassName('state')[0],
-            options: this.element.getElementsByClassName('mui-dropdown-options')[0],
-            shadow:  this.element.getElementsByClassName('mui-shadow-toggle')[0]
+            labels:      this.element.parentNode.getElementsByTagName('label'),
+            select:      this.element.getElementsByClassName('select')[0],
+            state:       this.element.getElementsByClassName('state')[0],
+            options:     this.element.getElementsByClassName('mui-dropdown-options')[0],
+            optionsList: this.element.getElementsByClassName('option'),
+            shadow:      this.element.getElementsByClassName('mui-shadow-toggle')[0],
+            icon:        this.element.getElementsByClassName('icon')[0]
         });
 
-        this.dom.optionsList = this.dom.options.getElementsByClassName('option');
+        this.state = Utils.extend(this.state, {
+            selectedIndex: this.getSelectedIndex(),
+            isOpened: false
+        });
 
-        this.isOpened = false;
+        this.createHiddenSelect();
+        this.initAria();
+        this.initControls();
         this.updateState();
 
+        this.state.initialized = true;
+    }
+
+
+    createHiddenSelect() {
+        let hiddenSelect = document.createElement('select'),
+            id = this.dom.select.getAttribute('data-id');
+
+        hiddenSelect.setAttribute('id', id);
+        hiddenSelect.setAttribute('name', id);
+
+        this.element.appendChild(hiddenSelect);
+        this.dom.hiddenSelect = hiddenSelect;
+
+        Utils.addClass(this.dom.hiddenSelect, '_hidden');
+        Utils.aria.set(this.dom.hiddenSelect, 'hidden', true);
+
+        [].forEach.call(this.dom.optionsList, (option) => {
+            let hiddenOption = document.createElement('option');
+
+            hiddenOption.value = option.getAttribute('data-value');
+            
+            this.dom.hiddenSelect.add(hiddenOption);
+        });
+
+        return this;
+    }
+
+
+    initAria() {
+        Utils.aria.setRole(this.dom.select, 'listbox');
+
+        [].forEach.call(this.dom.optionsList, (option) => {
+            Utils.aria.setRole(option, 'option');
+            Utils.aria.setId(option);
+        });
+
+        Utils.aria.set(this.dom.select, 'activedescendant',
+                    this.dom.optionsList[this.state.selectedIndex].getAttribute('id'));
+        Utils.aria.set(this.dom.state, 'hidden', true);
+        Utils.aria.set(this.dom.icon, 'hidden', true);
+
+        Utils.ifNodeList(this.dom.labels, () => {
+            let selectId = Utils.aria.setId(this.dom.select);
+
+            [].forEach.call(this.dom.labels, (label) => {
+                label.setAttribute('for', selectId);
+
+                label.addEventListener('focus', () => {
+                    this.dom.select.focus();
+                });
+            });
+
+            Utils.aria.set(this.dom.select, 'labelledby', Utils.aria.setId(this.dom.labels[0]));
+        });
+
+        return this;
+    }
+
+    
+    initControls() { 
         Utils.makeElementClickable(this.dom.select, () => {
             this.toggleDropdown();
         });
@@ -58,11 +102,43 @@ export class SelectDropdown extends Component {
             this.closeDropdown();
         });
 
-        this.state.initialized = true;
+        Utils.ifNodeList(this.dom.labels, () => {
+            this.dom.select.addEventListener('focus', () => {
+                Utils.makeElementsNotFocusable(this.dom.labels);
+            });
+
+            this.dom.select.addEventListener('blur', () => {
+                Utils.makeElementsFocusable(this.dom.labels);
+            });
+            
+        });
+
+        return this;
     }
 
 
+    getSelectedIndex() {
+        for (let i = 0; i < this.dom.options.length; i++) {
+            if (Utils.hasClass(this.dom.options[i], '-selected')) {
+                return i;
+            }
+        }
+
+        return 0;
+    }
+
+    openDropdown() {
+        this.state.isOpened = true;
+
+        Utils.addClass(this.element, '-opened');
+        Utils.addClass(this.dom.shadow, '-visible');
+
+        return this;
+    }
+
     toggleDropdown() {
+        this.state.isOpened = !this.state.isOpened;
+
         Utils.toggleClass(this.element, '-opened');
         Utils.toggleClass(this.dom.shadow, '-visible');
 
@@ -71,6 +147,8 @@ export class SelectDropdown extends Component {
 
 
     closeDropdown() {
+        this.state.isOpened = false;
+
         Utils.removeClass(this.element, '-opened');
         Utils.removeClass(this.dom.shadow, '-visible');
 
@@ -79,8 +157,12 @@ export class SelectDropdown extends Component {
 
 
     updateState(newSelectedIndex = 0) {
-        this.selectedIndex = newSelectedIndex;
-        this.dom.state.innerHTML = this.dom.optionsList[this.selectedIndex].innerHTML;
+        this.state.selectedIndex = newSelectedIndex;
+        this.dom.state.innerHTML = this.dom.optionsList[this.state.selectedIndex].innerHTML;
+        this.dom.hiddenSelect.selectedIndex = this.state.selectedIndex.toString();
+
+        Utils.aria.set(this.dom.select, 'activedescendant',
+                    this.dom.optionsList[this.state.selectedIndex].getAttribute('id'));
 
         return this;
     }
