@@ -1,35 +1,36 @@
 // @name Tags list
-// @description Tags list component
+// @description Tags list component. Should be initialized.
+// @requires FontAwesome
 //
 // @markup
-//      <ul class="mui-tags-list" role="navigation" aria-label="Tags list">
-//          <li class="mui-tag-wrapper -icon" role="presentation"><i class="fa fa-tags" aria-hidden="true"></i></li>
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag nature">nature</a></li>
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag art">art</a></li>
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag photography">photography</a></li>
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag mountains">mountains</a></li>
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag sea">sea</a></li>
-//      </ul>
+//      <div class="mui-tags-list" aria-label="Tags list">
+//          <div class="mui-tag-wrapper -icon" role="presentation"><i class="fa fa-tags" aria-hidden="true"></i></div>
+//          <div class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag nature">nature</a></div>
+//          <div class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag art">art</a></div>
+//          <div class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag photography">photography</a></div>
+//          <div class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag mountains">mountains</a></div>
+//          <div class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag sea">sea</a></div>
+//      </div>
 
 
 // @name Solid tags list
-// @description Tags list component (variation with solid tags)
+// @description Variation of the tags list component. Should be initialized too.
 //
 // @markup
-//      <ul class="mui-tags-list -solid" role="navigation" aria-label="Tags list">
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag nature">nature</a></li>
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag art">art</a></li>
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag photography">photography</a></li>
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag mountains">mountains</a></li>
-//          <li class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag sea">sea</a></li>
-//      </ul>
+//      <div class="mui-tags-list -solid" aria-label="Tags list">
+//          <div class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag nature">nature</a></div>
+//          <div class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag art">art</a></div>
+//          <div class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag photography">photography</a></div>
+//          <div class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag mountains">mountains</a></div>
+//          <div class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag sea">sea</a></div>
+//      </div>
 
 
 .@{muilessium-prefix}tag {
     display: inline-block;
     
     font-size: .7rem;
-    line-height: 1.2;
+    divne-height: 1.2;
     text-decoration: none;
     
     color: @tag-color;
@@ -54,12 +55,10 @@
 
 
 .@{muilessium-prefix}tags-list {
-    list-style: none;
-    
     user-select: none;
     
     > .@{muilessium-prefix}tag-wrapper {
-        display: inline;
+        display: inline-block;
         
         &:first-of-type > .@{muilessium-prefix}tag {
             &::first-letter {

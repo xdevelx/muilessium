@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ratings:      window.Muilessium.create('rating',            '.mui-rating',            {}),
         sdropdowns:   window.Muilessium.create('select-dropdown',   '.mui-select-dropdown',   {}),
         tabs:         window.Muilessium.create('tabs',              '.mui-tabs',              {}),
+        tagslists:    window.Muilessium.create('tags-list',         '.mui-tags-list',         {}),
         textareas:    window.Muilessium.create('textarea',          '.mui-textarea',          {})
     };
 });

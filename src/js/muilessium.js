@@ -12,6 +12,7 @@ import { InputRange       } from './components/input-range';
 import { Pagination       } from './components/pagination';
 import { SelectDropdown   } from './components/select-dropdown';
 import { Tabs             } from './components/tabs';
+import { TagsList         } from './components/tags-list';
 import { Textarea         } from './components/textarea';
 import { Rating           } from './components/rating';
 
@@ -29,6 +30,7 @@ const components = {
     'pagination':        Pagination,
     'select-dropdown':   SelectDropdown,
     'tabs':              Tabs,
+    'tags-list':         TagsList,
     'textarea':          Textarea,
     'rating':            Rating
 };
