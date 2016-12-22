@@ -1,17 +1,19 @@
 // @name ButtonDropdown
 // @description Dropdown button component. Should be initialized. WAI-ARIA labels should be added manually.
-// @depends button, dropdown-options, shadow-toggle
+// @depends button
+// @depends dropdown-options
+// @depends shadow-toggle
 //
 // @markup
-//      <div class="mui-button-dropdown">
-//          <a class="mui-button" aria-label="Dropdown menu for ...">button <i class="fa fa-arrow-down"></i></a>          
-//          <ul class="mui-dropdown-options">
-//              <li class="option"><a href="" aria-label="Link to the ...">Link #1</a></li>
-//              <li class="option"><a href="" aria-label="Link to the ...">Link #2</a></li>
-//              <li class="option"><a href="" aria-label="Link to the ...">Link #3</a></li>
-//          </ul>
-//          <div class="mui-shadow-toggle" aria-label="Close dropdown menu"></div>
-//      </div>
+//  <div class='mui-button-dropdown'>
+//      <a class='mui-button' aria-label='Dropdown menu for ...'>button <i class='fa fa-arrow-down'></i></a>          
+//      <ul class='mui-dropdown-options'>
+//          <li class='option'><a href='' aria-label='Link to the ...'>Link #1</a></li>
+//          <li class='option'><a href='' aria-label='Link to the ...'>Link #2</a></li>
+//          <li class='option'><a href='' aria-label='Link to the ...'>Link #3</a></li>
+//      </ul>
+//      <div class='mui-shadow-toggle' aria-label='Close dropdown menu'></div>
+//  </div>
 
 
 .@{muilessium-prefix}button-dropdown {

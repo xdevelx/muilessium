@@ -3,9 +3,9 @@ import { Component } from '../component';
 
 
 const template = {
-    open: '<div class="select" id="{{id}}"><div class="state"></div><ul class="mui-dropdown-options">',
-    option: '<li class="option" data-value="{{value}}">{{text}}</li>',
-    close: '</ul></div><div class="mui-shadow-toggle"></div>'
+    open: `<div class='select' id='{{id}}'><div class='state'></div><ul class='mui-dropdown-options'>`,
+    option: `<li class='option' data-value='{{value}}'>{{text}}</li>`,
+    close: `</ul></div><div class='mui-shadow-toggle'></div>`
 };
 
 

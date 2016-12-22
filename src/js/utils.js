@@ -101,7 +101,7 @@ const aria = {
         console.ulog(`setting ID to the element ${element}`);
 
         return ifExists(element, () => {
-            let newId = id || (`wa-${generateRandomString(6)}`);
+            let newId = id || (`mui-id-${generateRandomString(6)}`);
 
             console.ulog(`new ID for the element ${element} is #${newId}`);
 

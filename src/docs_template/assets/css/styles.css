@@ -179,6 +179,11 @@ body {
     background: #eaeaea;
 }
 
+.component-preview .example > .mui-lazy-load {
+    height: 128px;
+    width: 128px;
+}
+
 .mui-page-footer {
     height: 3rem;
     line-height: 3rem;

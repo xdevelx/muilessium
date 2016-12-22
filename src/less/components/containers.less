@@ -1,3 +1,9 @@
+// @name Content container
+// @description Container for content with limited width.
+//
+// @markup
+//  <div class='mui-content-container'></div>
+
 .@{muilessium-prefix}content-container {
     position: relative;
     width: 90%;
@@ -11,6 +17,13 @@
         max-width: @global-width-limit;
     }
 }
+
+
+// @name Page container
+// @description Container for creating sticky footer. Should include all page content before page-footer.
+//
+// @markup
+//  <div class='mui-page-container'></div>
 
 
 .@{muilessium-prefix}page-container {
