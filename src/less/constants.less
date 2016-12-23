@@ -29,23 +29,22 @@
 // -------------------------------------
 
 @white:                                 #FFFFFF;
-@black:                                 #252422;
-@grey:                                  #CCC5B9;
-@light-grey:                            #CCC5B9;
-@dark-grey:                             #403D39;
-@primary-color:                         #1A7099;
-@secondary-color:                       #1A9992;
-@accent-color:                          #ED1C1C;
-@valid-color:                           #0A9951;
-@invalid-color:                         #ED1C1C;
-@outline-color:                         #2BBBFF;
-@shadow-color:                          rgba(0, 0, 0, .3);
+@black:                                 #212322; // Pantone Coated 419 C
+@grey:                                  #C7C1BA; // Pantone Uncoated 400 U
+@light-grey:                            #F3F3F3;
+@dark-grey:                             #4C4845; // Pantone Uncoated Neutral Black U
+@primary-color:                         #3B62A1; // Pantone Metallic 8183 C
+@secondary-color:                       #2A3A6E; // Pantone Metallic 8783 C
+@accent-color:                          #EF3340; // Pantone Coated Red 032 C
+@valid-color:                           #129447; // Pantone Uncoated 2426 U
+@invalid-color:                         @accent-color;
+@shadow-color:                          fade(@black, 10%);
 
 @default-color:                         @black;
 @default-background-color:              @white;
 
 @default-link-color:                    @secondary-color;
-@default-link-color__focus:             darken(@secondary-color, 5%);
+@default-link-color__focus:             @black;
 @default-link-color__disabled:          @grey;
 
 @selection-color:                       @white;
@@ -86,11 +85,11 @@
 
 @accordion-color:                       @black;
 @accordion-bgcolor:                     @white;
-@accordion-label-color:                 @black;
+@accordion-label-color:                 @white;
 @accordion-label-color__focus:          @white;
-@accordion-label-bgcolor:               @light-grey;
-@accordion-label-bgcolor__focus:        @primary-color;
-@accordion-border-color:                @dark-grey;
+@accordion-label-bgcolor:               @primary-color;
+@accordion-label-bgcolor__focus:        @black;
+@accordion-border-color:                @black;
 @accordion-border-radius:               @global-border-radius;
 @accordion-border-width:                @global-border-width;
 @accordion-animation-duration:          200ms;
@@ -105,17 +104,6 @@
 
 @badge-color:                           @white;
 @badge-bgcolor:                         @accent-color;
-
-
-
-// -------------------------------------
-// Bar chart
-// src/less/components/bar-chart.less
-// -------------------------------------
-
-@bar-chart-color__hover:                @primary-color;
-@bar-chart-animation-duration:          200ms;
-@bar-chart-animation-function:          cubic-bezier(.85, .11, .46, .98);
 
 
 
@@ -135,7 +123,7 @@
 // -------------------------------------
 
 @breadcrumb-color:                      @white;
-@breadcrumb-color__focus:               lighten(@primary-color, 50%);
+@breadcrumb-color__focus:               @black;
 @breadcrumb-bgcolor:                    @primary-color;
 @breadcrumb-height:                     @global-ui-height;
 @breadcrumb-border-radius:              @global-border-radius;
@@ -169,11 +157,11 @@
 @button-color-dangerous__active:        @button-color;
 @button-color-ghost:                    @black;
 @button-bgcolor:                        @primary-color;
-@button-bgcolor__focus:                 darken(@button-bgcolor, 5%);
-@button-bgcolor__active:                darken(@button-bgcolor, 15%);
+@button-bgcolor__focus:                 @black;
+@button-bgcolor__active:                @black;
 @button-bgcolor-dangerous:              @accent-color;
-@button-bgcolor-dangerous__focus:       darken(@button-bgcolor-dangerous, 5%);
-@button-bgcolor-dangerous__active:      darken(@button-bgcolor-dangerous, 15%);
+@button-bgcolor-dangerous__focus:       darken(@button-bgcolor-dangerous, 20%);
+@button-bgcolor-dangerous__active:      darken(@button-bgcolor-dangerous, 20%);
 @button-color-ghost__focus:             @white;
 @button-bgcolor-ghost__focus:           @primary-color;
 @button-height:                         @global-ui-height;
@@ -209,7 +197,7 @@
 
 @carousel-color:                        @white;
 @carousel-controls-background:          @black;
-@carousel-controls-background__focus:   @primary-color;
+@carousel-controls-background__focus:   @black;
 @carousel-animation-duration:           500ms;
 @carousel-animation-function:           cubic-bezier(.85, .11, .46, .98);
 @carousel-indicator-height:             1rem;
@@ -282,35 +270,11 @@
 
 
 // -------------------------------------
-// Comment
-// src/less/components/comment.less
-// -------------------------------------
-
-@comment-color:                         @black;
-@comment-bgcolor:                       @white;
-@comment-author-color:                  @black;
-@comment-author-color__focus:           lighten(@black, 20%);
-@comment-date-color:                    @grey;
-@comment-avatar-bgcolor:                lighten(@comment-color, 20%);
-
-
-
-// -------------------------------------
 // Image
 // src/less/components/image.less
 // -------------------------------------
 
 @image-border-radius:                   @global-border-radius;
-
-
-
-// -------------------------------------
-// Info bubble
-// src/less/components/info-bubble.less
-// -------------------------------------
-
-@info-bubble-color:                     @white;
-@info-bubble-bgcolor:                   fade(@black, 80%);
 
 
 
@@ -359,20 +323,6 @@
 
 @lazy-load-animation-function:          cubic-bezier(.85, .11, .46, .98);
 @lazy-load-animation-duration:          1s;
-
-
-
-// -------------------------------------
-// Like
-// src/less/components/like.less
-// -------------------------------------
-
-@like-color:                            @grey;
-@like-color__focus:                     darken(@grey, 10%);
-@like-color__active:                    darken(@grey, 20%);
-@like-color__liked:                     @accent-color;
-@like-animation-duration:               500ms;
-@like-animation-function:               cubic-bezier(.53, .05, .13, .94);
 
 
 
@@ -481,18 +431,6 @@
 
 
 // -------------------------------------
-// Pie chart
-// src/less/components/pie-chart.less
-// -------------------------------------
-
-@pie-chart-color__hover:                @primary-color;
-@pie-chart-hole-bgcolor:                @white;
-@pie-chart-animation-duration:          200ms;
-@pie-chart-animation-function:          cubic-bezier(.85, .11, .46, .98);
-
-
-
-// -------------------------------------
 // Post footer
 // src/less/components/post-footer.less
 // -------------------------------------
@@ -522,15 +460,6 @@
 // -------------------------------------
 
 @post-background-color:                 @white;
-
-
-
-// -------------------------------------
-// Progress bar
-// src/less/components/proress-bar.less
-// -------------------------------------
-
-@progress-bar-color:                    @primary-color;
 
 
 
@@ -626,7 +555,7 @@
 @tabs-color__current:                   @black;
 @tabs-bgcolor__focus:                   @primary-color;
 @tabs-bgcolor__current:                 @white;
-@tabs-border-color:                     @light-grey;
+@tabs-border-color:                     @grey;
 @tabs-label-height:                     @global-ui-height;
 @tabs-border-width:                     @global-border-width;
 @tabs-border-radius:                    @global-border-radius;

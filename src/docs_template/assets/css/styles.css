@@ -1,5 +1,5 @@
 aside {
-    background: #222;
+    background: #212322;
     color: #fff;
     padding: 5rem 1rem;
 }
@@ -36,7 +36,7 @@ body {
 
 .aside-navigation a:hover,
 .aside-navigation a:focus {
-    color: #269;
+    color: #3b62a1;
 }
 
 .aside-navigation .sub-list {
@@ -57,7 +57,7 @@ body {
 }
 
 .grid-preview .mui-column {
-    background: #269;
+    background: #3b62a1;
     color: #fff;
     text-align: center;
     font-size: .9rem;
@@ -78,7 +78,7 @@ body {
     height: calc(100vh - 4rem);
     min-height: 400px;
 
-    background-color: #269;
+    background-color: #3b62a1;
     background-image: linear-gradient(white 2px, transparent 2px),
         linear-gradient(90deg, white 2px, transparent 2px),
         linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
@@ -88,7 +88,7 @@ body {
 }
 
 .mui-hero-header.-blueprint .content {
-    text-shadow: 0 30px 200px #000, 0 15px 100px #000;
+    text-shadow: 0 30px 200px #212322, 0 15px 100px #212322;
 }
 
 .mui-hero-header.-blueprint .project {
@@ -110,12 +110,12 @@ body {
     margin-top: 1.5rem;
     color: #fff;
     border-color: #fff;
-    background: #ED1C1C;
+    background: #EF3340;
 }
 
 .mui-hero-header.-blueprint .mui-button:hover,
 .mui-hero-header.-blueprint .mui-button:focus {
-    background: #000;
+    background: #212322;
 }
 
 .mui-content-container.-separate {
@@ -133,24 +133,24 @@ body {
 .component-preview > .filename {
     font-size: .7rem;
     font-style: italic;
-    color: #777;
+    color: #C7C1BA;
     margin-bottom: .5rem;
 }
 
 .component-preview > .description {
     font-size: .9rem;
-    color: #5c5c5c;
+    color: #4C4845;
     margin-bottom: .3rem;
 }
 
 .component-preview > .depends {
-    color: #0123ab;
+    color: #2A3A6E;
     font-size: .7rem;
     margin-bottom: .3rem;
 }
 
 .component-preview > .requires {
-    color: #ab0123;
+    color: #EF3340;
     font-size: .7rem;
     margin-bottom: .3rem;
 }
@@ -163,8 +163,14 @@ body {
     margin: 2rem auto;
 }
 
-.component-preview .code {    
-    border-left: 3px solid #333;
+.component-preview .code,
+.code-example {    
+    border-left: 3px solid #212322;
+}
+
+
+.code-example {
+    margin: 1rem 0;
 }
 
 
@@ -176,7 +182,7 @@ body {
 .component-preview .example > .mui-ribbon-wrapper {
     height: 10rem;
     margin-top: 1rem;
-    background: #eaeaea;
+    background: #E1E7EE;
 }
 
 .component-preview .example > .mui-lazy-load {
@@ -192,125 +198,83 @@ body {
 
 
 .pln {
-    color: #333333;
+    color: #212322;
 }
 
 @media screen {
     /* string content */
     .str {
-        color: #dd1144;
+        color: #EF3340;
     }
 
     /* a keyword */
     .kwd {
-        color: #333333;
+        color: #212322;
     }
 
     /* a comment */
     .com {
-        color: #999988;
+        color: #C7C1BA;
     }
 
     /* a type name */
     .typ {
-        color: #445588;
+        color: #3B62A1;
     }
 
     /* a literal value */
     .lit {
-        color: #445588;
+        color: #2A3A6E;
     }
 
     /* punctuation */
     .pun {
-        color: #333333;
+        color: #212322;
     }
 
     /* lisp open bracket */
     .opn {
-        color: #333333;
+        color: #212322;
     }
 
     /* lisp close bracket */
     .clo {
-        color: #333333;
+        color: #212322;
     }
 
     /* a markup tag name */
     .tag {
-        color: navy;
+        color: #3B62A1;
     }
 
     /* a markup attribute name */
     .atn {
-        color: teal;
+        color: #2A3A6E;
     }
 
     /* a markup attribute value */
     .atv {
-        color: #dd1144;
+        color: #EF3340;
     }
 
     /* a declaration */
     .dec {
-        color: #333333;
+        color: #212322;
     }
 
     /* a variable name */
     .var {
-        color: teal;
+        color: #2A3A6E;
     }
 
     /* a function name */
     .fun {
-        color: #990000;
-    }
-}
-
-@media print, projection {
-    .str {
-        color: #006600;
-    }
-
-    .kwd {
-        color: #006;
-        font-weight: bold;
-    }
-
-    .com {
-        color: #600;
-        font-style: italic;
-    }
-
-    .typ {
-        color: #404;
-        font-weight: bold;
-    }
-
-    .lit {
-        color: #004444;
-    }
-
-    .pun, .opn, .clo {
-        color: #444400;
-    }
-
-    .tag {
-        color: #006;
-        font-weight: bold;
-    }
-
-    .atn {
-        color: #440044;
-    }
-
-    .atv {
-        color: #006600;
+        color: #212322;
     }
 }
 
 pre.prettyprint {
-    background: #eaeaea;
+    background: #F3F3F3;
     font-family: Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, monospace;
     font-size: .6rem;
     padding: 1rem;
