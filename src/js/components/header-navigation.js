@@ -12,7 +12,8 @@ export class HeaderNavigation extends Component {
             toggles:   element.getElementsByClassName('mui-navigation-toggle'),
             hamburger: element.getElementsByClassName('mui-navigation-toggle')[0],
             shadow:    element.getElementsByClassName('mui-shadow-toggle')[0],
-            linksList: element.getElementsByClassName('links-list')[0]
+            linksList: element.getElementsByClassName('links-list')[0],
+            links:     element.getElementsByTagName('a')
         });
 
         this.state = Utils.extend(this.state, {
@@ -20,8 +21,32 @@ export class HeaderNavigation extends Component {
             mobile: false
         });
 
+        [].forEach.call(this.dom.toggles, (toggle) => {
+            Utils.aria.setRole(toggle, 'button');
+        });
+
+        Utils.aria.set(this.dom.hamburger, 'haspopup', true);
+
+        Utils.aria.set(this.dom.linksList, 'labelledby', Utils.aria.setId(this.dom.hamburger));
+
         Utils.makeChildElementsClickable(this.element, this.dom.toggles, () => {
             this.toggleNavigation();
+        });
+
+        Utils.makeChildElementsClickable(this.element, this.dom.links, (index) => {
+            let href = this.dom.links[index].getAttribute('href');
+
+            if (href[0] === '#') {
+                this.closeNavigation();
+
+                if (window.location.hash === href) {
+                    window.location.hash = '';
+                }
+
+                window.location.hash = href.substring(1);
+            } else {
+                window.location = href;
+            }
         });
 
         this.update();

@@ -133,6 +133,13 @@ const aria = {
         return ifExists(element, () => {
             element.setAttribute(`aria-${state}`, !stringToBoolean(element.getAttribute(`aria-${state}`)));
         });
+    },
+
+    hideIcons: (className) => {
+        [].forEach.call(document.getElementsByClassName(className), (icon) => {
+            console.ulog(`setting aria-hidden = true to the icon element: ${icon} with class ${className}`);
+            icon.setAttribute('aria-hidden', true);
+        });
     }
 };
 

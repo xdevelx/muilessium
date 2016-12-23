@@ -45,6 +45,7 @@ class Muilessium {
         }
         
         Utils.normalizeTabIndex();
+        Utils.aria.hideIcons('fa');
 
         Utils.lazyLoadImages(() => {
             Utils.objectFitImages();
