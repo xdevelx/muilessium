@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         inputRange:   window.Muilessium.create('input-range',       '.mui-input-range',       {}),
         inputs:       window.Muilessium.create('input',             '.mui-input',             {}),
         paginations:  window.Muilessium.create('pagination',        '.mui-pagination',        {}),
+        radios:       window.Muilessium.create('radio',             '.mui-radio',             {}),
         ratings:      window.Muilessium.create('rating',            '.mui-rating',            {}),
         sdropdowns:   window.Muilessium.create('select-dropdown',   '.mui-select-dropdown',   {}),
         tabs:         window.Muilessium.create('tabs',              '.mui-tabs',              {}),

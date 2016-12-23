@@ -10,6 +10,7 @@ import { HeaderNavigation } from './components/header-navigation';
 import { Input            } from './components/input';
 import { InputRange       } from './components/input-range';
 import { Pagination       } from './components/pagination';
+import { Radio            } from './components/radio';
 import { SelectDropdown   } from './components/select-dropdown';
 import { Tabs             } from './components/tabs';
 import { TagsList         } from './components/tags-list';
@@ -28,6 +29,7 @@ const components = {
     'input':             Input,
     'input-range':       InputRange,
     'pagination':        Pagination,
+    'radio':             Radio,
     'select-dropdown':   SelectDropdown,
     'tabs':              Tabs,
     'tags-list':         TagsList,
