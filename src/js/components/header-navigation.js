@@ -6,7 +6,7 @@ export class HeaderNavigation extends Component {
     constructor(element, options) {
         super(element, options);
         
-        Utils.console.info(`creating header-navigation for the ${element} with options ${JSON.stringify(options)}`);
+        Utils.console.log(`creating header-navigation for the <${element.nodeName}> with options ${JSON.stringify(options)}`);
 
         this.dom = Utils.extend(this.dom, {
             toggles:   element.getElementsByClassName('mui-navigation-toggle'),
@@ -26,6 +26,8 @@ export class HeaderNavigation extends Component {
         this.update();
 
         window.addEventListener('resize', this.update.bind(this));
+
+        Utils.console.ok('header-navigation has been created');
     }
 
 
@@ -68,6 +70,8 @@ export class HeaderNavigation extends Component {
 
 
     openNavigation() {
+        Utils.console.log(`opening navigation`);
+
         if (!this.state.opened) {
             this.state.opened = true;
             this.dom.shadow.tabIndex = 0;
@@ -87,6 +91,8 @@ export class HeaderNavigation extends Component {
 
 
     closeNavigation() {
+        Utils.console.log(`closing navigation`);
+
         if (this.state.opened) {
             this.state.opened = false;
             this.dom.shadow.tabIndex = -1;
@@ -105,6 +111,8 @@ export class HeaderNavigation extends Component {
     }
     
     toggleNavigation() {
+        Utils.console.log(`toggling navigation`);
+
         if (this.state.opened) {
             this.closeNavigation();
         } else {
@@ -116,6 +124,8 @@ export class HeaderNavigation extends Component {
 
 
     transformToMobile() {
+        Utils.console.log(`transforming navigation to the mobile version`);
+
         if (!this.state.mobile) {
             this.closeNavigation();
 
@@ -130,6 +140,8 @@ export class HeaderNavigation extends Component {
 
 
     transformToDesktop() {
+        Utils.console.log(`transforming navigation to the desktop version`);
+
         if (this.state.mobile) {
             this.closeNavigation();
 
@@ -145,6 +157,8 @@ export class HeaderNavigation extends Component {
 
 
     update() {
+        Utils.console.log(`updating navigation`);
+
         let screenWidth = window.innerWidth;
 
         if (screenWidth < 600) {

@@ -6,7 +6,7 @@ export class Tabs extends Component {
     constructor(element, options) {
         super(element, options);
         
-        Utils.console.info(`creating mui-tabs for the <${element}> with options ${JSON.stringify(options)}`);
+        Utils.console.log(`creating mui-tabs for the <${element.nodeName}> with options ${JSON.stringify(options)}`);
 
         this.dom = Utils.extend(this.dom, {
             tabs: this.element.getElementsByClassName('tab'),
@@ -20,6 +20,8 @@ export class Tabs extends Component {
 
         this.initAria();
         this.initControls();
+
+        Utils.console.ok('tabs have been created');
     }
 
 
@@ -49,6 +51,8 @@ export class Tabs extends Component {
 
     initControls() {
         Utils.makeChildElementsClickable(this.element, this.dom.labels, (index) => {
+            Utils.console.elog(`label #${index} of the tabs has been clicked`);
+
             this.makeTabInactive(this.state.current);
             this.makeTabActive(index);
         });
@@ -68,6 +72,8 @@ export class Tabs extends Component {
 
 
     makeTabActive(index) {
+        Utils.console.log(`making tab #${index} active`);
+
         Utils.addClass(this.dom.labels[index], '-active');
         Utils.addClass(this.dom.tabs[index],   '-active');
         Utils.aria.set(this.dom.labels[index], 'selected', true);
@@ -83,6 +89,8 @@ export class Tabs extends Component {
 
 
     makeTabInactive(index) {
+        Utils.console.log(`making tab #${index} inactive`);
+
         Utils.removeClass(this.dom.labels[index], '-active');
         Utils.removeClass(this.dom.tabs[index],   '-active');
         Utils.aria.set(this.dom.labels[index], 'selected', false);
@@ -96,6 +104,8 @@ export class Tabs extends Component {
 
 
     goToPreviousTab() {
+        Utils.console.log(`going to the previous tab`);
+
         if (this.state.current > 0) {
             this.makeTabInactive(this.state.current);
             this.makeTabActive(this.state.current - 1);
@@ -106,6 +116,8 @@ export class Tabs extends Component {
 
 
     goToNextTab() {
+        Utils.console.log(`going to the next tab`);
+
         if (this.state.current < this.dom.tabs.length - 1) {
             this.makeTabInactive(this.state.current);
             this.makeTabActive(this.state.current + 1);
@@ -116,6 +128,8 @@ export class Tabs extends Component {
 
 
     keyDownListener(keyCode) {
+        Utils.console.elog(`key ${keyCode} has been pressed on the tabs component`);
+
         switch (keyCode) {
             case 37: // Arrow Left
                 this.goToPreviousTab();

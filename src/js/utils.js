@@ -3,23 +3,31 @@ var objectFitImages = require('object-fit-images');
 
 const console = {
     log: (message) => {
-        window.console.log(`Muilessium: ${message}`);
+        window.console.log(`${message}`);
+    },
+
+    ok: (message) => {
+        window.console.log(`[ OK ] ${message}`);
     },
 
     ulog: (message) => {
-        window.console.log(`Muilessium: ---> ${message}`);
+        window.console.log(`- ${message}`);
+    },
+
+    elog: (message) => {
+        window.console.log(`[ EVENT ] ${message}`);
     },
 
     info: (message) => {
-        window.console.info(`Muilessium: ${message}`);
+        window.console.info(`${message}`);
     },
 
     warning: (message) => {
-        window.console.warn(`[WARNING] Muilessium: ${message}`);
+        window.console.warn(`[ WARNING ] ${message}`);
     },
 
     error: (message) => {
-        window.console.error(`[ERROR] Muilessium: ${message}`);
+        window.console.error(`[ ERROR ] ${message}`);
     }
 };
 
@@ -70,26 +78,18 @@ const ajax = {
 
 const aria = {
     set: (element, property, value = true) => {
-        console.ulog(`setting aria-${property} = ${value} to the element: ${element}`);
-
         return setAttribute(element, `aria-${property}`, value);
     },
 
     setRole: (element, role) => {
-        console.ulog(`setting role ${role} to the element ${element}`);
-
         return setAttribute(element, 'role', role);
     },
 
     removeRole: (element) => {
-        console.ulog(`removing role from the element ${element}`);
-
         return removeAttribute(element, 'role');
     },
 
     setId: (element, id) => {
-        console.ulog(`setting ID to the element ${element}`);
-
         const newId = id || (`mui-id-${generateRandomString(6)}`);
 
         setAttribute(element, 'id', newId);
@@ -98,26 +98,21 @@ const aria = {
     },
 
     get: (element, property) => {
-        console.ulog(`getting aria-${property} value from the element ${element}`);
-
         return getAttribute(element, `aria-${property}`);
     },
 
     getRole: (element) => {
-        console.ulog(`getting role from element ${element}`);
-
         return getAttribute(element, 'role');
     },
 
     toggleState: (element, state) => {
-        console.ulog(`toggling aria-${state} value for the element ${element}`);
-
         setAttribute(element, `aria-${state}`, !stringToBoolean(getAttribute(element, `aria-${state}`)));
     },
 
     hideIcons: (className) => {
+        console.log('hiding icons...');
+
         [].forEach.call(document.getElementsByClassName(className), (icon) => {
-            console.ulog(`setting aria-hidden = true to the icon element: ${icon} with class ${className}`);
             setAttribute(icon, 'aria-hidden', true);
         });
     }
@@ -125,7 +120,7 @@ const aria = {
 
 
 function setAttribute(element, attribute, value) {
-    console.ulog(`setting attribute ${attribute} = ${value} to the element ${element}`);
+    console.ulog(`setting attribute ( ${attribute}=${value} ) to the <${element.nodeName}>`);
 
     return ifExists(element, () => {
         return element.setAttribute(attribute, value);
@@ -134,6 +129,8 @@ function setAttribute(element, attribute, value) {
 
 
 function getAttribute(element, attribute) {
+    console.ulog(`getting attribute ( ${attribute} ) from the <${element.nodeName}>`);
+
     return ifExists(element, () => {
         return element.getAttribute(attribute);
     });
@@ -141,6 +138,8 @@ function getAttribute(element, attribute) {
 
 
 function removeAttribute(element, attribute) {
+    console.ulog(`removing attribute ( ${attribute} ) from the <${element.nodeName}>`);
+
     return ifExists(element, () => {
         return element.removeAttribute(attribute);
     });
@@ -190,7 +189,7 @@ function isNotInPage(element) {
 
 
 function hasClass(element, classForTest) {
-    console.ulog(`checking for the element ${element} has class .${classForTest}`);
+    console.ulog(`checking for the <${element.nodeName}> has ( class=${classForTest} )`);
 
     return ifExists(element, () => {
         // Use className instead of classList because IE11 does not have support for slassList on SVG
@@ -200,7 +199,7 @@ function hasClass(element, classForTest) {
 
 
 function hasNotClass(element, classForTest) {
-    console.ulog(`checking for element ${element} has not class ${classForTest}`);
+    console.ulog(`checking for <${element.nodeName}> has not ( class=${classForTest} )`);
 
     return ifExists(element, () => {
         return !hasClass(element, classForTest);
@@ -209,11 +208,11 @@ function hasNotClass(element, classForTest) {
 
 
 function addClass(element, newClass) {
-    console.ulog(`adding class ${newClass} to the element ${element}`);
+    console.ulog(`adding ( class=${newClass} ) to the <${element.nodeName}>`);
 
     return ifExists(element, () => {
         if (hasClass(element, newClass)) {
-            console.ulog(`class ${newClass} already added to the element ${element}`);
+            console.ulog(`( class=${newClass} ) already added to the <${element.nodeName}>`);
             return;
         }
 
@@ -224,7 +223,7 @@ function addClass(element, newClass) {
 
 
 function removeClass(element, classForRemoving) {
-    console.ulog(`removing class ${classForRemoving} from the element ${element}`);
+    console.ulog(`removing ( class=${classForRemoving} ) from the <${element.nodeName}>`);
 
     return ifExists(element, () => {
         // Use className instead of classList because IE11 does not have support for slassList on SVG
@@ -234,7 +233,7 @@ function removeClass(element, classForRemoving) {
 
 
 function toggleClass(element, classForToggle) {
-    console.ulog(`togle class ${classForToggle} for element ${element}`);
+    console.ulog(`toggling ( class=${classForToggle} ) for <${element.nodeName}>`);
 
     return ifExists(element, () => {
         if (hasNotClass(element, classForToggle)) {
@@ -247,6 +246,8 @@ function toggleClass(element, classForToggle) {
 
 
 function normalizeTabIndex() {
+    console.log('normalizing tabIndexes...');
+
     var focusableElements = [].slice.call(
         document.querySelectorAll('a, button, input, label, select, textarea, object')
     );
@@ -302,7 +303,7 @@ function isDescendant(parent, child) {
 
 
 function makeElementFocusable(element) {
-    console.ulog(`making element ${element} focusable`);
+    console.ulog(`making <${element.nodeName}> focusable`);
 
     return ifExists(element, () => {
         element.tabIndex = 0;
@@ -318,6 +319,8 @@ function makeElementsFocusable(elements) {
 
 
 function makeElementNotFocusable(element) {
+    console.ulog(`making <${element.nodeName}> not focusable`);
+
     element.tabIndex = -1;
 }
 
@@ -330,6 +333,8 @@ function makeElementsNotFocusable(elements) {
 
 
 function makeElementClickable(element, callback) {
+    console.ulog(`making <${element.nodeName}> clickable`);
+
     element.tabIndex = 0;
 
     element.addEventListener('click', (e) => {
@@ -347,6 +352,8 @@ function makeElementClickable(element, callback) {
 
 
 function makeChildElementsClickable(element, childs, callback, mouseOnly = false) {
+    console.ulog(`making child elements of the <${element.nodeName}> clickable`);
+
     element.addEventListener('click', (e) => {
         let index = -1;
 
@@ -382,6 +389,8 @@ function makeChildElementsClickable(element, childs, callback, mouseOnly = false
 
 
 function lazyLoadImages(callback) {
+    console.log('loading lazy images...');
+
     [].forEach.call(document.querySelectorAll('.mui-lazy-load'), (image) => {
         image.src = image.getAttribute('data-src');
 

@@ -6,7 +6,7 @@ export class Carousel extends Component {
     constructor(element, options) {
         super(element, options);
 
-        Utils.console.info(`creating carousel for the ${element} with options ${JSON.stringify(options)}`);
+        Utils.console.log(`creating carousel for the <${element.nodeName}> with options ${JSON.stringify(options)}`);
 
         this.dom = Utils.extend(this.dom, {
             slides: element.getElementsByClassName('mui-slide'),
@@ -25,6 +25,9 @@ export class Carousel extends Component {
         this.initAria();
         this.initControls();
         this.makeSlideActive(0);
+        this.startRotating();
+
+        Utils.console.ok('carousel has been created');
     }
 
 
@@ -54,13 +57,17 @@ export class Carousel extends Component {
 
 
     startRotating() {
-        this.state.rotateInterval = setInterval(this.rotate.bind(this, 'next'), 3000);
+        Utils.console.log(`start rotating carousel`);
+
+        this.state.rotateInterval = setInterval(this.rotate.bind(this, 'next'), 5000);
 
         return this;
     }
 
 
     stopRotating() {
+        Utils.console.log(`stop rotating carousel`);
+
         clearInterval(this.state.rotateInterval);
 
         return this;
@@ -68,6 +75,8 @@ export class Carousel extends Component {
 
 
     makeSlideActive(index) {
+        Utils.console.log(`making carousel slide #${index} active`);
+
         Utils.addClass(this.dom.slides[index],     '-active');
         Utils.addClass(this.dom.indicators[index], '-active');
 
@@ -76,6 +85,8 @@ export class Carousel extends Component {
 
 
     makeSlideInactive(index) {
+        Utils.console.log(`making carousel slide #${index} inactive`);
+
         Utils.removeClass(this.dom.slides[index],     '-active');
         Utils.removeClass(this.dom.indicators[index], '-active');
 
@@ -84,6 +95,8 @@ export class Carousel extends Component {
 
 
     rotate(param) {
+        Utils.console.log(`rotating carousel`);
+
         let currentSlide = this.state.currentSlide,
             nextSlide = 0;
 

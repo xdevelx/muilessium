@@ -6,9 +6,11 @@ export class Pagination extends Component {
     constructor(element, options) {
         super(element, options);
  
-        Utils.console.info(`creating button for the ${element} with options ${JSON.stringify(options)}`);
+        Utils.console.log(`creating button for the <${element.nodeName}> with options ${JSON.stringify(options)}`);
 
         this.initAria();
+
+        Utils.console.ok('pagination has been created');
     }
 
 

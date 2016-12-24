@@ -40,22 +40,27 @@ const components = {
 
 class Muilessium {
     constructor() {
+        Utils.console.log('------------------------');
+        Utils.console.log('   <<< MUILESSIUM >>>   ');
+        Utils.console.log('------------------------');
+
         if (typeof Muilessium.instance === 'object') {
             return Muilessium.instance;
         }
         
         Utils.normalizeTabIndex();
-        Utils.aria.hideIcons('fa');
 
         Utils.lazyLoadImages(() => {
             Utils.objectFitImages();
         });
 
+        Utils.aria.hideIcons('fa');
+
         this.Utils = Utils;
         
         Muilessium.instance = this;
 
-        return this;
+        Utils.console.ok('muilessium has been created');
     }
 
     create(type, selector, options) {

@@ -6,7 +6,7 @@ export class Input extends Component {
     constructor(element, options) {
         super(element, options);
         
-        Utils.console.info(`creating input for the ${element} with options ${JSON.stringify(options)}`);
+        Utils.console.log(`creating input for the <${element.nodeName}> with options ${JSON.stringify(options)}`);
 
         this.dom = Utils.extend(this.dom, {
             input: element.getElementsByTagName('input')[0],
@@ -15,6 +15,8 @@ export class Input extends Component {
 
         this.initAria();
         this.initControls();
+
+        Utils.console.ok('input has been created');
     }
 
 
@@ -62,9 +64,9 @@ export class Input extends Component {
             Utils.console.log('input value changed to "' + this.value + '"');
 
             if (this.value == '') {
-                Utils.removeClass(element, '-has-value');
+                Utils.removeClass(this.element, '-has-value');
             } else {
-                Utils.addClass(element, '-has-value');
+                Utils.addClass(this.element, '-has-value');
             }
         });
 

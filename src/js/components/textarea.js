@@ -6,7 +6,7 @@ export class Textarea extends Component {
     constructor(element, options) {
         super(element, options);
         
-        Utils.console.info(`creating mui-textarea for the <${element}> with options ${JSON.stringify(options)}`);
+        Utils.console.log(`creating mui-textarea for the <${element.nodeName}> with options ${JSON.stringify(options)}`);
 
         this.dom = Utils.extend(this.dom, {
             textarea: element.getElementsByTagName('textarea')[0],
@@ -15,6 +15,8 @@ export class Textarea extends Component {
 
         this.initAria();
         this.initControls();
+
+        Utils.console.ok('textarea has been created');
     }
 
 
@@ -42,32 +44,43 @@ export class Textarea extends Component {
             });
         }, false);
 
-        this.dom.textarea.addEventListener('focus', () => {
-            Utils.addClass(this.element, '-focused');
-
-            Utils.ifNodeList(this.dom.labels, () => {
-                Utils.makeElementsNotFocusable(this.dom.labels);
-            });
-        });
-
-        this.dom.textarea.addEventListener('blur', () => {
-            Utils.removeClass(this.element, '-focused');
-
-            Utils.ifNodeList(this.dom.labels, () => {
-                Utils.makeElementsFocusable(this.dom.labels);
-            });
-        });
-
-        this.dom.textarea.addEventListener('change', function() {
-            Utils.console.log(`textarea value changed to ${this.value}`);
-
-            if (this.value == '') {
-                Utils.removeClass(element, '-has-value');
-            } else {
-                Utils.addClass(element, '-has-value');
-            }
-        });
+        this.dom.textarea.addEventListener('focus',  this.focusEventListener.bind(this));
+        this.dom.textarea.addEventListener('blur',   this.blurEventListener.bind(this));
+        this.dom.textarea.addEventListener('change', this.changeEventListener.bind(this));
 
         return this;
+    }
+
+
+    focusEventListener() {
+        Utils.console.elog(`textarea has been focused`);
+
+        Utils.addClass(this.element, '-focused');
+
+        Utils.ifNodeList(this.dom.labels, () => {
+            Utils.makeElementsNotFocusable(this.dom.labels);
+        });
+    }
+
+
+    blurEventListener() {
+        Utils.console.elog(`textarea has been blurred`);
+
+        Utils.removeClass(this.element, '-focused');
+
+        Utils.ifNodeList(this.dom.labels, () => {
+            Utils.makeElementsFocusable(this.dom.labels);
+        });
+    }
+
+
+    changeEventListener() {
+        Utils.console.elog(`textarea value has been changed to ${this.dom.textarea.value}`);
+
+        if (this.dom.textarea.value == '') {
+            Utils.removeClass(this.element, '-has-value');
+        } else {
+            Utils.addClass(this.element, '-has-value');
+        }
     }
 }

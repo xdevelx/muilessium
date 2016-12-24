@@ -6,9 +6,11 @@ export class TagsList extends Component {
     constructor(element, options) {
         super(element, options);
 
-        Utils.console.info(`creating tags-list for the ${element} with options ${JSON.stringify(options)}`);
+        Utils.console.log(`creating tags-list for the <${element.nodeName}> with options ${JSON.stringify(options)}`);
 
         this.initAria();
+
+        Utils.console.ok('tags-list has been created');
     }
 
 

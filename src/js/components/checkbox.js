@@ -6,7 +6,7 @@ export class Checkbox extends Component {
     constructor(element, options) {
         super(element, options);
 
-        Utils.console.info(`creating checkbox for the ${element} with options ${JSON.stringify(options)}`);
+        Utils.console.log(`creating checkbox for the <${element.nodeName}> with options ${JSON.stringify(options)}`);
 
         this.dom = Utils.extend(this.dom, {
             input: element.getElementsByTagName('input')[0],
@@ -15,6 +15,8 @@ export class Checkbox extends Component {
 
         this.initAria();
         this.initControls();
+
+        Utils.console.ok('checkbox has been created');
     }
 
 
@@ -45,6 +47,8 @@ export class Checkbox extends Component {
 
 
     setCheckbox() {
+        Utils.console.log(`setting checkbox`);
+
         this.dom.input.checked = true;
 
         Utils.addClass(this.element, '-checked');
@@ -56,6 +60,8 @@ export class Checkbox extends Component {
 
 
     unsetCheckbox() {
+        Utils.console.log(`unsetting checkbox`);
+
         this.dom.input.checked = false;
 
         Utils.removeClass(this.element, '-checked');
@@ -67,6 +73,8 @@ export class Checkbox extends Component {
 
 
     toggleCheckbox() {
+        Utils.console.log(`toggling checkbox`);
+
         if (this.dom.input.checked) {
             this.unsetCheckbox();
         } else {

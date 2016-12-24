@@ -6,7 +6,7 @@ export class Radio extends Component {
     constructor(element, options) {
         super(element, options);
 
-        Utils.console.info(`creating input for the ${element} with options ${JSON.stringify(options)}`);
+        Utils.console.log(`creating radio for the <${element.nodeName}> with options ${JSON.stringify(options)}`);
 
         this.dom = Utils.extend(this.dom, {
             inputs: element.getElementsByTagName('input'),
@@ -22,6 +22,8 @@ export class Radio extends Component {
         this.initAria();
         this.initControls();
         this.updateState();
+
+        Utils.console.ok('radio has been created');
     }
 
 
@@ -62,6 +64,8 @@ export class Radio extends Component {
 
 
     updateState(index) {
+        Utils.console.log(`updating radio state to the #${index} item selected`);
+
         if ((typeof index !== 'number') || (index < 0)) {
             return this;
         }
