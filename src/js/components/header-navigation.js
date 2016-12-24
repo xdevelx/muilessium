@@ -21,6 +21,15 @@ export class HeaderNavigation extends Component {
             mobile: false
         });
 
+        this.initAria();
+        this.initControls();
+        this.update();
+
+        window.addEventListener('resize', this.update.bind(this));
+    }
+
+
+    initAria() {
         [].forEach.call(this.dom.toggles, (toggle) => {
             Utils.aria.setRole(toggle, 'button');
         });
@@ -29,6 +38,11 @@ export class HeaderNavigation extends Component {
 
         Utils.aria.set(this.dom.linksList, 'labelledby', Utils.aria.setId(this.dom.hamburger));
 
+        return this;
+    }
+
+
+    initControls() {
         Utils.makeChildElementsClickable(this.element, this.dom.toggles, () => {
             this.toggleNavigation();
         });
@@ -49,11 +63,7 @@ export class HeaderNavigation extends Component {
             }
         });
 
-        this.update();
-
-        window.addEventListener('resize', this.update.bind(this));
-
-        this.state.initialized = true;
+        return this;
     }
 
 

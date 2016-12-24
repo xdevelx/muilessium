@@ -27,8 +27,6 @@ export class SelectDropdown extends Component {
         this.initAria();
         this.initControls();
         this.updateState();
-
-        this.state.initialized = true;
     }
 
 
@@ -75,10 +73,6 @@ export class SelectDropdown extends Component {
 
             [].forEach.call(this.dom.labels, (label) => {
                 label.setAttribute('for', selectId);
-
-                label.addEventListener('focus', () => {
-                    this.dom.select.focus();
-                });
             });
 
             Utils.aria.set(this.dom.select, 'labelledby', Utils.aria.setId(this.dom.labels[0]));
@@ -103,6 +97,12 @@ export class SelectDropdown extends Component {
         });
 
         Utils.ifNodeList(this.dom.labels, () => {
+            [].forEach.call(this.dom.labels, (label) => {
+                label.addEventListener('focus', () => {
+                    this.dom.select.focus();
+                });
+            });
+
             this.dom.select.addEventListener('focus', () => {
                 Utils.makeElementsNotFocusable(this.dom.labels);
             });

@@ -7,5 +7,8 @@ export class InputRange extends Input {
         super(element, options);
 
         Utils.console.info(`creating input-range for the ${element} with options ${JSON.stringify(options)}`);
+
+        this.initAria();
+        this.initControls();
     }
 }

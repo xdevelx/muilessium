@@ -8,12 +8,13 @@ export class Button extends Component {
         
         Utils.console.info(`creating button for the ${element} with options ${JSON.stringify(options)}`);
 
-        Utils.aria.setRole(element, 'button');
+        this.initAria();
+    }
 
-        [].forEach.call(element.getElementsByClassName('fa'), (icon) => {
-            Utils.aria.set(icon, 'hidden', true);
-        });
 
-        this.state.initialized = true;
+    initAria() {
+        Utils.aria.setRole(this.element, 'button');
+
+        return this;
     }
 }

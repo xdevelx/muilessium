@@ -72,76 +72,79 @@ const aria = {
     set: (element, property, value = true) => {
         console.ulog(`setting aria-${property} = ${value} to the element: ${element}`);
 
-        return ifExists(element, () => {
-            element.setAttribute(`aria-${property}`, value);
-
-            return value;
-        });
+        return setAttribute(element, `aria-${property}`, value);
     },
 
     setRole: (element, role) => {
         console.ulog(`setting role ${role} to the element ${element}`);
 
-        return ifExists(element, () => {
-            element.setAttribute('role', role);
-
-            return role;
-        });
+        return setAttribute(element, 'role', role);
     },
 
     removeRole: (element) => {
         console.ulog(`removing role from the element ${element}`);
 
-        return ifExists(element, () => {
-            element.removeAttribute('role');
-        });
+        return removeAttribute(element, 'role');
     },
 
     setId: (element, id) => {
         console.ulog(`setting ID to the element ${element}`);
 
-        return ifExists(element, () => {
-            let newId = id || (`mui-id-${generateRandomString(6)}`);
+        const newId = id || (`mui-id-${generateRandomString(6)}`);
 
-            console.ulog(`new ID for the element ${element} is #${newId}`);
+        setAttribute(element, 'id', newId);
 
-            element.setAttribute('id', newId);
-
-            return newId;
-        });
+        return newId;
     },
 
     get: (element, property) => {
         console.ulog(`getting aria-${property} value from the element ${element}`);
 
-        return ifExists(element, () => {
-            return element.getAttribute(`aria-${property}`);
-        });
+        return getAttribute(element, `aria-${property}`);
     },
 
     getRole: (element) => {
         console.ulog(`getting role from element ${element}`);
 
-        return ifExists(element, () => {
-            return element.getAttribute('role');
-        });
+        return getAttribute(element, 'role');
     },
 
     toggleState: (element, state) => {
         console.ulog(`toggling aria-${state} value for the element ${element}`);
 
-        return ifExists(element, () => {
-            element.setAttribute(`aria-${state}`, !stringToBoolean(element.getAttribute(`aria-${state}`)));
-        });
+        setAttribute(element, `aria-${state}`, !stringToBoolean(getAttribute(element, `aria-${state}`)));
     },
 
     hideIcons: (className) => {
         [].forEach.call(document.getElementsByClassName(className), (icon) => {
             console.ulog(`setting aria-hidden = true to the icon element: ${icon} with class ${className}`);
-            icon.setAttribute('aria-hidden', true);
+            setAttribute(icon, 'aria-hidden', true);
         });
     }
 };
+
+
+function setAttribute(element, attribute, value) {
+    console.ulog(`setting attribute ${attribute} = ${value} to the element ${element}`);
+
+    return ifExists(element, () => {
+        return element.setAttribute(attribute, value);
+    });
+}
+
+
+function getAttribute(element, attribute) {
+    return ifExists(element, () => {
+        return element.getAttribute(attribute);
+    });
+}
+
+
+function removeAttribute(element, attribute) {
+    return ifExists(element, () => {
+        return element.removeAttribute(attribute);
+    });
+}
 
 
 function ifExists(element, callback, printWarning = true) {
@@ -410,6 +413,9 @@ export {
     ajax,
     aria,
 
+    setAttribute,
+    getAttribute,
+    removeAttribute,
     ifExists,
     ifNodeList,
     stringToBoolean,

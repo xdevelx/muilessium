@@ -22,21 +22,20 @@ export class Carousel extends Component {
             currentSlide: 0
         });
 
-        if (this.dom.indicators.length !== this.dom.slides.length) {
-            Utils.console.warning('number of slides and number of indicators are not equal');
-        }
-
+        this.initAria();
+        this.initControls();
         this.makeSlideActive(0);
+    }
 
-        this.rotateInterval = setInterval(this.rotate.bind(this, 'next'), 1500);
 
-        element.addEventListener('mouseover', () => {
-            clearInterval(this.rotateInterval);
-        });
+    initAria() {
+        return this;
+    }
 
-        element.addEventListener('mouseout', () => {
-            this.rotateInterval = setInterval(this.rotate.bind(this, 'next'), 1500);
-        });
+
+    initControls() {
+        this.element.addEventListener('mouseover', this.stopRotating.bind(this));
+        this.element.addEventListener('mouseout',  this.startRotating.bind(this));
 
         Utils.makeChildElementsClickable(this.element, this.dom.controls.prev, () => {
             this.rotate('prev');
@@ -50,7 +49,21 @@ export class Carousel extends Component {
             this.rotate(index);
         });
 
-        this.state.initialized = true;
+        return this;
+    }
+
+
+    startRotating() {
+        this.state.rotateInterval = setInterval(this.rotate.bind(this, 'next'), 3000);
+
+        return this;
+    }
+
+
+    stopRotating() {
+        clearInterval(this.state.rotateInterval);
+
+        return this;
     }
 
 

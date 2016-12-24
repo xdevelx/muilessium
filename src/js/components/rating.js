@@ -18,11 +18,25 @@ export class Rating extends Component {
             minRating: 0
         });
 
+        this.initAria();
+        this.initControls();
         this.updateRating(this.state.rating);
+    }
 
-        Utils.makeElementFocusable(element);
 
-        element.addEventListener('keydown', (e) => {
+    initAria() {
+        [].forEach.call(this.dom.stars, (star) => {
+            Utils.aria.set(star, 'hidden', true);
+        });
+
+        return this;
+    }
+
+
+    initControls() {
+        Utils.makeElementFocusable(this.element);
+
+        this.element.addEventListener('keydown', (e) => {
             this.keyDownListener(e.keyCode);
         });
 
@@ -30,11 +44,7 @@ export class Rating extends Component {
             this.updateRating(index + 1);
         }, true);
 
-        [].forEach.call(this.dom.stars, (star) => {
-            Utils.aria.set(star, 'hidden', true);
-        });
-
-        this.state.initialized = true;
+        return this;
     }
 
 

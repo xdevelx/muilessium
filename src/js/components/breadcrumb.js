@@ -8,8 +8,13 @@ export class Breadcrumb extends Component {
 
         Utils.console.info(`creating breadcrumb for the ${element} with options ${JSON.stringify(options)}`);
 
-        Utils.aria.setRole(element, 'navigation');
+        this.initAria();
+    }
 
-        this.state.initialized = true;
+
+    initAria() {
+        Utils.aria.setRole(this.element, 'navigation');
+
+        return this;
     }
 } 

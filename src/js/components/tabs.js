@@ -18,6 +18,12 @@ export class Tabs extends Component {
             current: 0
         });
 
+        this.initAria();
+        this.initControls();
+    }
+
+
+    initAria() {
         Utils.aria.setRole(this.dom.labelsWrapper, 'tablist');
 
         [].forEach.call(this.dom.labels, (label, index) => {
@@ -37,7 +43,11 @@ export class Tabs extends Component {
         Utils.addClass(this.dom.labels[0], '-active');
         Utils.aria.set(this.dom.labels[0], 'selected', true);
         
+        return this;
+    }
 
+
+    initControls() {
         Utils.makeChildElementsClickable(this.element, this.dom.labels, (index) => {
             this.makeTabInactive(this.state.current);
             this.makeTabActive(index);
@@ -53,8 +63,9 @@ export class Tabs extends Component {
             });
         });
 
-        this.state.initialized = true;
+        return this;
     }
+
 
     makeTabActive(index) {
         Utils.addClass(this.dom.labels[index], '-active');
@@ -70,6 +81,7 @@ export class Tabs extends Component {
         return this;
     }
 
+
     makeTabInactive(index) {
         Utils.removeClass(this.dom.labels[index], '-active');
         Utils.removeClass(this.dom.tabs[index],   '-active');
@@ -82,6 +94,7 @@ export class Tabs extends Component {
         return this;
     }
 
+
     goToPreviousTab() {
         if (this.state.current > 0) {
             this.makeTabInactive(this.state.current);
@@ -91,6 +104,7 @@ export class Tabs extends Component {
         return this;
     }
 
+
     goToNextTab() {
         if (this.state.current < this.dom.tabs.length - 1) {
             this.makeTabInactive(this.state.current);
@@ -99,6 +113,7 @@ export class Tabs extends Component {
 
         return this;
     }
+
 
     keyDownListener(keyCode) {
         switch (keyCode) {

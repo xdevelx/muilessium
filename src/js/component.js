@@ -7,10 +7,7 @@ export class Component {
         
         this.element = element;
 
-        this.dom = {};
-
-        this.state = {
-            initialized: false
-        };
+        this.dom   = {};
+        this.state = {};
     }
 }

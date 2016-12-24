@@ -11,9 +11,14 @@ export class Checkbox extends Component {
         this.dom = Utils.extend(this.dom, {
             input: element.getElementsByTagName('input')[0],
             label: element.getElementsByTagName('label')[0],
-            icon:  element.getElementsByClassName('fa')[0]
         });
 
+        this.initAria();
+        this.initControls();
+    }
+
+
+    initAria() {
         Utils.aria.setRole(this.dom.label, 'checkbox');
 
         let inputId = Utils.aria.setId(this.dom.input);
@@ -26,15 +31,16 @@ export class Checkbox extends Component {
 
         Utils.aria.set(this.dom.input, 'labelledby', Utils.aria.setId(this.dom.label));
 
-        if (this.dom.icon) {
-            Utils.aria.set(this.dom.icon, 'hidden', true);
-        }
+        return this;
+    }
 
+
+    initControls() {
         Utils.makeElementClickable(this.dom.label, () => {
             this.toggleCheckbox();
         });
 
-        this.state.initialized = true;
+        return this;
     }
 
 

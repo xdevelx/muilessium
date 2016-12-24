@@ -9,16 +9,18 @@ export class Accordion extends Component {
         Utils.console.info(`creating acccordion for the ${element} with options ${JSON.stringify(options)}`);
 
         this.dom = Utils.extend(this.dom, {
-            items:  element.getElementsByClassName('item'),
-            titles: element.getElementsByClassName('title'),
+            items:      element.getElementsByClassName('item'),
+            titles:     element.getElementsByClassName('title'),
             indicators: element.getElementsByClassName('indicator'),
-            contents: element.getElementsByClassName('content')
+            contents:   element.getElementsByClassName('content')
         });
 
-        Utils.makeChildElementsClickable(this.element, this.dom.titles, (index) => {
-            this.toggleItem(index);
-        });
+        this.initAria();
+        this.initControls();
+    }
 
+
+    initAria() {
         Utils.aria.setRole(this.element, 'tablist');
         this.element.setAttribute('multiselectable', true);
         
@@ -35,12 +37,21 @@ export class Accordion extends Component {
         });
 
         [].forEach.call(this.dom.indicators, (indicator) => {
-            Utils.aria.set(indicator.getElementsByClassName('fa')[0], 'hidden', true);
+            Utils.aria.set(indicator, 'hidden', true);
         });
 
-
-        this.state.initialized = true;
+        return this;
     }
+
+
+    initControls() {
+        Utils.makeChildElementsClickable(this.element, this.dom.titles, (index) => {
+            this.toggleItem(index);
+        });
+
+        return this;
+    }
+
 
     foldItem(index) {
         Utils.removeClass(this.dom.items[index], '-unfold');
@@ -51,6 +62,7 @@ export class Accordion extends Component {
         return this;
     }
 
+
     foldAllItems() {
         [].forEach.call(this.dom.items, (item, index) => {
             this.foldItem(index);
@@ -58,6 +70,7 @@ export class Accordion extends Component {
 
         return this;
     }
+
 
     unfoldItem(index) {
         Utils.addClass(this.dom.items[index], '-unfold');
@@ -68,6 +81,7 @@ export class Accordion extends Component {
         return this;
     }
 
+
     unfoldAllItems() {
         [].forEach.call(this.dom.items, (item, index) => {
             this.unfoldItem(index);
@@ -75,6 +89,7 @@ export class Accordion extends Component {
 
         return this;
     }
+
 
     toggleItem(index) {
         Utils.toggleClass(this.dom.items[index], '-unfold');

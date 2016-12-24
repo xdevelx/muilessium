@@ -13,6 +13,12 @@ export class Textarea extends Component {
             labels: element.parentNode.getElementsByTagName('label')
         });
 
+        this.initAria();
+        this.initControls();
+    }
+
+
+    initAria() {
         let textareaId = this.dom.textarea.getAttribute('id') || Utils.aria.setId(this.dom.textarea);
 
         Utils.ifNodeList(this.dom.labels, () => {
@@ -20,7 +26,16 @@ export class Textarea extends Component {
 
             [].forEach.call(this.dom.labels, (label) => {
                 label.setAttribute('for', textareaId);
+            });
+        }, false);
 
+        return this;
+    }
+
+
+    initControls() {
+        Utils.ifNodeList(this.dom.labels, () => {
+            [].forEach.call(this.dom.labels, (label) => {
                 label.addEventListener('focus', () => {
                     this.dom.textarea.focus();
                 });
@@ -53,6 +68,6 @@ export class Textarea extends Component {
             }
         });
 
-        this.state.initialized = true;
+        return this;
     }
 }

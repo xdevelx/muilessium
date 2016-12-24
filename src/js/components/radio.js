@@ -19,6 +19,13 @@ export class Radio extends Component {
             checkedIndex: -1
         });
 
+        this.initAria();
+        this.initControls();
+        this.updateState();
+    }
+
+
+    initAria() {
         Utils.aria.setRole(this.element, 'radiogroup');
 
         Utils.ifExists(this.dom.inputLabel, () => {
@@ -36,18 +43,21 @@ export class Radio extends Component {
             }
         });
 
-        Utils.makeChildElementsClickable(this.element, this.dom.labels, (index) => {
-            this.updateState(index);
-        });
-
         [].forEach.call(this.dom.labels, (label, index) => {
             label.setAttribute('for', this.dom.inputs[index].getAttribute('id'));
             Utils.aria.setRole(label, 'radio');
         });
 
-        this.updateState();
+        return this;
+    }
 
-        this.state.initialized = true;
+
+    initControls() {
+        Utils.makeChildElementsClickable(this.element, this.dom.labels, (index) => {
+            this.updateState(index);
+        });
+
+        return this;
     }
 
 

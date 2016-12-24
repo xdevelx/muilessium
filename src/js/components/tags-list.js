@@ -8,8 +8,13 @@ export class TagsList extends Component {
 
         Utils.console.info(`creating tags-list for the ${element} with options ${JSON.stringify(options)}`);
 
+        this.initAria();
+    }
+
+
+    initAria() {
         Utils.aria.setRole(this.element, 'navigation');
 
-        this.state.initialized = true;
+        return this;
     }
 }

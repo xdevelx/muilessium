@@ -11,9 +11,14 @@ export class Input extends Component {
         this.dom = Utils.extend(this.dom, {
             input: element.getElementsByTagName('input')[0],
             labels: element.parentNode.getElementsByTagName('label'),
-            icons: element.getElementsByClassName('fa')
         });
 
+        this.initAria();
+        this.initControls();
+    }
+
+
+    initAria() {
         let inputId = this.dom.input.getAttribute('id') || Utils.aria.setId(this.dom.input);
 
         Utils.ifNodeList(this.dom.labels, () => {
@@ -21,18 +26,21 @@ export class Input extends Component {
 
             [].forEach.call(this.dom.labels, (label) => {
                 label.setAttribute('for', inputId);
+            });
+        });
 
+        return this;
+    }
+
+
+    initControls() {
+        Utils.ifNodeList(this.dom.labels, () => {
+            [].forEach.call(this.dom.labels, (label) => {
                 label.addEventListener('focus', () => {
                     this.dom.input.focus();
                 });
             });
         });
-
-        Utils.ifNodeList(this.dom.icons, () => {
-            [].forEach.call(this.dom.icons, (icon) => {
-                Utils.aria.set(icon, 'hidden', true);
-            });
-        }, false);
 
         this.dom.input.addEventListener('focus', () => {
             Utils.addClass(this.element, '-focused');
@@ -60,6 +68,6 @@ export class Input extends Component {
             }
         });
 
-        this.state.initialized = true;
+        return this;
     }
 }
