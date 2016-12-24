@@ -6,8 +6,6 @@ export class SelectDropdown extends Component {
     constructor(element, options) {
         super(element, options);
 
-        Utils.console.log(`creating mui-select-dropdown for the <${element.nodeName}> with options ${JSON.stringify(options)}`);
-
         this.dom = Utils.extend(this.dom, {
             labels:      this.element.parentNode.getElementsByTagName('label'),
             select:      this.element.getElementsByClassName('select')[0],
@@ -27,8 +25,6 @@ export class SelectDropdown extends Component {
         this.initAria();
         this.initControls();
         this.updateState();
-
-        Utils.console.ok('select-dropdown has been created');
     }
 
 
@@ -48,7 +44,7 @@ export class SelectDropdown extends Component {
         [].forEach.call(this.dom.optionsList, (option) => {
             let hiddenOption = document.createElement('option');
 
-            hiddenOption.value = option.getAttribute('data-value');
+            hiddenOption.value = Utils.getAttribute(option, 'data-value');
             
             this.dom.hiddenSelect.add(hiddenOption);
         });
@@ -71,10 +67,10 @@ export class SelectDropdown extends Component {
         Utils.aria.set(this.dom.icon, 'hidden', true);
 
         Utils.ifNodeList(this.dom.labels, () => {
-            let selectId = Utils.aria.setId(this.dom.select);
+            const selectId = Utils.aria.setId(this.dom.select);
 
             [].forEach.call(this.dom.labels, (label) => {
-                label.setAttribute('for', selectId);
+                Utils.setAttribute(label, 'for', selectId);
             });
 
             Utils.aria.set(this.dom.select, 'labelledby', Utils.aria.setId(this.dom.labels[0]));
@@ -130,8 +126,6 @@ export class SelectDropdown extends Component {
     }
 
     openDropdown() {
-        Utils.console.log(`openeng select dropdown`);
-
         this.state.isOpened = true;
 
         Utils.addClass(this.element, '-opened');
@@ -141,8 +135,6 @@ export class SelectDropdown extends Component {
     }
 
     toggleDropdown() {
-        Utils.console.log(`toggling select dropdown`);
-
         this.state.isOpened = !this.state.isOpened;
 
         Utils.toggleClass(this.element, '-opened');
@@ -153,8 +145,6 @@ export class SelectDropdown extends Component {
 
 
     closeDropdown() {
-        Utils.console.log(`closing select dropdown`);
-
         this.state.isOpened = false;
 
         Utils.removeClass(this.element, '-opened');
@@ -165,8 +155,6 @@ export class SelectDropdown extends Component {
 
 
     updateState(newSelectedIndex = 0) {
-        Utils.console.log(`updating select dropdown state to the #${newSelectedIndex} option selected`);
-
         this.state.selectedIndex = newSelectedIndex;
         this.dom.state.innerHTML = this.dom.optionsList[this.state.selectedIndex].innerHTML;
         this.dom.hiddenSelect.selectedIndex = this.state.selectedIndex.toString();

@@ -6,8 +6,6 @@ export class ButtonDropdown extends Component {
     constructor(element, options) {
         super(element, options);
 
-        Utils.console.log(`creating button-dropdown for the <${element.nodeName}> with options ${JSON.stringify(options)}`);
-
         this.dom = Utils.extend(this.dom, {
             button:   element.getElementsByClassName('mui-button')[0],
             dropdown: element.getElementsByClassName('mui-dropdown-options')[0],
@@ -20,8 +18,6 @@ export class ButtonDropdown extends Component {
 
         this.initAria();
         this.initControls();
-
-        Utils.console.ok('button-dropdown has been created');
     }
 
 
@@ -45,15 +41,11 @@ export class ButtonDropdown extends Component {
 
 
     toggleClickEventListener() {
-        Utils.console.elog(`toggle for the button-dropdown has been clicked`);
-
         this.toggleDropdown();
     }
 
 
     openDropdown() {
-        Utils.console.log(`opening dropdown of the ${this.element}`);
- 
         Utils.addClass(this.element,    '-opened');
         Utils.addClass(this.dom.shadow, '-visible');
 
@@ -70,8 +62,6 @@ export class ButtonDropdown extends Component {
 
 
     closeDropdown() {
-        Utils.console.log(`closing dropdown of the ${this.element}`);
-
         Utils.removeClass(this.element,    '-opened');
         Utils.removeClass(this.dom.shadow, '-visible');
 
@@ -88,8 +78,6 @@ export class ButtonDropdown extends Component {
 
 
     toggleDropdown() {
-        Utils.console.log(`toggling dropdown of the ${this.element}`);
-
         if (this.state.opened) {
             this.closeDropdown();
         } else {

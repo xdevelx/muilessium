@@ -27,6 +27,4 @@ document.addEventListener('DOMContentLoaded', () => {
         tagslists:    window.Muilessium.create('tags-list',         '.mui-tags-list',         {}),
         textareas:    window.Muilessium.create('textarea',          '.mui-textarea',          {})
     };
-
-    Utils.console.ok('all muilessium components have been initialized');
 });

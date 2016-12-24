@@ -6,8 +6,6 @@ export class Accordion extends Component {
     constructor(element, options) {
         super(element, options);
 
-        Utils.console.log(`creating acccordion for the <${element.nodeName}> with options ${JSON.stringify(options)}`);
-
         this.dom = Utils.extend(this.dom, {
             items:      element.getElementsByClassName('item'),
             titles:     element.getElementsByClassName('title'),
@@ -17,8 +15,6 @@ export class Accordion extends Component {
 
         this.initAria();
         this.initControls();
-
-        Utils.console.ok('accordion has been created');
     }
 
 
@@ -48,23 +44,14 @@ export class Accordion extends Component {
 
     initControls() {
         Utils.makeChildElementsClickable(this.element, this.dom.titles, (index) => {
-            this.titleClickEventListener(index);
+            this.toggleItem(index);
         });
 
         return this;
     }
 
 
-    titleClickEventListener(index) {
-        Utils.console.elog(`title of the item #${index} has been clicked`);
-
-        this.toggleItem(index);
-    }
-
-
     foldItem(index) {
-        Utils.console.log(`folding item #${index} of the accordion ${this.element}`);
-
         Utils.removeClass(this.dom.items[index], '-unfold');
 
         Utils.aria.set(this.dom.titles[index],   'expanded', false);
@@ -75,8 +62,6 @@ export class Accordion extends Component {
 
 
     foldAllItems() {
-        Utils.console.log(`folding all items of the accordion ${this.element}`);
-
         [].forEach.call(this.dom.items, (item, index) => {
             this.foldItem(index);
         });
@@ -86,8 +71,6 @@ export class Accordion extends Component {
 
 
     unfoldItem(index) {
-        Utils.console.log(`unfolding item #${index} of the accordion ${this.element}`);
-
         Utils.addClass(this.dom.items[index], '-unfold');
 
         Utils.aria.set(this.dom.titles[index],   'expanded', true);
@@ -98,8 +81,6 @@ export class Accordion extends Component {
 
 
     unfoldAllItems() {
-        Utils.console.log(`folding all items of the accordion ${this.element}`);
-
         [].forEach.call(this.dom.items, (item, index) => {
             this.unfoldItem(index);
         });
@@ -109,8 +90,6 @@ export class Accordion extends Component {
 
 
     toggleItem(index) {
-        Utils.console.log(`toggling item #${index} of the accordion ${this.element}`);
-
         Utils.toggleClass(this.dom.items[index], '-unfold');
 
         Utils.aria.toggleState(this.dom.titles[index],   'expanded');

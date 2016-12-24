@@ -6,8 +6,6 @@ export class Radio extends Component {
     constructor(element, options) {
         super(element, options);
 
-        Utils.console.log(`creating radio for the <${element.nodeName}> with options ${JSON.stringify(options)}`);
-
         this.dom = Utils.extend(this.dom, {
             inputs: element.getElementsByTagName('input'),
             labels: element.getElementsByTagName('label'),
@@ -22,8 +20,6 @@ export class Radio extends Component {
         this.initAria();
         this.initControls();
         this.updateState();
-
-        Utils.console.ok('radio has been created');
     }
 
 
@@ -32,13 +28,13 @@ export class Radio extends Component {
 
         Utils.ifExists(this.dom.inputLabel, () => {
             Utils.aria.set(this.element, 'labelledby', Utils.aria.setId(this.dom.inputLabel));
-            this.dom.inputLabel.setAttribute('for', Utils.aria.setId(this.element));
+            Utils.setAttribute(this.dom.inputLabel, 'for', Utils.aria.setId(this.element));
         });
 
         [].forEach.call(this.dom.inputs, (input, index) => {
             Utils.aria.set(input, 'hidden', true);
-            input.setAttribute('type', 'radio');
-            input.setAttribute('name', this.element.getAttribute('data-name'));
+            Utils.setAttribute(input, 'type', 'radio');
+            Utils.setAttribute(input, 'name', this.element.getAttribute('data-name'));
 
             if (input.checked) {
                 this.state.checkedIndex = index;
@@ -46,7 +42,7 @@ export class Radio extends Component {
         });
 
         [].forEach.call(this.dom.labels, (label, index) => {
-            label.setAttribute('for', this.dom.inputs[index].getAttribute('id'));
+            Utils.setAttribute(label, 'for', this.dom.inputs[index].getAttribute('id'));
             Utils.aria.setRole(label, 'radio');
         });
 
@@ -64,8 +60,6 @@ export class Radio extends Component {
 
 
     updateState(index) {
-        Utils.console.log(`updating radio state to the #${index} item selected`);
-
         if ((typeof index !== 'number') || (index < 0)) {
             return this;
         }

@@ -6,17 +6,6 @@ export class Button extends Component {
     constructor(element, options) {
         super(element, options);
         
-        Utils.console.log(`creating button for the <${element.nodeName}> with options ${JSON.stringify(options)}`);
-
-        this.initAria();
-
-        Utils.console.ok('button has been created');
-    }
-
-
-    initAria() {
         Utils.aria.setRole(this.element, 'button');
-
-        return this;
     }
 }

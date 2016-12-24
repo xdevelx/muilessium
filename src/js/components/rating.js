@@ -6,8 +6,6 @@ export class Rating extends Component {
     constructor(element, options) {
         super(element, options);
 
-        Utils.console.log(`creating mui-rating for the <${element.nodeName}> with options ${JSON.stringify(options)}`);
-
         this.dom = Utils.extend(this.dom, {
             stars: element.getElementsByClassName('star')
         });
@@ -21,8 +19,6 @@ export class Rating extends Component {
         this.initAria();
         this.initControls();
         this.updateRating(this.state.rating);
-
-        Utils.console.ok('rating has been created');
     }
 
 
@@ -51,8 +47,6 @@ export class Rating extends Component {
 
 
     updateRating(newRating) {
-        Utils.console.log(`update rating to the ${newRating}`);
-
         if (newRating < this.state.minRating || newRating > this.state.maxRating) {
             Utils.console.error('wrong rating value');
             return this;
@@ -64,8 +58,7 @@ export class Rating extends Component {
         let newAriaLabel = Utils.aria.get(this.element, 'label').replace(this.state.rating, newRating);
 
         Utils.aria.set(this.element, 'label', newAriaLabel);
-
-        this.element.setAttribute('data-rating', newRating);
+        Utils.setAttribute(this.element, 'data-rating', newRating);
 
         this.state.rating = newRating;
 
@@ -77,8 +70,6 @@ export class Rating extends Component {
 
 
     increaseRating() {
-        Utils.console.log(`increase rating`);
-
         if (this.state.rating < this.state.maxRating) {
             this.updateRating(this.state.rating + 1);
         }
@@ -88,8 +79,6 @@ export class Rating extends Component {
 
 
     decreaseRating() {
-        Utils.console.log(`decrease rating`);
-
         if (this.state.rating > this.state.minRating) {
             this.updateRating(this.state.rating - 1);
         }

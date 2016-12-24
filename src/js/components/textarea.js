@@ -6,8 +6,6 @@ export class Textarea extends Component {
     constructor(element, options) {
         super(element, options);
         
-        Utils.console.log(`creating mui-textarea for the <${element.nodeName}> with options ${JSON.stringify(options)}`);
-
         this.dom = Utils.extend(this.dom, {
             textarea: element.getElementsByTagName('textarea')[0],
             labels: element.parentNode.getElementsByTagName('label')
@@ -15,13 +13,11 @@ export class Textarea extends Component {
 
         this.initAria();
         this.initControls();
-
-        Utils.console.ok('textarea has been created');
     }
 
 
     initAria() {
-        let textareaId = this.dom.textarea.getAttribute('id') || Utils.aria.setId(this.dom.textarea);
+        const textareaId = this.dom.textarea.getAttribute('id') || Utils.aria.setId(this.dom.textarea);
 
         Utils.ifNodeList(this.dom.labels, () => {
             Utils.aria.set(this.dom.textarea, 'labelledby', Utils.aria.setId(this.dom.labels[0]));
@@ -53,8 +49,6 @@ export class Textarea extends Component {
 
 
     focusEventListener() {
-        Utils.console.elog(`textarea has been focused`);
-
         Utils.addClass(this.element, '-focused');
 
         Utils.ifNodeList(this.dom.labels, () => {
@@ -64,8 +58,6 @@ export class Textarea extends Component {
 
 
     blurEventListener() {
-        Utils.console.elog(`textarea has been blurred`);
-
         Utils.removeClass(this.element, '-focused');
 
         Utils.ifNodeList(this.dom.labels, () => {
@@ -75,8 +67,6 @@ export class Textarea extends Component {
 
 
     changeEventListener() {
-        Utils.console.elog(`textarea value has been changed to ${this.dom.textarea.value}`);
-
         if (this.dom.textarea.value == '') {
             Utils.removeClass(this.element, '-has-value');
         } else {
