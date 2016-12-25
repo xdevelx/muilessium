@@ -76,10 +76,10 @@
             <!-- content-section -->
             <div class='mui-content-container -separate'>
                 <h3 id='overview'>Overview</h3>
-                <p class='mui-p -b'>Muilessium is the UI framework.</p>
+                <p class='mui-p -b'>Muilessium is the UI framework or rather a collection of UI components and helpers for developing responsive and accessible websites. This framework written in LESS and ES6 and can be included in a project as is or can be easily customized for your needs. Muilessium supports WAI-ARIA attributes and generates most of them automatically.</p>
 
                 <h4>Grid</h4>
-                <p class='mui-p -b'>Muilessium uses classic 12-column grid based on floats. Rows and columns should have classes .mui-row and .mui-column and columns can have options -s* for the small screens, -m* for the medium screens and -l* for the large screens.</p>
+                <p class='mui-p -b'>Muilessium uses a classic grid with 12 columns based on floats. Rows and columns have classes .mui-row and .mui-column and columns can have options -s* for a small screen, -m* for a medium screen and -l* for a large screen. Default breakpoints are 400, 600 and 1200px.</p>
                 <div class='grid-preview'>
                     <div class='mui-row'>
                         <div class='mui-column -s1'>-s1</div>
@@ -120,7 +120,7 @@
                 </div>
 
                 <h4>Page layout</h4>
-                <p class='mui-p -b'>Basic page layout includes header, page container and sticky footer.</p>
+                <p class='mui-p -b'>Basic page layout includes header, page container and footer. This layout is the simplest way to create a sticky footer, but IE11 does not support flexbox greatly, so we have some incorrect behavior in it.</p>
                 <div class='code-example'>
                     <pre class='prettyprint lang-html'>
 &lt;header class='mui-page-header'&gt;header&lt;/header&gt;
@@ -135,6 +135,7 @@
             <!-- content-section -->
             <div class='mui-content-container -separate'>
                 <h4 id='components'>Components</h4>
+                <p class='mui-p -b'>Muilessium has a number of components listed below. Every component has a markup shown in example and this markup should be used as is, because some initializations of components are based on their markups.</p>
 
                 {{#files}}
                     <div id='{{file}}' class='_allow-empty'></div>
@@ -177,6 +178,24 @@
             <!-- content-section -->
             <div class="mui-content-container -separate">
                 <h3 id="faq">F.A.Q.</h3>
+
+                <div class='questions-list'>
+                    <div class='question'>Can I use Muilessium in my project?</div>
+                    <div class='answer'>Yes, Muilessium is distributed under the MIT license, so You can use it in Your projects.</div>
+                    <div class='question'>What browsers are supported?</div>
+                    <div class='answer'>All modern browsers, including IE11.</div>
+
+                    <div class='question'>Who is the author?</div>
+                    <div class='answer'>My name is Ivan Bogachev. I'm a musitian and front-end developer, You could see <a href='http://codepen.io/sfi0zy/'>some of my pens on codepen</a> previously.</div>
+
+                    <div class='question'>I found a bug?</div>
+                    <div class='answer'>If you found a bug - don't worry, Muilessium is not officially released yet and can have some bugs, You can open an issue on <a href='https://github.com/sfi0zy/muilessium'>GitHub</a> or send me an <a href='mailto:sfi0zy@gmail.com'>email</a> and I will fix a problem when I will have a time.</div>
+
+                    <div class='question'>I have some suggestions for improvement of Muilessium</div>
+                    <div class='answer'>That's great! You can fork Muilesssium, add Your functionality and create a pull request, or contact with me by <a href='mailto:sfi0zy@gmail.com'>email</a> or <a href='https://twitter.com/sfi0zy'>twitter</a> (but I should  notify You - English is not my native language, maybe I'll need some time to translate messages)</div>
+                    <div class='question'></div>
+                    <div class='answer'></div>
+                </div>
             </div>
             <!-- /content-section -->
 

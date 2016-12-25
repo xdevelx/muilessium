@@ -8,6 +8,11 @@ body {
     background: linear-gradient(to right, #222 0%, #222 33.3333%, #fff 33.3333%, #fff 100%);
 }
 
+h1 {
+    font-size: 2rem;
+    line-height: 4rem;
+}
+
 @media screen and (max-width: 600px) {
     body {
         background: #fff;
@@ -79,16 +84,10 @@ body {
     min-height: 400px;
 
     background-color: #3b62a1;
-    background-image: linear-gradient(#000 2px, transparent 2px),
-        linear-gradient(90deg, #000 2px, transparent 2px),
-        linear-gradient(rgba(0,0,0,.3) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,0,0,.3) 1px, transparent 1px);
-    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
-    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
 }
 
 .mui-hero-header.-blueprint .content {
-    text-shadow: 0 30px 200px #212322, 0 15px 100px #212322;
+    /*text-shadow: 0 30px 200px #212322, 0 15px 100px #212322;*/
 }
 
 .mui-hero-header.-blueprint .project {
@@ -120,6 +119,10 @@ body {
 
 .mui-content-container.-separate {
     margin: 5rem auto;
+}
+
+.mui-content-container.-separate h4 {
+    margin: 5rem 0 1rem;
 }
 
 .component-preview {
@@ -285,4 +288,18 @@ pre.prettyprint {
 ol.linenums {
     margin-top: 0;
     margin-bottom: 0;
+}
+
+
+.questions-list {
+    margin: 3rem 0 5rem;
+}
+
+
+.questions-list .question {
+    font-weight: 600;
+}
+
+.questions-list .answer {
+    margin: 1rem 0 2rem;
 }
