@@ -9,6 +9,7 @@ import { Checkbox         } from './components/checkbox';
 import { HeaderNavigation } from './components/header-navigation';
 import { Input            } from './components/input';
 import { InputRange       } from './components/input-range';
+import { MediaView        } from './components/media-view';
 import { Pagination       } from './components/pagination';
 import { Radio            } from './components/radio';
 import { SelectDropdown   } from './components/select-dropdown';
@@ -28,6 +29,7 @@ const components = {
     'header-navigation': HeaderNavigation,
     'input':             Input,
     'input-range':       InputRange,
+    'media-view':        MediaView,
     'pagination':        Pagination,
     'radio':             Radio,
     'select-dropdown':   SelectDropdown,
