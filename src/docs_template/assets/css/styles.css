@@ -303,3 +303,12 @@ ol.linenums {
 .questions-list .answer {
     margin: 1rem 0 2rem;
 }
+
+
+.color-preview {
+    display: inline-block !important;
+    height: 2rem;
+    width: 2rem;
+    margin: .3rem;
+    border: 1px solid #000;
+}
