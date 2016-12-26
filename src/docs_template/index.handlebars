@@ -128,6 +128,134 @@
 &lt;footer class='mui-page-footer'&gt;footer&lt;/footer&gt;
 </pre>
                 </div>
+
+
+                <h4>Helpers</h4>
+                <div class='code-example'>
+                    <pre class='prettyprint lang-css'>
+._no-break {
+    white-space: nowrap;
+}
+
+._text-left {
+    text-align: left;
+}
+
+._text-right {
+    text-align: right;
+}
+
+._text-center {
+    text-align: center;
+}
+
+._text-justify {
+    text-align: justify;
+}
+
+._uppercase {
+    text-transform: uppercase;
+}
+
+._lowercase {
+    text-transform: lowercase;
+}
+
+._left {
+    float: left;
+}
+
+._right {
+    float: right;
+}
+
+._z-depth-1 {
+    box-shadow: 0 0 3px @shadow-color;
+}
+
+._z-depth-2 {
+    box-shadow: 0 2px 5px @shadow-color;
+}
+
+._z-depth-3 {
+    box-shadow: 0 3px 10px @shadow-color;
+}
+
+._z-depth-4 {
+    box-shadow: 0 4px 15px @shadow-color;
+}
+
+._z-depth-5 {
+    box-shadow: 0 10px 20px @shadow-color;
+}
+
+._disabled {
+    color: @default-link-color__disabled !important;
+    pointer-events: none !important;
+}
+
+._no-overflow {
+    overflow: hidden;
+}
+
+._truncate-line {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+._allow-empty {
+    
+}
+
+._hidden {
+    display: none;
+}
+
+._lazy-load {
+    opacity: 0;
+
+    transition: opacity @lazy-load-animation-duration @lazy-load-animation-function;
+
+    &.-loaded {
+        opacity: 1;
+    }
+}
+
+._separate-1 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+._separate-2 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+._separate-3 {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+._separate-4 {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+._separate-5 {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+</pre>
+                </div>
+
+                <h4>Lazy loading images</h4>
+                <div class='code-example'>
+                    <pre class='prettyprint lang-html'>
+
+&lt;img class='mui-image _lazy-load' data-src='https://placehold.it/128x128' alt='Lazy loaded image' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'&gt;
+</pre>
+                </div>
             </div>
             <!-- content-section -->
 

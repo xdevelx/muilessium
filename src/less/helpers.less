@@ -76,3 +76,38 @@
 ._hidden {
     display: none;
 }
+
+._lazy-load {
+    opacity: 0;
+
+    transition: opacity @lazy-load-animation-duration @lazy-load-animation-function;
+
+    &.-loaded {
+        opacity: 1;
+    }
+}
+
+._separate-1 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+._separate-2 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+._separate-3 {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+._separate-4 {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+._separate-5 {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}

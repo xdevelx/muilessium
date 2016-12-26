@@ -348,7 +348,7 @@ function makeChildElementsClickable(element, childs, callback, mouseOnly = false
 
 
 function lazyLoadImages(callback) {
-    [].forEach.call(document.querySelectorAll('.mui-lazy-load'), (image) => {
+    [].forEach.call(document.querySelectorAll('._lazy-load'), (image) => {
         image.src = image.getAttribute('data-src');
 
         image.addEventListener('load', function() {
