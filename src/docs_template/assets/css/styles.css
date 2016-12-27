@@ -312,3 +312,11 @@ ol.linenums {
     margin: .3rem;
     border: 1px solid #000;
 }
+
+.template-preview {
+    padding: 2rem 1rem;
+}
+
+.template-preview img {
+    margin-bottom: 1rem;
+}
