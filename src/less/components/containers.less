@@ -7,14 +7,14 @@
 .@{muilessium-prefix}content-container {
     position: relative;
     width: 90%;
-    max-width: 1100px;
+    max-width: @max-container-width;
     
     margin: 0 auto;
     
     #utils > .clearfix;
     
-    &.-limit-width {
-        max-width: @global-width-limit;
+    &.-no-limit-width {
+        max-width: 100%;
     }
 }
 
@@ -29,3 +29,4 @@
 .@{muilessium-prefix}page-container {
     flex: 1 0 auto;
 }
+

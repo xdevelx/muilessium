@@ -10,12 +10,11 @@
     height: 100%;
     width: 100%;
         
-    background: @shadow-color;
+    background: @default-shadow-color;
     opacity: 0;
     pointer-events: none;
         
     #utils > .transition-all;
-    transition-duration: @mobile-navigation-animation-duration;
         
     &:hover {
         cursor: pointer;
@@ -23,7 +22,7 @@
 
     &:hover,
     &:focus {
-        background: fadein(@shadow-color, 30%);
+        background: fadein(@default-shadow-color, 30%);
     }
 
     &.-visible {

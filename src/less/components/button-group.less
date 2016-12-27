@@ -19,22 +19,22 @@
         z-index: 0;
         
         &:first-of-type {
-            border-top-left-radius: @button-group-border-radius;
-            border-bottom-left-radius: @button-group-border-radius;
+            border-top-left-radius: @default-border-radius;
+            border-bottom-left-radius: @default-border-radius;
         }
         
         &:last-of-type {
-            border-top-right-radius: @button-group-border-radius;
-            border-bottom-right-radius: @button-group-border-radius;
+            border-top-right-radius: @default-border-radius;
+            border-bottom-right-radius: @default-border-radius;
         }
         
         &:not(:first-of-type) {
-            border-left: @button-group-border-width solid @button-group-border-color;
+            border-left: 1px solid @grey-2;
             margin-left: -.4rem; // hack?
         }
         
         &:not(:last-of-type) {
-            border-right: @button-group-border-width solid @button-group-border-color;
+            border-right: 1px solid @grey-2;
         }
     }
     
@@ -46,17 +46,17 @@
             border: none;
 
             &:first-of-type {
-                border-top-left-radius: @button-group-border-radius;
-                border-top-right-radius: @button-group-border-radius;
+                border-top-left-radius: @default-border-radius;
+                border-top-right-radius: @default-border-radius;
             }
 
             &:last-of-type {
-                border-bottom-left-radius: @button-group-border-radius;
-                border-bottom-right-radius: @button-group-border-radius;
+                border-bottom-left-radius: @default-border-radius;
+                border-bottom-right-radius: @default-border-radius;
             }
 
             &:not(:first-of-type) {
-                border-top: @button-group-border-width solid @button-group-border-color;
+                border-top: 1px solid @grey-2;
                 margin-left: 0; // hack?
             }
         }
@@ -84,8 +84,8 @@
                 line-height: 1.2rem;
                 text-align: center;
 
-                background: @button-group-or-bgcolor;
-                color: @button-group-or-color;
+                background: @grey-1;
+                color: @black;
             }
         }
 
@@ -94,3 +94,4 @@
         }
     }
 }
+

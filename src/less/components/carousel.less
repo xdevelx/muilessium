@@ -67,7 +67,7 @@
     margin: 0 !important;
 
     opacity: 0;
-    transition: opacity @carousel-animation-duration @carousel-animation-function;
+    transition: opacity @default-animation-duration @default-animation-function;
 
     &.-active {
         opacity: 1;
@@ -90,7 +90,7 @@
     
     text-align: center;
     
-    color: @carousel-color;
+    color: @white;
 
     &.-content-center {
         text-align: center;
@@ -136,8 +136,8 @@
         line-height: 20rem;
         text-align: center;
         
-        color: @carousel-color;
-        background: fade(@carousel-controls-background, 30%);
+        color: @white;
+        background: fade(@black, 30%);
         
         #utils > .transition-all;
         
@@ -145,7 +145,7 @@
         &:focus {
             cursor: pointer;
             outline: none;
-            background: @carousel-controls-background__focus;
+            background: @black;
         }
     }
     
@@ -164,7 +164,7 @@
     bottom: 0;
     
     width: inherit;
-    height: @carousel-indicator-height * 2;
+    height: 2rem;
 
     margin: 0;
     padding: .5rem;
@@ -177,12 +177,12 @@
         display: inline-block;
         position: relative;
         
-        height: @carousel-indicator-height;
-        width: @carousel-indicator-height;
+        height: 1rem;
+        width: 1rem;
         
         margin: 0 .2rem;
         
-        background: fade(@carousel-controls-background, 30%);
+        background: fade(@black, 30%);
         border-radius: 50%;
         
         #utils > .transition-all;
@@ -191,12 +191,12 @@
         &:focus {
             cursor: pointer;
             outline: none;
-            background: @carousel-controls-background__focus;
+            background: @black;
         }
 
         &:hover {
             &:after {
-                background: @carousel-color;
+                background: @white;
             }
         }
 
@@ -205,10 +205,10 @@
             
             #utils > .absolute-center;
             
-            height: @carousel-indicator-height / 2;
-            width: @carousel-indicator-height / 2;
+            height: .5rem;
+            width: .5rem;
             
-            background: fade(@carousel-color, 20%);
+            background: fade(@white, 20%);
             border-radius: 50%;
             
             #utils > .transition-all;
@@ -216,15 +216,16 @@
 
         &.-active {
             &:after {
-                background: fade(@carousel-color, 50%);
+                background: fade(@white, 50%);
             }
 
             &:hover,
             &:focus {
                 &:after {
-                    background: @carousel-color;
+                    background: @white;
                 }
             }
         }
     }
 }
+

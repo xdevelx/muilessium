@@ -22,14 +22,11 @@
         margin: 0;
         padding: 1rem 3rem 1rem 1rem;
         
-        border: solid @collection-border-width @collection-border-color;
+        border: 1px solid @grey-3;
 
-        color: @collection-color;
-        background: @collection-bgcolor;
-        
         &:first-of-type {
-            border-top-left-radius: @collection-border-radius;    
-            border-top-right-radius: @collection-border-radius;    
+            border-top-left-radius: @default-border-radius;    
+            border-top-right-radius: @default-border-radius;    
         }
         
         &:not(:first-of-type) {
@@ -37,8 +34,8 @@
         }
         
         &:last-of-type {
-            border-bottom-left-radius: @collection-border-radius;    
-            border-bottom-right-radius: @collection-border-radius;    
+            border-bottom-left-radius: @default-border-radius;    
+            border-bottom-right-radius: @default-border-radius;    
         }
     }
     
@@ -46,8 +43,6 @@
         position: absolute;
         top: 1rem;
         right: 1rem;
-        
-        color: @collection-badge-color;
-        background: @collection-badge-bgcolor;
     }
 }
+

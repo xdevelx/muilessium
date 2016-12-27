@@ -11,17 +11,16 @@
 
 
 .@{muilessium-prefix}breadcrumb {
-    height: @breadcrumb-height;
+    height: @default-ui-height;
     
     padding: 0 1rem;
     
-    line-height: @breadcrumb-height;
+    line-height: @default-ui-height;
     
-    background: @breadcrumb-bgcolor;
-    border-radius: @breadcrumb-border-radius;
+    background: @grey-2;
+    border-radius: @default-border-radius;
     
     > a {
-        color: @breadcrumb-color;
         text-decoration: none;
         
         &:not(:last-of-type):after {
@@ -31,7 +30,7 @@
 
         &:hover,
         &:focus {
-            color: @breadcrumb-color__focus;
+            color: @grey-3;
         }
     }
     
@@ -41,3 +40,4 @@
         }
     }
 }
+

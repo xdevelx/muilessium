@@ -31,14 +31,14 @@
         padding: 0 1rem;
         
         text-align: center;
-        line-height: @tabs-label-height;
+        line-height: @default-ui-height;
         
-        color: @tabs-color;
-        background: @tabs-bgcolor;
+        color: @black;
+        background: @grey-1;
         
-        border: solid @tabs-border-width @tabs-border-color;
-        border-top-left-radius: @tabs-border-radius;
-        border-top-right-radius: @tabs-border-radius;
+        border: 1px solid @grey-3;
+        border-top-left-radius: @default-border-radius;
+        border-top-right-radius: @default-border-radius;
         
         #utils > .transition-all;
         &:extend(._truncate-line);
@@ -51,20 +51,20 @@
         &:hover,
         &:focus {
             cursor: pointer;
-            color: @tabs-color__focus;
-            background: @tabs-bgcolor__focus;
+            color: @white;
+            background: @grey-4;
         }
 
         &.-active {
-            color: @tabs-color__current;
-            background: @tabs-bgcolor__current;
-            border-bottom-color: @tabs-bgcolor__current;
+            color: @black;
+            background: @white;
+            border-bottom-color: @white;
         
             &:hover,
             &:focus {
                 cursor: pointer;
-                color: @tabs-color__focus;
-                background: @tabs-bgcolor__focus;
+                color: @white;
+                background: @grey-4;
             }
         }
     }
@@ -72,10 +72,10 @@
     > .tabs {
         margin: 0;
         
-        border: solid @tabs-border-width @tabs-border-color;
+        border: 1px solid @grey-3;
         border-top: none;
-        border-bottom-left-radius: @tabs-border-radius;
-        border-bottom-right-radius: @tabs-border-radius;
+        border-bottom-left-radius: @default-border-radius;
+        border-bottom-right-radius: @default-border-radius;
         
         #utils > .clearfix;
     }
@@ -88,13 +88,13 @@
         
         padding: 1rem;
         
-        color: @tabs-color;
-        background: @tabs-bgcolor;
+        color: @black;
+        background: @white;
         opacity: 0;
         
         transform: rotateX(90deg);
         
-        transition: all @tabs-animation-duration @tabs-animation-function;
+        #utils > .transition-all; 
         
         &:not(:first-of-type) {
             margin-left: -100%;
@@ -106,3 +106,4 @@
         }
     }
 }
+

@@ -35,10 +35,10 @@
             cursor: pointer;
             
             > .icon {
-                border-color: @radio-button-border-color__focus;
+                border-color: @black;
                 
                 &:after {
-                    background: @radio-button-color__focus;
+                    background: @black;
                 }
             }
         }
@@ -49,12 +49,12 @@
         position: relative;
         vertical-align: middle;
         
-        height: @radio-button-height;
-        width: @radio-button-height;
+        height: @default-ui-height;
+        width: @default-ui-height;
         
-        background: @radio-button-bgcolor;
+        background: @white;
         
-        border: @radio-button-border-width solid @radio-button-border-color;
+        border: 1px solid @grey-4;
         border-radius: 50%;
         
         &:after {
@@ -66,7 +66,7 @@
             height: 0;
             width: 0;
             
-            background: @radio-button-color;
+            background: @grey-5;
             
             border-radius: 50%;
             opacity: 0;
@@ -78,8 +78,8 @@
     > input[type=radio]:checked + label > .icon {
         &:after {
             opacity: 1;
-            height: @radio-button-height * .4;
-            width: @radio-button-height * .4;
+            height: @default-ui-height * .4;
+            width: @default-ui-height * .4;
         }
     }
     
@@ -87,3 +87,4 @@
         padding: 0 1rem;
     }
 }
+

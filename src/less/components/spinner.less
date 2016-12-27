@@ -35,14 +35,15 @@
 .@{muilessium-prefix}spinner {
     display: inline-block;
     
-    height: @spinner-height;
-    width: @spinner-height;
+    height: @default-ui-height;
+    width: @default-ui-height;
 
     animation: spinner-rotate 2s linear infinite;
     
     > .path {
-        stroke: @spinner-color;
+        stroke: @black;
         stroke-linecap: round;
         animation: spinner-dash-animation 1.5s linear infinite;
     }
 }
+

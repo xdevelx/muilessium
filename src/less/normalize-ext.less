@@ -12,8 +12,8 @@
 html {
     height: 100%;
 
-    color: @default-color;
-    background-color: @default-background-color;
+    color: @black;
+    background-color: @white;
 }
 
 body {
@@ -24,25 +24,25 @@ body {
 }
 
 ::-moz-selection {
-    color: @selection-color;
-    background: @selection-background-color;
+    color: @white;
+    background: @black;
 }
 
 ::selection {
-    color: @selection-color;
-    background: @selection-background-color;
+    color: @white;
+    background: @black;
 }
 
 a {
-    color: @default-link-color;
+    color: @grey-5;
     
     &:hover,
     &:focus {
-        color: @default-link-color__focus;
+        color: @black;
     }
     
     &:visited {
-        color: @default-color;
+        color: @grey-5;
     }
     
     &:empty {
@@ -90,3 +90,4 @@ li {
         margin-top: .5rem;
     }
 }
+

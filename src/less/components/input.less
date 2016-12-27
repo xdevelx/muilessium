@@ -39,28 +39,26 @@
 .@{muilessium-prefix}input {
     position: relative;
     
-    height: @input-height;
+    height: @default-ui-height;
     width: 100%;
     
-    border: @input-border-width solid @input-color;
-    border-radius: @input-border-radius;
+    border: 1px solid @grey-4;
+    border-radius: @default-border-radius;
     overflow: hidden;
-    
-    background: @input-bgcolor;
     
     &:hover {
         cursor: pointer;
     }
     
     > input {
-        height: ~'calc(' @input-height ~' - ' 2 * @input-border-width ~')';
+        height: ~'calc(' @default-ui-height ~' - ' 2px ~')';
         width: 100%;
         
         padding: 0 1rem;
         
-        line-height: ~'calc(' @input-height ~' - ' 2 * @input-border-width ~')';
+        line-height: ~'calc(' @default-ui-height ~' - ' 2px ~')';
         
-        color: @input-color;
+        color: @black;
         background: transparent;
         
         outline: none;
@@ -68,7 +66,7 @@
         border: none;
 
         &::placeholder {
-            color: @input-placeholder-color;
+            color: @grey-4;
             text-indent: 0;
             opacity: 1;
             
@@ -79,7 +77,7 @@
     
     &.-focused {
         > input {
-            color: @input-color__focus;
+            color: @black;
 
             &::placeholder {
                 opacity: 0;
@@ -90,16 +88,16 @@
     &.-icon-left {
         // This background is fix for chrome 1px bug
         background: linear-gradient(to right,
-            @input-icon-bgcolor,
-            @input-icon-bgcolor @input-height,
-            @input-bgcolor @input-height,
-            @input-bgcolor 100%);
+            @grey-4,
+            @grey-4 @default-ui-height,
+            @white @default-ui-height,
+            @white 100%);
 
         > input {
-            text-indent: @input-height;
+            text-indent: @default-ui-height;
             
             &::placeholder {
-                text-indent: @input-height;
+                text-indent: @default-ui-height;
             }
         }
         
@@ -109,16 +107,13 @@
             top: 0;
             z-index: 1;
             
-            width: @input-height;
+            width: @default-ui-height;
 
-            font-size: @input-height * .5;
-            line-height: @input-height;
+            font-size: @default-ui-height * .5;
+            line-height: ~'calc(' @default-ui-height ~' - 1px)';
             text-align: center;
             
-            color: @input-icon-color;
-            background: @input-icon-bgcolor;
-
-            border-radius: @input-border-radius;
+            color: @white;
             
             &:hover {
                 cursor: pointer;
@@ -130,26 +125,23 @@
         // This background is fix for chrome 1px bug
         // TODO: Fix calc bug on hover in IE11
         background: linear-gradient(to right,
-            @input-bgcolor,
-            @input-bgcolor ~'calc(100% - ' @input-height ~')',
-            @input-icon-bgcolor @input-height,
-            @input-icon-bgcolor 100%);
+            @white,
+            @white ~'calc(100% - ' @default-ui-height ~')',
+            @grey-4 @default-ui-height,
+            @grey-4 100%);
         
         > .icon {
             position: absolute;
             right: 0;
             top: 0;
             
-            width: @input-height;
+            width: @default-ui-height;
             
-            font-size: @input-height * .5;
-            line-height: @input-height;
+            font-size: @default-ui-height * .5;
+            line-height: @default-ui-height;
             text-align: center;
             
-            color: @input-icon-color;
-            background: @input-icon-bgcolor;
- 
-            border-radius: @input-border-radius;
+            color: @white;
 
             &:hover {
                 cursor: pointer;
@@ -170,7 +162,7 @@
             top: -.7rem;
             font-size: .7rem;
             
-            color: @input-placeholder-color;
+            color: @grey-4;
         }
         
         > label {
@@ -183,7 +175,7 @@
             
             font-size: 1rem;
             
-            color: @input-color;
+            color: @black;
             
             #utils > .transition-all;
             
@@ -198,23 +190,23 @@
             top: -.7rem;
             font-size: .7rem;
             
-            color: @input-placeholder-color;
+            color: @grey-4;
         }
     }
     
     &.-valid {
-        border-color: @input-color__valid;
+        border-color: @grey-3;
         
         > input::placeholder {
-            color: @input-color__valid;
+            color: @grey-3;
         }
     }
     
     &.-invalid {
-        border-color: @input-color__invalid;
+        border-color: @black;
         
         > input::placeholder {
-            color: @input-color__invalid;
+            color: @black;
         }
     }
 }
@@ -227,8 +219,6 @@
 
     font-weight: 600;
     font-size: 1rem;
-    
-    color: @input-label-color;
 }
 
 

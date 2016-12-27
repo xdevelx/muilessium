@@ -7,6 +7,7 @@
 //  <a class='mui-button -large'     aria-label='click to ...'>button</a>
 //  <a class='mui-button -dangerous' aria-label='click to ...'>button</a>
 //  <a class='mui-button -ghost'     aria-label='click to ...'>button</a>
+//  <a class='mui-button -ghost -light' aria-label='click to ...'>button</a>
 //  <a class='mui-button' aria-label='click to ...'>
 //      <i class='fa fa-user'></i> button
 //  </a>
@@ -25,97 +26,107 @@
     
     padding: 0 1em;
     
-    font-size: @button-height * .5;
-    line-height: @button-height;
+    font-size: @default-ui-height * .5;
+    line-height: @default-ui-height;
     
     text-decoration: none;
     text-align: center;
 
-    color: @button-color;
-    background: @button-bgcolor;
+    color: @white;
+    background: @grey-4;
     
     border: none;
-    border-radius: @button-border-radius;
+    border-radius: @default-border-radius;
     
     user-select: none;
     
     #utils > .transition-all;
     
     &:visited {
-        color: @button-color;
-        background: @button-bgcolor;
+        color: @white;
+        background: @grey-4;
     }
     
     &:hover,
     &:focus {
+        color: @white;
         cursor: pointer;
-        color: @button-color__focus;
-        background: @button-bgcolor__focus;
+        background: @grey-5;
         outline: none;
     }
     
     &:active {
         cursor: pointer;
-        color: @button-color__active;
-        background: @button-bgcolor__active;
+        background: @black;
     }
     
     &.-small {
-        font-size: @global-ui-height * .3;
-        line-height: @global-ui-height * .7;
+        font-size: @default-ui-height * .3;
+        line-height: @default-ui-height * .7;
     }
     
     &.-large {
-        font-size: @global-ui-height * 1.2;
-        line-height: @global-ui-height * 2;
+        font-size: @default-ui-height * 1.2;
+        line-height: @default-ui-height * 2;
     }
     
     &.-dangerous {
-        color: @button-color-dangerous;
-        background: @button-bgcolor-dangerous;
+        color: @white;
+        background: @grey-5;
         
         text-transform: uppercase;
         
         &:visited {
-            color: @button-color-dangerous;
-            background: @button-bgcolor-dangerous;
+            color: @white;
+            background: @grey-5;
         }
         
         &:hover,
         &:focus {
-            color: @button-color-dangerous__focus;
-            background: @button-bgcolor-dangerous__focus;
+            background: @black;
         }
         
         &:active {
-            color: @button-color-dangerous__active;
-            background: @button-bgcolor-dangerous__active;
+            color: @white;
+            background: @black;
         }
     }
     
     &.-ghost {
-        color: @button-color-ghost;
-        background: transparent;
-        border: @button-border-width solid @button-color-ghost;
+        color: @black;
+        background: @transparent;
+        border: 1px solid @black;
         
         &:hover,
         &:focus {
-            color: @button-color-ghost__focus;
-            background: @button-bgcolor-ghost__focus;
-            border-color: @button-bgcolor-ghost__focus;
+            color: @black;
+            background: @grey-2;
+            border-color: @black;
+        }
+
+        &.-light {
+            color: @white;
+            border-color: @white;
+
+            &:hover,
+            &:focus {
+                color: @white;
+                background: @black;
+                border-color: @white;
+            }
         }
     }
 
     &.-icon {
-        height: @global-ui-height;
-        width:  @global-ui-height;
+        height: @default-ui-height;
+        width:  @default-ui-height;
 
         padding: 0;
     }
 
     > .mui-badge {
-        color: @button-badge-color;
-        background: @button-badge-bgcolor;
+        color: @white;
+        background: @grey-5;
     }
 
     &.-badge-on-top {
@@ -134,8 +145,8 @@
 
         padding: 0 1rem;
 
-        color: @button-label-color;
-        background: @button-label-bgcolor;
+        color: @white;
+        background: @grey-5;
     }
 
     &.-label-right {
@@ -147,7 +158,7 @@
             float: right;
             margin-left: 1rem;
 
-            border-radius: 0 @button-border-radius @button-border-radius 0;
+            border-radius: 0 @default-border-radius @default-border-radius 0;
         }
     }
 
@@ -160,7 +171,8 @@
             float: left;
             margin-right: 1rem;
 
-            border-radius: @button-border-radius 0 0 @button-border-radius;
+            border-radius: @default-border-radius 0 0 @default-border-radius;
         }
     }
 }
+

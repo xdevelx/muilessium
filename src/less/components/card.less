@@ -29,25 +29,23 @@
     
     overflow: hidden;
     
-    color: @card-color;
-    background: @card-bgcolor;
-    border-radius: @card-border-radius;
+    border-radius: @default-border-radius;
     
     #utils > .shadow;
     
     > .header {
-        padding: @card-padding;
+        padding: 1rem;
         text-align: center;
         
-        color: @card-header-color;
-        background: @card-header-bgcolor;
+        color: @white;
+        background: @grey-4;
         
-        border-top-left-radius: @card-border-radius;
-        border-top-right-radius: @card-border-radius;
+        border-top-left-radius: @default-border-radius;
+        border-top-right-radius: @default-border-radius;
     }
 
     > .content {
-        padding: @card-padding;
+        padding: 1rem;
     }
 
     &.-with-image {
@@ -60,3 +58,4 @@
         }
     }
 }
+

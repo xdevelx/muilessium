@@ -24,6 +24,7 @@
 //  </ul>
 
 
+
 .@{muilessium-prefix}accordion {
     list-style: none;
     
@@ -33,16 +34,14 @@
         
         margin: 0;
         padding: 0 1rem;
-        
-        color: @accordion-color;
-        background: @accordion-bgcolor;
-        border: solid @accordion-border-width @accordion-border-color;
+       
+        border: 1px solid @grey-2;
 
         overflow: hidden;
         
         &:first-of-type {
-            border-top-left-radius: @accordion-border-radius;    
-            border-top-right-radius: @accordion-border-radius;    
+            border-top-left-radius: @default-border-radius;    
+            border-top-right-radius: @default-border-radius;    
         }
         
         &:not(:first-of-type) {
@@ -50,8 +49,8 @@
         }
         
         &:last-of-type {
-            border-bottom-left-radius: @accordion-border-radius;    
-            border-bottom-right-radius: @accordion-border-radius;    
+            border-bottom-left-radius: @default-border-radius;    
+            border-bottom-right-radius: @default-border-radius;    
         }
     }
     
@@ -66,28 +65,26 @@
 
         line-height: 1;
 
-        color: @accordion-label-color;
-        background: @accordion-label-bgcolor;
+        background: @grey-2;
 
-        transition: border-bottom-left-radius  @accordion-animation-duration @accordion-animation-function,
-                    border-bottom-right-radius @accordion-animation-duration @accordion-animation-function;
+        transition: border-bottom-left-radius  @default-animation-duration @default-animation-function,
+                    border-bottom-right-radius @default-animation-duration @default-animation-function;
         
         &:hover,
         &:focus {
             cursor: pointer;
-            color: @accordion-label-color__focus;
-            background: @accordion-label-bgcolor__focus;
+            background: @grey-3;
         }
     }
 
     > .item:first-of-type > .title {
-        border-top-left-radius: @accordion-border-radius;
-        border-top-right-radius: @accordion-border-radius;
+        border-top-left-radius: @default-border-radius;
+        border-top-right-radius: @default-border-radius;
     }
 
     > .item:last-of-type:not(.-opened) > .title {
-        border-bottom-left-radius: @accordion-border-radius;
-        border-bottom-right-radius: @accordion-border-radius;
+        border-bottom-left-radius: @default-border-radius;
+        border-bottom-right-radius: @default-border-radius;
     }
 
     > .item > .title > .indicator {
@@ -96,7 +93,7 @@
         width: 1em;
         vertical-align: middle;
 
-        transition: transform @accordion-animation-duration @accordion-animation-function;
+        transition: transform @default-animation-duration @default-animation-function;
     }
 
     > .item > .content {
@@ -105,7 +102,7 @@
         opacity: 0;
         transform: rotateX(90deg);
         
-        transition: all @accordion-animation-duration @accordion-animation-function;
+        transition: all @default-animation-duration @default-animation-function;
         will-change: max-height, margin, opacity, transform;
     } 
         
@@ -115,15 +112,16 @@
         opacity: 1;
         transform: rotateX(0);
             
-        transition: all @accordion-animation-duration @accordion-animation-function;
+        transition: all @default-animation-duration @default-animation-function;
     }
 
     > .item.-unfold > .title {
-        border-bottom-left-radius: @accordion-border-radius;
-        border-bottom-right-radius: @accordion-border-radius;
+        border-bottom-left-radius: @default-border-radius;
+        border-bottom-right-radius: @default-border-radius;
     }
 
     > .item.-unfold > .title > .indicator {
         transform: rotate(90deg);
     }
 }
+

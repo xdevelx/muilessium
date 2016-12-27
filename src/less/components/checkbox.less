@@ -41,10 +41,10 @@
             outline: none;
             
             > .icon {
-                border-color: @checkbox-border-color__focus;
+                border-color: @black;
                 
                 > .fa {
-                    color: @checkbox-icon-color__focus;
+                    color: @black;
                 }
             }
         }
@@ -55,13 +55,12 @@
         position: relative;
         vertical-align: middle;
         
-        height: @checkbox-height;
-        width: @checkbox-height;
+        height: @default-ui-height;
+        width: @default-ui-height;
         
-        background: @checkbox-bgcolor;
-        border: @checkbox-border-width solid @checkbox-border-color;
+        border: 1px solid @grey-3;
         
-        border-radius: @checkbox-border-radius;
+        border-radius: @default-border-radius;
         
         > .fa {
             content: '';
@@ -75,7 +74,7 @@
             font-size: 0;
             text-align: center;
             
-            color: @checkbox-icon-color;
+            color: @grey-4;
             
             opacity: 0;
             
@@ -85,10 +84,10 @@
     
     &.-checked > label > .icon {
         > .fa {
-            height: @checkbox-height * .8;
-            width: @checkbox-height * .8;
+            height: @default-ui-height * .8;
+            width: @default-ui-height * .8;
             
-            font-size: @checkbox-height * .8;
+            font-size: @default-ui-height * .8;
             
             opacity: 1;
         }
@@ -100,8 +99,8 @@
     
     &.-toggle {
         > label > .icon {
-            background: @toggle-checkbox-bgcolor;
-            width: @toggle-checkbox-height * 2;
+            background: @grey-3;
+            width: @default-ui-height * 2;
             overflow: hidden;
             
             #utils > .transition-all;
@@ -110,23 +109,23 @@
             &:after {
                 display: block;
                 position: absolute;
-                top: -@toggle-checkbox-border-width;
+                top: -1px;
                 left: 0;
                 
-                height: @toggle-checkbox-height;
-                width: @toggle-checkbox-height;
+                height: @default-ui-height;
+                width: @default-ui-height;
                 
-                line-height: @toggle-checkbox-height;
-                font-size: @toggle-checkbox-height * .4;
+                line-height: @default-ui-height;
+                font-size: @default-ui-height * .4;
                 text-align: center;
                 text-transform: uppercase;
 
-                background: @toggle-checkbox-toggle-bgcolor;
-                color: @toggle-checkbox-toggle-color;
+                background: @grey-5;
+                color: @white;
                 
-                border-radius: @checkbox-border-radius;
+                border-radius: @default-border-radius;
                 
-                transition: all @toggle-checkbox-animation-duration @toggle-checkbox-animation-function;
+                transition: all @default-animation-duration @default-animation-function;
             }
             
             &:before {
@@ -140,14 +139,12 @@
         }
         
         &.-checked > label > .icon {
-            background: @toggle-checkbox-bgcolor__checked;
-            
             &:before,
             &:after {
-                left: ~'calc(100% - ' @checkbox-height ~')';
+                left: ~'calc(100% - ' @default-ui-height ~')';
 
-                background: @toggle-checkbox-toggle-bgcolor__checked;
-                color: @toggle-checkbox-toggle-color__checked;
+                background: @black;
+                color: @white;
             }
             
             &:after {
@@ -156,3 +153,4 @@
         }
     }
 }
+

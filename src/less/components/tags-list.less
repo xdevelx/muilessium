@@ -33,23 +33,22 @@
     divne-height: 1.2;
     text-decoration: none;
     
-    color: @tag-color;
+    color: @grey-4;
     
     #utils > .transition-all;
     
     &:visited {
-        color: @tag-color;
+        color: @grey-4;
     }
     
     &:hover,
     &:focus {
         cursor: pointer;
-        color: @tag-color__focus;
+        color: @black;
     }
     
     &:active {
-        cursor: pointer;
-        color: @tag-color__active;
+        color: @black;
     }
 }
 
@@ -78,12 +77,12 @@
 
     > .@{muilessium-prefix}tag-wrapper > .fa {
         font-size: .7rem;
-        color: @tag-color;
+        color: @grey-4;
     }
     
     &.-solid {
         > .@{muilessium-prefix}tag-wrapper {
-            background: @solid-tag-bgcolor;
+            background: @grey-2;
             padding: 0 .5rem;
             
             > .@{muilessium-prefix}tag:after {
@@ -92,3 +91,4 @@
         }
     }
 }
+

@@ -25,52 +25,52 @@
     
     > .page-link {
         display: inline-block;
-        height: @pagination-height;
+        height: @default-ui-height;
         margin: 0;
         overflow: hidden;
     }
     
     > .page-link > a {
         display: inline-block;
-        height: ~'calc(' @pagination-height ~' - ' 2*@pagination-border-width ~')';
+        height: ~'calc(' @default-ui-height ~' - 2px)';
         padding: 0 1rem;
 
-        font-size: @pagination-height * .5;
-        line-height: @pagination-height;
+        font-size: @default-ui-height * .5;
+        line-height: ~'calc(' @default-ui-height ~' - 1px)';
         text-decoration: none;
         
-        color: @pagination-color;
-        background: @pagination-bgcolor;
+        color: @black;
+        background: @white;
         
         #utils > .transition-all;
         
         &:visited,
         &:active {
-            color: @pagination-color;
+            color: @black;
         }
         
         &:hover,
         &:focus {
-            color: @pagination-color__focus;
-            background: @pagination-bgcolor__focus;
+            color: @black;
+            background: @grey-3;
         }
     }
     
     > .page-link.-current {
         > a { 
-            color: @pagination-current-color;
-            background: @pagination-current-bgcolor;
+            color: @black;
+            background: @grey-2;
         
             &:hover,
             &:focus {
-                color: @pagination-current-color__focus;
-                background: @pagination-current-bgcolor__focus;
+                color: @black;
+                background: @grey-3;
             }
         }
     }
     
     > .page-link.-current > a {
-        color: @pagination-current-color;
+        color: @black;
     }
     
     .fa {
@@ -81,26 +81,27 @@
     &.-bordered {
         > .page-link {
             &:first-child > a {
-                border-top-left-radius: @pagination-border-radius;
-                border-bottom-left-radius: @pagination-border-radius;
+                border-top-left-radius: @default-border-radius;
+                border-bottom-left-radius: @default-border-radius;
             }
             
             &:last-child > a {
-                border-top-right-radius: @pagination-border-radius;
-                border-bottom-right-radius: @pagination-border-radius;
+                border-top-right-radius: @default-border-radius;
+                border-bottom-right-radius: @default-border-radius;
             }
             
             > a {
-                border: @pagination-border-width solid @pagination-border-color;
-                line-height: ~'calc(' @pagination-height ~' - ' 2 * @pagination-border-width ~')';
+                border: 1px solid @grey-3;
+                line-height: ~'calc(' @default-ui-height ~' - ' 2px ~')';
 
                 &:hover,
                 &:focus {
-                    color: @pagination-bordered-color__focus;
-                    background: @pagination-bordered-bgcolor__focus;
-                    border-color: @pagination-border-color__focus;
+                    color: @black;
+                    background: @grey-3;
+                    border-color: @grey-3;
                 }
             }
         }
     }
 }
+

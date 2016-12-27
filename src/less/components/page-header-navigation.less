@@ -19,9 +19,7 @@
 
 
 .@{muilessium-prefix}header-navigation {
-    height: @header-height;
-    
-    background: @header-navigation-bgcolor;
+    height: @default-ui-height * 2;
     
     overflow: hidden;
     
@@ -38,24 +36,24 @@
     }
     
     > .links-list > li > a {
-        padding: calc((@header-height - 1em) / 2);
+        padding: calc((@default-ui-height * 2 - 1em) / 2);
         
-        line-height: @header-height;
+        line-height: @default-ui-height * 2;
         text-decoration: none;
         
-        color: @header-navigation-color;
+        color: @black;
         
         #utils > .transition-all;
         
         &:hover,
         &:focus {
-            color: @header-navigation-color__focus;
-            background: @header-navigation-bgcolor__focus;
+            color: @white;
+            background: @grey-4;
             outline: none;
         }
     }
     
-    @media screen and (max-width: @mobile-navigation__max-screen-width) {
+    @media screen and (max-width: @grid-breakpoint-medium-px) {
         > .links-list {
             display: block;
             visibility: hidden;
@@ -68,9 +66,6 @@
             height: 100%;
             width: 80%;
             
-            background: @mobile-navigation-bgcolor;
-            color: @mobile-navigation-color !important;
-            
             padding: 1rem;
         
             font-size: 2rem;
@@ -78,10 +73,10 @@
 
             transform: translateX(100%);
             
-            box-shadow: 0 0 10rem darken(@shadow-color, 10%);
+            background: @white;
+            box-shadow: 0 0 10rem darken(@default-shadow-color, 10%);
             
             #utils > .transition-all;
-            transition-duration: @mobile-navigation-animation-duration;
         }
         
         > .links-list > li {
@@ -95,7 +90,7 @@
             }
 
             &:not(:first-of-type) {
-                border-top: 1px solid @mobile-navigation-border-color;
+                border-top: 1px solid @grey-3;
             }
         }
         
@@ -110,7 +105,7 @@
         }
         
         &.-opened > .-hamburger {
-            color: @hamburger-color__focus;
+            color: @black;
         }
         
         &.-opened > .-shadow {
@@ -126,18 +121,18 @@
         position: relative;
         float: right;
         
-        height: @header-height;
-        line-height: @header-height;
+        height: @default-ui-height * 2;
+        line-height: @default-ui-height * 2;
         
         padding: 0 1rem;
         
         font-size: 2rem;
 
-        color: @hamburger-color;
+        color: @grey-4;
 
         #utils > .transition-all;
         
-        @media screen and (min-width: @mobile-navigation__max-screen-width) {
+        @media screen and (min-width: @grid-breakpoint-medium-px) {
             display: none;
         }
         
@@ -147,7 +142,7 @@
         
         &:hover,
         &:focus {
-            color: @hamburger-color__focus;
+            color: @black;
         }
 
         &:active {
@@ -155,3 +150,4 @@
         }
     }
 }
+
