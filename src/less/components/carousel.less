@@ -57,8 +57,10 @@
 }
 
 .@{muilessium-prefix}slide {
-    #utils > .absolute-zero;
-    
+    position: absolute;
+    top: 0;
+    left: 0;
+ 
     height: inherit;
     width: inherit;
     
@@ -82,8 +84,11 @@
 }
 
 .@{muilessium-prefix}slide-content {
-    #utils > .absolute-center;
-    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+ 
     width: inherit;
     
     padding: 1rem 6rem;
@@ -119,8 +124,10 @@
 }
 
 .@{muilessium-prefix}carousel-controls {
-    #utils > .absolute-zero;
-    
+    position: absolute;
+    top: 0;
+    left: 0;
+
     height: inherit;
     width: inherit;
     
@@ -203,8 +210,11 @@
         &:after {
             content: '';
             
-            #utils > .absolute-center;
-            
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+
             height: .5rem;
             width: .5rem;
             
