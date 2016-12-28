@@ -96,7 +96,7 @@ module.exports = function(grunt) {
         
         watch: {
             html: {
-                files: ['src/docs_template/index.handlebars'],
+                files: ['src/docs_template/*.handlebars', 'src/docs_template/*.html'],
                 tasks: ['dss']
             },
             css: {
