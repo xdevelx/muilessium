@@ -3,8 +3,8 @@
 
 @default-font-family: 'Raleway', sans-serif;
 
-@min-font-size: 12;
-@min-font-size-px: 12px;
+@min-font-size: 14;
+@min-font-size-px: 14px;
 @max-font-size: 22;
 @max-font-size-px: 22px;
 
@@ -15,28 +15,30 @@ html {
     // Font size formula (for default values):
     // size = ( 12px + (20 - 12) * ((100vw - 400px) / ( 1200 - 400)))
     font-size: ~'calc(' @min-font-size-px ~' + (' @max-font-size ~' - ' @min-font-size ~') * ((100vw - ' @grid-breakpoint-small-px ~') / (' @grid-breakpoint-large ~' - ' @grid-breakpoint-small ~')))';
+
+    line-height: 1.50;
 }
 
 h1, .h1 {
-    font-size: 3rem;
+    ._bigger-5;
 }
 
 h2, .h2 {
-    font-size: 2rem;
+    ._bigger-4;
 }
 
 h3, .h3 {
-    font-size: 1.5rem;
+    ._bigger-3;
 }
 
 h4, .h4 {
-    font-size: 1.2rem;
+    ._bigger-2;
 }
 
 h5, .h5 {
-    font-size: 1rem;
+    ._bigger-1;
 }
 
 h6, .h6 {
-    font-size: .8rem;
+    font-size: 1rem;
 }

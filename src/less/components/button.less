@@ -26,8 +26,8 @@
     
     padding: 0 1em;
     
-    font-size: @default-ui-height * .5;
-    line-height: @default-ui-height;
+    font-size: 1rem;
+    line-height: 2;
     
     text-decoration: none;
     text-align: center;
@@ -61,13 +61,11 @@
     }
     
     &.-small {
-        font-size: @default-ui-height * .3;
-        line-height: @default-ui-height * .7;
+        ._smaller-2;
     }
     
     &.-large {
-        font-size: @default-ui-height * 1.2;
-        line-height: @default-ui-height * 2;
+        ._bigger-2;
     }
     
     &.-dangerous {
@@ -132,8 +130,9 @@
     &.-badge-on-top {
         > .mui-badge {
             position: absolute;
-            top: -.5em;
-            right: -.5em;
+            top: 0;
+            right: 0;
+            transform: translateX(50%) translateY(-50%);
         }
     }
 
