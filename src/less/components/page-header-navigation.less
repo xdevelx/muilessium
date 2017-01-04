@@ -18,9 +18,7 @@
 //  </nav>
 
 
-.@{muilessium-prefix}header-navigation {
-    overflow: hidden;
-    
+.@{muilessium-prefix}header-navigation { 
     user-select: none;
     
     > .links-list {
@@ -51,7 +49,7 @@
         }
     }
     
-    @media screen and (max-width: @grid-breakpoint-medium-px) {
+    &.-mobile-version {
         > .links-list {
             display: block;
             visibility: hidden;
@@ -111,6 +109,12 @@
             pointer-events: auto;
         }
     }
+
+    &.-desktop-version {
+        .mui-navigation-toggle.-hamburger {
+            display: none;
+        }
+    }
 }
 
 .@{muilessium-prefix}navigation-toggle {
@@ -129,10 +133,6 @@
         color: @grey-4;
 
         #utils > .transition-all;
-        
-        @media screen and (min-width: @grid-breakpoint-medium-px) {
-            display: none;
-        }
         
         &:hover {
             cursor: pointer;

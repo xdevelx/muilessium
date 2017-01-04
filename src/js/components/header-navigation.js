@@ -24,6 +24,8 @@ export class HeaderNavigation extends Component {
         this.update();
 
         window.addEventListener('resize', this.update.bind(this));
+
+        this.state.initialized = true;
     }
 
 
@@ -114,11 +116,14 @@ export class HeaderNavigation extends Component {
 
 
     transformToMobile() {
-        if (!this.state.mobile) {
+        if (!this.state.mobile || !this.state.initialized) {
             this.closeNavigation();
 
             Utils.aria.set(this.dom.hamburger, 'hidden', false);
             Utils.aria.set(this.dom.linksList, 'hidden', true);
+
+            Utils.addClass(this.element, '-mobile-version');
+            Utils.removeClass(this.element, '-desktop-version');
 
             this.state.mobile = true;
         }
@@ -128,12 +133,15 @@ export class HeaderNavigation extends Component {
 
 
     transformToDesktop() {
-        if (this.state.mobile) {
+        if (this.state.mobile || !this.state.initialized) {
             this.closeNavigation();
 
             Utils.aria.set(this.dom.hamburger, 'hidden', true);
             Utils.aria.set(this.dom.shadow,    'hidden', true);
             Utils.aria.set(this.dom.linksList, 'hidden', false);
+
+            Utils.addClass(this.element, '-desktop-version');
+            Utils.removeClass(this.element, '-mobile-version');
 
             this.state.mobile = false;
         }
@@ -143,9 +151,19 @@ export class HeaderNavigation extends Component {
 
 
     update() {
-        const screenWidth = window.innerWidth;
+        let parentNode = this.element.parentNode,
+            parentWidth = parentNode.clientWidth,
+            childsWidth = 0;
 
-        if (screenWidth < 600) {
+        [].forEach.call(parentNode.childNodes, (child) => {
+            let width = child.offsetWidth;
+
+            if (width) {
+                childsWidth += child.offsetWidth;
+            }
+        });
+ 
+        if (childsWidth > (parentWidth + 25)) {
             this.transformToMobile();
         } else {
             this.transformToDesktop();
