@@ -16,7 +16,8 @@
 <body>
     <header class='mui-page-header -black-bg'>
         <div class='mui-header-logo _left'>
-            <a href=''>
+            <img class='mui-image -logo _lazy-load' data-src='images/muilessium.png' alt='logo'>
+            <a class='_right' href=''>
                 <h1 class='-white _bigger-1'>{{ project.name }} <span class='_smaller-3'>v{{ project.version }}</span></h1>
             </a>
         </div>
@@ -76,14 +77,18 @@
 
                     <p class='mui-p _separate-1'>Muilessium is the UI framework or rather a collection of UI components and helpers for developing responsive and accessible websites. This framework written in LESS and ES6 and can be included in a project as is or can be easily customized for your needs. Muilessium supports WAI-ARIA attributes and generates most of them automatically.</p>
 
+
+                    <p class='mui-p _separate-1'>Here is some examples of pages created using Muilessium:</p>
                     <div class='mui-row _separate-1'>
                         <div class='mui-column -s6 -m4 template-preview'>
-                            <img class='mui-image _lazy-load' data-src='/images/landing-template-1-preview.png'>
-                            <a href='/landing-template.html'>Landing template example</a>
+                            <a href='/landing-template.html'>
+                                <img class='mui-image _lazy-load -violet-5-bg' data-src='/images/landing-template-1-preview.png'>
+                            </a>
                         </div>
                         <div class='mui-column -s6 -m4 template-preview'>
-                            <img class='mui-image _lazy-load' data-src='/images/blog-template-1-preview.png'>
-                            <a href='/blog-template.html'>Blog template example</a>
+                            <a href='/blog-template.html'>
+                                <img class='mui-image _lazy-load -green-5-bg' data-src='/images/blog-template-1-preview.png'>
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -2,6 +2,14 @@
     padding-left: 1rem;
 }
 
+.mui-image.-logo {
+    float: left;
+    display: inline-block;
+    height: 3rem;
+    width: 3rem;
+    margin: .5rem 1rem .5rem 0;
+}
+
 .mui-header-logo h1 {
     line-height: 3.7rem;
 }
@@ -39,6 +47,19 @@ body {
             &:before {
                 content: '- ';
             }
+        }
+    }
+}
+
+.template-preview {
+    height: 20rem;
+    overflow: hidden;
+    padding: 1rem;
+
+    a:hover,
+    a:focus {
+        img {
+            opacity: .5;
         }
     }
 }
