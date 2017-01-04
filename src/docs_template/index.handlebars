@@ -6,57 +6,44 @@
     
     <title>{{project.name}} UI Framework</title>  
     
-    <link rel='stylesheet' href='assets/css/main.css'>
-    <link rel='stylesheet' href='assets/css/styles.css'/>
+    <link rel='stylesheet' href='assets/css/muilessium.css'>
+    <link rel='stylesheet' href='assets/css/docs-styles.css'/>
+
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
     
     <link rel='icon' href='favicon.ico' type='image/x-icon' />
-    
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
 </head>
 <body>
-        <!-- page-header -->
-        <header class='mui-page-header'>
-            <!-- header-logo -->
-            <div class='mui-header-logo _left'>
-                <a href=''>
-                    <h1>{{ project.name }}</h1>
-                </a>
-            </div>
-            <!-- /header-logo -->
-            <!-- header-navigation -->
-            <nav class='mui-header-navigation _right'>
-                <div class='mui-navigation-toggle -hamburger' role='button' aria-label='Open navigation'>
-                    <i class='fa fa-bars'></i>
-                </div>
-                <ul class='links-list'>
-                    <li><a href='#overview' aria-label='Link to the framework overview'>Overview</a></li>
-                    <li><a href='#components' aria-label='Link to the components'>Components</a></li>
-                    <li><a href='#faq' aria-label='Link to the f.a.q.'>F.A.Q.</a></li>
-                </ul>
-                <div class='mui-navigation-toggle mui-shadow-toggle' aria-label='Close navigation'></div>
-            </nav>
-            <!-- /header-navigation -->
-        </header>
-        <!-- /page-header -->
-
-
-        <!-- hero-header -->
-        <div class='mui-hero-header -blueprint'>
-            <div class='content'>
-                <h2 class='project'>{{ project.name }} <sup class='version'>v{{ project.version }}</sup></h2>
-                <p class='description'>Simple UI Framework for simple websites</p>
-                <a href='https://github.com/sfi0zy/muilessium' class='mui-button'>See on GitHub</a>
-            </div>
+    <header class='mui-page-header -black-bg'>
+        <div class='mui-header-logo _left'>
+            <a href=''>
+                <h1 class='-white _bigger-1'>{{ project.name }} <span class='_smaller-3'>v{{ project.version }}</span></h1>
+            </a>
         </div>
-        <!-- /hero-header -->
 
-        <!-- row -->
-        <div class='mui-row'>
-        <!-- aside -->
-        <aside class='mui-column -s12 -m4'>
-            <div class='aside-navigation' role='navigation'>
+        <nav class='mui-header-navigation _right'>
+            <div class='mui-navigation-toggle -hamburger -white -f-grey-3-bg -f-black' role='button' aria-label='Open navigation'>
+                <i class='fa fa-bars'></i>
+            </div>
+            <ul class='links-list'>
+                <li><a class='-white -f-grey-3-bg -f-black' href='#overview' aria-label='Link to the framework overview'>Overview</a></li>
+                <li><a class='-white -f-grey-3-bg -f-black' href='#components' aria-label='Link to the components'>Components</a></li>
+                <li><a class='-white -f-grey-3-bg -f-black' href='#faq' aria-label='Link to the f.a.q.'>F.A.Q.</a></li>
+            </ul>
+            <div class='mui-navigation-toggle mui-shadow-toggle' aria-label='Close navigation'></div>
+        </nav>
+    </header>
+
+
+
+    <div class='mui-row'>
+
+
+
+        <aside class='mui-column -s12 -m3 -grey-2-bg'>
+            <div class='aside-navigation _smaller-1 _line-1-25 _separate-3' role='navigation'>
                 <a href='#overview'>Overview</a>
-                <ul class='sub-list'>
+                <ul class='sub-list _separate-1'>
                     <li><a href='#grid-overview'>Grid</a></li>
                     <li><a href='#page-layout-overview'>Page layout</a></li>
                     <li><a href='#helpers-overview'>Helpers</a></li>
@@ -64,7 +51,7 @@
                     <li><a href='#colors-overview'>Colors</a></li>
                 </ul>
                 <a href='#components'>Components</a>
-                <ul class='sub-list'>
+                <ul class='sub-list _separate-1'>
                 {{#files}}
                     {{#blocks}}
                         <li>
@@ -76,222 +63,263 @@
                 <a href='#faq'>F.A.Q.</a>
             </div>
         </aside>
-        <!-- /aside -->
 
-        <!-- main -->
-        <main class='mui-column -s12 -m8'>
-            <!-- content-section -->
-            <div class='mui-content-container -separate'>
-                <h3 id='overview'>Overview</h3>
-                <p class='mui-p -b'>Muilessium is the UI framework or rather a collection of UI components and helpers for developing responsive and accessible websites. This framework written in LESS and ES6 and can be included in a project as is or can be easily customized for your needs. Muilessium supports WAI-ARIA attributes and generates most of them automatically.</p>
-                <div class='mui-row'>
-                    <div class='mui-column -m4 template-preview'>
-                        <img class='mui-image _lazy-load' data-src='/images/landing-template-1-preview.png'>
-                        <a href='/landing-template.html'>Landing template example</a>
+
+
+        <main class='mui-column -s12 -m9'>
+            <div class='mui-content-container'>
+
+
+
+                <div class='_separate-3'>
+                    <h2 class='_bigger-2' id='overview'>Overview</h2>
+
+                    <p class='mui-p _separate-1'>Muilessium is the UI framework or rather a collection of UI components and helpers for developing responsive and accessible websites. This framework written in LESS and ES6 and can be included in a project as is or can be easily customized for your needs. Muilessium supports WAI-ARIA attributes and generates most of them automatically.</p>
+
+                    <div class='mui-row _separate-1'>
+                        <div class='mui-column -s6 -m4 template-preview'>
+                            <img class='mui-image _lazy-load' data-src='/images/landing-template-1-preview.png'>
+                            <a href='/landing-template.html'>Landing template example</a>
+                        </div>
+                        <div class='mui-column -s6 -m4 template-preview'>
+                            <img class='mui-image _lazy-load' data-src='/images/blog-template-1-preview.png'>
+                            <a href='/blog-template.html'>Blog template example</a>
+                        </div>
                     </div>
-                    <div class='mui-column -m4 template-preview'>
-                        <img class='mui-image _lazy-load' data-src='/images/blog-template-1-preview.png'>
-                        <a href='/blog-template.html'>Blog template example</a>
+                </div>
+
+
+
+                <div class='_separate-5'>
+                    <h3 class='_bigger-2' id='grid-overview'>Grid</h3>
+
+                    <p class='mui-p _separate-1'>Muilessium uses a classic grid with 12 columns based on floats. Rows and columns have classes .mui-row and .mui-column and columns can have options -s* for a small screen, -m* for a medium screen and -l* for a large screen. Default breakpoints are 400, 600 and 1200px.</p>
+
+                    <div class='grid-preview _separate-2'>
+                        <div class='mui-row'>
+                            <div class='mui-column -s1 -grey-4-bg -white _text-center _line-2r _smaller-1'>-s1</div>
+                            <div class='mui-column -s11 -grey-4-bg -white _text-center _line-2r _smaller-1'>-s11</div>
+                        </div>
+                        <div class='mui-row'>
+                            <div class='mui-column -s3 -grey-4-bg -white _text-center _line-2r _smaller-1'>-s3</div>
+                            <div class='mui-column -s9 -grey-4-bg -white _text-center _line-2r _smaller-1'>-s9</div>
+                        </div>
+                        <div class='mui-row'>
+                            <div class='mui-column -s6 -m4 -l6 -grey-4-bg -white _text-center _line-2r _smaller-1'>-s6 -m4 -l6</div>
+                            <div class='mui-column -s6 -m8 -l6 -grey-4-bg -white _text-center _line-2r _smaller-1'>-s6 -m8 -l6</div>
+                        </div>
+                        <div class='mui-row'>
+                            <div class='mui-column -m6 -l2 -grey-4-bg -white _text-center _line-2r _smaller-1'>-m6 -l2</div>
+                            <div class='mui-column -m6 -l10 -grey-4-bg -white _text-center _line-2r _smaller-1'>-m6 -l10</div>
+                        </div>
+                    </div>
+
+                    <div class='code-example _separate-2 _smaller-2'>
+                        <pre class='prettyprint lang-html'>
+    &lt;div class='mui-row'&gt;
+        &lt;div class='mui-column -s1'&gt;-s1&lt;/div&gt;
+        &lt;div class='mui-column -s11'&gt;-s11&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class='mui-row'&gt;
+        &lt;div class='mui-column -s3'&gt;-s3&lt;/div&gt;
+        &lt;div class='mui-column -s9'&gt;-s9&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class='mui-row'&gt;
+        &lt;div class='mui-column -s6 -m4 -l6'&gt;-s6 -m4 -l6&lt;/div&gt;
+        &lt;div class='mui-column -s6 -m8 -l6'&gt;-s6 -m8 -l6&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class='mui-row'&gt;
+        &lt;div class='mui-column -m6 -l2'&gt;-m6 -l2&lt;/div&gt;
+        &lt;div class='mui-column -m6 -l10'&gt;-m6 -l10&lt;/div&gt;
+    &lt;/div&gt;</pre>
                     </div>
                 </div>
 
-                <h4 id='grid-overview'>Grid</h4>
-                <p class='mui-p -b'>Muilessium uses a classic grid with 12 columns based on floats. Rows and columns have classes .mui-row and .mui-column and columns can have options -s* for a small screen, -m* for a medium screen and -l* for a large screen. Default breakpoints are 400, 600 and 1200px.</p>
-                <div class='grid-preview'>
-                    <div class='mui-row'>
-                        <div class='mui-column -s1'>-s1</div>
-                        <div class='mui-column -s11'>-s11</div>
+
+
+                <div class='_separate-5'>
+                    <h3 class='_bigger-2' id='page-layout-overview'>Page layout</h3>
+
+                    <p class='mui-p _separate-1'>Basic page layout includes header, page container and footer. This layout is the simplest way to create a sticky footer, but IE11 does not support flexbox greatly, so we have some incorrect behavior in it.</p>
+
+                    <div class='code-example _separate-2 _smaller-2'>
+                        <pre class='prettyprint lang-html'>
+    &lt;header class='mui-page-header'&gt;header&lt;/header&gt;
+    &lt;div class='mui-page-container'&gt;...&lt;/div&gt;
+    &lt;footer class='mui-page-footer'&gt;footer&lt;/footer&gt;</pre>
                     </div>
-                    <div class='mui-row'>
-                        <div class='mui-column -s3'>-s3</div>
-                        <div class='mui-column -s9'>-s9</div>
-                    </div>
-                    <div class='mui-row'>
-                        <div class='mui-column -s6 -m4 -l6'>-s6 -m4 -l6</div>
-                        <div class='mui-column -s6 -m8 -l6'>-s6 -m8 -l6</div>
-                    </div>
-                    <div class='mui-row'>
-                        <div class='mui-column -m6 -l2'>-m6 -l2</div>
-                        <div class='mui-column -m6 -l10'>-m6 -l10</div>
-                    </div>
-                </div>
-                <div class='code-example'>
-                    <pre class='prettyprint lang-html'>
-&lt;div class='mui-row'&gt;
-    &lt;div class='mui-column -s1'&gt;-s1&lt;/div&gt;
-    &lt;div class='mui-column -s11'&gt;-s11&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class='mui-row'&gt;
-    &lt;div class='mui-column -s3'&gt;-s3&lt;/div&gt;
-    &lt;div class='mui-column -s9'&gt;-s9&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class='mui-row'&gt;
-    &lt;div class='mui-column -s6 -m4 -l6'&gt;-s6 -m4 -l6&lt;/div&gt;
-    &lt;div class='mui-column -s6 -m8 -l6'&gt;-s6 -m8 -l6&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class='mui-row'&gt;
-    &lt;div class='mui-column -m6 -l2'&gt;-m6 -l2&lt;/div&gt;
-    &lt;div class='mui-column -m6 -l10'&gt;-m6 -l10&lt;/div&gt;
-&lt;/div&gt;
-</pre>
                 </div>
 
-                <h4 id='page-layout-overview'>Page layout</h4>
-                <p class='mui-p -b'>Basic page layout includes header, page container and footer. This layout is the simplest way to create a sticky footer, but IE11 does not support flexbox greatly, so we have some incorrect behavior in it.</p>
-                <div class='code-example'>
-                    <pre class='prettyprint lang-html'>
-&lt;header class='mui-page-header'&gt;header&lt;/header&gt;
-&lt;div class='mui-page-container'&gt;...&lt;/div&gt;
-&lt;footer class='mui-page-footer'&gt;footer&lt;/footer&gt;
-</pre>
+
+
+                <div class='_separate-5'>
+                    <h3 class='_bigger-2' id='helpers-overview'>Helpers</h3>
+
+                    <p class='mui-p _separate-1'>Muilessium has a number of helpers, no need to add description for every of them - just look at src/less/helpers.less.</p>
                 </div>
 
 
-                <h4 id='helpers-overview'>Helpers</h4>
-                <p class='mui-p'>Muilessium has a number of helpers, no need to add description for every of them - just look at src/less/helpers.less.</p>
 
-                <h4 id='lazy-loading-images-overview'>Lazy loading images</h4>
-                <div class='code-example'>
-                    <pre class='prettyprint lang-html'>
+                <div class='_separate-5'>
+                    <h3 class='_bigger-2' id='lazy-loading-images-overview'>Lazy loading images</h3>
 
-&lt;img class='mui-image _lazy-load' data-src='https://placehold.it/128x128' alt='Lazy loaded image' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'&gt;
-</pre>
+                    <div class='code-example _separate-2 _smaller-2'>
+                        <pre class='prettyprint lang-html'>
+    &lt;img class='mui-image _lazy-load'
+        data-src='https://placehold.it/128x128'
+        alt='Lazy loaded image'
+        src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'&gt;</pre>
+                    </div>
                 </div>
 
-                <h4 id='colors-overview'>Colors</h4>
-                <p class='mui-p _separate-1'>See src/less/colors for more information</p>
-                <div class='color-preview -white-bg'></div>
-                <div class='color-preview -grey-1-bg'></div>
-                <div class='color-preview -grey-2-bg'></div>
-                <div class='color-preview -grey-3-bg'></div>
-                <div class='color-preview -grey-4-bg'></div>
-                <div class='color-preview -grey-5-bg'></div>
-                <div class='color-preview -black-bg'></div>
-                <div class='color-preview -brown-1-bg'></div>
-                <div class='color-preview -brown-2-bg'></div>
-                <div class='color-preview -brown-3-bg'></div>
-                <div class='color-preview -brown-4-bg'></div>
-                <div class='color-preview -brown-5-bg'></div>
-                <div class='color-preview -blue-1-bg'></div>
-                <div class='color-preview -blue-2-bg'></div>
-                <div class='color-preview -blue-3-bg'></div>
-                <div class='color-preview -blue-4-bg'></div>
-                <div class='color-preview -blue-5-bg'></div>
-                <div class='color-preview -violet-1-bg'></div>
-                <div class='color-preview -violet-2-bg'></div>
-                <div class='color-preview -violet-3-bg'></div>
-                <div class='color-preview -violet-4-bg'></div>
-                <div class='color-preview -violet-5-bg'></div>
-                <div class='color-preview -purple-1-bg'></div>
-                <div class='color-preview -purple-2-bg'></div>
-                <div class='color-preview -purple-3-bg'></div>
-                <div class='color-preview -purple-4-bg'></div>
-                <div class='color-preview -purple-5-bg'></div>
-                <div class='color-preview -green-1-bg'></div>
-                <div class='color-preview -green-2-bg'></div>
-                <div class='color-preview -green-3-bg'></div>
-                <div class='color-preview -green-4-bg'></div>
-                <div class='color-preview -green-5-bg'></div>
-                <div class='color-preview -cyan-1-bg'></div>
-                <div class='color-preview -cyan-2-bg'></div>
-                <div class='color-preview -cyan-3-bg'></div>
-                <div class='color-preview -cyan-4-bg'></div>
-                <div class='color-preview -cyan-5-bg'></div>
-                <div class='color-preview -red-1-bg'></div>
-                <div class='color-preview -red-2-bg'></div>
-                <div class='color-preview -red-3-bg'></div>
-                <div class='color-preview -red-4-bg'></div>
-                <div class='color-preview -red-5-bg'></div>
-                <div class='color-preview -yellow-1-bg'></div>
-                <div class='color-preview -yellow-2-bg'></div>
-                <div class='color-preview -yellow-3-bg'></div>
-                <div class='color-preview -yellow-4-bg'></div>
-                <div class='color-preview -yellow-5-bg'></div>
-                <div class='color-preview -orange-1-bg'></div>
-                <div class='color-preview -orange-2-bg'></div>
-                <div class='color-preview -orange-3-bg'></div>
-                <div class='color-preview -orange-4-bg'></div>
-                <div class='color-preview -orange-5-bg'></div>
-            </div>
-            <!-- content-section -->
 
 
-            <!-- content-section -->
-            <div class='mui-content-container -separate'>
-                <h4 id='components'>Components</h4>
-                <p class='mui-p -b'>Muilessium has a number of components listed below. Every component has a markup shown in example and this markup should be used as is, because some initializations of components are based on their markups.</p>
+                <div class='_separate-5'>
+                    <h3 class='_bigger-2' id='colors-overview'>Colors</h3>
 
-                {{#files}}
-                    <div id='{{file}}' class='_allow-empty'></div>
-                    {{#blocks }}
-                    <!-- component-preview -->
-                    <div class='component-preview'>
-                        <h5 class='name'>{{ name }}</h5>
-                        <div class='filename'>{{ ../file }}</div>
-                        {{#if description }}
-                            <p class='mui-p description'>{{ description }}</p>
-                        {{/if}}
-                        {{#depends }}
-                            <div class='depends'>Depends on {{ depends }}</div>
-                        {{/depends}}
-                        {{#requires}}
-                            <div class='requires'>Requires {{ requires }}</div>
-                        {{/requires}}
-                        {{#if markup}}
-                            <div class='example-container'>
-                                <div class='example'>{{{ markup.example }}}</div>
-                                {{#state}}
-                                    <div class='state'>
-                                        <h6>{{ ../../name }} with {{name}} option</h6>
-                                        <div class='example' data-class='{{name}}'>{{{ ../markup.example }}}</div>
+                    <p class='mui-p _separate-1'>See src/less/colors for more information</p>
+
+                    <div class='_separate-2'>
+                        <div class='color-preview -white-bg'></div>
+                        <div class='color-preview -grey-1-bg'></div>
+                        <div class='color-preview -grey-2-bg'></div>
+                        <div class='color-preview -grey-3-bg'></div>
+                        <div class='color-preview -grey-4-bg'></div>
+                        <div class='color-preview -grey-5-bg'></div>
+                        <div class='color-preview -black-bg'></div>
+                        <div class='color-preview -brown-1-bg'></div>
+                        <div class='color-preview -brown-2-bg'></div>
+                        <div class='color-preview -brown-3-bg'></div>
+                        <div class='color-preview -brown-4-bg'></div>
+                        <div class='color-preview -brown-5-bg'></div>
+                        <div class='color-preview -blue-1-bg'></div>
+                        <div class='color-preview -blue-2-bg'></div>
+                        <div class='color-preview -blue-3-bg'></div>
+                        <div class='color-preview -blue-4-bg'></div>
+                        <div class='color-preview -blue-5-bg'></div>
+                        <div class='color-preview -violet-1-bg'></div>
+                        <div class='color-preview -violet-2-bg'></div>
+                        <div class='color-preview -violet-3-bg'></div>
+                        <div class='color-preview -violet-4-bg'></div>
+                        <div class='color-preview -violet-5-bg'></div>
+                        <div class='color-preview -purple-1-bg'></div>
+                        <div class='color-preview -purple-2-bg'></div>
+                        <div class='color-preview -purple-3-bg'></div>
+                        <div class='color-preview -purple-4-bg'></div>
+                        <div class='color-preview -purple-5-bg'></div>
+                        <div class='color-preview -green-1-bg'></div>
+                        <div class='color-preview -green-2-bg'></div>
+                        <div class='color-preview -green-3-bg'></div>
+                        <div class='color-preview -green-4-bg'></div>
+                        <div class='color-preview -green-5-bg'></div>
+                        <div class='color-preview -cyan-1-bg'></div>
+                        <div class='color-preview -cyan-2-bg'></div>
+                        <div class='color-preview -cyan-3-bg'></div>
+                        <div class='color-preview -cyan-4-bg'></div>
+                        <div class='color-preview -cyan-5-bg'></div>
+                        <div class='color-preview -red-1-bg'></div>
+                        <div class='color-preview -red-2-bg'></div>
+                        <div class='color-preview -red-3-bg'></div>
+                        <div class='color-preview -red-4-bg'></div>
+                        <div class='color-preview -red-5-bg'></div>
+                        <div class='color-preview -yellow-1-bg'></div>
+                        <div class='color-preview -yellow-2-bg'></div>
+                        <div class='color-preview -blue-3-bg'></div>
+                        <div class='color-preview -yellow-4-bg'></div>
+                        <div class='color-preview -yellow-5-bg'></div>
+                        <div class='color-preview -orange-1-bg'></div>
+                        <div class='color-preview -orange-2-bg'></div>
+                        <div class='color-preview -orange-3-bg'></div>
+                        <div class='color-preview -orange-4-bg'></div>
+                        <div class='color-preview -orange-5-bg'></div>
+                    </div>
+                </div>
+
+
+
+                <div class='_separate-5'>
+                    <h3 class='_bigger-2' id='components'>Components</h3>
+
+                    <p class='mui-p _separate-1'>Muilessium has a number of components listed below. Every component has a markup shown in example and this markup should be used as is, because some initializations of components are based on their markups.</p>
+
+                    {{#files}}
+                        <div id='{{file}}' class='_allow-empty'></div>
+                        {{#blocks }}
+                            <div class='_separate-5'>
+                                <h4 class='_bigger-1'>{{ name }}</h4>
+                                <div class='_smaller-2 -grey-4'>{{ ../file }}</div>
+                                {{#if description }}
+                                    <p class='mui-p _separate-1'>{{ description }}</p>
+                                {{/if}}
+                                {{#depends }}
+                                    <div class='_smaller-2 -blue-4'>Depends on {{ depends }}</div>
+                                {{/depends}}
+                                {{#requires}}
+                                    <div class='_smaller-2 -red-4'>Requires {{ requires }}</div>
+                                {{/requires}}
+                                {{#if markup}}
+                                    <div class='_separate-1'>
+                                        <div class='example _separate-2'>{{{ markup.example }}}</div>
+                                        {{#state}}
+                                            <div class='state _separate-2'>
+                                                <h5 class='_smaller-1'>{{ ../../name }} with {{name}} option</h5>
+                                                <div class='example _separate-2' data-class='{{name}}'>{{{ ../markup.example }}}</div>
+                                            </div>
+                                        {{/state}}
+                                        <div class='code _separate-2 _smaller-2'>
+                                            <pre class='( prettyprint lang-html )'>{{{markup.escaped}}}</pre>
+                                        </div>
                                     </div>
-                                {{/state}}
-                                <div class='code'>
-                                    <pre class='( prettyprint lang-html )'>{{{markup.escaped}}}</pre>
-                                </div>
+                                {{/if}}
                             </div>
-                        {{/if}}
+                        {{/blocks}}
+                    {{/files}}
+                </div>
+
+
+
+
+                <div class='_separate-5'>
+                    <h3 class='_bigger-2' id="faq">F.A.Q.</h3>
+
+                    <div class='questions-list _separate-1'>
+                        <div class='_separate-1'>
+                            <div class='question'>Can I use Muilessium in my project?</div>
+                            <div class='answer'>Yes, Muilessium is distributed under the MIT license, so You can use it in Your projects.</div>
+                        </div>
+
+                        <div class='_separate-1'>
+                            <div class='question'>What browsers are supported?</div>
+                            <div class='answer'>All modern browsers, including IE11.</div>
+                        </div>
+                        
+                        <div class='_separate-1'>
+                            <div class='question'>Who is the author?</div>
+                            <div class='answer'>My name is Ivan Bogachev. I'm a musitian and front-end developer, You could see <a href='http://codepen.io/sfi0zy/'>some of my pens on codepen</a> previously.</div>
+                        </div>
+
+                        <div class='_separate-1'>
+                            <div class='question'>I found a bug?</div>
+                            <div class='answer'>If you found a bug - don't worry, Muilessium is not officially released yet and can have some bugs, You can open an issue on <a href='https://github.com/sfi0zy/muilessium'>GitHub</a> or send me an <a href='mailto:sfi0zy@gmail.com'>email</a> and I will fix a problem when I will have a time.</div>
+                        </div>
+
+                        <div class='_separate-1'>
+                            <div class='question'>I have some suggestions for improvement of Muilessium</div>
+                            <div class='answer'>That's great! You can fork Muilesssium, add Your functionality and create a pull request, or contact with me by <a href='mailto:sfi0zy@gmail.com'>email</a> or <a href='https://twitter.com/sfi0zy'>twitter</a> (but I should  notify You - English is not my native language, maybe I'll need some time to translate messages)</div>
+                        </div>
                     </div>
-                    <!-- /component-preview -->
-                    {{/blocks}}
-                {{/files}}
-            </div>
-            <!-- /content-section -->
-
-
-            <!-- content-section -->
-            <div class="mui-content-container -separate">
-                <h3 id="faq">F.A.Q.</h3>
-
-                <div class='questions-list'>
-                    <div class='question'>Can I use Muilessium in my project?</div>
-                    <div class='answer'>Yes, Muilessium is distributed under the MIT license, so You can use it in Your projects.</div>
-                    <div class='question'>What browsers are supported?</div>
-                    <div class='answer'>All modern browsers, including IE11.</div>
-
-                    <div class='question'>Who is the author?</div>
-                    <div class='answer'>My name is Ivan Bogachev. I'm a musitian and front-end developer, You could see <a href='http://codepen.io/sfi0zy/'>some of my pens on codepen</a> previously.</div>
-
-                    <div class='question'>I found a bug?</div>
-                    <div class='answer'>If you found a bug - don't worry, Muilessium is not officially released yet and can have some bugs, You can open an issue on <a href='https://github.com/sfi0zy/muilessium'>GitHub</a> or send me an <a href='mailto:sfi0zy@gmail.com'>email</a> and I will fix a problem when I will have a time.</div>
-
-                    <div class='question'>I have some suggestions for improvement of Muilessium</div>
-                    <div class='answer'>That's great! You can fork Muilesssium, add Your functionality and create a pull request, or contact with me by <a href='mailto:sfi0zy@gmail.com'>email</a> or <a href='https://twitter.com/sfi0zy'>twitter</a> (but I should  notify You - English is not my native language, maybe I'll need some time to translate messages)</div>
-                    <div class='question'></div>
-                    <div class='answer'></div>
                 </div>
             </div>
-            <!-- /content-section -->
 
-            <!-- page-footer -->
-            <div class='mui-page-footer _text-center'>
-                <span>Copyright &copy; Ivan Bogachev, 2016</span>
-            </div>
-            <!-- /page-footer -->
+
         </main>
-        <!-- /main -->
-        </div>
-        <!-- /columns-fix -->
+    </div>
+
+
+
+    <div class='mui-page-footer _text-center _line-3r -white -black-bg'>
+        <span>Copyright &copy; Ivan Bogachev, 2016</span>
+    </div>
 
 
 
@@ -312,6 +340,6 @@
             prettyPrint();
         });
     </script>
-    <script src='assets/js/main.js'></script>
+    <script src='assets/js/muilessium.js'></script>
 </body>
 </html>

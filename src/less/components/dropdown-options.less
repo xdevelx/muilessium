@@ -1,6 +1,7 @@
 // @name Dropdown options
 // @description This component should be used as a part of more complex components. See button-dropdown and select-dropdown components for more information.
 
+
 .@{muilessium-prefix}dropdown-options {
     position: relative;
     width: 100%;
@@ -21,5 +22,9 @@
         &:focus {
             color: @grey-4;
         }
+    }
+
+    > .option > a {
+        text-decoration: none;
     }
 }

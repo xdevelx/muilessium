@@ -1,0 +1,115 @@
+.mui-page-header {
+    padding-left: 1rem;
+}
+
+.mui-header-logo h1 {
+    line-height: 3.7rem;
+}
+
+body {
+    background: linear-gradient(to right, #EDEDED 0%, #EDEDED 25%, #fff 25%, #fff 100%);
+}
+
+@media screen and (max-width: 600px) {
+    .mui-header-navigation .links-list {
+        background: #000;
+    }
+
+    body {
+        background: #fff;
+    }
+
+    aside {
+        display: none !important;
+    }
+}
+
+.aside-navigation {
+    padding: 0 1rem;
+
+    a {
+        text-decoration: none;
+    }
+
+    .sub-list {
+        list-style: none;
+        padding-left: 1em;
+
+        a {
+            &:before {
+                content: '- ';
+            }
+        }
+    }
+}
+
+.grid-preview .mui-column {
+    margin-top: .5rem;
+}
+
+.grid-preview .mui-column:first-of-type {
+    border-right: 2px solid #fff;
+}
+
+@media screen {
+    .str { color: #1F4C77; } // string content
+    .kwd { color: #400F54; } // a keyword
+    .com { color: #6D6D6D; } // a comment
+    .typ { color: #400F54; } // a type name
+    .lit { color: #1F4C77; } // a literal value
+    .pun { color: #383838; } // punctuation
+    .opn { color: #383838; } // lisp open bracket
+    .clo { color: #383838; } // lisp close bracket
+    .tag { color: #400F54; } // a markup tag name
+    .atn { color: #35540F; } // a markup attribute name
+    .atv { color: #1F4C77; } // a markup attribute value
+    .dec { color: #400F54; } // a declaration
+    .var { color: #383838; } // a variable name
+    .fun { color: #383838; } // a function name
+}
+
+pre.prettyprint {
+    background: #EDEDED;
+    font-family: Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, monospace;
+    padding: 1rem;
+    overflow-x: scroll;
+    border-left: 2px solid #6D6D6D;
+}
+
+ol.linenums {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.color-preview {
+    display: inline-block !important;
+    height: 2rem;
+    width: 2rem;
+    margin: .3rem;
+    border: 1px solid #000;
+}
+
+.example > .mui-button {
+    margin: 0 1rem 1rem 0;
+}
+
+.questions-list {
+    .question {
+        font-weight: bold;
+
+        &:before {
+            content: '- ';
+        }
+    }
+
+    .answer {
+        &:before {
+            content: '- ';
+        }
+    }
+}
+
+.mui-carousel,
+.mui-hero-header {
+    background: #EDEDED;
+}

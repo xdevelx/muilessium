@@ -4,6 +4,8 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
     
     grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+
         copy: {
             docs: {
                 files: [
@@ -40,7 +42,17 @@ module.exports = function(grunt) {
                     ]
                 },
                 files: {
-                    'dist/css/main.css': 'src/less/main.less'
+                    'dist/css/muilessium.css': 'src/less/main.less'
+                }
+            },
+            docs: {
+                options: {
+                    plugins: [
+                        new (require('less-plugin-autoprefix'))({browsers: ["last 2 versions"]})
+                    ]
+                },
+                files: {
+                    'docs/assets/css/docs-styles.css': 'src/docs_template/assets/less/docs-styles.less'
                 }
             }
         },
@@ -48,7 +60,7 @@ module.exports = function(grunt) {
         cssmin: {
             dist: {
                 files: {
-                    'dist/css/main.min.css': ['dist/css/main.css']
+                    'dist/css/muilessium-<%= pkg.version %>.min.css': ['dist/css/muilessium.css']
                 }
             }
         },
@@ -79,7 +91,7 @@ module.exports = function(grunt) {
                     ]
                 },
                 files: {
-                    'dist/js/main.js': ['src/js/main.js']
+                    'dist/js/muilessium.js': ['src/js/main.js']
                 }
             }
         },
@@ -87,8 +99,8 @@ module.exports = function(grunt) {
         uglify: {
             dist: {
                 files: {
-                    'dist/js/main.min.js': [
-                        'dist/js/main.js'
+                    'dist/js/muilessium-<%= pkg.version %>.min.js': [
+                        'dist/js/muilessium.js'
                     ]
                 }
             }
@@ -106,7 +118,8 @@ module.exports = function(grunt) {
             less: {
                 files: [
                     'src/less/*.less',
-                    'src/less/*/*.less'
+                    'src/less/*/*.less',
+                    'src/docs_template/assets/less/*.less'
                 ],
                 tasks: ['less', 'cssmin', 'dss', 'copy']
             },
