@@ -62,8 +62,10 @@ export class Rating extends Component {
 
         this.state.rating = newRating;
 
-        this.element.blur();
-        this.element.focus();
+        if (this.element === document.activeElement) {
+            this.element.blur();
+            this.element.focus();
+        }
 
         return this;
     }
