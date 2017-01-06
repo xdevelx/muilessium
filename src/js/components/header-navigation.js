@@ -116,7 +116,7 @@ export class HeaderNavigation extends Component {
 
 
     transformToMobile() {
-        if (!this.state.mobile || !this.state.initialized) {
+        //if (!this.state.mobile || !this.state.initialized) {
             this.closeNavigation();
 
             Utils.aria.set(this.dom.hamburger, 'hidden', false);
@@ -126,14 +126,14 @@ export class HeaderNavigation extends Component {
             Utils.removeClass(this.element, '-desktop-version');
 
             this.state.mobile = true;
-        }
+        //}
 
         return this;
     }
 
 
     transformToDesktop() {
-        if (this.state.mobile || !this.state.initialized) {
+        //if (this.state.mobile || !this.state.initialized) {
             this.closeNavigation();
 
             Utils.aria.set(this.dom.hamburger, 'hidden', true);
@@ -144,7 +144,7 @@ export class HeaderNavigation extends Component {
             Utils.removeClass(this.element, '-mobile-version');
 
             this.state.mobile = false;
-        }
+        //}
 
         return this;
     }
@@ -163,7 +163,7 @@ export class HeaderNavigation extends Component {
             }
         });
  
-        if (childsWidth > (parentWidth + 25)) {
+        if (childsWidth > (parentWidth - 100)) {
             this.transformToMobile();
         } else {
             this.transformToDesktop();
