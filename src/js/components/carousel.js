@@ -17,7 +17,8 @@ export class Carousel extends Component {
 
         this.state = Utils.extend(this.state, {
             numberOfSlides: this.dom.slides.length,
-            currentSlide: 0
+            currentSlide: 0,
+            interval: (parseFloat(this.element.getAttribute('data-interval'), 10) || 5)
         });
 
         this.initAria();
@@ -53,7 +54,9 @@ export class Carousel extends Component {
 
 
     startRotating() {
-        this.state.rotateInterval = setInterval(this.rotate.bind(this, 'next'), 5000);
+        this.state.rotateInterval = setInterval(
+                        this.rotate.bind(this, 'next'),
+                        this.state.interval * 1000);
 
         return this;
     }
