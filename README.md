@@ -1,12 +1,16 @@
-# Muilessium
+# Muilessium UI Framework
+![version-badge](https://img.shields.io/badge/version-0.1.1-blue.svg?style=flat-square) ![license-badge](https://img.shields.io/github/license/sfi0zy/muilessium.svg?style=flat-square) ![state-badge](https://img.shields.io/badge/state-pre%20release-orange.svg?style=flat-square)
 
-*Coming Soon...*
+![muilessium-logo](https://sfi0zy.github.io/images/c80e38f4f5704016aa53d2ce0dc2fdc2.png "Muilessium logo")
 
-Muilessium is my little pet project. It is a UI framework or rather a collection of elements like buttons, breadcrumbs, tags, sliders, charts e.t.c. It has Bootstrap-like grid. It is assumed that this collection will be a good base for a new website. Well structured LESS code (I use RSCSS) allows to customize Muilessium very quickly. Documentation for components based on DSS parser and can be generated in real time using Grunt. It is very useful - We have an ability to create components separately and then integrate them into a  website. In future I want to create something like constructor for this framework and add ability to add or remove components by one click.
-
+## Build instructions
 ```sh
 git clone https://github.com/sfi0zy/muilessium.git
 cd muilessium
 npm i
 grunt server
 ```
+
+## Docs
+[https://sfi0zy.github.io/muilessium](https://sfi0zy.github.io/muilessium)
+
