@@ -33,6 +33,19 @@ module.exports = function(grunt) {
                 ]
             }
         },
+
+        lesslint: {
+            src: [
+                'src/less/main.less'
+            ],
+            options: {
+                imports: ['src/less/*.less', 'src/less/*/*.less'],
+                failOnWarning: false,
+                csslint: {
+                    csslintrc: '.csslintrc'
+                }
+            }
+        },
         
         less: {
             dist: {
@@ -204,8 +217,8 @@ module.exports = function(grunt) {
         }
     });
     
-    grunt.registerTask('default', ['less', 'cssmin', 'browserify', 'uglify', 'dss', 'copy']);
+    grunt.registerTask('default', ['lesslint', 'less', 'cssmin', 'browserify', 'uglify', 'dss', 'copy']);
     grunt.registerTask('server',  ['default', 'browserSync', 'watch']);
     grunt.registerTask('rebuild', ['clean', 'default']);
-    grunt.registerTask('docs',    ['dss']);
+    grunt.registerTask('test',    ['lesslint']);
 };
