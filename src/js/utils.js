@@ -374,6 +374,25 @@ function generateRandomString(length = 8) {
 }
 
 
+function debounce(func, ms) {
+    let callAllowed = true;
+
+    return function() {
+        if (!callAllowed) {
+            return;
+        }
+
+        func.apply(this, arguments);
+
+        callAllowed = false;
+
+        setTimeout(() => {
+            callAllowed = true;
+        }, ms);
+    };
+}
+
+
 export {
     console,
     ajax,
@@ -403,5 +422,6 @@ export {
     makeElementClickable,
     makeChildElementsClickable,
     lazyLoadImages,
-    generateRandomString
+    generateRandomString,
+    debounce
 };

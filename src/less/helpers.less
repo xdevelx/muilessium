@@ -32,6 +32,22 @@
 ._smaller-4 { font-size: .40em !important; }
 ._smaller-5 { font-size: .32em !important; }
 
+@media screen and (max-width: @grid-breakpoint-medium-px) {
+    ._smaller-5 { ._smaller-4; } 
+    ._smaller-4 { ._smaller-3; }
+    ._smaller-3 { ._smaller-2; }
+    ._smaller-2 { ._smaller-1; }
+    ._smaller-1 { font-size: 1em !important; }
+}
+
+@media screen and (max-width: @grid-breakpoint-small-px) {
+    ._smaller-5 { ._smaller-3; }
+    ._smaller-4 { ._smaller-2; }
+    ._smaller-3 { ._smaller-1; }
+    ._smaller-2 { font-size: 1em !important; }
+    ._smaller-1 { font-size: 1em !important; }
+}
+
 ._bigger-1 { font-size: 1.25em !important; }
 ._bigger-2 { font-size: 1.56em !important; }
 ._bigger-3 { font-size: 1.95em !important; }

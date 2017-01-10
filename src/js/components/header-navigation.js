@@ -23,7 +23,7 @@ export class HeaderNavigation extends Component {
         this.initControls();
         this.update();
 
-        window.addEventListener('resize', this.update.bind(this));
+        window.addEventListener('resize', Utils.debounce(this.update.bind(this), 100));
 
         this.state.initialized = true;
     }
@@ -116,7 +116,7 @@ export class HeaderNavigation extends Component {
 
 
     transformToMobile() {
-        //if (!this.state.mobile || !this.state.initialized) {
+        if (!this.state.mobile || !this.state.initialized) {
             this.closeNavigation();
 
             Utils.aria.set(this.dom.hamburger, 'hidden', false);
@@ -126,14 +126,14 @@ export class HeaderNavigation extends Component {
             Utils.removeClass(this.element, '-desktop-version');
 
             this.state.mobile = true;
-        //}
+        }
 
         return this;
     }
 
 
     transformToDesktop() {
-        //if (this.state.mobile || !this.state.initialized) {
+        if (this.state.mobile || !this.state.initialized) {
             this.closeNavigation();
 
             Utils.aria.set(this.dom.hamburger, 'hidden', true);
@@ -144,13 +144,18 @@ export class HeaderNavigation extends Component {
             Utils.removeClass(this.element, '-mobile-version');
 
             this.state.mobile = false;
-        //}
+        }
 
         return this;
     }
 
 
     update() {
+        if (window.innerWidth < 600) {
+            this.transformToMobile();
+            return this;
+        }
+
         let parentNode = this.element.parentNode,
             parentWidth = parentNode.clientWidth,
             childsWidth = 0;
