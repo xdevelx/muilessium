@@ -1,23 +1,37 @@
 // @name Input
-// @description Input component
+// @description Input component. Has two parameters: regexp (/^(?:)$/ by default) and validation-delay (300ms by defaut).
 //
 // @markup
 //  <div class='mui-input-wrapper'>
 //      <label class='mui-input-label'>Username</label>
-//      <div class='mui-input'>
-//          <input type='text' id='lUDbS' placeholder='Select your username (only letters allowed)'>
+//      <div class='mui-input-hint'>
+//          <span>Select Your username (min 3 characters, only letters allowed)</span>
+//          <span class='mui-input-indicator'>
+//              <i class='fa fa-check-square valid-icon'></i>
+//              <i class='fa fa-exclamation-triangle invalid-icon'></i>
+//          </span>
+//      </div>
+//      <div class='mui-input' data-regexp='^[a-zA-Z]{3,}$' data-validation-delay='1000'>
+//          <input type='text' id='lUDbS' placeholder='Select your username'>
 //      </div>
 //  </div>
 
 
 // @name Input with icon
-// @description Input component with icon
+// @description Input component with an icon
 // @requires FontAwesome
 //
 // @markup
 //  <div class='mui-input-wrapper'>
 //      <label class='mui-input-label'>Username</label>
-//      <div class='mui-input -icon-left'>
+//      <div class='mui-input-hint'>
+//          <span>Select Your username (min 3 characters, only letters allowed)</span>
+//          <span class='mui-input-indicator'>
+//              <i class='fa fa-check-square valid-icon'></i>
+//              <i class='fa fa-exclamation-triangle invalid-icon'></i>
+//          </span>
+//      </div>
+//      <div class='mui-input -icon-left' data-regexp='^[a-zA-Z]{3,}$'>
 //          <label class='icon'><i class='fa fa-user'></i></label>
 //          <input type='text' id='TEz8D' placeholder='Select your username'>
 //      </div>
@@ -29,8 +43,17 @@
 //
 // @markup
 //  <div class='mui-input-wrapper'>
-//      <div class='mui-input -material'>
-//          <label>First name</label>
+//      <div class='mui-input -material' data-regexp='^[a-zA-Z]{3,}$'>
+//          <label>
+//              <span class='mui-input-hint'>
+//                  <span class='_bigger-1'>First name</span>
+//                  <span class='_smaller-1'>(min 3 characters, only letters allowed)</span>
+//              </span>
+//              <span class='mui-input-indicator'>
+//                  <i class='fa fa-check-square valid-icon'></i>
+//                  <i class='fa fa-exclamation-triangle invalid-icon'></i>
+//              </span>
+//          </label>
 //          <input type='text' id='8vrWA'>
 //      </div>
 //  </div>
@@ -167,6 +190,7 @@
         
         > label {
             display: block;
+            width: 100%;
             
             position: absolute;
             left: 1rem;
@@ -183,6 +207,10 @@
                 cursor: text;
             }
         }
+
+        .mui-input-hint {
+            margin-bottom: 0;
+        }
     }
     
     &.-material.-has-value {
@@ -195,18 +223,18 @@
     }
     
     &.-valid {
-        border-color: @grey-3;
+        border-color: @green-3;
         
         > input::placeholder {
-            color: @grey-3;
+            color: @green-3;
         }
     }
     
     &.-invalid {
-        border-color: @black;
+        border-color: @red-3;
         
         > input::placeholder {
-            color: @black;
+            color: @red-3;
         }
     }
 }
@@ -215,10 +243,54 @@
 .@{muilessium-prefix}input-label {
     display: block;
 
-    margin-bottom: .8rem;
+    margin-bottom: .2rem;
 
     font-weight: 600;
     font-size: 1rem;
+}
+
+
+.@{muilessium-prefix}input-hint {
+    margin-bottom: .2rem;
+
+    font-size: .8em;
+    color: @grey-4;
+
+    &.-valid {
+        color: @green-3;
+    }
+
+    &.-invalid {
+        color: @red-3;
+    }
+}
+
+
+.@{muilessium-prefix}input-indicator {
+    position: relative;
+    padding: 0 .2rem;
+
+    > .valid-icon,
+    > .invalid-icon {
+        position: absolute;
+        line-height: 1.5;
+        opacity: 0;
+        transition: opacity @default-animation-duration @default-animation-function;
+    }
+
+    &.-valid {
+        > .valid-icon {
+            opacity: 1;
+            color: @green-3;
+        }
+    }
+
+    &.-invalid {
+        > .invalid-icon {
+            opacity: 1;
+            color: @red-3;
+        }
+    }
 }
 
 
