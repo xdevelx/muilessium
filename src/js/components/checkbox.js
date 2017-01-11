@@ -33,9 +33,7 @@ export class Checkbox extends Component {
 
 
     initControls() {
-        Utils.makeElementClickable(this.dom.label, () => {
-            this.toggleCheckbox();
-        });
+        Utils.makeElementClickable(this.dom.label, this.toggleCheckbox.bind(this));
 
         return this;
     }

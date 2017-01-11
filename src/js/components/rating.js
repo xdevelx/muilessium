@@ -35,7 +35,7 @@ export class Rating extends Component {
         Utils.makeElementFocusable(this.element);
 
         this.element.addEventListener('keydown', (e) => {
-            this.keyDownListener(e.keyCode);
+            this.keyDownHandler(e.keyCode);
         });
 
         Utils.makeChildElementsClickable(this.element, this.dom.stars, (index) => {
@@ -89,7 +89,7 @@ export class Rating extends Component {
     }
 
 
-    keyDownListener(keyCode) {
+    keyDownHandler(keyCode) {
         switch (keyCode) {
             case 37:
                 this.decreaseRating();

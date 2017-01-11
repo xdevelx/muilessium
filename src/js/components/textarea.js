@@ -40,15 +40,15 @@ export class Textarea extends Component {
             });
         }, false);
 
-        this.dom.textarea.addEventListener('focus',  this.focusEventListener.bind(this));
-        this.dom.textarea.addEventListener('blur',   this.blurEventListener.bind(this));
-        this.dom.textarea.addEventListener('change', this.changeEventListener.bind(this));
+        this.dom.textarea.addEventListener('focus',  this.focusEventHandler.bind(this));
+        this.dom.textarea.addEventListener('blur',   this.blurEventHandler.bind(this));
+        this.dom.textarea.addEventListener('change', this.changeEventHandler.bind(this));
 
         return this;
     }
 
 
-    focusEventListener() {
+    focusEventHandler() {
         Utils.addClass(this.element, '-focused');
 
         Utils.ifNodeList(this.dom.labels, () => {
@@ -57,7 +57,7 @@ export class Textarea extends Component {
     }
 
 
-    blurEventListener() {
+    blurEventHandler() {
         Utils.removeClass(this.element, '-focused');
 
         Utils.ifNodeList(this.dom.labels, () => {
@@ -66,7 +66,7 @@ export class Textarea extends Component {
     }
 
 
-    changeEventListener() {
+    changeEventHandler() {
         if (this.dom.textarea.value == '') {
             Utils.removeClass(this.element, '-has-value');
         } else {

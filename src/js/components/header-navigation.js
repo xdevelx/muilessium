@@ -43,9 +43,7 @@ export class HeaderNavigation extends Component {
 
 
     initControls() {
-        Utils.makeChildElementsClickable(this.element, this.dom.toggles, () => {
-            this.toggleNavigation();
-        });
+        Utils.makeChildElementsClickable(this.element, this.dom.toggles, this.toggleNavigation.bind(this));
 
         Utils.makeChildElementsClickable(this.element, this.dom.links, (index) => {
             let href = this.dom.links[index].getAttribute('href');

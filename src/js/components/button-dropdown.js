@@ -34,14 +34,9 @@ export class ButtonDropdown extends Component {
 
     initControls() {
         Utils.makeChildElementsClickable(this.element, [this.dom.button, this.dom.shadow],
-                        this.toggleClickEventListener.bind(this));
+                        this.toggleDropdown.bind(this));
 
         return this;
-    }
-
-
-    toggleClickEventListener() {
-        this.toggleDropdown();
     }
 
 

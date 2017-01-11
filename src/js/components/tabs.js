@@ -57,7 +57,7 @@ export class Tabs extends Component {
             }
 
             label.addEventListener('keydown', (e) => {
-                this.keyDownListener(e.keyCode);
+                this.keyDownHandler(e.keyCode);
             });
         });
 
@@ -113,7 +113,7 @@ export class Tabs extends Component {
     }
 
 
-    keyDownListener(keyCode) {
+    keyDownHandler(keyCode) {
         switch (keyCode) {
             case 37: // Arrow Left
                 this.goToPreviousTab();
