@@ -393,35 +393,71 @@ function debounce(func, ms) {
 }
 
 
+function initAnchorLinks() {
+    let links = document.getElementsByTagName('a');
+
+    [].forEach.call(links, (link) => {
+        makeElementClickable(link, () => {
+            let href = link.getAttribute('href');
+
+            if (href && href[0] === '#') {
+                let targetElement = document.getElementById(href.substring(1));
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({ 'behavior': 'smooth' });
+
+                    setTimeout(() => {
+                        if (window.location.hash === href) {
+                            window.location.hash = '';
+                        }
+
+                        window.location.hash = href.substring(1);
+                    }, 470); // Default scroll time in smoothscroll-polyfill is 468ms
+                } else {
+                    console.warning(`Anchor ${href} does not exists`);
+                }
+            }
+        });
+    });
+}
+
+
 export {
     console,
     ajax,
     aria,
 
-    setAttribute,
-    getAttribute,
-    removeAttribute,
     ifExists,
     ifNodeList,
     stringToBoolean,
     isInPage,
     isNotInPage,
+    isDescendant,
+
+    setAttribute,
+    getAttribute,
+    removeAttribute,
+
     addClass,
     removeClass,
     toggleClass,
-    normalizeTabIndex,
-    stringify,
-    extend,
-    objectFitImages,
-    isEnterPressed,
-    isDescendant,
+
     makeElementFocusable,
     makeElementsFocusable,
     makeElementNotFocusable,
     makeElementsNotFocusable,
     makeElementClickable,
     makeChildElementsClickable,
-    lazyLoadImages,
+
     generateRandomString,
-    debounce
+
+    stringify,
+    extend,
+    debounce,
+    isEnterPressed,
+
+    normalizeTabIndex,
+    lazyLoadImages,
+    objectFitImages,
+    initAnchorLinks
 };

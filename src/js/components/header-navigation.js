@@ -50,12 +50,6 @@ export class HeaderNavigation extends Component {
 
             if (href[0] === '#') {
                 this.closeNavigation();
-
-                if (window.location.hash === href) {
-                    window.location.hash = '';
-                }
-
-                window.location.hash = href.substring(1);
             } else {
                 window.location = href;
             }
