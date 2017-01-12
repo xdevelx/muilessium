@@ -19,7 +19,7 @@ export class Checkbox extends Component {
     initAria() {
         Utils.aria.setRole(this.dom.label, 'checkbox');
 
-        const inputId = Utils.aria.setId(this.dom.input);
+        const inputId = this.dom.input.getAttribute('id') || Utils.aria.setId(this.dom.input);
 
         this.dom.input.checked = false;
 
