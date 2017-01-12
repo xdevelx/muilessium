@@ -138,7 +138,7 @@ module.exports = function(grunt) {
             },
             js: {
                 files: ['src/js/*.js', 'src/js/*/*.js'],
-                tasks: ['browserify', 'uglify', 'dss', 'copy']
+                tasks: ['browserify', 'uglify', 'dss', 'docco', 'copy']
             }
         },
         
@@ -206,6 +206,15 @@ module.exports = function(grunt) {
                 }
             }
         },
+
+        docco: {
+            utils: {
+                src: ['src/js/utils.js'],
+                options: {
+                    output: 'docs/'
+                }
+            }
+        },
         
         clean: {
             build: {
@@ -217,7 +226,7 @@ module.exports = function(grunt) {
         }
     });
     
-    grunt.registerTask('default', ['lesslint', 'less', 'cssmin', 'browserify', 'uglify', 'dss', 'copy']);
+    grunt.registerTask('default', ['lesslint', 'less', 'cssmin', 'browserify', 'uglify', 'dss', 'docco', 'copy']);
     grunt.registerTask('server',  ['default', 'browserSync', 'watch']);
     grunt.registerTask('rebuild', ['clean', 'default']);
     grunt.registerTask('test',    ['lesslint']);
