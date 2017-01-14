@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Muilessium - <%= title %></title>
+
+    <meta http-equiv='content-type' content='text/html; charset=UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+    <link rel='stylesheet' media='all' href='assets/css/muilessium.css' />
+    <link rel='stylesheet' media='all' href='assets/css/docs-styles.css' />
+
+    <link rel='icon' href='./favicon.ico' type='image/x-icon' />
+
+    <style>
+        h2 {
+            font-size: 2rem !important;
+        }
+
+        hr {
+            display: none;
+        }
+
+        .mui-content-container {
+            padding: .2rem 0;
+        }
+
+        ._separate-1-bottom {
+            margin-bottom: 1rem;
+        }
+    </style>
+
+</head>
+<body>
+    <header class='mui-page-header -black-bg'>
+        <div class='mui-header-logo _left'>
+            <img class='mui-image -logo _lazy-load' data-src='images/muilessium.png' alt='logo'>
+            <a class='_right' href='/'>
+                <h1 class='-white _bigger-1'>
+                    <span>Muilessium</span>
+                    <% if (!hasTitle) { %>
+                        <span class='_smaller-1'> (<%= title %>) </span>
+                    <% } %>
+                </h1>
+            </a>
+        </div>
+    </header>
+
+    <main class='mui-page-container _separate-3'>
+            <% for (var i = 0, l = sections.length; i < l; i++) { %>
+                <% var section = sections[i]; %>
+                <div class='' id='section-<%= i + 1 %>'>
+                    <div class='mui-content-container'>
+                        <% heading = section.docsHtml.match(/^\s*<(h\d)>/) %>
+                        <div class='<%= heading ? 'for-' + heading[1] : '' %>'>
+                            <a class='docco-anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-<%= i + 1 %>'>&#182;</a>
+                        </div>
+                        <%= section.docsHtml %>
+                    </div>
+                    <div class='mui-content-container'>
+                        <% if (section.codeText.replace(/\s/gm, '') != '') { %>
+                            <div class='hljs _separate-1-bottom'><%= section.codeHtml %></div>
+                        <% } %>
+                    </div>
+                </div>
+            <% } %>
+    </main>
+
+    <div class='mui-page-footer _text-center _line-3r -white -black-bg'>
+        <span>Copyright &copy; Ivan Bogachev, 2016-2017</span>
+    </div>
+    <script src='assets/js/muilessium.js'></script>
+</body>
+</html>

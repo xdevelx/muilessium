@@ -12,7 +12,7 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         cwd: 'src',
-                        src: ['*'],
+                        src: ['favicon.ico'],
                         dest: 'docs/',
                         filter: 'isFile'
                     },
@@ -28,6 +28,25 @@ module.exports = function(grunt) {
                         cwd: 'dist/css',
                         src: ['*.css'],
                         dest: 'docs/assets/css',
+                        filter: 'isFile'
+                    }
+                ]
+            },
+
+            fontAwesome: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'node_modules/font-awesome/fonts/',
+                        src: ['*'],
+                        dest: 'dist/fonts/font-awesome/',
+                        filter: 'isFile'
+                    }, 
+                    {
+                        expand: true,
+                        cwd: 'node_modules/font-awesome/fonts/',
+                        src: ['*'],
+                        dest: 'docs/assets/fonts/',
                         filter: 'isFile'
                     }
                 ]
@@ -139,6 +158,10 @@ module.exports = function(grunt) {
             js: {
                 files: ['src/js/*.js', 'src/js/*/*.js'],
                 tasks: ['browserify', 'uglify', 'dss', 'docco', 'copy']
+            },
+            jst: {
+                files: ['src/docs_template/*.jst'],
+                tasks: ['docco']
             }
         },
         
@@ -211,6 +234,8 @@ module.exports = function(grunt) {
             utils: {
                 src: ['src/js/utils.js'],
                 options: {
+                    template: 'src/docs_template/docco.jst',
+                    css: 'dist/css/muilessium.css',
                     output: 'docs/'
                 }
             }
