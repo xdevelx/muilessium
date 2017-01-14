@@ -542,6 +542,85 @@ function makeChildElementsClickable(element, childs, callback, mouseOnly = false
 
 
 // -----------------------------------------------------------------------------
+// Scroll utilities
+// -----------------------------------------------------------------------------
+
+
+// Scroll to element
+// -----------------
+// Scrolls to the element and executes callback after scroll animation ends
+
+function scrollTo(element, callback) {
+    ifExists(element, () => {
+        element.scrollIntoView({ 'behavior': 'smooth' });
+
+        if (typeof callback === 'function') {
+            setTimeout(callback, 470); /* Default scroll time in smoothscroll-polyfill is 468ms */
+        }
+    });
+}
+
+
+// Scroll to top
+// -------------
+// Scrolls to the top of page
+
+function scrollToTop(callback) {
+    window.scroll({ top: 0, left: 0, 'behavior': 'smooth' });
+
+    if (typeof callback === 'function') {
+        setTimeout(callback, 470); /* Default scroll time in smoothscroll-polyfill is 468ms */
+    }
+}
+
+
+// Scrollfire
+// ----------
+// Executes a callback when the element becomes visible in viewport
+
+function scrollFire(element, callback) {
+    if (isInViewport(element)) {
+        callback();
+    } else {
+        let modifiedCallback = callOnce(callback);
+
+        document.addEventListener('scroll', () => {
+            if (isInViewport(element)) {
+                setTimeout(modifiedCallback, 200);
+            }
+        });
+    }
+}
+
+
+
+
+// -----------------------------------------------------------------------------
+// Viewport utilities
+// -----------------------------------------------------------------------------
+
+// Is in viewport
+// --------------
+// Returns true if the element is in viewport
+
+function isInViewport(element) {
+    return ifExists(element, () => {
+        let rect = element.getBoundingClientRect(),
+            html = document.documentElement;
+
+        return (
+            rect.top    >= 0 &&
+            rect.left   >= 0 &&
+            rect.bottom <= (window.innerHeight || html.clientHeight) &&
+            rect.right  <= (window.innerWidth  || html.clientWidth)
+        );
+    });
+}
+
+
+
+
+// -----------------------------------------------------------------------------
 // Function for the Muilessium Initialization
 // -----------------------------------------------------------------------------
 
@@ -602,15 +681,13 @@ function initAnchorLinks() {
                 let targetElement = document.getElementById(href.substring(1));
 
                 if (targetElement) {
-                    targetElement.scrollIntoView({ 'behavior': 'smooth' });
-
-                    setTimeout(() => {
+                    scrollTo(targetElement, () => {
                         if (window.location.hash === href) {
                             window.location.hash = '';
                         }
 
                         window.location.hash = href.substring(1);
-                    }, 470); // Default scroll time in smoothscroll-polyfill is 468ms
+                    });
                 } else {
                     console.warning(`Anchor ${href} does not exists`);
                 }
@@ -715,6 +792,23 @@ function stringToBoolean(str) {
 }
 
 
+// Call once
+// ---------
+// Executes callback function only once
+
+function callOnce(callback) {
+    let executed = false;
+
+    return function() {
+        if (!executed) {
+            executed = true;
+
+            return callback();
+        }
+    };
+}
+
+
 
 // -----------------------------------------------------------------------------
 
@@ -746,6 +840,10 @@ export {
     makeElementClickable,
     makeChildElementsClickable,
 
+    scrollTo,
+    scrollToTop,
+    scrollFire,
+
     normalizeTabIndex,
     lazyLoadImages,
     objectFitImages,
@@ -757,4 +855,5 @@ export {
     debounce,
     isEnterPressed,
     stringToBoolean,
+    callOnce,
 };
