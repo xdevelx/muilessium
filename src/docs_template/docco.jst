@@ -27,6 +27,15 @@
         ._separate-1-bottom {
             margin-bottom: 1rem;
         }
+
+        .anchor-link {
+            opacity: 0;
+        }
+
+        .anchor-link:hover,
+        .anchor-link:focus {
+            opacity: 1;
+        }
     </style>
 
 </head>
@@ -52,7 +61,7 @@
                     <div class='mui-content-container'>
                         <% heading = section.docsHtml.match(/^\s*<(h\d)>/) %>
                         <div class='<%= heading ? 'for-' + heading[1] : '' %>'>
-                            <a class='docco-anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-<%= i + 1 %>'>&#182;</a>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-<%= i + 1 %>'>&#182;</a>
                         </div>
                         <%= section.docsHtml %>
                     </div>
