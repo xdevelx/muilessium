@@ -681,10 +681,10 @@ function initAnchorLinks() {
     let links = document.getElementsByTagName('a');
 
     [].forEach.call(links, (link) => {
-        makeElementClickable(link, () => {
-            let href = link.getAttribute('href');
+        let href = link.getAttribute('href');
 
-            if (href && href[0] === '#') {
+        if (href && href[0] === '#') {
+            makeElementClickable(link, () => {
                 let targetElement = document.getElementById(href.substring(1));
 
                 if (targetElement) {
@@ -698,8 +698,8 @@ function initAnchorLinks() {
                 } else {
                     console.warning(`Anchor ${href} does not exists`);
                 }
-            }
-        });
+            });
+        }
     });
 }
 
