@@ -110,8 +110,20 @@ ol.linenums {
     border: 1px solid #000;
 }
 
+.example {
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
 .example > .mui-button {
     margin: 0 1rem 1rem 0;
+}
+
+.example .mui-header-navigation {
+    float: left;
 }
 
 .questions-list {
@@ -133,6 +145,15 @@ ol.linenums {
 .mui-carousel,
 .mui-hero-header {
     background: #EDEDED;
+}
+
+.mui-ribbon-wrapper {
+    height: 10rem;
+    background: #EDEDED;
+
+    & + .mui-ribbon-wrapper {
+        margin-top: 1rem;
+    }
 }
 
 hr {
@@ -215,7 +236,7 @@ hr {
 }
 
 
-.docco-anchor-link {
+.anchor-link {
     position: absolute;
     left: -1rem;
     top: 50%;
