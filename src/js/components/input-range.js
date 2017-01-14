@@ -9,4 +9,8 @@ export class InputRange extends Input {
         this.initAria();
         this.initControls();
     }
+
+    changeValueHandler() {
+        return this;
+    }
 }

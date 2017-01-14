@@ -251,19 +251,27 @@ function ifExists(element, callback, printWarning = true) {
 
 // If nodelist
 // -----------
-// If first parameter is NodeList or HTMLCollection executes callback function and prints
-// warning otherwise by default
+// If first parameter is NodeList or HTMLCollection or Array of HTMLElements
+// executes callback function and prints warning otherwise by default
 
 function ifNodeList(x, callback, printWarning = true) {
     if (((x instanceof NodeList) || (x instanceof HTMLCollection)) && (x.length > 0)) {
         return callback();
-    } else {
-        if (printWarning) {
-            console.warning('element is not an instance of NodeList or HTMLCollection');
-        }
+    } else if ((x instanceof Array) && (x.length) > 0) {
+        let isArrayOfElements = x.every((element) => {
+            return (element instanceof HTMLElement);
+        });
 
-        return null;
+        if (isArrayOfElements) {
+            return callback();
+        }
     }
+    
+    if (printWarning) {
+        console.warning('element is not an instance of NodeList or HTMLCollection');
+    }
+
+    return null;
 }
 
 
