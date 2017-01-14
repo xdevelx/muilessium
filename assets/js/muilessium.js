@@ -3160,10 +3160,10 @@ function initAnchorLinks() {
     var links = document.getElementsByTagName('a');
 
     [].forEach.call(links, function (link) {
-        makeElementClickable(link, function () {
-            var href = link.getAttribute('href');
+        var href = link.getAttribute('href');
 
-            if (href && href[0] === '#') {
+        if (href && href[0] === '#') {
+            makeElementClickable(link, function () {
                 var targetElement = document.getElementById(href.substring(1));
 
                 if (targetElement) {
@@ -3177,8 +3177,8 @@ function initAnchorLinks() {
                 } else {
                     console.warning('Anchor ' + href + ' does not exists');
                 }
-            }
-        });
+            });
+        }
     });
 }
 
