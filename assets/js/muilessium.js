@@ -2439,7 +2439,7 @@ var Events = exports.Events = function () {
             if (name in this.eventsData && typeof callback === 'function') {
                 this.eventsData[name].callbacks.push(callback);
 
-                if (executeIfAlreadyFired && this.eventsData.counter > 0) {
+                if (executeIfAlreadyFired && this.eventsData[name].counter > 0) {
                     callback();
                 }
             }
