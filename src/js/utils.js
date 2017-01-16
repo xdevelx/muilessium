@@ -650,6 +650,8 @@ function normalizeTabIndex() {
 // Lazy load images
 // ----------------
 
+var imagesLoaded = require('imagesloaded');
+
 function lazyLoadImages(callback) {
     [].forEach.call(document.querySelectorAll('._lazy-load'), (image) => {
         image.src = image.getAttribute('data-src');
@@ -660,7 +662,7 @@ function lazyLoadImages(callback) {
     });
 
     if (typeof callback === 'function') {
-        callback();
+        imagesLoaded('body', callback);
     }
 }
 

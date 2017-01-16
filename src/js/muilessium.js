@@ -71,7 +71,9 @@ class Muilessium {
         this.initEvents();
         this.initEventListeners();
 
-        Utils.lazyLoadImages(this.Events.fireEvent.bind(this.Events, 'images-loaded'));
+        Utils.lazyLoadImages(() => {
+            this.Events.fireEvent('images-loaded');
+        });
 
         return this;
     }
