@@ -543,7 +543,7 @@ var Component = exports.Component = function Component(element, options) {
     this.state = {};
 };
 
-},{"./utils":23}],4:[function(require,module,exports){
+},{"./utils":25}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -681,7 +681,7 @@ var Accordion = exports.Accordion = function (_Component) {
     return Accordion;
 }(_component.Component);
 
-},{"../component":3,"../utils":23}],5:[function(require,module,exports){
+},{"../component":3,"../utils":25}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -718,7 +718,7 @@ var Breadcrumb = exports.Breadcrumb = function (_Component) {
     return Breadcrumb;
 }(_component.Component);
 
-},{"../component":3,"../utils":23}],6:[function(require,module,exports){
+},{"../component":3,"../utils":25}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -831,7 +831,7 @@ var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
     return ButtonDropdown;
 }(_component.Component);
 
-},{"../component":3,"../utils":23}],7:[function(require,module,exports){
+},{"../component":3,"../utils":25}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -868,7 +868,7 @@ var Button = exports.Button = function (_Component) {
     return Button;
 }(_component.Component);
 
-},{"../component":3,"../utils":23}],8:[function(require,module,exports){
+},{"../component":3,"../utils":25}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1016,7 +1016,7 @@ var Carousel = exports.Carousel = function (_Component) {
     return Carousel;
 }(_component.Component);
 
-},{"../component":3,"../utils":23}],9:[function(require,module,exports){
+},{"../component":3,"../utils":25}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1117,7 +1117,7 @@ var Checkbox = exports.Checkbox = function (_Component) {
     return Checkbox;
 }(_component.Component);
 
-},{"../component":3,"../utils":23}],10:[function(require,module,exports){
+},{"../component":3,"../utils":25}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1321,7 +1321,7 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
     return HeaderNavigation;
 }(_component.Component);
 
-},{"../component":3,"../utils":23}],11:[function(require,module,exports){
+},{"../component":3,"../utils":25}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1368,7 +1368,7 @@ var InputRange = exports.InputRange = function (_Input) {
     return InputRange;
 }(_input.Input);
 
-},{"../utils":23,"./input":12}],12:[function(require,module,exports){
+},{"../utils":25,"./input":12}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1542,7 +1542,7 @@ var Input = exports.Input = function (_Component) {
     return Input;
 }(_component.Component);
 
-},{"../component":3,"../utils":23}],13:[function(require,module,exports){
+},{"../component":3,"../utils":25}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1584,7 +1584,7 @@ var MediaView = exports.MediaView = function (_Component) {
     return MediaView;
 }(_component.Component);
 
-},{"../component":3,"../utils":23}],14:[function(require,module,exports){
+},{"../component":3,"../utils":25}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1621,7 +1621,7 @@ var Pagination = exports.Pagination = function (_Component) {
     return Pagination;
 }(_component.Component);
 
-},{"../component":3,"../utils":23}],15:[function(require,module,exports){
+},{"../component":3,"../utils":25}],15:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1734,7 +1734,7 @@ var Radio = exports.Radio = function (_Component) {
     return Radio;
 }(_component.Component);
 
-},{"../component":3,"../utils":23}],16:[function(require,module,exports){
+},{"../component":3,"../utils":25}],16:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1872,7 +1872,7 @@ var Rating = exports.Rating = function (_Component) {
     return Rating;
 }(_component.Component);
 
-},{"../component":3,"../utils":23}],17:[function(require,module,exports){
+},{"../component":3,"../utils":25}],17:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2076,7 +2076,7 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
     return SelectDropdown;
 }(_component.Component);
 
-},{"../component":3,"../utils":23}],18:[function(require,module,exports){
+},{"../component":3,"../utils":25}],18:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2242,7 +2242,7 @@ var Tabs = exports.Tabs = function (_Component) {
     return Tabs;
 }(_component.Component);
 
-},{"../component":3,"../utils":23}],19:[function(require,module,exports){
+},{"../component":3,"../utils":25}],19:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2279,7 +2279,7 @@ var TagsList = exports.TagsList = function (_Component) {
     return TagsList;
 }(_component.Component);
 
-},{"../component":3,"../utils":23}],20:[function(require,module,exports){
+},{"../component":3,"../utils":25}],20:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2393,7 +2393,80 @@ var Textarea = exports.Textarea = function (_Component) {
     return Textarea;
 }(_component.Component);
 
-},{"../component":3,"../utils":23}],21:[function(require,module,exports){
+},{"../component":3,"../utils":25}],21:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Events = exports.Events = function () {
+    function Events() {
+        _classCallCheck(this, Events);
+
+        if (_typeof(Events.instance) === 'object') {
+            return Events.instance;
+        }
+
+        this.eventsData = {};
+
+        Events.instance = this;
+    }
+
+    _createClass(Events, [{
+        key: 'addEvent',
+        value: function addEvent(name) {
+            if (!(name in this.eventsData)) {
+                this.eventsData[name] = {
+                    callbacks: [],
+                    counter: 0
+                };
+            }
+
+            return this;
+        }
+    }, {
+        key: 'addEventListener',
+        value: function addEventListener(name, callback) {
+            var executeIfAlreadyFired = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+            if (name in this.eventsData && typeof callback === 'function') {
+                this.eventsData[name].callbacks.push(callback);
+
+                if (executeIfAlreadyFired && this.eventsData.counter > 0) {
+                    callback();
+                }
+            }
+
+            return this;
+        }
+    }, {
+        key: 'fireEvent',
+        value: function fireEvent(name) {
+            if (name in this.eventsData) {
+                this.eventsData[name].counter++;
+
+                this.eventsData[name].callbacks.forEach(function (callback) {
+                    if (typeof callback === 'function') {
+                        callback();
+                    }
+                });
+            }
+
+            return this;
+        }
+    }]);
+
+    return Events;
+}();
+
+},{}],22:[function(require,module,exports){
 'use strict';
 
 var _muilessium = require('./muilessium');
@@ -2404,19 +2477,11 @@ var _utils = require('./utils');
 
 var Utils = _interopRequireWildcard(_utils);
 
-var _smoothscrollPolyfill = require('smoothscroll-polyfill');
-
-var smoothScrollPolyfill = _interopRequireWildcard(_smoothscrollPolyfill);
-
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener('DOMContentLoaded', function () {
-    if (window.Muilessium) {
-        console.error('Muilessium already initialized');
-    }
-
     window.Muilessium = new _muilessium2.default();
 
     window.Muilessium.components = {
@@ -2438,13 +2503,9 @@ document.addEventListener('DOMContentLoaded', function () {
         tagslists: window.Muilessium.create('tags-list', '.mui-tags-list', {}),
         textareas: window.Muilessium.create('textarea', '.mui-textarea', {})
     };
-
-    Utils.initAnchorLinks();
-
-    smoothScrollPolyfill.polyfill();
 });
 
-},{"./muilessium":22,"./utils":23,"smoothscroll-polyfill":2}],22:[function(require,module,exports){
+},{"./muilessium":23,"./utils":25}],23:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2458,6 +2519,12 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _utils = require('./utils');
 
 var Utils = _interopRequireWildcard(_utils);
+
+var _polyfills = require('./polyfills');
+
+var Polyfills = _interopRequireWildcard(_polyfills);
+
+var _events = require('./events');
 
 var _accordion = require('./components/accordion');
 
@@ -2525,20 +2592,49 @@ var Muilessium = function () {
             return Muilessium.instance;
         }
 
-        Utils.normalizeTabIndex();
-
-        Utils.lazyLoadImages(function () {
-            Utils.objectFitImages();
-        });
-
-        Utils.aria.hideIcons('fa');
-
         this.Utils = Utils;
+        this.Events = new _events.Events();
+
+        this.init();
 
         Muilessium.instance = this;
+
+        this.Events.fireEvent('muilessium-initialized');
     }
 
     _createClass(Muilessium, [{
+        key: 'init',
+        value: function init() {
+            Utils.normalizeTabIndex();
+            Utils.aria.hideIcons('fa');
+
+            this.initEvents();
+            this.initEventListeners();
+
+            Utils.lazyLoadImages(this.Events.fireEvent.bind(this.Events, 'images-loaded'));
+
+            return this;
+        }
+    }, {
+        key: 'initEvents',
+        value: function initEvents() {
+            this.Events.addEvent('muilessium-initialized');
+            this.Events.addEvent('images-loaded');
+
+            return this;
+        }
+    }, {
+        key: 'initEventListeners',
+        value: function initEventListeners() {
+            this.Events.addEventListener('muilessium-initialized', function () {
+                Polyfills.smoothScroll();
+
+                Utils.initAnchorLinks();
+            });
+
+            this.Events.addEventListener('images-loaded', Polyfills.objectFit);
+        }
+    }, {
         key: 'create',
         value: function create(type, selector, options) {
             if (typeof components[type] !== 'function') {
@@ -2558,7 +2654,34 @@ var Muilessium = function () {
 
 exports.default = Muilessium;
 
-},{"./components/accordion":4,"./components/breadcrumb":5,"./components/button":7,"./components/button-dropdown":6,"./components/carousel":8,"./components/checkbox":9,"./components/header-navigation":10,"./components/input":12,"./components/input-range":11,"./components/media-view":13,"./components/pagination":14,"./components/radio":15,"./components/rating":16,"./components/select-dropdown":17,"./components/tabs":18,"./components/tags-list":19,"./components/textarea":20,"./utils":23}],23:[function(require,module,exports){
+},{"./components/accordion":4,"./components/breadcrumb":5,"./components/button":7,"./components/button-dropdown":6,"./components/carousel":8,"./components/checkbox":9,"./components/header-navigation":10,"./components/input":12,"./components/input-range":11,"./components/media-view":13,"./components/pagination":14,"./components/radio":15,"./components/rating":16,"./components/select-dropdown":17,"./components/tabs":18,"./components/tags-list":19,"./components/textarea":20,"./events":21,"./polyfills":24,"./utils":25}],24:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.objectFit = exports.smoothScroll = undefined;
+
+var _smoothscrollPolyfill = require('smoothscroll-polyfill');
+
+var smoothScrollPolyfill = _interopRequireWildcard(_smoothscrollPolyfill);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var objectFitImages = require('object-fit-images');
+
+function smoothScroll() {
+    smoothScrollPolyfill.polyfill();
+}
+
+function objectFit() {
+    objectFitImages();
+}
+
+exports.smoothScroll = smoothScroll;
+exports.objectFit = objectFit;
+
+},{"object-fit-images":1,"smoothscroll-polyfill":2}],25:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3147,12 +3270,6 @@ function lazyLoadImages(callback) {
     }
 }
 
-// Object fit images
-// -----------------
-// Should be used as callback for lazy load images
-
-var objectFitImages = require('object-fit-images');
-
 // Init anchor links
 // -----------------
 
@@ -3312,7 +3429,6 @@ exports.scrollToTop = scrollToTop;
 exports.scrollFire = scrollFire;
 exports.normalizeTabIndex = normalizeTabIndex;
 exports.lazyLoadImages = lazyLoadImages;
-exports.objectFitImages = objectFitImages;
 exports.initAnchorLinks = initAnchorLinks;
 exports.generateRandomString = generateRandomString;
 exports.stringify = stringify;
@@ -3322,4 +3438,4 @@ exports.isEnterPressed = isEnterPressed;
 exports.stringToBoolean = stringToBoolean;
 exports.callOnce = callOnce;
 
-},{"object-fit-images":1}]},{},[21]);
+},{}]},{},[22]);
