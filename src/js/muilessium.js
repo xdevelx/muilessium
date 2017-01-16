@@ -1,4 +1,9 @@
-import * as Utils from './utils';
+import * as Utils     from './utils';
+
+import * as Polyfills from './polyfills';
+
+import { Events }     from './events';
+
 
 import { Accordion        } from './components/accordion';
 import { Breadcrumb       } from './components/breadcrumb';
@@ -17,6 +22,8 @@ import { Tabs             } from './components/tabs';
 import { TagsList         } from './components/tags-list';
 import { Textarea         } from './components/textarea';
 import { Rating           } from './components/rating';
+
+
 
 
 const components = {
@@ -45,19 +52,49 @@ class Muilessium {
         if (typeof Muilessium.instance === 'object') {
             return Muilessium.instance;
         }
-        
-        Utils.normalizeTabIndex();
-
-        Utils.lazyLoadImages(() => {
-            Utils.objectFitImages();
-        });
-
-        Utils.aria.hideIcons('fa');
 
         this.Utils = Utils;
+        this.Events = new Events;
+        
+        this.init();
         
         Muilessium.instance = this;
+
+        this.Events.fireEvent('muilessium-initialized');
     }
+
+
+    init() {
+        Utils.normalizeTabIndex();
+        Utils.aria.hideIcons('fa');
+
+        this.initEvents();
+        this.initEventListeners();
+
+        Utils.lazyLoadImages(this.Events.fireEvent.bind(this.Events, 'images-loaded'));
+
+        return this;
+    }
+
+
+    initEvents() {
+        this.Events.addEvent('muilessium-initialized');
+        this.Events.addEvent('images-loaded');
+
+        return this;
+    }
+
+
+    initEventListeners() {
+        this.Events.addEventListener('muilessium-initialized', () => {
+            Polyfills.smoothScroll();
+
+            Utils.initAnchorLinks();
+        });
+
+        this.Events.addEventListener('images-loaded', Polyfills.objectFit);
+    }
+
 
     create(type, selector, options) {
         if (typeof components[type] !== 'function') {

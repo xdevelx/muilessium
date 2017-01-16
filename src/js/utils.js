@@ -666,12 +666,6 @@ function lazyLoadImages(callback) {
 
 
 
-// Object fit images
-// -----------------
-// Should be used as callback for lazy load images
-
-var objectFitImages = require('object-fit-images');
-
 
 
 // Init anchor links
@@ -853,7 +847,6 @@ export {
 
     normalizeTabIndex,
     lazyLoadImages,
-    objectFitImages,
     initAnchorLinks,
 
     generateRandomString,

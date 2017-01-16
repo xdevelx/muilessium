@@ -1,14 +1,8 @@
 import Muilessium from './muilessium';
 import * as Utils from './utils';
 
-import * as smoothScrollPolyfill from 'smoothscroll-polyfill';
-
 
 document.addEventListener('DOMContentLoaded', () => {
-    if (window.Muilessium) {
-        console.error('Muilessium already initialized');
-    }
-
     window.Muilessium = new Muilessium;
 
     window.Muilessium.components = {
@@ -30,8 +24,4 @@ document.addEventListener('DOMContentLoaded', () => {
         tagslists:    window.Muilessium.create('tags-list',         '.mui-tags-list',         {}),
         textareas:    window.Muilessium.create('textarea',          '.mui-textarea',          {})
     };
-
-    Utils.initAnchorLinks();
-
-    smoothScrollPolyfill.polyfill();
 });
