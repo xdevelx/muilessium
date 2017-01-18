@@ -23,7 +23,8 @@ export class HeaderNavigation extends Component {
         this.initControls();
         this.update();
 
-        window.addEventListener('resize', Utils.debounce(this.update.bind(this), 100));
+        window.Muilessium.Events.addEventListener('resizeWindowWidth',
+                        Utils.debounce(this.update.bind(this), 100)); 
 
         this.state.initialized = true;
     }
@@ -145,6 +146,9 @@ export class HeaderNavigation extends Component {
     update() {
         if (window.innerWidth < 600) {
             this.transformToMobile();
+            return this;
+        } else if (window.innerWidth > 1200) {
+            this.transformToDesktop();
             return this;
         }
 

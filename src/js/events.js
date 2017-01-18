@@ -4,9 +4,41 @@ export class Events {
             return Events.instance;
         }
 
+        this.data = {
+            window: {}
+        };
+
         this.eventsData = {};
 
+        this.initDefaultEvents();
+
         Events.instance = this;
+    }
+
+
+    initDefaultEvents() {
+        this.addEvent('resizeWindowHeight');
+        this.addEvent('resizeWindowWidth');
+
+        this.data.window.height = window.innerHeight;
+        this.data.window.width  = window.innerWidth;
+
+        window.addEventListener('resize', () => {
+            const height = window.innerHeight;
+            const width  = window.innerWidth;
+
+            if (this.data.window.height != height) {
+                this.data.window.height = height;
+
+                this.fireEvent('resizeWindowHeight');
+            }
+
+            if (this.data.window.width != width) {
+                this.data.window.width = width;
+
+                this.fireEvent('resizeWindowWidth');
+            }
+        });
     }
 
 
