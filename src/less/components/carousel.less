@@ -146,7 +146,7 @@
         color: @white;
         background: fade(@black, 30%);
         
-        #utils > .transition-all;
+        transition: all @default-animation-duration @default-animation-function;
         
         &:hover,
         &:focus {
@@ -191,8 +191,8 @@
         
         background: fade(@black, 30%);
         border-radius: 50%;
-        
-        #utils > .transition-all;
+
+        transition: all @default-animation-duration @default-animation-function;        
 
         &:hover,
         &:focus {
@@ -221,7 +221,7 @@
             background: fade(@white, 20%);
             border-radius: 50%;
             
-            #utils > .transition-all;
+            transition: all @default-animation-duration @default-animation-function;
         }
 
         &.-active {

@@ -15,6 +15,7 @@ import { HeaderNavigation } from './components/header-navigation';
 import { Input            } from './components/input';
 import { InputRange       } from './components/input-range';
 import { MediaView        } from './components/media-view';
+import { ModalWindow      } from './components/modal-window';
 import { Pagination       } from './components/pagination';
 import { Radio            } from './components/radio';
 import { SelectDropdown   } from './components/select-dropdown';
@@ -37,6 +38,7 @@ const components = {
     'input':             Input,
     'input-range':       InputRange,
     'media-view':        MediaView,
+    'modal-window':      ModalWindow,
     'pagination':        Pagination,
     'radio':             Radio,
     'select-dropdown':   SelectDropdown,

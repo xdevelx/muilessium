@@ -39,7 +39,7 @@
         border-top-left-radius: @default-border-radius;
         border-top-right-radius: @default-border-radius;
         
-        #utils > .transition-all;
+        transition: all @default-animation-duration @default-animation-function;
         &:extend(._truncate-line);
 
         
@@ -93,7 +93,7 @@
         
         transform: rotateX(90deg);
         
-        #utils > .transition-all; 
+        transition: all @default-animation-duration @default-animation-function;
         
         &:not(:first-of-type) {
             margin-left: -100%;
