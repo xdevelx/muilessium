@@ -1026,7 +1026,7 @@ var Component = exports.Component = function Component(element, options) {
     this.state = {};
 };
 
-},{"./utils":27}],6:[function(require,module,exports){
+},{"./utils":28}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1164,7 +1164,7 @@ var Accordion = exports.Accordion = function (_Component) {
     return Accordion;
 }(_component.Component);
 
-},{"../component":5,"../utils":27}],7:[function(require,module,exports){
+},{"../component":5,"../utils":28}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1201,7 +1201,7 @@ var Breadcrumb = exports.Breadcrumb = function (_Component) {
     return Breadcrumb;
 }(_component.Component);
 
-},{"../component":5,"../utils":27}],8:[function(require,module,exports){
+},{"../component":5,"../utils":28}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1314,7 +1314,7 @@ var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
     return ButtonDropdown;
 }(_component.Component);
 
-},{"../component":5,"../utils":27}],9:[function(require,module,exports){
+},{"../component":5,"../utils":28}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1351,7 +1351,7 @@ var Button = exports.Button = function (_Component) {
     return Button;
 }(_component.Component);
 
-},{"../component":5,"../utils":27}],10:[function(require,module,exports){
+},{"../component":5,"../utils":28}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1499,7 +1499,7 @@ var Carousel = exports.Carousel = function (_Component) {
     return Carousel;
 }(_component.Component);
 
-},{"../component":5,"../utils":27}],11:[function(require,module,exports){
+},{"../component":5,"../utils":28}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1600,7 +1600,7 @@ var Checkbox = exports.Checkbox = function (_Component) {
     return Checkbox;
 }(_component.Component);
 
-},{"../component":5,"../utils":27}],12:[function(require,module,exports){
+},{"../component":5,"../utils":28}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1807,7 +1807,7 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
     return HeaderNavigation;
 }(_component.Component);
 
-},{"../component":5,"../utils":27}],13:[function(require,module,exports){
+},{"../component":5,"../utils":28}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1854,7 +1854,7 @@ var InputRange = exports.InputRange = function (_Input) {
     return InputRange;
 }(_input.Input);
 
-},{"../utils":27,"./input":14}],14:[function(require,module,exports){
+},{"../utils":28,"./input":14}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2028,7 +2028,7 @@ var Input = exports.Input = function (_Component) {
     return Input;
 }(_component.Component);
 
-},{"../component":5,"../utils":27}],15:[function(require,module,exports){
+},{"../component":5,"../utils":28}],15:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2070,7 +2070,108 @@ var MediaView = exports.MediaView = function (_Component) {
     return MediaView;
 }(_component.Component);
 
-},{"../component":5,"../utils":27}],16:[function(require,module,exports){
+},{"../component":5,"../utils":28}],16:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.ModalWindow = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _utils = require('../utils');
+
+var Utils = _interopRequireWildcard(_utils);
+
+var _component = require('../component');
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ModalWindow = exports.ModalWindow = function (_Component) {
+    _inherits(ModalWindow, _Component);
+
+    function ModalWindow(element, options) {
+        _classCallCheck(this, ModalWindow);
+
+        var _this = _possibleConstructorReturn(this, (ModalWindow.__proto__ || Object.getPrototypeOf(ModalWindow)).call(this, element, options));
+
+        _this.dom = Utils.extend(_this.dom, {
+            openers: document.querySelectorAll('[data-modal-opener=' + _this.element.getAttribute('id') + ']'),
+            closeIcon: _this.element.getElementsByClassName('close-icon')[0],
+            shadow: _this.element.getElementsByClassName('mui-shadow-toggle')[0]
+        });
+
+        _this.state = Utils.extend(_this.state, {
+            visible: false
+        });
+
+        _this.initAria();
+        _this.initControls();
+        return _this;
+    }
+
+    _createClass(ModalWindow, [{
+        key: 'initAria',
+        value: function initAria() {
+            Utils.aria.set(this.element, 'hidden', true);
+
+            return this;
+        }
+    }, {
+        key: 'initControls',
+        value: function initControls() {
+            var _this2 = this;
+
+            [].forEach.call(this.dom.openers, function (opener) {
+                Utils.makeElementClickable(opener, _this2.openModal.bind(_this2));
+            });
+
+            Utils.makeElementClickable(this.dom.closeIcon, this.closeModal.bind(this));
+            Utils.makeElementClickable(this.dom.shadow, this.closeModal.bind(this));
+
+            return this;
+        }
+    }, {
+        key: 'openModal',
+        value: function openModal() {
+            if (!this.state.visible) {
+                Utils.addClass(this.element, '-visible');
+                Utils.addClass(this.dom.shadow, '-visible');
+
+                Utils.aria.set(this.element, 'hidden', false);
+
+                this.state.visible = true;
+            }
+
+            return this;
+        }
+    }, {
+        key: 'closeModal',
+        value: function closeModal() {
+            if (this.state.visible) {
+                Utils.removeClass(this.element, '-visible');
+                Utils.removeClass(this.dom.shadow, '-visible');
+
+                Utils.aria.set(this.element, 'hidden', true);
+
+                this.state.visible = false;
+            }
+
+            return this;
+        }
+    }]);
+
+    return ModalWindow;
+}(_component.Component);
+
+},{"../component":5,"../utils":28}],17:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2107,7 +2208,7 @@ var Pagination = exports.Pagination = function (_Component) {
     return Pagination;
 }(_component.Component);
 
-},{"../component":5,"../utils":27}],17:[function(require,module,exports){
+},{"../component":5,"../utils":28}],18:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2220,7 +2321,7 @@ var Radio = exports.Radio = function (_Component) {
     return Radio;
 }(_component.Component);
 
-},{"../component":5,"../utils":27}],18:[function(require,module,exports){
+},{"../component":5,"../utils":28}],19:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2358,7 +2459,7 @@ var Rating = exports.Rating = function (_Component) {
     return Rating;
 }(_component.Component);
 
-},{"../component":5,"../utils":27}],19:[function(require,module,exports){
+},{"../component":5,"../utils":28}],20:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2562,7 +2663,7 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
     return SelectDropdown;
 }(_component.Component);
 
-},{"../component":5,"../utils":27}],20:[function(require,module,exports){
+},{"../component":5,"../utils":28}],21:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2728,7 +2829,7 @@ var Tabs = exports.Tabs = function (_Component) {
     return Tabs;
 }(_component.Component);
 
-},{"../component":5,"../utils":27}],21:[function(require,module,exports){
+},{"../component":5,"../utils":28}],22:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2765,7 +2866,7 @@ var TagsList = exports.TagsList = function (_Component) {
     return TagsList;
 }(_component.Component);
 
-},{"../component":5,"../utils":27}],22:[function(require,module,exports){
+},{"../component":5,"../utils":28}],23:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2879,7 +2980,7 @@ var Textarea = exports.Textarea = function (_Component) {
     return Textarea;
 }(_component.Component);
 
-},{"../component":5,"../utils":27}],23:[function(require,module,exports){
+},{"../component":5,"../utils":28}],24:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2986,7 +3087,7 @@ var Events = exports.Events = function () {
     return Events;
 }();
 
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 'use strict';
 
 var _muilessium = require('./muilessium');
@@ -3015,6 +3116,7 @@ document.addEventListener('DOMContentLoaded', function () {
         inputRange: window.Muilessium.create('input-range', '.mui-input-range', {}),
         inputs: window.Muilessium.create('input', '.mui-input', {}),
         mediaViews: window.Muilessium.create('media-view', '.mui-media-view', {}),
+        modalWindows: window.Muilessium.create('modal-window', '.mui-modal-window', {}),
         paginations: window.Muilessium.create('pagination', '.mui-pagination', {}),
         radios: window.Muilessium.create('radio', '.mui-radio', {}),
         ratings: window.Muilessium.create('rating', '.mui-rating', {}),
@@ -3025,7 +3127,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 });
 
-},{"./muilessium":25,"./utils":27}],25:[function(require,module,exports){
+},{"./muilessium":26,"./utils":28}],26:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3066,6 +3168,8 @@ var _inputRange = require('./components/input-range');
 
 var _mediaView = require('./components/media-view');
 
+var _modalWindow = require('./components/modal-window');
+
 var _pagination = require('./components/pagination');
 
 var _radio = require('./components/radio');
@@ -3095,6 +3199,7 @@ var components = {
     'input': _input.Input,
     'input-range': _inputRange.InputRange,
     'media-view': _mediaView.MediaView,
+    'modal-window': _modalWindow.ModalWindow,
     'pagination': _pagination.Pagination,
     'radio': _radio.Radio,
     'select-dropdown': _selectDropdown.SelectDropdown,
@@ -3178,7 +3283,7 @@ var Muilessium = function () {
 
 exports.default = Muilessium;
 
-},{"./components/accordion":6,"./components/breadcrumb":7,"./components/button":9,"./components/button-dropdown":8,"./components/carousel":10,"./components/checkbox":11,"./components/header-navigation":12,"./components/input":14,"./components/input-range":13,"./components/media-view":15,"./components/pagination":16,"./components/radio":17,"./components/rating":18,"./components/select-dropdown":19,"./components/tabs":20,"./components/tags-list":21,"./components/textarea":22,"./events":23,"./polyfills":26,"./utils":27}],26:[function(require,module,exports){
+},{"./components/accordion":6,"./components/breadcrumb":7,"./components/button":9,"./components/button-dropdown":8,"./components/carousel":10,"./components/checkbox":11,"./components/header-navigation":12,"./components/input":14,"./components/input-range":13,"./components/media-view":15,"./components/modal-window":16,"./components/pagination":17,"./components/radio":18,"./components/rating":19,"./components/select-dropdown":20,"./components/tabs":21,"./components/tags-list":22,"./components/textarea":23,"./events":24,"./polyfills":27,"./utils":28}],27:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3205,7 +3310,7 @@ function objectFit() {
 exports.smoothScroll = smoothScroll;
 exports.objectFit = objectFit;
 
-},{"object-fit-images":3,"smoothscroll-polyfill":4}],27:[function(require,module,exports){
+},{"object-fit-images":3,"smoothscroll-polyfill":4}],28:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3964,4 +4069,4 @@ exports.isEnterPressed = isEnterPressed;
 exports.stringToBoolean = stringToBoolean;
 exports.callOnce = callOnce;
 
-},{"imagesloaded":2}]},{},[24]);
+},{"imagesloaded":2}]},{},[25]);

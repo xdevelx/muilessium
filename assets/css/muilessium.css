@@ -745,9 +745,6 @@
   display: table;
   clear: both;
 }
-#utils .transition-all {
-  transition: all 210ms cubic-bezier(0.53, 0.05, 0.13, 0.94);
-}
 #utils .object-fit-cover {
   object-fit: cover;
   font-family: 'object-fit: cover;';
@@ -900,7 +897,7 @@
 }
 ._lazy-load {
   opacity: 0;
-  transition: all 210ms cubic-bezier(0.53, 0.05, 0.13, 0.94);
+  transition: opacity 210ms cubic-bezier(0.53, 0.05, 0.13, 0.94);
 }
 ._lazy-load.-loaded {
   opacity: 1;
@@ -3155,6 +3152,70 @@ mark {
   font-size: .80em !important;
   text-align: center;
   color: #6D6D6D;
+}
+.mui-modal-window {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity cubic-bezier(0.53, 0.05, 0.13, 0.94) 600ms;
+}
+.mui-modal-window.-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.mui-modal-window > .window {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: 80vw;
+  max-height: 80vh;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 11;
+}
+.mui-modal-window > .window > .content {
+  overflow: hidden;
+  border-radius: .2rem;
+}
+.mui-modal-window > .window > .content.-image .mui-image {
+  max-height: 80vh;
+  max-width: 80vw;
+}
+.mui-modal-window > .window > .close-icon {
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+  height: 2rem;
+  width: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 2px solid #C6C6C6;
+  color: #6D6D6D;
+  cursor: pointer;
+  z-index: 2;
+}
+.mui-modal-window > .window > .close-icon:hover,
+.mui-modal-window > .window > .close-icon:focus {
+  background: #EDEDED;
+  color: #383838;
+  transition: opacity cubic-bezier(0.53, 0.05, 0.13, 0.94) 210ms;
+}
+.mui-modal-window > .mui-shadow-toggle {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+.mui-modal-window > .mui-shadow-toggle.-visible {
+  background: rgba(0, 0, 0, 0.25);
 }
 .mui-header-logo {
   display: inline-block;
