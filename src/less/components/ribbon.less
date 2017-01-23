@@ -59,7 +59,7 @@
             content: '';
             
             position: absolute;
-            bottom: -@width / 2;
+            bottom: ~'calc(' -@width ~' / 2 + .5px)';
             left: 0;
             
             height: 0;
