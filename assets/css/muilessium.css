@@ -3590,7 +3590,7 @@ mark {
 .mui-ribbon.-bookmark:after {
   content: '';
   position: absolute;
-  bottom: -25px;
+  bottom: calc( -50px  / 2 + .5px);
   left: 0;
   height: 0;
   width: 0;
