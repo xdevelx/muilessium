@@ -26,7 +26,6 @@ import { Rating           } from './components/rating';
 
 
 
-
 const components = {
     'accordion':         Accordion,
     'breadcrumb':        Breadcrumb,

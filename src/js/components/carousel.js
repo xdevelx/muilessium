@@ -37,17 +37,17 @@ export class Carousel extends Component {
         this.element.addEventListener('mouseover', this.stopRotating.bind(this));
         this.element.addEventListener('mouseout',  this.startRotating.bind(this));
 
-        Utils.makeChildElementsClickable(this.element, this.dom.controls.prev, () => {
-            this.rotate('prev');
-        });
-
-        Utils.makeChildElementsClickable(this.element, this.dom.controls.next, () => {
-            this.rotate('next');
-        });
+        Utils.makeChildElementsClickable(this.element, this.dom.controls.prev, this.rotate.bind(this, 'prev'));
+        Utils.makeChildElementsClickable(this.element, this.dom.controls.next, this.rotate.bind(this, 'next'));
 
         Utils.makeChildElementsClickable(this.element, this.dom.indicators, (index) => {
             this.rotate(index);
         });
+
+        this.hammertime = new Hammer(this.element);
+
+        this.hammertime.on('swiperight', this.rotate.bind(this, 'prev'));
+        this.hammertime.on('swipeleft',  this.rotate.bind(this, 'next'));
 
         return this;
     }

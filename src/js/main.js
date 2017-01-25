@@ -3,6 +3,7 @@ import * as Utils from './utils';
 
 
 document.addEventListener('DOMContentLoaded', () => {
+    window.Hammer = require('hammerjs');
     window.Muilessium = new Muilessium;
 
     window.Muilessium.components = {

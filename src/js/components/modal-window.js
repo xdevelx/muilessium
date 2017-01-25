@@ -8,6 +8,7 @@ export class ModalWindow extends Component {
 
         this.dom = Utils.extend(this.dom, {
             openers:   document.querySelectorAll(`[data-modal-opener=${this.element.getAttribute('id')}]`),
+            modalWindow: this.element.getElementsByClassName('window')[0],
             closeIcon: this.element.getElementsByClassName('close-icon')[0],
             shadow:    this.element.getElementsByClassName('mui-shadow-toggle')[0]
         });
@@ -35,6 +36,10 @@ export class ModalWindow extends Component {
 
         Utils.makeElementClickable(this.dom.closeIcon, this.closeModal.bind(this));
         Utils.makeElementClickable(this.dom.shadow,    this.closeModal.bind(this));
+
+        this.hammertime = new Hammer(this.dom.modalWindow);
+        this.hammertime.get('pinch').set({ enable: true });
+        this.hammertime.on('pinchout', this.closeModal.bind(this));
 
         return this;
     }

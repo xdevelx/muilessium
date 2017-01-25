@@ -61,6 +61,11 @@ export class Tabs extends Component {
             });
         });
 
+        this.hammertime = new Hammer(this.element);
+
+        this.hammertime.on('swiperight', this.goToPreviousTab.bind(this));
+        this.hammertime.on('swipeleft',  this.goToNextTab.bind(this));
+
         return this;
     }
 

@@ -56,6 +56,14 @@ export class HeaderNavigation extends Component {
             }
         });
 
+        this.hammertime = new Hammer(this.dom.linksList);
+
+        this.hammertime.on('swiperight', () => {
+            if (this.state.mobile) {
+                this.closeNavigation();
+            }
+        });
+
         return this;
     }
 
