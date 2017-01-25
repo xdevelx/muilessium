@@ -6,11 +6,9 @@
     
     <title>{{project.name}} UI Framework</title>  
     
-    <link rel='stylesheet' href='assets/css/muilessium.css'>
+    <link rel='stylesheet' href='assets/css/muilessium.css?v=1485353800520'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Raleway:400,600'>
-    <link rel='stylesheet' href='assets/css/docs-styles.css'/>
-    
-    <link rel='icon' href='favicon.ico' type='image/x-icon' />
+    <link rel='stylesheet' href='assets/css/docs-styles.css?v=1485353800520'/>
 </head>
 <body>
     <header class='mui-page-header -black-bg'>
@@ -447,8 +445,13 @@
     </div>
 
 
+    <div id='scroll-to-top' class='( mui-button -icon ) -white-bg -black -f-blue-2-bg -f-white scroll-to-top -hidden _shadow-3'>
+        <i class='fa fa-arrow-up'></i>
+    </div>
 
-    <script src='assets/js/prettify/prettify.js?v=1'></script>
+
+    <script src='assets/js/prettify/prettify.js?v=1485353800520'></script>
+    <script src='assets/js/muilessium.js?v=1485353800520'></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             [].forEach.call(document.querySelectorAll('.state .example'), function(example) {
@@ -463,8 +466,15 @@
             });
 
             prettyPrint();
+
+            Muilessium.Utils.scrollFire(document.getElementById('page-layout-overview'), function() {
+                var scrollToTopButton = document.getElementById('scroll-to-top');
+
+                Muilessium.Utils.removeClass(scrollToTopButton, '-hidden');
+
+                Muilessium.Utils.makeElementClickable(scrollToTopButton, Muilessium.Utils.scrollToTop);
+            });
         });
     </script>
-    <script src='assets/js/muilessium.js'></script>
 </body>
 </html>

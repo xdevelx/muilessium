@@ -247,3 +247,17 @@ hr {
     transform: translateY(-50%);
 }
 
+.scroll-to-top {
+    display: block;
+    position: fixed;
+    z-index: 11;
+    bottom: 1rem;
+    left: 1rem;
+
+    &.-hidden {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 600ms cubic-bezier(.53, .05, .13, .94);
+    }
+}
+
