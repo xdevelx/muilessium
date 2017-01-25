@@ -2,7 +2,7 @@
 <html lang='en'>
 <head>
     <meta http-equiv='content-type' content='text/html;charset=UTF-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta name='viewport' content='user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1'>
     
     <title>muilessium UI Framework</title>  
     
@@ -11,23 +11,13 @@
     <link rel='stylesheet' href='assets/css/docs-styles.css'/>
     
     <link rel='icon' href='favicon.ico' type='image/x-icon' />
-
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-53893511-1', 'auto');
-        ga('send', 'pageview');
-    </script>
 </head>
 <body>
     <header class='mui-page-header -black-bg'>
         <div class='mui-header-logo _left'>
             <img class='mui-image -logo _lazy-load' data-src='images/muilessium.png' alt='logo'>
             <a class='_right' href='/'>
-                <h1 class='-white _bigger-1'>muilessium <span class='_smaller-3'>v0.1.11</span></h1>
+                <h1 class='-white _bigger-1'>muilessium <span class='_smaller-3'>v0.1.12</span></h1>
             </a>
         </div>
 
@@ -57,12 +47,15 @@
                 <ul class='sub-list _separate-1'>
                     <li><a href='#grid-overview'>Grid</a></li>
                     <li><a href='#page-layout-overview'>Page layout</a></li>
+                    <li><a href='#meta-viewport'>Viewport</a></li>
                     <li><a href='#helpers-overview'>Helpers</a></li>
                     <li><a href='#lazy-loading-images-overview'>Lazy load</a></li>
                     <li><a href='#colors-overview'>Colors</a></li>
                 </ul>
                 <hr class='_separate-1'>
                 <a href='#utils'>Utils</a>
+                <hr class='_separate-1'>
+                <a href='#libraries'>Libraries</a>
                 <hr class='_separate-1'>
                 <a href='#components'>Components</a>
                 <ul class='sub-list _separate-1'>
@@ -445,6 +438,22 @@
 
                 <div class='_separate-5'>
                     <div class='mui-row'>
+                        <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#meta-viewport'>&#182;</a>
+                        <h3 class='_bigger-2' id='meta-viewport'>Recommended viewport</h3>
+                    </div>
+
+                    <p class='mui-p _separate-1'>Muilessium uses Hammer.js and it is recommended to use the following meta in your pages:</p>
+
+                    <div class='code-example _separate-2 _smaller-2'>
+                        <pre class='prettyprint lang-html'>
+    &lt;meta name='viewport' content='user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1'&gt;</pre>
+                    </div>
+                </div>
+
+
+
+                <div class='_separate-5'>
+                    <div class='mui-row'>
                         <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#helpers-overview'>&#182;</a>
                         <h3 class='_bigger-2' id='helpers-overview'>Helpers</h3>
                     </div>
@@ -569,6 +578,21 @@
                     <p class='mui-p _separate-1'>See <a href='utils.html'>utils docs</a> for more information</p>
                 </div>
 
+
+
+                <div class='_separate-5'>
+                    <div class='mui-row'>
+                        <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#libraries'>&#182;</a>
+                        <h3 class='_bigger-2' id='libraries'>Libraries</h3>
+                    </div>
+
+                    <p class='mui-p _separate-1'>Muilessium uses some other libraries and if you need to use them too - no need to include them again</p>
+
+                    <ul>
+                        <li>FontAwesome</li>
+                        <li>Hammer.js</li>
+                    </ul>
+                </div>
 
 
                 <div class='_separate-5'>
