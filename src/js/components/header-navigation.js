@@ -35,6 +35,7 @@ export class HeaderNavigation extends Component {
             Utils.aria.setRole(toggle, 'button');
         });
 
+        Utils.aria.set(this.dom.shadow,    'hidden', true);
         Utils.aria.set(this.dom.hamburger, 'haspopup', true);
 
         Utils.aria.set(this.dom.linksList, 'labelledby', Utils.aria.setId(this.dom.hamburger));
@@ -77,7 +78,6 @@ export class HeaderNavigation extends Component {
             Utils.addClass(this.dom.shadow, '-visible');
 
             Utils.aria.set(this.dom.hamburger, 'hidden', true);
-            Utils.aria.set(this.dom.shadow,    'hidden', false);
             Utils.aria.set(this.dom.linksList, 'hidden', false);
 
             this.dom.linksList.getElementsByTagName('a')[0].focus();
@@ -96,7 +96,6 @@ export class HeaderNavigation extends Component {
             Utils.removeClass(this.dom.shadow, '-visible');
 
             Utils.aria.set(this.dom.hamburger, 'hidden', false);
-            Utils.aria.set(this.dom.shadow,    'hidden', true);
             Utils.aria.set(this.dom.linksList, 'hidden', true);
 
             this.dom.hamburger.focus();

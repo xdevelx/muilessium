@@ -24,6 +24,7 @@ export class ModalWindow extends Component {
 
     initAria() {
         Utils.aria.set(this.element, 'hidden', true);
+        Utils.aria.set(this.shadow,  'hidden', true);
 
         return this;
     }

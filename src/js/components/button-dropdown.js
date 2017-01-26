@@ -46,7 +46,6 @@ export class ButtonDropdown extends Component {
 
         Utils.aria.set(this.dom.button,   'hidden', true);
         Utils.aria.set(this.dom.dropdown, 'hidden', false);
-        Utils.aria.set(this.dom.shadow,   'hidden', false);
 
         this.dom.dropdown.getElementsByTagName('a')[0].focus()
 
@@ -62,7 +61,6 @@ export class ButtonDropdown extends Component {
 
         Utils.aria.set(this.dom.button,   'hidden', false);
         Utils.aria.set(this.dom.dropdown, 'hidden', true);
-        Utils.aria.set(this.dom.shadow,   'hidden', true);
 
         this.dom.button.focus();
 

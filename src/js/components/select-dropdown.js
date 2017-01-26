@@ -65,6 +65,7 @@ export class SelectDropdown extends Component {
                     this.dom.optionsList[this.state.selectedIndex].getAttribute('id'));
         Utils.aria.set(this.dom.state, 'hidden', true);
         Utils.aria.set(this.dom.icon, 'hidden', true);
+        Utils.aria.set(this.dom.shadow, 'hidden', true);
 
         Utils.ifNodeList(this.dom.labels, () => {
             const selectId = Utils.aria.setId(this.dom.select);
