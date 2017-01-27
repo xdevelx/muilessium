@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Muilessium - viewport.js</title>
+
+    <meta http-equiv='content-type' content='text/html; charset=UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+    <link rel='stylesheet' media='all' href='../../assets/css/muilessium.css?v=1485353800520' />
+    <link rel='stylesheet' media='all' href='../../assets/css/docs-styles.css?v=1485353800520' />
+
+    <link rel='icon' href='./favicon.ico' type='image/x-icon' />
+
+    <style>
+        h2 {
+            font-size: 2rem !important;
+        }
+
+        hr {
+            display: none;
+        }
+
+        .mui-content-container {
+            padding: .2rem 0;
+        }
+
+        ._separate-1-bottom {
+            margin-bottom: 1rem;
+        }
+
+        .anchor-link {
+            opacity: 0;
+        }
+
+        .anchor-link:hover,
+        .anchor-link:focus {
+            opacity: 1;
+        }
+    </style>
+
+</head>
+<body>
+    <header class='mui-page-header -black-bg'>
+        <div class='mui-header-logo _left'>
+            <img class='mui-image -logo _lazy-load' data-src='images/muilessium.png' alt='logo'>
+            <a class='_right' href='/'>
+                <h1 class='-white _bigger-1'>
+                    <span>Muilessium</span>
+                    
+                        <span class='_smaller-1'> (viewport.js) </span>
+                    
+                </h1>
+            </a>
+        </div>
+    </header>
+
+    <main class='mui-page-container _separate-3'>
+            
+                
+                <div class='' id='section-1'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-1'>&#182;</a>
+                        </div>
+                        <hr>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-2'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-2'>&#182;</a>
+                        </div>
+                        <h2 id="viewport-utilities">Viewport utilities</h2>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-3'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-3'>&#182;</a>
+                        </div>
+                        
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+
+<span class="hljs-keyword">import</span> { ifExists } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/checks'</span>;</pre></div></div>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-4'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-4'>&#182;</a>
+                        </div>
+                        <h2 id="is-in-viewport">Is in viewport</h2>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-5'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-5'>&#182;</a>
+                        </div>
+                        <p>Returns true if the element is in viewport</p>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isInViewport</span>(<span class="hljs-params">element</span>) </span>{
+    <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
+        <span class="hljs-keyword">let</span> rect = element.getBoundingClientRect(),
+            html = <span class="hljs-built_in">document</span>.documentElement;
+
+        <span class="hljs-keyword">return</span> (
+            rect.top    &gt;= <span class="hljs-number">0</span> &amp;&amp;
+            rect.left   &gt;= <span class="hljs-number">0</span> &amp;&amp;
+            rect.bottom &lt;= (<span class="hljs-built_in">window</span>.innerHeight || html.clientHeight) &amp;&amp;
+            rect.right  &lt;= (<span class="hljs-built_in">window</span>.innerWidth  || html.clientWidth)
+        );
+    });
+};</pre></div></div>
+                        
+                    </div>
+                </div>
+            
+    </main>
+
+    <div class='mui-page-footer _text-center _line-3r -white -black-bg'>
+        <span>Copyright &copy; Ivan Bogachev, 2016-2017</span>
+    </div>
+
+    <div id='scroll-to-top-button' class='( mui-button -icon ) -white-bg -black -f-blue-2-bg -f-white scroll-to-top -hidden _shadow-3'>
+        <i class='fa fa-arrow-up'></i>
+    </div>
+
+
+    <script src='../../assets/js/muilessium.js?v=1485353800520'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Muilessium.Utils.scrollFire(document.getElementById('warning'), function() {
+                var scrollToTopButton = document.getElementById('scroll-to-top-button');
+
+                Muilessium.Utils.removeClass(scrollToTopButton, '-hidden');
+
+                Muilessium.Utils.makeElementClickable(scrollToTopButton, Muilessium.Utils.scrollToTop);
+            });
+        });
+    </script>
+</body>
+</html>

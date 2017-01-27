@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Muilessium - ajax.js</title>
+
+    <meta http-equiv='content-type' content='text/html; charset=UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+    <link rel='stylesheet' media='all' href='../../assets/css/muilessium.css?v=1485353800520' />
+    <link rel='stylesheet' media='all' href='../../assets/css/docs-styles.css?v=1485353800520' />
+
+    <link rel='icon' href='./favicon.ico' type='image/x-icon' />
+
+    <style>
+        h2 {
+            font-size: 2rem !important;
+        }
+
+        hr {
+            display: none;
+        }
+
+        .mui-content-container {
+            padding: .2rem 0;
+        }
+
+        ._separate-1-bottom {
+            margin-bottom: 1rem;
+        }
+
+        .anchor-link {
+            opacity: 0;
+        }
+
+        .anchor-link:hover,
+        .anchor-link:focus {
+            opacity: 1;
+        }
+    </style>
+
+</head>
+<body>
+    <header class='mui-page-header -black-bg'>
+        <div class='mui-header-logo _left'>
+            <img class='mui-image -logo _lazy-load' data-src='images/muilessium.png' alt='logo'>
+            <a class='_right' href='/'>
+                <h1 class='-white _bigger-1'>
+                    <span>Muilessium</span>
+                    
+                        <span class='_smaller-1'> (ajax.js) </span>
+                    
+                </h1>
+            </a>
+        </div>
+    </header>
+
+    <main class='mui-page-container _separate-3'>
+            
+                
+                <div class='' id='section-1'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-1'>&#182;</a>
+                        </div>
+                        <hr>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-2'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-2'>&#182;</a>
+                        </div>
+                        <h2 id="ajax-utilities">Ajax utilities</h2>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-3'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-3'>&#182;</a>
+                        </div>
+                        
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> ajax = {</pre></div></div>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-4'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-4'>&#182;</a>
+                        </div>
+                        <h2 id="post">Post</h2>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-5'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-5'>&#182;</a>
+                        </div>
+                        <p>Makes a POST request and executes a success or error callback when
+the request state changes</p>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+    post: <span class="hljs-function">(<span class="hljs-params">url, data, successCallback, errorCallback</span>) =&gt;</span> {
+        <span class="hljs-keyword">let</span> request = <span class="hljs-keyword">new</span> XMLHttpRequest();
+
+        request.open(<span class="hljs-string">'POST'</span>, url, <span class="hljs-literal">true</span>);
+        request.setRequestHeader(<span class="hljs-string">'Content-Type'</span>, <span class="hljs-string">'application/x-www-form-urlencoded; charset=UTF-8'</span>);
+
+        request.onreadystatechange = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+            <span class="hljs-keyword">if</span> (request.readyState === <span class="hljs-number">4</span>) {
+                <span class="hljs-comment">/* Only 2xx codes are successful for the POST request. */</span>
+                <span class="hljs-keyword">if</span> ((request.status &gt;= <span class="hljs-number">200</span>) &amp;&amp; (request.status &lt; <span class="hljs-number">300</span>)) {
+                    successCallback(request.responseText);
+                } <span class="hljs-keyword">else</span> {
+                    <span class="hljs-built_in">console</span>.error(<span class="hljs-string">`POST (<span class="hljs-subst">${url}</span>): error <span class="hljs-subst">${request.status}</span> <span class="hljs-subst">${request.statusText}</span>`</span>);
+                    errorCallback(request.status, request.statusText);
+                }
+            }
+        }
+
+        request.send(data);
+    },</pre></div></div>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-6'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-6'>&#182;</a>
+                        </div>
+                        <h2 id="get">Get</h2>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-7'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-7'>&#182;</a>
+                        </div>
+                        <p>Makes a GET request and executes a success or error callback when
+the request state changes</p>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+    get: <span class="hljs-function">(<span class="hljs-params">url, successCallback, errorCallback</span>) =&gt;</span> {
+        <span class="hljs-keyword">let</span> request = <span class="hljs-keyword">new</span> XMLHttpRequest();
+
+        request.open(<span class="hljs-string">'GET'</span>, url, <span class="hljs-literal">true</span>);
+
+        request.onreadystatechange = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+            <span class="hljs-keyword">if</span> (request.readyState === <span class="hljs-number">4</span>) {
+                <span class="hljs-comment">/* Status 304 (Not Modified) is also a successful for the GET request.*/</span>
+                <span class="hljs-keyword">if</span> (((request.status &gt;= <span class="hljs-number">200</span>) &amp;&amp; (request.status &lt; <span class="hljs-number">300</span>)) || (request.status === <span class="hljs-number">304</span>)) {
+                    successCallback(request.responseText);
+                } <span class="hljs-keyword">else</span> {
+                    <span class="hljs-built_in">console</span>.error(<span class="hljs-string">`GET (<span class="hljs-subst">${url}</span>): error <span class="hljs-subst">${request.status}</span> <span class="hljs-subst">${request.statusText}</span>`</span>);
+                    errorCallback(request.status, request.statusText);
+                }
+            }
+        };
+
+        request.send(<span class="hljs-literal">null</span>);
+    }
+};</pre></div></div>
+                        
+                    </div>
+                </div>
+            
+    </main>
+
+    <div class='mui-page-footer _text-center _line-3r -white -black-bg'>
+        <span>Copyright &copy; Ivan Bogachev, 2016-2017</span>
+    </div>
+
+    <div id='scroll-to-top-button' class='( mui-button -icon ) -white-bg -black -f-blue-2-bg -f-white scroll-to-top -hidden _shadow-3'>
+        <i class='fa fa-arrow-up'></i>
+    </div>
+
+
+    <script src='../../assets/js/muilessium.js?v=1485353800520'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Muilessium.Utils.scrollFire(document.getElementById('warning'), function() {
+                var scrollToTopButton = document.getElementById('scroll-to-top-button');
+
+                Muilessium.Utils.removeClass(scrollToTopButton, '-hidden');
+
+                Muilessium.Utils.makeElementClickable(scrollToTopButton, Muilessium.Utils.scrollToTop);
+            });
+        });
+    </script>
+</body>
+</html>

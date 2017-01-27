@@ -3671,7 +3671,7 @@ var Component = exports.Component = function Component(element, options) {
     this.state = {};
 };
 
-},{"./utils":29}],7:[function(require,module,exports){
+},{"./utils":32}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3809,7 +3809,9 @@ var Accordion = exports.Accordion = function (_Component) {
     return Accordion;
 }(_component.Component);
 
-},{"../component":6,"../utils":29}],8:[function(require,module,exports){
+;
+
+},{"../component":6,"../utils":32}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3846,7 +3848,9 @@ var Breadcrumb = exports.Breadcrumb = function (_Component) {
     return Breadcrumb;
 }(_component.Component);
 
-},{"../component":6,"../utils":29}],9:[function(require,module,exports){
+;
+
+},{"../component":6,"../utils":32}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3855,6 +3859,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.ButtonDropdown = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _keyboard = require('../controls/keyboard');
+
+var Keyboard = _interopRequireWildcard(_keyboard);
 
 var _utils = require('../utils');
 
@@ -3881,6 +3889,7 @@ var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
         _this.dom = Utils.extend(_this.dom, {
             button: element.getElementsByClassName('mui-button')[0],
             dropdown: element.getElementsByClassName('mui-dropdown-options')[0],
+            optionsList: element.getElementsByClassName('option'),
             shadow: element.getElementsByClassName('mui-shadow-toggle')[0]
         });
 
@@ -3907,7 +3916,21 @@ var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
     }, {
         key: 'initControls',
         value: function initControls() {
-            Utils.makeChildElementsClickable(this.element, [this.dom.button, this.dom.shadow], this.toggleDropdown.bind(this));
+            var _this2 = this;
+
+            Utils.makeElementClickable(this.dom.button, this.toggleDropdown.bind(this));
+            Utils.makeElementClickable(this.dom.shadow, this.toggleDropdown.bind(this), true);
+
+            Keyboard.onShiftTabPressed(Utils.firstOfList(this.dom.optionsList), function () {
+                _this2.closeDropdown();
+                _this2.dom.button.focus();
+            });
+
+            Keyboard.onTabPressed(Utils.lastOfList(this.dom.optionsList), function () {
+                _this2.closeDropdown();
+
+                Utils.goToNextFocusableElement(Utils.lastOfList(Utils.getFocusableChilds(_this2.element)));
+            });
 
             return this;
         }
@@ -3919,7 +3942,6 @@ var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
 
             Utils.aria.set(this.dom.button, 'hidden', true);
             Utils.aria.set(this.dom.dropdown, 'hidden', false);
-            Utils.aria.set(this.dom.shadow, 'hidden', false);
 
             this.dom.dropdown.getElementsByTagName('a')[0].focus();
 
@@ -3935,7 +3957,6 @@ var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
 
             Utils.aria.set(this.dom.button, 'hidden', false);
             Utils.aria.set(this.dom.dropdown, 'hidden', true);
-            Utils.aria.set(this.dom.shadow, 'hidden', true);
 
             this.dom.button.focus();
 
@@ -3959,7 +3980,9 @@ var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
     return ButtonDropdown;
 }(_component.Component);
 
-},{"../component":6,"../utils":29}],10:[function(require,module,exports){
+;
+
+},{"../component":6,"../controls/keyboard":25,"../utils":32}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3989,14 +4012,19 @@ var Button = exports.Button = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Button.__proto__ || Object.getPrototypeOf(Button)).call(this, element, options));
 
-        Utils.aria.setRole(_this.element, 'button');
+        if (!Utils.aria.getRole(_this.element)) {
+            // Sometimes it is useful to add role=link to the button, we should not override it here
+            Utils.aria.setRole(_this.element, 'button');
+        }
         return _this;
     }
 
     return Button;
 }(_component.Component);
 
-},{"../component":6,"../utils":29}],11:[function(require,module,exports){
+;
+
+},{"../component":6,"../utils":32}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4005,6 +4033,14 @@ Object.defineProperty(exports, "__esModule", {
 exports.Carousel = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _mouse = require('../controls/mouse');
+
+var Mouse = _interopRequireWildcard(_mouse);
+
+var _touchscreen = require('../controls/touchscreen');
+
+var TouchScreen = _interopRequireWildcard(_touchscreen);
 
 var _utils = require('../utils');
 
@@ -4060,8 +4096,8 @@ var Carousel = exports.Carousel = function (_Component) {
         value: function initControls() {
             var _this2 = this;
 
-            this.element.addEventListener('mouseover', this.stopRotating.bind(this));
-            this.element.addEventListener('mouseout', this.startRotating.bind(this));
+            Mouse.onMouseOver(this.element, this.stopRotating.bind(this));
+            Mouse.onMouseOut(this.element, this.startRotating.bind(this));
 
             Utils.makeChildElementsClickable(this.element, this.dom.controls.prev, this.rotate.bind(this, 'prev'));
             Utils.makeChildElementsClickable(this.element, this.dom.controls.next, this.rotate.bind(this, 'next'));
@@ -4070,10 +4106,8 @@ var Carousel = exports.Carousel = function (_Component) {
                 _this2.rotate(index);
             });
 
-            this.hammertime = new Hammer(this.element);
-
-            this.hammertime.on('swiperight', this.rotate.bind(this, 'prev'));
-            this.hammertime.on('swipeleft', this.rotate.bind(this, 'next'));
+            TouchScreen.onSwipeRight(this.element, this.rotate.bind(this, 'prev'));
+            TouchScreen.onSwipeLeft(this.element, this.rotate.bind(this, 'next'));
 
             return this;
         }
@@ -4144,7 +4178,9 @@ var Carousel = exports.Carousel = function (_Component) {
     return Carousel;
 }(_component.Component);
 
-},{"../component":6,"../utils":29}],12:[function(require,module,exports){
+;
+
+},{"../component":6,"../controls/mouse":26,"../controls/touchscreen":27,"../utils":32}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4245,7 +4281,9 @@ var Checkbox = exports.Checkbox = function (_Component) {
     return Checkbox;
 }(_component.Component);
 
-},{"../component":6,"../utils":29}],13:[function(require,module,exports){
+;
+
+},{"../component":6,"../utils":32}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4254,6 +4292,14 @@ Object.defineProperty(exports, "__esModule", {
 exports.HeaderNavigation = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _touchscreen = require('../controls/touchscreen');
+
+var TouchScreen = _interopRequireWildcard(_touchscreen);
+
+var _keyboard = require('../controls/keyboard');
+
+var Keyboard = _interopRequireWildcard(_keyboard);
 
 var _utils = require('../utils');
 
@@ -4278,11 +4324,10 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
         var _this = _possibleConstructorReturn(this, (HeaderNavigation.__proto__ || Object.getPrototypeOf(HeaderNavigation)).call(this, element, options));
 
         _this.dom = Utils.extend(_this.dom, {
-            toggles: element.getElementsByClassName('mui-navigation-toggle'),
             hamburger: element.getElementsByClassName('mui-navigation-toggle')[0],
             shadow: element.getElementsByClassName('mui-shadow-toggle')[0],
-            linksList: element.getElementsByClassName('links-list')[0],
-            links: element.getElementsByTagName('a')
+            links: element.getElementsByClassName('links-list')[0],
+            linksList: element.getElementsByTagName('a')
         });
 
         _this.state = Utils.extend(_this.state, {
@@ -4303,13 +4348,12 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
     _createClass(HeaderNavigation, [{
         key: 'initAria',
         value: function initAria() {
-            [].forEach.call(this.dom.toggles, function (toggle) {
-                Utils.aria.setRole(toggle, 'button');
-            });
+            Utils.aria.setRole(this.dom.hamburger, 'button');
 
+            Utils.aria.set(this.dom.shadow, 'hidden', true);
             Utils.aria.set(this.dom.hamburger, 'haspopup', true);
 
-            Utils.aria.set(this.dom.linksList, 'labelledby', Utils.aria.setId(this.dom.hamburger));
+            Utils.aria.set(this.dom.links, 'labelledby', Utils.aria.setId(this.dom.hamburger));
 
             return this;
         }
@@ -4318,10 +4362,11 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
         value: function initControls() {
             var _this2 = this;
 
-            Utils.makeChildElementsClickable(this.element, this.dom.toggles, this.toggleNavigation.bind(this));
+            Utils.makeElementClickable(this.dom.hamburger, this.toggleNavigation.bind(this));
+            Utils.makeElementClickable(this.dom.shadow, this.toggleNavigation.bind(this), true);
 
-            Utils.makeChildElementsClickable(this.element, this.dom.links, function (index) {
-                var href = _this2.dom.links[index].getAttribute('href');
+            Utils.makeChildElementsClickable(this.element, this.dom.linksList, function (index) {
+                var href = _this2.dom.linksList[index].getAttribute('href');
 
                 if (href[0] === '#') {
                     _this2.closeNavigation();
@@ -4330,12 +4375,22 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
                 }
             });
 
-            this.hammertime = new Hammer(this.dom.linksList);
-
-            this.hammertime.on('swiperight', function () {
+            TouchScreen.onSwipeRight(this.element, function () {
                 if (_this2.state.mobile) {
                     _this2.closeNavigation();
                 }
+            });
+
+            Keyboard.onShiftTabPressed(Utils.firstOfList(this.dom.linksList), function () {
+                _this2.closeNavigation();
+
+                Utils.goToPreviousFocusableElement(Utils.firstOfList(Utils.getFocusableChilds(_this2.element)));
+            });
+
+            Keyboard.onTabPressed(Utils.lastOfList(this.dom.linksList), function () {
+                _this2.closeNavigation();
+
+                Utils.goToNextFocusableElement(Utils.lastOfList(Utils.getFocusableChilds(_this2.element)));
             });
 
             return this;
@@ -4351,10 +4406,9 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
                 Utils.addClass(this.dom.shadow, '-visible');
 
                 Utils.aria.set(this.dom.hamburger, 'hidden', true);
-                Utils.aria.set(this.dom.shadow, 'hidden', false);
-                Utils.aria.set(this.dom.linksList, 'hidden', false);
+                Utils.aria.set(this.dom.links, 'hidden', false);
 
-                this.dom.linksList.getElementsByTagName('a')[0].focus();
+                Utils.getFocusableChilds(this.dom.links)[0].focus();
             }
 
             return this;
@@ -4370,8 +4424,7 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
                 Utils.removeClass(this.dom.shadow, '-visible');
 
                 Utils.aria.set(this.dom.hamburger, 'hidden', false);
-                Utils.aria.set(this.dom.shadow, 'hidden', true);
-                Utils.aria.set(this.dom.linksList, 'hidden', true);
+                Utils.aria.set(this.dom.links, 'hidden', true);
 
                 this.dom.hamburger.focus();
             }
@@ -4396,7 +4449,7 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
                 this.closeNavigation();
 
                 Utils.aria.set(this.dom.hamburger, 'hidden', false);
-                Utils.aria.set(this.dom.linksList, 'hidden', true);
+                Utils.aria.set(this.dom.links, 'hidden', true);
 
                 Utils.addClass(this.element, '-mobile-version');
                 Utils.removeClass(this.element, '-desktop-version');
@@ -4414,7 +4467,7 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
 
                 Utils.aria.set(this.dom.hamburger, 'hidden', true);
                 Utils.aria.set(this.dom.shadow, 'hidden', true);
-                Utils.aria.set(this.dom.linksList, 'hidden', false);
+                Utils.aria.set(this.dom.links, 'hidden', false);
 
                 Utils.addClass(this.element, '-desktop-version');
                 Utils.removeClass(this.element, '-mobile-version');
@@ -4447,7 +4500,7 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
                 }
             });
 
-            if (childsWidth > parentWidth - 100) {
+            if (childsWidth > parentWidth - 200) {
                 this.transformToMobile();
             } else {
                 this.transformToDesktop();
@@ -4460,7 +4513,9 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
     return HeaderNavigation;
 }(_component.Component);
 
-},{"../component":6,"../utils":29}],14:[function(require,module,exports){
+;
+
+},{"../component":6,"../controls/keyboard":25,"../controls/touchscreen":27,"../utils":32}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4507,7 +4562,9 @@ var InputRange = exports.InputRange = function (_Input) {
     return InputRange;
 }(_input.Input);
 
-},{"../utils":29,"./input":15}],15:[function(require,module,exports){
+;
+
+},{"../utils":32,"./input":15}],15:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4681,7 +4738,9 @@ var Input = exports.Input = function (_Component) {
     return Input;
 }(_component.Component);
 
-},{"../component":6,"../utils":29}],16:[function(require,module,exports){
+;
+
+},{"../component":6,"../utils":32}],16:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4723,7 +4782,9 @@ var MediaView = exports.MediaView = function (_Component) {
     return MediaView;
 }(_component.Component);
 
-},{"../component":6,"../utils":29}],17:[function(require,module,exports){
+;
+
+},{"../component":6,"../utils":32}],17:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4732,6 +4793,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.ModalWindow = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _touchscreen = require('../controls/touchscreen');
+
+var TouchScreen = _interopRequireWildcard(_touchscreen);
 
 var _utils = require('../utils');
 
@@ -4775,6 +4840,7 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
         key: 'initAria',
         value: function initAria() {
             Utils.aria.set(this.element, 'hidden', true);
+            Utils.aria.set(this.dom.shadow, 'hidden', true);
 
             return this;
         }
@@ -4790,9 +4856,7 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
             Utils.makeElementClickable(this.dom.closeIcon, this.closeModal.bind(this));
             Utils.makeElementClickable(this.dom.shadow, this.closeModal.bind(this));
 
-            this.hammertime = new Hammer(this.dom.modalWindow);
-            this.hammertime.get('pinch').set({ enable: true });
-            this.hammertime.on('pinchout', this.closeModal.bind(this));
+            TouchScreen.onPinchOut(this.dom.modalWindow, this.closeModal.bind(this));
 
             return this;
         }
@@ -4829,7 +4893,9 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
     return ModalWindow;
 }(_component.Component);
 
-},{"../component":6,"../utils":29}],18:[function(require,module,exports){
+;
+
+},{"../component":6,"../controls/touchscreen":27,"../utils":32}],18:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4866,7 +4932,9 @@ var Pagination = exports.Pagination = function (_Component) {
     return Pagination;
 }(_component.Component);
 
-},{"../component":6,"../utils":29}],19:[function(require,module,exports){
+;
+
+},{"../component":6,"../utils":32}],19:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4979,7 +5047,9 @@ var Radio = exports.Radio = function (_Component) {
     return Radio;
 }(_component.Component);
 
-},{"../component":6,"../utils":29}],20:[function(require,module,exports){
+;
+
+},{"../component":6,"../utils":32}],20:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4988,6 +5058,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.Rating = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _keyboard = require('../controls/keyboard');
+
+var Keyboard = _interopRequireWildcard(_keyboard);
 
 var _utils = require('../utils');
 
@@ -5043,9 +5117,8 @@ var Rating = exports.Rating = function (_Component) {
 
             Utils.makeElementFocusable(this.element);
 
-            this.element.addEventListener('keydown', function (e) {
-                _this2.keyDownHandler(e.keyCode);
-            });
+            Keyboard.onArrowLeftPressed(this.element, this.decreaseRating.bind(this));
+            Keyboard.onArrowRightPressed(this.element, this.increaseRating.bind(this));
 
             Utils.makeChildElementsClickable(this.element, this.dom.stars, function (index) {
                 _this2.updateRating(index + 1);
@@ -5096,28 +5169,14 @@ var Rating = exports.Rating = function (_Component) {
 
             return this;
         }
-    }, {
-        key: 'keyDownHandler',
-        value: function keyDownHandler(keyCode) {
-            switch (keyCode) {
-                case 37:
-                    this.decreaseRating();
-                    break;
-                case 39:
-                    this.increaseRating();
-                    break;
-                default:
-                    break;
-            }
-
-            return this;
-        }
     }]);
 
     return Rating;
 }(_component.Component);
 
-},{"../component":6,"../utils":29}],21:[function(require,module,exports){
+;
+
+},{"../component":6,"../controls/keyboard":25,"../utils":32}],21:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5130,6 +5189,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _utils = require('../utils');
 
 var Utils = _interopRequireWildcard(_utils);
+
+var _keyboard = require('../controls/keyboard');
+
+var Keyboard = _interopRequireWildcard(_keyboard);
 
 var _component = require('../component');
 
@@ -5213,6 +5276,7 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
             Utils.aria.set(this.dom.select, 'activedescendant', this.dom.optionsList[this.state.selectedIndex].getAttribute('id'));
             Utils.aria.set(this.dom.state, 'hidden', true);
             Utils.aria.set(this.dom.icon, 'hidden', true);
+            Utils.aria.set(this.dom.shadow, 'hidden', true);
 
             Utils.ifNodeList(this.dom.labels, function () {
                 var selectId = Utils.aria.setId(_this3.dom.select);
@@ -5231,13 +5295,8 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
         value: function initControls() {
             var _this4 = this;
 
-            Utils.makeElementClickable(this.dom.select, function () {
-                _this4.toggleDropdown();
-            });
-
-            Utils.makeElementClickable(this.dom.shadow, function () {
-                _this4.toggleDropdown();
-            });
+            Utils.makeElementClickable(this.dom.select, this.toggleDropdown.bind(this));
+            Utils.makeElementClickable(this.dom.shadow, this.toggleDropdown.bind(this), true);
 
             Utils.makeChildElementsClickable(this.element, this.dom.optionsList, function (index) {
                 _this4.updateState(index);
@@ -5258,6 +5317,12 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
                 _this4.dom.select.addEventListener('blur', function () {
                     Utils.makeElementsFocusable(_this4.dom.labels);
                 });
+            });
+
+            Keyboard.onTabPressed(Utils.lastOfList(this.dom.optionsList), function () {
+                _this4.closeDropdown();
+
+                Utils.goToNextFocusableElement(_this4.dom.shadow);
             });
 
             return this;
@@ -5321,7 +5386,9 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
     return SelectDropdown;
 }(_component.Component);
 
-},{"../component":6,"../utils":29}],22:[function(require,module,exports){
+;
+
+},{"../component":6,"../controls/keyboard":25,"../utils":32}],22:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5330,6 +5397,14 @@ Object.defineProperty(exports, "__esModule", {
 exports.Tabs = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _keyboard = require('../controls/keyboard');
+
+var Keyboard = _interopRequireWildcard(_keyboard);
+
+var _touchscreen = require('../controls/touchscreen');
+
+var TouchScreen = _interopRequireWildcard(_touchscreen);
 
 var _utils = require('../utils');
 
@@ -5409,15 +5484,12 @@ var Tabs = exports.Tabs = function (_Component) {
                     Utils.makeElementNotFocusable(label);
                 }
 
-                label.addEventListener('keydown', function (e) {
-                    _this3.keyDownHandler(e.keyCode);
-                });
+                Keyboard.onArrowLeftPressed(label, _this3.goToPreviousTab.bind(_this3));
+                Keyboard.onArrowRightPressed(label, _this3.goToNextTab.bind(_this3));
             });
 
-            this.hammertime = new Hammer(this.element);
-
-            this.hammertime.on('swiperight', this.goToPreviousTab.bind(this));
-            this.hammertime.on('swipeleft', this.goToNextTab.bind(this));
+            TouchScreen.onSwipeRight(this.element, this.goToPreviousTab.bind(this));
+            TouchScreen.onSwipeLeft(this.element, this.goToNextTab.bind(this));
 
             return this;
         }
@@ -5492,7 +5564,9 @@ var Tabs = exports.Tabs = function (_Component) {
     return Tabs;
 }(_component.Component);
 
-},{"../component":6,"../utils":29}],23:[function(require,module,exports){
+;
+
+},{"../component":6,"../controls/keyboard":25,"../controls/touchscreen":27,"../utils":32}],23:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5529,7 +5603,9 @@ var TagsList = exports.TagsList = function (_Component) {
     return TagsList;
 }(_component.Component);
 
-},{"../component":6,"../utils":29}],24:[function(require,module,exports){
+;
+
+},{"../component":6,"../utils":32}],24:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5643,7 +5719,143 @@ var Textarea = exports.Textarea = function (_Component) {
     return Textarea;
 }(_component.Component);
 
-},{"../component":6,"../utils":29}],25:[function(require,module,exports){
+;
+
+},{"../component":6,"../utils":32}],25:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.onEnterPressed = onEnterPressed;
+exports.onTabPressed = onTabPressed;
+exports.onShiftTabPressed = onShiftTabPressed;
+exports.onArrowLeftPressed = onArrowLeftPressed;
+exports.onArrowUpPressed = onArrowUpPressed;
+exports.onArrowRightPressed = onArrowRightPressed;
+exports.onArrowDownPressed = onArrowDownPressed;
+function onEnterPressed(element, callback) {
+    element.addEventListener('keydown', function (e) {
+        if (e.keyCode == 13) {
+            e.preventDefault();
+            callback(e);
+        }
+    });
+};
+
+function onTabPressed(element, callback) {
+    element.addEventListener('keydown', function (e) {
+        if (e.keyCode == 9 && !e.shiftKey) {
+            e.preventDefault();
+            callback(e);
+        }
+    });
+};
+
+function onShiftTabPressed(element, callback) {
+    element.addEventListener('keydown', function (e) {
+        if (e.keyCode == 9 && e.shiftKey) {
+            e.preventDefault();
+            callback(e);
+        }
+    });
+};
+
+function onArrowLeftPressed(element, callback) {
+    element.addEventListener('keydown', function (e) {
+        if (e.keyCode == 37) {
+            e.preventDefault();
+            callback(e);
+        }
+    });
+};
+
+function onArrowUpPressed(element, callback) {
+    element.addEventListener('keydown', function (e) {
+        if (e.keyCode == 38) {
+            e.preventDefault();
+            callback(e);
+        }
+    });
+};
+
+function onArrowRightPressed(element, callback) {
+    element.addEventListener('keydown', function (e) {
+        if (e.keyCode == 39) {
+            e.preventDefault();
+            callback(e);
+        }
+    });
+};
+
+function onArrowDownPressed(element, callback) {
+    element.addEventListener('keydown', function (e) {
+        if (e.keyCode == 40) {
+            e.preventDefault();
+            callback(e);
+        }
+    });
+};
+
+},{}],26:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.onClick = onClick;
+exports.onMouseOver = onMouseOver;
+exports.onMouseOut = onMouseOut;
+function onClick(element, callback) {
+    element.addEventListener('click', function (e) {
+        e.preventDefault();
+        callback(e);
+    });
+};
+
+function onMouseOver(element, callback) {
+    element.addEventListener('mouseover', function (e) {
+        e.preventDefault();
+        callback(e);
+    });
+};
+
+function onMouseOut(element, callback) {
+    element.addEventListener('mouseout', function (e) {
+        e.preventDefault();
+        callback(e);
+    });
+};
+
+},{}],27:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.onSwipeLeft = onSwipeLeft;
+exports.onSwipeRight = onSwipeRight;
+exports.onPinchOut = onPinchOut;
+function onSwipeLeft(element, callback) {
+    var hammertime = new Hammer(element);
+
+    hammertime.on('swipeleft', callback);
+};
+
+function onSwipeRight(element, callback) {
+    var hammertime = new Hammer(element);
+
+    hammertime.on('swiperight', callback);
+};
+
+function onPinchOut(element, callback) {
+    var hammertime = new Hammer(element);
+
+    hammertime.get('pinch').set({ enable: true });
+    hammertime.on('pinchout', callback);
+};
+
+},{}],28:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5750,18 +5962,12 @@ var Events = exports.Events = function () {
     return Events;
 }();
 
-},{}],26:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 'use strict';
 
 var _muilessium = require('./muilessium');
 
 var _muilessium2 = _interopRequireDefault(_muilessium);
-
-var _utils = require('./utils');
-
-var Utils = _interopRequireWildcard(_utils);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5791,7 +5997,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 });
 
-},{"./muilessium":27,"./utils":29,"hammerjs":2}],27:[function(require,module,exports){
+},{"./muilessium":30,"hammerjs":2}],30:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5946,14 +6152,16 @@ var Muilessium = function () {
 }();
 
 exports.default = Muilessium;
+;
 
-},{"./components/accordion":7,"./components/breadcrumb":8,"./components/button":10,"./components/button-dropdown":9,"./components/carousel":11,"./components/checkbox":12,"./components/header-navigation":13,"./components/input":15,"./components/input-range":14,"./components/media-view":16,"./components/modal-window":17,"./components/pagination":18,"./components/radio":19,"./components/rating":20,"./components/select-dropdown":21,"./components/tabs":22,"./components/tags-list":23,"./components/textarea":24,"./events":25,"./polyfills":28,"./utils":29}],28:[function(require,module,exports){
+},{"./components/accordion":7,"./components/breadcrumb":8,"./components/button":10,"./components/button-dropdown":9,"./components/carousel":11,"./components/checkbox":12,"./components/header-navigation":13,"./components/input":15,"./components/input-range":14,"./components/media-view":16,"./components/modal-window":17,"./components/pagination":18,"./components/radio":19,"./components/rating":20,"./components/select-dropdown":21,"./components/tabs":22,"./components/tags-list":23,"./components/textarea":24,"./events":28,"./polyfills":31,"./utils":32}],31:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.objectFit = exports.smoothScroll = undefined;
+exports.smoothScroll = smoothScroll;
+exports.objectFit = objectFit;
 
 var _smoothscrollPolyfill = require('smoothscroll-polyfill');
 
@@ -5965,64 +6173,150 @@ var objectFitImages = require('object-fit-images');
 
 function smoothScroll() {
     smoothScrollPolyfill.polyfill();
-}
+};
 
 function objectFit() {
     objectFitImages();
-}
+};
 
-exports.smoothScroll = smoothScroll;
-exports.objectFit = objectFit;
+},{"object-fit-images":4,"smoothscroll-polyfill":5}],32:[function(require,module,exports){
+'use strict';
 
-},{"object-fit-images":4,"smoothscroll-polyfill":5}],29:[function(require,module,exports){
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _ajax = require('./utils/ajax');
+
+Object.keys(_ajax).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ajax[key];
+    }
+  });
+});
+
+var _aria = require('./utils/aria');
+
+Object.keys(_aria).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _aria[key];
+    }
+  });
+});
+
+var _attributes = require('./utils/attributes');
+
+Object.keys(_attributes).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _attributes[key];
+    }
+  });
+});
+
+var _checks = require('./utils/checks');
+
+Object.keys(_checks).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _checks[key];
+    }
+  });
+});
+
+var _classes = require('./utils/classes');
+
+Object.keys(_classes).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _classes[key];
+    }
+  });
+});
+
+var _console = require('./utils/console');
+
+Object.keys(_console).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _console[key];
+    }
+  });
+});
+
+var _focusAndClick = require('./utils/focus-and-click');
+
+Object.keys(_focusAndClick).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _focusAndClick[key];
+    }
+  });
+});
+
+var _scroll = require('./utils/scroll');
+
+Object.keys(_scroll).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _scroll[key];
+    }
+  });
+});
+
+var _uncategorized = require('./utils/uncategorized');
+
+Object.keys(_uncategorized).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _uncategorized[key];
+    }
+  });
+});
+
+var _viewport = require('./utils/viewport');
+
+Object.keys(_viewport).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _viewport[key];
+    }
+  });
+});
+
+},{"./utils/ajax":33,"./utils/aria":34,"./utils/attributes":35,"./utils/checks":36,"./utils/classes":37,"./utils/console":38,"./utils/focus-and-click":39,"./utils/scroll":40,"./utils/uncategorized":41,"./utils/viewport":42}],33:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-// Custom console
-// -----------------------------------------------------------------------------
-
-var console = {
-
-    // Log
-    // ---
-    // Prints message to the standart browser console
-
-    log: function log(message) {
-        window.console.log('' + message);
-    },
-
-    // Info
-    // ----
-    // Prints info message to the standart browser console
-
-    info: function info(message) {
-        window.console.info('[ INFO ] ' + message);
-    },
-
-    // Warning
-    // -------
-    // Prints warning message to the standart browser console
-
-    warning: function warning(message) {
-        window.console.warn('[ WARNING ] ' + message);
-    },
-
-    // Error
-    // -----
-    // Prints error message to the standart browser console
-
-    error: function error(message) {
-        window.console.error('[ ERROR ] ' + message);
-    }
-};
-
 // -----------------------------------------------------------------------------
 // Ajax utilities
 // -----------------------------------------------------------------------------
 
-var ajax = {
+var ajax = exports.ajax = {
 
     // Post
     // ----
@@ -6076,12 +6370,19 @@ var ajax = {
     }
 };
 
-// -----------------------------------------------------------------------------
-// WAI-ARIA utilities
-// -----------------------------------------------------------------------------
-// Here is some functions for operation with aria-roles and properties
+},{}],34:[function(require,module,exports){
+'use strict';
 
-var aria = {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.aria = undefined;
+
+var _attributes = require('../utils/attributes');
+
+var _uncategorized = require('../utils/uncategorized');
+
+var aria = exports.aria = {
 
     // Set property
     // ------------
@@ -6090,7 +6391,7 @@ var aria = {
     set: function set(element, property) {
         var value = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 
-        return setAttribute(element, 'aria-' + property, value);
+        return (0, _attributes.setAttribute)(element, 'aria-' + property, value);
     },
 
     // Set role
@@ -6098,7 +6399,7 @@ var aria = {
     // Sets aria-role to the element
 
     setRole: function setRole(element, role) {
-        return setAttribute(element, 'role', role);
+        return (0, _attributes.setAttribute)(element, 'role', role);
     },
 
     // Remove role
@@ -6106,7 +6407,7 @@ var aria = {
     // Removes aria-role from the element
 
     removeRole: function removeRole(element) {
-        return removeAttribute(element, 'role');
+        return (0, _attributes.removeAttribute)(element, 'role');
     },
 
     // Set id
@@ -6115,9 +6416,9 @@ var aria = {
     // returns this ID
 
     setId: function setId(element, id) {
-        var newId = id || 'mui-id-' + generateRandomString(6);
+        var newId = id || 'mui-id-' + (0, _uncategorized.generateRandomString)(6);
 
-        setAttribute(element, 'id', newId);
+        (0, _attributes.setAttribute)(element, 'id', newId);
 
         return newId;
     },
@@ -6127,7 +6428,7 @@ var aria = {
     // Gets aria-property from the element
 
     get: function get(element, property) {
-        return getAttribute(element, 'aria-' + property);
+        return (0, _attributes.getAttribute)(element, 'aria-' + property);
     },
 
     // Get role
@@ -6135,7 +6436,7 @@ var aria = {
     // Gets aria-role from the element
 
     getRole: function getRole(element) {
-        return getAttribute(element, 'role');
+        return (0, _attributes.getAttribute)(element, 'role');
     },
 
     // Toggle state
@@ -6143,7 +6444,7 @@ var aria = {
     // Changes boolean state from true to false and from false to true.
 
     toggleState: function toggleState(element, state) {
-        setAttribute(element, 'aria-' + state, !stringToBoolean(getAttribute(element, 'aria-' + state)));
+        (0, _attributes.setAttribute)(element, 'aria-' + state, !(0, _uncategorized.stringToBoolean)((0, _attributes.getAttribute)(element, 'aria-' + state)));
     },
 
     // Hide icons
@@ -6152,15 +6453,74 @@ var aria = {
 
     hideIcons: function hideIcons(className) {
         [].forEach.call(document.getElementsByClassName(className), function (icon) {
-            setAttribute(icon, 'aria-hidden', true);
+            (0, _attributes.setAttribute)(icon, 'aria-hidden', true);
         });
     }
+}; // -----------------------------------------------------------------------------
+// WAI-ARIA utilities
+// -----------------------------------------------------------------------------
+// Here is some functions for operation with aria-roles and properties
+
+},{"../utils/attributes":35,"../utils/uncategorized":41}],35:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.setAttribute = setAttribute;
+exports.getAttribute = getAttribute;
+exports.removeAttribute = removeAttribute;
+
+var _checks = require('../utils/checks');
+
+// Set attribute
+// -------------
+// Sets attribute to the element if it exists
+
+function setAttribute(element, attribute, value) {
+    return (0, _checks.ifExists)(element, function () {
+        return element.setAttribute(attribute, value);
+    });
+} // -----------------------------------------------------------------------------
+// Manipulating with html attributes
+// -----------------------------------------------------------------------------
+
+
+;
+
+// Get attribute
+// -------------
+// Gets attribute from the element if it exists
+
+function getAttribute(element, attribute) {
+    return (0, _checks.ifExists)(element, function () {
+        return element.getAttribute(attribute);
+    });
 };
 
-// -----------------------------------------------------------------------------
-// Checking for html elements in page
-// -----------------------------------------------------------------------------
+// Remove attribute
+// -------------
+// Removes attribute from the element if it exists
 
+function removeAttribute(element, attribute) {
+    return (0, _checks.ifExists)(element, function () {
+        return element.removeAttribute(attribute);
+    });
+};
+
+},{"../utils/checks":36}],36:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.isInPage = isInPage;
+exports.isNotInPage = isNotInPage;
+exports.ifExists = ifExists;
+exports.ifNodeList = ifNodeList;
+exports.isDescendant = isDescendant;
+
+var _console = require('../utils/console');
 
 // Is in page
 // ----------
@@ -6169,7 +6529,12 @@ var aria = {
 function isInPage(element) {
     /* Use this instead of document.contains because IE has only partial support of Node.contains. */
     return element === document.body || document.body.contains(element);
-}
+} // -----------------------------------------------------------------------------
+// Checking for html elements in page
+// -----------------------------------------------------------------------------
+
+
+;
 
 // Is not in page
 // --------------
@@ -6177,7 +6542,7 @@ function isInPage(element) {
 
 function isNotInPage(element) {
     return !isInPage(element);
-}
+};
 
 // If exists
 // ---------
@@ -6191,12 +6556,12 @@ function ifExists(element, callback) {
         return callback();
     } else {
         if (printWarning) {
-            console.warning('element does not exists');
+            _console.console.warning('element does not exists');
         }
 
         return null;
     }
-}
+};
 
 // If nodelist
 // -----------
@@ -6219,11 +6584,11 @@ function ifNodeList(x, callback) {
     }
 
     if (printWarning) {
-        console.warning('element is not an instance of NodeList or HTMLCollection');
+        _console.console.warning('element is not an instance of NodeList or HTMLCollection');
     }
 
     return null;
-}
+};
 
 // Is descendant
 // -------------
@@ -6241,75 +6606,54 @@ function isDescendant(parent, child) {
     }
 
     return false;
-}
+};
 
-// -----------------------------------------------------------------------------
-// Manipulating with html attributes
-// -----------------------------------------------------------------------------
+},{"../utils/console":38}],37:[function(require,module,exports){
+'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.hasClass = hasClass;
+exports.hasNotClass = hasNotClass;
+exports.addClass = addClass;
+exports.removeClass = removeClass;
+exports.toggleClass = toggleClass;
 
-// Set attribute
-// -------------
-// Sets attribute to the element if it exists
-
-function setAttribute(element, attribute, value) {
-    return ifExists(element, function () {
-        return element.setAttribute(attribute, value);
-    });
-}
-
-// Get attribute
-// -------------
-// Gets attribute from the element if it exists
-
-function getAttribute(element, attribute) {
-    return ifExists(element, function () {
-        return element.getAttribute(attribute);
-    });
-}
-
-// Remove attribute
-// -------------
-// Removes attribute from the element if it exists
-
-function removeAttribute(element, attribute) {
-    return ifExists(element, function () {
-        return element.removeAttribute(attribute);
-    });
-}
-
-// -----------------------------------------------------------------------------
-// Manipulating CSS classes
-// -----------------------------------------------------------------------------
-
+var _checks = require('../utils/checks');
 
 // Has class
 // ---------
 // Returns true if element exists and has selected class and false otherwise
 
 function hasClass(element, classForTest) {
-    return ifExists(element, function () {
+    return (0, _checks.ifExists)(element, function () {
         // Use className instead of classList because IE11 does not have support for slassList on SVG
         return element.className.indexOf(classForTest) !== -1;
     });
-}
+} // -----------------------------------------------------------------------------
+// Manipulating CSS classes
+// -----------------------------------------------------------------------------
+
+
+;
 
 // Has not class
 // -------------
 // Returns false if element exists and has selected class and true otherwise
 
 function hasNotClass(element, classForTest) {
-    return ifExists(element, function () {
+    return (0, _checks.ifExists)(element, function () {
         return !hasClass(element, classForTest);
     });
-}
+};
 
 // Add class
 // ---------
 // Adds class to the element if it exists
 
 function addClass(element, newClass) {
-    return ifExists(element, function () {
+    return (0, _checks.ifExists)(element, function () {
         if (hasClass(element, newClass)) {
             return;
         }
@@ -6317,81 +6661,231 @@ function addClass(element, newClass) {
         /* Use className instead of classList because IE11 does not have support for slassList on SVG */
         element.className += ' ' + newClass;
     });
-}
+};
 
 // Remove class
 // ------------
 // Removes class from the element if it exists
 
 function removeClass(element, classForRemoving) {
-    return ifExists(element, function () {
+    return (0, _checks.ifExists)(element, function () {
         // Use className instead of classList because IE11 does not have support for slassList on SVG
         element.className = element.className.replace(classForRemoving, '');
     });
-}
+};
 
 // Toggle class
 // ------------
 // Toggles class for the element if it exists
 
 function toggleClass(element, classForToggle) {
-    return ifExists(element, function () {
+    return (0, _checks.ifExists)(element, function () {
         if (hasNotClass(element, classForToggle)) {
             addClass(element, classForToggle);
         } else {
             removeClass(element, classForToggle);
         }
     });
-}
+};
 
+},{"../utils/checks":36}],38:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 // -----------------------------------------------------------------------------
-// Manipulating with Focus & Click
+// Custom console
 // -----------------------------------------------------------------------------
 
+var console = exports.console = {
+
+    // Log
+    // ---
+    // Prints message to the standart browser console
+
+    log: function log(message) {
+        window.console.log("" + message);
+    },
+
+    // Info
+    // ----
+    // Prints info message to the standart browser console
+
+    info: function info(message) {
+        window.console.info("[ INFO ] " + message);
+    },
+
+    // Warning
+    // -------
+    // Prints warning message to the standart browser console
+
+    warning: function warning(message) {
+        window.console.warn("[ WARNING ] " + message);
+    },
+
+    // Error
+    // -----
+    // Prints error message to the standart browser console
+
+    error: function error(message) {
+        window.console.error("[ ERROR ] " + message);
+    }
+};
+
+},{}],39:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.makeElementFocusable = makeElementFocusable;
+exports.makeElementsFocusable = makeElementsFocusable;
+exports.makeElementNotFocusable = makeElementNotFocusable;
+exports.makeElementsNotFocusable = makeElementsNotFocusable;
+exports.getFocusableChilds = getFocusableChilds;
+exports.getAllFocusableElements = getAllFocusableElements;
+exports.getNextFocusableElement = getNextFocusableElement;
+exports.getPreviousFocusableElement = getPreviousFocusableElement;
+exports.goToNextFocusableElement = goToNextFocusableElement;
+exports.goToPreviousFocusableElement = goToPreviousFocusableElement;
+exports.makeElementClickable = makeElementClickable;
+exports.makeChildElementsClickable = makeChildElementsClickable;
+
+var _checks = require('../utils/checks');
+
+var _mouse = require('../controls/mouse');
+
+var _keyboard = require('../controls/keyboard');
 
 // Make element focusable
 // ----------------------
 // Sets tabindex=0 to the element if it exists
 
 function makeElementFocusable(element) {
-    return ifExists(element, function () {
+    return (0, _checks.ifExists)(element, function () {
         element.tabIndex = 0;
     });
-}
+} // -----------------------------------------------------------------------------
+// Manipulating with Focus & Click
+// -----------------------------------------------------------------------------
+
+
+;
 
 // Make multiple elements focusable
 // --------------------------------
 // Sets tabindex=0 to the multiple elements in NodeList
 
 function makeElementsFocusable(elements) {
-    return ifNodeList(elements, function () {
+    return (0, _checks.ifNodeList)(elements, function () {
         [].forEach.call(elements, function (element) {
             makeElementFocusable(element);
         });
     });
-}
+};
 
 // Make element not focusable
 // --------------------------
 // Sets tabindex=-1 to the element
 
 function makeElementNotFocusable(element) {
-    return ifExists(element, function () {
+    return (0, _checks.ifExists)(element, function () {
         element.tabIndex = -1;
     });
-}
+};
 
 // Make multiple elements not focusable
 // ------------------------------------
 // Sets tabindex=-1 to the multiple elements in NodeList
 
 function makeElementsNotFocusable(elements) {
-    return ifNodeList(elements, function () {
+    return (0, _checks.ifNodeList)(elements, function () {
         [].forEach.call(elements, function (element) {
             makeElementNotFocusable(element);
         });
     });
-}
+};
+
+// Get focusable childs
+// --------------------
+// Returns NodeList of childs of selected element with tabindex >= 0
+
+function getFocusableChilds(element) {
+    return (0, _checks.ifExists)(element, function () {
+        return element.querySelectorAll('[tabindex]:not([tabindex="-1"])');
+    });
+};
+
+// Get all focusable elements
+// --------------------------
+// Returns NodeList with all elements with tabindex >= 0
+
+function getAllFocusableElements() {
+    return document.querySelectorAll('[tabindex]:not([tabindex="-1"])');
+};
+
+// Get next focusable element
+// --------------------------
+// Returns next element with tabindex >= 0
+
+function getNextFocusableElement(element) {
+    return (0, _checks.ifExists)(element, function () {
+        var focusables = getAllFocusableElements(),
+            currentIndex = [].indexOf.call(focusables, element);
+
+        if (currentIndex >= 0 && currentIndex < focusables.length - 1) {
+            return focusables[currentIndex + 1];
+        } else {
+            return null;
+        }
+    });
+};
+
+// Get previous focusable element
+// --------------------------
+// Returns previous element with tabindex >= 0
+
+function getPreviousFocusableElement(element) {
+    return (0, _checks.ifExists)(element, function () {
+        var focusables = getAllFocusableElements(),
+            currentIndex = [].indexOf.call(focusables, element);
+
+        if (currentIndex >= 0 && currentIndex > 0) {
+            return focusables[currentIndex - 1];
+        } else {
+            return null;
+        }
+    });
+};
+
+// Go to next focusable
+// --------------------
+// Focus next focusable element
+
+function goToNextFocusableElement(element) {
+    var nextFocusable = getNextFocusableElement(element);
+
+    return (0, _checks.ifExists)(nextFocusable, function () {
+        nextFocusable.focus();
+
+        return nextFocusable;
+    });
+};
+
+// Go to previous focusable
+// --------------------
+// Focus previous focusable element
+
+function goToPreviousFocusableElement(element) {
+    var previousFocusable = getPreviousFocusableElement(element);
+
+    return (0, _checks.ifExists)(previousFocusable, function () {
+        previousFocusable.focus();
+
+        return previousFocusable;
+    });
+};
 
 // Make element clickable
 // ----------------------
@@ -6399,22 +6893,22 @@ function makeElementsNotFocusable(elements) {
 // enter key press with callback to the element if it exists
 
 function makeElementClickable(element, callback) {
-    return ifExists(element, function () {
-        element.tabIndex = 0;
+    var mouseOnly = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
-        element.addEventListener('click', function (e) {
-            e.preventDefault();
-            callback();
+    return (0, _checks.ifExists)(element, function () {
+        (0, _mouse.onClick)(element, function (e) {
+            callback(e);
         });
 
-        element.addEventListener('keypress', function (e) {
-            if (isEnterPressed(e)) {
-                e.preventDefault();
-                callback();
-            }
-        });
+        if (!mouseOnly) {
+            element.tabIndex = 0;
+
+            (0, _keyboard.onEnterPressed)(element, function (e) {
+                callback(e);
+            });
+        }
     });
-}
+};
 
 // Make childs clickable
 // ----------------------
@@ -6425,19 +6919,18 @@ function makeElementClickable(element, callback) {
 function makeChildElementsClickable(element, childs, callback) {
     var mouseOnly = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
 
-    return ifExists(element, function () {
-        return ifNodeList(childs, function () {
-            element.addEventListener('click', function (e) {
+    return (0, _checks.ifExists)(element, function () {
+        return (0, _checks.ifNodeList)(childs, function () {
+            (0, _mouse.onClick)(element, function (e) {
                 var index = -1;
 
                 [].forEach.call(childs, function (child, i) {
-                    if (child == e.target || isDescendant(child, e.target)) {
+                    if (child == e.target || (0, _checks.isDescendant)(child, e.target)) {
                         index = i;
                     }
                 });
 
                 if (index >= 0) {
-                    e.preventDefault();
                     callback(index);
                 }
             });
@@ -6447,39 +6940,52 @@ function makeChildElementsClickable(element, childs, callback) {
                     child.tabIndex = 0;
                 });
 
-                element.addEventListener('keypress', function (e) {
-                    if (isEnterPressed(e)) {
-                        var index = [].indexOf.call(childs, e.target);
+                (0, _keyboard.onEnterPressed)(element, function (e) {
+                    var index = [].indexOf.call(childs, e.target);
 
-                        if (index >= 0) {
-                            e.preventDefault();
-                            callback(index);
-                        }
+                    if (index >= 0) {
+                        callback(index);
                     }
                 });
             }
         });
     });
-}
+};
 
-// -----------------------------------------------------------------------------
-// Scroll utilities
-// -----------------------------------------------------------------------------
+},{"../controls/keyboard":25,"../controls/mouse":26,"../utils/checks":36}],40:[function(require,module,exports){
+'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.scrollTo = scrollTo;
+exports.scrollToTop = scrollToTop;
+exports.scrollFire = scrollFire;
+
+var _checks = require('../utils/checks');
+
+var _viewport = require('../utils/viewport');
+
+var _uncategorized = require('../utils/uncategorized');
 
 // Scroll to element
 // -----------------
 // Scrolls to the element and executes callback after scroll animation ends
 
 function scrollTo(element, callback) {
-    ifExists(element, function () {
+    (0, _checks.ifExists)(element, function () {
         element.scrollIntoView({ 'behavior': 'smooth' });
 
         if (typeof callback === 'function') {
             setTimeout(callback, 470); /* Default scroll time in smoothscroll-polyfill is 468ms */
         }
     });
-}
+} // -----------------------------------------------------------------------------
+// Scroll utilities
+// -----------------------------------------------------------------------------
+
+
+;
 
 // Scroll to top
 // -------------
@@ -6491,49 +6997,51 @@ function scrollToTop(callback) {
     if (typeof callback === 'function') {
         setTimeout(callback, 470); /* Default scroll time in smoothscroll-polyfill is 468ms */
     }
-}
+};
 
 // Scrollfire
 // ----------
 // Executes a callback when the element becomes visible in viewport
 
 function scrollFire(element, callback) {
-    if (isInViewport(element)) {
+    if ((0, _viewport.isInViewport)(element)) {
         callback();
     } else {
         (function () {
-            var modifiedCallback = callOnce(callback);
+            var modifiedCallback = (0, _uncategorized.callOnce)(callback);
 
             document.addEventListener('scroll', function () {
-                if (isInViewport(element)) {
+                if ((0, _viewport.isInViewport)(element)) {
                     setTimeout(modifiedCallback, 200);
                 }
             });
         })();
     }
-}
+};
 
-// -----------------------------------------------------------------------------
-// Viewport utilities
-// -----------------------------------------------------------------------------
+},{"../utils/checks":36,"../utils/uncategorized":41,"../utils/viewport":42}],41:[function(require,module,exports){
+'use strict';
 
-// Is in viewport
-// --------------
-// Returns true if the element is in viewport
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.normalizeTabIndex = normalizeTabIndex;
+exports.lazyLoadImages = lazyLoadImages;
+exports.initAnchorLinks = initAnchorLinks;
+exports.generateRandomString = generateRandomString;
+exports.stringify = stringify;
+exports.extend = extend;
+exports.debounce = debounce;
+exports.stringToBoolean = stringToBoolean;
+exports.callOnce = callOnce;
+exports.firstOfList = firstOfList;
+exports.lastOfList = lastOfList;
 
-function isInViewport(element) {
-    return ifExists(element, function () {
-        var rect = element.getBoundingClientRect(),
-            html = document.documentElement;
+var _classes = require('../utils/classes');
 
-        return rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || html.clientHeight) && rect.right <= (window.innerWidth || html.clientWidth);
-    });
-}
+var _focusAndClick = require('../utils/focus-and-click');
 
-// -----------------------------------------------------------------------------
-// Function for the Muilessium Initialization
-// -----------------------------------------------------------------------------
-
+var _scroll = require('../utils/scroll');
 
 // Normalize TabIndexes
 // --------------------
@@ -6544,7 +7052,12 @@ function normalizeTabIndex() {
     focusableElements.map(function (element) {
         element.tabIndex = 0;
     });
-}
+} // -----------------------------------------------------------------------------
+// Uncategorized utilities
+// -----------------------------------------------------------------------------
+
+
+;
 
 // Lazy load images
 // ----------------
@@ -6556,14 +7069,14 @@ function lazyLoadImages(callback) {
         image.src = image.getAttribute('data-src');
 
         image.addEventListener('load', function () {
-            addClass(this, '-loaded');
+            (0, _classes.addClass)(this, '-loaded');
         });
     });
 
     if (typeof callback === 'function') {
         imagesLoaded('body', callback);
     }
-}
+};
 
 // Init anchor links
 // -----------------
@@ -6575,11 +7088,11 @@ function initAnchorLinks() {
         var href = link.getAttribute('href');
 
         if (href && href[0] === '#') {
-            makeElementClickable(link, function () {
+            (0, _focusAndClick.makeElementClickable)(link, function () {
                 var targetElement = document.getElementById(href.substring(1));
 
                 if (targetElement) {
-                    scrollTo(targetElement, function () {
+                    (0, _scroll.scrollTo)(targetElement, function () {
                         if (window.location.hash === href) {
                             window.location.hash = '';
                         }
@@ -6592,12 +7105,7 @@ function initAnchorLinks() {
             });
         }
     });
-}
-
-// -----------------------------------------------------------------------------
-// Uncategorized utilities
-// -----------------------------------------------------------------------------
-
+};
 
 // Random string generation
 // ------------------------
@@ -6613,7 +7121,7 @@ function generateRandomString() {
     }
 
     return str;
-}
+};
 
 // Non-standart stringify function
 // -------------------------------
@@ -6626,7 +7134,7 @@ function stringify(object) {
 
         return value;
     });
-}
+};
 
 // Extend
 // ------
@@ -6642,7 +7150,7 @@ function extend(target, source) {
     }
 
     return target;
-}
+};
 
 // Debounce
 // --------
@@ -6663,21 +7171,14 @@ function debounce(func, ms) {
             callAllowed = true;
         }, ms);
     };
-}
-
-// Check for enter key in keyboard event
-// -------------------------------------
-
-function isEnterPressed(e) {
-    return e.keyCode == 13;
-}
+};
 
 // String -> Boolean
 // -----------------
 
 function stringToBoolean(str) {
     return str === 'true';
-}
+};
 
 // Call once
 // ---------
@@ -6693,44 +7194,50 @@ function callOnce(callback) {
             return callback();
         }
     };
-}
+};
 
+// First of list
+// ------------
+// Returns first element of array-like objects
+
+function firstOfList(list) {
+    return list[0];
+};
+
+// Last of list
+// ------------
+// Returns last element of array-like objects
+
+function lastOfList(list) {
+    return list[list.length - 1];
+};
+
+},{"../utils/classes":37,"../utils/focus-and-click":39,"../utils/scroll":40,"imagesloaded":3}],42:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.isInViewport = isInViewport;
+
+var _checks = require('../utils/checks');
+
+// Is in viewport
+// --------------
+// Returns true if the element is in viewport
+
+function isInViewport(element) {
+    return (0, _checks.ifExists)(element, function () {
+        var rect = element.getBoundingClientRect(),
+            html = document.documentElement;
+
+        return rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || html.clientHeight) && rect.right <= (window.innerWidth || html.clientWidth);
+    });
+} // -----------------------------------------------------------------------------
+// Viewport utilities
 // -----------------------------------------------------------------------------
 
-exports.console = console;
-exports.ajax = ajax;
-exports.aria = aria;
-exports.isInPage = isInPage;
-exports.isNotInPage = isNotInPage;
-exports.ifExists = ifExists;
-exports.ifNodeList = ifNodeList;
-exports.isDescendant = isDescendant;
-exports.setAttribute = setAttribute;
-exports.getAttribute = getAttribute;
-exports.removeAttribute = removeAttribute;
-exports.hasClass = hasClass;
-exports.hasNotClass = hasNotClass;
-exports.addClass = addClass;
-exports.removeClass = removeClass;
-exports.toggleClass = toggleClass;
-exports.makeElementFocusable = makeElementFocusable;
-exports.makeElementsFocusable = makeElementsFocusable;
-exports.makeElementNotFocusable = makeElementNotFocusable;
-exports.makeElementsNotFocusable = makeElementsNotFocusable;
-exports.makeElementClickable = makeElementClickable;
-exports.makeChildElementsClickable = makeChildElementsClickable;
-exports.scrollTo = scrollTo;
-exports.scrollToTop = scrollToTop;
-exports.scrollFire = scrollFire;
-exports.normalizeTabIndex = normalizeTabIndex;
-exports.lazyLoadImages = lazyLoadImages;
-exports.initAnchorLinks = initAnchorLinks;
-exports.generateRandomString = generateRandomString;
-exports.stringify = stringify;
-exports.extend = extend;
-exports.debounce = debounce;
-exports.isEnterPressed = isEnterPressed;
-exports.stringToBoolean = stringToBoolean;
-exports.callOnce = callOnce;
 
-},{"imagesloaded":3}]},{},[26]);
+;
+
+},{"../utils/checks":36}]},{},[29]);
