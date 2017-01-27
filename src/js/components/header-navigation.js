@@ -24,8 +24,7 @@ export class HeaderNavigation extends Component {
         this.initControls();
         this.update();
 
-        window.Muilessium.Events.addEventListener('resizeWindowWidth',
-                        Utils.debounce(this.update.bind(this), 100)); 
+        window.Muilessium.Events.addEventListener('resizeWindowWidth', this.update.bind(this)); 
 
         this.state.initialized = true;
     }
@@ -170,6 +169,8 @@ export class HeaderNavigation extends Component {
             return this;
         }
 
+        this.transformToDesktop();
+
         let parentNode = this.element.parentNode,
             parentWidth = parentNode.clientWidth,
             childsWidth = 0;
@@ -182,7 +183,7 @@ export class HeaderNavigation extends Component {
             }
         });
  
-        if (childsWidth > (parentWidth - 200)) {
+        if (childsWidth > (parentWidth - 50)) {
             this.transformToMobile();
         } else {
             this.transformToDesktop();

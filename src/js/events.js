@@ -8,6 +8,10 @@ export class Events {
             window: {}
         };
 
+        this.timeouts = {
+            
+        };
+
         this.eventsData = {};
 
         this.initDefaultEvents();
@@ -17,11 +21,19 @@ export class Events {
 
 
     initDefaultEvents() {
+        this.initWindowResizeEvents();
+    }
+
+
+    initWindowResizeEvents() {
         this.addEvent('resizeWindowHeight');
         this.addEvent('resizeWindowWidth');
 
         this.data.window.height = window.innerHeight;
         this.data.window.width  = window.innerWidth;
+
+        this.timeouts.resizeWindowHeight = null;
+        this.timeouts.resizeWindowWidth  = null;
 
         window.addEventListener('resize', () => {
             const height = window.innerHeight;
@@ -29,14 +41,20 @@ export class Events {
 
             if (this.data.window.height != height) {
                 this.data.window.height = height;
+                clearTimeout(this.timeouts.resizeWindowHeight);
 
-                this.fireEvent('resizeWindowHeight');
+                this.timeouts.resizeWindowHeight = setTimeout(() => {
+                    this.fireEvent('resizeWindowHeight');
+                }, 100);
             }
 
             if (this.data.window.width != width) {
                 this.data.window.width = width;
+                clearTimeout(this.timeouts.resizeWindowWidth);
 
-                this.fireEvent('resizeWindowWidth');
+                this.timeouts.resizeWindowHeight = setTimeout(() => {
+                    this.fireEvent('resizeWindowWidth');
+                }, 100);
             }
         });
     }
