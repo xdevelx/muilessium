@@ -173,3 +173,23 @@ export function callOnce(callback) {
 };
 
 
+
+// First of list
+// ------------
+// Returns first element of array-like objects
+
+export function firstOfList(list) {
+    return list[0];
+};
+
+
+
+// Last of list
+// ------------
+// Returns last element of array-like objects
+
+export function lastOfList(list) {
+    return list[list.length - 1];
+};
+
+

@@ -1,3 +1,4 @@
+import * as Keyboard from '../controls/keyboard';
 import * as Utils from '../utils';
 import { Component } from '../component';
 
@@ -7,9 +8,10 @@ export class ButtonDropdown extends Component {
         super(element, options);
 
         this.dom = Utils.extend(this.dom, {
-            button:   element.getElementsByClassName('mui-button')[0],
-            dropdown: element.getElementsByClassName('mui-dropdown-options')[0],
-            shadow:   element.getElementsByClassName('mui-shadow-toggle')[0]
+            button:      element.getElementsByClassName('mui-button')[0],
+            dropdown:    element.getElementsByClassName('mui-dropdown-options')[0],
+            optionsList: element.getElementsByClassName('option'),
+            shadow:      element.getElementsByClassName('mui-shadow-toggle')[0]
         });
 
         this.state = Utils.extend(this.state, {
@@ -33,8 +35,19 @@ export class ButtonDropdown extends Component {
 
 
     initControls() {
-        Utils.makeChildElementsClickable(this.element, [this.dom.button, this.dom.shadow],
-                        this.toggleDropdown.bind(this));
+        Utils.makeElementClickable(this.dom.button, this.toggleDropdown.bind(this));
+        Utils.makeElementClickable(this.dom.shadow, this.toggleDropdown.bind(this), true);
+
+        Keyboard.onShiftTabPressed(Utils.firstOfList(this.dom.optionsList), () => {
+            this.closeDropdown();
+            this.dom.button.focus();
+        });
+
+        Keyboard.onTabPressed(Utils.lastOfList(this.dom.optionsList), () => {
+            this.closeDropdown();
+
+            Utils.goToNextFocusableElement(Utils.lastOfList(Utils.getFocusableChilds(this.element)));
+        });
 
         return this;
     }

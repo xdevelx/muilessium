@@ -1,4 +1,5 @@
 import * as Utils from '../utils';
+import * as Keyboard from '../controls/keyboard';
 import { Component } from '../component';
 
 
@@ -82,13 +83,8 @@ export class SelectDropdown extends Component {
 
     
     initControls() { 
-        Utils.makeElementClickable(this.dom.select, () => {
-            this.toggleDropdown();
-        });
-
-        Utils.makeElementClickable(this.dom.shadow, () => {
-            this.toggleDropdown();
-        });
+        Utils.makeElementClickable(this.dom.select, this.toggleDropdown.bind(this));
+        Utils.makeElementClickable(this.dom.shadow, this.toggleDropdown.bind(this), true);
 
         Utils.makeChildElementsClickable(this.element, this.dom.optionsList, (index) => {
             this.updateState(index);
@@ -110,6 +106,12 @@ export class SelectDropdown extends Component {
                 Utils.makeElementsFocusable(this.dom.labels);
             });
             
+        });
+
+        Keyboard.onTabPressed(Utils.lastOfList(this.dom.optionsList), () => {
+            this.closeDropdown();
+
+            Utils.goToNextFocusableElement(this.dom.shadow);
         });
 
         return this;

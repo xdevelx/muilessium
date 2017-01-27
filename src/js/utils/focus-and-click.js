@@ -62,22 +62,114 @@ export function makeElementsNotFocusable(elements) {
 
 
 
+// Get focusable childs
+// --------------------
+// Returns NodeList of childs of selected element with tabindex >= 0
+
+export function getFocusableChilds(element) {
+    return ifExists(element, () => {
+        return element.querySelectorAll('[tabindex]:not([tabindex="-1"])');
+    });
+};
+
+
+
+// Get all focusable elements
+// --------------------------
+// Returns NodeList with all elements with tabindex >= 0
+
+export function getAllFocusableElements() {
+    return document.querySelectorAll('[tabindex]:not([tabindex="-1"])');
+};
+
+
+// Get next focusable element
+// --------------------------
+// Returns next element with tabindex >= 0
+
+export function getNextFocusableElement(element) {
+    return ifExists(element, () => {
+        let focusables = getAllFocusableElements(),
+            currentIndex = [].indexOf.call(focusables, element);
+
+        if ((currentIndex >= 0) && (currentIndex < focusables.length - 1)) {
+            return focusables[currentIndex + 1];
+        } else {
+            return null;
+        }
+    });
+};
+
+
+// Get previous focusable element
+// --------------------------
+// Returns previous element with tabindex >= 0
+
+export function getPreviousFocusableElement(element) {
+    return ifExists(element, () => {
+        let focusables = getAllFocusableElements(),
+            currentIndex = [].indexOf.call(focusables, element);
+
+        if ((currentIndex >= 0) && (currentIndex > 0)) {
+            return focusables[currentIndex - 1];
+        } else {
+            return null;
+        }
+    });
+};
+
+
+
+// Go to next focusable
+// --------------------
+// Focus next focusable element
+
+export function goToNextFocusableElement(element) {
+    let nextFocusable = getNextFocusableElement(element);
+
+    return ifExists(nextFocusable, () => {
+        nextFocusable.focus();
+
+        return nextFocusable;
+    });
+};
+
+
+
+// Go to previous focusable
+// --------------------
+// Focus previous focusable element
+
+export function goToPreviousFocusableElement(element) {
+    let previousFocusable = getPreviousFocusableElement(element);
+
+    return ifExists(previousFocusable, () => {
+        previousFocusable.focus();
+
+        return previousFocusable;
+    });
+};
+
+
+
 // Make element clickable
 // ----------------------
 // Sets tabindex=0 to the element and adds event listeners for the click and
 // enter key press with callback to the element if it exists
 
-export function makeElementClickable(element, callback) {
+export function makeElementClickable(element, callback, mouseOnly = false) {
     return ifExists(element, () => {
-        element.tabIndex = 0;
-
         onClick(element, (e) => {
             callback(e);
         });
 
-        onEnterPressed(element, (e) => {
-            callback(e);
-        });
+        if (!mouseOnly) {
+            element.tabIndex = 0;
+
+            onEnterPressed(element, (e) => {
+                callback(e);
+            });
+        }
     });
 };
 

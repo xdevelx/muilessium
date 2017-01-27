@@ -1,4 +1,5 @@
 import * as TouchScreen from '../controls/touchscreen';
+import * as Keyboard from '../controls/keyboard';
 import * as Utils from '../utils';
 import { Component } from '../component';
 
@@ -8,11 +9,10 @@ export class HeaderNavigation extends Component {
         super(element, options);
         
         this.dom = Utils.extend(this.dom, {
-            toggles:   element.getElementsByClassName('mui-navigation-toggle'),
             hamburger: element.getElementsByClassName('mui-navigation-toggle')[0],
             shadow:    element.getElementsByClassName('mui-shadow-toggle')[0],
-            linksList: element.getElementsByClassName('links-list')[0],
-            links:     element.getElementsByTagName('a')
+            links:     element.getElementsByClassName('links-list')[0],
+            linksList: element.getElementsByTagName('a')
         });
 
         this.state = Utils.extend(this.state, {
@@ -32,24 +32,23 @@ export class HeaderNavigation extends Component {
 
 
     initAria() {
-        [].forEach.call(this.dom.toggles, (toggle) => {
-            Utils.aria.setRole(toggle, 'button');
-        });
+        Utils.aria.setRole(this.dom.hamburger, 'button');
 
         Utils.aria.set(this.dom.shadow,    'hidden', true);
         Utils.aria.set(this.dom.hamburger, 'haspopup', true);
 
-        Utils.aria.set(this.dom.linksList, 'labelledby', Utils.aria.setId(this.dom.hamburger));
+        Utils.aria.set(this.dom.links, 'labelledby', Utils.aria.setId(this.dom.hamburger));
 
         return this;
     }
 
 
     initControls() {
-        Utils.makeChildElementsClickable(this.element, this.dom.toggles, this.toggleNavigation.bind(this));
+        Utils.makeElementClickable(this.dom.hamburger, this.toggleNavigation.bind(this));
+        Utils.makeElementClickable(this.dom.shadow,    this.toggleNavigation.bind(this), true);
 
-        Utils.makeChildElementsClickable(this.element, this.dom.links, (index) => {
-            let href = this.dom.links[index].getAttribute('href');
+        Utils.makeChildElementsClickable(this.element, this.dom.linksList, (index) => {
+            let href = this.dom.linksList[index].getAttribute('href');
 
             if (href[0] === '#') {
                 this.closeNavigation();
@@ -62,6 +61,19 @@ export class HeaderNavigation extends Component {
             if (this.state.mobile) {
                 this.closeNavigation();
             }
+        });
+
+
+        Keyboard.onShiftTabPressed(Utils.firstOfList(this.dom.linksList), () => {
+            this.closeNavigation();
+
+            Utils.goToPreviousFocusableElement(Utils.firstOfList(Utils.getFocusableChilds(this.element)));
+        });
+
+        Keyboard.onTabPressed(Utils.lastOfList(this.dom.linksList), () => {
+            this.closeNavigation();
+
+            Utils.goToNextFocusableElement(Utils.lastOfList(Utils.getFocusableChilds(this.element)));
         });
 
         return this;
@@ -77,9 +89,9 @@ export class HeaderNavigation extends Component {
             Utils.addClass(this.dom.shadow, '-visible');
 
             Utils.aria.set(this.dom.hamburger, 'hidden', true);
-            Utils.aria.set(this.dom.linksList, 'hidden', false);
+            Utils.aria.set(this.dom.links, 'hidden', false);
 
-            this.dom.linksList.getElementsByTagName('a')[0].focus();
+            Utils.getFocusableChilds(this.dom.links)[0].focus();
         }
 
         return this;
@@ -95,7 +107,7 @@ export class HeaderNavigation extends Component {
             Utils.removeClass(this.dom.shadow, '-visible');
 
             Utils.aria.set(this.dom.hamburger, 'hidden', false);
-            Utils.aria.set(this.dom.linksList, 'hidden', true);
+            Utils.aria.set(this.dom.links, 'hidden', true);
 
             this.dom.hamburger.focus();
         }
@@ -119,7 +131,7 @@ export class HeaderNavigation extends Component {
             this.closeNavigation();
 
             Utils.aria.set(this.dom.hamburger, 'hidden', false);
-            Utils.aria.set(this.dom.linksList, 'hidden', true);
+            Utils.aria.set(this.dom.links, 'hidden', true);
 
             Utils.addClass(this.element, '-mobile-version');
             Utils.removeClass(this.element, '-desktop-version');
@@ -137,7 +149,7 @@ export class HeaderNavigation extends Component {
 
             Utils.aria.set(this.dom.hamburger, 'hidden', true);
             Utils.aria.set(this.dom.shadow,    'hidden', true);
-            Utils.aria.set(this.dom.linksList, 'hidden', false);
+            Utils.aria.set(this.dom.links,     'hidden', false);
 
             Utils.addClass(this.element, '-desktop-version');
             Utils.removeClass(this.element, '-mobile-version');
@@ -170,7 +182,7 @@ export class HeaderNavigation extends Component {
             }
         });
  
-        if (childsWidth > (parentWidth - 100)) {
+        if (childsWidth > (parentWidth - 200)) {
             this.transformToMobile();
         } else {
             this.transformToDesktop();

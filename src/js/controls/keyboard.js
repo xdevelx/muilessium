@@ -10,7 +10,17 @@ export function onEnterPressed(element, callback) {
 
 export function onTabPressed(element, callback) {
     element.addEventListener('keydown', (e) => {
-        if (e.keyCode == 9) {
+        if (e.keyCode == 9 && !e.shiftKey) {
+            e.preventDefault();
+            callback(e);
+        }
+    });
+};
+
+
+export function onShiftTabPressed(element, callback) {
+    element.addEventListener('keydown', (e) => {
+        if (e.keyCode == 9 && e.shiftKey) {
             e.preventDefault();
             callback(e);
         }
