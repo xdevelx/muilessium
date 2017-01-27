@@ -165,4 +165,5 @@ export class SelectDropdown extends Component {
 
         return this;
     }
-}
+};
+

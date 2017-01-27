@@ -1,3 +1,4 @@
+import * as Keyboard from '../controls/keyboard';
 import * as Utils from '../utils';
 import { Component } from '../component';
 
@@ -34,9 +35,8 @@ export class Rating extends Component {
     initControls() {
         Utils.makeElementFocusable(this.element);
 
-        this.element.addEventListener('keydown', (e) => {
-            this.keyDownHandler(e.keyCode);
-        });
+        Keyboard.onArrowLeftPressed(this.element,  this.decreaseRating.bind(this));
+        Keyboard.onArrowRightPressed(this.element, this.increaseRating.bind(this));
 
         Utils.makeChildElementsClickable(this.element, this.dom.stars, (index) => {
             this.updateRating(index + 1);
@@ -87,20 +87,5 @@ export class Rating extends Component {
 
         return this;
     }
+};
 
-
-    keyDownHandler(keyCode) {
-        switch (keyCode) {
-            case 37:
-                this.decreaseRating();
-                break;
-            case 39:
-                this.increaseRating();
-                break;
-            default:
-                break;
-        }
-
-        return this;
-    }
-}

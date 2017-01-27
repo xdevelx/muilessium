@@ -8,4 +8,5 @@ export class Pagination extends Component {
  
         Utils.aria.setRole(this.element, 'navigation');
     }
-}
+};
+

@@ -8,4 +8,5 @@ export class TagsList extends Component {
 
         Utils.aria.setRole(this.element, 'navigation');
     }
-}
+};
+

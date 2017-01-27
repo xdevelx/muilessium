@@ -1,0 +1,175 @@
+// -----------------------------------------------------------------------------
+// Uncategorized utilities
+// -----------------------------------------------------------------------------
+
+
+import { addClass             } from '../utils/classes';
+import { makeElementClickable } from '../utils/focus-and-click';
+import { scrollTo             } from '../utils/scroll';
+
+
+// Normalize TabIndexes
+// --------------------
+
+export function normalizeTabIndex() {
+    var focusableElements = [].slice.call(
+        document.querySelectorAll('a, button, input, label, select, textarea, object')
+    );
+    
+    focusableElements.map((element) => {
+        element.tabIndex = 0;
+    });
+};
+
+
+
+// Lazy load images
+// ----------------
+
+let imagesLoaded = require('imagesloaded');
+
+export function lazyLoadImages(callback) {
+    [].forEach.call(document.querySelectorAll('._lazy-load'), (image) => {
+        image.src = image.getAttribute('data-src');
+
+        image.addEventListener('load', function() {
+            addClass(this, '-loaded'); 
+        });
+    });
+
+    if (typeof callback === 'function') {
+        imagesLoaded('body', callback);
+    }
+};
+
+
+
+// Init anchor links
+// -----------------
+
+export function initAnchorLinks() {
+    let links = document.getElementsByTagName('a');
+
+    [].forEach.call(links, (link) => {
+        let href = link.getAttribute('href');
+
+        if (href && href[0] === '#') {
+            makeElementClickable(link, () => {
+                let targetElement = document.getElementById(href.substring(1));
+
+                if (targetElement) {
+                    scrollTo(targetElement, () => {
+                        if (window.location.hash === href) {
+                            window.location.hash = '';
+                        }
+
+                        window.location.hash = href.substring(1);
+                    });
+                } else {
+                    console.warning(`Anchor ${href} does not exists`);
+                }
+            });
+        }
+    });
+};
+
+
+
+// Random string generation
+// ------------------------
+
+export function generateRandomString(length = 8) {
+    let str = '',
+        possibleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    for (let i = 0; i < length; i++) {
+        str += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length));
+    }
+
+    return str;
+};
+
+
+
+// Non-standart stringify function
+// -------------------------------
+
+export function stringify(object) {
+    return JSON.stringify(object, (key, value) => {
+        if (typeof value === 'function') {
+            return 'function';
+        }
+        
+        return value;
+    });
+};
+
+
+
+// Extend
+// ------
+
+/* Use this function instead of Object.assign because IE11 has no support for Object.assign
+   https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign */
+
+export function extend(target, source) {
+    target = target || {};
+
+    for (let prop in source) {
+        target[prop] = source[prop];
+    }
+
+    return target;
+};
+
+
+
+// Debounce
+// --------
+
+export function debounce(func, ms) {
+    let callAllowed = true;
+
+    return function() {
+        if (!callAllowed) {
+            return;
+        }
+
+        func.apply(this, arguments);
+
+        callAllowed = false;
+
+        setTimeout(() => {
+            callAllowed = true;
+        }, ms);
+    };
+};
+
+
+
+// String -> Boolean
+// -----------------
+
+export function stringToBoolean(str) {
+    return str === 'true';
+};
+
+
+
+// Call once
+// ---------
+// Executes callback function only once
+
+export function callOnce(callback) {
+    let executed = false;
+
+    return function() {
+        if (!executed) {
+            executed = true;
+
+            return callback();
+        }
+    };
+};
+
+

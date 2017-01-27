@@ -1,4 +1,8 @@
+import * as Mouse       from '../controls/mouse';
+import * as TouchScreen from '../controls/touchscreen';
+
 import * as Utils from '../utils';
+
 import { Component } from '../component';
 
 
@@ -34,8 +38,8 @@ export class Carousel extends Component {
 
 
     initControls() {
-        this.element.addEventListener('mouseover', this.stopRotating.bind(this));
-        this.element.addEventListener('mouseout',  this.startRotating.bind(this));
+        Mouse.onMouseOver(this.element, this.stopRotating.bind(this));
+        Mouse.onMouseOut(this.element, this.startRotating.bind(this));
 
         Utils.makeChildElementsClickable(this.element, this.dom.controls.prev, this.rotate.bind(this, 'prev'));
         Utils.makeChildElementsClickable(this.element, this.dom.controls.next, this.rotate.bind(this, 'next'));
@@ -44,10 +48,8 @@ export class Carousel extends Component {
             this.rotate(index);
         });
 
-        this.hammertime = new Hammer(this.element);
-
-        this.hammertime.on('swiperight', this.rotate.bind(this, 'prev'));
-        this.hammertime.on('swipeleft',  this.rotate.bind(this, 'next'));
+        TouchScreen.onSwipeRight(this.element, this.rotate.bind(this, 'prev'));
+        TouchScreen.onSwipeLeft(this.element,  this.rotate.bind(this, 'next'));
 
         return this;
     }
@@ -115,5 +117,5 @@ export class Carousel extends Component {
 
         return this;
     }
-}
+};
 

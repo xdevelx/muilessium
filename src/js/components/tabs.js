@@ -1,3 +1,5 @@
+import * as Keyboard from '../controls/keyboard';
+import * as TouchScreen from '../controls/touchscreen';
 import * as Utils from '../utils';
 import { Component } from '../component';
 
@@ -56,15 +58,12 @@ export class Tabs extends Component {
                 Utils.makeElementNotFocusable(label);
             }
 
-            label.addEventListener('keydown', (e) => {
-                this.keyDownHandler(e.keyCode);
-            });
+            Keyboard.onArrowLeftPressed(label, this.goToPreviousTab.bind(this));
+            Keyboard.onArrowRightPressed(label, this.goToNextTab.bind(this));
         });
 
-        this.hammertime = new Hammer(this.element);
-
-        this.hammertime.on('swiperight', this.goToPreviousTab.bind(this));
-        this.hammertime.on('swipeleft',  this.goToNextTab.bind(this));
+        TouchScreen.onSwipeRight(this.element, this.goToPreviousTab.bind(this));
+        TouchScreen.onSwipeLeft(this.element, this.goToNextTab.bind(this));
 
         return this;
     }
@@ -132,4 +131,5 @@ export class Tabs extends Component {
 
         return this;
     }
-}
+};
+

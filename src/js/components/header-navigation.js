@@ -1,3 +1,4 @@
+import * as TouchScreen from '../controls/touchscreen';
 import * as Utils from '../utils';
 import { Component } from '../component';
 
@@ -57,9 +58,7 @@ export class HeaderNavigation extends Component {
             }
         });
 
-        this.hammertime = new Hammer(this.dom.linksList);
-
-        this.hammertime.on('swiperight', () => {
+        TouchScreen.onSwipeRight(this.element, () => {
             if (this.state.mobile) {
                 this.closeNavigation();
             }
@@ -179,4 +178,5 @@ export class HeaderNavigation extends Component {
 
         return this;
     }
-}
+};
+

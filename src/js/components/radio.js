@@ -76,4 +76,5 @@ export class Radio extends Component {
 
         return this;
     }
-}
+};
+

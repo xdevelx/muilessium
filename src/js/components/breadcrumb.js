@@ -8,4 +8,5 @@ export class Breadcrumb extends Component {
 
         Utils.aria.setRole(this.element, 'navigation');
     }
-} 
+};
+ 

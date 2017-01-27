@@ -232,11 +232,11 @@ module.exports = function(grunt) {
 
         docco: {
             utils: {
-                src: ['src/js/utils.js'],
+                src: ['src/js/utils/*.js'],
                 options: {
                     template: 'src/docs_template/docco.jst',
                     css: 'dist/css/muilessium.css',
-                    output: 'docs/'
+                    output: 'docs/docs/'
                 }
             }
         },
@@ -319,7 +319,7 @@ module.exports = function(grunt) {
                 src: [
                     'docs/assets/less',
                     'docs/*.jst',
-                    'docs/muilessium.css'
+                    'docs/docs/muilessium.css'
                 ]
             }
         }

@@ -1,0 +1,27 @@
+// -----------------------------------------------------------------------------
+// Viewport utilities
+// -----------------------------------------------------------------------------
+
+
+import { ifExists } from '../utils/checks';
+
+
+// Is in viewport
+// --------------
+// Returns true if the element is in viewport
+
+export function isInViewport(element) {
+    return ifExists(element, () => {
+        let rect = element.getBoundingClientRect(),
+            html = document.documentElement;
+
+        return (
+            rect.top    >= 0 &&
+            rect.left   >= 0 &&
+            rect.bottom <= (window.innerHeight || html.clientHeight) &&
+            rect.right  <= (window.innerWidth  || html.clientWidth)
+        );
+    });
+};
+
+

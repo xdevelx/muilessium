@@ -13,4 +13,5 @@ export class MediaView extends Component {
 
         Utils.aria.set(this.dom.media, 'describedby', Utils.aria.setId(this.dom.description));
     }
-}
+};
+

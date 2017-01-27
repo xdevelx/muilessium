@@ -13,4 +13,5 @@ export class InputRange extends Input {
     changeValueHandler() {
         return this;
     }
-}
+};
+

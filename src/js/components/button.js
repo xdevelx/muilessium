@@ -11,4 +11,5 @@ export class Button extends Component {
             Utils.aria.setRole(this.element, 'button');
         }
     }
-}
+};
+

@@ -133,4 +133,5 @@ export class Input extends Component {
 
         return this;
     }    
-}
+};
+

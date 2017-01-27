@@ -1,3 +1,4 @@
+import * as TouchScreen from '../controls/touchscreen';
 import * as Utils from '../utils';
 import { Component } from '../component';
 
@@ -24,7 +25,7 @@ export class ModalWindow extends Component {
 
     initAria() {
         Utils.aria.set(this.element, 'hidden', true);
-        Utils.aria.set(this.shadow,  'hidden', true);
+        Utils.aria.set(this.dom.shadow,  'hidden', true);
 
         return this;
     }
@@ -38,9 +39,7 @@ export class ModalWindow extends Component {
         Utils.makeElementClickable(this.dom.closeIcon, this.closeModal.bind(this));
         Utils.makeElementClickable(this.dom.shadow,    this.closeModal.bind(this));
 
-        this.hammertime = new Hammer(this.dom.modalWindow);
-        this.hammertime.get('pinch').set({ enable: true });
-        this.hammertime.on('pinchout', this.closeModal.bind(this));
+        TouchScreen.onPinchOut(this.dom.modalWindow, this.closeModal.bind(this));
 
         return this;
     }
@@ -72,4 +71,5 @@ export class ModalWindow extends Component {
 
         return this;
     }
-}
+};
+

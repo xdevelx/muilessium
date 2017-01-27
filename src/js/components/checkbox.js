@@ -68,4 +68,5 @@ export class Checkbox extends Component {
 
         return this;
     }
-}
+};
+

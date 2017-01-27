@@ -1,6 +1,4 @@
 import Muilessium from './muilessium';
-import * as Utils from './utils';
-
 
 document.addEventListener('DOMContentLoaded', () => {
     window.Hammer = require('hammerjs');

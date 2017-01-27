@@ -73,4 +73,5 @@ export class Textarea extends Component {
             Utils.addClass(this.element, '-has-value');
         }
     }
-}
+};
+

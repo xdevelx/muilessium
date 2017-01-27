@@ -97,4 +97,5 @@ export class Accordion extends Component {
 
         return this;
     }
-}
+};
+

@@ -79,4 +79,5 @@ export class ButtonDropdown extends Component {
 
         return this;
     }
-}
+};
+

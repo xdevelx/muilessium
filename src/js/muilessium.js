@@ -1,9 +1,7 @@
 import * as Utils     from './utils';
-
 import * as Polyfills from './polyfills';
 
 import { Events }     from './events';
-
 
 import { Accordion        } from './components/accordion';
 import { Breadcrumb       } from './components/breadcrumb';
@@ -23,7 +21,6 @@ import { Tabs             } from './components/tabs';
 import { TagsList         } from './components/tags-list';
 import { Textarea         } from './components/textarea';
 import { Rating           } from './components/rating';
-
 
 
 const components = {
@@ -48,7 +45,7 @@ const components = {
 };
 
 
-class Muilessium {
+export default class Muilessium {
     constructor() {
         if (typeof Muilessium.instance === 'object') {
             return Muilessium.instance;
@@ -110,7 +107,5 @@ class Muilessium {
             return new components[type](element, options);
         });
     };
-}
+};
 
-
-export default Muilessium;
