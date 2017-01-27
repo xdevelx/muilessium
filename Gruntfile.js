@@ -236,7 +236,7 @@ module.exports = function(grunt) {
                 options: {
                     template: 'src/docs_template/docco.jst',
                     css: 'dist/css/muilessium.css',
-                    output: 'docs/docs/'
+                    output: 'docs/docco/utils/'
                 }
             }
         },
