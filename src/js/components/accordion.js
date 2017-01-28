@@ -12,10 +12,10 @@ export class Accordion extends Component {
         super(element, options);
 
         this.dom = extend(this.dom, {
-            items:      element.getElementsByClassName('item'),
-            titles:     element.getElementsByClassName('title'),
-            indicators: element.getElementsByClassName('indicator'),
-            contents:   element.getElementsByClassName('content')
+            items:      element.querySelectorAll('.item'),
+            titles:     element.querySelectorAll('.title'),
+            indicators: element.querySelectorAll('.indicator'),
+            contents:   element.querySelectorAll('.content')
         });
 
         this.initAria();

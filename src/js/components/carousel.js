@@ -2,7 +2,10 @@ import * as Mouse       from '../controls/mouse';
 import * as Keyboard    from '../controls/keyboard';
 import * as TouchScreen from '../controls/touchscreen';
 
-import * as Utils from '../utils';
+import { addClass, removeClass } from '../utils/classes';
+import { console               } from '../utils/console';
+import { makeElementFocusable, makeChildElementsClickable } from '../utils/focus-and-click';
+import { extend, forEach       } from '../utils/uncategorized';
 
 import { Component } from '../component';
 
@@ -11,16 +14,16 @@ export class Carousel extends Component {
     constructor(element, options) {
         super(element, options);
 
-        this.dom = Utils.extend(this.dom, {
-            slides: element.getElementsByClassName('mui-slide'),
+        this.dom = extend(this.dom, {
+            slides: element.querySelectorAll('.mui-slide'),
             controls: {
-                prev: element.getElementsByClassName('prev'),
-                next: element.getElementsByClassName('next')
+                prev: element.querySelectorAll('.prev'),
+                next: element.querySelectorAll('.next')
             },
-            indicators: element.getElementsByClassName('indicator')
+            indicators: element.querySelectorAll('.indicator')
         });
 
-        this.state = Utils.extend(this.state, {
+        this.state = extend(this.state, {
             numberOfSlides: this.dom.slides.length,
             currentSlide: 0,
             interval: (parseFloat(this.element.getAttribute('data-interval'), 10) || 5),
@@ -44,36 +47,38 @@ export class Carousel extends Component {
         Mouse.onMouseOver(this.element, this.stopRotating.bind(this));
         Mouse.onMouseOut(this.element, this.startRotating.bind(this));
 
-        Utils.makeElementFocusable(this.element);
+        makeElementFocusable(this.element);
 
         this.element.addEventListener('focus', () => {
             this.stopRotating();
 
-            [].forEach.call(this.dom.controls.prev, (prev) => {
-                Utils.addClass(prev, '-focused');
+            forEach(this.dom.controls.prev, (prev) => {
+                addClass(prev, '-focused');
             });
 
-            [].forEach.call(this.dom.controls.next, (next) => {
-                Utils.addClass(next, '-focused');
+            forEach(this.dom.controls.next, (next) => {
+                addClass(next, '-focused');
             });
         });
 
         this.element.addEventListener('blur', () => {
             this.startRotating();
 
-            [].forEach.call(this.dom.controls.prev, (prev) => {
-                Utils.removeClass(prev, '-focused');
+            forEach.call(this.dom.controls.prev, (prev) => {
+                removeClass(prev, '-focused');
             });
 
-            [].forEach.call(this.dom.controls.next, (next) => {
-                Utils.removeClass(next, '-focused');
+            forEach.call(this.dom.controls.next, (next) => {
+                removeClass(next, '-focused');
             });
         });
 
-        Utils.makeChildElementsClickable(this.element, this.dom.controls.prev, this.rotate.bind(this, 'prev'), true);
-        Utils.makeChildElementsClickable(this.element, this.dom.controls.next, this.rotate.bind(this, 'next'), true);
+        makeChildElementsClickable(this.element, this.dom.controls.prev,
+                        this.rotate.bind(this, 'prev'), true);
+        makeChildElementsClickable(this.element, this.dom.controls.next,
+                        this.rotate.bind(this, 'next'), true);
 
-        Utils.makeChildElementsClickable(this.element, this.dom.indicators, (index) => {
+        makeChildElementsClickable(this.element, this.dom.indicators, (index) => {
             this.rotate(index);
         }, true);
 
@@ -111,16 +116,16 @@ export class Carousel extends Component {
 
 
     makeSlideActive(index) {
-        Utils.addClass(this.dom.slides[index],     '-active');
-        Utils.addClass(this.dom.indicators[index], '-active');
+        addClass(this.dom.slides[index],     '-active');
+        addClass(this.dom.indicators[index], '-active');
 
         return this;
     }
 
 
     makeSlideInactive(index) {
-        Utils.removeClass(this.dom.slides[index],     '-active');
-        Utils.removeClass(this.dom.indicators[index], '-active');
+        removeClass(this.dom.slides[index],     '-active');
+        removeClass(this.dom.indicators[index], '-active');
 
         return this;
     }
@@ -145,7 +150,7 @@ export class Carousel extends Component {
         } else if (typeof param === 'number' && param >= 0 && param < this.state.numberOfSlides) {
             nextSlide = param;
         } else {
-            Utils.console.error('wrong carusel rotate param');
+            console.warning('wrong carusel rotate param');
             return;
         }
 

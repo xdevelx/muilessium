@@ -1,5 +1,10 @@
 import * as Keyboard from '../controls/keyboard';
-import * as Utils from '../utils';
+
+import { aria                            } from '../utils/aria';
+import { addClass, removeClass           } from '../utils/classes';
+import { makeElementClickable, getFocusableChilds, goToNextFocusableElement } from '../utils/focus-and-click';
+import { extend, firstOfList, lastOfList } from '../utils/uncategorized';
+
 import { Component } from '../component';
 
 
@@ -7,14 +12,14 @@ export class ButtonDropdown extends Component {
     constructor(element, options) {
         super(element, options);
 
-        this.dom = Utils.extend(this.dom, {
-            button:      element.getElementsByClassName('mui-button')[0],
-            dropdown:    element.getElementsByClassName('mui-dropdown-options')[0],
-            optionsList: element.getElementsByClassName('option'),
-            shadow:      element.getElementsByClassName('mui-shadow-toggle')[0]
+        this.dom = extend(this.dom, {
+            button:      element.querySelector('.mui-button'),
+            dropdown:    element.querySelector('.mui-dropdown-options'),
+            optionsList: element.querySelectorAll('.option'),
+            shadow:      element.querySelector('.mui-shadow-toggle')
         });
 
-        this.state = Utils.extend(this.state, {
+        this.state = extend(this.state, {
             opened: false
         });
 
@@ -24,29 +29,30 @@ export class ButtonDropdown extends Component {
 
 
     initAria() {
-        Utils.aria.removeRole(this.element); // Remove role='button' added in base component
-        Utils.aria.set(this.dom.button,   'haspopup', true);
-        Utils.aria.set(this.dom.dropdown, 'labelledby', Utils.aria.setId(this.dom.button));
-        Utils.aria.set(this.dom.dropdown, 'hidden', true);
-        Utils.aria.set(this.dom.shadow,   'hidden', true);
+        aria.removeRole(this.element); // Remove role='button' added in base component
+
+        aria.set(this.dom.button,   'haspopup', true);
+        aria.set(this.dom.dropdown, 'labelledby', aria.setId(this.dom.button));
+        aria.set(this.dom.dropdown, 'hidden', true);
+        aria.set(this.dom.shadow,   'hidden', true);
 
         return this;
     }
 
 
     initControls() {
-        Utils.makeElementClickable(this.dom.button, this.toggleDropdown.bind(this));
-        Utils.makeElementClickable(this.dom.shadow, this.toggleDropdown.bind(this), true);
+        makeElementClickable(this.dom.button, this.toggleDropdown.bind(this));
+        makeElementClickable(this.dom.shadow, this.toggleDropdown.bind(this), true);
 
-        Keyboard.onShiftTabPressed(Utils.firstOfList(this.dom.optionsList), () => {
+        Keyboard.onShiftTabPressed(firstOfList(this.dom.optionsList), () => {
             this.closeDropdown();
             this.dom.button.focus();
         });
 
-        Keyboard.onTabPressed(Utils.lastOfList(this.dom.optionsList), () => {
+        Keyboard.onTabPressed(lastOfList(this.dom.optionsList), () => {
             this.closeDropdown();
 
-            Utils.goToNextFocusableElement(Utils.lastOfList(Utils.getFocusableChilds(this.element)));
+            goToNextFocusableElement(lastOfList(getFocusableChilds(this.element)));
         });
 
         return this;
@@ -54,13 +60,13 @@ export class ButtonDropdown extends Component {
 
 
     openDropdown() {
-        Utils.addClass(this.element,    '-opened');
-        Utils.addClass(this.dom.shadow, '-visible');
+        addClass(this.element,    '-opened');
+        addClass(this.dom.shadow, '-visible');
 
-        Utils.aria.set(this.dom.button,   'hidden', true);
-        Utils.aria.set(this.dom.dropdown, 'hidden', false);
+        aria.set(this.dom.button,   'hidden', true);
+        aria.set(this.dom.dropdown, 'hidden', false);
 
-        this.dom.dropdown.getElementsByTagName('a')[0].focus()
+        firstOfList(getFocusableChilds(this.dom.dropdown)).focus()
 
         this.state.opened = true;
 
@@ -69,11 +75,11 @@ export class ButtonDropdown extends Component {
 
 
     closeDropdown() {
-        Utils.removeClass(this.element,    '-opened');
-        Utils.removeClass(this.dom.shadow, '-visible');
+        removeClass(this.element,    '-opened');
+        removeClass(this.dom.shadow, '-visible');
 
-        Utils.aria.set(this.dom.button,   'hidden', false);
-        Utils.aria.set(this.dom.dropdown, 'hidden', true);
+        aria.set(this.dom.button,   'hidden', false);
+        aria.set(this.dom.dropdown, 'hidden', true);
 
         this.dom.button.focus();
 

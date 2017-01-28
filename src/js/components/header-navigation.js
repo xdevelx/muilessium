@@ -1,6 +1,12 @@
 import * as TouchScreen from '../controls/touchscreen';
 import * as Keyboard from '../controls/keyboard';
-import * as Utils from '../utils';
+
+import { aria                            } from '../utils/aria';
+import { addClass, removeClass           } from '../utils/classes';
+import { getFocusableChilds, makeElementClickable, makeChildElementsClickable,
+            goToPreviousFocusableElement, goToNextFocusableElement } from '../utils/focus-and-click';
+import { extend, firstOfList, lastOfList } from '../utils/uncategorized';
+
 import { Component } from '../component';
 
 
@@ -8,14 +14,15 @@ export class HeaderNavigation extends Component {
     constructor(element, options) {
         super(element, options);
         
-        this.dom = Utils.extend(this.dom, {
-            hamburger: element.getElementsByClassName('mui-navigation-toggle')[0],
-            shadow:    element.getElementsByClassName('mui-shadow-toggle')[0],
-            links:     element.getElementsByClassName('links-list')[0],
-            linksList: element.getElementsByTagName('a')
+        this.dom = extend(this.dom, {
+            hamburger:  element.querySelector('.mui-navigation-toggle'),
+            shadow:     element.querySelector('.mui-shadow-toggle'),
+            links:      element.querySelector('.links-list'),
+            linksList:  element.querySelectorAll('a'),
+            focusables: []
         });
 
-        this.state = Utils.extend(this.state, {
+        this.state = extend(this.state, {
             opened: false,
             mobile: false
         });
@@ -31,22 +38,22 @@ export class HeaderNavigation extends Component {
 
 
     initAria() {
-        Utils.aria.setRole(this.dom.hamburger, 'button');
+        aria.setRole(this.dom.hamburger, 'button');
 
-        Utils.aria.set(this.dom.shadow,    'hidden', true);
-        Utils.aria.set(this.dom.hamburger, 'haspopup', true);
+        aria.set(this.dom.shadow,    'hidden', true);
+        aria.set(this.dom.hamburger, 'haspopup', true);
 
-        Utils.aria.set(this.dom.links, 'labelledby', Utils.aria.setId(this.dom.hamburger));
+        aria.set(this.dom.links, 'labelledby', aria.setId(this.dom.hamburger));
 
         return this;
     }
 
 
     initControls() {
-        Utils.makeElementClickable(this.dom.hamburger, this.toggleNavigation.bind(this));
-        Utils.makeElementClickable(this.dom.shadow,    this.toggleNavigation.bind(this), true);
+        makeElementClickable(this.dom.hamburger, this.toggleNavigation.bind(this));
+        makeElementClickable(this.dom.shadow,    this.toggleNavigation.bind(this), true);
 
-        Utils.makeChildElementsClickable(this.element, this.dom.linksList, (index) => {
+        makeChildElementsClickable(this.element, this.dom.linksList, (index) => {
             let href = this.dom.linksList[index].getAttribute('href');
 
             if (href[0] === '#') {
@@ -62,17 +69,20 @@ export class HeaderNavigation extends Component {
             }
         });
 
+        this.dom.focusables = getFocusableChilds(this.dom.links);
 
-        Keyboard.onShiftTabPressed(Utils.firstOfList(this.dom.linksList), () => {
+        Keyboard.onShiftTabPressed(firstOfList(this.dom.focusables), () => {
             this.closeNavigation();
 
-            Utils.goToPreviousFocusableElement(Utils.firstOfList(Utils.getFocusableChilds(this.element)));
+            goToPreviousFocusableElement(
+                            firstOfList(this.dom.focusables));
         });
 
-        Keyboard.onTabPressed(Utils.lastOfList(this.dom.linksList), () => {
+        Keyboard.onTabPressed(lastOfList(this.dom.focusables), () => {
             this.closeNavigation();
 
-            Utils.goToNextFocusableElement(Utils.lastOfList(Utils.getFocusableChilds(this.element)));
+            goToNextFocusableElement(
+                            lastOfList(this.dom.focusables));
         });
 
         return this;
@@ -84,13 +94,13 @@ export class HeaderNavigation extends Component {
             this.state.opened = true;
             this.dom.shadow.tabIndex = 0;
 
-            Utils.addClass(this.element,    '-opened');
-            Utils.addClass(this.dom.shadow, '-visible');
+            addClass(this.element,    '-opened');
+            addClass(this.dom.shadow, '-visible');
 
-            Utils.aria.set(this.dom.hamburger, 'hidden', true);
-            Utils.aria.set(this.dom.links, 'hidden', false);
+            aria.set(this.dom.hamburger, 'hidden', true);
+            aria.set(this.dom.links, 'hidden', false);
 
-            Utils.getFocusableChilds(this.dom.links)[0].focus();
+            firstOfList(this.dom.focusables).focus();
         }
 
         return this;
@@ -102,11 +112,11 @@ export class HeaderNavigation extends Component {
             this.state.opened = false;
             this.dom.shadow.tabIndex = -1;
 
-            Utils.removeClass(this.element,    '-opened');
-            Utils.removeClass(this.dom.shadow, '-visible');
+            removeClass(this.element,    '-opened');
+            removeClass(this.dom.shadow, '-visible');
 
-            Utils.aria.set(this.dom.hamburger, 'hidden', false);
-            Utils.aria.set(this.dom.links, 'hidden', true);
+            aria.set(this.dom.hamburger, 'hidden', false);
+            aria.set(this.dom.links, 'hidden', true);
 
             this.dom.hamburger.focus();
         }
@@ -129,11 +139,11 @@ export class HeaderNavigation extends Component {
         if (!this.state.mobile || !this.state.initialized) {
             this.closeNavigation();
 
-            Utils.aria.set(this.dom.hamburger, 'hidden', false);
-            Utils.aria.set(this.dom.links, 'hidden', true);
+            aria.set(this.dom.hamburger, 'hidden', false);
+            aria.set(this.dom.links, 'hidden', true);
 
-            Utils.addClass(this.element, '-mobile-version');
-            Utils.removeClass(this.element, '-desktop-version');
+            addClass(this.element, '-mobile-version');
+            removeClass(this.element, '-desktop-version');
 
             this.state.mobile = true;
         }
@@ -146,12 +156,12 @@ export class HeaderNavigation extends Component {
         if (this.state.mobile || !this.state.initialized) {
             this.closeNavigation();
 
-            Utils.aria.set(this.dom.hamburger, 'hidden', true);
-            Utils.aria.set(this.dom.shadow,    'hidden', true);
-            Utils.aria.set(this.dom.links,     'hidden', false);
+            aria.set(this.dom.hamburger, 'hidden', true);
+            aria.set(this.dom.shadow,    'hidden', true);
+            aria.set(this.dom.links,     'hidden', false);
 
-            Utils.addClass(this.element, '-desktop-version');
-            Utils.removeClass(this.element, '-mobile-version');
+            addClass(this.element, '-desktop-version');
+            removeClass(this.element, '-mobile-version');
 
             this.state.mobile = false;
         }
