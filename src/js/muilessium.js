@@ -1,6 +1,10 @@
 import * as Utils     from './utils';
 import * as Polyfills from './polyfills';
 
+import * as Keyboard    from './controls/keyboard';
+import * as Mouse       from './controls/mouse';
+import * as TouchScreen from './controls/touchscreen';
+
 import { Events }     from './events';
 
 import { Accordion        } from './components/accordion';
@@ -52,6 +56,11 @@ export default class Muilessium {
         }
 
         this.Utils = Utils;
+
+        this.Keyboard    = Keyboard;
+        this.Mouse       = Mouse;
+        this.TouchScreen = TouchScreen;
+
         this.Events = new Events;
         
         this.init();

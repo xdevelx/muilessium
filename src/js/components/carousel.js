@@ -79,11 +79,11 @@ export class Carousel extends Component {
         this.element.addEventListener('blur', () => {
             this.startRotating();
 
-            forEach.call(this.dom.controls.prev, (prev) => {
+            forEach(this.dom.controls.prev, (prev) => {
                 removeClass(prev, '-focused');
             });
 
-            forEach.call(this.dom.controls.next, (next) => {
+            forEach(this.dom.controls.next, (next) => {
                 removeClass(next, '-focused');
             });
         });

@@ -46,7 +46,8 @@ export class ButtonDropdown extends Component {
 
 
     initAria() {
-        aria.removeRole(this.element); // Remove role='button' added in base component
+        /* Remove role='button' added in base component */
+        aria.removeRole(this.element);
 
         aria.set(this.dom.button,   'haspopup', true);
         aria.set(this.dom.dropdown, 'labelledby', aria.setId(this.dom.button));
