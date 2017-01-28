@@ -1,10 +1,28 @@
-import { aria                               } from '../utils/aria';
-import { setAttribute                       } from '../utils/attributes';
-import { addClass, removeClass, toggleClass } from '../utils/classes';
-import { makeChildElementsClickable         } from '../utils/focus-and-click';
-import { extend, forEach                    } from '../utils/uncategorized';
-
 import { Component } from '../component';
+
+import {
+    aria
+} from '../utils/aria';
+
+import {
+    setAttribute
+} from '../utils/attributes';
+
+import {
+    addClass,
+    removeClass,
+    toggleClass
+} from '../utils/classes';
+
+import {
+    makeChildElementsClickable
+} from '../utils/focus-and-click';
+
+import {
+    extend,
+    forEach
+} from '../utils/uncategorized';
+
 
 
 export class Accordion extends Component {

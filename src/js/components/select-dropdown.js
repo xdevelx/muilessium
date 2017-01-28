@@ -1,15 +1,44 @@
+import { Component } from '../component';
+
 import * as Keyboard from '../controls/keyboard';
 
-import { aria                                         } from '../utils/aria';
-import { getAttribute, setAttribute                   } from '../utils/attributes';
-import { addClass, removeClass, toggleClass, hasClass } from '../utils/classes';
-import { ifNodeList                                   } from '../utils/checks';
-import { makeElementClickable, makeChildElementsClickable,
-                makeElementsFocusable, makeElementsNotFocusable,
-                getFocusableChilds, goToNextFocusableElement, goToPreviousFocusableElement } from '../utils/focus-and-click';
-import { extend, forEach, firstOfList, lastOfList     } from '../utils/uncategorized';
+import {
+    aria
+} from '../utils/aria';
 
-import { Component } from '../component';
+import {
+    getAttribute,
+    setAttribute
+} from '../utils/attributes';
+
+import {
+    addClass,
+    removeClass,
+    toggleClass,
+    hasClass
+} from '../utils/classes';
+
+import {
+    ifNodeList
+} from '../utils/checks';
+
+import {
+    makeElementClickable,
+    makeChildElementsClickable,
+    makeElementsFocusable,
+    makeElementsNotFocusable,
+    getFocusableChilds,
+    goToNextFocusableElement,
+    goToPreviousFocusableElement
+} from '../utils/focus-and-click';
+
+import {
+    extend,
+    forEach,
+    firstOfList,
+    lastOfList
+} from '../utils/uncategorized';
+
 
 
 export class SelectDropdown extends Component {

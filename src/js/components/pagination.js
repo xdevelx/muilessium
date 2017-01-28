@@ -1,6 +1,9 @@
-import { aria } from '../utils/aria';
-
 import { Component } from '../component';
+
+import {
+    aria
+} from '../utils/aria';
+
 
 
 export class Pagination extends Component {

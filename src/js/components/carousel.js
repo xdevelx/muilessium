@@ -1,13 +1,28 @@
+import { Component } from '../component';
+
 import * as Mouse       from '../controls/mouse';
 import * as Keyboard    from '../controls/keyboard';
 import * as TouchScreen from '../controls/touchscreen';
 
-import { addClass, removeClass } from '../utils/classes';
-import { console               } from '../utils/console';
-import { makeElementFocusable, makeChildElementsClickable } from '../utils/focus-and-click';
-import { extend, forEach       } from '../utils/uncategorized';
+import {
+    addClass,
+    removeClass
+} from '../utils/classes';
 
-import { Component } from '../component';
+import {
+    console
+} from '../utils/console';
+
+import {
+    makeElementFocusable,
+    makeChildElementsClickable
+} from '../utils/focus-and-click';
+
+import {
+    extend,
+    forEach
+} from '../utils/uncategorized';
+
 
 
 export class Carousel extends Component {

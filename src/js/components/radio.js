@@ -1,10 +1,27 @@
-import { aria                       } from '../utils/aria';
-import { setAttribute, getAttribute } from '../utils/attributes';
-import { ifExists                   } from '../utils/checks';
-import { makeChildElementsClickable } from '../utils/focus-and-click';
-import { extend, forEach            } from '../utils/uncategorized';
-
 import { Component } from '../component';
+
+import {
+    aria
+} from '../utils/aria';
+
+import {
+    setAttribute,
+    getAttribute
+} from '../utils/attributes';
+
+import {
+    ifExists
+} from '../utils/checks';
+
+import {
+    makeChildElementsClickable
+} from '../utils/focus-and-click';
+
+import {
+    extend,
+    forEach
+} from '../utils/uncategorized';
+
 
 
 export class Radio extends Component {

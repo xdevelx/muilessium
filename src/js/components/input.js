@@ -1,11 +1,35 @@
-import { aria                       } from '../utils/aria';
-import { setAttribute, getAttribute } from '../utils/attributes';
-import { ifNodeList                 } from '../utils/checks';
-import { addClass, removeClass, removeClasses, replaceClass } from '../utils/classes';
-import { makeElementsFocusable, makeElementsNotFocusable } from '../utils/focus-and-click';
-import { extend, forEach            } from '../utils/uncategorized';
-
 import { Component } from '../component';
+
+import {
+    aria
+} from '../utils/aria';
+
+import {
+    setAttribute,
+    getAttribute
+} from '../utils/attributes';
+
+import {
+    ifNodeList
+} from '../utils/checks';
+
+import {
+    addClass,
+    removeClass,
+    removeClasses,
+    replaceClass
+} from '../utils/classes';
+
+import {
+    makeElementsFocusable,
+    makeElementsNotFocusable
+} from '../utils/focus-and-click';
+
+import {
+    extend,
+    forEach
+} from '../utils/uncategorized';
+
 
 
 export class Input extends Component {

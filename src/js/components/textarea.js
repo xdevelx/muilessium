@@ -1,14 +1,42 @@
-import * as Utils from '../utils';
 import { Component } from '../component';
+
+import {
+    aria
+} from '../utils/aria';
+
+import {
+    setAttribute,
+    getAttribute
+} from '../utils/attributes';
+
+import {
+    ifNodeList
+} from '../utils/checks';
+
+import {
+    addClass,
+    removeClass
+} from '../utils/classes';
+
+import {
+    makeElementsFocusable,
+    makeElementsNotFocusable
+} from '../utils/focus-and-click';
+
+import {
+    extend,
+    forEach
+} from '../utils/uncategorized';
+
 
 
 export class Textarea extends Component {
     constructor(element, options) {
         super(element, options);
         
-        this.dom = Utils.extend(this.dom, {
-            textarea: element.getElementsByTagName('textarea')[0],
-            labels: element.parentNode.getElementsByTagName('label')
+        this.dom = extend(this.dom, {
+            textarea: element.querySelector('textarea'),
+            labels:   element.parentNode.querySelectorAll('label')
         });
 
         this.initAria();
@@ -17,13 +45,13 @@ export class Textarea extends Component {
 
 
     initAria() {
-        const textareaId = this.dom.textarea.getAttribute('id') || Utils.aria.setId(this.dom.textarea);
+        const textareaId = getAttribute(this.dom.textarea, 'id') || aria.setId(this.dom.textarea);
 
-        Utils.ifNodeList(this.dom.labels, () => {
-            Utils.aria.set(this.dom.textarea, 'labelledby', Utils.aria.setId(this.dom.labels[0]));
+        ifNodeList(this.dom.labels, () => {
+            aria.set(this.dom.textarea, 'labelledby', aria.setId(this.dom.labels[0]));
 
-            [].forEach.call(this.dom.labels, (label) => {
-                label.setAttribute('for', textareaId);
+            forEach(this.dom.labels, (label) => {
+                setAttribute(label, 'for', textareaId);
             });
         }, false);
 
@@ -32,8 +60,8 @@ export class Textarea extends Component {
 
 
     initControls() {
-        Utils.ifNodeList(this.dom.labels, () => {
-            [].forEach.call(this.dom.labels, (label) => {
+        ifNodeList(this.dom.labels, () => {
+            forEach(this.dom.labels, (label) => {
                 label.addEventListener('focus', () => {
                     this.dom.textarea.focus();
                 });
@@ -49,28 +77,28 @@ export class Textarea extends Component {
 
 
     focusEventHandler() {
-        Utils.addClass(this.element, '-focused');
+        addClass(this.element, '-focused');
 
-        Utils.ifNodeList(this.dom.labels, () => {
-            Utils.makeElementsNotFocusable(this.dom.labels);
+        ifNodeList(this.dom.labels, () => {
+            makeElementsNotFocusable(this.dom.labels);
         });
     }
 
 
     blurEventHandler() {
-        Utils.removeClass(this.element, '-focused');
+        removeClass(this.element, '-focused');
 
-        Utils.ifNodeList(this.dom.labels, () => {
-            Utils.makeElementsFocusable(this.dom.labels);
+        ifNodeList(this.dom.labels, () => {
+            makeElementsFocusable(this.dom.labels);
         });
     }
 
 
     changeEventHandler() {
         if (this.dom.textarea.value == '') {
-            Utils.removeClass(this.element, '-has-value');
+            removeClass(this.element, '-has-value');
         } else {
-            Utils.addClass(this.element, '-has-value');
+            addClass(this.element, '-has-value');
         }
     }
 };

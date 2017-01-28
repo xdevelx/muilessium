@@ -1,7 +1,13 @@
-import { aria   } from '../utils/aria';
-import { extend } from '../utils/uncategorized';
-
 import { Component } from '../component';
+
+import {
+    aria
+} from '../utils/aria';
+
+import {
+    extend
+} from '../utils/uncategorized';
+
 
 
 export class MediaView extends Component {

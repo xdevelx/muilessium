@@ -1,5 +1,9 @@
-import { aria } from '../utils/aria';
 import { Component } from '../component';
+
+import {
+    aria
+} from '../utils/aria';
+
 
 
 export class Button extends Component {
@@ -7,7 +11,7 @@ export class Button extends Component {
         super(element, options);
         
         if (!aria.getRole(this.element)) {
-            // Sometimes it is useful to add role=link to the button, we should not override it here
+            /* Sometimes it is useful to add role=link to the button, we should not override it here */
             aria.setRole(this.element, 'button');
         }
     }
