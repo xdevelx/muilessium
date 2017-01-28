@@ -1,4 +1,10 @@
-import * as Utils from '../utils';
+import { aria                       } from '../utils/aria';
+import { setAttribute, getAttribute } from '../utils/attributes';
+import { ifNodeList                 } from '../utils/checks';
+import { addClass, removeClass, removeClasses, replaceClass } from '../utils/classes';
+import { makeElementsFocusable, makeElementsNotFocusable } from '../utils/focus-and-click';
+import { extend, forEach            } from '../utils/uncategorized';
+
 import { Component } from '../component';
 
 
@@ -6,16 +12,16 @@ export class Input extends Component {
     constructor(element, options) {
         super(element, options);
 
-        this.dom = Utils.extend(this.dom, {
-            input: element.getElementsByTagName('input')[0],
-            labels: element.parentNode.getElementsByTagName('label'),
-            hint: element.parentNode.getElementsByClassName('mui-input-hint')[0],
-            indicator: element.parentNode.getElementsByClassName('mui-input-indicator')[0]
+        this.dom = extend(this.dom, {
+            input:     element.querySelector('input'),
+            labels:    element.parentNode.querySelectorAll('label'),
+            hint:      element.parentNode.querySelector('.mui-input-hint'),
+            indicator: element.parentNode.querySelector('.mui-input-indicator')
         });
 
-        this.state = Utils.extend(this.state, {
-            regexp: new RegExp((element.getAttribute('data-regexp') || '')),
-            validationDelay: (element.getAttribute('data-validation-delay') || 300),
+        this.state = extend(this.state, {
+            regexp:            new RegExp(getAttribute(element, 'data-regexp', '')),
+            validationDelay:   getAttribute(element, 'data-validation-delay', 300),
             validationTimeout: null
         });
 
@@ -25,13 +31,13 @@ export class Input extends Component {
 
 
     initAria() {
-        const inputId = this.dom.input.getAttribute('id') || Utils.aria.setId(this.dom.input);
+        const inputId = getAttribute(this.dom.input, 'id') || aria.setId(this.dom.input);
 
-        Utils.ifNodeList(this.dom.labels, () => {
-            Utils.aria.set(this.dom.input, 'labelledby', Utils.aria.setId(this.dom.labels[0]));
+        ifNodeList(this.dom.labels, () => {
+            aria.set(this.dom.input, 'labelledby', aria.setId(this.dom.labels[0]));
 
-            [].forEach.call(this.dom.labels, (label) => {
-                Utils.setAttribute(label, 'for', inputId);
+            forEach(this.dom.labels, (label) => {
+                setAttribute(label, 'for', inputId);
             });
         });
 
@@ -40,8 +46,8 @@ export class Input extends Component {
 
 
     initControls() {
-        Utils.ifNodeList(this.dom.labels, () => {
-            [].forEach.call(this.dom.labels, (label) => {
+        ifNodeList(this.dom.labels, () => {
+            forEach(this.dom.labels, (label) => {
                 label.addEventListener('focus', () => {
                     this.dom.input.focus();
                 });
@@ -59,10 +65,10 @@ export class Input extends Component {
 
 
     focusHandler() {
-        Utils.addClass(this.element, '-focused');
+        addClass(this.element, '-focused');
 
-        Utils.ifNodeList(this.dom.labels, () => {
-            Utils.makeElementsNotFocusable(this.dom.labels);
+        ifNodeList(this.dom.labels, () => {
+            makeElementsNotFocusable(this.dom.labels);
         });
 
         return this;
@@ -70,10 +76,10 @@ export class Input extends Component {
 
 
     blurHandler() {
-        Utils.removeClass(this.element, '-focused');
+        removeClass(this.element, '-focused');
 
-        Utils.ifNodeList(this.dom.labels, () => {
-            Utils.makeElementsFocusable(this.dom.labels);
+        ifNodeList(this.dom.labels, () => {
+            makeElementsFocusable(this.dom.labels);
         });
 
         return this;
@@ -82,18 +88,11 @@ export class Input extends Component {
 
     changeValueHandler() {
         if (this.dom.input.value == '') {
-            Utils.removeClass(this.element,  '-has-value');
-
-            Utils.removeClass(this.element,  '-valid');
-            Utils.removeClass(this.element,  '-invalid');
-
-            Utils.removeClass(this.dom.hint, '-valid');
-            Utils.removeClass(this.dom.hint, '-invalid');
-
-            Utils.removeClass(this.dom.indicator, '-valid');
-            Utils.removeClass(this.dom.indicator, '-invalid');
+            removeClasses(this.element, '-has-value', '-valid', '-invalid');
+            removeClasses(this.dom.hint, '-valid', '-invalid');
+            removeClasses(this.dom.indicator, '-valid', '-invalid');
         } else {
-            Utils.addClass(this.element, '-has-value');
+            addClass(this.element, '-has-value');
 
             let validationTimeout = this.state.validationTimeout;
 
@@ -110,23 +109,13 @@ export class Input extends Component {
     
     validate() {
         if (this.state.regexp.test(this.dom.input.value)) {
-            Utils.removeClass(this.element,       '-invalid');
-            Utils.addClass(this.element,          '-valid');
-
-            Utils.removeClass(this.dom.hint,      '-invalid');
-            Utils.addClass(this.dom.hint,         '-valid');
-
-            Utils.removeClass(this.dom.indicator, '-invalid');
-            Utils.addClass(this.dom.indicator,    '-valid');
+            replaceClass(this.element,       '-invalid', '-valid');
+            replaceClass(this.dom.hint,      '-invalid', '-valid');
+            replaceClass(this.dom.indicator, '-invalid', '-valid');
         } else {
-            Utils.removeClass(this.element,       '-valid');
-            Utils.addClass(this.element,          '-invalid');
-
-            Utils.removeClass(this.dom.hint,      '-valid');
-            Utils.addClass(this.dom.hint,         '-invalid');
-
-            Utils.removeClass(this.dom.indicator, '-valid');
-            Utils.addClass(this.dom.indicator,    '-invalid');
+            replaceClass(this.element,       '-valid', '-invalid');
+            replaceClass(this.dom.hint,      '-valid', '-invalid');
+            replaceClass(this.dom.indicator, '-valid', '-invalid');
         }
 
         this.state.validationTimeout = null;

@@ -4,6 +4,7 @@
 
 
 import { ifExists } from '../utils/checks'; 
+import { forEach } from '../utils/uncategorized';
 
 
 // Has class
@@ -48,6 +49,20 @@ export function addClass(element, newClass) {
 
 
 
+// Add multiple classes
+// --------------------
+// Adds multiple classs to the element if it exists
+
+export function addClasses(element, ...newClasses) {
+    return ifExists(element, () => {
+        forEach(newClasses, (c) => {
+            addClass(element, c);
+        });
+    });
+};
+
+
+
 // Remove class
 // ------------
 // Removes class from the element if it exists
@@ -57,6 +72,31 @@ export function removeClass(element, classForRemoving) {
         // Use className instead of classList because IE11 does not have support for slassList on SVG
         element.className = element.className.replace(classForRemoving, '');
     });
+};
+
+
+
+// Remove multiple classes
+// --------------------
+// Removes multiple classs to the element if it exists
+
+export function removeClasses(element, ...classesForRemoving) {
+    return ifExists(element, () => {
+        forEach(classesForRemoving, (c) => {
+            removeClass(element, c);
+        });
+    });
+};
+
+
+
+// Replace class
+// -------------
+// Removes first selected class and adds second one
+
+export function replaceClass(element, classForRemoving, newClass) {
+    removeClass(element, classForRemoving);
+    addClass(element, newClass);
 };
 
 

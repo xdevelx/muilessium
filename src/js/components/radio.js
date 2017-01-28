@@ -1,4 +1,9 @@
-import * as Utils from '../utils';
+import { aria                       } from '../utils/aria';
+import { setAttribute, getAttribute } from '../utils/attributes';
+import { ifExists                   } from '../utils/checks';
+import { makeChildElementsClickable } from '../utils/focus-and-click';
+import { extend, forEach            } from '../utils/uncategorized';
+
 import { Component } from '../component';
 
 
@@ -6,14 +11,14 @@ export class Radio extends Component {
     constructor(element, options) {
         super(element, options);
 
-        this.dom = Utils.extend(this.dom, {
-            inputs: element.getElementsByTagName('input'),
-            labels: element.getElementsByTagName('label'),
-            inputLabel: element.parentNode.getElementsByClassName('mui-input-label')[0],
-            icons: element.getElementsByClassName('icon')
+        this.dom = extend(this.dom, {
+            inputs:     element.querySelectorAll('input'),
+            labels:     element.querySelectorAll('label'),
+            inputLabel: element.parentNode.querySelector('.mui-input-label'),
+            icons:      element.querySelectorAll('.icon')
         });
 
-        this.state = Utils.extend(this.state, {
+        this.state = extend(this.state, {
             checkedIndex: -1
         });
 
@@ -24,26 +29,26 @@ export class Radio extends Component {
 
 
     initAria() {
-        Utils.aria.setRole(this.element, 'radiogroup');
+        aria.setRole(this.element, 'radiogroup');
 
-        Utils.ifExists(this.dom.inputLabel, () => {
-            Utils.aria.set(this.element, 'labelledby', Utils.aria.setId(this.dom.inputLabel));
-            Utils.setAttribute(this.dom.inputLabel, 'for', Utils.aria.setId(this.element));
+        ifExists(this.dom.inputLabel, () => {
+            aria.set(this.element, 'labelledby', aria.setId(this.dom.inputLabel));
+            setAttribute(this.dom.inputLabel, 'for', aria.setId(this.element));
         });
 
-        [].forEach.call(this.dom.inputs, (input, index) => {
-            Utils.aria.set(input, 'hidden', true);
-            Utils.setAttribute(input, 'type', 'radio');
-            Utils.setAttribute(input, 'name', this.element.getAttribute('data-name'));
+        forEach(this.dom.inputs, (input, index) => {
+            aria.set(input, 'hidden', true);
+            setAttribute(input, 'type', 'radio');
+            setAttribute(input, 'name', getAttribute(this.element, 'data-name'));
 
             if (input.checked) {
                 this.state.checkedIndex = index;
             }
         });
 
-        [].forEach.call(this.dom.labels, (label, index) => {
-            Utils.setAttribute(label, 'for', this.dom.inputs[index].getAttribute('id'));
-            Utils.aria.setRole(label, 'radio');
+        forEach(this.dom.labels, (label, index) => {
+            setAttribute(label, 'for', getAttribute(this.dom.inputs[index], 'id'));
+            aria.setRole(label, 'radio');
         });
 
         return this;
@@ -51,7 +56,7 @@ export class Radio extends Component {
 
 
     initControls() {
-        Utils.makeChildElementsClickable(this.element, this.dom.labels, (index) => {
+        makeChildElementsClickable(this.element, this.dom.labels, (index) => {
             this.updateState(index);
         });
 
@@ -67,10 +72,10 @@ export class Radio extends Component {
         this.dom.inputs[index].checked = true;
 
         if (this.state.checkedIndex >= 0) {
-            Utils.aria.set(this.dom.labels[this.state.checkedIndex], 'checked', false);
+            aria.set(this.dom.labels[this.state.checkedIndex], 'checked', false);
         }
 
-        Utils.aria.set(this.dom.labels[index], 'checked', true);
+        aria.set(this.dom.labels[index], 'checked', true);
 
         this.state.checkedIndex = index;
 

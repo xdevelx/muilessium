@@ -1,5 +1,12 @@
 import * as Keyboard from '../controls/keyboard';
-import * as Utils from '../utils';
+
+import { aria                       } from '../utils/aria';
+import { getAttribute, setAttribute } from '../utils/attributes';
+import { addClass, removeClass      } from '../utils/classes';
+import { console                    } from '../utils/console';
+import { makeElementFocusable, makeChildElementsClickable } from '../utils/focus-and-click';
+import { extend, forEach            } from '../utils/uncategorized';
+
 import { Component } from '../component';
 
 
@@ -7,12 +14,12 @@ export class Rating extends Component {
     constructor(element, options) {
         super(element, options);
 
-        this.dom = Utils.extend(this.dom, {
-            stars: element.getElementsByClassName('star')
+        this.dom = extend(this.dom, {
+            stars: element.querySelectorAll('.star')
         });
 
-        this.state = Utils.extend(this.state, {
-            rating: element.getAttribute('data-rating'),
+        this.state = extend(this.state, {
+            rating: parseInt(getAttribute(element, 'data-rating'), 10),
             maxRating: 5,
             minRating: 0
         });
@@ -24,8 +31,8 @@ export class Rating extends Component {
 
 
     initAria() {
-        [].forEach.call(this.dom.stars, (star) => {
-            Utils.aria.set(star, 'hidden', true);
+        forEach(this.dom.stars, (star) => {
+            aria.set(star, 'hidden', true);
         });
 
         return this;
@@ -33,12 +40,12 @@ export class Rating extends Component {
 
 
     initControls() {
-        Utils.makeElementFocusable(this.element);
+        makeElementFocusable(this.element);
 
         Keyboard.onArrowLeftPressed(this.element,  this.decreaseRating.bind(this));
         Keyboard.onArrowRightPressed(this.element, this.increaseRating.bind(this));
 
-        Utils.makeChildElementsClickable(this.element, this.dom.stars, (index) => {
+        makeChildElementsClickable(this.element, this.dom.stars, (index) => {
             this.updateRating(index + 1);
         }, true);
 
@@ -48,17 +55,17 @@ export class Rating extends Component {
 
     updateRating(newRating) {
         if (newRating < this.state.minRating || newRating > this.state.maxRating) {
-            Utils.console.error('wrong rating value');
+            console.error('wrong rating value');
             return this;
         }
 
-        Utils.removeClass(this.element, '-r' + this.state.rating);
-        Utils.addClass(this.element, '-r' + newRating);
+        removeClass(this.element, '-r' + this.state.rating);
+        addClass(this.element, '-r' + newRating);
 
-        let newAriaLabel = Utils.aria.get(this.element, 'label').replace(this.state.rating, newRating);
+        let newAriaLabel = aria.get(this.element, 'label').replace(this.state.rating, newRating);
 
-        Utils.aria.set(this.element, 'label', newAriaLabel);
-        Utils.setAttribute(this.element, 'data-rating', newRating);
+        aria.set(this.element, 'label', newAriaLabel);
+        setAttribute(this.element, 'data-rating', newRating);
 
         this.state.rating = newRating;
 

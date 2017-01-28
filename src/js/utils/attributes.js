@@ -23,9 +23,9 @@ export function setAttribute(element, attribute, value) {
 // -------------
 // Gets attribute from the element if it exists
 
-export function getAttribute(element, attribute) {
+export function getAttribute(element, attribute, defaultValue) {
     return ifExists(element, () => {
-        return element.getAttribute(attribute);
+        return (element.getAttribute(attribute) || defaultValue);
     });
 };
 

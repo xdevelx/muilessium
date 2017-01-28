@@ -1,4 +1,6 @@
-import * as Utils from '../utils';
+import { aria   } from '../utils/aria';
+import { extend } from '../utils/uncategorized';
+
 import { Component } from '../component';
 
 
@@ -6,12 +8,12 @@ export class MediaView extends Component {
     constructor(element, options) {
         super(element, options);
 
-        this.dom = Utils.extend(this.dom, {
-            media: this.element.getElementsByClassName('media')[0],
-            description: this.element.getElementsByClassName('description')[0]
+        this.dom = extend(this.dom, {
+            media:       this.element.querySelector('.media'),
+            description: this.element.querySelector('.description')
         });
 
-        Utils.aria.set(this.dom.media, 'describedby', Utils.aria.setId(this.dom.description));
+        aria.set(this.dom.media, 'describedby', aria.setId(this.dom.description));
     }
 };
 

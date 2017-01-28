@@ -1,5 +1,10 @@
 import * as TouchScreen from '../controls/touchscreen';
-import * as Utils from '../utils';
+
+import { aria                  } from '../utils/aria';
+import { addClass, removeClass } from '../utils/classes';
+import { makeElementClickable  } from '../utils/focus-and-click';
+import { extend, forEach       } from '../utils/uncategorized';
+
 import { Component } from '../component';
 
 
@@ -7,14 +12,14 @@ export class ModalWindow extends Component {
     constructor(element, options) {
         super(element, options);
 
-        this.dom = Utils.extend(this.dom, {
-            openers:   document.querySelectorAll(`[data-modal-opener=${this.element.getAttribute('id')}]`),
-            modalWindow: this.element.getElementsByClassName('window')[0],
-            closeIcon: this.element.getElementsByClassName('close-icon')[0],
-            shadow:    this.element.getElementsByClassName('mui-shadow-toggle')[0]
+        this.dom = extend(this.dom, {
+            openers:     document.querySelectorAll(`[data-modal-opener=${this.element.getAttribute('id')}]`),
+            modalWindow: this.element.querySelector('.window'),
+            closeIcon:   this.element.querySelector('.close-icon'),
+            shadow:      this.element.querySelector('.mui-shadow-toggle')
         });
 
-        this.state = Utils.extend(this.state, {
+        this.state = extend(this.state, {
             visible: false
         });
 
@@ -24,20 +29,20 @@ export class ModalWindow extends Component {
 
 
     initAria() {
-        Utils.aria.set(this.element, 'hidden', true);
-        Utils.aria.set(this.dom.shadow,  'hidden', true);
+        aria.set(this.element, 'hidden', true);
+        aria.set(this.dom.shadow,  'hidden', true);
 
         return this;
     }
 
 
     initControls() {
-        [].forEach.call(this.dom.openers, (opener) => {
-            Utils.makeElementClickable(opener, this.openModal.bind(this));
+        forEach(this.dom.openers, (opener) => {
+            makeElementClickable(opener, this.openModal.bind(this));
         });
 
-        Utils.makeElementClickable(this.dom.closeIcon, this.closeModal.bind(this));
-        Utils.makeElementClickable(this.dom.shadow,    this.closeModal.bind(this));
+        makeElementClickable(this.dom.closeIcon, this.closeModal.bind(this));
+        makeElementClickable(this.dom.shadow,    this.closeModal.bind(this));
 
         TouchScreen.onPinchOut(this.dom.modalWindow, this.closeModal.bind(this));
 
@@ -47,10 +52,10 @@ export class ModalWindow extends Component {
 
     openModal() {
         if (!this.state.visible) {
-            Utils.addClass(this.element,    '-visible');
-            Utils.addClass(this.dom.shadow, '-visible');
+            addClass(this.element,    '-visible');
+            addClass(this.dom.shadow, '-visible');
             
-            Utils.aria.set(this.element, 'hidden', false);
+            aria.set(this.element, 'hidden', false);
 
             this.state.visible = true;
         }
@@ -61,10 +66,10 @@ export class ModalWindow extends Component {
 
     closeModal() {
         if (this.state.visible) {
-            Utils.removeClass(this.element,    '-visible');
-            Utils.removeClass(this.dom.shadow, '-visible');
+            removeClass(this.element,    '-visible');
+            removeClass(this.dom.shadow, '-visible');
             
-            Utils.aria.set(this.element, 'hidden', true);
+            aria.set(this.element, 'hidden', true);
 
             this.state.visible = false;
         }
