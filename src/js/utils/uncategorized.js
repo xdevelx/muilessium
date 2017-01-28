@@ -193,3 +193,13 @@ export function lastOfList(list) {
 };
 
 
+// For Each
+// --------
+
+export function forEach(list, callback) {
+    return [].forEach.call(list, (item, index) => {
+        callback(item, index, list);
+    });
+};
+
+

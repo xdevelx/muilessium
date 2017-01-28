@@ -1,4 +1,9 @@
-import * as Utils from '../utils';
+import { aria                               } from '../utils/aria';
+import { setAttribute                       } from '../utils/attributes';
+import { addClass, removeClass, toggleClass } from '../utils/classes';
+import { makeChildElementsClickable         } from '../utils/focus-and-click';
+import { extend, forEach                    } from '../utils/uncategorized';
+
 import { Component } from '../component';
 
 
@@ -6,7 +11,7 @@ export class Accordion extends Component {
     constructor(element, options) {
         super(element, options);
 
-        this.dom = Utils.extend(this.dom, {
+        this.dom = extend(this.dom, {
             items:      element.getElementsByClassName('item'),
             titles:     element.getElementsByClassName('title'),
             indicators: element.getElementsByClassName('indicator'),
@@ -19,23 +24,23 @@ export class Accordion extends Component {
 
 
     initAria() {
-        Utils.aria.setRole(this.element, 'tablist');
-        Utils.setAttribute(this.element, 'multiselectable', true);
+        aria.setRole(this.element, 'tablist');
+        setAttribute(this.element, 'multiselectable', true);
         
-        [].forEach.call(this.dom.titles, (title, index) => {
-            Utils.aria.setRole(title, 'tab');
-            Utils.aria.set(title, 'expanded', false);
-            Utils.aria.set(title, 'controls', Utils.aria.setId(this.dom.contents[index]));
+        forEach(this.dom.titles, (title, index) => {
+            aria.setRole(title, 'tab');
+            aria.set(title, 'expanded', false);
+            aria.set(title, 'controls', aria.setId(this.dom.contents[index]));
         });
 
-        [].forEach.call(this.dom.contents, (content, index) => {
-            Utils.aria.setRole(content, 'tabpanel');
-            Utils.aria.set(content, 'hidden', true);
-            Utils.aria.set(content, 'labelledby', Utils.aria.setId(this.dom.titles[index]));
+        forEach(this.dom.contents, (content, index) => {
+            aria.setRole(content, 'tabpanel');
+            aria.set(content, 'hidden', true);
+            aria.set(content, 'labelledby', aria.setId(this.dom.titles[index]));
         });
 
-        [].forEach.call(this.dom.indicators, (indicator) => {
-            Utils.aria.set(indicator, 'hidden', true);
+        forEach(this.dom.indicators, (indicator) => {
+            aria.set(indicator, 'hidden', true);
         });
 
         return this;
@@ -43,7 +48,7 @@ export class Accordion extends Component {
 
 
     initControls() {
-        Utils.makeChildElementsClickable(this.element, this.dom.titles, (index) => {
+        makeChildElementsClickable(this.element, this.dom.titles, (index) => {
             this.toggleItem(index);
         });
 
@@ -52,17 +57,17 @@ export class Accordion extends Component {
 
 
     foldItem(index) {
-        Utils.removeClass(this.dom.items[index], '-unfold');
+        removeClass(this.dom.items[index], '-unfold');
 
-        Utils.aria.set(this.dom.titles[index],   'expanded', false);
-        Utils.aria.set(this.dom.contents[index], 'hidden',   true);
+        aria.set(this.dom.titles[index],   'expanded', false);
+        aria.set(this.dom.contents[index], 'hidden',   true);
 
         return this;
     }
 
 
     foldAllItems() {
-        [].forEach.call(this.dom.items, (item, index) => {
+        forEach(this.dom.items, (item, index) => {
             this.foldItem(index);
         });
 
@@ -71,17 +76,17 @@ export class Accordion extends Component {
 
 
     unfoldItem(index) {
-        Utils.addClass(this.dom.items[index], '-unfold');
+        addClass(this.dom.items[index], '-unfold');
 
-        Utils.aria.set(this.dom.titles[index],   'expanded', true);
-        Utils.aria.set(this.dom.contents[index], 'hidden',   false);
+        aria.set(this.dom.titles[index],   'expanded', true);
+        aria.set(this.dom.contents[index], 'hidden',   false);
 
         return this;
     }
 
 
     unfoldAllItems() {
-        [].forEach.call(this.dom.items, (item, index) => {
+        forEach(this.dom.items, (item, index) => {
             this.unfoldItem(index);
         });
 
@@ -90,10 +95,10 @@ export class Accordion extends Component {
 
 
     toggleItem(index) {
-        Utils.toggleClass(this.dom.items[index], '-unfold');
+        toggleClass(this.dom.items[index], '-unfold');
 
-        Utils.aria.toggleState(this.dom.titles[index],   'expanded');
-        Utils.aria.toggleState(this.dom.contents[index], 'hidden');
+        aria.toggleState(this.dom.titles[index],   'expanded');
+        aria.toggleState(this.dom.contents[index], 'hidden');
 
         return this;
     }
