@@ -1,4 +1,5 @@
 import * as Mouse       from '../controls/mouse';
+import * as Keyboard    from '../controls/keyboard';
 import * as TouchScreen from '../controls/touchscreen';
 
 import * as Utils from '../utils';
@@ -22,7 +23,9 @@ export class Carousel extends Component {
         this.state = Utils.extend(this.state, {
             numberOfSlides: this.dom.slides.length,
             currentSlide: 0,
-            interval: (parseFloat(this.element.getAttribute('data-interval'), 10) || 5)
+            interval: (parseFloat(this.element.getAttribute('data-interval'), 10) || 5),
+            isRotating: false,
+            rotateInterval: null
         });
 
         this.initAria();
@@ -41,24 +44,57 @@ export class Carousel extends Component {
         Mouse.onMouseOver(this.element, this.stopRotating.bind(this));
         Mouse.onMouseOut(this.element, this.startRotating.bind(this));
 
-        Utils.makeChildElementsClickable(this.element, this.dom.controls.prev, this.rotate.bind(this, 'prev'));
-        Utils.makeChildElementsClickable(this.element, this.dom.controls.next, this.rotate.bind(this, 'next'));
+        Utils.makeElementFocusable(this.element);
+
+        this.element.addEventListener('focus', () => {
+            this.stopRotating();
+
+            [].forEach.call(this.dom.controls.prev, (prev) => {
+                Utils.addClass(prev, '-focused');
+            });
+
+            [].forEach.call(this.dom.controls.next, (next) => {
+                Utils.addClass(next, '-focused');
+            });
+        });
+
+        this.element.addEventListener('blur', () => {
+            this.startRotating();
+
+            [].forEach.call(this.dom.controls.prev, (prev) => {
+                Utils.removeClass(prev, '-focused');
+            });
+
+            [].forEach.call(this.dom.controls.next, (next) => {
+                Utils.removeClass(next, '-focused');
+            });
+        });
+
+        Utils.makeChildElementsClickable(this.element, this.dom.controls.prev, this.rotate.bind(this, 'prev'), true);
+        Utils.makeChildElementsClickable(this.element, this.dom.controls.next, this.rotate.bind(this, 'next'), true);
 
         Utils.makeChildElementsClickable(this.element, this.dom.indicators, (index) => {
             this.rotate(index);
-        });
+        }, true);
 
         TouchScreen.onSwipeRight(this.element, this.rotate.bind(this, 'prev'));
         TouchScreen.onSwipeLeft(this.element,  this.rotate.bind(this, 'next'));
+
+        Keyboard.onArrowLeftPressed(this.element, this.rotate.bind(this, 'prev'));
+        Keyboard.onArrowRightPressed(this.element, this.rotate.bind(this, 'next'));
 
         return this;
     }
 
 
     startRotating() {
-        this.state.rotateInterval = setInterval(
-                        this.rotate.bind(this, 'next'),
-                        this.state.interval * 1000);
+        if (!this.state.isRotating) {
+            this.state.rotateInterval = setInterval(
+                            this.rotate.bind(this, 'next'),
+                            this.state.interval * 1000);
+
+            this.state.isRotating = true;
+        }
 
         return this;
     }
@@ -66,6 +102,9 @@ export class Carousel extends Component {
 
     stopRotating() {
         clearInterval(this.state.rotateInterval);
+
+        this.state.rotateInterval = null;
+        this.state.isRotating = false;
 
         return this;
     }
