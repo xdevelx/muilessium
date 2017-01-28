@@ -2305,7 +2305,9 @@ h6,
 .mui-carousel-controls > .prev:hover,
 .mui-carousel-controls > .next:hover,
 .mui-carousel-controls > .prev:focus,
-.mui-carousel-controls > .next:focus {
+.mui-carousel-controls > .next:focus,
+.mui-carousel-controls > .prev.-focused,
+.mui-carousel-controls > .next.-focused {
   cursor: pointer;
   outline: none;
   background: #000000;

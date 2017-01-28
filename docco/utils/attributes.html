@@ -169,9 +169,9 @@
                     <div class='mui-content-container'>
                         
                             <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getAttribute</span>(<span class="hljs-params">element, attribute</span>) </span>{
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getAttribute</span>(<span class="hljs-params">element, attribute, defaultValue</span>) </span>{
     <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
-        <span class="hljs-keyword">return</span> element.getAttribute(attribute);
+        <span class="hljs-keyword">return</span> (element.getAttribute(attribute) || defaultValue);
     });
 };</pre></div></div>
                         

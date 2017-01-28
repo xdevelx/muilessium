@@ -99,7 +99,8 @@
                         
                             <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
 
-<span class="hljs-keyword">import</span> { ifExists } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/checks'</span>;</pre></div></div>
+<span class="hljs-keyword">import</span> { ifExists } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/checks'</span>; 
+<span class="hljs-keyword">import</span> { forEach } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/uncategorized'</span>;</pre></div></div>
                         
                     </div>
                 </div>
@@ -243,7 +244,7 @@
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-11'>&#182;</a>
                         </div>
-                        <h2 id="remove-class">Remove class</h2>
+                        <h2 id="add-multiple-classes">Add multiple classes</h2>
 
                     </div>
                     <div class='mui-content-container'>
@@ -258,6 +259,45 @@
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-12'>&#182;</a>
                         </div>
+                        <p>Adds multiple classs to the element if it exists</p>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addClasses</span>(<span class="hljs-params">element, ...newClasses</span>) </span>{
+    <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
+        forEach(newClasses, (c) =&gt; {
+            addClass(element, c);
+        });
+    });
+};</pre></div></div>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-13'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-13'>&#182;</a>
+                        </div>
+                        <h2 id="remove-class">Remove class</h2>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-14'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-14'>&#182;</a>
+                        </div>
                         <p>Removes class from the element if it exists</p>
 
                     </div>
@@ -271,11 +311,11 @@
                 </div>
             
                 
-                <div class='' id='section-13'>
+                <div class='' id='section-15'>
                     <div class='mui-content-container'>
                         
                         <div class=''>
-                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-13'>&#182;</a>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-15'>&#182;</a>
                         </div>
                         <p>Use className instead of classList because IE11 does not have support for slassList on SVG</p>
 
@@ -290,11 +330,86 @@
                 </div>
             
                 
-                <div class='' id='section-14'>
+                <div class='' id='section-16'>
                     <div class='mui-content-container'>
                         
                         <div class=''>
-                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-14'>&#182;</a>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-16'>&#182;</a>
+                        </div>
+                        <h2 id="remove-multiple-classes">Remove multiple classes</h2>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-17'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-17'>&#182;</a>
+                        </div>
+                        <p>Removes multiple classs to the element if it exists</p>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">removeClasses</span>(<span class="hljs-params">element, ...classesForRemoving</span>) </span>{
+    <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
+        forEach(classesForRemoving, (c) =&gt; {
+            removeClass(element, c);
+        });
+    });
+};</pre></div></div>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-18'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-18'>&#182;</a>
+                        </div>
+                        <h2 id="replace-class">Replace class</h2>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-19'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-19'>&#182;</a>
+                        </div>
+                        <p>Removes first selected class and adds second one</p>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">replaceClass</span>(<span class="hljs-params">element, classForRemoving, newClass</span>) </span>{
+    removeClass(element, classForRemoving);
+    addClass(element, newClass);
+};</pre></div></div>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-20'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-20'>&#182;</a>
                         </div>
                         <h2 id="toggle-class">Toggle class</h2>
 
@@ -305,11 +420,11 @@
                 </div>
             
                 
-                <div class='' id='section-15'>
+                <div class='' id='section-21'>
                     <div class='mui-content-container'>
                         
                         <div class=''>
-                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-15'>&#182;</a>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-21'>&#182;</a>
                         </div>
                         <p>Toggles class for the element if it exists</p>
 

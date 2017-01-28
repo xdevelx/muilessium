@@ -3681,13 +3681,17 @@ exports.Accordion = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _utils = require('../utils');
-
-var Utils = _interopRequireWildcard(_utils);
-
 var _component = require('../component');
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+var _aria = require('../utils/aria');
+
+var _attributes = require('../utils/attributes');
+
+var _classes = require('../utils/classes');
+
+var _focusAndClick = require('../utils/focus-and-click');
+
+var _uncategorized = require('../utils/uncategorized');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -3703,11 +3707,11 @@ var Accordion = exports.Accordion = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Accordion.__proto__ || Object.getPrototypeOf(Accordion)).call(this, element, options));
 
-        _this.dom = Utils.extend(_this.dom, {
-            items: element.getElementsByClassName('item'),
-            titles: element.getElementsByClassName('title'),
-            indicators: element.getElementsByClassName('indicator'),
-            contents: element.getElementsByClassName('content')
+        _this.dom = (0, _uncategorized.extend)(_this.dom, {
+            items: element.querySelectorAll('.item'),
+            titles: element.querySelectorAll('.title'),
+            indicators: element.querySelectorAll('.indicator'),
+            contents: element.querySelectorAll('.content')
         });
 
         _this.initAria();
@@ -3720,23 +3724,23 @@ var Accordion = exports.Accordion = function (_Component) {
         value: function initAria() {
             var _this2 = this;
 
-            Utils.aria.setRole(this.element, 'tablist');
-            Utils.setAttribute(this.element, 'multiselectable', true);
+            _aria.aria.setRole(this.element, 'tablist');
+            (0, _attributes.setAttribute)(this.element, 'multiselectable', true);
 
-            [].forEach.call(this.dom.titles, function (title, index) {
-                Utils.aria.setRole(title, 'tab');
-                Utils.aria.set(title, 'expanded', false);
-                Utils.aria.set(title, 'controls', Utils.aria.setId(_this2.dom.contents[index]));
+            (0, _uncategorized.forEach)(this.dom.titles, function (title, index) {
+                _aria.aria.setRole(title, 'tab');
+                _aria.aria.set(title, 'expanded', false);
+                _aria.aria.set(title, 'controls', _aria.aria.setId(_this2.dom.contents[index]));
             });
 
-            [].forEach.call(this.dom.contents, function (content, index) {
-                Utils.aria.setRole(content, 'tabpanel');
-                Utils.aria.set(content, 'hidden', true);
-                Utils.aria.set(content, 'labelledby', Utils.aria.setId(_this2.dom.titles[index]));
+            (0, _uncategorized.forEach)(this.dom.contents, function (content, index) {
+                _aria.aria.setRole(content, 'tabpanel');
+                _aria.aria.set(content, 'hidden', true);
+                _aria.aria.set(content, 'labelledby', _aria.aria.setId(_this2.dom.titles[index]));
             });
 
-            [].forEach.call(this.dom.indicators, function (indicator) {
-                Utils.aria.set(indicator, 'hidden', true);
+            (0, _uncategorized.forEach)(this.dom.indicators, function (indicator) {
+                _aria.aria.set(indicator, 'hidden', true);
             });
 
             return this;
@@ -3746,7 +3750,7 @@ var Accordion = exports.Accordion = function (_Component) {
         value: function initControls() {
             var _this3 = this;
 
-            Utils.makeChildElementsClickable(this.element, this.dom.titles, function (index) {
+            (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.titles, function (index) {
                 _this3.toggleItem(index);
             });
 
@@ -3755,10 +3759,10 @@ var Accordion = exports.Accordion = function (_Component) {
     }, {
         key: 'foldItem',
         value: function foldItem(index) {
-            Utils.removeClass(this.dom.items[index], '-unfold');
+            (0, _classes.removeClass)(this.dom.items[index], '-unfold');
 
-            Utils.aria.set(this.dom.titles[index], 'expanded', false);
-            Utils.aria.set(this.dom.contents[index], 'hidden', true);
+            _aria.aria.set(this.dom.titles[index], 'expanded', false);
+            _aria.aria.set(this.dom.contents[index], 'hidden', true);
 
             return this;
         }
@@ -3767,7 +3771,7 @@ var Accordion = exports.Accordion = function (_Component) {
         value: function foldAllItems() {
             var _this4 = this;
 
-            [].forEach.call(this.dom.items, function (item, index) {
+            (0, _uncategorized.forEach)(this.dom.items, function (item, index) {
                 _this4.foldItem(index);
             });
 
@@ -3776,10 +3780,10 @@ var Accordion = exports.Accordion = function (_Component) {
     }, {
         key: 'unfoldItem',
         value: function unfoldItem(index) {
-            Utils.addClass(this.dom.items[index], '-unfold');
+            (0, _classes.addClass)(this.dom.items[index], '-unfold');
 
-            Utils.aria.set(this.dom.titles[index], 'expanded', true);
-            Utils.aria.set(this.dom.contents[index], 'hidden', false);
+            _aria.aria.set(this.dom.titles[index], 'expanded', true);
+            _aria.aria.set(this.dom.contents[index], 'hidden', false);
 
             return this;
         }
@@ -3788,7 +3792,7 @@ var Accordion = exports.Accordion = function (_Component) {
         value: function unfoldAllItems() {
             var _this5 = this;
 
-            [].forEach.call(this.dom.items, function (item, index) {
+            (0, _uncategorized.forEach)(this.dom.items, function (item, index) {
                 _this5.unfoldItem(index);
             });
 
@@ -3797,10 +3801,10 @@ var Accordion = exports.Accordion = function (_Component) {
     }, {
         key: 'toggleItem',
         value: function toggleItem(index) {
-            Utils.toggleClass(this.dom.items[index], '-unfold');
+            (0, _classes.toggleClass)(this.dom.items[index], '-unfold');
 
-            Utils.aria.toggleState(this.dom.titles[index], 'expanded');
-            Utils.aria.toggleState(this.dom.contents[index], 'hidden');
+            _aria.aria.toggleState(this.dom.titles[index], 'expanded');
+            _aria.aria.toggleState(this.dom.contents[index], 'hidden');
 
             return this;
         }
@@ -3811,7 +3815,7 @@ var Accordion = exports.Accordion = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils":32}],8:[function(require,module,exports){
+},{"../component":6,"../utils/aria":34,"../utils/attributes":35,"../utils/classes":37,"../utils/focus-and-click":39,"../utils/uncategorized":41}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3819,13 +3823,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Breadcrumb = undefined;
 
-var _utils = require('../utils');
-
-var Utils = _interopRequireWildcard(_utils);
-
 var _component = require('../component');
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+var _aria = require('../utils/aria');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -3841,7 +3841,7 @@ var Breadcrumb = exports.Breadcrumb = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Breadcrumb.__proto__ || Object.getPrototypeOf(Breadcrumb)).call(this, element, options));
 
-        Utils.aria.setRole(_this.element, 'navigation');
+        _aria.aria.setRole(_this.element, 'navigation');
         return _this;
     }
 
@@ -3850,7 +3850,7 @@ var Breadcrumb = exports.Breadcrumb = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils":32}],9:[function(require,module,exports){
+},{"../component":6,"../utils/aria":34}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3860,15 +3860,19 @@ exports.ButtonDropdown = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _component = require('../component');
+
 var _keyboard = require('../controls/keyboard');
 
 var Keyboard = _interopRequireWildcard(_keyboard);
 
-var _utils = require('../utils');
+var _aria = require('../utils/aria');
 
-var Utils = _interopRequireWildcard(_utils);
+var _classes = require('../utils/classes');
 
-var _component = require('../component');
+var _focusAndClick = require('../utils/focus-and-click');
+
+var _uncategorized = require('../utils/uncategorized');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -3886,14 +3890,14 @@ var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (ButtonDropdown.__proto__ || Object.getPrototypeOf(ButtonDropdown)).call(this, element, options));
 
-        _this.dom = Utils.extend(_this.dom, {
-            button: element.getElementsByClassName('mui-button')[0],
-            dropdown: element.getElementsByClassName('mui-dropdown-options')[0],
-            optionsList: element.getElementsByClassName('option'),
-            shadow: element.getElementsByClassName('mui-shadow-toggle')[0]
+        _this.dom = (0, _uncategorized.extend)(_this.dom, {
+            button: element.querySelector('.mui-button'),
+            dropdown: element.querySelector('.mui-dropdown-options'),
+            optionsList: element.querySelectorAll('.option'),
+            shadow: element.querySelector('.mui-shadow-toggle')
         });
 
-        _this.state = Utils.extend(_this.state, {
+        _this.state = (0, _uncategorized.extend)(_this.state, {
             opened: false
         });
 
@@ -3905,11 +3909,13 @@ var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
     _createClass(ButtonDropdown, [{
         key: 'initAria',
         value: function initAria() {
-            Utils.aria.removeRole(this.element); // Remove role='button' added in base component
-            Utils.aria.set(this.dom.button, 'haspopup', true);
-            Utils.aria.set(this.dom.dropdown, 'labelledby', Utils.aria.setId(this.dom.button));
-            Utils.aria.set(this.dom.dropdown, 'hidden', true);
-            Utils.aria.set(this.dom.shadow, 'hidden', true);
+            /* Remove role='button' added in base component */
+            _aria.aria.removeRole(this.element);
+
+            _aria.aria.set(this.dom.button, 'haspopup', true);
+            _aria.aria.set(this.dom.dropdown, 'labelledby', _aria.aria.setId(this.dom.button));
+            _aria.aria.set(this.dom.dropdown, 'hidden', true);
+            _aria.aria.set(this.dom.shadow, 'hidden', true);
 
             return this;
         }
@@ -3918,18 +3924,18 @@ var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
         value: function initControls() {
             var _this2 = this;
 
-            Utils.makeElementClickable(this.dom.button, this.toggleDropdown.bind(this));
-            Utils.makeElementClickable(this.dom.shadow, this.toggleDropdown.bind(this), true);
+            (0, _focusAndClick.makeElementClickable)(this.dom.button, this.toggleDropdown.bind(this));
+            (0, _focusAndClick.makeElementClickable)(this.dom.shadow, this.toggleDropdown.bind(this), true);
 
-            Keyboard.onShiftTabPressed(Utils.firstOfList(this.dom.optionsList), function () {
+            Keyboard.onShiftTabPressed((0, _uncategorized.firstOfList)(this.dom.optionsList), function () {
                 _this2.closeDropdown();
                 _this2.dom.button.focus();
             });
 
-            Keyboard.onTabPressed(Utils.lastOfList(this.dom.optionsList), function () {
+            Keyboard.onTabPressed((0, _uncategorized.lastOfList)(this.dom.optionsList), function () {
                 _this2.closeDropdown();
 
-                Utils.goToNextFocusableElement(Utils.lastOfList(Utils.getFocusableChilds(_this2.element)));
+                (0, _focusAndClick.goToNextFocusableElement)((0, _uncategorized.lastOfList)((0, _focusAndClick.getFocusableChilds)(_this2.element)));
             });
 
             return this;
@@ -3937,13 +3943,13 @@ var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
     }, {
         key: 'openDropdown',
         value: function openDropdown() {
-            Utils.addClass(this.element, '-opened');
-            Utils.addClass(this.dom.shadow, '-visible');
+            (0, _classes.addClass)(this.element, '-opened');
+            (0, _classes.addClass)(this.dom.shadow, '-visible');
 
-            Utils.aria.set(this.dom.button, 'hidden', true);
-            Utils.aria.set(this.dom.dropdown, 'hidden', false);
+            _aria.aria.set(this.dom.button, 'hidden', true);
+            _aria.aria.set(this.dom.dropdown, 'hidden', false);
 
-            this.dom.dropdown.getElementsByTagName('a')[0].focus();
+            (0, _uncategorized.firstOfList)((0, _focusAndClick.getFocusableChilds)(this.dom.dropdown)).focus();
 
             this.state.opened = true;
 
@@ -3952,11 +3958,11 @@ var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
     }, {
         key: 'closeDropdown',
         value: function closeDropdown() {
-            Utils.removeClass(this.element, '-opened');
-            Utils.removeClass(this.dom.shadow, '-visible');
+            (0, _classes.removeClass)(this.element, '-opened');
+            (0, _classes.removeClass)(this.dom.shadow, '-visible');
 
-            Utils.aria.set(this.dom.button, 'hidden', false);
-            Utils.aria.set(this.dom.dropdown, 'hidden', true);
+            _aria.aria.set(this.dom.button, 'hidden', false);
+            _aria.aria.set(this.dom.dropdown, 'hidden', true);
 
             this.dom.button.focus();
 
@@ -3982,7 +3988,7 @@ var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":25,"../utils":32}],10:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":25,"../utils/aria":34,"../utils/classes":37,"../utils/focus-and-click":39,"../utils/uncategorized":41}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3990,13 +3996,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Button = undefined;
 
-var _utils = require('../utils');
-
-var Utils = _interopRequireWildcard(_utils);
-
 var _component = require('../component');
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+var _aria = require('../utils/aria');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -4012,9 +4014,9 @@ var Button = exports.Button = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Button.__proto__ || Object.getPrototypeOf(Button)).call(this, element, options));
 
-        if (!Utils.aria.getRole(_this.element)) {
-            // Sometimes it is useful to add role=link to the button, we should not override it here
-            Utils.aria.setRole(_this.element, 'button');
+        if (!_aria.aria.getRole(_this.element)) {
+            /* Sometimes it is useful to add role=link to the button, we should not override it here */
+            _aria.aria.setRole(_this.element, 'button');
         }
         return _this;
     }
@@ -4024,7 +4026,7 @@ var Button = exports.Button = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils":32}],11:[function(require,module,exports){
+},{"../component":6,"../utils/aria":34}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4034,19 +4036,27 @@ exports.Carousel = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _component = require('../component');
+
 var _mouse = require('../controls/mouse');
 
 var Mouse = _interopRequireWildcard(_mouse);
+
+var _keyboard = require('../controls/keyboard');
+
+var Keyboard = _interopRequireWildcard(_keyboard);
 
 var _touchscreen = require('../controls/touchscreen');
 
 var TouchScreen = _interopRequireWildcard(_touchscreen);
 
-var _utils = require('../utils');
+var _classes = require('../utils/classes');
 
-var Utils = _interopRequireWildcard(_utils);
+var _console = require('../utils/console');
 
-var _component = require('../component');
+var _focusAndClick = require('../utils/focus-and-click');
+
+var _uncategorized = require('../utils/uncategorized');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -4064,19 +4074,21 @@ var Carousel = exports.Carousel = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Carousel.__proto__ || Object.getPrototypeOf(Carousel)).call(this, element, options));
 
-        _this.dom = Utils.extend(_this.dom, {
-            slides: element.getElementsByClassName('mui-slide'),
+        _this.dom = (0, _uncategorized.extend)(_this.dom, {
+            slides: element.querySelectorAll('.mui-slide'),
             controls: {
-                prev: element.getElementsByClassName('prev'),
-                next: element.getElementsByClassName('next')
+                prev: element.querySelectorAll('.prev'),
+                next: element.querySelectorAll('.next')
             },
-            indicators: element.getElementsByClassName('indicator')
+            indicators: element.querySelectorAll('.indicator')
         });
 
-        _this.state = Utils.extend(_this.state, {
+        _this.state = (0, _uncategorized.extend)(_this.state, {
             numberOfSlides: _this.dom.slides.length,
             currentSlide: 0,
-            interval: parseFloat(_this.element.getAttribute('data-interval'), 10) || 5
+            interval: parseFloat(_this.element.getAttribute('data-interval'), 10) || 5,
+            isRotating: false,
+            rotateInterval: null
         });
 
         _this.initAria();
@@ -4099,22 +4111,55 @@ var Carousel = exports.Carousel = function (_Component) {
             Mouse.onMouseOver(this.element, this.stopRotating.bind(this));
             Mouse.onMouseOut(this.element, this.startRotating.bind(this));
 
-            Utils.makeChildElementsClickable(this.element, this.dom.controls.prev, this.rotate.bind(this, 'prev'));
-            Utils.makeChildElementsClickable(this.element, this.dom.controls.next, this.rotate.bind(this, 'next'));
+            (0, _focusAndClick.makeElementFocusable)(this.element);
 
-            Utils.makeChildElementsClickable(this.element, this.dom.indicators, function (index) {
-                _this2.rotate(index);
+            this.element.addEventListener('focus', function () {
+                _this2.stopRotating();
+
+                (0, _uncategorized.forEach)(_this2.dom.controls.prev, function (prev) {
+                    (0, _classes.addClass)(prev, '-focused');
+                });
+
+                (0, _uncategorized.forEach)(_this2.dom.controls.next, function (next) {
+                    (0, _classes.addClass)(next, '-focused');
+                });
             });
+
+            this.element.addEventListener('blur', function () {
+                _this2.startRotating();
+
+                (0, _uncategorized.forEach)(_this2.dom.controls.prev, function (prev) {
+                    (0, _classes.removeClass)(prev, '-focused');
+                });
+
+                (0, _uncategorized.forEach)(_this2.dom.controls.next, function (next) {
+                    (0, _classes.removeClass)(next, '-focused');
+                });
+            });
+
+            (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.controls.prev, this.rotate.bind(this, 'prev'), true);
+            (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.controls.next, this.rotate.bind(this, 'next'), true);
+
+            (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.indicators, function (index) {
+                _this2.rotate(index);
+            }, true);
 
             TouchScreen.onSwipeRight(this.element, this.rotate.bind(this, 'prev'));
             TouchScreen.onSwipeLeft(this.element, this.rotate.bind(this, 'next'));
+
+            Keyboard.onArrowLeftPressed(this.element, this.rotate.bind(this, 'prev'));
+            Keyboard.onArrowRightPressed(this.element, this.rotate.bind(this, 'next'));
 
             return this;
         }
     }, {
         key: 'startRotating',
         value: function startRotating() {
-            this.state.rotateInterval = setInterval(this.rotate.bind(this, 'next'), this.state.interval * 1000);
+            if (!this.state.isRotating) {
+                this.state.rotateInterval = setInterval(this.rotate.bind(this, 'next'), this.state.interval * 1000);
+
+                this.state.isRotating = true;
+            }
 
             return this;
         }
@@ -4123,21 +4168,24 @@ var Carousel = exports.Carousel = function (_Component) {
         value: function stopRotating() {
             clearInterval(this.state.rotateInterval);
 
+            this.state.rotateInterval = null;
+            this.state.isRotating = false;
+
             return this;
         }
     }, {
         key: 'makeSlideActive',
         value: function makeSlideActive(index) {
-            Utils.addClass(this.dom.slides[index], '-active');
-            Utils.addClass(this.dom.indicators[index], '-active');
+            (0, _classes.addClass)(this.dom.slides[index], '-active');
+            (0, _classes.addClass)(this.dom.indicators[index], '-active');
 
             return this;
         }
     }, {
         key: 'makeSlideInactive',
         value: function makeSlideInactive(index) {
-            Utils.removeClass(this.dom.slides[index], '-active');
-            Utils.removeClass(this.dom.indicators[index], '-active');
+            (0, _classes.removeClass)(this.dom.slides[index], '-active');
+            (0, _classes.removeClass)(this.dom.indicators[index], '-active');
 
             return this;
         }
@@ -4162,7 +4210,7 @@ var Carousel = exports.Carousel = function (_Component) {
             } else if (typeof param === 'number' && param >= 0 && param < this.state.numberOfSlides) {
                 nextSlide = param;
             } else {
-                Utils.console.error('wrong carusel rotate param');
+                _console.console.warning('wrong carusel rotate param');
                 return;
             }
 
@@ -4180,7 +4228,7 @@ var Carousel = exports.Carousel = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/mouse":26,"../controls/touchscreen":27,"../utils":32}],12:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":25,"../controls/mouse":26,"../controls/touchscreen":27,"../utils/classes":37,"../utils/console":38,"../utils/focus-and-click":39,"../utils/uncategorized":41}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4190,13 +4238,17 @@ exports.Checkbox = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _utils = require('../utils');
-
-var Utils = _interopRequireWildcard(_utils);
-
 var _component = require('../component');
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+var _aria = require('../utils/aria');
+
+var _attributes = require('../utils/attributes');
+
+var _classes = require('../utils/classes');
+
+var _focusAndClick = require('../utils/focus-and-click');
+
+var _uncategorized = require('../utils/uncategorized');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -4212,9 +4264,9 @@ var Checkbox = exports.Checkbox = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Checkbox.__proto__ || Object.getPrototypeOf(Checkbox)).call(this, element, options));
 
-        _this.dom = Utils.extend(_this.dom, {
-            input: element.getElementsByTagName('input')[0],
-            label: element.getElementsByTagName('label')[0]
+        _this.dom = (0, _uncategorized.extend)(_this.dom, {
+            input: element.querySelector('input'),
+            label: element.querySelector('label')
         });
 
         _this.initAria();
@@ -4225,23 +4277,24 @@ var Checkbox = exports.Checkbox = function (_Component) {
     _createClass(Checkbox, [{
         key: 'initAria',
         value: function initAria() {
-            Utils.aria.setRole(this.dom.label, 'checkbox');
+            _aria.aria.setRole(this.dom.label, 'checkbox');
 
-            var inputId = this.dom.input.getAttribute('id') || Utils.aria.setId(this.dom.input);
+            var inputId = this.dom.input.getAttribute('id') || _aria.aria.setId(this.dom.input);
 
             this.dom.input.checked = false;
 
-            Utils.setAttribute(this.dom.label, 'for', inputId);
-            Utils.aria.set(this.dom.label, 'controls', inputId);
-            Utils.aria.set(this.dom.label, 'checked', false);
-            Utils.aria.set(this.dom.input, 'labelledby', Utils.aria.setId(this.dom.label));
+            (0, _attributes.setAttribute)(this.dom.label, 'for', inputId);
+
+            _aria.aria.set(this.dom.label, 'controls', inputId);
+            _aria.aria.set(this.dom.label, 'checked', false);
+            _aria.aria.set(this.dom.input, 'labelledby', _aria.aria.setId(this.dom.label));
 
             return this;
         }
     }, {
         key: 'initControls',
         value: function initControls() {
-            Utils.makeElementClickable(this.dom.label, this.toggleCheckbox.bind(this));
+            (0, _focusAndClick.makeElementClickable)(this.dom.label, this.toggleCheckbox.bind(this));
 
             return this;
         }
@@ -4250,8 +4303,8 @@ var Checkbox = exports.Checkbox = function (_Component) {
         value: function setCheckbox() {
             this.dom.input.checked = true;
 
-            Utils.addClass(this.element, '-checked');
-            Utils.aria.set(this.dom.label, 'checked', true);
+            (0, _classes.addClass)(this.element, '-checked');
+            _aria.aria.set(this.dom.label, 'checked', true);
 
             return this;
         }
@@ -4260,8 +4313,8 @@ var Checkbox = exports.Checkbox = function (_Component) {
         value: function unsetCheckbox() {
             this.dom.input.checked = false;
 
-            Utils.removeClass(this.element, '-checked');
-            Utils.aria.set(this.dom.label, 'checked', false);
+            (0, _classes.removeClass)(this.element, '-checked');
+            _aria.aria.set(this.dom.label, 'checked', false);
 
             return this;
         }
@@ -4283,7 +4336,7 @@ var Checkbox = exports.Checkbox = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils":32}],13:[function(require,module,exports){
+},{"../component":6,"../utils/aria":34,"../utils/attributes":35,"../utils/classes":37,"../utils/focus-and-click":39,"../utils/uncategorized":41}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4293,6 +4346,8 @@ exports.HeaderNavigation = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _component = require('../component');
+
 var _touchscreen = require('../controls/touchscreen');
 
 var TouchScreen = _interopRequireWildcard(_touchscreen);
@@ -4301,11 +4356,13 @@ var _keyboard = require('../controls/keyboard');
 
 var Keyboard = _interopRequireWildcard(_keyboard);
 
-var _utils = require('../utils');
+var _aria = require('../utils/aria');
 
-var Utils = _interopRequireWildcard(_utils);
+var _classes = require('../utils/classes');
 
-var _component = require('../component');
+var _focusAndClick = require('../utils/focus-and-click');
+
+var _uncategorized = require('../utils/uncategorized');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -4323,14 +4380,15 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (HeaderNavigation.__proto__ || Object.getPrototypeOf(HeaderNavigation)).call(this, element, options));
 
-        _this.dom = Utils.extend(_this.dom, {
-            hamburger: element.getElementsByClassName('mui-navigation-toggle')[0],
-            shadow: element.getElementsByClassName('mui-shadow-toggle')[0],
-            links: element.getElementsByClassName('links-list')[0],
-            linksList: element.getElementsByTagName('a')
+        _this.dom = (0, _uncategorized.extend)(_this.dom, {
+            hamburger: element.querySelector('.mui-navigation-toggle'),
+            shadow: element.querySelector('.mui-shadow-toggle'),
+            links: element.querySelector('.links-list'),
+            linksList: element.querySelectorAll('a'),
+            focusables: []
         });
 
-        _this.state = Utils.extend(_this.state, {
+        _this.state = (0, _uncategorized.extend)(_this.state, {
             opened: false,
             mobile: false
         });
@@ -4339,7 +4397,7 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
         _this.initControls();
         _this.update();
 
-        window.Muilessium.Events.addEventListener('resizeWindowWidth', Utils.debounce(_this.update.bind(_this), 100));
+        window.Muilessium.Events.addEventListener('resizeWindowWidth', _this.update.bind(_this));
 
         _this.state.initialized = true;
         return _this;
@@ -4348,12 +4406,12 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
     _createClass(HeaderNavigation, [{
         key: 'initAria',
         value: function initAria() {
-            Utils.aria.setRole(this.dom.hamburger, 'button');
+            _aria.aria.setRole(this.dom.hamburger, 'button');
 
-            Utils.aria.set(this.dom.shadow, 'hidden', true);
-            Utils.aria.set(this.dom.hamburger, 'haspopup', true);
+            _aria.aria.set(this.dom.shadow, 'hidden', true);
+            _aria.aria.set(this.dom.hamburger, 'haspopup', true);
 
-            Utils.aria.set(this.dom.links, 'labelledby', Utils.aria.setId(this.dom.hamburger));
+            _aria.aria.set(this.dom.links, 'labelledby', _aria.aria.setId(this.dom.hamburger));
 
             return this;
         }
@@ -4362,10 +4420,10 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
         value: function initControls() {
             var _this2 = this;
 
-            Utils.makeElementClickable(this.dom.hamburger, this.toggleNavigation.bind(this));
-            Utils.makeElementClickable(this.dom.shadow, this.toggleNavigation.bind(this), true);
+            (0, _focusAndClick.makeElementClickable)(this.dom.hamburger, this.toggleNavigation.bind(this));
+            (0, _focusAndClick.makeElementClickable)(this.dom.shadow, this.toggleNavigation.bind(this), true);
 
-            Utils.makeChildElementsClickable(this.element, this.dom.linksList, function (index) {
+            (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.linksList, function (index) {
                 var href = _this2.dom.linksList[index].getAttribute('href');
 
                 if (href[0] === '#') {
@@ -4381,16 +4439,18 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
                 }
             });
 
-            Keyboard.onShiftTabPressed(Utils.firstOfList(this.dom.linksList), function () {
+            this.dom.focusables = (0, _focusAndClick.getFocusableChilds)(this.dom.links);
+
+            Keyboard.onShiftTabPressed((0, _uncategorized.firstOfList)(this.dom.focusables), function () {
                 _this2.closeNavigation();
 
-                Utils.goToPreviousFocusableElement(Utils.firstOfList(Utils.getFocusableChilds(_this2.element)));
+                (0, _focusAndClick.goToPreviousFocusableElement)((0, _uncategorized.firstOfList)(_this2.dom.focusables));
             });
 
-            Keyboard.onTabPressed(Utils.lastOfList(this.dom.linksList), function () {
+            Keyboard.onTabPressed((0, _uncategorized.lastOfList)(this.dom.focusables), function () {
                 _this2.closeNavigation();
 
-                Utils.goToNextFocusableElement(Utils.lastOfList(Utils.getFocusableChilds(_this2.element)));
+                (0, _focusAndClick.goToNextFocusableElement)((0, _uncategorized.lastOfList)(_this2.dom.focusables));
             });
 
             return this;
@@ -4402,13 +4462,13 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
                 this.state.opened = true;
                 this.dom.shadow.tabIndex = 0;
 
-                Utils.addClass(this.element, '-opened');
-                Utils.addClass(this.dom.shadow, '-visible');
+                (0, _classes.addClass)(this.element, '-opened');
+                (0, _classes.addClass)(this.dom.shadow, '-visible');
 
-                Utils.aria.set(this.dom.hamburger, 'hidden', true);
-                Utils.aria.set(this.dom.links, 'hidden', false);
+                _aria.aria.set(this.dom.hamburger, 'hidden', true);
+                _aria.aria.set(this.dom.links, 'hidden', false);
 
-                Utils.getFocusableChilds(this.dom.links)[0].focus();
+                (0, _uncategorized.firstOfList)(this.dom.focusables).focus();
             }
 
             return this;
@@ -4420,11 +4480,11 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
                 this.state.opened = false;
                 this.dom.shadow.tabIndex = -1;
 
-                Utils.removeClass(this.element, '-opened');
-                Utils.removeClass(this.dom.shadow, '-visible');
+                (0, _classes.removeClass)(this.element, '-opened');
+                (0, _classes.removeClass)(this.dom.shadow, '-visible');
 
-                Utils.aria.set(this.dom.hamburger, 'hidden', false);
-                Utils.aria.set(this.dom.links, 'hidden', true);
+                _aria.aria.set(this.dom.hamburger, 'hidden', false);
+                _aria.aria.set(this.dom.links, 'hidden', true);
 
                 this.dom.hamburger.focus();
             }
@@ -4448,11 +4508,11 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
             if (!this.state.mobile || !this.state.initialized) {
                 this.closeNavigation();
 
-                Utils.aria.set(this.dom.hamburger, 'hidden', false);
-                Utils.aria.set(this.dom.links, 'hidden', true);
+                _aria.aria.set(this.dom.hamburger, 'hidden', false);
+                _aria.aria.set(this.dom.links, 'hidden', true);
 
-                Utils.addClass(this.element, '-mobile-version');
-                Utils.removeClass(this.element, '-desktop-version');
+                (0, _classes.addClass)(this.element, '-mobile-version');
+                (0, _classes.removeClass)(this.element, '-desktop-version');
 
                 this.state.mobile = true;
             }
@@ -4465,12 +4525,12 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
             if (this.state.mobile || !this.state.initialized) {
                 this.closeNavigation();
 
-                Utils.aria.set(this.dom.hamburger, 'hidden', true);
-                Utils.aria.set(this.dom.shadow, 'hidden', true);
-                Utils.aria.set(this.dom.links, 'hidden', false);
+                _aria.aria.set(this.dom.hamburger, 'hidden', true);
+                _aria.aria.set(this.dom.shadow, 'hidden', true);
+                _aria.aria.set(this.dom.links, 'hidden', false);
 
-                Utils.addClass(this.element, '-desktop-version');
-                Utils.removeClass(this.element, '-mobile-version');
+                (0, _classes.addClass)(this.element, '-desktop-version');
+                (0, _classes.removeClass)(this.element, '-mobile-version');
 
                 this.state.mobile = false;
             }
@@ -4488,6 +4548,8 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
                 return this;
             }
 
+            this.transformToDesktop();
+
             var parentNode = this.element.parentNode,
                 parentWidth = parentNode.clientWidth,
                 childsWidth = 0;
@@ -4500,7 +4562,7 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
                 }
             });
 
-            if (childsWidth > parentWidth - 200) {
+            if (childsWidth > parentWidth - 50) {
                 this.transformToMobile();
             } else {
                 this.transformToDesktop();
@@ -4515,7 +4577,7 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":25,"../controls/touchscreen":27,"../utils":32}],14:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":25,"../controls/touchscreen":27,"../utils/aria":34,"../utils/classes":37,"../utils/focus-and-click":39,"../utils/uncategorized":41}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4525,13 +4587,7 @@ exports.InputRange = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _utils = require('../utils');
-
-var Utils = _interopRequireWildcard(_utils);
-
 var _input = require('./input');
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -4564,7 +4620,7 @@ var InputRange = exports.InputRange = function (_Input) {
 
 ;
 
-},{"../utils":32,"./input":15}],15:[function(require,module,exports){
+},{"./input":15}],15:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4574,13 +4630,19 @@ exports.Input = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _utils = require('../utils');
-
-var Utils = _interopRequireWildcard(_utils);
-
 var _component = require('../component');
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+var _aria = require('../utils/aria');
+
+var _attributes = require('../utils/attributes');
+
+var _checks = require('../utils/checks');
+
+var _classes = require('../utils/classes');
+
+var _focusAndClick = require('../utils/focus-and-click');
+
+var _uncategorized = require('../utils/uncategorized');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -4596,16 +4658,16 @@ var Input = exports.Input = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Input.__proto__ || Object.getPrototypeOf(Input)).call(this, element, options));
 
-        _this.dom = Utils.extend(_this.dom, {
-            input: element.getElementsByTagName('input')[0],
-            labels: element.parentNode.getElementsByTagName('label'),
-            hint: element.parentNode.getElementsByClassName('mui-input-hint')[0],
-            indicator: element.parentNode.getElementsByClassName('mui-input-indicator')[0]
+        _this.dom = (0, _uncategorized.extend)(_this.dom, {
+            input: element.querySelector('input'),
+            labels: element.parentNode.querySelectorAll('label'),
+            hint: element.parentNode.querySelector('.mui-input-hint'),
+            indicator: element.parentNode.querySelector('.mui-input-indicator')
         });
 
-        _this.state = Utils.extend(_this.state, {
-            regexp: new RegExp(element.getAttribute('data-regexp') || ''),
-            validationDelay: element.getAttribute('data-validation-delay') || 300,
+        _this.state = (0, _uncategorized.extend)(_this.state, {
+            regexp: new RegExp((0, _attributes.getAttribute)(element, 'data-regexp', '')),
+            validationDelay: (0, _attributes.getAttribute)(element, 'data-validation-delay', 300),
             validationTimeout: null
         });
 
@@ -4619,13 +4681,13 @@ var Input = exports.Input = function (_Component) {
         value: function initAria() {
             var _this2 = this;
 
-            var inputId = this.dom.input.getAttribute('id') || Utils.aria.setId(this.dom.input);
+            var inputId = (0, _attributes.getAttribute)(this.dom.input, 'id') || _aria.aria.setId(this.dom.input);
 
-            Utils.ifNodeList(this.dom.labels, function () {
-                Utils.aria.set(_this2.dom.input, 'labelledby', Utils.aria.setId(_this2.dom.labels[0]));
+            (0, _checks.ifNodeList)(this.dom.labels, function () {
+                _aria.aria.set(_this2.dom.input, 'labelledby', _aria.aria.setId(_this2.dom.labels[0]));
 
-                [].forEach.call(_this2.dom.labels, function (label) {
-                    Utils.setAttribute(label, 'for', inputId);
+                (0, _uncategorized.forEach)(_this2.dom.labels, function (label) {
+                    (0, _attributes.setAttribute)(label, 'for', inputId);
                 });
             });
 
@@ -4636,8 +4698,8 @@ var Input = exports.Input = function (_Component) {
         value: function initControls() {
             var _this3 = this;
 
-            Utils.ifNodeList(this.dom.labels, function () {
-                [].forEach.call(_this3.dom.labels, function (label) {
+            (0, _checks.ifNodeList)(this.dom.labels, function () {
+                (0, _uncategorized.forEach)(_this3.dom.labels, function (label) {
                     label.addEventListener('focus', function () {
                         _this3.dom.input.focus();
                     });
@@ -4657,10 +4719,10 @@ var Input = exports.Input = function (_Component) {
         value: function focusHandler() {
             var _this4 = this;
 
-            Utils.addClass(this.element, '-focused');
+            (0, _classes.addClass)(this.element, '-focused');
 
-            Utils.ifNodeList(this.dom.labels, function () {
-                Utils.makeElementsNotFocusable(_this4.dom.labels);
+            (0, _checks.ifNodeList)(this.dom.labels, function () {
+                (0, _focusAndClick.makeElementsNotFocusable)(_this4.dom.labels);
             });
 
             return this;
@@ -4670,10 +4732,10 @@ var Input = exports.Input = function (_Component) {
         value: function blurHandler() {
             var _this5 = this;
 
-            Utils.removeClass(this.element, '-focused');
+            (0, _classes.removeClass)(this.element, '-focused');
 
-            Utils.ifNodeList(this.dom.labels, function () {
-                Utils.makeElementsFocusable(_this5.dom.labels);
+            (0, _checks.ifNodeList)(this.dom.labels, function () {
+                (0, _focusAndClick.makeElementsFocusable)(_this5.dom.labels);
             });
 
             return this;
@@ -4682,18 +4744,11 @@ var Input = exports.Input = function (_Component) {
         key: 'changeValueHandler',
         value: function changeValueHandler() {
             if (this.dom.input.value == '') {
-                Utils.removeClass(this.element, '-has-value');
-
-                Utils.removeClass(this.element, '-valid');
-                Utils.removeClass(this.element, '-invalid');
-
-                Utils.removeClass(this.dom.hint, '-valid');
-                Utils.removeClass(this.dom.hint, '-invalid');
-
-                Utils.removeClass(this.dom.indicator, '-valid');
-                Utils.removeClass(this.dom.indicator, '-invalid');
+                (0, _classes.removeClasses)(this.element, '-has-value', '-valid', '-invalid');
+                (0, _classes.removeClasses)(this.dom.hint, '-valid', '-invalid');
+                (0, _classes.removeClasses)(this.dom.indicator, '-valid', '-invalid');
             } else {
-                Utils.addClass(this.element, '-has-value');
+                (0, _classes.addClass)(this.element, '-has-value');
 
                 var validationTimeout = this.state.validationTimeout;
 
@@ -4710,23 +4765,13 @@ var Input = exports.Input = function (_Component) {
         key: 'validate',
         value: function validate() {
             if (this.state.regexp.test(this.dom.input.value)) {
-                Utils.removeClass(this.element, '-invalid');
-                Utils.addClass(this.element, '-valid');
-
-                Utils.removeClass(this.dom.hint, '-invalid');
-                Utils.addClass(this.dom.hint, '-valid');
-
-                Utils.removeClass(this.dom.indicator, '-invalid');
-                Utils.addClass(this.dom.indicator, '-valid');
+                (0, _classes.replaceClass)(this.element, '-invalid', '-valid');
+                (0, _classes.replaceClass)(this.dom.hint, '-invalid', '-valid');
+                (0, _classes.replaceClass)(this.dom.indicator, '-invalid', '-valid');
             } else {
-                Utils.removeClass(this.element, '-valid');
-                Utils.addClass(this.element, '-invalid');
-
-                Utils.removeClass(this.dom.hint, '-valid');
-                Utils.addClass(this.dom.hint, '-invalid');
-
-                Utils.removeClass(this.dom.indicator, '-valid');
-                Utils.addClass(this.dom.indicator, '-invalid');
+                (0, _classes.replaceClass)(this.element, '-valid', '-invalid');
+                (0, _classes.replaceClass)(this.dom.hint, '-valid', '-invalid');
+                (0, _classes.replaceClass)(this.dom.indicator, '-valid', '-invalid');
             }
 
             this.state.validationTimeout = null;
@@ -4740,7 +4785,7 @@ var Input = exports.Input = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils":32}],16:[function(require,module,exports){
+},{"../component":6,"../utils/aria":34,"../utils/attributes":35,"../utils/checks":36,"../utils/classes":37,"../utils/focus-and-click":39,"../utils/uncategorized":41}],16:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4748,13 +4793,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.MediaView = undefined;
 
-var _utils = require('../utils');
-
-var Utils = _interopRequireWildcard(_utils);
-
 var _component = require('../component');
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+var _aria = require('../utils/aria');
+
+var _uncategorized = require('../utils/uncategorized');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -4770,12 +4813,12 @@ var MediaView = exports.MediaView = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (MediaView.__proto__ || Object.getPrototypeOf(MediaView)).call(this, element, options));
 
-        _this.dom = Utils.extend(_this.dom, {
-            media: _this.element.getElementsByClassName('media')[0],
-            description: _this.element.getElementsByClassName('description')[0]
+        _this.dom = (0, _uncategorized.extend)(_this.dom, {
+            media: _this.element.querySelector('.media'),
+            description: _this.element.querySelector('.description')
         });
 
-        Utils.aria.set(_this.dom.media, 'describedby', Utils.aria.setId(_this.dom.description));
+        _aria.aria.set(_this.dom.media, 'describedby', _aria.aria.setId(_this.dom.description));
         return _this;
     }
 
@@ -4784,7 +4827,7 @@ var MediaView = exports.MediaView = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils":32}],17:[function(require,module,exports){
+},{"../component":6,"../utils/aria":34,"../utils/uncategorized":41}],17:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4794,15 +4837,19 @@ exports.ModalWindow = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _component = require('../component');
+
 var _touchscreen = require('../controls/touchscreen');
 
 var TouchScreen = _interopRequireWildcard(_touchscreen);
 
-var _utils = require('../utils');
+var _aria = require('../utils/aria');
 
-var Utils = _interopRequireWildcard(_utils);
+var _classes = require('../utils/classes');
 
-var _component = require('../component');
+var _focusAndClick = require('../utils/focus-and-click');
+
+var _uncategorized = require('../utils/uncategorized');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -4820,14 +4867,14 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (ModalWindow.__proto__ || Object.getPrototypeOf(ModalWindow)).call(this, element, options));
 
-        _this.dom = Utils.extend(_this.dom, {
+        _this.dom = (0, _uncategorized.extend)(_this.dom, {
             openers: document.querySelectorAll('[data-modal-opener=' + _this.element.getAttribute('id') + ']'),
-            modalWindow: _this.element.getElementsByClassName('window')[0],
-            closeIcon: _this.element.getElementsByClassName('close-icon')[0],
-            shadow: _this.element.getElementsByClassName('mui-shadow-toggle')[0]
+            modalWindow: _this.element.querySelector('.window'),
+            closeIcon: _this.element.querySelector('.close-icon'),
+            shadow: _this.element.querySelector('.mui-shadow-toggle')
         });
 
-        _this.state = Utils.extend(_this.state, {
+        _this.state = (0, _uncategorized.extend)(_this.state, {
             visible: false
         });
 
@@ -4839,8 +4886,8 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
     _createClass(ModalWindow, [{
         key: 'initAria',
         value: function initAria() {
-            Utils.aria.set(this.element, 'hidden', true);
-            Utils.aria.set(this.dom.shadow, 'hidden', true);
+            _aria.aria.set(this.element, 'hidden', true);
+            _aria.aria.set(this.dom.shadow, 'hidden', true);
 
             return this;
         }
@@ -4849,12 +4896,12 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
         value: function initControls() {
             var _this2 = this;
 
-            [].forEach.call(this.dom.openers, function (opener) {
-                Utils.makeElementClickable(opener, _this2.openModal.bind(_this2));
+            (0, _uncategorized.forEach)(this.dom.openers, function (opener) {
+                (0, _focusAndClick.makeElementClickable)(opener, _this2.openModal.bind(_this2));
             });
 
-            Utils.makeElementClickable(this.dom.closeIcon, this.closeModal.bind(this));
-            Utils.makeElementClickable(this.dom.shadow, this.closeModal.bind(this));
+            (0, _focusAndClick.makeElementClickable)(this.dom.closeIcon, this.closeModal.bind(this));
+            (0, _focusAndClick.makeElementClickable)(this.dom.shadow, this.closeModal.bind(this));
 
             TouchScreen.onPinchOut(this.dom.modalWindow, this.closeModal.bind(this));
 
@@ -4864,10 +4911,10 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
         key: 'openModal',
         value: function openModal() {
             if (!this.state.visible) {
-                Utils.addClass(this.element, '-visible');
-                Utils.addClass(this.dom.shadow, '-visible');
+                (0, _classes.addClass)(this.element, '-visible');
+                (0, _classes.addClass)(this.dom.shadow, '-visible');
 
-                Utils.aria.set(this.element, 'hidden', false);
+                _aria.aria.set(this.element, 'hidden', false);
 
                 this.state.visible = true;
             }
@@ -4878,10 +4925,10 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
         key: 'closeModal',
         value: function closeModal() {
             if (this.state.visible) {
-                Utils.removeClass(this.element, '-visible');
-                Utils.removeClass(this.dom.shadow, '-visible');
+                (0, _classes.removeClass)(this.element, '-visible');
+                (0, _classes.removeClass)(this.dom.shadow, '-visible');
 
-                Utils.aria.set(this.element, 'hidden', true);
+                _aria.aria.set(this.element, 'hidden', true);
 
                 this.state.visible = false;
             }
@@ -4895,7 +4942,7 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/touchscreen":27,"../utils":32}],18:[function(require,module,exports){
+},{"../component":6,"../controls/touchscreen":27,"../utils/aria":34,"../utils/classes":37,"../utils/focus-and-click":39,"../utils/uncategorized":41}],18:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4903,13 +4950,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Pagination = undefined;
 
-var _utils = require('../utils');
-
-var Utils = _interopRequireWildcard(_utils);
-
 var _component = require('../component');
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+var _aria = require('../utils/aria');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -4925,7 +4968,7 @@ var Pagination = exports.Pagination = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Pagination.__proto__ || Object.getPrototypeOf(Pagination)).call(this, element, options));
 
-        Utils.aria.setRole(_this.element, 'navigation');
+        _aria.aria.setRole(_this.element, 'navigation');
         return _this;
     }
 
@@ -4934,7 +4977,7 @@ var Pagination = exports.Pagination = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils":32}],19:[function(require,module,exports){
+},{"../component":6,"../utils/aria":34}],19:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4944,13 +4987,17 @@ exports.Radio = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _utils = require('../utils');
-
-var Utils = _interopRequireWildcard(_utils);
-
 var _component = require('../component');
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+var _aria = require('../utils/aria');
+
+var _attributes = require('../utils/attributes');
+
+var _checks = require('../utils/checks');
+
+var _focusAndClick = require('../utils/focus-and-click');
+
+var _uncategorized = require('../utils/uncategorized');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -4966,14 +5013,14 @@ var Radio = exports.Radio = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Radio.__proto__ || Object.getPrototypeOf(Radio)).call(this, element, options));
 
-        _this.dom = Utils.extend(_this.dom, {
-            inputs: element.getElementsByTagName('input'),
-            labels: element.getElementsByTagName('label'),
-            inputLabel: element.parentNode.getElementsByClassName('mui-input-label')[0],
-            icons: element.getElementsByClassName('icon')
+        _this.dom = (0, _uncategorized.extend)(_this.dom, {
+            inputs: element.querySelectorAll('input'),
+            labels: element.querySelectorAll('label'),
+            inputLabel: element.parentNode.querySelector('.mui-input-label'),
+            icons: element.querySelectorAll('.icon')
         });
 
-        _this.state = Utils.extend(_this.state, {
+        _this.state = (0, _uncategorized.extend)(_this.state, {
             checkedIndex: -1
         });
 
@@ -4988,26 +5035,26 @@ var Radio = exports.Radio = function (_Component) {
         value: function initAria() {
             var _this2 = this;
 
-            Utils.aria.setRole(this.element, 'radiogroup');
+            _aria.aria.setRole(this.element, 'radiogroup');
 
-            Utils.ifExists(this.dom.inputLabel, function () {
-                Utils.aria.set(_this2.element, 'labelledby', Utils.aria.setId(_this2.dom.inputLabel));
-                Utils.setAttribute(_this2.dom.inputLabel, 'for', Utils.aria.setId(_this2.element));
+            (0, _checks.ifExists)(this.dom.inputLabel, function () {
+                _aria.aria.set(_this2.element, 'labelledby', _aria.aria.setId(_this2.dom.inputLabel));
+                (0, _attributes.setAttribute)(_this2.dom.inputLabel, 'for', _aria.aria.setId(_this2.element));
             });
 
-            [].forEach.call(this.dom.inputs, function (input, index) {
-                Utils.aria.set(input, 'hidden', true);
-                Utils.setAttribute(input, 'type', 'radio');
-                Utils.setAttribute(input, 'name', _this2.element.getAttribute('data-name'));
+            (0, _uncategorized.forEach)(this.dom.inputs, function (input, index) {
+                _aria.aria.set(input, 'hidden', true);
+                (0, _attributes.setAttribute)(input, 'type', 'radio');
+                (0, _attributes.setAttribute)(input, 'name', (0, _attributes.getAttribute)(_this2.element, 'data-name'));
 
                 if (input.checked) {
                     _this2.state.checkedIndex = index;
                 }
             });
 
-            [].forEach.call(this.dom.labels, function (label, index) {
-                Utils.setAttribute(label, 'for', _this2.dom.inputs[index].getAttribute('id'));
-                Utils.aria.setRole(label, 'radio');
+            (0, _uncategorized.forEach)(this.dom.labels, function (label, index) {
+                (0, _attributes.setAttribute)(label, 'for', (0, _attributes.getAttribute)(_this2.dom.inputs[index], 'id'));
+                _aria.aria.setRole(label, 'radio');
             });
 
             return this;
@@ -5017,7 +5064,7 @@ var Radio = exports.Radio = function (_Component) {
         value: function initControls() {
             var _this3 = this;
 
-            Utils.makeChildElementsClickable(this.element, this.dom.labels, function (index) {
+            (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.labels, function (index) {
                 _this3.updateState(index);
             });
 
@@ -5033,10 +5080,10 @@ var Radio = exports.Radio = function (_Component) {
             this.dom.inputs[index].checked = true;
 
             if (this.state.checkedIndex >= 0) {
-                Utils.aria.set(this.dom.labels[this.state.checkedIndex], 'checked', false);
+                _aria.aria.set(this.dom.labels[this.state.checkedIndex], 'checked', false);
             }
 
-            Utils.aria.set(this.dom.labels[index], 'checked', true);
+            _aria.aria.set(this.dom.labels[index], 'checked', true);
 
             this.state.checkedIndex = index;
 
@@ -5049,7 +5096,7 @@ var Radio = exports.Radio = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils":32}],20:[function(require,module,exports){
+},{"../component":6,"../utils/aria":34,"../utils/attributes":35,"../utils/checks":36,"../utils/focus-and-click":39,"../utils/uncategorized":41}],20:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5059,15 +5106,23 @@ exports.Rating = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _component = require('../component');
+
 var _keyboard = require('../controls/keyboard');
 
 var Keyboard = _interopRequireWildcard(_keyboard);
 
-var _utils = require('../utils');
+var _aria = require('../utils/aria');
 
-var Utils = _interopRequireWildcard(_utils);
+var _attributes = require('../utils/attributes');
 
-var _component = require('../component');
+var _classes = require('../utils/classes');
+
+var _console = require('../utils/console');
+
+var _focusAndClick = require('../utils/focus-and-click');
+
+var _uncategorized = require('../utils/uncategorized');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -5085,12 +5140,12 @@ var Rating = exports.Rating = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Rating.__proto__ || Object.getPrototypeOf(Rating)).call(this, element, options));
 
-        _this.dom = Utils.extend(_this.dom, {
-            stars: element.getElementsByClassName('star')
+        _this.dom = (0, _uncategorized.extend)(_this.dom, {
+            stars: element.querySelectorAll('.star')
         });
 
-        _this.state = Utils.extend(_this.state, {
-            rating: element.getAttribute('data-rating'),
+        _this.state = (0, _uncategorized.extend)(_this.state, {
+            rating: parseInt((0, _attributes.getAttribute)(element, 'data-rating'), 10),
             maxRating: 5,
             minRating: 0
         });
@@ -5104,8 +5159,8 @@ var Rating = exports.Rating = function (_Component) {
     _createClass(Rating, [{
         key: 'initAria',
         value: function initAria() {
-            [].forEach.call(this.dom.stars, function (star) {
-                Utils.aria.set(star, 'hidden', true);
+            (0, _uncategorized.forEach)(this.dom.stars, function (star) {
+                _aria.aria.set(star, 'hidden', true);
             });
 
             return this;
@@ -5115,12 +5170,12 @@ var Rating = exports.Rating = function (_Component) {
         value: function initControls() {
             var _this2 = this;
 
-            Utils.makeElementFocusable(this.element);
+            (0, _focusAndClick.makeElementFocusable)(this.element);
 
             Keyboard.onArrowLeftPressed(this.element, this.decreaseRating.bind(this));
             Keyboard.onArrowRightPressed(this.element, this.increaseRating.bind(this));
 
-            Utils.makeChildElementsClickable(this.element, this.dom.stars, function (index) {
+            (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.stars, function (index) {
                 _this2.updateRating(index + 1);
             }, true);
 
@@ -5130,17 +5185,17 @@ var Rating = exports.Rating = function (_Component) {
         key: 'updateRating',
         value: function updateRating(newRating) {
             if (newRating < this.state.minRating || newRating > this.state.maxRating) {
-                Utils.console.error('wrong rating value');
+                _console.console.error('wrong rating value');
                 return this;
             }
 
-            Utils.removeClass(this.element, '-r' + this.state.rating);
-            Utils.addClass(this.element, '-r' + newRating);
+            (0, _classes.removeClass)(this.element, '-r' + this.state.rating);
+            (0, _classes.addClass)(this.element, '-r' + newRating);
 
-            var newAriaLabel = Utils.aria.get(this.element, 'label').replace(this.state.rating, newRating);
+            var newAriaLabel = _aria.aria.get(this.element, 'label').replace(this.state.rating, newRating);
 
-            Utils.aria.set(this.element, 'label', newAriaLabel);
-            Utils.setAttribute(this.element, 'data-rating', newRating);
+            _aria.aria.set(this.element, 'label', newAriaLabel);
+            (0, _attributes.setAttribute)(this.element, 'data-rating', newRating);
 
             this.state.rating = newRating;
 
@@ -5176,7 +5231,7 @@ var Rating = exports.Rating = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":25,"../utils":32}],21:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":25,"../utils/aria":34,"../utils/attributes":35,"../utils/classes":37,"../utils/console":38,"../utils/focus-and-click":39,"../utils/uncategorized":41}],21:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5186,15 +5241,23 @@ exports.SelectDropdown = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _utils = require('../utils');
-
-var Utils = _interopRequireWildcard(_utils);
+var _component = require('../component');
 
 var _keyboard = require('../controls/keyboard');
 
 var Keyboard = _interopRequireWildcard(_keyboard);
 
-var _component = require('../component');
+var _aria = require('../utils/aria');
+
+var _attributes = require('../utils/attributes');
+
+var _classes = require('../utils/classes');
+
+var _checks = require('../utils/checks');
+
+var _focusAndClick = require('../utils/focus-and-click');
+
+var _uncategorized = require('../utils/uncategorized');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -5212,17 +5275,18 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (SelectDropdown.__proto__ || Object.getPrototypeOf(SelectDropdown)).call(this, element, options));
 
-        _this.dom = Utils.extend(_this.dom, {
-            labels: _this.element.parentNode.getElementsByTagName('label'),
-            select: _this.element.getElementsByClassName('select')[0],
-            state: _this.element.getElementsByClassName('state')[0],
-            options: _this.element.getElementsByClassName('mui-dropdown-options')[0],
-            optionsList: _this.element.getElementsByClassName('option'),
-            shadow: _this.element.getElementsByClassName('mui-shadow-toggle')[0],
-            icon: _this.element.getElementsByClassName('icon')[0]
+        _this.dom = (0, _uncategorized.extend)(_this.dom, {
+            labels: _this.element.parentNode.querySelectorAll('label'),
+            select: _this.element.querySelector('.select'),
+            state: _this.element.querySelector('.state'),
+            options: _this.element.querySelector('.mui-dropdown-options'),
+            optionsList: _this.element.querySelectorAll('.option'),
+            shadow: _this.element.querySelector('.mui-shadow-toggle'),
+            icon: _this.element.querySelector('.icon'),
+            focusables: []
         });
 
-        _this.state = Utils.extend(_this.state, {
+        _this.state = (0, _uncategorized.extend)(_this.state, {
             selectedIndex: _this.getSelectedIndex(),
             isOpened: false
         });
@@ -5242,19 +5306,20 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
             var hiddenSelect = document.createElement('select'),
                 id = this.dom.select.getAttribute('data-id');
 
-            hiddenSelect.setAttribute('id', id);
-            hiddenSelect.setAttribute('name', id);
-
             this.element.appendChild(hiddenSelect);
+
+            (0, _attributes.setAttribute)(hiddenSelect, 'id', id);
+            (0, _attributes.setAttribute)(hiddenSelect, 'name', id);
+
             this.dom.hiddenSelect = hiddenSelect;
 
-            Utils.addClass(this.dom.hiddenSelect, '_hidden');
-            Utils.aria.set(this.dom.hiddenSelect, 'hidden', true);
+            (0, _classes.addClass)(this.dom.hiddenSelect, '_hidden');
+            _aria.aria.set(this.dom.hiddenSelect, 'hidden', true);
 
-            [].forEach.call(this.dom.optionsList, function (option) {
+            (0, _uncategorized.forEach)(this.dom.optionsList, function (option) {
                 var hiddenOption = document.createElement('option');
 
-                hiddenOption.value = Utils.getAttribute(option, 'data-value');
+                hiddenOption.value = (0, _attributes.getAttribute)(option, 'data-value');
 
                 _this2.dom.hiddenSelect.add(hiddenOption);
             });
@@ -5266,26 +5331,26 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
         value: function initAria() {
             var _this3 = this;
 
-            Utils.aria.setRole(this.dom.select, 'listbox');
+            _aria.aria.setRole(this.dom.select, 'listbox');
 
-            [].forEach.call(this.dom.optionsList, function (option) {
-                Utils.aria.setRole(option, 'option');
-                Utils.aria.setId(option);
+            (0, _uncategorized.forEach)(this.dom.optionsList, function (option) {
+                _aria.aria.setRole(option, 'option');
+                _aria.aria.setId(option);
             });
 
-            Utils.aria.set(this.dom.select, 'activedescendant', this.dom.optionsList[this.state.selectedIndex].getAttribute('id'));
-            Utils.aria.set(this.dom.state, 'hidden', true);
-            Utils.aria.set(this.dom.icon, 'hidden', true);
-            Utils.aria.set(this.dom.shadow, 'hidden', true);
+            _aria.aria.set(this.dom.select, 'activedescendant', (0, _attributes.getAttribute)(this.dom.optionsList[this.state.selectedIndex], 'id'));
+            _aria.aria.set(this.dom.state, 'hidden', true);
+            _aria.aria.set(this.dom.icon, 'hidden', true);
+            _aria.aria.set(this.dom.shadow, 'hidden', true);
 
-            Utils.ifNodeList(this.dom.labels, function () {
-                var selectId = Utils.aria.setId(_this3.dom.select);
+            (0, _checks.ifNodeList)(this.dom.labels, function () {
+                var selectId = _aria.aria.setId(_this3.dom.select);
 
-                [].forEach.call(_this3.dom.labels, function (label) {
-                    Utils.setAttribute(label, 'for', selectId);
+                (0, _uncategorized.forEach)(_this3.dom.labels, function (label) {
+                    (0, _attributes.setAttribute)(label, 'for', selectId);
                 });
 
-                Utils.aria.set(_this3.dom.select, 'labelledby', Utils.aria.setId(_this3.dom.labels[0]));
+                _aria.aria.set(_this3.dom.select, 'labelledby', _aria.aria.setId(_this3.dom.labels[0]));
             });
 
             return this;
@@ -5295,34 +5360,42 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
         value: function initControls() {
             var _this4 = this;
 
-            Utils.makeElementClickable(this.dom.select, this.toggleDropdown.bind(this));
-            Utils.makeElementClickable(this.dom.shadow, this.toggleDropdown.bind(this), true);
+            (0, _focusAndClick.makeElementClickable)(this.dom.select, this.toggleDropdown.bind(this));
+            (0, _focusAndClick.makeElementClickable)(this.dom.shadow, this.toggleDropdown.bind(this), true);
 
-            Utils.makeChildElementsClickable(this.element, this.dom.optionsList, function (index) {
+            (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.optionsList, function (index) {
                 _this4.updateState(index);
                 _this4.closeDropdown();
             });
 
-            Utils.ifNodeList(this.dom.labels, function () {
-                [].forEach.call(_this4.dom.labels, function (label) {
+            (0, _checks.ifNodeList)(this.dom.labels, function () {
+                (0, _uncategorized.forEach)(_this4.dom.labels, function (label) {
                     label.addEventListener('focus', function () {
                         _this4.dom.select.focus();
                     });
                 });
 
                 _this4.dom.select.addEventListener('focus', function () {
-                    Utils.makeElementsNotFocusable(_this4.dom.labels);
+                    (0, _focusAndClick.makeElementsNotFocusable)(_this4.dom.labels);
                 });
 
                 _this4.dom.select.addEventListener('blur', function () {
-                    Utils.makeElementsFocusable(_this4.dom.labels);
+                    (0, _focusAndClick.makeElementsFocusable)(_this4.dom.labels);
                 });
             });
 
-            Keyboard.onTabPressed(Utils.lastOfList(this.dom.optionsList), function () {
+            this.dom.focusables = (0, _focusAndClick.getFocusableChilds)(this.element);
+
+            Keyboard.onTabPressed((0, _uncategorized.lastOfList)(this.dom.optionsList), function () {
                 _this4.closeDropdown();
 
-                Utils.goToNextFocusableElement(_this4.dom.shadow);
+                (0, _focusAndClick.goToNextFocusableElement)((0, _uncategorized.lastOfList)(_this4.dom.focusables));
+            });
+
+            Keyboard.onShiftTabPressed((0, _uncategorized.firstOfList)(this.dom.optionsList), function () {
+                _this4.closeDropdown();
+
+                (0, _focusAndClick.goToPreviousFocusableElement)((0, _uncategorized.firstOfList)(_this4.dom.focusables));
             });
 
             return this;
@@ -5331,7 +5404,7 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
         key: 'getSelectedIndex',
         value: function getSelectedIndex() {
             for (var i = 0; i < this.dom.options.length; i++) {
-                if (Utils.hasClass(this.dom.options[i], '-selected')) {
+                if ((0, _classes.hasClass)(this.dom.options[i], '-selected')) {
                     return i;
                 }
             }
@@ -5343,8 +5416,10 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
         value: function openDropdown() {
             this.state.isOpened = true;
 
-            Utils.addClass(this.element, '-opened');
-            Utils.addClass(this.dom.shadow, '-visible');
+            (0, _classes.addClass)(this.element, '-opened');
+            (0, _classes.addClass)(this.dom.shadow, '-visible');
+
+            (0, _uncategorized.firstOfList)(this.dom.optionsList).focus();
 
             return this;
         }
@@ -5353,8 +5428,8 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
         value: function toggleDropdown() {
             this.state.isOpened = !this.state.isOpened;
 
-            Utils.toggleClass(this.element, '-opened');
-            Utils.toggleClass(this.dom.shadow, '-visible');
+            (0, _classes.toggleClass)(this.element, '-opened');
+            (0, _classes.toggleClass)(this.dom.shadow, '-visible');
 
             return this;
         }
@@ -5363,8 +5438,8 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
         value: function closeDropdown() {
             this.state.isOpened = false;
 
-            Utils.removeClass(this.element, '-opened');
-            Utils.removeClass(this.dom.shadow, '-visible');
+            (0, _classes.removeClass)(this.element, '-opened');
+            (0, _classes.removeClass)(this.dom.shadow, '-visible');
 
             return this;
         }
@@ -5377,7 +5452,7 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
             this.dom.state.innerHTML = this.dom.optionsList[this.state.selectedIndex].innerHTML;
             this.dom.hiddenSelect.selectedIndex = this.state.selectedIndex.toString();
 
-            Utils.aria.set(this.dom.select, 'activedescendant', this.dom.optionsList[this.state.selectedIndex].getAttribute('id'));
+            _aria.aria.set(this.dom.select, 'activedescendant', (0, _attributes.getAttribute)(this.dom.optionsList[this.state.selectedIndex], 'id'));
 
             return this;
         }
@@ -5388,7 +5463,7 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":25,"../utils":32}],22:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":25,"../utils/aria":34,"../utils/attributes":35,"../utils/checks":36,"../utils/classes":37,"../utils/focus-and-click":39,"../utils/uncategorized":41}],22:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5398,6 +5473,8 @@ exports.Tabs = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _component = require('../component');
+
 var _keyboard = require('../controls/keyboard');
 
 var Keyboard = _interopRequireWildcard(_keyboard);
@@ -5406,11 +5483,13 @@ var _touchscreen = require('../controls/touchscreen');
 
 var TouchScreen = _interopRequireWildcard(_touchscreen);
 
-var _utils = require('../utils');
+var _aria = require('../utils/aria');
 
-var Utils = _interopRequireWildcard(_utils);
+var _classes = require('../utils/classes');
 
-var _component = require('../component');
+var _focusAndClick = require('../utils/focus-and-click');
+
+var _uncategorized = require('../utils/uncategorized');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -5428,13 +5507,13 @@ var Tabs = exports.Tabs = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Tabs.__proto__ || Object.getPrototypeOf(Tabs)).call(this, element, options));
 
-        _this.dom = Utils.extend(_this.dom, {
-            tabs: _this.element.getElementsByClassName('tab'),
-            labels: _this.element.getElementsByClassName('label'),
-            labelsWrapper: _this.element.getElementsByClassName('labels')[0]
+        _this.dom = (0, _uncategorized.extend)(_this.dom, {
+            tabs: _this.element.querySelectorAll('.tab'),
+            labels: _this.element.querySelectorAll('.label'),
+            labelsWrapper: _this.element.querySelector('.labels')
         });
 
-        _this.state = Utils.extend(_this.state, {
+        _this.state = (0, _uncategorized.extend)(_this.state, {
             current: 0
         });
 
@@ -5448,24 +5527,24 @@ var Tabs = exports.Tabs = function (_Component) {
         value: function initAria() {
             var _this2 = this;
 
-            Utils.aria.setRole(this.dom.labelsWrapper, 'tablist');
+            _aria.aria.setRole(this.dom.labelsWrapper, 'tablist');
 
-            [].forEach.call(this.dom.labels, function (label, index) {
-                Utils.aria.setRole(label, 'tab');
-                Utils.aria.set(label, 'selected', false);
-                Utils.aria.set(label, 'controls', Utils.aria.setId(_this2.dom.tabs[index]));
+            (0, _uncategorized.forEach)(this.dom.labels, function (label, index) {
+                _aria.aria.setRole(label, 'tab');
+                _aria.aria.set(label, 'selected', false);
+                _aria.aria.set(label, 'controls', _aria.aria.setId(_this2.dom.tabs[index]));
             });
 
-            [].forEach.call(this.dom.tabs, function (tab, index) {
-                Utils.aria.setRole(tab, 'tabpanel');
-                Utils.aria.set(tab, 'hidden', true);
-                Utils.aria.set(tab, 'labelledby', Utils.aria.setId(_this2.dom.labels[index]));
+            (0, _uncategorized.forEach)(this.dom.tabs, function (tab, index) {
+                _aria.aria.setRole(tab, 'tabpanel');
+                _aria.aria.set(tab, 'hidden', true);
+                _aria.aria.set(tab, 'labelledby', _aria.aria.setId(_this2.dom.labels[index]));
             });
 
-            Utils.addClass(this.dom.tabs[0], '-active');
-            Utils.aria.set(this.dom.tabs[0], 'hidden', false);
-            Utils.addClass(this.dom.labels[0], '-active');
-            Utils.aria.set(this.dom.labels[0], 'selected', true);
+            (0, _classes.addClass)(this.dom.tabs[0], '-active');
+            _aria.aria.set(this.dom.tabs[0], 'hidden', false);
+            (0, _classes.addClass)(this.dom.labels[0], '-active');
+            _aria.aria.set(this.dom.labels[0], 'selected', true);
 
             return this;
         }
@@ -5474,14 +5553,14 @@ var Tabs = exports.Tabs = function (_Component) {
         value: function initControls() {
             var _this3 = this;
 
-            Utils.makeChildElementsClickable(this.element, this.dom.labels, function (index) {
+            (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.labels, function (index) {
                 _this3.makeTabInactive(_this3.state.current);
                 _this3.makeTabActive(index);
             });
 
-            [].forEach.call(this.dom.labels, function (label, index) {
+            (0, _uncategorized.forEach)(this.dom.labels, function (label, index) {
                 if (index !== _this3.state.current) {
-                    Utils.makeElementNotFocusable(label);
+                    (0, _focusAndClick.makeElementNotFocusable)(label);
                 }
 
                 Keyboard.onArrowLeftPressed(label, _this3.goToPreviousTab.bind(_this3));
@@ -5496,12 +5575,13 @@ var Tabs = exports.Tabs = function (_Component) {
     }, {
         key: 'makeTabActive',
         value: function makeTabActive(index) {
-            Utils.addClass(this.dom.labels[index], '-active');
-            Utils.addClass(this.dom.tabs[index], '-active');
-            Utils.aria.set(this.dom.labels[index], 'selected', true);
-            Utils.aria.set(this.dom.tabs[index], 'hidden', false);
+            (0, _classes.addClass)(this.dom.labels[index], '-active');
+            (0, _classes.addClass)(this.dom.tabs[index], '-active');
 
-            Utils.makeElementFocusable(this.dom.labels[index]);
+            _aria.aria.set(this.dom.labels[index], 'selected', true);
+            _aria.aria.set(this.dom.tabs[index], 'hidden', false);
+
+            (0, _focusAndClick.makeElementFocusable)(this.dom.labels[index]);
             this.dom.labels[index].focus();
 
             this.state.current = index;
@@ -5511,13 +5591,14 @@ var Tabs = exports.Tabs = function (_Component) {
     }, {
         key: 'makeTabInactive',
         value: function makeTabInactive(index) {
-            Utils.removeClass(this.dom.labels[index], '-active');
-            Utils.removeClass(this.dom.tabs[index], '-active');
-            Utils.aria.set(this.dom.labels[index], 'selected', false);
-            Utils.aria.set(this.dom.tabs[index], 'hidden', true);
+            (0, _classes.removeClass)(this.dom.labels[index], '-active');
+            (0, _classes.removeClass)(this.dom.tabs[index], '-active');
+
+            _aria.aria.set(this.dom.labels[index], 'selected', false);
+            _aria.aria.set(this.dom.tabs[index], 'hidden', true);
 
             this.dom.labels[index].blur();
-            Utils.makeElementNotFocusable(this.dom.labels[index]);
+            (0, _focusAndClick.makeElementNotFocusable)(this.dom.labels[index]);
 
             return this;
         }
@@ -5541,24 +5622,6 @@ var Tabs = exports.Tabs = function (_Component) {
 
             return this;
         }
-    }, {
-        key: 'keyDownHandler',
-        value: function keyDownHandler(keyCode) {
-            switch (keyCode) {
-                case 37:
-                    // Arrow Left
-                    this.goToPreviousTab();
-                    break;
-                case 39:
-                    // Arrow Right
-                    this.goToNextTab();
-                    break;
-                default:
-                    break;
-            }
-
-            return this;
-        }
     }]);
 
     return Tabs;
@@ -5566,7 +5629,7 @@ var Tabs = exports.Tabs = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":25,"../controls/touchscreen":27,"../utils":32}],23:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":25,"../controls/touchscreen":27,"../utils/aria":34,"../utils/classes":37,"../utils/focus-and-click":39,"../utils/uncategorized":41}],23:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5574,13 +5637,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.TagsList = undefined;
 
-var _utils = require('../utils');
-
-var Utils = _interopRequireWildcard(_utils);
-
 var _component = require('../component');
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+var _aria = require('../utils/aria');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -5596,7 +5655,7 @@ var TagsList = exports.TagsList = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (TagsList.__proto__ || Object.getPrototypeOf(TagsList)).call(this, element, options));
 
-        Utils.aria.setRole(_this.element, 'navigation');
+        _aria.aria.setRole(_this.element, 'navigation');
         return _this;
     }
 
@@ -5605,7 +5664,7 @@ var TagsList = exports.TagsList = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils":32}],24:[function(require,module,exports){
+},{"../component":6,"../utils/aria":34}],24:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5615,13 +5674,19 @@ exports.Textarea = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _utils = require('../utils');
-
-var Utils = _interopRequireWildcard(_utils);
-
 var _component = require('../component');
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+var _aria = require('../utils/aria');
+
+var _attributes = require('../utils/attributes');
+
+var _checks = require('../utils/checks');
+
+var _classes = require('../utils/classes');
+
+var _focusAndClick = require('../utils/focus-and-click');
+
+var _uncategorized = require('../utils/uncategorized');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -5637,9 +5702,9 @@ var Textarea = exports.Textarea = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Textarea.__proto__ || Object.getPrototypeOf(Textarea)).call(this, element, options));
 
-        _this.dom = Utils.extend(_this.dom, {
-            textarea: element.getElementsByTagName('textarea')[0],
-            labels: element.parentNode.getElementsByTagName('label')
+        _this.dom = (0, _uncategorized.extend)(_this.dom, {
+            textarea: element.querySelector('textarea'),
+            labels: element.parentNode.querySelectorAll('label')
         });
 
         _this.initAria();
@@ -5652,13 +5717,13 @@ var Textarea = exports.Textarea = function (_Component) {
         value: function initAria() {
             var _this2 = this;
 
-            var textareaId = this.dom.textarea.getAttribute('id') || Utils.aria.setId(this.dom.textarea);
+            var textareaId = (0, _attributes.getAttribute)(this.dom.textarea, 'id') || _aria.aria.setId(this.dom.textarea);
 
-            Utils.ifNodeList(this.dom.labels, function () {
-                Utils.aria.set(_this2.dom.textarea, 'labelledby', Utils.aria.setId(_this2.dom.labels[0]));
+            (0, _checks.ifNodeList)(this.dom.labels, function () {
+                _aria.aria.set(_this2.dom.textarea, 'labelledby', _aria.aria.setId(_this2.dom.labels[0]));
 
-                [].forEach.call(_this2.dom.labels, function (label) {
-                    label.setAttribute('for', textareaId);
+                (0, _uncategorized.forEach)(_this2.dom.labels, function (label) {
+                    (0, _attributes.setAttribute)(label, 'for', textareaId);
                 });
             }, false);
 
@@ -5669,8 +5734,8 @@ var Textarea = exports.Textarea = function (_Component) {
         value: function initControls() {
             var _this3 = this;
 
-            Utils.ifNodeList(this.dom.labels, function () {
-                [].forEach.call(_this3.dom.labels, function (label) {
+            (0, _checks.ifNodeList)(this.dom.labels, function () {
+                (0, _uncategorized.forEach)(_this3.dom.labels, function (label) {
                     label.addEventListener('focus', function () {
                         _this3.dom.textarea.focus();
                     });
@@ -5688,10 +5753,10 @@ var Textarea = exports.Textarea = function (_Component) {
         value: function focusEventHandler() {
             var _this4 = this;
 
-            Utils.addClass(this.element, '-focused');
+            (0, _classes.addClass)(this.element, '-focused');
 
-            Utils.ifNodeList(this.dom.labels, function () {
-                Utils.makeElementsNotFocusable(_this4.dom.labels);
+            (0, _checks.ifNodeList)(this.dom.labels, function () {
+                (0, _focusAndClick.makeElementsNotFocusable)(_this4.dom.labels);
             });
         }
     }, {
@@ -5699,19 +5764,19 @@ var Textarea = exports.Textarea = function (_Component) {
         value: function blurEventHandler() {
             var _this5 = this;
 
-            Utils.removeClass(this.element, '-focused');
+            (0, _classes.removeClass)(this.element, '-focused');
 
-            Utils.ifNodeList(this.dom.labels, function () {
-                Utils.makeElementsFocusable(_this5.dom.labels);
+            (0, _checks.ifNodeList)(this.dom.labels, function () {
+                (0, _focusAndClick.makeElementsFocusable)(_this5.dom.labels);
             });
         }
     }, {
         key: 'changeEventHandler',
         value: function changeEventHandler() {
             if (this.dom.textarea.value == '') {
-                Utils.removeClass(this.element, '-has-value');
+                (0, _classes.removeClass)(this.element, '-has-value');
             } else {
-                Utils.addClass(this.element, '-has-value');
+                (0, _classes.addClass)(this.element, '-has-value');
             }
         }
     }]);
@@ -5721,7 +5786,7 @@ var Textarea = exports.Textarea = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils":32}],25:[function(require,module,exports){
+},{"../component":6,"../utils/aria":34,"../utils/attributes":35,"../utils/checks":36,"../utils/classes":37,"../utils/focus-and-click":39,"../utils/uncategorized":41}],25:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5880,6 +5945,8 @@ var Events = exports.Events = function () {
             window: {}
         };
 
+        this.timeouts = {};
+
         this.eventsData = {};
 
         this.initDefaultEvents();
@@ -5890,6 +5957,11 @@ var Events = exports.Events = function () {
     _createClass(Events, [{
         key: 'initDefaultEvents',
         value: function initDefaultEvents() {
+            this.initWindowResizeEvents();
+        }
+    }, {
+        key: 'initWindowResizeEvents',
+        value: function initWindowResizeEvents() {
             var _this = this;
 
             this.addEvent('resizeWindowHeight');
@@ -5898,20 +5970,29 @@ var Events = exports.Events = function () {
             this.data.window.height = window.innerHeight;
             this.data.window.width = window.innerWidth;
 
+            this.timeouts.resizeWindowHeight = null;
+            this.timeouts.resizeWindowWidth = null;
+
             window.addEventListener('resize', function () {
                 var height = window.innerHeight;
                 var width = window.innerWidth;
 
                 if (_this.data.window.height != height) {
                     _this.data.window.height = height;
+                    clearTimeout(_this.timeouts.resizeWindowHeight);
 
-                    _this.fireEvent('resizeWindowHeight');
+                    _this.timeouts.resizeWindowHeight = setTimeout(function () {
+                        _this.fireEvent('resizeWindowHeight');
+                    }, 100);
                 }
 
                 if (_this.data.window.width != width) {
                     _this.data.window.width = width;
+                    clearTimeout(_this.timeouts.resizeWindowWidth);
 
-                    _this.fireEvent('resizeWindowWidth');
+                    _this.timeouts.resizeWindowHeight = setTimeout(function () {
+                        _this.fireEvent('resizeWindowWidth');
+                    }, 100);
                 }
             });
         }
@@ -5976,24 +6057,24 @@ document.addEventListener('DOMContentLoaded', function () {
     window.Muilessium = new _muilessium2.default();
 
     window.Muilessium.components = {
-        accordions: window.Muilessium.create('accordion', '.mui-accordion', {}),
-        breadcrumbs: window.Muilessium.create('breadcrumb', '.mui-breadcrumb', {}),
-        buttonsd: window.Muilessium.create('button-dropdown', '.mui-button-dropdown', {}),
-        buttons: window.Muilessium.create('button', '.mui-button', {}),
-        carousels: window.Muilessium.create('carousel', '.mui-carousel', {}),
-        checkboxes: window.Muilessium.create('checkbox', '.mui-checkbox', {}),
-        hnavigations: window.Muilessium.create('header-navigation', '.mui-header-navigation', {}),
-        inputRange: window.Muilessium.create('input-range', '.mui-input-range', {}),
-        inputs: window.Muilessium.create('input', '.mui-input', {}),
-        mediaViews: window.Muilessium.create('media-view', '.mui-media-view', {}),
-        modalWindows: window.Muilessium.create('modal-window', '.mui-modal-window', {}),
-        paginations: window.Muilessium.create('pagination', '.mui-pagination', {}),
-        radios: window.Muilessium.create('radio', '.mui-radio', {}),
-        ratings: window.Muilessium.create('rating', '.mui-rating', {}),
-        sdropdowns: window.Muilessium.create('select-dropdown', '.mui-select-dropdown', {}),
-        tabs: window.Muilessium.create('tabs', '.mui-tabs', {}),
-        tagslists: window.Muilessium.create('tags-list', '.mui-tags-list', {}),
-        textareas: window.Muilessium.create('textarea', '.mui-textarea', {})
+        'accordions': window.Muilessium.create('accordion', '.mui-accordion', {}),
+        'breadcrumbs': window.Muilessium.create('breadcrumb', '.mui-breadcrumb', {}),
+        'dropdown-buttons': window.Muilessium.create('button-dropdown', '.mui-button-dropdown', {}),
+        'buttons': window.Muilessium.create('button', '.mui-button', {}),
+        'carousels': window.Muilessium.create('carousel', '.mui-carousel', {}),
+        'checkboxes': window.Muilessium.create('checkbox', '.mui-checkbox', {}),
+        'header-navigations': window.Muilessium.create('header-navigation', '.mui-header-navigation', {}),
+        'range-inputs': window.Muilessium.create('input-range', '.mui-input-range', {}),
+        'inputs': window.Muilessium.create('input', '.mui-input', {}),
+        'media-views': window.Muilessium.create('media-view', '.mui-media-view', {}),
+        'modal-windows': window.Muilessium.create('modal-window', '.mui-modal-window', {}),
+        'paginations': window.Muilessium.create('pagination', '.mui-pagination', {}),
+        'radio-buttons': window.Muilessium.create('radio', '.mui-radio', {}),
+        'ratings': window.Muilessium.create('rating', '.mui-rating', {}),
+        'select-dropdowns': window.Muilessium.create('select-dropdown', '.mui-select-dropdown', {}),
+        'tabs': window.Muilessium.create('tabs', '.mui-tabs', {}),
+        'tagslists': window.Muilessium.create('tags-list', '.mui-tags-list', {}),
+        'textareas': window.Muilessium.create('textarea', '.mui-textarea', {})
     };
 });
 
@@ -6015,6 +6096,18 @@ var Utils = _interopRequireWildcard(_utils);
 var _polyfills = require('./polyfills');
 
 var Polyfills = _interopRequireWildcard(_polyfills);
+
+var _keyboard = require('./controls/keyboard');
+
+var Keyboard = _interopRequireWildcard(_keyboard);
+
+var _mouse = require('./controls/mouse');
+
+var Mouse = _interopRequireWildcard(_mouse);
+
+var _touchscreen = require('./controls/touchscreen');
+
+var TouchScreen = _interopRequireWildcard(_touchscreen);
 
 var _events = require('./events');
 
@@ -6088,6 +6181,11 @@ var Muilessium = function () {
         }
 
         this.Utils = Utils;
+
+        this.Keyboard = Keyboard;
+        this.Mouse = Mouse;
+        this.TouchScreen = TouchScreen;
+
         this.Events = new _events.Events();
 
         this.init();
@@ -6154,7 +6252,7 @@ var Muilessium = function () {
 exports.default = Muilessium;
 ;
 
-},{"./components/accordion":7,"./components/breadcrumb":8,"./components/button":10,"./components/button-dropdown":9,"./components/carousel":11,"./components/checkbox":12,"./components/header-navigation":13,"./components/input":15,"./components/input-range":14,"./components/media-view":16,"./components/modal-window":17,"./components/pagination":18,"./components/radio":19,"./components/rating":20,"./components/select-dropdown":21,"./components/tabs":22,"./components/tags-list":23,"./components/textarea":24,"./events":28,"./polyfills":31,"./utils":32}],31:[function(require,module,exports){
+},{"./components/accordion":7,"./components/breadcrumb":8,"./components/button":10,"./components/button-dropdown":9,"./components/carousel":11,"./components/checkbox":12,"./components/header-navigation":13,"./components/input":15,"./components/input-range":14,"./components/media-view":16,"./components/modal-window":17,"./components/pagination":18,"./components/radio":19,"./components/rating":20,"./components/select-dropdown":21,"./components/tabs":22,"./components/tags-list":23,"./components/textarea":24,"./controls/keyboard":25,"./controls/mouse":26,"./controls/touchscreen":27,"./events":28,"./polyfills":31,"./utils":32}],31:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -6492,9 +6590,9 @@ function setAttribute(element, attribute, value) {
 // -------------
 // Gets attribute from the element if it exists
 
-function getAttribute(element, attribute) {
+function getAttribute(element, attribute, defaultValue) {
     return (0, _checks.ifExists)(element, function () {
-        return element.getAttribute(attribute);
+        return element.getAttribute(attribute) || defaultValue;
     });
 };
 
@@ -6617,26 +6715,31 @@ Object.defineProperty(exports, "__esModule", {
 exports.hasClass = hasClass;
 exports.hasNotClass = hasNotClass;
 exports.addClass = addClass;
+exports.addClasses = addClasses;
 exports.removeClass = removeClass;
+exports.removeClasses = removeClasses;
+exports.replaceClass = replaceClass;
 exports.toggleClass = toggleClass;
 
 var _checks = require('../utils/checks');
 
+var _uncategorized = require('../utils/uncategorized');
+
 // Has class
 // ---------
 // Returns true if element exists and has selected class and false otherwise
+
+// -----------------------------------------------------------------------------
+// Manipulating CSS classes
+// -----------------------------------------------------------------------------
+
 
 function hasClass(element, classForTest) {
     return (0, _checks.ifExists)(element, function () {
         // Use className instead of classList because IE11 does not have support for slassList on SVG
         return element.className.indexOf(classForTest) !== -1;
     });
-} // -----------------------------------------------------------------------------
-// Manipulating CSS classes
-// -----------------------------------------------------------------------------
-
-
-;
+};
 
 // Has not class
 // -------------
@@ -6663,6 +6766,22 @@ function addClass(element, newClass) {
     });
 };
 
+// Add multiple classes
+// --------------------
+// Adds multiple classs to the element if it exists
+
+function addClasses(element) {
+    for (var _len = arguments.length, newClasses = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        newClasses[_key - 1] = arguments[_key];
+    }
+
+    return (0, _checks.ifExists)(element, function () {
+        (0, _uncategorized.forEach)(newClasses, function (c) {
+            addClass(element, c);
+        });
+    });
+};
+
 // Remove class
 // ------------
 // Removes class from the element if it exists
@@ -6672,6 +6791,31 @@ function removeClass(element, classForRemoving) {
         // Use className instead of classList because IE11 does not have support for slassList on SVG
         element.className = element.className.replace(classForRemoving, '');
     });
+};
+
+// Remove multiple classes
+// --------------------
+// Removes multiple classs to the element if it exists
+
+function removeClasses(element) {
+    for (var _len2 = arguments.length, classesForRemoving = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+        classesForRemoving[_key2 - 1] = arguments[_key2];
+    }
+
+    return (0, _checks.ifExists)(element, function () {
+        (0, _uncategorized.forEach)(classesForRemoving, function (c) {
+            removeClass(element, c);
+        });
+    });
+};
+
+// Replace class
+// -------------
+// Removes first selected class and adds second one
+
+function replaceClass(element, classForRemoving, newClass) {
+    removeClass(element, classForRemoving);
+    addClass(element, newClass);
 };
 
 // Toggle class
@@ -6688,7 +6832,7 @@ function toggleClass(element, classForToggle) {
     });
 };
 
-},{"../utils/checks":36}],38:[function(require,module,exports){
+},{"../utils/checks":36,"../utils/uncategorized":41}],38:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -7036,6 +7180,7 @@ exports.stringToBoolean = stringToBoolean;
 exports.callOnce = callOnce;
 exports.firstOfList = firstOfList;
 exports.lastOfList = lastOfList;
+exports.forEach = forEach;
 
 var _classes = require('../utils/classes');
 
@@ -7210,6 +7355,15 @@ function firstOfList(list) {
 
 function lastOfList(list) {
     return list[list.length - 1];
+};
+
+// For Each
+// --------
+
+function forEach(list, callback) {
+    return [].forEach.call(list, function (item, index) {
+        callback(item, index, list);
+    });
 };
 
 },{"../utils/classes":37,"../utils/focus-and-click":39,"../utils/scroll":40,"imagesloaded":3}],42:[function(require,module,exports){
