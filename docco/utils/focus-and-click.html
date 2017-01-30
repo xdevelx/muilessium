@@ -617,6 +617,80 @@ with callback to the childs if they exists</p>
                     </div>
                 </div>
             
+                
+                <div class='' id='section-28'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-28'>&#182;</a>
+                        </div>
+                        <h2 id="on-focus">On focus</h2>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-29'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-29'>&#182;</a>
+                        </div>
+                        <p>Execues callback when selected element being focused</p>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onFocus</span>(<span class="hljs-params">element, callback</span>) </span>{
+    <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
+        element.addEventListener(<span class="hljs-string">'focus'</span>, callback);
+    });
+};</pre></div></div>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-30'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-30'>&#182;</a>
+                        </div>
+                        <h2 id="on-blur">On blur</h2>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-31'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-31'>&#182;</a>
+                        </div>
+                        <p>Execues callback when selected element being unfocused</p>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onBlur</span>(<span class="hljs-params">element, callback</span>) </span>{
+    <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
+        element.addEventListener(<span class="hljs-string">'blur'</span>, callback);
+    });
+};</pre></div></div>
+                        
+                    </div>
+                </div>
+            
     </main>
 
     <div class='mui-page-footer _text-center _line-3r -white -black-bg'>

@@ -4113,7 +4113,7 @@ var Carousel = exports.Carousel = function (_Component) {
 
             (0, _focusAndClick.makeElementFocusable)(this.element);
 
-            this.element.addEventListener('focus', function () {
+            (0, _focusAndClick.onFocus)(this.element, function () {
                 _this2.stopRotating();
 
                 (0, _uncategorized.forEach)(_this2.dom.controls.prev, function (prev) {
@@ -4125,7 +4125,7 @@ var Carousel = exports.Carousel = function (_Component) {
                 });
             });
 
-            this.element.addEventListener('blur', function () {
+            (0, _focusAndClick.onBlur)(this.element, function () {
                 _this2.startRotating();
 
                 (0, _uncategorized.forEach)(_this2.dom.controls.prev, function (prev) {
@@ -4700,14 +4700,14 @@ var Input = exports.Input = function (_Component) {
 
             (0, _checks.ifNodeList)(this.dom.labels, function () {
                 (0, _uncategorized.forEach)(_this3.dom.labels, function (label) {
-                    label.addEventListener('focus', function () {
+                    (0, _focusAndClick.onFocus)(label, function () {
                         _this3.dom.input.focus();
                     });
                 });
             });
 
-            this.dom.input.addEventListener('focus', this.focusHandler.bind(this));
-            this.dom.input.addEventListener('blur', this.blurHandler.bind(this));
+            (0, _focusAndClick.onFocus)(this.dom.input, this.focusHandler.bind(this));
+            (0, _focusAndClick.onBlur)(this.dom.input, this.blurHandler.bind(this));
 
             this.dom.input.addEventListener('change', this.changeValueHandler.bind(this));
             this.dom.input.addEventListener('keydown', this.changeValueHandler.bind(this));
@@ -5370,16 +5370,16 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
 
             (0, _checks.ifNodeList)(this.dom.labels, function () {
                 (0, _uncategorized.forEach)(_this4.dom.labels, function (label) {
-                    label.addEventListener('focus', function () {
+                    (0, _focusAndClick.onFocus)(label, function () {
                         _this4.dom.select.focus();
                     });
                 });
 
-                _this4.dom.select.addEventListener('focus', function () {
+                (0, _focusAndClick.onFocus)(_this4.dom.select, function () {
                     (0, _focusAndClick.makeElementsNotFocusable)(_this4.dom.labels);
                 });
 
-                _this4.dom.select.addEventListener('blur', function () {
+                (0, _focusAndClick.onBlur)(_this4.dom.select, function () {
                     (0, _focusAndClick.makeElementsFocusable)(_this4.dom.labels);
                 });
             });
@@ -5736,14 +5736,15 @@ var Textarea = exports.Textarea = function (_Component) {
 
             (0, _checks.ifNodeList)(this.dom.labels, function () {
                 (0, _uncategorized.forEach)(_this3.dom.labels, function (label) {
-                    label.addEventListener('focus', function () {
+                    (0, _focusAndClick.onFocus)(label, function () {
                         _this3.dom.textarea.focus();
                     });
                 });
             }, false);
 
-            this.dom.textarea.addEventListener('focus', this.focusEventHandler.bind(this));
-            this.dom.textarea.addEventListener('blur', this.blurEventHandler.bind(this));
+            (0, _focusAndClick.onFocus)(this.dom.textarea, this.focusEventHandler.bind(this));
+            (0, _focusAndClick.onBlur)(this.dom.textarea, this.blurEventHandler.bind(this));
+
             this.dom.textarea.addEventListener('change', this.changeEventHandler.bind(this));
 
             return this;
@@ -6895,6 +6896,8 @@ exports.goToNextFocusableElement = goToNextFocusableElement;
 exports.goToPreviousFocusableElement = goToPreviousFocusableElement;
 exports.makeElementClickable = makeElementClickable;
 exports.makeChildElementsClickable = makeChildElementsClickable;
+exports.onFocus = onFocus;
+exports.onBlur = onBlur;
 
 var _checks = require('../utils/checks');
 
@@ -7096,6 +7099,26 @@ function makeChildElementsClickable(element, childs, callback) {
     });
 };
 
+// On focus
+// --------
+// Execues callback when selected element being focused
+
+function onFocus(element, callback) {
+    return (0, _checks.ifExists)(element, function () {
+        element.addEventListener('focus', callback);
+    });
+};
+
+// On blur
+// -------
+// Execues callback when selected element being unfocused
+
+function onBlur(element, callback) {
+    return (0, _checks.ifExists)(element, function () {
+        element.addEventListener('blur', callback);
+    });
+};
+
 },{"../controls/keyboard":25,"../controls/mouse":26,"../utils/checks":36}],40:[function(require,module,exports){
 'use strict';
 
@@ -7210,7 +7233,7 @@ function normalizeTabIndex() {
 var imagesLoaded = require('imagesloaded');
 
 function lazyLoadImages(callback) {
-    [].forEach.call(document.querySelectorAll('._lazy-load'), function (image) {
+    forEach(document.querySelectorAll('._lazy-load'), function (image) {
         image.src = image.getAttribute('data-src');
 
         image.addEventListener('load', function () {
@@ -7229,7 +7252,7 @@ function lazyLoadImages(callback) {
 function initAnchorLinks() {
     var links = document.getElementsByTagName('a');
 
-    [].forEach.call(links, function (link) {
+    forEach(links, function (link) {
         var href = link.getAttribute('href');
 
         if (href && href[0] === '#') {
