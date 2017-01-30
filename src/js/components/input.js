@@ -1,17 +1,8 @@
 import { Component } from '../component';
 
-import {
-    aria
-} from '../utils/aria';
-
-import {
-    setAttribute,
-    getAttribute
-} from '../utils/attributes';
-
-import {
-    ifNodeList
-} from '../utils/checks';
+import { aria                       } from '../utils/aria';
+import { setAttribute, getAttribute } from '../utils/attributes';
+import { ifNodeList                 } from '../utils/checks';
 
 import {
     addClass,
@@ -22,13 +13,12 @@ import {
 
 import {
     makeElementsFocusable,
-    makeElementsNotFocusable
+    makeElementsNotFocusable,
+    onFocus,
+    onBlur
 } from '../utils/focus-and-click';
 
-import {
-    extend,
-    forEach
-} from '../utils/uncategorized';
+import { extend, forEach } from '../utils/uncategorized';
 
 
 
@@ -72,14 +62,14 @@ export class Input extends Component {
     initControls() {
         ifNodeList(this.dom.labels, () => {
             forEach(this.dom.labels, (label) => {
-                label.addEventListener('focus', () => {
+                onFocus(label, () => {
                     this.dom.input.focus();
                 });
             });
         });
 
-        this.dom.input.addEventListener('focus', this.focusHandler.bind(this));
-        this.dom.input.addEventListener('blur',  this.blurHandler.bind(this));
+        onFocus(this.dom.input, this.focusHandler.bind(this));
+        onBlur(this.dom.input,  this.blurHandler.bind(this));
 
         this.dom.input.addEventListener('change',  this.changeValueHandler.bind(this));
         this.dom.input.addEventListener('keydown', this.changeValueHandler.bind(this));

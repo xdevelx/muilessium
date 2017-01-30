@@ -2,23 +2,10 @@ import { Component } from '../component';
 
 import * as TouchScreen from '../controls/touchscreen';
 
-import {
-    aria
-} from '../utils/aria';
-
-import {
-    addClass,
-    removeClass
-} from '../utils/classes';
-
-import {
-    makeElementClickable
-} from '../utils/focus-and-click';
-
-import {
-    extend,
-    forEach
-} from '../utils/uncategorized';
+import { aria                  } from '../utils/aria';
+import { addClass, removeClass } from '../utils/classes';
+import { makeElementClickable  } from '../utils/focus-and-click';
+import { extend, forEach       } from '../utils/uncategorized';
 
 
 

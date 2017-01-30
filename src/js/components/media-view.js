@@ -1,12 +1,7 @@
 import { Component } from '../component';
 
-import {
-    aria
-} from '../utils/aria';
-
-import {
-    extend
-} from '../utils/uncategorized';
+import { aria } from '../utils/aria';
+import { extend } from '../utils/uncategorized';
 
 
 

@@ -2,25 +2,10 @@ import { Component } from '../component';
 
 import * as Keyboard from '../controls/keyboard';
 
-import {
-    aria
-} from '../utils/aria';
-
-import {
-    getAttribute,
-    setAttribute
-} from '../utils/attributes';
-
-import {
-    addClass,
-    removeClass,
-    toggleClass,
-    hasClass
-} from '../utils/classes';
-
-import {
-    ifNodeList
-} from '../utils/checks';
+import { aria                                         } from '../utils/aria';
+import { getAttribute, setAttribute                   } from '../utils/attributes';
+import { addClass, removeClass, toggleClass, hasClass } from '../utils/classes';
+import { ifNodeList                                   } from '../utils/checks';
 
 import {
     makeElementClickable,
@@ -29,15 +14,12 @@ import {
     makeElementsNotFocusable,
     getFocusableChilds,
     goToNextFocusableElement,
-    goToPreviousFocusableElement
+    goToPreviousFocusableElement,
+    onFocus,
+    onBlur
 } from '../utils/focus-and-click';
 
-import {
-    extend,
-    forEach,
-    firstOfList,
-    lastOfList
-} from '../utils/uncategorized';
+import { extend, forEach, firstOfList, lastOfList } from '../utils/uncategorized';
 
 
 
@@ -133,16 +115,16 @@ export class SelectDropdown extends Component {
 
         ifNodeList(this.dom.labels, () => {
             forEach(this.dom.labels, (label) => {
-                label.addEventListener('focus', () => {
+                onFocus(label, () => {
                     this.dom.select.focus();
                 });
             });
 
-            this.dom.select.addEventListener('focus', () => {
+            onFocus(this.dom.select, () => {
                 makeElementsNotFocusable(this.dom.labels);
             });
 
-            this.dom.select.addEventListener('blur', () => {
+            onBlur(this.dom.select, () => {
                 makeElementsFocusable(this.dom.labels);
             });
             

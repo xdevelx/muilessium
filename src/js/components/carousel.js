@@ -4,24 +4,17 @@ import * as Mouse       from '../controls/mouse';
 import * as Keyboard    from '../controls/keyboard';
 import * as TouchScreen from '../controls/touchscreen';
 
-import {
-    addClass,
-    removeClass
-} from '../utils/classes';
-
-import {
-    console
-} from '../utils/console';
+import { addClass, removeClass } from '../utils/classes';
+import { console               } from '../utils/console';
 
 import {
     makeElementFocusable,
-    makeChildElementsClickable
+    makeChildElementsClickable,
+    onFocus,
+    onBlur
 } from '../utils/focus-and-click';
 
-import {
-    extend,
-    forEach
-} from '../utils/uncategorized';
+import { extend, forEach } from '../utils/uncategorized';
 
 
 
@@ -64,7 +57,7 @@ export class Carousel extends Component {
 
         makeElementFocusable(this.element);
 
-        this.element.addEventListener('focus', () => {
+        onFocus(this.element, () => {
             this.stopRotating();
 
             forEach(this.dom.controls.prev, (prev) => {
@@ -76,7 +69,7 @@ export class Carousel extends Component {
             });
         });
 
-        this.element.addEventListener('blur', () => {
+        onBlur(this.element, () => {
             this.startRotating();
 
             forEach(this.dom.controls.prev, (prev) => {

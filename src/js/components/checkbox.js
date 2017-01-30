@@ -1,25 +1,10 @@
 import { Component } from '../component';
 
-import {
-    aria
-} from '../utils/aria';
-
-import {
-    setAttribute
-} from '../utils/attributes';
-
-import {
-    addClass,
-    removeClass
-} from '../utils/classes';
-
-import {
-    makeElementClickable
-} from '../utils/focus-and-click';
-
-import {
-    extend
-} from '../utils/uncategorized';
+import { aria                  } from '../utils/aria';
+import { setAttribute          } from '../utils/attributes';
+import { addClass, removeClass } from '../utils/classes';
+import { makeElementClickable  } from '../utils/focus-and-click';
+import { extend                } from '../utils/uncategorized';
 
 
 

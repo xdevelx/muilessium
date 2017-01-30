@@ -1,8 +1,6 @@
 import { Component } from '../component';
 
-import {
-    aria
-} from '../utils/aria';
+import { aria } from '../utils/aria';
 
 
 

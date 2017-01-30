@@ -29,7 +29,7 @@ export function normalizeTabIndex() {
 let imagesLoaded = require('imagesloaded');
 
 export function lazyLoadImages(callback) {
-    [].forEach.call(document.querySelectorAll('._lazy-load'), (image) => {
+    forEach(document.querySelectorAll('._lazy-load'), (image) => {
         image.src = image.getAttribute('data-src');
 
         image.addEventListener('load', function() {
@@ -50,7 +50,7 @@ export function lazyLoadImages(callback) {
 export function initAnchorLinks() {
     let links = document.getElementsByTagName('a');
 
-    [].forEach.call(links, (link) => {
+    forEach(links, (link) => {
         let href = link.getAttribute('href');
 
         if (href && href[0] === '#') {

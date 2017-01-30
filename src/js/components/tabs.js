@@ -3,14 +3,8 @@ import { Component } from '../component';
 import * as Keyboard from '../controls/keyboard';
 import * as TouchScreen from '../controls/touchscreen';
 
-import {
-    aria
-} from '../utils/aria';
-
-import {
-    addClass,
-    removeClass
-} from '../utils/classes';
+import { aria                  } from '../utils/aria';
+import { addClass, removeClass } from '../utils/classes';
 
 import {
     makeChildElementsClickable,
@@ -18,10 +12,7 @@ import {
     makeElementFocusable
 } from '../utils/focus-and-click';
 
-import {
-    extend,
-    forEach
-} from '../utils/uncategorized';
+import { extend, forEach } from '../utils/uncategorized';
 
 
 

@@ -1,32 +1,18 @@
 import { Component } from '../component';
 
-import {
-    aria
-} from '../utils/aria';
-
-import {
-    setAttribute,
-    getAttribute
-} from '../utils/attributes';
-
-import {
-    ifNodeList
-} from '../utils/checks';
-
-import {
-    addClass,
-    removeClass
-} from '../utils/classes';
+import { aria                       } from '../utils/aria';
+import { setAttribute, getAttribute } from '../utils/attributes';
+import { ifNodeList                 } from '../utils/checks';
+import { addClass, removeClass      } from '../utils/classes';
 
 import {
     makeElementsFocusable,
-    makeElementsNotFocusable
+    makeElementsNotFocusable,
+    onFocus,
+    onBlur
 } from '../utils/focus-and-click';
 
-import {
-    extend,
-    forEach
-} from '../utils/uncategorized';
+import { extend, forEach } from '../utils/uncategorized';
 
 
 
@@ -62,14 +48,15 @@ export class Textarea extends Component {
     initControls() {
         ifNodeList(this.dom.labels, () => {
             forEach(this.dom.labels, (label) => {
-                label.addEventListener('focus', () => {
+                onFocus(label, () => {
                     this.dom.textarea.focus();
                 });
             });
         }, false);
 
-        this.dom.textarea.addEventListener('focus',  this.focusEventHandler.bind(this));
-        this.dom.textarea.addEventListener('blur',   this.blurEventHandler.bind(this));
+        onFocus(this.dom.textarea,  this.focusEventHandler.bind(this));
+        onBlur(this.dom.textarea,   this.blurEventHandler.bind(this));
+
         this.dom.textarea.addEventListener('change', this.changeEventHandler.bind(this));
 
         return this;

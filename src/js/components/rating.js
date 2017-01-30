@@ -2,33 +2,17 @@ import { Component } from '../component';
 
 import * as Keyboard from '../controls/keyboard';
 
-import {
-    aria
-} from '../utils/aria';
-
-import {
-    getAttribute,
-    setAttribute
-} from '../utils/attributes';
-
-import {
-    addClass,
-    removeClass
-} from '../utils/classes';
-
-import {
-    console
-} from '../utils/console';
+import { aria                       } from '../utils/aria';
+import { getAttribute, setAttribute } from '../utils/attributes';
+import { addClass, removeClass      } from '../utils/classes';
+import { console                    } from '../utils/console';
 
 import {
     makeElementFocusable,
     makeChildElementsClickable
 } from '../utils/focus-and-click';
 
-import {
-    extend,
-    forEach
-} from '../utils/uncategorized';
+import { extend, forEach } from '../utils/uncategorized';
 
 
 

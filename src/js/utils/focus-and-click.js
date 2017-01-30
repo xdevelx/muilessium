@@ -215,3 +215,26 @@ export function makeChildElementsClickable(element, childs, callback, mouseOnly 
     });
 };
 
+
+// On focus
+// --------
+// Execues callback when selected element being focused
+
+export function onFocus(element, callback) {
+    return ifExists(element, () => {
+        element.addEventListener('focus', callback);
+    });
+};
+
+
+// On blur
+// -------
+// Execues callback when selected element being unfocused
+
+export function onBlur(element, callback) {
+    return ifExists(element, () => {
+        element.addEventListener('blur', callback);
+    });
+};
+
+
