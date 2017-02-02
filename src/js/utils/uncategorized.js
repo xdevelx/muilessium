@@ -29,7 +29,7 @@ export function normalizeTabIndex() {
 let imagesLoaded = require('imagesloaded');
 
 export function lazyLoadImages(callback) {
-    forEach(document.querySelectorAll('._lazy-load'), (image) => {
+    forEach(document.querySelectorAll('.-js-lazy-load'), (image) => {
         image.src = image.getAttribute('data-src');
 
         image.addEventListener('load', function() {

@@ -2,10 +2,10 @@ import { Component } from '../component';
 
 import * as Keyboard from '../controls/keyboard';
 
-import { aria                       } from '../utils/aria';
-import { getAttribute, setAttribute } from '../utils/attributes';
-import { addClass, removeClass      } from '../utils/classes';
-import { console                    } from '../utils/console';
+import { aria                            } from '../utils/aria';
+import { getAttribute, setAttribute      } from '../utils/attributes';
+import { addClass, removeClass, hasClass } from '../utils/classes';
+import { console                         } from '../utils/console';
 
 import {
     makeElementFocusable,
@@ -27,11 +27,16 @@ export class Rating extends Component {
         this.state = extend(this.state, {
             rating: parseInt(getAttribute(element, 'data-rating'), 10),
             maxRating: 5,
-            minRating: 0
+            minRating: 0,
+            isEnabled: !hasClass(element, '-js-disabled')
         });
 
         this.initAria();
-        this.initControls();
+
+        if (this.state.isEnabled) {
+            this.initControls();
+        }
+
         this.updateRating(this.state.rating);
     }
 

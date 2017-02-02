@@ -2,9 +2,10 @@ import { Component } from '../component';
 
 import { aria                       } from '../utils/aria';
 import { setAttribute, getAttribute } from '../utils/attributes';
-import { ifNodeList                 } from '../utils/checks';
+import { ifExists, ifNodeList       } from '../utils/checks';
 
 import {
+    hasClass,
     addClass,
     removeClass,
     removeClasses,
@@ -35,8 +36,10 @@ export class Input extends Component {
 
         this.state = extend(this.state, {
             regexp:            new RegExp(getAttribute(element, 'data-regexp', '')),
+            isValidationEnabled: !hasClass(element, '-js-no-validation'),
             validationDelay:   getAttribute(element, 'data-validation-delay', 300),
-            validationTimeout: null
+            validationTimeout: null,
+            printNotExistsWarnings: !hasClass(element, '-js-allow-not-exists')
         });
 
         this.initAria();
@@ -53,7 +56,7 @@ export class Input extends Component {
             forEach(this.dom.labels, (label) => {
                 setAttribute(label, 'for', inputId);
             });
-        });
+        }, this.state.printNotExistsWarnings);
 
         return this;
     }
@@ -66,7 +69,7 @@ export class Input extends Component {
                     this.dom.input.focus();
                 });
             });
-        });
+        }, this.state.printNotExistsWarnings);
 
         onFocus(this.dom.input, this.focusHandler.bind(this));
         onBlur(this.dom.input,  this.blurHandler.bind(this));
@@ -83,7 +86,7 @@ export class Input extends Component {
 
         ifNodeList(this.dom.labels, () => {
             makeElementsNotFocusable(this.dom.labels);
-        });
+        }, this.state.printNotExistsWarnings);
 
         return this;
     }
@@ -94,7 +97,7 @@ export class Input extends Component {
 
         ifNodeList(this.dom.labels, () => {
             makeElementsFocusable(this.dom.labels);
-        });
+        }, this.state.printNotExistsWarnings);
 
         return this;
     }
@@ -103,8 +106,11 @@ export class Input extends Component {
     changeValueHandler() {
         if (this.dom.input.value == '') {
             removeClasses(this.element, '-has-value', '-valid', '-invalid');
-            removeClasses(this.dom.hint, '-valid', '-invalid');
-            removeClasses(this.dom.indicator, '-valid', '-invalid');
+
+            ifExists(this.dom.hint, () => {
+                removeClasses(this.dom.hint,      '-valid', '-invalid');
+                removeClasses(this.dom.indicator, '-valid', '-invalid');
+            }, this.state.printNotExistsWarnings);
         } else {
             addClass(this.element, '-has-value');
 
@@ -122,17 +128,25 @@ export class Input extends Component {
 
     
     validate() {
-        if (this.state.regexp.test(this.dom.input.value)) {
-            replaceClass(this.element,       '-invalid', '-valid');
-            replaceClass(this.dom.hint,      '-invalid', '-valid');
-            replaceClass(this.dom.indicator, '-invalid', '-valid');
-        } else {
-            replaceClass(this.element,       '-valid', '-invalid');
-            replaceClass(this.dom.hint,      '-valid', '-invalid');
-            replaceClass(this.dom.indicator, '-valid', '-invalid');
-        }
+        if (this.state.isValidationEnabled) {
+            if (this.state.regexp.test(this.dom.input.value)) {
+                replaceClass(this.element,       '-invalid', '-valid');
 
-        this.state.validationTimeout = null;
+                ifExists(this.dom.hint, () => {
+                    replaceClass(this.dom.hint,      '-invalid', '-valid');
+                    replaceClass(this.dom.indicator, '-invalid', '-valid');
+                }, this.state.printNotExistsWarnings);
+            } else {
+                replaceClass(this.element,       '-valid', '-invalid');
+
+                ifExists(this.dom.hint, () => {
+                    replaceClass(this.dom.hint,      '-valid', '-invalid');
+                    replaceClass(this.dom.indicator, '-valid', '-invalid');
+                }, this.state.printNotExistsWarnings);
+            }
+
+            this.state.validationTimeout = null;
+        }
 
         return this;
     }    

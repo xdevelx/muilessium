@@ -4,12 +4,21 @@
 // @state -circle  - Circle image
 //
 // @markup
-//  <img class='mui-image _lazy-load' data-src='https://placehold.it/250x250' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt=''>
+//  <img class='mui-image -js-lazy-load' data-src='https://placehold.it/250x250' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt=''>
 
 
 .@{muilessium-prefix}image {
     margin-left: auto;
     margin-right: auto;
+
+    &.-js-lazy-load {
+        opacity: 0;
+        transition: opacity @default-animation-duration @default-animation-function;
+
+        &.-loaded {
+            opacity: 1;
+        }
+    }
 
     &.-rounded {
         border-radius: @default-border-radius;

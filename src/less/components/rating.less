@@ -1,4 +1,5 @@
 // @name Rating
+// @description Use -js-disabled class to create "view-only" rating.
 // @requires FontAwesome
 //
 // @markup
@@ -16,10 +17,12 @@
     
     user-select: none;
 
-    &:hover,
-    &:focus {
-        text-shadow: 0 0 1px @black;
-        cursor: pointer;
+    &:not(.-js-disabled) {
+        &:hover,
+        &:focus {
+            text-shadow: 0 0 1px @black;
+            cursor: pointer;
+        }
     }
     
     &.-r1 {
