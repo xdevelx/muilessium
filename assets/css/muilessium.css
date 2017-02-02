@@ -895,13 +895,6 @@
 ._hidden {
   display: none !important;
 }
-._lazy-load {
-  opacity: 0;
-  transition: opacity 210ms cubic-bezier(0.53, 0.05, 0.13, 0.94);
-}
-._lazy-load.-loaded {
-  opacity: 1;
-}
 ._separate-1 {
   margin-top: 1rem !important;
   margin-bottom: 1rem !important;
@@ -2557,6 +2550,13 @@ h6,
   margin-left: auto;
   margin-right: auto;
 }
+.mui-image.-js-lazy-load {
+  opacity: 0;
+  transition: opacity 210ms cubic-bezier(0.53, 0.05, 0.13, 0.94);
+}
+.mui-image.-js-lazy-load.-loaded {
+  opacity: 1;
+}
 .mui-image.-rounded {
   border-radius: 0.2rem;
 }
@@ -3524,8 +3524,8 @@ mark {
       -ms-user-select: none;
           user-select: none;
 }
-.mui-rating:hover,
-.mui-rating:focus {
+.mui-rating:not(.-js-disabled):hover,
+.mui-rating:not(.-js-disabled):focus {
   text-shadow: 0 0 1px #000000;
   cursor: pointer;
 }

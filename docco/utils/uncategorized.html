@@ -176,7 +176,7 @@
 <span class="hljs-keyword">let</span> imagesLoaded = <span class="hljs-built_in">require</span>(<span class="hljs-string">'imagesloaded'</span>);
 
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lazyLoadImages</span>(<span class="hljs-params">callback</span>) </span>{
-    forEach(<span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">'._lazy-load'</span>), (image) =&gt; {
+    forEach(<span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">'.-js-lazy-load'</span>), (image) =&gt; {
         image.src = image.getAttribute(<span class="hljs-string">'data-src'</span>);
 
         image.addEventListener(<span class="hljs-string">'load'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{

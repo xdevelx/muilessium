@@ -4667,8 +4667,10 @@ var Input = exports.Input = function (_Component) {
 
         _this.state = (0, _uncategorized.extend)(_this.state, {
             regexp: new RegExp((0, _attributes.getAttribute)(element, 'data-regexp', '')),
+            isValidationEnabled: !(0, _classes.hasClass)(element, '-js-no-validation'),
             validationDelay: (0, _attributes.getAttribute)(element, 'data-validation-delay', 300),
-            validationTimeout: null
+            validationTimeout: null,
+            printNotExistsWarnings: !(0, _classes.hasClass)(element, '-js-allow-not-exists')
         });
 
         _this.initAria();
@@ -4689,7 +4691,7 @@ var Input = exports.Input = function (_Component) {
                 (0, _uncategorized.forEach)(_this2.dom.labels, function (label) {
                     (0, _attributes.setAttribute)(label, 'for', inputId);
                 });
-            });
+            }, this.state.printNotExistsWarnings);
 
             return this;
         }
@@ -4704,7 +4706,7 @@ var Input = exports.Input = function (_Component) {
                         _this3.dom.input.focus();
                     });
                 });
-            });
+            }, this.state.printNotExistsWarnings);
 
             (0, _focusAndClick.onFocus)(this.dom.input, this.focusHandler.bind(this));
             (0, _focusAndClick.onBlur)(this.dom.input, this.blurHandler.bind(this));
@@ -4723,7 +4725,7 @@ var Input = exports.Input = function (_Component) {
 
             (0, _checks.ifNodeList)(this.dom.labels, function () {
                 (0, _focusAndClick.makeElementsNotFocusable)(_this4.dom.labels);
-            });
+            }, this.state.printNotExistsWarnings);
 
             return this;
         }
@@ -4736,17 +4738,22 @@ var Input = exports.Input = function (_Component) {
 
             (0, _checks.ifNodeList)(this.dom.labels, function () {
                 (0, _focusAndClick.makeElementsFocusable)(_this5.dom.labels);
-            });
+            }, this.state.printNotExistsWarnings);
 
             return this;
         }
     }, {
         key: 'changeValueHandler',
         value: function changeValueHandler() {
+            var _this6 = this;
+
             if (this.dom.input.value == '') {
                 (0, _classes.removeClasses)(this.element, '-has-value', '-valid', '-invalid');
-                (0, _classes.removeClasses)(this.dom.hint, '-valid', '-invalid');
-                (0, _classes.removeClasses)(this.dom.indicator, '-valid', '-invalid');
+
+                (0, _checks.ifExists)(this.dom.hint, function () {
+                    (0, _classes.removeClasses)(_this6.dom.hint, '-valid', '-invalid');
+                    (0, _classes.removeClasses)(_this6.dom.indicator, '-valid', '-invalid');
+                }, this.state.printNotExistsWarnings);
             } else {
                 (0, _classes.addClass)(this.element, '-has-value');
 
@@ -4764,17 +4771,27 @@ var Input = exports.Input = function (_Component) {
     }, {
         key: 'validate',
         value: function validate() {
-            if (this.state.regexp.test(this.dom.input.value)) {
-                (0, _classes.replaceClass)(this.element, '-invalid', '-valid');
-                (0, _classes.replaceClass)(this.dom.hint, '-invalid', '-valid');
-                (0, _classes.replaceClass)(this.dom.indicator, '-invalid', '-valid');
-            } else {
-                (0, _classes.replaceClass)(this.element, '-valid', '-invalid');
-                (0, _classes.replaceClass)(this.dom.hint, '-valid', '-invalid');
-                (0, _classes.replaceClass)(this.dom.indicator, '-valid', '-invalid');
-            }
+            var _this7 = this;
 
-            this.state.validationTimeout = null;
+            if (this.state.isValidationEnabled) {
+                if (this.state.regexp.test(this.dom.input.value)) {
+                    (0, _classes.replaceClass)(this.element, '-invalid', '-valid');
+
+                    (0, _checks.ifExists)(this.dom.hint, function () {
+                        (0, _classes.replaceClass)(_this7.dom.hint, '-invalid', '-valid');
+                        (0, _classes.replaceClass)(_this7.dom.indicator, '-invalid', '-valid');
+                    }, this.state.printNotExistsWarnings);
+                } else {
+                    (0, _classes.replaceClass)(this.element, '-valid', '-invalid');
+
+                    (0, _checks.ifExists)(this.dom.hint, function () {
+                        (0, _classes.replaceClass)(_this7.dom.hint, '-valid', '-invalid');
+                        (0, _classes.replaceClass)(_this7.dom.indicator, '-valid', '-invalid');
+                    }, this.state.printNotExistsWarnings);
+                }
+
+                this.state.validationTimeout = null;
+            }
 
             return this;
         }
@@ -5147,11 +5164,16 @@ var Rating = exports.Rating = function (_Component) {
         _this.state = (0, _uncategorized.extend)(_this.state, {
             rating: parseInt((0, _attributes.getAttribute)(element, 'data-rating'), 10),
             maxRating: 5,
-            minRating: 0
+            minRating: 0,
+            isEnabled: !(0, _classes.hasClass)(element, '-js-disabled')
         });
 
         _this.initAria();
-        _this.initControls();
+
+        if (_this.state.isEnabled) {
+            _this.initControls();
+        }
+
         _this.updateRating(_this.state.rating);
         return _this;
     }
@@ -7233,7 +7255,7 @@ function normalizeTabIndex() {
 var imagesLoaded = require('imagesloaded');
 
 function lazyLoadImages(callback) {
-    forEach(document.querySelectorAll('._lazy-load'), function (image) {
+    forEach(document.querySelectorAll('.-js-lazy-load'), function (image) {
         image.src = image.getAttribute('data-src');
 
         image.addEventListener('load', function () {

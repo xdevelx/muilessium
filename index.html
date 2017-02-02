@@ -22,9 +22,9 @@
 <body>
     <header class="mui-page-header -black-bg">
         <div class="mui-header-logo _left">
-            <img class="mui-image -logo _lazy-load" data-src="images/muilessium.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="logo">
+            <img class="mui-image -logo -js-lazy-load" data-src="images/muilessium.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="logo">
             <a class="_right" href="/">
-                <h1 class="-white _bigger-1">muilessium <span class="_smaller-3">v0.1.16</span></h1>
+                <h1 class="-white _bigger-1">muilessium <span class="_smaller-3">v0.1.17</span></h1>
             </a>
         </div>
         <nav class="mui-header-navigation _right">
@@ -220,27 +220,12 @@
                     <div class="mui-row _separate-1">
                         <div class="mui-column -s6 -m4 template-preview">
                             <a href="example1.html">
-                                <img class="mui-image _lazy-load -violet-5-bg" data-src="images/example1.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Example of page created using Muilessium">
+                                <img class="mui-image -js-lazy-load -violet-5-bg" data-src="images/example1.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Example of page created using Muilessium">
                             </a>
                         </div>
                         <div class="mui-column -s6 -m4 template-preview">
                             <a href="example2.html">
-                                <img class="mui-image _lazy-load -red-3-bg" data-src="images/example2.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Example of page created using Muilessium">
-                            </a>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="_separate-2">
-                    <p class="mui-p _separate-1">Websites powered by Muilessium:</p>
-                    <div class="mui-row _separate-1">
-                        <div class="mui-column -s6 -m4 template-preview">
-                            <a href="https://sfi0zy.github.io">
-                                <img class="mui-image _lazy-load -brown-4-bg" data-src="images/sfi0zy-github-io-preview.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Example of website created using Muilessium">
-                            </a>
-                        </div>
-                        <div class="mui-column -s6 -m4 template-preview">
-                            <a href="http://smalltreasurekeeper.ru/">
-                                <img class="mui-image _lazy-load -brown-4-bg" data-src="images/smalltreasurekeeper-ru-preview.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Example of website created using Muilessium">
+                                <img class="mui-image -js-lazy-load -red-3-bg" data-src="images/example2.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Example of page created using Muilessium">
                             </a>
                         </div>
                     </div>
@@ -328,7 +313,7 @@
                     </div>
                     <div class="code-example _separate-2 _smaller-2">
                         <pre class="prettyprint lang-html">
-    &lt;img class='mui-image _lazy-load'
+    &lt;img class='mui-image -js-lazy-load'
         data-src='https://placehold.it/128x128'
         alt='Lazy loaded image'
         src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'&gt;</pre>
@@ -716,7 +701,7 @@
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-card -with-image _shadow-1">
       <div class="header">
-          <img class="_lazy-load" data-src="https://placehold.it/800x600" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Card header">
+          <img class="mui-image -js-lazy-load" data-src="https://placehold.it/800x600" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Card header">
       </div>
       <div class="content">
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt, magni.</p>
@@ -725,7 +710,7 @@
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-card -with-image _shadow-1'&gt;
       &lt;div class='header'&gt;
-          &lt;img class='_lazy-load' data-src='https://placehold.it/800x600' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt='Card header'&gt;
+          &lt;img class='mui-image -js-lazy-load' data-src='https://placehold.it/800x600' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt='Card header'&gt;
       &lt;/div&gt;
       &lt;div class='content'&gt;
           &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt, magni.&lt;/p&gt;
@@ -746,21 +731,21 @@
                                         <div class="example _separate-2">      <div class="mui-carousel" data-interval="4s">
           <ul class="mui-slides">
               <li class="mui-slide">
-                  <img class="background _lazy-load" data-src="https://placehold.it/1200x800" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+                  <img class="mui-image background -js-lazy-load" data-src="https://placehold.it/1200x800" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
                   <div class="mui-slide-content -center">
                       <div class="title">1. Lorem ipsum dolor.</div>
                       <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, ipsa.</div>
                   </div>
               </li>
               <li class="mui-slide">
-                  <img class="background _lazy-load" data-src="https://placehold.it/1200x800" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+                  <img class="mui-image background -js-lazy-load" data-src="https://placehold.it/1200x800" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
                   <div class="mui-slide-content -content-left">
                       <div class="title">2. Lorem ipsum dolor sit amet.</div>
                       <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, illo.</div>
                   </div>
               </li>
               <li class="mui-slide">
-                  <img class="background _lazy-load" data-src="https://placehold.it/1200x800" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+                  <img class="mui-image background -js-lazy-load" data-src="https://placehold.it/1200x800" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
                   <div class="mui-slide-content -content-right">
                       <div class="title">3. Lorem ipsum dolor sit.</div>
                       <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, aliquam.</div>
@@ -781,21 +766,21 @@
                                             <pre class="( prettyprint lang-html )">      &lt;div class='mui-carousel' data-interval='4s'&gt;
           &lt;ul class='mui-slides'&gt;
               &lt;li class='mui-slide'&gt;
-                  &lt;img class='background _lazy-load' data-src='https://placehold.it/1200x800' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt=''&gt;
+                  &lt;img class='mui-image background -js-lazy-load' data-src='https://placehold.it/1200x800' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt=''&gt;
                   &lt;div class='mui-slide-content -center'&gt;
                       &lt;div class='title'&gt;1. Lorem ipsum dolor.&lt;/div&gt;
                       &lt;div class='text'&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, ipsa.&lt;/div&gt;
                   &lt;/div&gt;
               &lt;/li&gt;
               &lt;li class='mui-slide'&gt;
-                  &lt;img class='background _lazy-load' data-src='https://placehold.it/1200x800' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt=''&gt;
+                  &lt;img class='mui-image background -js-lazy-load' data-src='https://placehold.it/1200x800' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt=''&gt;
                   &lt;div class='mui-slide-content -content-left'&gt;
                       &lt;div class='title'&gt;2. Lorem ipsum dolor sit amet.&lt;/div&gt;
                       &lt;div class='text'&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, illo.&lt;/div&gt;
                   &lt;/div&gt;
               &lt;/li&gt;
               &lt;li class='mui-slide'&gt;
-                  &lt;img class='background _lazy-load' data-src='https://placehold.it/1200x800' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt=''&gt;
+                  &lt;img class='mui-image background -js-lazy-load' data-src='https://placehold.it/1200x800' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt=''&gt;
                   &lt;div class='mui-slide-content -content-right'&gt;
                       &lt;div class='title'&gt;3. Lorem ipsum dolor sit.&lt;/div&gt;
                       &lt;div class='text'&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, aliquam.&lt;/div&gt;
@@ -942,7 +927,7 @@
                                 <div class="_smaller-2 -grey-4">src/less/components/hero-header.less</div>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-hero-header">
-      <img class="background _lazy-load" data-src="https://placehold.it/1200x800" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" role="presentation">
+      <img class="mui-image background -js-lazy-load" data-src="https://placehold.it/1200x800" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" role="presentation">
       <div class="content">
           <h2>Lorem ipsum dolor sit amet.</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, excepturi!</p>
@@ -950,7 +935,7 @@
   </div></div>
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-hero-header'&gt;
-      &lt;img class='background _lazy-load' data-src='https://placehold.it/1200x800' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt='' role='presentation'&gt;
+      &lt;img class='mui-image background -js-lazy-load' data-src='https://placehold.it/1200x800' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt='' role='presentation'&gt;
       &lt;div class='content'&gt;
           &lt;h2&gt;Lorem ipsum dolor sit amet.&lt;/h2&gt;
           &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, excepturi!&lt;/p&gt;
@@ -968,17 +953,17 @@
                                 <div class="_smaller-2 -grey-4">src/less/components/image.less</div>
                                     <p class="mui-p _separate-1">Helper component, includes visual effects for images like creating rounded courners or a circle image from a square image.</p>
                                     <div class="_separate-1">
-                                        <div class="example _separate-2"><img class="mui-image _lazy-load" data-src="https://placehold.it/250x250" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""></div>
+                                        <div class="example _separate-2"><img class="mui-image -js-lazy-load" data-src="https://placehold.it/250x250" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""></div>
                                             <div class="state _separate-2">
                                                 <h5 class="_smaller-1">Image with -rounded option</h5>
-                                                <div class="example _separate-2" data-class="-rounded"><img class="mui-image _lazy-load" data-src="https://placehold.it/250x250" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""></div>
+                                                <div class="example _separate-2" data-class="-rounded"><img class="mui-image -js-lazy-load" data-src="https://placehold.it/250x250" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""></div>
                                             </div>
                                             <div class="state _separate-2">
                                                 <h5 class="_smaller-1">Image with -circle option</h5>
-                                                <div class="example _separate-2" data-class="-circle"><img class="mui-image _lazy-load" data-src="https://placehold.it/250x250" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""></div>
+                                                <div class="example _separate-2" data-class="-circle"><img class="mui-image -js-lazy-load" data-src="https://placehold.it/250x250" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""></div>
                                             </div>
                                         <div class="code _separate-2 _smaller-2">
-                                            <pre class="( prettyprint lang-html )">&lt;img class='mui-image _lazy-load' data-src='https://placehold.it/250x250' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt=''&gt;</pre>
+                                            <pre class="( prettyprint lang-html )">&lt;img class='mui-image -js-lazy-load' data-src='https://placehold.it/250x250' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt=''&gt;</pre>
                                         </div>
                                     </div>
                             </div>
@@ -1013,7 +998,7 @@
                                     <h4 class="_bigger-1">Input</h4>
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/input.less</div>
-                                    <p class="mui-p _separate-1">Has two parameters: regexp (/^(?:)$/ by default) and validation-delay (300ms by defaut).</p>
+                                    <p class="mui-p _separate-1">Has two parameters: regexp (/^(?:)$/ by default) and validation-delay (300ms by defaut). Use -js-no-validation class on mui-input to create input without validation. Use -js-allow-not-exists to hide console warnings when labels or hints are not present.</p>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-input-wrapper">
       <label class="mui-input-label">Username</label>
@@ -1149,21 +1134,15 @@
                                     <h4 class="_bigger-1">Media view</h4>
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/media-view.less</div>
+                                    <p class="mui-p _separate-1">Use -full-width class to create media view with max-width 100%</p>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-media-view">
-      <img class="media _lazy-load" data-src="https://placehold.it/1200x800" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Lorem ipsum">
+      <img class="mui-image media -js-lazy-load" data-src="https://placehold.it/1200x800" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Lorem ipsum">
       <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, ea.</div>
   </div></div>
-                                            <div class="state _separate-2">
-                                                <h5 class="_smaller-1">Media view with -full-width option</h5>
-                                                <div class="example _separate-2" data-class="-full-width">  <div class="mui-media-view">
-      <img class="media _lazy-load" data-src="https://placehold.it/1200x800" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Lorem ipsum">
-      <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, ea.</div>
-  </div></div>
-                                            </div>
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-media-view'&gt;
-      &lt;img class='media _lazy-load' data-src='https://placehold.it/1200x800' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt='Lorem ipsum'&gt;
+      &lt;img class='mui-image media -js-lazy-load' data-src='https://placehold.it/1200x800' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt='Lorem ipsum'&gt;
       &lt;div class='description'&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, ea.&lt;/div&gt;
   &lt;/div&gt;</pre>
                                         </div>
@@ -1181,7 +1160,7 @@
  <div class="mui-modal-window" id="Wer45">
      <div class="window">
          <div class="content -image">
-              <img class="mui-image _lazy-load" data-src="https://placehold.it/800x600" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Image description">
+              <img class="mui-image -js-lazy-load" data-src="https://placehold.it/800x600" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Image description">
          </div>
          <div class="close-icon">
              <i class="fa fa-close"></i>
@@ -1194,7 +1173,7 @@
  &lt;div class='mui-modal-window' id='Wer45'&gt;
      &lt;div class='window'&gt;
          &lt;div class='content -image'&gt;
-              &lt;img class='mui-image _lazy-load' data-src='https://placehold.it/800x600' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt='Image description'&gt;
+              &lt;img class='mui-image -js-lazy-load' data-src='https://placehold.it/800x600' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt='Image description'&gt;
          &lt;/div&gt;
          &lt;div class='close-icon'&gt;
              &lt;i class='fa fa-close'&gt;&lt;/i&gt;
@@ -1463,6 +1442,7 @@
                                     <h4 class="_bigger-1">Rating</h4>
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/rating.less</div>
+                                    <p class="mui-p _separate-1">Use -js-disabled class to create &quot;view-only&quot; rating.</p>
                                     <div class="_smaller-2 -red-4">Requires FontAwesome</div>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-rating" data-rating="3" aria-label="Rating: 3 stars of 5">
