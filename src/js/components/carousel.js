@@ -4,17 +4,15 @@ import * as Mouse       from '../controls/mouse';
 import * as Keyboard    from '../controls/keyboard';
 import * as TouchScreen from '../controls/touchscreen';
 
-import { addClass, removeClass } from '../utils/classes';
-import { console               } from '../utils/console';
-
-import {
-    makeElementFocusable,
-    makeChildElementsClickable,
-    onFocus,
-    onBlur
-} from '../utils/focus-and-click';
-
-import { extend, forEach } from '../utils/uncategorized';
+import { addClass                   } from '../utils/classes';
+import { removeClass                } from '../utils/classes';
+import { console                    } from '../utils/console';
+import { makeElementFocusable       } from '../utils/focus-and-click';
+import { makeChildElementsClickable } from '../utils/focus-and-click';
+import { onFocus                    } from '../utils/focus-and-click';
+import { onBlur                     } from '../utils/focus-and-click';
+import { extend                     } from '../utils/uncategorized';
+import { forEach                    } from '../utils/uncategorized';
 
 
 

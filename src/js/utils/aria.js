@@ -9,6 +9,7 @@ import { getAttribute         } from '../utils/attributes';
 import { removeAttribute      } from '../utils/attributes';
 import { generateRandomString } from '../utils/uncategorized';
 import { stringToBoolean      } from '../utils/uncategorized';
+import { forEach              } from '../utils/uncategorized';
 
 
 export const aria = {
@@ -87,7 +88,7 @@ export const aria = {
     // Sets role='presentation' to all icons with specified class name
 
     hideIcons: (className) => {
-        [].forEach.call(document.getElementsByClassName(className), (icon) => {
+        forEach(document.getElementsByClassName(className), (icon) => {
             setAttribute(icon, 'aria-hidden', true);
         });
     }

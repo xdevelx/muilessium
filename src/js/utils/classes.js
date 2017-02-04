@@ -13,7 +13,7 @@ import { forEach } from '../utils/uncategorized';
 
 export function hasClass(element, classForTest) {
     return ifExists(element, () => {
-        // Use className instead of classList because IE11 does not have support for slassList on SVG
+        /* Use className instead of classList because IE11 does not have support for slassList on SVG */
         return (element.className.indexOf(classForTest) !== -1);
     });
 };
@@ -69,7 +69,7 @@ export function addClasses(element, ...newClasses) {
 
 export function removeClass(element, classForRemoving) {
     return ifExists(element, () => {
-        // Use className instead of classList because IE11 does not have support for slassList on SVG
+        /* Use className instead of classList because IE11 does not have support for slassList on SVG */
         element.className = element.className.replace(classForRemoving, '');
     });
 };

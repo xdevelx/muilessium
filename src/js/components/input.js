@@ -1,25 +1,21 @@
 import { Component } from '../component';
 
-import { aria                       } from '../utils/aria';
-import { setAttribute, getAttribute } from '../utils/attributes';
-import { ifExists, ifNodeList       } from '../utils/checks';
-
-import {
-    hasClass,
-    addClass,
-    removeClass,
-    removeClasses,
-    replaceClass
-} from '../utils/classes';
-
-import {
-    makeElementsFocusable,
-    makeElementsNotFocusable,
-    onFocus,
-    onBlur
-} from '../utils/focus-and-click';
-
-import { extend, forEach } from '../utils/uncategorized';
+import { aria                     } from '../utils/aria';
+import { setAttribute             } from '../utils/attributes';
+import { getAttribute             } from '../utils/attributes';
+import { ifExists                 } from '../utils/checks';
+import { ifNodeList               } from '../utils/checks';
+import { hasClass                 } from '../utils/classes';
+import { addClass                 } from '../utils/classes';
+import { removeClass              } from '../utils/classes';
+import { removeClasses            } from '../utils/classes';
+import { replaceClass             } from '../utils/classes';
+import { makeElementsFocusable    } from '../utils/focus-and-click';
+import { makeElementsNotFocusable } from '../utils/focus-and-click';
+import { onFocus                  } from '../utils/focus-and-click';
+import { onBlur                   } from '../utils/focus-and-click';
+import { extend                   } from '../utils/uncategorized';
+import { forEach                  } from '../utils/uncategorized';
 
 
 

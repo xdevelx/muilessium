@@ -2,24 +2,27 @@ import { Component } from '../component';
 
 import * as Keyboard from '../controls/keyboard';
 
-import { aria                                         } from '../utils/aria';
-import { getAttribute, setAttribute                   } from '../utils/attributes';
-import { addClass, removeClass, toggleClass, hasClass } from '../utils/classes';
-import { ifNodeList                                   } from '../utils/checks';
-
-import {
-    makeElementClickable,
-    makeChildElementsClickable,
-    makeElementsFocusable,
-    makeElementsNotFocusable,
-    getFocusableChilds,
-    goToNextFocusableElement,
-    goToPreviousFocusableElement,
-    onFocus,
-    onBlur
-} from '../utils/focus-and-click';
-
-import { extend, forEach, firstOfList, lastOfList } from '../utils/uncategorized';
+import { aria                         } from '../utils/aria';
+import { getAttribute                 } from '../utils/attributes';
+import { setAttribute                 } from '../utils/attributes';
+import { addClass                     } from '../utils/classes';
+import { removeClass                  } from '../utils/classes';
+import { toggleClass                  } from '../utils/classes';
+import { hasClass                     } from '../utils/classes';
+import { ifNodeList                   } from '../utils/checks';
+import { makeElementClickable         } from '../utils/focus-and-click';
+import { makeChildElementsClickable   } from '../utils/focus-and-click';
+import { makeElementsFocusable        } from '../utils/focus-and-click';
+import { makeElementsNotFocusable     } from '../utils/focus-and-click';
+import { getFocusableChilds           } from '../utils/focus-and-click';
+import { goToNextFocusableElement     } from '../utils/focus-and-click';
+import { goToPreviousFocusableElement } from '../utils/focus-and-click';
+import { onFocus                      } from '../utils/focus-and-click';
+import { onBlur                       } from '../utils/focus-and-click';
+import { extend                       } from '../utils/uncategorized';
+import { forEach                      } from '../utils/uncategorized';
+import { firstOfList                  } from '../utils/uncategorized';
+import { lastOfList                   } from '../utils/uncategorized';
 
 
 

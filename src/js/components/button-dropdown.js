@@ -2,16 +2,15 @@ import { Component } from '../component';
 
 import * as Keyboard from '../controls/keyboard';
 
-import { aria                  } from '../utils/aria';
-import { addClass, removeClass } from '../utils/classes';
-
-import {
-    makeElementClickable,
-    getFocusableChilds,
-    goToNextFocusableElement
-} from '../utils/focus-and-click';
-
-import { extend, firstOfList, lastOfList } from '../utils/uncategorized';
+import { aria                     } from '../utils/aria';
+import { addClass                 } from '../utils/classes';
+import { removeClass              } from '../utils/classes';
+import { makeElementClickable     } from '../utils/focus-and-click';
+import { getFocusableChilds       } from '../utils/focus-and-click';
+import { goToNextFocusableElement } from '../utils/focus-and-click';
+import { extend                   } from '../utils/uncategorized';
+import { firstOfList              } from '../utils/uncategorized';
+import { lastOfList               } from '../utils/uncategorized';
 
 
 

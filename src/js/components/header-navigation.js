@@ -3,18 +3,17 @@ import { Component } from '../component';
 import * as TouchScreen from '../controls/touchscreen';
 import * as Keyboard    from '../controls/keyboard';
 
-import { aria                  } from '../utils/aria';
-import { addClass, removeClass } from '../utils/classes';
-
-import {
-    getFocusableChilds,
-    makeElementClickable,
-    makeChildElementsClickable,
-    goToPreviousFocusableElement,
-    goToNextFocusableElement
-} from '../utils/focus-and-click';
-
-import { extend, firstOfList, lastOfList } from '../utils/uncategorized';
+import { aria                         } from '../utils/aria';
+import { addClass                     } from '../utils/classes';
+import { removeClass                  } from '../utils/classes';
+import { getFocusableChilds           } from '../utils/focus-and-click';
+import { makeElementClickable         } from '../utils/focus-and-click';
+import { makeChildElementsClickable   } from '../utils/focus-and-click';
+import { goToPreviousFocusableElement } from '../utils/focus-and-click';
+import { goToNextFocusableElement     } from '../utils/focus-and-click';
+import { extend                       } from '../utils/uncategorized';
+import { firstOfList                  } from '../utils/uncategorized';
+import { lastOfList                   } from '../utils/uncategorized';
 
 
 
