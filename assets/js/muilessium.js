@@ -4397,7 +4397,7 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
         _this.initControls();
         _this.update();
 
-        window.Muilessium.Events.addEventListener('resizeWindowWidth', _this.update.bind(_this));
+        window.Muilessium.Events.addEventListener('resize-window-width', _this.update.bind(_this));
 
         _this.state.initialized = true;
         return _this;
@@ -5981,14 +5981,15 @@ var Events = exports.Events = function () {
         key: 'initDefaultEvents',
         value: function initDefaultEvents() {
             this.initWindowResizeEvents();
+            this.initScrollEvents();
         }
     }, {
         key: 'initWindowResizeEvents',
         value: function initWindowResizeEvents() {
             var _this = this;
 
-            this.addEvent('resizeWindowHeight');
-            this.addEvent('resizeWindowWidth');
+            this.addEvent('resize-window-height');
+            this.addEvent('resize-window-width');
 
             this.data.window.height = window.innerHeight;
             this.data.window.width = window.innerWidth;
@@ -6005,8 +6006,8 @@ var Events = exports.Events = function () {
                     clearTimeout(_this.timeouts.resizeWindowHeight);
 
                     _this.timeouts.resizeWindowHeight = setTimeout(function () {
-                        _this.fireEvent('resizeWindowHeight');
-                    }, 100);
+                        _this.fireEvent('resize-window-height');
+                    }, 150);
                 }
 
                 if (_this.data.window.width != width) {
@@ -6014,9 +6015,32 @@ var Events = exports.Events = function () {
                     clearTimeout(_this.timeouts.resizeWindowWidth);
 
                     _this.timeouts.resizeWindowHeight = setTimeout(function () {
-                        _this.fireEvent('resizeWindowWidth');
-                    }, 100);
+                        _this.fireEvent('resize-window-width');
+                    }, 150);
                 }
+            });
+        }
+    }, {
+        key: 'initScrollEvents',
+        value: function initScrollEvents() {
+            var _this2 = this;
+
+            this.addEvent('scroll-start');
+            this.addEvent('scroll-end');
+
+            this.timeouts.scroll = null;
+
+            window.addEventListener('scroll', function () {
+                if (!_this2.timeouts.scroll) {
+                    _this2.fireEvent('scroll-start');
+                } else {
+                    clearTimeout(_this2.timeouts.scroll);
+                }
+
+                _this2.timeouts.scroll = setTimeout(function () {
+                    _this2.fireEvent('scroll-end');
+                    _this2.timeouts.scroll = null;
+                }, 150);
             });
         }
     }, {
@@ -6253,6 +6277,16 @@ var Muilessium = function () {
             });
 
             this.Events.addEventListener('images-loaded', Polyfills.objectFit);
+
+            this.Events.addEventListener('scroll-start', function () {
+                Utils.addClass(document.body, '_disable-pointer-events');
+            });
+
+            this.Events.addEventListener('scroll-end', function () {
+                setTimeout(function () {
+                    Utils.removeClass(document.body, '_disable-pointer-events');
+                }, 300);
+            });
         }
     }, {
         key: 'create',
@@ -6923,6 +6957,8 @@ exports.onBlur = onBlur;
 
 var _checks = require('../utils/checks');
 
+var _uncategorized = require('../utils/uncategorized');
+
 var _mouse = require('../controls/mouse');
 
 var _keyboard = require('../controls/keyboard');
@@ -6931,16 +6967,16 @@ var _keyboard = require('../controls/keyboard');
 // ----------------------
 // Sets tabindex=0 to the element if it exists
 
-function makeElementFocusable(element) {
-    return (0, _checks.ifExists)(element, function () {
-        element.tabIndex = 0;
-    });
-} // -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Manipulating with Focus & Click
 // -----------------------------------------------------------------------------
 
 
-;
+function makeElementFocusable(element) {
+    return (0, _checks.ifExists)(element, function () {
+        element.tabIndex = 0;
+    });
+};
 
 // Make multiple elements focusable
 // --------------------------------
@@ -6948,7 +6984,7 @@ function makeElementFocusable(element) {
 
 function makeElementsFocusable(elements) {
     return (0, _checks.ifNodeList)(elements, function () {
-        [].forEach.call(elements, function (element) {
+        (0, _uncategorized.forEach)(elements, function (element) {
             makeElementFocusable(element);
         });
     });
@@ -6970,7 +7006,7 @@ function makeElementNotFocusable(element) {
 
 function makeElementsNotFocusable(elements) {
     return (0, _checks.ifNodeList)(elements, function () {
-        [].forEach.call(elements, function (element) {
+        (0, _uncategorized.forEach)(elements, function (element) {
             makeElementNotFocusable(element);
         });
     });
@@ -7093,7 +7129,7 @@ function makeChildElementsClickable(element, childs, callback) {
             (0, _mouse.onClick)(element, function (e) {
                 var index = -1;
 
-                [].forEach.call(childs, function (child, i) {
+                (0, _uncategorized.forEach)(childs, function (child, i) {
                     if (child == e.target || (0, _checks.isDescendant)(child, e.target)) {
                         index = i;
                     }
@@ -7105,7 +7141,7 @@ function makeChildElementsClickable(element, childs, callback) {
             });
 
             if (!mouseOnly) {
-                [].forEach.call(childs, function (child) {
+                (0, _uncategorized.forEach)(childs, function (child) {
                     child.tabIndex = 0;
                 });
 
@@ -7141,7 +7177,7 @@ function onBlur(element, callback) {
     });
 };
 
-},{"../controls/keyboard":25,"../controls/mouse":26,"../utils/checks":36}],40:[function(require,module,exports){
+},{"../controls/keyboard":25,"../controls/mouse":26,"../utils/checks":36,"../utils/uncategorized":41}],40:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

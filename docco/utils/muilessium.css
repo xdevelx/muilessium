@@ -915,6 +915,13 @@
   margin-top: 5rem !important;
   margin-bottom: 5rem !important;
 }
+._disable-pointer-events {
+  pointer-events: none !important;
+}
+._disable-pointer-events-hard,
+._disable-pointer-events-hard * {
+  pointer-events: none !important;
+}
 /*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Change the default font family in all browsers (opinionated).

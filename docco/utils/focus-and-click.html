@@ -102,6 +102,7 @@
 <span class="hljs-keyword">import</span> { ifExists       } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/checks'</span>;
 <span class="hljs-keyword">import</span> { ifNodeList     } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/checks'</span>;
 <span class="hljs-keyword">import</span> { isDescendant   } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/checks'</span>;
+<span class="hljs-keyword">import</span> { forEach        } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/uncategorized'</span>;
 <span class="hljs-keyword">import</span> { onClick        } <span class="hljs-keyword">from</span> <span class="hljs-string">'../controls/mouse'</span>;
 <span class="hljs-keyword">import</span> { onEnterPressed } <span class="hljs-keyword">from</span> <span class="hljs-string">'../controls/keyboard'</span>;</pre></div></div>
                         
@@ -175,7 +176,7 @@
                             <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">makeElementsFocusable</span>(<span class="hljs-params">elements</span>) </span>{
     <span class="hljs-keyword">return</span> ifNodeList(elements, () =&gt; {
-        [].forEach.call(elements, (element) =&gt; {
+        forEach(elements, (element) =&gt; {
             makeElementFocusable(element);
         });
     });
@@ -251,7 +252,7 @@
                             <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">makeElementsNotFocusable</span>(<span class="hljs-params">elements</span>) </span>{
     <span class="hljs-keyword">return</span> ifNodeList(elements, () =&gt; {
-        [].forEach.call(elements, (element) =&gt; {
+        forEach(elements, (element) =&gt; {
             makeElementNotFocusable(element);
         });
     });
@@ -586,7 +587,7 @@ with callback to the childs if they exists</p>
             onClick(element, (e) =&gt; {
                 <span class="hljs-keyword">let</span> index = <span class="hljs-number">-1</span>;
 
-                [].forEach.call(childs, (child, i) =&gt; {
+                forEach(childs, (child, i) =&gt; {
                     <span class="hljs-keyword">if</span> ((child == e.target) || isDescendant(child, e.target)) {
                         index = i;
                     }
@@ -598,7 +599,7 @@ with callback to the childs if they exists</p>
             });
 
             <span class="hljs-keyword">if</span> (!mouseOnly) {
-                [].forEach.call(childs, (child) =&gt; {
+                forEach(childs, (child) =&gt; {
                     child.tabIndex = <span class="hljs-number">0</span>;
                 });
 
