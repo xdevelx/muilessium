@@ -39,7 +39,7 @@ export class HeaderNavigation extends Component {
         this.initControls();
         this.update();
 
-        window.Muilessium.Events.addEventListener('resizeWindowWidth', this.update.bind(this)); 
+        window.Muilessium.Events.addEventListener('resize-window-width', this.update.bind(this)); 
 
         this.state.initialized = true;
     }

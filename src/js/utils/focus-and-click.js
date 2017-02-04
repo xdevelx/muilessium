@@ -6,6 +6,7 @@
 import { ifExists       } from '../utils/checks';
 import { ifNodeList     } from '../utils/checks';
 import { isDescendant   } from '../utils/checks';
+import { forEach        } from '../utils/uncategorized';
 import { onClick        } from '../controls/mouse';
 import { onEnterPressed } from '../controls/keyboard';
 
@@ -28,7 +29,7 @@ export function makeElementFocusable(element) {
 
 export function makeElementsFocusable(elements) {
     return ifNodeList(elements, () => {
-        [].forEach.call(elements, (element) => {
+        forEach(elements, (element) => {
             makeElementFocusable(element);
         });
     });
@@ -54,7 +55,7 @@ export function makeElementNotFocusable(element) {
 
 export function makeElementsNotFocusable(elements) {
     return ifNodeList(elements, () => {
-        [].forEach.call(elements, (element) => {
+        forEach(elements, (element) => {
             makeElementNotFocusable(element);
         });
     });
@@ -187,7 +188,7 @@ export function makeChildElementsClickable(element, childs, callback, mouseOnly 
             onClick(element, (e) => {
                 let index = -1;
 
-                [].forEach.call(childs, (child, i) => {
+                forEach(childs, (child, i) => {
                     if ((child == e.target) || isDescendant(child, e.target)) {
                         index = i;
                     }
@@ -199,7 +200,7 @@ export function makeChildElementsClickable(element, childs, callback, mouseOnly 
             });
 
             if (!mouseOnly) {
-                [].forEach.call(childs, (child) => {
+                forEach(childs, (child) => {
                     child.tabIndex = 0;
                 });
 

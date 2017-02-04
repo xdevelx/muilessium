@@ -22,12 +22,13 @@ export class Events {
 
     initDefaultEvents() {
         this.initWindowResizeEvents();
+        this.initScrollEvents();
     }
 
 
     initWindowResizeEvents() {
-        this.addEvent('resizeWindowHeight');
-        this.addEvent('resizeWindowWidth');
+        this.addEvent('resize-window-height');
+        this.addEvent('resize-window-width');
 
         this.data.window.height = window.innerHeight;
         this.data.window.width  = window.innerWidth;
@@ -44,8 +45,8 @@ export class Events {
                 clearTimeout(this.timeouts.resizeWindowHeight);
 
                 this.timeouts.resizeWindowHeight = setTimeout(() => {
-                    this.fireEvent('resizeWindowHeight');
-                }, 100);
+                    this.fireEvent('resize-window-height');
+                }, 150);
             }
 
             if (this.data.window.width != width) {
@@ -53,9 +54,30 @@ export class Events {
                 clearTimeout(this.timeouts.resizeWindowWidth);
 
                 this.timeouts.resizeWindowHeight = setTimeout(() => {
-                    this.fireEvent('resizeWindowWidth');
-                }, 100);
+                    this.fireEvent('resize-window-width');
+                }, 150);
             }
+        });
+    }
+
+
+    initScrollEvents() {
+        this.addEvent('scroll-start');
+        this.addEvent('scroll-end');
+
+        this.timeouts.scroll = null;
+
+        window.addEventListener('scroll', () => {
+            if (!this.timeouts.scroll) {
+                this.fireEvent('scroll-start');
+            } else {
+                clearTimeout(this.timeouts.scroll);
+            }
+
+            this.timeouts.scroll = setTimeout(() => {
+                this.fireEvent('scroll-end');
+                this.timeouts.scroll = null;
+            }, 150);
         });
     }
 

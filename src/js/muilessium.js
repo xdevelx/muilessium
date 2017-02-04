@@ -102,6 +102,16 @@ export default class Muilessium {
         });
 
         this.Events.addEventListener('images-loaded', Polyfills.objectFit);
+
+        this.Events.addEventListener('scroll-start', () => {
+            Utils.addClass(document.body, '_disable-pointer-events');
+        });
+
+        this.Events.addEventListener('scroll-end', () => {
+            setTimeout(() => {
+                Utils.removeClass(document.body, '_disable-pointer-events');
+            }, 300);
+        });
     }
 
 
