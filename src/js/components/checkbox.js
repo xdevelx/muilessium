@@ -1,5 +1,7 @@
 import { Component } from '../component';
 
+import * as Keyboard from '../controls/keyboard';
+
 import { aria                  } from '../utils/aria';
 import { setAttribute          } from '../utils/attributes';
 import { addClass              } from '../utils/classes';
@@ -42,6 +44,8 @@ export class Checkbox extends Component {
 
     initControls() {
         makeElementClickable(this.dom.label, this.toggleCheckbox.bind(this));
+
+        Keyboard.onSpacePressed(this.dom.label, this.toggleCheckbox.bind(this));
 
         return this;
     }

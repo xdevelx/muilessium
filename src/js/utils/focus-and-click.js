@@ -2,13 +2,13 @@
 // Manipulating with Focus & Click
 // -----------------------------------------------------------------------------
 
+import * as Mouse from '../controls/mouse';
+import * as Keyboard from '../controls/keyboard';
 
 import { ifExists       } from '../utils/checks';
 import { ifNodeList     } from '../utils/checks';
 import { isDescendant   } from '../utils/checks';
 import { forEach        } from '../utils/uncategorized';
-import { onClick        } from '../controls/mouse';
-import { onEnterPressed } from '../controls/keyboard';
 
 
 // Make element focusable
@@ -158,16 +158,18 @@ export function goToPreviousFocusableElement(element) {
 // Sets tabindex=0 to the element and adds event listeners for the click and
 // enter key press with callback to the element if it exists
 
-export function makeElementClickable(element, callback, mouseOnly = false) {
+export function makeElementClickable(element, callback, { mouse = true, keyboard = true } = {}) {
     return ifExists(element, () => {
-        onClick(element, (e) => {
-            callback(e);
-        });
+        if (mouse) {
+            Mouse.onClick(element, (e) => {
+                callback(e);
+            });
+        }
 
-        if (!mouseOnly) {
+        if (keyboard) {
             element.tabIndex = 0;
 
-            onEnterPressed(element, (e) => {
+            Keyboard.onEnterPressed(element, (e) => {
                 callback(e);
             });
         }
@@ -182,29 +184,31 @@ export function makeElementClickable(element, callback, mouseOnly = false) {
 // and adds event listeners for the click and enter key press
 // with callback to the childs if they exists
 
-export function makeChildElementsClickable(element, childs, callback, mouseOnly = false) {
+export function makeChildElementsClickable(element, childs, callback, { mouse = true, keyboard = true } = {}) {
     return ifExists(element, () => {
         return ifNodeList(childs, () => {
-            onClick(element, (e) => {
-                let index = -1;
+            if (mouse) {
+                Mouse.onClick(element, (e) => {
+                    let index = -1;
 
-                forEach(childs, (child, i) => {
-                    if ((child == e.target) || isDescendant(child, e.target)) {
-                        index = i;
+                    forEach(childs, (child, i) => {
+                        if ((child == e.target) || isDescendant(child, e.target)) {
+                            index = i;
+                        }
+                    });
+
+                    if (index >= 0) {
+                        callback(index);
                     }
                 });
+            }
 
-                if (index >= 0) {
-                    callback(index);
-                }
-            });
-
-            if (!mouseOnly) {
+            if (keyboard) {
                 forEach(childs, (child) => {
                     child.tabIndex = 0;
                 });
 
-                onEnterPressed(element, (e) => {
+                Keyboard.onEnterPressed(element, (e) => {
                     let index = [].indexOf.call(childs, e.target);
 
                     if (index >= 0) {

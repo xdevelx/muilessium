@@ -80,13 +80,13 @@ export class Carousel extends Component {
         });
 
         makeChildElementsClickable(this.element, this.dom.controls.prev,
-                        this.rotate.bind(this, 'prev'), true);
+                        this.rotate.bind(this, 'prev'), { mouse: true, keyboard: false });
         makeChildElementsClickable(this.element, this.dom.controls.next,
-                        this.rotate.bind(this, 'next'), true);
+                        this.rotate.bind(this, 'next'), { mouse: true, keyboard: false });
 
         makeChildElementsClickable(this.element, this.dom.indicators, (index) => {
             this.rotate(index);
-        }, true);
+        }, { mouse: true, keyboard: false });
 
         TouchScreen.onSwipeRight(this.element, this.rotate.bind(this, 'prev'));
         TouchScreen.onSwipeLeft(this.element,  this.rotate.bind(this, 'next'));

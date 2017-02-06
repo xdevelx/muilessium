@@ -6,11 +6,13 @@ import { aria                     } from '../utils/aria';
 import { addClass                 } from '../utils/classes';
 import { removeClass              } from '../utils/classes';
 import { makeElementClickable     } from '../utils/focus-and-click';
+import { makeElementsFocusable    } from '../utils/focus-and-click';
 import { getFocusableChilds       } from '../utils/focus-and-click';
 import { goToNextFocusableElement } from '../utils/focus-and-click';
 import { extend                   } from '../utils/uncategorized';
 import { firstOfList              } from '../utils/uncategorized';
 import { lastOfList               } from '../utils/uncategorized';
+import { forEach                  } from '../utils/uncategorized';
 
 
 
@@ -48,8 +50,43 @@ export class ButtonDropdown extends Component {
 
 
     initControls() {
-        makeElementClickable(this.dom.button, this.toggleDropdown.bind(this));
-        makeElementClickable(this.dom.shadow, this.toggleDropdown.bind(this), true);
+        makeElementClickable(this.dom.button,
+                        this.toggleDropdown.bind(this, { focusFirstWhenOpened: false }),
+                                        { mouse: true, keyboard: false });
+
+        Keyboard.onEnterPressed(this.dom.button,
+                        this.toggleDropdown.bind(this, { focusFirstWhenOpened: true }),
+                                        { mouse: false, keyboard: true });
+
+        Keyboard.onSpacePressed(this.dom.button,
+                        this.toggleDropdown.bind(this, { focusFirstWhenOpened: true }),
+                                        { mouse: false, keyboard: true });
+
+        makeElementClickable(this.dom.shadow, this.toggleDropdown.bind(this),
+                        { mouse: true, keyboard: false });
+
+        makeElementsFocusable(this.dom.optionsList);
+
+        forEach(this.dom.optionsList, (option, index) => {
+            Keyboard.onArrowUpPressed(option, () => {
+                if (option == firstOfList(this.dom.optionsList)) {
+                    this.closeDropdown();
+                    this.dom.button.focus();
+                } else {
+                    this.dom.optionsList[index-1].focus();
+                }
+            });
+
+            Keyboard.onArrowDownPressed(option, () => {
+                if (option == lastOfList(this.dom.optionsList)) {
+                    this.closeDropdown();
+
+                    goToNextFocusableElement(lastOfList(getFocusableChilds(this.element)));
+                } else {
+                    this.dom.optionsList[index+1].focus();
+                }
+            });
+        });
 
         Keyboard.onShiftTabPressed(firstOfList(this.dom.optionsList), () => {
             this.closeDropdown();
@@ -66,14 +103,16 @@ export class ButtonDropdown extends Component {
     }
 
 
-    openDropdown() {
+    openDropdown({ focusFirst = true }) {
         addClass(this.element,    '-opened');
         addClass(this.dom.shadow, '-visible');
 
         aria.set(this.dom.button,   'hidden', true);
         aria.set(this.dom.dropdown, 'hidden', false);
 
-        firstOfList(getFocusableChilds(this.dom.dropdown)).focus()
+        if (focusFirst) {
+            firstOfList(getFocusableChilds(this.dom.dropdown)).focus();
+        }
 
         this.state.opened = true;
 
@@ -96,11 +135,11 @@ export class ButtonDropdown extends Component {
     }
 
 
-    toggleDropdown() {
+    toggleDropdown({ focusFirstWhenOpened = true }) {
         if (this.state.opened) {
             this.closeDropdown();
         } else {
-            this.openDropdown();
+            this.openDropdown({ focusFirst: focusFirstWhenOpened });
         }
 
         return this;

@@ -1,5 +1,7 @@
 import { Component } from '../component';
 
+import * as Keyboard from '../controls/keyboard';
+
 import { aria                       } from '../utils/aria';
 import { setAttribute               } from '../utils/attributes';
 import { addClass                   } from '../utils/classes';
@@ -8,6 +10,8 @@ import { toggleClass                } from '../utils/classes';
 import { makeChildElementsClickable } from '../utils/focus-and-click';
 import { extend                     } from '../utils/uncategorized';
 import { forEach                    } from '../utils/uncategorized';
+import { firstOfList                } from '../utils/uncategorized';
+import { lastOfList                 } from '../utils/uncategorized';
 
 
 
@@ -54,6 +58,22 @@ export class Accordion extends Component {
     initControls() {
         makeChildElementsClickable(this.element, this.dom.titles, (index) => {
             this.toggleItem(index);
+        });
+
+        forEach(this.dom.titles, (title, index) => {
+            Keyboard.onSpacePressed(title, this.toggleItem.bind(this, index));
+
+            if (title != firstOfList(this.dom.titles)) {
+                Keyboard.onArrowUpPressed(title, () => {
+                    this.dom.titles[index-1].focus(); 
+                });
+            }
+            
+            if (title != lastOfList(this.dom.titles)) {
+                Keyboard.onArrowDownPressed(title, () => {
+                    this.dom.titles[index+1].focus(); 
+                });
+            }
         });
 
         return this;

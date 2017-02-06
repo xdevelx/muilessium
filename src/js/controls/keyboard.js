@@ -8,6 +8,16 @@ export function onEnterPressed(element, callback) {
 };
 
 
+export function onSpacePressed(element, callback) {
+    element.addEventListener('keydown', (e) => {
+        if (e.keyCode == 32) {
+            e.preventDefault();
+            callback(e);
+        }
+    });
+};
+
+
 export function onTabPressed(element, callback) {
     element.addEventListener('keydown', (e) => {
         if (e.keyCode == 9 && !e.shiftKey) {
