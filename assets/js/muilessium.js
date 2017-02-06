@@ -3683,6 +3683,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _component = require('../component');
 
+var _keyboard = require('../controls/keyboard');
+
+var Keyboard = _interopRequireWildcard(_keyboard);
+
 var _aria = require('../utils/aria');
 
 var _attributes = require('../utils/attributes');
@@ -3692,6 +3696,8 @@ var _classes = require('../utils/classes');
 var _focusAndClick = require('../utils/focus-and-click');
 
 var _uncategorized = require('../utils/uncategorized');
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -3752,6 +3758,22 @@ var Accordion = exports.Accordion = function (_Component) {
 
             (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.titles, function (index) {
                 _this3.toggleItem(index);
+            });
+
+            (0, _uncategorized.forEach)(this.dom.titles, function (title, index) {
+                Keyboard.onSpacePressed(title, _this3.toggleItem.bind(_this3, index));
+
+                if (title != (0, _uncategorized.firstOfList)(_this3.dom.titles)) {
+                    Keyboard.onArrowUpPressed(title, function () {
+                        _this3.dom.titles[index - 1].focus();
+                    });
+                }
+
+                if (title != (0, _uncategorized.lastOfList)(_this3.dom.titles)) {
+                    Keyboard.onArrowDownPressed(title, function () {
+                        _this3.dom.titles[index + 1].focus();
+                    });
+                }
             });
 
             return this;
@@ -3815,7 +3837,7 @@ var Accordion = exports.Accordion = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils/aria":34,"../utils/attributes":35,"../utils/classes":37,"../utils/focus-and-click":39,"../utils/uncategorized":41}],8:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":25,"../utils/aria":34,"../utils/attributes":35,"../utils/classes":37,"../utils/focus-and-click":39,"../utils/uncategorized":41}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3924,8 +3946,35 @@ var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
         value: function initControls() {
             var _this2 = this;
 
-            (0, _focusAndClick.makeElementClickable)(this.dom.button, this.toggleDropdown.bind(this));
-            (0, _focusAndClick.makeElementClickable)(this.dom.shadow, this.toggleDropdown.bind(this), true);
+            (0, _focusAndClick.makeElementClickable)(this.dom.button, this.toggleDropdown.bind(this, { focusFirstWhenOpened: false }), { mouse: true, keyboard: false });
+
+            Keyboard.onEnterPressed(this.dom.button, this.toggleDropdown.bind(this, { focusFirstWhenOpened: true }), { mouse: false, keyboard: true });
+
+            Keyboard.onSpacePressed(this.dom.button, this.toggleDropdown.bind(this, { focusFirstWhenOpened: true }), { mouse: false, keyboard: true });
+
+            (0, _focusAndClick.makeElementClickable)(this.dom.shadow, this.toggleDropdown.bind(this), { mouse: true, keyboard: false });
+
+            (0, _focusAndClick.makeElementsFocusable)(this.dom.optionsList);
+
+            (0, _uncategorized.forEach)(this.dom.optionsList, function (option, index) {
+                Keyboard.onArrowUpPressed(option, function () {
+                    if (option == (0, _uncategorized.firstOfList)(_this2.dom.optionsList)) {
+                        _this2.closeDropdown();
+                        _this2.dom.button.focus();
+                    } else {
+                        _this2.dom.optionsList[index - 1].focus();
+                    }
+                });
+
+                Keyboard.onArrowDownPressed(option, function () {
+                    if (option == (0, _uncategorized.lastOfList)(_this2.dom.optionsList)) {
+                        _this2.closeDropdown();
+                        _this2.dom.button.focus();
+                    } else {
+                        _this2.dom.optionsList[index + 1].focus();
+                    }
+                });
+            });
 
             Keyboard.onShiftTabPressed((0, _uncategorized.firstOfList)(this.dom.optionsList), function () {
                 _this2.closeDropdown();
@@ -3942,14 +3991,19 @@ var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
         }
     }, {
         key: 'openDropdown',
-        value: function openDropdown() {
+        value: function openDropdown(_ref) {
+            var _ref$focusFirst = _ref.focusFirst,
+                focusFirst = _ref$focusFirst === undefined ? true : _ref$focusFirst;
+
             (0, _classes.addClass)(this.element, '-opened');
             (0, _classes.addClass)(this.dom.shadow, '-visible');
 
             _aria.aria.set(this.dom.button, 'hidden', true);
             _aria.aria.set(this.dom.dropdown, 'hidden', false);
 
-            (0, _uncategorized.firstOfList)((0, _focusAndClick.getFocusableChilds)(this.dom.dropdown)).focus();
+            if (focusFirst) {
+                (0, _uncategorized.firstOfList)((0, _focusAndClick.getFocusableChilds)(this.dom.dropdown)).focus();
+            }
 
             this.state.opened = true;
 
@@ -3972,11 +4026,14 @@ var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
         }
     }, {
         key: 'toggleDropdown',
-        value: function toggleDropdown() {
+        value: function toggleDropdown(_ref2) {
+            var _ref2$focusFirstWhenO = _ref2.focusFirstWhenOpened,
+                focusFirstWhenOpened = _ref2$focusFirstWhenO === undefined ? true : _ref2$focusFirstWhenO;
+
             if (this.state.opened) {
                 this.closeDropdown();
             } else {
-                this.openDropdown();
+                this.openDropdown({ focusFirst: focusFirstWhenOpened });
             }
 
             return this;
@@ -4137,12 +4194,12 @@ var Carousel = exports.Carousel = function (_Component) {
                 });
             });
 
-            (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.controls.prev, this.rotate.bind(this, 'prev'), true);
-            (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.controls.next, this.rotate.bind(this, 'next'), true);
+            (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.controls.prev, this.rotate.bind(this, 'prev'), { mouse: true, keyboard: false });
+            (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.controls.next, this.rotate.bind(this, 'next'), { mouse: true, keyboard: false });
 
             (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.indicators, function (index) {
                 _this2.rotate(index);
-            }, true);
+            }, { mouse: true, keyboard: false });
 
             TouchScreen.onSwipeRight(this.element, this.rotate.bind(this, 'prev'));
             TouchScreen.onSwipeLeft(this.element, this.rotate.bind(this, 'next'));
@@ -4240,6 +4297,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _component = require('../component');
 
+var _keyboard = require('../controls/keyboard');
+
+var Keyboard = _interopRequireWildcard(_keyboard);
+
 var _aria = require('../utils/aria');
 
 var _attributes = require('../utils/attributes');
@@ -4249,6 +4310,8 @@ var _classes = require('../utils/classes');
 var _focusAndClick = require('../utils/focus-and-click');
 
 var _uncategorized = require('../utils/uncategorized');
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -4296,6 +4359,8 @@ var Checkbox = exports.Checkbox = function (_Component) {
         value: function initControls() {
             (0, _focusAndClick.makeElementClickable)(this.dom.label, this.toggleCheckbox.bind(this));
 
+            Keyboard.onSpacePressed(this.dom.label, this.toggleCheckbox.bind(this));
+
             return this;
         }
     }, {
@@ -4336,7 +4401,7 @@ var Checkbox = exports.Checkbox = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils/aria":34,"../utils/attributes":35,"../utils/classes":37,"../utils/focus-and-click":39,"../utils/uncategorized":41}],13:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":25,"../utils/aria":34,"../utils/attributes":35,"../utils/classes":37,"../utils/focus-and-click":39,"../utils/uncategorized":41}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4421,7 +4486,7 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
             var _this2 = this;
 
             (0, _focusAndClick.makeElementClickable)(this.dom.hamburger, this.toggleNavigation.bind(this));
-            (0, _focusAndClick.makeElementClickable)(this.dom.shadow, this.toggleNavigation.bind(this), true);
+            (0, _focusAndClick.makeElementClickable)(this.dom.shadow, this.toggleNavigation.bind(this), { mouse: true, keyboard: false });
 
             (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.linksList, function (index) {
                 var href = _this2.dom.linksList[index].getAttribute('href');
@@ -4856,6 +4921,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _component = require('../component');
 
+var _keyboard = require('../controls/keyboard');
+
+var Keyboard = _interopRequireWildcard(_keyboard);
+
 var _touchscreen = require('../controls/touchscreen');
 
 var TouchScreen = _interopRequireWildcard(_touchscreen);
@@ -4892,7 +4961,8 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
         });
 
         _this.state = (0, _uncategorized.extend)(_this.state, {
-            visible: false
+            visible: false,
+            savedOpener: null
         });
 
         _this.initAria();
@@ -4914,11 +4984,24 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
             var _this2 = this;
 
             (0, _uncategorized.forEach)(this.dom.openers, function (opener) {
-                (0, _focusAndClick.makeElementClickable)(opener, _this2.openModal.bind(_this2));
+                (0, _focusAndClick.makeElementClickable)(opener, function () {
+                    _this2.state.savedOpener = opener;
+                    _this2.openModal();
+                });
+
+                /* Not sure it is good idea to open modal on space pressed, need tests. */
+                Keyboard.onSpacePressed(opener, function () {
+                    _this2.state.savedOpened = opener;
+                    _this2.openModal();
+                });
             });
 
-            (0, _focusAndClick.makeElementClickable)(this.dom.closeIcon, this.closeModal.bind(this));
-            (0, _focusAndClick.makeElementClickable)(this.dom.shadow, this.closeModal.bind(this));
+            (0, _focusAndClick.makeElementFocusable)(this.dom.modalWindow);
+
+            Keyboard.onTabPressed(this.dom.modalWindow, this.closeModal.bind(this));
+
+            (0, _focusAndClick.makeElementClickable)(this.dom.closeIcon, this.closeModal.bind(this), { mouse: true, keyboard: false });
+            (0, _focusAndClick.makeElementClickable)(this.dom.shadow, this.closeModal.bind(this), { mouse: true, keyboard: false });
 
             TouchScreen.onPinchOut(this.dom.modalWindow, this.closeModal.bind(this));
 
@@ -4932,6 +5015,8 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
                 (0, _classes.addClass)(this.dom.shadow, '-visible');
 
                 _aria.aria.set(this.element, 'hidden', false);
+
+                this.dom.modalWindow.focus();
 
                 this.state.visible = true;
             }
@@ -4948,6 +5033,11 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
                 _aria.aria.set(this.element, 'hidden', true);
 
                 this.state.visible = false;
+
+                if (this.state.savedOpener) {
+                    this.state.savedOpener.focus();
+                    this.state.savedOpener = null;
+                }
             }
 
             return this;
@@ -4959,7 +5049,7 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/touchscreen":27,"../utils/aria":34,"../utils/classes":37,"../utils/focus-and-click":39,"../utils/uncategorized":41}],18:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":25,"../controls/touchscreen":27,"../utils/aria":34,"../utils/classes":37,"../utils/focus-and-click":39,"../utils/uncategorized":41}],18:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5199,7 +5289,7 @@ var Rating = exports.Rating = function (_Component) {
 
             (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.stars, function (index) {
                 _this2.updateRating(index + 1);
-            }, true);
+            }, { mouse: true, keyboard: false });
 
             return this;
         }
@@ -5382,8 +5472,13 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
         value: function initControls() {
             var _this4 = this;
 
-            (0, _focusAndClick.makeElementClickable)(this.dom.select, this.toggleDropdown.bind(this));
-            (0, _focusAndClick.makeElementClickable)(this.dom.shadow, this.toggleDropdown.bind(this), true);
+            (0, _focusAndClick.makeElementClickable)(this.dom.select, this.toggleDropdown.bind(this, { focusFirstWhenOpened: false }), { mouse: true, keyboard: false });
+
+            (0, _focusAndClick.makeElementClickable)(this.dom.select, this.toggleDropdown.bind(this, { focusFirstWhenOpened: true }), { mouse: false, keyboard: true });
+
+            Keyboard.onSpacePressed(this.dom.select, this.toggleDropdown.bind(this));
+
+            (0, _focusAndClick.makeElementClickable)(this.dom.shadow, this.toggleDropdown.bind(this), { mouse: true, keyboard: false });
 
             (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.optionsList, function (index) {
                 _this4.updateState(index);
@@ -5403,6 +5498,26 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
 
                 (0, _focusAndClick.onBlur)(_this4.dom.select, function () {
                     (0, _focusAndClick.makeElementsFocusable)(_this4.dom.labels);
+                });
+            });
+
+            (0, _uncategorized.forEach)(this.dom.optionsList, function (option, index) {
+                Keyboard.onArrowUpPressed(option, function () {
+                    if (option == (0, _uncategorized.firstOfList)(_this4.dom.optionsList)) {
+                        _this4.closeDropdown();
+                        _this4.dom.select.focus();
+                    } else {
+                        _this4.dom.optionsList[index - 1].focus();
+                    }
+                });
+
+                Keyboard.onArrowDownPressed(option, function () {
+                    if (option == (0, _uncategorized.lastOfList)(_this4.dom.optionsList)) {
+                        _this4.closeDropdown();
+                        _this4.dom.select.focus();
+                    } else {
+                        _this4.dom.optionsList[index + 1].focus();
+                    }
                 });
             });
 
@@ -5435,23 +5550,32 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
         }
     }, {
         key: 'openDropdown',
-        value: function openDropdown() {
+        value: function openDropdown(_ref) {
+            var _ref$focusFirst = _ref.focusFirst,
+                focusFirst = _ref$focusFirst === undefined ? true : _ref$focusFirst;
+
             this.state.isOpened = true;
 
             (0, _classes.addClass)(this.element, '-opened');
             (0, _classes.addClass)(this.dom.shadow, '-visible');
 
-            (0, _uncategorized.firstOfList)(this.dom.optionsList).focus();
+            if (focusFirst) {
+                (0, _uncategorized.firstOfList)(this.dom.optionsList).focus();
+            }
 
             return this;
         }
     }, {
         key: 'toggleDropdown',
-        value: function toggleDropdown() {
-            this.state.isOpened = !this.state.isOpened;
+        value: function toggleDropdown(_ref2) {
+            var _ref2$focusFirstWhenO = _ref2.focusFirstWhenOpened,
+                focusFirstWhenOpened = _ref2$focusFirstWhenO === undefined ? true : _ref2$focusFirstWhenO;
 
-            (0, _classes.toggleClass)(this.element, '-opened');
-            (0, _classes.toggleClass)(this.dom.shadow, '-visible');
+            if (this.state.isOpened) {
+                this.closeDropdown();
+            } else {
+                this.openDropdown({ focusFirst: focusFirstWhenOpened });
+            }
 
             return this;
         }
@@ -5816,6 +5940,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.onEnterPressed = onEnterPressed;
+exports.onSpacePressed = onSpacePressed;
 exports.onTabPressed = onTabPressed;
 exports.onShiftTabPressed = onShiftTabPressed;
 exports.onArrowLeftPressed = onArrowLeftPressed;
@@ -5825,6 +5950,15 @@ exports.onArrowDownPressed = onArrowDownPressed;
 function onEnterPressed(element, callback) {
     element.addEventListener('keydown', function (e) {
         if (e.keyCode == 13) {
+            e.preventDefault();
+            callback(e);
+        }
+    });
+};
+
+function onSpacePressed(element, callback) {
+    element.addEventListener('keydown', function (e) {
+        if (e.keyCode == 32) {
             e.preventDefault();
             callback(e);
         }
@@ -6537,6 +6671,12 @@ var _attributes = require('../utils/attributes');
 
 var _uncategorized = require('../utils/uncategorized');
 
+// -----------------------------------------------------------------------------
+// WAI-ARIA utilities
+// -----------------------------------------------------------------------------
+// Here is some functions for operation with aria-roles and properties
+
+
 var aria = exports.aria = {
 
     // Set property
@@ -6607,14 +6747,11 @@ var aria = exports.aria = {
     // Sets role='presentation' to all icons with specified class name
 
     hideIcons: function hideIcons(className) {
-        [].forEach.call(document.getElementsByClassName(className), function (icon) {
+        (0, _uncategorized.forEach)(document.getElementsByClassName(className), function (icon) {
             (0, _attributes.setAttribute)(icon, 'aria-hidden', true);
         });
     }
-}; // -----------------------------------------------------------------------------
-// WAI-ARIA utilities
-// -----------------------------------------------------------------------------
-// Here is some functions for operation with aria-roles and properties
+};
 
 },{"../utils/attributes":35,"../utils/uncategorized":41}],35:[function(require,module,exports){
 'use strict';
@@ -6793,7 +6930,7 @@ var _uncategorized = require('../utils/uncategorized');
 
 function hasClass(element, classForTest) {
     return (0, _checks.ifExists)(element, function () {
-        // Use className instead of classList because IE11 does not have support for slassList on SVG
+        /* Use className instead of classList because IE11 does not have support for slassList on SVG */
         return element.className.indexOf(classForTest) !== -1;
     });
 };
@@ -6845,7 +6982,7 @@ function addClasses(element) {
 
 function removeClass(element, classForRemoving) {
     return (0, _checks.ifExists)(element, function () {
-        // Use className instead of classList because IE11 does not have support for slassList on SVG
+        /* Use className instead of classList because IE11 does not have support for slassList on SVG */
         element.className = element.className.replace(classForRemoving, '');
     });
 };
@@ -6955,13 +7092,19 @@ exports.makeChildElementsClickable = makeChildElementsClickable;
 exports.onFocus = onFocus;
 exports.onBlur = onBlur;
 
+var _mouse = require('../controls/mouse');
+
+var Mouse = _interopRequireWildcard(_mouse);
+
+var _keyboard = require('../controls/keyboard');
+
+var Keyboard = _interopRequireWildcard(_keyboard);
+
 var _checks = require('../utils/checks');
 
 var _uncategorized = require('../utils/uncategorized');
 
-var _mouse = require('../controls/mouse');
-
-var _keyboard = require('../controls/keyboard');
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 // Make element focusable
 // ----------------------
@@ -6970,7 +7113,6 @@ var _keyboard = require('../controls/keyboard');
 // -----------------------------------------------------------------------------
 // Manipulating with Focus & Click
 // -----------------------------------------------------------------------------
-
 
 function makeElementFocusable(element) {
     return (0, _checks.ifExists)(element, function () {
@@ -7098,17 +7240,23 @@ function goToPreviousFocusableElement(element) {
 // enter key press with callback to the element if it exists
 
 function makeElementClickable(element, callback) {
-    var mouseOnly = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+    var _ref = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
+        _ref$mouse = _ref.mouse,
+        mouse = _ref$mouse === undefined ? true : _ref$mouse,
+        _ref$keyboard = _ref.keyboard,
+        keyboard = _ref$keyboard === undefined ? true : _ref$keyboard;
 
     return (0, _checks.ifExists)(element, function () {
-        (0, _mouse.onClick)(element, function (e) {
-            callback(e);
-        });
+        if (mouse) {
+            Mouse.onClick(element, function (e) {
+                callback(e);
+            });
+        }
 
-        if (!mouseOnly) {
+        if (keyboard) {
             element.tabIndex = 0;
 
-            (0, _keyboard.onEnterPressed)(element, function (e) {
+            Keyboard.onEnterPressed(element, function (e) {
                 callback(e);
             });
         }
@@ -7122,30 +7270,36 @@ function makeElementClickable(element, callback) {
 // with callback to the childs if they exists
 
 function makeChildElementsClickable(element, childs, callback) {
-    var mouseOnly = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+    var _ref2 = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {},
+        _ref2$mouse = _ref2.mouse,
+        mouse = _ref2$mouse === undefined ? true : _ref2$mouse,
+        _ref2$keyboard = _ref2.keyboard,
+        keyboard = _ref2$keyboard === undefined ? true : _ref2$keyboard;
 
     return (0, _checks.ifExists)(element, function () {
         return (0, _checks.ifNodeList)(childs, function () {
-            (0, _mouse.onClick)(element, function (e) {
-                var index = -1;
+            if (mouse) {
+                Mouse.onClick(element, function (e) {
+                    var index = -1;
 
-                (0, _uncategorized.forEach)(childs, function (child, i) {
-                    if (child == e.target || (0, _checks.isDescendant)(child, e.target)) {
-                        index = i;
+                    (0, _uncategorized.forEach)(childs, function (child, i) {
+                        if (child == e.target || (0, _checks.isDescendant)(child, e.target)) {
+                            index = i;
+                        }
+                    });
+
+                    if (index >= 0) {
+                        callback(index);
                     }
                 });
+            }
 
-                if (index >= 0) {
-                    callback(index);
-                }
-            });
-
-            if (!mouseOnly) {
+            if (keyboard) {
                 (0, _uncategorized.forEach)(childs, function (child) {
                     child.tabIndex = 0;
                 });
 
-                (0, _keyboard.onEnterPressed)(element, function (e) {
+                Keyboard.onEnterPressed(element, function (e) {
                     var index = [].indexOf.call(childs, e.target);
 
                     if (index >= 0) {

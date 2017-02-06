@@ -4,10 +4,10 @@
     <title>Muilessium - focus-and-click.js</title>
 
     <meta http-equiv='content-type' content='text/html; charset=UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta name='viewport' content='user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1'>
 
-    <link rel='stylesheet' media='all' href='../../assets/css/muilessium.css?v=1485353800520' />
-    <link rel='stylesheet' media='all' href='../../assets/css/docs-styles.css?v=1485353800520' />
+    <link rel='stylesheet' media='all' href='../../assets/css/muilessium.css?v=2984133754352165' />
+    <link rel='stylesheet' media='all' href='../../assets/css/docs-styles.css?v=2984133754352165' />
 
     <link rel='icon' href='./favicon.ico' type='image/x-icon' />
 
@@ -42,7 +42,7 @@
 <body>
     <header class='mui-page-header -black-bg'>
         <div class='mui-header-logo _left'>
-            <img class='mui-image -logo _lazy-load' data-src='images/muilessium.png' alt='logo'>
+            <img class='mui-image -logo -js-lazy-load' data-src='../../images/muilessium.png' alt='logo'>
             <a class='_right' href='/'>
                 <h1 class='-white _bigger-1'>
                     <span>Muilessium</span>
@@ -98,13 +98,13 @@
                     <div class='mui-content-container'>
                         
                             <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> Mouse <span class="hljs-keyword">from</span> <span class="hljs-string">'../controls/mouse'</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> Keyboard <span class="hljs-keyword">from</span> <span class="hljs-string">'../controls/keyboard'</span>;
 
 <span class="hljs-keyword">import</span> { ifExists       } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/checks'</span>;
 <span class="hljs-keyword">import</span> { ifNodeList     } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/checks'</span>;
 <span class="hljs-keyword">import</span> { isDescendant   } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/checks'</span>;
-<span class="hljs-keyword">import</span> { forEach        } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/uncategorized'</span>;
-<span class="hljs-keyword">import</span> { onClick        } <span class="hljs-keyword">from</span> <span class="hljs-string">'../controls/mouse'</span>;
-<span class="hljs-keyword">import</span> { onEnterPressed } <span class="hljs-keyword">from</span> <span class="hljs-string">'../controls/keyboard'</span>;</pre></div></div>
+<span class="hljs-keyword">import</span> { forEach        } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/uncategorized'</span>;</pre></div></div>
                         
                     </div>
                 </div>
@@ -532,16 +532,18 @@ enter key press with callback to the element if it exists</p>
                     <div class='mui-content-container'>
                         
                             <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">makeElementClickable</span>(<span class="hljs-params">element, callback, mouseOnly = false</span>) </span>{
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">makeElementClickable</span>(<span class="hljs-params">element, callback, { mouse = true, keyboard = true } = {}</span>) </span>{
     <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
-        onClick(element, (e) =&gt; {
-            callback(e);
-        });
+        <span class="hljs-keyword">if</span> (mouse) {
+            Mouse.onClick(element, (e) =&gt; {
+                callback(e);
+            });
+        }
 
-        <span class="hljs-keyword">if</span> (!mouseOnly) {
+        <span class="hljs-keyword">if</span> (keyboard) {
             element.tabIndex = <span class="hljs-number">0</span>;
 
-            onEnterPressed(element, (e) =&gt; {
+            Keyboard.onEnterPressed(element, (e) =&gt; {
                 callback(e);
             });
         }
@@ -581,29 +583,31 @@ with callback to the childs if they exists</p>
                     <div class='mui-content-container'>
                         
                             <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">makeChildElementsClickable</span>(<span class="hljs-params">element, childs, callback, mouseOnly = false</span>) </span>{
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">makeChildElementsClickable</span>(<span class="hljs-params">element, childs, callback, { mouse = true, keyboard = true } = {}</span>) </span>{
     <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
         <span class="hljs-keyword">return</span> ifNodeList(childs, () =&gt; {
-            onClick(element, (e) =&gt; {
-                <span class="hljs-keyword">let</span> index = <span class="hljs-number">-1</span>;
+            <span class="hljs-keyword">if</span> (mouse) {
+                Mouse.onClick(element, (e) =&gt; {
+                    <span class="hljs-keyword">let</span> index = <span class="hljs-number">-1</span>;
 
-                forEach(childs, (child, i) =&gt; {
-                    <span class="hljs-keyword">if</span> ((child == e.target) || isDescendant(child, e.target)) {
-                        index = i;
+                    forEach(childs, (child, i) =&gt; {
+                        <span class="hljs-keyword">if</span> ((child == e.target) || isDescendant(child, e.target)) {
+                            index = i;
+                        }
+                    });
+
+                    <span class="hljs-keyword">if</span> (index &gt;= <span class="hljs-number">0</span>) {
+                        callback(index);
                     }
                 });
+            }
 
-                <span class="hljs-keyword">if</span> (index &gt;= <span class="hljs-number">0</span>) {
-                    callback(index);
-                }
-            });
-
-            <span class="hljs-keyword">if</span> (!mouseOnly) {
+            <span class="hljs-keyword">if</span> (keyboard) {
                 forEach(childs, (child) =&gt; {
                     child.tabIndex = <span class="hljs-number">0</span>;
                 });
 
-                onEnterPressed(element, (e) =&gt; {
+                Keyboard.onEnterPressed(element, (e) =&gt; {
                     <span class="hljs-keyword">let</span> index = [].indexOf.call(childs, e.target);
 
                     <span class="hljs-keyword">if</span> (index &gt;= <span class="hljs-number">0</span>) {
@@ -703,17 +707,6 @@ with callback to the childs if they exists</p>
     </div>
 
 
-    <script src='../../assets/js/muilessium.js?v=1485353800520'></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Muilessium.Utils.scrollFire(document.getElementById('warning'), function() {
-                var scrollToTopButton = document.getElementById('scroll-to-top-button');
-
-                Muilessium.Utils.removeClass(scrollToTopButton, '-hidden');
-
-                Muilessium.Utils.makeElementClickable(scrollToTopButton, Muilessium.Utils.scrollToTop);
-            });
-        });
-    </script>
+    <script src='../../assets/js/muilessium.js?v=2984133754352165'></script>
 </body>
 </html>

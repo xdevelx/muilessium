@@ -4,10 +4,10 @@
     <title>Muilessium - aria.js</title>
 
     <meta http-equiv='content-type' content='text/html; charset=UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta name='viewport' content='user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1'>
 
-    <link rel='stylesheet' media='all' href='../../assets/css/muilessium.css?v=1485353800520' />
-    <link rel='stylesheet' media='all' href='../../assets/css/docs-styles.css?v=1485353800520' />
+    <link rel='stylesheet' media='all' href='../../assets/css/muilessium.css?v=2984133754352165' />
+    <link rel='stylesheet' media='all' href='../../assets/css/docs-styles.css?v=2984133754352165' />
 
     <link rel='icon' href='./favicon.ico' type='image/x-icon' />
 
@@ -42,7 +42,7 @@
 <body>
     <header class='mui-page-header -black-bg'>
         <div class='mui-header-logo _left'>
-            <img class='mui-image -logo _lazy-load' data-src='images/muilessium.png' alt='logo'>
+            <img class='mui-image -logo -js-lazy-load' data-src='../../images/muilessium.png' alt='logo'>
             <a class='_right' href='/'>
                 <h1 class='-white _bigger-1'>
                     <span>Muilessium</span>
@@ -105,6 +105,7 @@
 <span class="hljs-keyword">import</span> { removeAttribute      } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/attributes'</span>;
 <span class="hljs-keyword">import</span> { generateRandomString } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/uncategorized'</span>;
 <span class="hljs-keyword">import</span> { stringToBoolean      } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/uncategorized'</span>;
+<span class="hljs-keyword">import</span> { forEach              } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/uncategorized'</span>;
 
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> aria = {</pre></div></div>
@@ -391,7 +392,7 @@ returns this ID</p>
                         
                             <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
     hideIcons: <span class="hljs-function">(<span class="hljs-params">className</span>) =&gt;</span> {
-        [].forEach.call(<span class="hljs-built_in">document</span>.getElementsByClassName(className), (icon) =&gt; {
+        forEach(<span class="hljs-built_in">document</span>.getElementsByClassName(className), (icon) =&gt; {
             setAttribute(icon, <span class="hljs-string">'aria-hidden'</span>, <span class="hljs-literal">true</span>);
         });
     }
@@ -411,17 +412,6 @@ returns this ID</p>
     </div>
 
 
-    <script src='../../assets/js/muilessium.js?v=1485353800520'></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Muilessium.Utils.scrollFire(document.getElementById('warning'), function() {
-                var scrollToTopButton = document.getElementById('scroll-to-top-button');
-
-                Muilessium.Utils.removeClass(scrollToTopButton, '-hidden');
-
-                Muilessium.Utils.makeElementClickable(scrollToTopButton, Muilessium.Utils.scrollToTop);
-            });
-        });
-    </script>
+    <script src='../../assets/js/muilessium.js?v=2984133754352165'></script>
 </body>
 </html>
