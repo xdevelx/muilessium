@@ -58,7 +58,8 @@ export class HeaderNavigation extends Component {
 
     initControls() {
         makeElementClickable(this.dom.hamburger, this.toggleNavigation.bind(this));
-        makeElementClickable(this.dom.shadow,    this.toggleNavigation.bind(this), true);
+        makeElementClickable(this.dom.shadow,    this.toggleNavigation.bind(this),
+                        { mouse: true, keyboard: false });
 
         makeChildElementsClickable(this.element, this.dom.linksList, (index) => {
             let href = this.dom.linksList[index].getAttribute('href');

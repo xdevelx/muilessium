@@ -1,10 +1,12 @@
 import { Component } from '../component';
 
+import * as Keyboard from '../controls/keyboard';
 import * as TouchScreen from '../controls/touchscreen';
 
 import { aria                 } from '../utils/aria';
 import { addClass             } from '../utils/classes';
 import { removeClass          } from '../utils/classes';
+import { makeElementFocusable } from '../utils/focus-and-click';
 import { makeElementClickable } from '../utils/focus-and-click';
 import { extend               } from '../utils/uncategorized';
 import { forEach              } from '../utils/uncategorized';
@@ -23,7 +25,8 @@ export class ModalWindow extends Component {
         });
 
         this.state = extend(this.state, {
-            visible: false
+            visible: false,
+            savedOpener: null
         });
 
         this.initAria();
@@ -41,11 +44,26 @@ export class ModalWindow extends Component {
 
     initControls() {
         forEach(this.dom.openers, (opener) => {
-            makeElementClickable(opener, this.openModal.bind(this));
+            makeElementClickable(opener, () => {
+                this.state.savedOpener = opener;
+                this.openModal();
+            });
+
+            /* Not sure it is good idea to open modal on space pressed, need tests. */
+            Keyboard.onSpacePressed(opener, () => {
+                this.state.savedOpened = opener;
+                this.openModal();
+            });
         });
 
-        makeElementClickable(this.dom.closeIcon, this.closeModal.bind(this));
-        makeElementClickable(this.dom.shadow,    this.closeModal.bind(this));
+        makeElementFocusable(this.dom.modalWindow);
+
+        Keyboard.onTabPressed(this.dom.modalWindow, this.closeModal.bind(this));
+        
+        makeElementClickable(this.dom.closeIcon, this.closeModal.bind(this),
+                        { mouse: true, keyboard: false });
+        makeElementClickable(this.dom.shadow,    this.closeModal.bind(this),
+                        { mouse: true, keyboard: false });
 
         TouchScreen.onPinchOut(this.dom.modalWindow, this.closeModal.bind(this));
 
@@ -59,6 +77,8 @@ export class ModalWindow extends Component {
             addClass(this.dom.shadow, '-visible');
             
             aria.set(this.element, 'hidden', false);
+
+            this.dom.modalWindow.focus();
 
             this.state.visible = true;
         }
@@ -75,6 +95,11 @@ export class ModalWindow extends Component {
             aria.set(this.element, 'hidden', true);
 
             this.state.visible = false;
+
+            if (this.state.savedOpener) {
+                this.state.savedOpener.focus();
+                this.state.savedOpener = null;
+            }
         }
 
         return this;

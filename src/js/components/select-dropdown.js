@@ -108,8 +108,16 @@ export class SelectDropdown extends Component {
 
     
     initControls() { 
-        makeElementClickable(this.dom.select, this.toggleDropdown.bind(this));
-        makeElementClickable(this.dom.shadow, this.toggleDropdown.bind(this), true);
+        makeElementClickable(this.dom.select,
+                        this.toggleDropdown.bind(this, { focusFirstWhenOpened: false }), { mouse: true, keyboard: false });
+
+        makeElementClickable(this.dom.select,
+                        this.toggleDropdown.bind(this, { focusFirstWhenOpened: true }), { mouse: false, keyboard: true });
+
+        Keyboard.onSpacePressed(this.dom.select, this.toggleDropdown.bind(this));
+
+        makeElementClickable(this.dom.shadow, this.toggleDropdown.bind(this),
+                        { mouse: true, keyboard: false });
 
         makeChildElementsClickable(this.element, this.dom.optionsList, (index) => {
             this.updateState(index);
@@ -131,6 +139,26 @@ export class SelectDropdown extends Component {
                 makeElementsFocusable(this.dom.labels);
             });
             
+        });
+
+        forEach(this.dom.optionsList, (option, index) => {
+            Keyboard.onArrowUpPressed(option, () => {
+                if (option == firstOfList(this.dom.optionsList)) {
+                    this.closeDropdown();
+                    this.dom.select.focus();
+                } else {
+                    this.dom.optionsList[index-1].focus();
+                }
+            });
+
+            Keyboard.onArrowDownPressed(option, () => {
+                if (option == lastOfList(this.dom.optionsList)) {
+                    this.closeDropdown();
+                    this.dom.select.focus();
+                } else {
+                    this.dom.optionsList[index+1].focus();
+                }
+            });
         });
 
         this.dom.focusables = getFocusableChilds(this.element);
@@ -161,22 +189,25 @@ export class SelectDropdown extends Component {
         return 0;
     }
 
-    openDropdown() {
+    openDropdown({ focusFirst = true }) {
         this.state.isOpened = true;
 
         addClass(this.element, '-opened');
         addClass(this.dom.shadow, '-visible');
 
-        firstOfList(this.dom.optionsList).focus();
-
+        if (focusFirst) {
+            firstOfList(this.dom.optionsList).focus();
+        }
+    
         return this;
     }
 
-    toggleDropdown() {
-        this.state.isOpened = !this.state.isOpened;
-
-        toggleClass(this.element, '-opened');
-        toggleClass(this.dom.shadow, '-visible');
+    toggleDropdown({ focusFirstWhenOpened = true }) {
+        if (this.state.isOpened) {
+            this.closeDropdown();
+        } else {
+            this.openDropdown({ focusFirst: focusFirstWhenOpened });
+        }
 
         return this;
     }

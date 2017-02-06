@@ -80,8 +80,7 @@ export class ButtonDropdown extends Component {
             Keyboard.onArrowDownPressed(option, () => {
                 if (option == lastOfList(this.dom.optionsList)) {
                     this.closeDropdown();
-
-                    goToNextFocusableElement(lastOfList(getFocusableChilds(this.element)));
+                    this.dom.button.focus();
                 } else {
                     this.dom.optionsList[index+1].focus();
                 }

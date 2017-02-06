@@ -58,7 +58,7 @@ export class Rating extends Component {
 
         makeChildElementsClickable(this.element, this.dom.stars, (index) => {
             this.updateRating(index + 1);
-        }, true);
+        }, { mouse: true, keyboard: false });
 
         return this;
     }
