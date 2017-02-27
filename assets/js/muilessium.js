@@ -7386,15 +7386,13 @@ function scrollFire(element, callback) {
     if ((0, _viewport.isInViewport)(element)) {
         callback();
     } else {
-        (function () {
-            var modifiedCallback = (0, _uncategorized.callOnce)(callback);
+        var modifiedCallback = (0, _uncategorized.callOnce)(callback);
 
-            document.addEventListener('scroll', function () {
-                if ((0, _viewport.isInViewport)(element)) {
-                    setTimeout(modifiedCallback, 200);
-                }
-            });
-        })();
+        document.addEventListener('scroll', function () {
+            if ((0, _viewport.isInViewport)(element)) {
+                setTimeout(modifiedCallback, 200);
+            }
+        });
     }
 };
 

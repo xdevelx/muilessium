@@ -3336,6 +3336,7 @@ mark {
 .mui-page-header {
   position: relative;
   overflow: hidden;
+  max-height: 4rem;
   background: #FFFFFF;
 }
 .mui-page-header:after {
@@ -3462,11 +3463,16 @@ mark {
 }
 @media screen and (max-width: 40rem) {
   .mui-post-footer > .mui-tags-list {
-    max-width: 60%;
+    max-width: 90%;
   }
 }
 .mui-post-footer > .-read-more {
   float: right;
+}
+@media screen and (max-width: 40rem) {
+  .mui-post-footer > .-read-more {
+    float: left;
+  }
 }
 .mui-radio {
   -webkit-user-select: none;
