@@ -41,6 +41,7 @@
 </head>
 <body>
     <header class='mui-page-header -black-bg'>
+    <div class='mui-content-container'>
         <div class='mui-header-logo _left'>
             <img class='mui-image -logo -js-lazy-load' data-src='../../images/muilessium.png' alt='logo'>
             <a class='_right' href='/'>
@@ -52,6 +53,7 @@
                 </h1>
             </a>
         </div>
+    </div>
     </header>
 
     <main class='mui-page-container _separate-3'>
@@ -78,7 +80,7 @@
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-2'>&#182;</a>
                         </div>
-                        <h2 id="manipulating-with-focus-click">Manipulating with Focus &amp; Click</h2>
+                        <h2 id="focus-and-click">FOCUS AND CLICK</h2>
 
                     </div>
                     <div class='mui-content-container'>
@@ -93,11 +95,31 @@
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-3'>&#182;</a>
                         </div>
-                        
+                        <p>This is a number of function for manipulating with ‘focus’ and ‘click’ events
+in accessible components.</p>
+<p>Here is the full list of ‘focus&amp;click’ utilities:</p>
+<ul>
+<li>makeElementFocusable(element)</li>
+<li>makeElementsFocusable(elementsList)</li>
+<li>makeElementNotFocusable(element)</li>
+<li>makeElementsNotFocusable(elementsList)</li>
+<li>getFocusableChilds(element)</li>
+<li>getAllFocusableElements()</li>
+<li>getNextFocusableElement(element)</li>
+<li>getPreviousFocusableElement(element)</li>
+<li>goToNextFocusableElement(element)</li>
+<li>GoToPreviousFocusableElement(element)</li>
+<li>makeElementClickable(element, callback, { mouse = true, keyboard = true } = {})</li>
+<li>makeChildElementsClickable(element, childs, callback, { mouse = true, keyboard = true } = {})</li>
+<li>onFocus(element, callback)</li>
+<li>onBlur(element, callback)</li>
+</ul>
+
                     </div>
                     <div class='mui-content-container'>
                         
                             <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+
 <span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> Mouse <span class="hljs-keyword">from</span> <span class="hljs-string">'../controls/mouse'</span>;
 <span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> Keyboard <span class="hljs-keyword">from</span> <span class="hljs-string">'../controls/keyboard'</span>;
 

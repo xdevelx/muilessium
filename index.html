@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,600">
     <link rel="stylesheet" href="assets/css/docs-styles.css?v=38480588312543995">
 <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
-<link rel="icon" type="image/png" href="icons/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="icons/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
 <link rel="manifest" href="icons/manifest.json">
 <link rel="mask-icon" href="icons/safari-pinned-tab.svg" color="#383838">
 <link rel="shortcut icon" href="icons/favicon.ico">
@@ -21,15 +21,16 @@
 <meta name="theme-color" content="#ffffff"></head>
 <body>
     <header class="mui-page-header -black-bg">
+    <div class="mui-content-container">
         <div class="mui-header-logo _left">
             <img class="mui-image -logo -js-lazy-load" data-src="images/muilessium.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="logo">
             <a class="_right" href="/">
-                <h1 class="-white _bigger-1">muilessium <span class="_smaller-3">v0.1.19</span></h1>
+                <h1 class="-white _bigger-1">muilessium <span class="_smaller-3">v0.1.21</span></h1>
             </a>
         </div>
         <nav class="mui-header-navigation _right">
             <div class="mui-navigation-toggle -hamburger -white -f-grey-3-bg -f-black" role="button" aria-label="Open navigation">
-                <i class="fa fa-bars"></i>
+                <span>&equiv;</span>
             </div>
             <ul class="links-list">
                 <li><a class="-white -f-grey-3-bg -f-black" href="#overview" aria-label="Link to the framework overview">Overview</a></li>
@@ -39,9 +40,10 @@
             </ul>
             <div class="mui-navigation-toggle mui-shadow-toggle" aria-label="Close navigation"></div>
         </nav>
+    </div>
     </header>
-    <div class="mui-row">
-        <aside class="mui-column -s12 -m3 -grey-2-bg">
+    <div class="mui-content-container">
+        <aside class="mui-column -s12 -m3 _right">
             <div class="aside-navigation _smaller-1 _line-1-25 _separate-3" role="navigation">
                 <a class="-f-orange-3" href="#overview">Overview</a>
                 <ul class="sub-list _separate-1">
@@ -123,9 +125,6 @@
                         </li>
                         <li>
                             <a class="-f-orange-3" href="#src/less/components/image.less">Image</a>
-                        </li>
-                        <li>
-                            <a class="-f-orange-3" href="#src/less/components/input-range.less">Range</a>
                         </li>
                         <li>
                             <a class="-f-orange-3" href="#src/less/components/input.less">Input</a>
@@ -213,22 +212,7 @@
                     </div>
                     <p class="mui-p _separate-1">Muilessium is the UI framework or rather a collection of UI components and helpers for developing responsive and accessible websites. This framework written in LESS and ES6 and can be included in a project as is or can be easily customized for your needs. Muilessium supports WAI-ARIA attributes and generates most of them automatically.</p>
                     <div class="_separate-1">
-                        <a class="mui-button -orange-3-bg -white -f-black-bg" href="https://github.com/sfi0zy/muilessium">See on GitHub <i class="fa fa-github"></i></a>
-                    </div>
-                    <div class="_separate-2">
-                    <p class="mui-p _separate-1">Here is some examples of pages created using Muilessium:</p>
-                    <div class="mui-row _separate-1">
-                        <div class="mui-column -s6 -m4 template-preview">
-                            <a href="example1.html">
-                                <img class="mui-image -js-lazy-load -violet-5-bg" data-src="images/example1.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Example of page created using Muilessium">
-                            </a>
-                        </div>
-                        <div class="mui-column -s6 -m4 template-preview">
-                            <a href="example2.html">
-                                <img class="mui-image -js-lazy-load -red-3-bg" data-src="images/example2.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Example of page created using Muilessium">
-                            </a>
-                        </div>
-                    </div>
+                        <a class="mui-button -orange-3-bg -white -f-black-bg" href="https://github.com/sfi0zy/muilessium">Muilessium on GitHub</a>
                     </div>
                 </div>
                 <div class="_separate-5">
@@ -409,17 +393,6 @@
                 </div>
                 <div class="_separate-5">
                     <div class="mui-row">
-                        <a class="anchor-link _smaller-2 -grey-3 -f-blue-3" href="#libraries">&#182;</a>
-                        <h3 class="_bigger-2" id="libraries">Libraries</h3>
-                    </div>
-                    <p class="mui-p _separate-1">Muilessium uses some other libraries and if you need to use them too - no need to include them again</p>
-                    <ul>
-                        <li>FontAwesome</li>
-                        <li>Hammer.js</li>
-                    </ul>
-                </div>
-                <div class="_separate-5">
-                    <div class="mui-row">
                         <a class="anchor-link _smaller-2 -grey-3 -f-blue-3" href="#components">&#182;</a>
                         <h3 class="_bigger-2" id="components">Components</h3>
                     </div>
@@ -436,18 +409,18 @@
       <li class="item">
           <div class="title">
               <div class="indicator">
-                  <i class="fa fa-arrow-right"></i>
+                  <span>&rarr;</span>
               </div>
-              Lorem
+              <span>Lorem</span>
           </div>
           <div class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, quaerat!</div>
       </li>
       <li class="item">
           <div class="title">
               <div class="indicator">
-                  <i class="fa fa-arrow-right"></i>
+                  <span>&rarr;</span>
               </div>
-              Lorem
+              <span>Lorem</span>
           </div>
           <div class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, quaerat!</div>
       </li>
@@ -457,18 +430,18 @@
       &lt;li class='item'&gt;
           &lt;div class='title'&gt;
               &lt;div class='indicator'&gt;
-                  &lt;i class='fa fa-arrow-right'&gt;&lt;/i&gt;
+                  &lt;span&gt;&rarr;&lt;/span&gt;
               &lt;/div&gt;
-              Lorem
+              &lt;span&gt;Lorem&lt;/span&gt;
           &lt;/div&gt;
           &lt;div class='content'&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, quaerat!&lt;/div&gt;
       &lt;/li&gt;
       &lt;li class='item'&gt;
           &lt;div class='title'&gt;
               &lt;div class='indicator'&gt;
-                  &lt;i class='fa fa-arrow-right'&gt;&lt;/i&gt;
+                  &lt;span&gt;&rarr;&lt;/span&gt;
               &lt;/div&gt;
-              Lorem
+              &lt;span&gt;Lorem&lt;/span&gt;
           &lt;/div&gt;
           &lt;div class='content'&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, quaerat!&lt;/div&gt;
       &lt;/li&gt;
@@ -560,7 +533,10 @@
                                     <div class="_smaller-2 -blue-4">Depends on shadow-toggle</div>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-button-dropdown">
-      <a class="mui-button" aria-label="Dropdown button">button <i class="fa fa-arrow-down"></i></a>          
+      <a class="mui-button" aria-label="Dropdown button">
+          <span>button</span>
+          <span>&nbsp;&nbsp;&darr;</span>
+      </a>          
       <div class="mui-dropdown-options _shadow-1">
           <div class="option">Option 1</div>
           <div class="option">Option 2</div>
@@ -570,7 +546,10 @@
   </div></div>
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-button-dropdown'&gt;
-      &lt;a class='mui-button' aria-label='Dropdown button'&gt;button &lt;i class='fa fa-arrow-down'&gt;&lt;/i&gt;&lt;/a&gt;          
+      &lt;a class='mui-button' aria-label='Dropdown button'&gt;
+          &lt;span&gt;button&lt;/span&gt;
+          &lt;span&gt;&nbsp;&nbsp;&darr;&lt;/span&gt;
+      &lt;/a&gt;          
       &lt;div class='mui-dropdown-options _shadow-1'&gt;
           &lt;div class='option'&gt;Option 1&lt;/div&gt;
           &lt;div class='option'&gt;Option 2&lt;/div&gt;
@@ -592,31 +571,31 @@
                                     <div class="_smaller-2 -blue-4">Depends on button</div>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-button-group">
-      <button class="mui-button" aria-label="first: click to ...">first</button>
-      <button class="mui-button" aria-label="second: click to ...">second</button>
-      <button class="mui-button" aria-label="third: click to ...">third</button>
+      <button class="mui-button" aria-label="">first</button>
+      <button class="mui-button" aria-label="">second</button>
+      <button class="mui-button" aria-label="">third</button>
   </div></div>
                                             <div class="state _separate-2">
                                                 <h5 class="_smaller-1">Button group with -vertical option</h5>
                                                 <div class="example _separate-2" data-class="-vertical">  <div class="mui-button-group">
-      <button class="mui-button" aria-label="first: click to ...">first</button>
-      <button class="mui-button" aria-label="second: click to ...">second</button>
-      <button class="mui-button" aria-label="third: click to ...">third</button>
+      <button class="mui-button" aria-label="">first</button>
+      <button class="mui-button" aria-label="">second</button>
+      <button class="mui-button" aria-label="">third</button>
   </div></div>
                                             </div>
                                             <div class="state _separate-2">
                                                 <h5 class="_smaller-1">Button group with -or option</h5>
                                                 <div class="example _separate-2" data-class="-or">  <div class="mui-button-group">
-      <button class="mui-button" aria-label="first: click to ...">first</button>
-      <button class="mui-button" aria-label="second: click to ...">second</button>
-      <button class="mui-button" aria-label="third: click to ...">third</button>
+      <button class="mui-button" aria-label="">first</button>
+      <button class="mui-button" aria-label="">second</button>
+      <button class="mui-button" aria-label="">third</button>
   </div></div>
                                             </div>
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-button-group'&gt;
-      &lt;button class='mui-button' aria-label='first: click to ...'&gt;first&lt;/button&gt;
-      &lt;button class='mui-button' aria-label='second: click to ...'&gt;second&lt;/button&gt;
-      &lt;button class='mui-button' aria-label='third: click to ...'&gt;third&lt;/button&gt;
+      &lt;button class='mui-button' aria-label=''&gt;first&lt;/button&gt;
+      &lt;button class='mui-button' aria-label=''&gt;second&lt;/button&gt;
+      &lt;button class='mui-button' aria-label=''&gt;third&lt;/button&gt;
   &lt;/div&gt;</pre>
                                         </div>
                                     </div>
@@ -630,39 +609,65 @@
                                 <div class="_smaller-2 -grey-4">src/less/components/button.less</div>
                                     <p class="mui-p _separate-1">Button can include an icon, a badge or a label. Buttons can be used in more complex components like button-groups.</p>
                                     <div class="_separate-1">
-                                        <div class="example _separate-2">  <a class="mui-button" aria-label="click to ...">button</a>
-  <a class="mui-button -small" aria-label="click to ...">button</a>
-  <a class="mui-button -large" aria-label="click to ...">button</a>
-  <a class="mui-button -dangerous" aria-label="click to ...">button</a>
-  <a class="mui-button -ghost" aria-label="click to ...">button</a>
-  <a class="mui-button -ghost -light" aria-label="click to ...">button</a>
-  <a class="mui-button" aria-label="click to ...">
-      <i class="fa fa-user"></i> button
+                                        <div class="example _separate-2">  <a class="mui-button" aria-label="">button</a>
+  <a class="mui-button -small" aria-label="">button</a>
+  <a class="mui-button -large" aria-label="">button</a>
+  <a class="mui-button -dangerous" aria-label="">button</a>
+  <a class="mui-button -ghost" aria-label="">button</a>
+  <a class="mui-button -ghost -light" aria-label="">button</a>
+  <a class="mui-button" aria-label="">
+      <span>&lowast;</span>
+      <span>button</span>
   </a>
-  <a class="mui-button -icon" aria-label="click to ...">
-      <i class="fa fa-bell"></i>
+  <a class="mui-button -icon" aria-label="">
+      <span>&lowast;</span>
   </a>
-  <a class="mui-button" aria-label="click to...">button <span class="mui-badge" aria-label="5 messages total">5</span></a>
-  <a class="mui-button -badge-on-top" aria-label="click to...">button <span class="mui-badge" aria-label="5 messages total">5</span></a>
-  <a class="mui-button -label-left" aria-label="click to ...">button<span class="label">label</span></a>
-  <a class="mui-button -label-right" aria-label="click to ...">button<span class="label">label</span></a></div>
+  <a class="mui-button" aria-label="">
+      <span>button</span>
+      <span class="mui-badge" aria-label="5 messages total">5</span>
+  </a>
+  <a class="mui-button -badge-on-top" aria-label="">
+      <span>button</span>
+      <span class="mui-badge" aria-label="5 messages total">5</span>
+  </a>
+  <a class="mui-button -label-left" aria-label="">
+      <span>button</span>
+      <span class="label">label</span>
+  </a>
+  <a class="mui-button -label-right" aria-label="">
+      <span>button</span>
+      <span class="label">label</span>
+  </a></div>
                                         <div class="code _separate-2 _smaller-2">
-                                            <pre class="( prettyprint lang-html )">  &lt;a class='mui-button'            aria-label='click to ...'&gt;button&lt;/a&gt;
-  &lt;a class='mui-button -small'     aria-label='click to ...'&gt;button&lt;/a&gt;
-  &lt;a class='mui-button -large'     aria-label='click to ...'&gt;button&lt;/a&gt;
-  &lt;a class='mui-button -dangerous' aria-label='click to ...'&gt;button&lt;/a&gt;
-  &lt;a class='mui-button -ghost'     aria-label='click to ...'&gt;button&lt;/a&gt;
-  &lt;a class='mui-button -ghost -light' aria-label='click to ...'&gt;button&lt;/a&gt;
-  &lt;a class='mui-button' aria-label='click to ...'&gt;
-      &lt;i class='fa fa-user'&gt;&lt;/i&gt; button
+                                            <pre class="( prettyprint lang-html )">  &lt;a class='mui-button'               aria-label=''&gt;button&lt;/a&gt;
+  &lt;a class='mui-button -small'        aria-label=''&gt;button&lt;/a&gt;
+  &lt;a class='mui-button -large'        aria-label=''&gt;button&lt;/a&gt;
+  &lt;a class='mui-button -dangerous'    aria-label=''&gt;button&lt;/a&gt;
+  &lt;a class='mui-button -ghost'        aria-label=''&gt;button&lt;/a&gt;
+  &lt;a class='mui-button -ghost -light' aria-label=''&gt;button&lt;/a&gt;
+  &lt;a class='mui-button' aria-label=''&gt;
+      &lt;span&gt;&lowast;&lt;/span&gt;
+      &lt;span&gt;button&lt;/span&gt;
   &lt;/a&gt;
-  &lt;a class='mui-button -icon' aria-label='click to ...'&gt;
-      &lt;i class='fa fa-bell'&gt;&lt;/i&gt;
+  &lt;a class='mui-button -icon' aria-label=''&gt;
+      &lt;span&gt;&lowast;&lt;/span&gt;
   &lt;/a&gt;
-  &lt;a class='mui-button' aria-label='click to...'&gt;button &lt;span class='mui-badge' aria-label='5 messages total'&gt;5&lt;/span&gt;&lt;/a&gt;
-  &lt;a class='mui-button -badge-on-top' aria-label='click to...'&gt;button &lt;span class='mui-badge' aria-label='5 messages total'&gt;5&lt;/span&gt;&lt;/a&gt;
-  &lt;a class='mui-button -label-left' aria-label='click to ...'&gt;button&lt;span class='label'&gt;label&lt;/span&gt;&lt;/a&gt;
-  &lt;a class='mui-button -label-right' aria-label='click to ...'&gt;button&lt;span class='label'&gt;label&lt;/span&gt;&lt;/a&gt;</pre>
+  &lt;a class='mui-button' aria-label=''&gt;
+      &lt;span&gt;button&lt;/span&gt;
+      &lt;span class='mui-badge' aria-label='5 messages total'&gt;5&lt;/span&gt;
+  &lt;/a&gt;
+  &lt;a class='mui-button -badge-on-top' aria-label=''&gt;
+      &lt;span&gt;button&lt;/span&gt;
+      &lt;span class='mui-badge' aria-label='5 messages total'&gt;5&lt;/span&gt;
+  &lt;/a&gt;
+  &lt;a class='mui-button -label-left' aria-label=''&gt;
+      &lt;span&gt;button&lt;/span&gt;
+      &lt;span class='label'&gt;label&lt;/span&gt;
+  &lt;/a&gt;
+  &lt;a class='mui-button -label-right' aria-label=''&gt;
+      &lt;span&gt;button&lt;/span&gt;
+      &lt;span class='label'&gt;label&lt;/span&gt;
+  &lt;/a&gt;</pre>
                                         </div>
                                     </div>
                             </div>
@@ -676,14 +681,18 @@
                                     <p class="mui-p _separate-1">It is desirable to wrap card header text into h2-h6 tags for better navigation.</p>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-card _shadow-1">
-      <div class="header"><h5>Lorem ipsum</h5></div>
+      <div class="header">
+          <h5>Lorem ipsum</h5>
+      </div>
       <div class="content">
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt, magni.</p>
       </div>
   </div></div>
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-card _shadow-1'&gt;
-      &lt;div class='header'&gt;&lt;h5&gt;Lorem ipsum&lt;/h5&gt;&lt;/div&gt;
+      &lt;div class='header'&gt;
+          &lt;h5&gt;Lorem ipsum&lt;/h5&gt;
+      &lt;/div&gt;
       &lt;div class='content'&gt;
           &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt, magni.&lt;/p&gt;
       &lt;/div&gt;
@@ -753,8 +762,8 @@
               </li>
           </ul>
           <div class="mui-carousel-controls">
-              <div class="prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></div>
-              <div class="next"><i class="fa fa-chevron-right" aria-hidden="true"></i></div>
+              <div class="prev">&larr;</div>
+              <div class="next">&rarr;</div>
           </div>
           <ul class="mui-carousel-indicators">
               <li class="indicator"></li>
@@ -788,8 +797,8 @@
               &lt;/li&gt;
           &lt;/ul&gt;
           &lt;div class='mui-carousel-controls'&gt;
-              &lt;div class='prev'&gt;&lt;i class='fa fa-chevron-left' aria-hidden='true'&gt;&lt;/i&gt;&lt;/div&gt;
-              &lt;div class='next'&gt;&lt;i class='fa fa-chevron-right' aria-hidden='true'&gt;&lt;/i&gt;&lt;/div&gt;
+              &lt;div class='prev'&gt;&larr;&lt;/div&gt;
+              &lt;div class='next'&gt;&rarr;&lt;/div&gt;
           &lt;/div&gt;
           &lt;ul class='mui-carousel-indicators'&gt;
               &lt;li class='indicator'&gt;&lt;/li&gt;
@@ -807,12 +816,13 @@
                                     <h4 class="_bigger-1">Checkbox</h4>
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/checkbox.less</div>
-                                    <div class="_smaller-2 -red-4">Requires FontAwesome</div>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-checkbox">
       <input type="checkbox" id="dFrp7">
       <label>
-          <span class="icon"><i class="fa fa-check"></i></span>
+          <span class="icon">
+              <span class="symbol">&check;</span>
+          </span>
           <span class="text">Lorem ipsum.</span>
       </label>
   </div></div>
@@ -820,7 +830,9 @@
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-checkbox'&gt;
       &lt;input type='checkbox' id='dFrp7'&gt;
       &lt;label&gt;
-          &lt;span class='icon'&gt;&lt;i class='fa fa-check'&gt;&lt;/i&gt;&lt;/span&gt;
+          &lt;span class='icon'&gt;
+              &lt;span class='symbol'&gt;&check;&lt;/span&gt;
+          &lt;/span&gt;
           &lt;span class='text'&gt;Lorem ipsum.&lt;/span&gt;
       &lt;/label&gt;
   &lt;/div&gt;</pre>
@@ -967,30 +979,6 @@
                                         </div>
                                     </div>
                             </div>
-                        <div id="src/less/components/input-range.less" class="_allow-empty"></div>
-                            <div class="_separate-5">
-                                <div class="mui-row">
-                                    <a class="anchor-link _smaller-2 -grey-3 -f-blue-3" href="#src/less/components/input-range.less">&#182;</a>
-                                    <h4 class="_bigger-1">Range</h4>
-                                </div>
-                                <div class="_smaller-2 -grey-4">src/less/components/input-range.less</div>
-                                    <div class="_separate-1">
-                                        <div class="example _separate-2">  <div class="mui-input-wrapper">
-      <label class="mui-input-label">Select price</label>
-      <div class="mui-input-range">
-          <input type="range" id="mlIP4">
-      </div>
-  </div></div>
-                                        <div class="code _separate-2 _smaller-2">
-                                            <pre class="( prettyprint lang-html )">  &lt;div class='mui-input-wrapper'&gt;
-      &lt;label class='mui-input-label'&gt;Select price&lt;/label&gt;
-      &lt;div class='mui-input-range'&gt;
-          &lt;input type='range' id='mlIP4'&gt;
-      &lt;/div&gt;
-  &lt;/div&gt;</pre>
-                                        </div>
-                                    </div>
-                            </div>
                         <div id="src/less/components/input.less" class="_allow-empty"></div>
                             <div class="_separate-5">
                                 <div class="mui-row">
@@ -1005,8 +993,8 @@
       <div class="mui-input-hint">
           <span>Select Your username (min 3 characters, only letters allowed)</span>
           <span class="mui-input-indicator">
-              <i class="fa fa-check-square valid-icon"></i>
-              <i class="fa fa-exclamation-triangle invalid-icon"></i>
+              <span class="valid-icon">&check;</span>
+              <span class="invalid-icon">&cross;</span>
           </span>
       </div>
       <div class="mui-input" data-regexp="^[a-zA-Z]{3,}$" data-validation-delay="1000">
@@ -1019,8 +1007,8 @@
       &lt;div class='mui-input-hint'&gt;
           &lt;span&gt;Select Your username (min 3 characters, only letters allowed)&lt;/span&gt;
           &lt;span class='mui-input-indicator'&gt;
-              &lt;i class='fa fa-check-square valid-icon'&gt;&lt;/i&gt;
-              &lt;i class='fa fa-exclamation-triangle invalid-icon'&gt;&lt;/i&gt;
+              &lt;span class='valid-icon'&gt;&check;&lt;/span&gt;
+              &lt;span class='invalid-icon'&gt;&cross;&lt;/span&gt;
           &lt;/span&gt;
       &lt;/div&gt;
       &lt;div class='mui-input' data-regexp='^[a-zA-Z]{3,}$' data-validation-delay='1000'&gt;
@@ -1037,19 +1025,18 @@
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/input.less</div>
                                     <p class="mui-p _separate-1">Input component with an icon</p>
-                                    <div class="_smaller-2 -red-4">Requires FontAwesome</div>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-input-wrapper">
       <label class="mui-input-label">Username</label>
       <div class="mui-input-hint">
           <span>Select Your username (min 3 characters, only letters allowed)</span>
           <span class="mui-input-indicator">
-              <i class="fa fa-check-square valid-icon"></i>
-              <i class="fa fa-exclamation-triangle invalid-icon"></i>
+              <span class="valid-icon">&check;</span>
+              <span class="invalid-icon">&cross;</span>
           </span>
       </div>
       <div class="mui-input -icon-left" data-regexp="^[a-zA-Z]{3,}$">
-          <label class="icon"><i class="fa fa-user"></i></label>
+          <label class="icon">&lowast;</label>
           <input type="text" id="TEz8D" placeholder="Select your username">
       </div>
   </div></div>
@@ -1059,12 +1046,12 @@
       &lt;div class='mui-input-hint'&gt;
           &lt;span&gt;Select Your username (min 3 characters, only letters allowed)&lt;/span&gt;
           &lt;span class='mui-input-indicator'&gt;
-              &lt;i class='fa fa-check-square valid-icon'&gt;&lt;/i&gt;
-              &lt;i class='fa fa-exclamation-triangle invalid-icon'&gt;&lt;/i&gt;
+              &lt;span class='valid-icon'&gt;&check;&lt;/span&gt;
+              &lt;span class='invalid-icon'&gt;&cross;&lt;/span&gt;
           &lt;/span&gt;
       &lt;/div&gt;
       &lt;div class='mui-input -icon-left' data-regexp='^[a-zA-Z]{3,}$'&gt;
-          &lt;label class='icon'&gt;&lt;i class='fa fa-user'&gt;&lt;/i&gt;&lt;/label&gt;
+          &lt;label class='icon'&gt;&lowast;&lt;/label&gt;
           &lt;input type='text' id='TEz8D' placeholder='Select your username'&gt;
       &lt;/div&gt;
   &lt;/div&gt;</pre>
@@ -1087,8 +1074,8 @@
                   <span class="_smaller-1">(min 3 characters, only letters allowed)</span>
               </span>
               <span class="mui-input-indicator">
-                  <i class="fa fa-check-square valid-icon"></i>
-                  <i class="fa fa-exclamation-triangle invalid-icon"></i>
+                  <span class="valid-icon">&check;</span>
+                  <span class="invalid-icon">&cross;</span>
               </span>
           </label>
           <input type="text" id="8vrWA">
@@ -1103,8 +1090,8 @@
                   &lt;span class='_smaller-1'&gt;(min 3 characters, only letters allowed)&lt;/span&gt;
               &lt;/span&gt;
               &lt;span class='mui-input-indicator'&gt;
-                  &lt;i class='fa fa-check-square valid-icon'&gt;&lt;/i&gt;
-                  &lt;i class='fa fa-exclamation-triangle invalid-icon'&gt;&lt;/i&gt;
+                  &lt;span class='valid-icon'&gt;&check;&lt;/span&gt;
+                  &lt;span class='invalid-icon'&gt;&cross;&lt;/span&gt;
               &lt;/span&gt;
           &lt;/label&gt;
           &lt;input type='text' id='8vrWA'&gt;
@@ -1163,7 +1150,7 @@
               <img class="mui-image -js-lazy-load" data-src="https://placehold.it/800x600" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Image description">
          </div>
          <div class="close-icon">
-             <i class="fa fa-close"></i>
+             <span>&cross;</span>
          </div>
      </div>
      <div class="mui-shadow-toggle"></div>
@@ -1176,7 +1163,7 @@
               &lt;img class='mui-image -js-lazy-load' data-src='https://placehold.it/800x600' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt='Image description'&gt;
          &lt;/div&gt;
          &lt;div class='close-icon'&gt;
-             &lt;i class='fa fa-close'&gt;&lt;/i&gt;
+             &lt;span&gt;&cross;&lt;/span&gt;
          &lt;/div&gt;
      &lt;/div&gt;
      &lt;div class='mui-shadow-toggle'&gt;&lt;/div&gt;
@@ -1231,11 +1218,10 @@
                                 <div class="_smaller-2 -grey-4">src/less/components/page-header-navigation.less</div>
                                     <div class="_smaller-2 -blue-4">Depends on page-header</div>
                                     <div class="_smaller-2 -blue-4">Depends on shadow-toggle</div>
-                                    <div class="_smaller-2 -red-4">Requires FontAwesome</div>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <nav class="mui-header-navigation">
       <div class="mui-navigation-toggle -hamburger" aria-label="Main website navigation">
-          <i class="fa fa-bars"></i>
+          <span>&equiv;</span>
       </div>
       <ul class="links-list">
           <li><a href="" aria-label="Home page">home</a></li>
@@ -1247,7 +1233,7 @@
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;nav class='mui-header-navigation'&gt;
       &lt;div class='mui-navigation-toggle -hamburger' aria-label='Main website navigation'&gt;
-          &lt;i class='fa fa-bars'&gt;&lt;/i&gt;
+          &lt;span&gt;&equiv;&lt;/span&gt;
       &lt;/div&gt;
       &lt;ul class='links-list'&gt;
           &lt;li&gt;&lt;a href='' aria-label='Home page'&gt;home&lt;/a&gt;&lt;/li&gt;
@@ -1281,38 +1267,37 @@
                                     <h4 class="_bigger-1">Pagination</h4>
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/pagination.less</div>
-                                    <div class="_smaller-2 -red-4">Requires FontAwesome</div>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-pagination" aria-label="Pagination">
-      <div class="page-link"><a href="" aria-label="Previous page"><i class="fa fa-chevron-left"></i></a></div>
+      <div class="page-link"><a href="" aria-label="Previous page">&larr;</a></div>
       <div class="page-link"><a href="" aria-label="Page number 1">1</a></div>
       <div class="page-link"><a href="" aria-label="Page number 2">2</a></div>
       <div class="page-link -current"><a href="" aria-label="Current page">3</a></div>
       <div class="page-link"><a href="" aria-label="Page number 4">4</a></div>
       <div class="page-link"><a href="" aria-label="Page number 5">5</a></div>
-      <div class="page-link"><a href="" aria-label="Next page"><i class="fa fa-chevron-right"></i></a></div>
+      <div class="page-link"><a href="" aria-label="Next page">&rarr;</a></div>
   </div></div>
                                             <div class="state _separate-2">
                                                 <h5 class="_smaller-1">Pagination with -bordered option</h5>
                                                 <div class="example _separate-2" data-class="-bordered">  <div class="mui-pagination" aria-label="Pagination">
-      <div class="page-link"><a href="" aria-label="Previous page"><i class="fa fa-chevron-left"></i></a></div>
+      <div class="page-link"><a href="" aria-label="Previous page">&larr;</a></div>
       <div class="page-link"><a href="" aria-label="Page number 1">1</a></div>
       <div class="page-link"><a href="" aria-label="Page number 2">2</a></div>
       <div class="page-link -current"><a href="" aria-label="Current page">3</a></div>
       <div class="page-link"><a href="" aria-label="Page number 4">4</a></div>
       <div class="page-link"><a href="" aria-label="Page number 5">5</a></div>
-      <div class="page-link"><a href="" aria-label="Next page"><i class="fa fa-chevron-right"></i></a></div>
+      <div class="page-link"><a href="" aria-label="Next page">&rarr;</a></div>
   </div></div>
                                             </div>
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-pagination' aria-label='Pagination'&gt;
-      &lt;div class='page-link'         &gt;&lt;a href='' aria-label='Previous page'&gt;&lt;i class='fa fa-chevron-left'&gt;&lt;/i&gt;&lt;/a&gt;&lt;/div&gt;
+      &lt;div class='page-link'         &gt;&lt;a href='' aria-label='Previous page'&gt;&larr;&lt;/a&gt;&lt;/div&gt;
       &lt;div class='page-link'         &gt;&lt;a href='' aria-label='Page number 1'&gt;1&lt;/a&gt;&lt;/div&gt;
       &lt;div class='page-link'         &gt;&lt;a href='' aria-label='Page number 2'&gt;2&lt;/a&gt;&lt;/div&gt;
       &lt;div class='page-link -current'&gt;&lt;a href='' aria-label='Current page' &gt;3&lt;/a&gt;&lt;/div&gt;
       &lt;div class='page-link'         &gt;&lt;a href='' aria-label='Page number 4'&gt;4&lt;/a&gt;&lt;/div&gt;
       &lt;div class='page-link'         &gt;&lt;a href='' aria-label='Page number 5'&gt;5&lt;/a&gt;&lt;/div&gt;
-      &lt;div class='page-link'         &gt;&lt;a href='' aria-label='Next page'&gt;&lt;i class='fa fa-chevron-right'&gt;&lt;/i&gt;&lt;/a&gt;&lt;/div&gt;
+      &lt;div class='page-link'         &gt;&lt;a href='' aria-label='Next page'&gt;&rarr;&lt;/a&gt;&lt;/div&gt;
   &lt;/div&gt;</pre>
                                         </div>
                                     </div>
@@ -1443,22 +1428,21 @@
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/rating.less</div>
                                     <p class="mui-p _separate-1">Use -js-disabled class to create &quot;view-only&quot; rating.</p>
-                                    <div class="_smaller-2 -red-4">Requires FontAwesome</div>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-rating" data-rating="3" aria-label="Rating: 3 stars of 5">
-      <span class="star fa fa-star"></span>
-      <span class="star fa fa-star"></span>
-      <span class="star fa fa-star"></span>
-      <span class="star fa fa-star"></span>
-      <span class="star fa fa-star"></span>
+      <span class="star">&starf;</span>
+      <span class="star">&starf;</span>
+      <span class="star">&starf;</span>
+      <span class="star">&starf;</span>
+      <span class="star">&starf;</span>
   </div></div>
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-rating' data-rating='3' aria-label='Rating: 3 stars of 5'&gt;
-      &lt;span class='star fa fa-star'&gt;&lt;/span&gt;
-      &lt;span class='star fa fa-star'&gt;&lt;/span&gt;
-      &lt;span class='star fa fa-star'&gt;&lt;/span&gt;
-      &lt;span class='star fa fa-star'&gt;&lt;/span&gt;
-      &lt;span class='star fa fa-star'&gt;&lt;/span&gt;
+      &lt;span class='star'&gt;&starf;&lt;/span&gt;
+      &lt;span class='star'&gt;&starf;&lt;/span&gt;
+      &lt;span class='star'&gt;&starf;&lt;/span&gt;
+      &lt;span class='star'&gt;&starf;&lt;/span&gt;
+      &lt;span class='star'&gt;&starf;&lt;/span&gt;
   &lt;/div&gt;</pre>
                                         </div>
                                     </div>
@@ -1521,7 +1505,9 @@
               </div>
           </div>
           <div class="mui-shadow-toggle"></div>
-          <div class="icon"><i class="fa fa-angle-double-down"></i></div>
+          <div class="icon">
+              <span>&darr;</span>
+          </div>
       </div>
   </div></div>
                                         <div class="code _separate-2 _smaller-2">
@@ -1538,7 +1524,9 @@
               &lt;/div&gt;
           &lt;/div&gt;
           &lt;div class='mui-shadow-toggle'&gt;&lt;/div&gt;
-          &lt;div class='icon'&gt;&lt;i class='fa fa-angle-double-down'&gt;&lt;/i&gt;&lt;/div&gt;
+          &lt;div class='icon'&gt;
+              &lt;span&gt;&darr;&lt;/span&gt;
+          &lt;/div&gt;
       &lt;/div&gt;
   &lt;/div&gt;</pre>
                                         </div>
@@ -1614,10 +1602,9 @@
                                     <h4 class="_bigger-1">Tags list</h4>
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/tags-list.less</div>
-                                    <div class="_smaller-2 -red-4">Requires FontAwesome</div>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">      <div class="mui-tags-list" aria-label="Tags list">
-          <div class="mui-tag-wrapper -icon" role="presentation"><i class="fa fa-tags" aria-hidden="true"></i></div>
+          <div class="mui-tag-wrapper -icon" role="presentation">&lowast;</div>
           <div class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag nature">nature</a></div>
           <div class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag art">art</a></div>
           <div class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag photography">photography</a></div>
@@ -1626,7 +1613,7 @@
       </div></div>
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">      &lt;div class='mui-tags-list' aria-label='Tags list'&gt;
-          &lt;div class='mui-tag-wrapper -icon' role='presentation'&gt;&lt;i class='fa fa-tags' aria-hidden='true'&gt;&lt;/i&gt;&lt;/div&gt;
+          &lt;div class='mui-tag-wrapper -icon' role='presentation'&gt;&lowast;&lt;/div&gt;
           &lt;div class='mui-tag-wrapper'&gt;&lt;a href='' class='mui-tag' aria-label='Search by tag nature'&gt;nature&lt;/a&gt;&lt;/div&gt;
           &lt;div class='mui-tag-wrapper'&gt;&lt;a href='' class='mui-tag' aria-label='Search by tag art'&gt;art&lt;/a&gt;&lt;/div&gt;
           &lt;div class='mui-tag-wrapper'&gt;&lt;a href='' class='mui-tag' aria-label='Search by tag photography'&gt;photography&lt;/a&gt;&lt;/div&gt;
@@ -1748,7 +1735,7 @@
         <span>Copyright &copy; Ivan Bogachev, 2016-2017</span>
     </div>
     <div id="scroll-to-top" class="( mui-button -icon ) -white-bg -black -f-blue-2-bg -f-white scroll-to-top -hidden _shadow-3">
-        <i class="fa fa-arrow-up"></i>
+        <span>&uarr;</span>
     </div>
     <script src="assets/js/prettify/prettify.js?v=1485353800520"></script>
     <script src="assets/js/muilessium.js?v=38480588312543995"></script>

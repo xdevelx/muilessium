@@ -41,6 +41,7 @@
 </head>
 <body>
     <header class='mui-page-header -black-bg'>
+    <div class='mui-content-container'>
         <div class='mui-header-logo _left'>
             <img class='mui-image -logo -js-lazy-load' data-src='../../images/muilessium.png' alt='logo'>
             <a class='_right' href='/'>
@@ -52,6 +53,7 @@
                 </h1>
             </a>
         </div>
+    </div>
     </header>
 
     <main class='mui-page-container _separate-3'>
@@ -78,7 +80,7 @@
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-2'>&#182;</a>
                         </div>
-                        <h2 id="manipulating-css-classes">Manipulating CSS classes</h2>
+                        <h2 id="css-classes">CSS CLASSES</h2>
 
                     </div>
                     <div class='mui-content-container'>
@@ -93,7 +95,21 @@
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-3'>&#182;</a>
                         </div>
-                        
+                        <p>IE11 does not support useful methods of the classList on SVG elements,
+so it will be a good idea to use this wrappers for all elements and don’t think
+about “is this element an SVG or not?”.</p>
+<p>Here is the full list of utilities for manipulations with CSS classes:</p>
+<ul>
+<li>hasClass(element, class)</li>
+<li>hasNotClass(element, class)</li>
+<li>addClass(element, class)</li>
+<li>addClasses(element, …classes)</li>
+<li>removeClass(element, class)</li>
+<li>removeClasses(element, …classes)</li>
+<li>replaceClass(element, class, newClass)</li>
+<li>toggleClass(element, class)</li>
+</ul>
+
                     </div>
                     <div class='mui-content-container'>
                         

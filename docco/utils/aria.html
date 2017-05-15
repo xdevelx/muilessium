@@ -41,6 +41,7 @@
 </head>
 <body>
     <header class='mui-page-header -black-bg'>
+    <div class='mui-content-container'>
         <div class='mui-header-logo _left'>
             <img class='mui-image -logo -js-lazy-load' data-src='../../images/muilessium.png' alt='logo'>
             <a class='_right' href='/'>
@@ -52,6 +53,7 @@
                 </h1>
             </a>
         </div>
+    </div>
     </header>
 
     <main class='mui-page-container _separate-3'>
@@ -78,7 +80,7 @@
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-2'>&#182;</a>
                         </div>
-                        <h2 id="wai-aria-utilities">WAI-ARIA utilities</h2>
+                        <h2 id="wai-aria-utilities">WAI-ARIA UTILITIES</h2>
 
                     </div>
                     <div class='mui-content-container'>
@@ -93,7 +95,18 @@
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-3'>&#182;</a>
                         </div>
-                        <p>Here is some functions for operation with aria-roles and properties</p>
+                        <p>Here is some functions for operation with aria-roles and properties.
+These functions should be used in components for better code readability.</p>
+<p>Here is the full list of aria methods:</p>
+<ul>
+<li>set(element, property, value = true)</li>
+<li>setRole(element, role)</li>
+<li>removeRole(element)</li>
+<li>setId(element, id)</li>
+<li>get(element, property)</li>
+<li>getRole(element)</li>
+<li>toggleState(element, state)</li>
+</ul>
 
                     </div>
                     <div class='mui-content-container'>
@@ -358,43 +371,6 @@ returns this ID</p>
                             <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
     toggleState: <span class="hljs-function">(<span class="hljs-params">element, state</span>) =&gt;</span> {
         setAttribute(element, <span class="hljs-string">`aria-<span class="hljs-subst">${state}</span>`</span>, !stringToBoolean(getAttribute(element, <span class="hljs-string">`aria-<span class="hljs-subst">${state}</span>`</span>)));
-    },</pre></div></div>
-                        
-                    </div>
-                </div>
-            
-                
-                <div class='' id='section-18'>
-                    <div class='mui-content-container'>
-                        
-                        <div class=''>
-                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-18'>&#182;</a>
-                        </div>
-                        <h2 id="hide-icons">Hide icons</h2>
-
-                    </div>
-                    <div class='mui-content-container'>
-                        
-                    </div>
-                </div>
-            
-                
-                <div class='' id='section-19'>
-                    <div class='mui-content-container'>
-                        
-                        <div class=''>
-                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-19'>&#182;</a>
-                        </div>
-                        <p>Sets role=’presentation’ to all icons with specified class name</p>
-
-                    </div>
-                    <div class='mui-content-container'>
-                        
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
-    hideIcons: <span class="hljs-function">(<span class="hljs-params">className</span>) =&gt;</span> {
-        forEach(<span class="hljs-built_in">document</span>.getElementsByClassName(className), (icon) =&gt; {
-            setAttribute(icon, <span class="hljs-string">'aria-hidden'</span>, <span class="hljs-literal">true</span>);
-        });
     }
 };</pre></div></div>
                         

@@ -2756,7 +2756,7 @@ if (typeof define === 'function' && define.amd) {
 
 },{}],3:[function(require,module,exports){
 /*!
- * imagesLoaded v4.1.1
+ * imagesLoaded v4.1.2
  * JavaScript is all like "You images are done yet or what?"
  * MIT License
  */
@@ -2787,7 +2787,7 @@ if (typeof define === 'function' && define.amd) {
     );
   }
 
-})( window,
+})( typeof window !== 'undefined' ? window : this,
 
 // --------------------------  factory -------------------------- //
 
@@ -3355,7 +3355,7 @@ hijackAttributes();
 module.exports = fix;
 },{}],5:[function(require,module,exports){
 /*
- * smoothscroll polyfill - v0.3.4
+ * smoothscroll polyfill - v0.3.5
  * https://iamdustan.github.io/smoothscroll
  * 2016 (c) Dustan Kasten, Jeremias Menichelli - MIT License
  */
@@ -3389,6 +3389,7 @@ module.exports = fix;
     var original = {
       scroll: w.scroll || w.scrollTo,
       scrollBy: w.scrollBy,
+      elScroll: Element.prototype.scroll || scrollElement,
       scrollIntoView: Element.prototype.scrollIntoView
     };
 
@@ -3480,9 +3481,6 @@ module.exports = fix;
      * @param {Object} context
      */
     function step(context) {
-      // call method again on next available frame
-      context.frame = w.requestAnimationFrame(step.bind(w, context));
-
       var time = now();
       var value;
       var currentX;
@@ -3500,10 +3498,9 @@ module.exports = fix;
 
       context.method.call(context.scrollable, currentX, currentY);
 
-      // return when end points have been reached
-      if (currentX === context.x && currentY === context.y) {
-        w.cancelAnimationFrame(context.frame);
-        return;
+      // scroll more if we have not reached our destination
+      if (currentX !== context.x || currentY !== context.y) {
+        w.requestAnimationFrame(step.bind(w, context));
       }
     }
 
@@ -3520,7 +3517,6 @@ module.exports = fix;
       var startY;
       var method;
       var startTime = now();
-      var frame;
 
       // define scroll context
       if (el === d.body) {
@@ -3535,11 +3531,6 @@ module.exports = fix;
         method = scrollElement;
       }
 
-      // cancel frame when a scroll event's happening
-      if (frame) {
-        w.cancelAnimationFrame(frame);
-      }
-
       // scroll looping over a frame
       step({
         scrollable: scrollable,
@@ -3548,8 +3539,7 @@ module.exports = fix;
         startX: startX,
         startY: startY,
         x: x,
-        y: y,
-        frame: frame
+        y: y
       });
     }
 
@@ -3597,6 +3587,45 @@ module.exports = fix;
         ~~arguments[0].left + (w.scrollX || w.pageXOffset),
         ~~arguments[0].top + (w.scrollY || w.pageYOffset)
       );
+    };
+
+    // Element.prototype.scroll and Element.prototype.scrollTo
+    Element.prototype.scroll = Element.prototype.scrollTo = function() {
+      // avoid smooth behavior if not required
+      if (shouldBailOut(arguments[0])) {
+        original.elScroll.call(
+            this,
+            arguments[0].left || arguments[0],
+            arguments[0].top || arguments[1]
+        );
+        return;
+      }
+
+      // LET THE SMOOTHNESS BEGIN!
+      smoothScroll.call(
+          this,
+          this,
+          arguments[0].left,
+          arguments[0].top
+      );
+    };
+
+    // Element.prototype.scrollBy
+    Element.prototype.scrollBy = function() {
+      var arg0 = arguments[0];
+
+      if (typeof arg0 === 'object') {
+        this.scroll({
+          left: arg0.left + this.scrollLeft,
+          top: arg0.top + this.scrollTop,
+          behavior: arg0.behavior
+        });
+      } else {
+        this.scroll(
+          this.scrollLeft + arg0,
+          this.scrollTop + arguments[1]
+        );
+      }
     };
 
     // Element.prototype.scrollIntoView
@@ -3654,6 +3683,23 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Component = undefined;
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); // -----------------------------------------------------------------------------
+// COMPONENT
+// -----------------------------------------------------------------------------
+// This is a base component class. All other components from /src/js/components/
+// should be inherited from it. Take a look at /src/js/components/sample-component.js
+// for more information.
+//
+// Methods:
+//   initAria()
+//       ARIA markup should be initialized here. It is useful to use utilities
+//       from /src/js/utils/aria.js
+//   initControls()
+//       Controls (keyboard, mouse or touchscreen) should be initialized here.
+//       It is useful to use utilities from /src/js/utils/ and wrappers from
+//       /src/js/controls/
+
+
 var _utils = require('./utils');
 
 var Utils = _interopRequireWildcard(_utils);
@@ -3662,16 +3708,193 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Component = exports.Component = function Component(element, options) {
-    _classCallCheck(this, Component);
+var Component = exports.Component = function () {
+    function Component(element, options) {
+        _classCallCheck(this, Component);
 
-    this.element = element;
+        this.domCache = {
+            element: element
+        };
 
-    this.dom = {};
-    this.state = {};
-};
+        this.state = {};
+    }
 
-},{"./utils":32}],7:[function(require,module,exports){
+    _createClass(Component, [{
+        key: 'initAria',
+        value: function initAria() {
+            return this;
+        }
+    }, {
+        key: 'initControls',
+        value: function initControls() {
+            return this;
+        }
+    }]);
+
+    return Component;
+}();
+
+},{"./utils":33}],7:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _accordion = require('./components/accordion');
+
+Object.defineProperty(exports, 'Accordion', {
+  enumerable: true,
+  get: function get() {
+    return _accordion.Accordion;
+  }
+});
+
+var _breadcrumb = require('./components/breadcrumb');
+
+Object.defineProperty(exports, 'Breadcrumb', {
+  enumerable: true,
+  get: function get() {
+    return _breadcrumb.Breadcrumb;
+  }
+});
+
+var _buttonDropdown = require('./components/button-dropdown');
+
+Object.defineProperty(exports, 'ButtonDropdown', {
+  enumerable: true,
+  get: function get() {
+    return _buttonDropdown.ButtonDropdown;
+  }
+});
+
+var _button = require('./components/button');
+
+Object.defineProperty(exports, 'Button', {
+  enumerable: true,
+  get: function get() {
+    return _button.Button;
+  }
+});
+
+var _carousel = require('./components/carousel');
+
+Object.defineProperty(exports, 'Carousel', {
+  enumerable: true,
+  get: function get() {
+    return _carousel.Carousel;
+  }
+});
+
+var _checkbox = require('./components/checkbox');
+
+Object.defineProperty(exports, 'Checkbox', {
+  enumerable: true,
+  get: function get() {
+    return _checkbox.Checkbox;
+  }
+});
+
+var _headerNavigation = require('./components/header-navigation');
+
+Object.defineProperty(exports, 'HeaderNavigation', {
+  enumerable: true,
+  get: function get() {
+    return _headerNavigation.HeaderNavigation;
+  }
+});
+
+var _input = require('./components/input');
+
+Object.defineProperty(exports, 'Input', {
+  enumerable: true,
+  get: function get() {
+    return _input.Input;
+  }
+});
+
+var _mediaView = require('./components/media-view');
+
+Object.defineProperty(exports, 'MediaView', {
+  enumerable: true,
+  get: function get() {
+    return _mediaView.MediaView;
+  }
+});
+
+var _modalWindow = require('./components/modal-window');
+
+Object.defineProperty(exports, 'ModalWindow', {
+  enumerable: true,
+  get: function get() {
+    return _modalWindow.ModalWindow;
+  }
+});
+
+var _pagination = require('./components/pagination');
+
+Object.defineProperty(exports, 'Pagination', {
+  enumerable: true,
+  get: function get() {
+    return _pagination.Pagination;
+  }
+});
+
+var _radio = require('./components/radio');
+
+Object.defineProperty(exports, 'Radio', {
+  enumerable: true,
+  get: function get() {
+    return _radio.Radio;
+  }
+});
+
+var _selectDropdown = require('./components/select-dropdown');
+
+Object.defineProperty(exports, 'SelectDropdown', {
+  enumerable: true,
+  get: function get() {
+    return _selectDropdown.SelectDropdown;
+  }
+});
+
+var _tabs = require('./components/tabs');
+
+Object.defineProperty(exports, 'Tabs', {
+  enumerable: true,
+  get: function get() {
+    return _tabs.Tabs;
+  }
+});
+
+var _tagsList = require('./components/tags-list');
+
+Object.defineProperty(exports, 'TagsList', {
+  enumerable: true,
+  get: function get() {
+    return _tagsList.TagsList;
+  }
+});
+
+var _textarea = require('./components/textarea');
+
+Object.defineProperty(exports, 'Textarea', {
+  enumerable: true,
+  get: function get() {
+    return _textarea.Textarea;
+  }
+});
+
+var _rating = require('./components/rating');
+
+Object.defineProperty(exports, 'Rating', {
+  enumerable: true,
+  get: function get() {
+    return _rating.Rating;
+  }
+});
+
+},{"./components/accordion":8,"./components/breadcrumb":9,"./components/button":11,"./components/button-dropdown":10,"./components/carousel":12,"./components/checkbox":13,"./components/header-navigation":14,"./components/input":15,"./components/media-view":16,"./components/modal-window":17,"./components/pagination":18,"./components/radio":19,"./components/rating":20,"./components/select-dropdown":21,"./components/tabs":22,"./components/tags-list":23,"./components/textarea":24}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3703,7 +3926,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // -----------------------------------------------------------------------------
+// ACCORDION COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+//  - (default) initControls()
+//  - foldItem(index)
+//  - foldAllItems()
+//  - unfoldItem(index)
+//  - unfoldAllItems()
+//  - toggleItem()
+
 
 var Accordion = exports.Accordion = function (_Component) {
     _inherits(Accordion, _Component);
@@ -3713,7 +3947,7 @@ var Accordion = exports.Accordion = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Accordion.__proto__ || Object.getPrototypeOf(Accordion)).call(this, element, options));
 
-        _this.dom = (0, _uncategorized.extend)(_this.dom, {
+        _this.domCache = (0, _uncategorized.extend)(_this.domCache, {
             items: element.querySelectorAll('.item'),
             titles: element.querySelectorAll('.title'),
             indicators: element.querySelectorAll('.indicator'),
@@ -3730,22 +3964,22 @@ var Accordion = exports.Accordion = function (_Component) {
         value: function initAria() {
             var _this2 = this;
 
-            _aria.aria.setRole(this.element, 'tablist');
-            (0, _attributes.setAttribute)(this.element, 'multiselectable', true);
+            _aria.aria.setRole(this.domCache.element, 'tablist');
+            (0, _attributes.setAttribute)(this.domCache.element, 'multiselectable', true);
 
-            (0, _uncategorized.forEach)(this.dom.titles, function (title, index) {
+            (0, _uncategorized.forEach)(this.domCache.titles, function (title, index) {
                 _aria.aria.setRole(title, 'tab');
                 _aria.aria.set(title, 'expanded', false);
-                _aria.aria.set(title, 'controls', _aria.aria.setId(_this2.dom.contents[index]));
+                _aria.aria.set(title, 'controls', _aria.aria.setId(_this2.domCache.contents[index]));
             });
 
-            (0, _uncategorized.forEach)(this.dom.contents, function (content, index) {
+            (0, _uncategorized.forEach)(this.domCache.contents, function (content, index) {
                 _aria.aria.setRole(content, 'tabpanel');
                 _aria.aria.set(content, 'hidden', true);
-                _aria.aria.set(content, 'labelledby', _aria.aria.setId(_this2.dom.titles[index]));
+                _aria.aria.set(content, 'labelledby', _aria.aria.setId(_this2.domCache.titles[index]));
             });
 
-            (0, _uncategorized.forEach)(this.dom.indicators, function (indicator) {
+            (0, _uncategorized.forEach)(this.domCache.indicators, function (indicator) {
                 _aria.aria.set(indicator, 'hidden', true);
             });
 
@@ -3756,22 +3990,22 @@ var Accordion = exports.Accordion = function (_Component) {
         value: function initControls() {
             var _this3 = this;
 
-            (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.titles, function (index) {
+            (0, _focusAndClick.makeChildElementsClickable)(this.domCache.element, this.domCache.titles, function (index) {
                 _this3.toggleItem(index);
             });
 
-            (0, _uncategorized.forEach)(this.dom.titles, function (title, index) {
+            (0, _uncategorized.forEach)(this.domCache.titles, function (title, index) {
                 Keyboard.onSpacePressed(title, _this3.toggleItem.bind(_this3, index));
 
-                if (title != (0, _uncategorized.firstOfList)(_this3.dom.titles)) {
+                if (title != (0, _uncategorized.firstOfList)(_this3.domCache.titles)) {
                     Keyboard.onArrowUpPressed(title, function () {
-                        _this3.dom.titles[index - 1].focus();
+                        _this3.domCache.titles[index - 1].focus();
                     });
                 }
 
-                if (title != (0, _uncategorized.lastOfList)(_this3.dom.titles)) {
+                if (title != (0, _uncategorized.lastOfList)(_this3.domCache.titles)) {
                     Keyboard.onArrowDownPressed(title, function () {
-                        _this3.dom.titles[index + 1].focus();
+                        _this3.domCache.titles[index + 1].focus();
                     });
                 }
             });
@@ -3781,10 +4015,10 @@ var Accordion = exports.Accordion = function (_Component) {
     }, {
         key: 'foldItem',
         value: function foldItem(index) {
-            (0, _classes.removeClass)(this.dom.items[index], '-unfold');
+            (0, _classes.removeClass)(this.domCache.items[index], '-unfold');
 
-            _aria.aria.set(this.dom.titles[index], 'expanded', false);
-            _aria.aria.set(this.dom.contents[index], 'hidden', true);
+            _aria.aria.set(this.domCache.titles[index], 'expanded', false);
+            _aria.aria.set(this.domCache.contents[index], 'hidden', true);
 
             return this;
         }
@@ -3793,7 +4027,7 @@ var Accordion = exports.Accordion = function (_Component) {
         value: function foldAllItems() {
             var _this4 = this;
 
-            (0, _uncategorized.forEach)(this.dom.items, function (item, index) {
+            (0, _uncategorized.forEach)(this.domCache.items, function (item, index) {
                 _this4.foldItem(index);
             });
 
@@ -3802,10 +4036,10 @@ var Accordion = exports.Accordion = function (_Component) {
     }, {
         key: 'unfoldItem',
         value: function unfoldItem(index) {
-            (0, _classes.addClass)(this.dom.items[index], '-unfold');
+            (0, _classes.addClass)(this.domCache.items[index], '-unfold');
 
-            _aria.aria.set(this.dom.titles[index], 'expanded', true);
-            _aria.aria.set(this.dom.contents[index], 'hidden', false);
+            _aria.aria.set(this.domCache.titles[index], 'expanded', true);
+            _aria.aria.set(this.domCache.contents[index], 'hidden', false);
 
             return this;
         }
@@ -3814,7 +4048,7 @@ var Accordion = exports.Accordion = function (_Component) {
         value: function unfoldAllItems() {
             var _this5 = this;
 
-            (0, _uncategorized.forEach)(this.dom.items, function (item, index) {
+            (0, _uncategorized.forEach)(this.domCache.items, function (item, index) {
                 _this5.unfoldItem(index);
             });
 
@@ -3823,10 +4057,10 @@ var Accordion = exports.Accordion = function (_Component) {
     }, {
         key: 'toggleItem',
         value: function toggleItem(index) {
-            (0, _classes.toggleClass)(this.dom.items[index], '-unfold');
+            (0, _classes.toggleClass)(this.domCache.items[index], '-unfold');
 
-            _aria.aria.toggleState(this.dom.titles[index], 'expanded');
-            _aria.aria.toggleState(this.dom.contents[index], 'hidden');
+            _aria.aria.toggleState(this.domCache.titles[index], 'expanded');
+            _aria.aria.toggleState(this.domCache.contents[index], 'hidden');
 
             return this;
         }
@@ -3837,13 +4071,15 @@ var Accordion = exports.Accordion = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":25,"../utils/aria":34,"../utils/attributes":35,"../utils/classes":37,"../utils/focus-and-click":39,"../utils/uncategorized":41}],8:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":25,"../utils/aria":35,"../utils/attributes":36,"../utils/classes":38,"../utils/focus-and-click":40,"../utils/uncategorized":42}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.Breadcrumb = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _component = require('../component');
 
@@ -3853,7 +4089,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // -----------------------------------------------------------------------------
+// BREADCRUMB COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+
 
 var Breadcrumb = exports.Breadcrumb = function (_Component) {
     _inherits(Breadcrumb, _Component);
@@ -3863,16 +4104,25 @@ var Breadcrumb = exports.Breadcrumb = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Breadcrumb.__proto__ || Object.getPrototypeOf(Breadcrumb)).call(this, element, options));
 
-        _aria.aria.setRole(_this.element, 'navigation');
+        _this.initAria();
         return _this;
     }
+
+    _createClass(Breadcrumb, [{
+        key: 'initAria',
+        value: function initAria() {
+            _aria.aria.setRole(this.domCache.element, 'navigation');
+
+            return this;
+        }
+    }]);
 
     return Breadcrumb;
 }(_component.Component);
 
 ;
 
-},{"../component":6,"../utils/aria":34}],9:[function(require,module,exports){
+},{"../component":6,"../utils/aria":35}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3902,7 +4152,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // -----------------------------------------------------------------------------
+// DROPDOWN BUTTON COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+//  - (default) initControls()
+//  - openDrpdown()
+//  - closeDrpdown()
+//  - toggleDrpdown()
+
 
 var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
     _inherits(ButtonDropdown, _Component);
@@ -3912,7 +4171,7 @@ var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (ButtonDropdown.__proto__ || Object.getPrototypeOf(ButtonDropdown)).call(this, element, options));
 
-        _this.dom = (0, _uncategorized.extend)(_this.dom, {
+        _this.domCache = (0, _uncategorized.extend)(_this.domCache, {
             button: element.querySelector('.mui-button'),
             dropdown: element.querySelector('.mui-dropdown-options'),
             optionsList: element.querySelectorAll('.option'),
@@ -3932,12 +4191,12 @@ var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
         key: 'initAria',
         value: function initAria() {
             /* Remove role='button' added in base component */
-            _aria.aria.removeRole(this.element);
+            _aria.aria.removeRole(this.domCache.element);
 
-            _aria.aria.set(this.dom.button, 'haspopup', true);
-            _aria.aria.set(this.dom.dropdown, 'labelledby', _aria.aria.setId(this.dom.button));
-            _aria.aria.set(this.dom.dropdown, 'hidden', true);
-            _aria.aria.set(this.dom.shadow, 'hidden', true);
+            _aria.aria.set(this.domCache.button, 'haspopup', true);
+            _aria.aria.set(this.domCache.dropdown, 'labelledby', _aria.aria.setId(this.domCache.button));
+            _aria.aria.set(this.domCache.dropdown, 'hidden', true);
+            _aria.aria.set(this.domCache.shadow, 'hidden', true);
 
             return this;
         }
@@ -3946,45 +4205,45 @@ var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
         value: function initControls() {
             var _this2 = this;
 
-            (0, _focusAndClick.makeElementClickable)(this.dom.button, this.toggleDropdown.bind(this, { focusFirstWhenOpened: false }), { mouse: true, keyboard: false });
+            (0, _focusAndClick.makeElementClickable)(this.domCache.button, this.toggleDropdown.bind(this, { focusFirstWhenOpened: false }), { mouse: true, keyboard: false });
 
-            Keyboard.onEnterPressed(this.dom.button, this.toggleDropdown.bind(this, { focusFirstWhenOpened: true }), { mouse: false, keyboard: true });
+            Keyboard.onEnterPressed(this.domCache.button, this.toggleDropdown.bind(this, { focusFirstWhenOpened: true }), { mouse: false, keyboard: true });
 
-            Keyboard.onSpacePressed(this.dom.button, this.toggleDropdown.bind(this, { focusFirstWhenOpened: true }), { mouse: false, keyboard: true });
+            Keyboard.onSpacePressed(this.domCache.button, this.toggleDropdown.bind(this, { focusFirstWhenOpened: true }), { mouse: false, keyboard: true });
 
-            (0, _focusAndClick.makeElementClickable)(this.dom.shadow, this.toggleDropdown.bind(this), { mouse: true, keyboard: false });
+            (0, _focusAndClick.makeElementClickable)(this.domCache.shadow, this.toggleDropdown.bind(this), { mouse: true, keyboard: false });
 
-            (0, _focusAndClick.makeElementsFocusable)(this.dom.optionsList);
+            (0, _focusAndClick.makeElementsFocusable)(this.domCache.optionsList);
 
-            (0, _uncategorized.forEach)(this.dom.optionsList, function (option, index) {
+            (0, _uncategorized.forEach)(this.domCache.optionsList, function (option, index) {
                 Keyboard.onArrowUpPressed(option, function () {
-                    if (option == (0, _uncategorized.firstOfList)(_this2.dom.optionsList)) {
+                    if (option == (0, _uncategorized.firstOfList)(_this2.domCache.optionsList)) {
                         _this2.closeDropdown();
-                        _this2.dom.button.focus();
+                        _this2.domCache.button.focus();
                     } else {
-                        _this2.dom.optionsList[index - 1].focus();
+                        _this2.domCache.optionsList[index - 1].focus();
                     }
                 });
 
                 Keyboard.onArrowDownPressed(option, function () {
-                    if (option == (0, _uncategorized.lastOfList)(_this2.dom.optionsList)) {
+                    if (option == (0, _uncategorized.lastOfList)(_this2.domCache.optionsList)) {
                         _this2.closeDropdown();
-                        _this2.dom.button.focus();
+                        _this2.domCache.button.focus();
                     } else {
-                        _this2.dom.optionsList[index + 1].focus();
+                        _this2.domCache.optionsList[index + 1].focus();
                     }
                 });
             });
 
-            Keyboard.onShiftTabPressed((0, _uncategorized.firstOfList)(this.dom.optionsList), function () {
+            Keyboard.onShiftTabPressed((0, _uncategorized.firstOfList)(this.domCache.optionsList), function () {
                 _this2.closeDropdown();
-                _this2.dom.button.focus();
+                _this2.domCache.button.focus();
             });
 
-            Keyboard.onTabPressed((0, _uncategorized.lastOfList)(this.dom.optionsList), function () {
+            Keyboard.onTabPressed((0, _uncategorized.lastOfList)(this.domCache.optionsList), function () {
                 _this2.closeDropdown();
 
-                (0, _focusAndClick.goToNextFocusableElement)((0, _uncategorized.lastOfList)((0, _focusAndClick.getFocusableChilds)(_this2.element)));
+                (0, _focusAndClick.goToNextFocusableElement)((0, _uncategorized.lastOfList)((0, _focusAndClick.getFocusableChilds)(_this2.domCache.element)));
             });
 
             return this;
@@ -3995,14 +4254,14 @@ var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
             var _ref$focusFirst = _ref.focusFirst,
                 focusFirst = _ref$focusFirst === undefined ? true : _ref$focusFirst;
 
-            (0, _classes.addClass)(this.element, '-opened');
-            (0, _classes.addClass)(this.dom.shadow, '-visible');
+            (0, _classes.addClass)(this.domCache.element, '-opened');
+            (0, _classes.addClass)(this.domCache.shadow, '-visible');
 
-            _aria.aria.set(this.dom.button, 'hidden', true);
-            _aria.aria.set(this.dom.dropdown, 'hidden', false);
+            _aria.aria.set(this.domCache.button, 'hidden', true);
+            _aria.aria.set(this.domCache.dropdown, 'hidden', false);
 
             if (focusFirst) {
-                (0, _uncategorized.firstOfList)((0, _focusAndClick.getFocusableChilds)(this.dom.dropdown)).focus();
+                (0, _uncategorized.firstOfList)((0, _focusAndClick.getFocusableChilds)(this.domCache.dropdown)).focus();
             }
 
             this.state.opened = true;
@@ -4012,13 +4271,13 @@ var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
     }, {
         key: 'closeDropdown',
         value: function closeDropdown() {
-            (0, _classes.removeClass)(this.element, '-opened');
-            (0, _classes.removeClass)(this.dom.shadow, '-visible');
+            (0, _classes.removeClass)(this.domCache.element, '-opened');
+            (0, _classes.removeClass)(this.domCache.shadow, '-visible');
 
-            _aria.aria.set(this.dom.button, 'hidden', false);
-            _aria.aria.set(this.dom.dropdown, 'hidden', true);
+            _aria.aria.set(this.domCache.button, 'hidden', false);
+            _aria.aria.set(this.domCache.dropdown, 'hidden', true);
 
-            this.dom.button.focus();
+            this.domCache.button.focus();
 
             this.state.opened = false;
 
@@ -4045,13 +4304,15 @@ var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":25,"../utils/aria":34,"../utils/classes":37,"../utils/focus-and-click":39,"../utils/uncategorized":41}],10:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":25,"../utils/aria":35,"../utils/classes":38,"../utils/focus-and-click":40,"../utils/uncategorized":42}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.Button = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _component = require('../component');
 
@@ -4061,7 +4322,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // -----------------------------------------------------------------------------
+// BUTTON COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+
 
 var Button = exports.Button = function (_Component) {
     _inherits(Button, _Component);
@@ -4071,19 +4337,28 @@ var Button = exports.Button = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Button.__proto__ || Object.getPrototypeOf(Button)).call(this, element, options));
 
-        if (!_aria.aria.getRole(_this.element)) {
-            /* Sometimes it is useful to add role=link to the button, we should not override it here */
-            _aria.aria.setRole(_this.element, 'button');
-        }
+        _this.initAria();
         return _this;
     }
+
+    _createClass(Button, [{
+        key: 'initAria',
+        value: function initAria() {
+            if (!_aria.aria.getRole(this.domCache.element)) {
+                /* Sometimes it is useful to add role=link to the button, we should not override it here */
+                _aria.aria.setRole(this.domCache.element, 'button');
+            }
+
+            return this;
+        }
+    }]);
 
     return Button;
 }(_component.Component);
 
 ;
 
-},{"../component":6,"../utils/aria":34}],11:[function(require,module,exports){
+},{"../component":6,"../utils/aria":35}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4121,7 +4396,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // -----------------------------------------------------------------------------
+// CAROUSEL COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+//  - (default) initControls()
+//  - startRotating()
+//  - stopRotating()
+//  - makeSlideActive(index)
+//  - makeSlideInactive(index)
+//  - rotate(param)
+
 
 var Carousel = exports.Carousel = function (_Component) {
     _inherits(Carousel, _Component);
@@ -4131,7 +4417,7 @@ var Carousel = exports.Carousel = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Carousel.__proto__ || Object.getPrototypeOf(Carousel)).call(this, element, options));
 
-        _this.dom = (0, _uncategorized.extend)(_this.dom, {
+        _this.domCache = (0, _uncategorized.extend)(_this.domCache, {
             slides: element.querySelectorAll('.mui-slide'),
             controls: {
                 prev: element.querySelectorAll('.prev'),
@@ -4141,9 +4427,9 @@ var Carousel = exports.Carousel = function (_Component) {
         });
 
         _this.state = (0, _uncategorized.extend)(_this.state, {
-            numberOfSlides: _this.dom.slides.length,
+            numberOfSlides: _this.domCache.slides.length,
             currentSlide: 0,
-            interval: parseFloat(_this.element.getAttribute('data-interval'), 10) || 5,
+            interval: parseFloat(element.getAttribute('data-interval'), 10) || 5,
             isRotating: false,
             rotateInterval: null
         });
@@ -4165,47 +4451,47 @@ var Carousel = exports.Carousel = function (_Component) {
         value: function initControls() {
             var _this2 = this;
 
-            Mouse.onMouseOver(this.element, this.stopRotating.bind(this));
-            Mouse.onMouseOut(this.element, this.startRotating.bind(this));
+            Mouse.onMouseOver(this.domCache.element, this.stopRotating.bind(this));
+            Mouse.onMouseOut(this.domCache.element, this.startRotating.bind(this));
 
-            (0, _focusAndClick.makeElementFocusable)(this.element);
+            (0, _focusAndClick.makeElementFocusable)(this.domCache.element);
 
-            (0, _focusAndClick.onFocus)(this.element, function () {
+            (0, _focusAndClick.onFocus)(this.domCache.element, function () {
                 _this2.stopRotating();
 
-                (0, _uncategorized.forEach)(_this2.dom.controls.prev, function (prev) {
+                (0, _uncategorized.forEach)(_this2.domCache.controls.prev, function (prev) {
                     (0, _classes.addClass)(prev, '-focused');
                 });
 
-                (0, _uncategorized.forEach)(_this2.dom.controls.next, function (next) {
+                (0, _uncategorized.forEach)(_this2.domCache.controls.next, function (next) {
                     (0, _classes.addClass)(next, '-focused');
                 });
             });
 
-            (0, _focusAndClick.onBlur)(this.element, function () {
+            (0, _focusAndClick.onBlur)(this.domCache.element, function () {
                 _this2.startRotating();
 
-                (0, _uncategorized.forEach)(_this2.dom.controls.prev, function (prev) {
+                (0, _uncategorized.forEach)(_this2.domCache.controls.prev, function (prev) {
                     (0, _classes.removeClass)(prev, '-focused');
                 });
 
-                (0, _uncategorized.forEach)(_this2.dom.controls.next, function (next) {
+                (0, _uncategorized.forEach)(_this2.domCache.controls.next, function (next) {
                     (0, _classes.removeClass)(next, '-focused');
                 });
             });
 
-            (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.controls.prev, this.rotate.bind(this, 'prev'), { mouse: true, keyboard: false });
-            (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.controls.next, this.rotate.bind(this, 'next'), { mouse: true, keyboard: false });
+            (0, _focusAndClick.makeChildElementsClickable)(this.domCache.element, this.domCache.controls.prev, this.rotate.bind(this, 'prev'), { mouse: true, keyboard: false });
+            (0, _focusAndClick.makeChildElementsClickable)(this.domCache.element, this.domCache.controls.next, this.rotate.bind(this, 'next'), { mouse: true, keyboard: false });
 
-            (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.indicators, function (index) {
+            (0, _focusAndClick.makeChildElementsClickable)(this.domCache.element, this.domCache.indicators, function (index) {
                 _this2.rotate(index);
             }, { mouse: true, keyboard: false });
 
-            TouchScreen.onSwipeRight(this.element, this.rotate.bind(this, 'prev'));
-            TouchScreen.onSwipeLeft(this.element, this.rotate.bind(this, 'next'));
+            TouchScreen.onSwipeRight(this.domCache.element, this.rotate.bind(this, 'prev'));
+            TouchScreen.onSwipeLeft(this.domCache.element, this.rotate.bind(this, 'next'));
 
-            Keyboard.onArrowLeftPressed(this.element, this.rotate.bind(this, 'prev'));
-            Keyboard.onArrowRightPressed(this.element, this.rotate.bind(this, 'next'));
+            Keyboard.onArrowLeftPressed(this.domCache.element, this.rotate.bind(this, 'prev'));
+            Keyboard.onArrowRightPressed(this.domCache.element, this.rotate.bind(this, 'next'));
 
             return this;
         }
@@ -4233,16 +4519,16 @@ var Carousel = exports.Carousel = function (_Component) {
     }, {
         key: 'makeSlideActive',
         value: function makeSlideActive(index) {
-            (0, _classes.addClass)(this.dom.slides[index], '-active');
-            (0, _classes.addClass)(this.dom.indicators[index], '-active');
+            (0, _classes.addClass)(this.domCache.slides[index], '-active');
+            (0, _classes.addClass)(this.domCache.indicators[index], '-active');
 
             return this;
         }
     }, {
         key: 'makeSlideInactive',
         value: function makeSlideInactive(index) {
-            (0, _classes.removeClass)(this.dom.slides[index], '-active');
-            (0, _classes.removeClass)(this.dom.indicators[index], '-active');
+            (0, _classes.removeClass)(this.domCache.slides[index], '-active');
+            (0, _classes.removeClass)(this.domCache.indicators[index], '-active');
 
             return this;
         }
@@ -4285,7 +4571,7 @@ var Carousel = exports.Carousel = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":25,"../controls/mouse":26,"../controls/touchscreen":27,"../utils/classes":37,"../utils/console":38,"../utils/focus-and-click":39,"../utils/uncategorized":41}],12:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":25,"../controls/mouse":26,"../controls/touchscreen":27,"../utils/classes":38,"../utils/console":39,"../utils/focus-and-click":40,"../utils/uncategorized":42}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4317,7 +4603,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // -----------------------------------------------------------------------------
+// CHECKBOX COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+//  - (default) initControls()
+//  - setCheckbox()
+//  - unsetCheckbox()
+//  - toggleCheckbox()
+
 
 var Checkbox = exports.Checkbox = function (_Component) {
     _inherits(Checkbox, _Component);
@@ -4327,7 +4622,7 @@ var Checkbox = exports.Checkbox = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Checkbox.__proto__ || Object.getPrototypeOf(Checkbox)).call(this, element, options));
 
-        _this.dom = (0, _uncategorized.extend)(_this.dom, {
+        _this.domCache = (0, _uncategorized.extend)(_this.domCache, {
             input: element.querySelector('input'),
             label: element.querySelector('label')
         });
@@ -4340,53 +4635,53 @@ var Checkbox = exports.Checkbox = function (_Component) {
     _createClass(Checkbox, [{
         key: 'initAria',
         value: function initAria() {
-            _aria.aria.setRole(this.dom.label, 'checkbox');
+            _aria.aria.setRole(this.domCache.label, 'checkbox');
 
-            var inputId = this.dom.input.getAttribute('id') || _aria.aria.setId(this.dom.input);
+            var inputId = this.domCache.input.getAttribute('id') || _aria.aria.setId(this.domCache.input);
 
-            this.dom.input.checked = false;
+            this.domCache.input.checked = false;
 
-            (0, _attributes.setAttribute)(this.dom.label, 'for', inputId);
+            (0, _attributes.setAttribute)(this.domCache.label, 'for', inputId);
 
-            _aria.aria.set(this.dom.label, 'controls', inputId);
-            _aria.aria.set(this.dom.label, 'checked', false);
-            _aria.aria.set(this.dom.input, 'labelledby', _aria.aria.setId(this.dom.label));
+            _aria.aria.set(this.domCache.label, 'controls', inputId);
+            _aria.aria.set(this.domCache.label, 'checked', false);
+            _aria.aria.set(this.domCache.input, 'labelledby', _aria.aria.setId(this.domCache.label));
 
             return this;
         }
     }, {
         key: 'initControls',
         value: function initControls() {
-            (0, _focusAndClick.makeElementClickable)(this.dom.label, this.toggleCheckbox.bind(this));
+            (0, _focusAndClick.makeElementClickable)(this.domCache.label, this.toggleCheckbox.bind(this));
 
-            Keyboard.onSpacePressed(this.dom.label, this.toggleCheckbox.bind(this));
+            Keyboard.onSpacePressed(this.domCache.label, this.toggleCheckbox.bind(this));
 
             return this;
         }
     }, {
         key: 'setCheckbox',
         value: function setCheckbox() {
-            this.dom.input.checked = true;
+            this.domCache.input.checked = true;
 
-            (0, _classes.addClass)(this.element, '-checked');
-            _aria.aria.set(this.dom.label, 'checked', true);
+            (0, _classes.addClass)(this.domCache.element, '-checked');
+            _aria.aria.set(this.domCache.label, 'checked', true);
 
             return this;
         }
     }, {
         key: 'unsetCheckbox',
         value: function unsetCheckbox() {
-            this.dom.input.checked = false;
+            this.domCache.input.checked = false;
 
-            (0, _classes.removeClass)(this.element, '-checked');
-            _aria.aria.set(this.dom.label, 'checked', false);
+            (0, _classes.removeClass)(this.domCache.element, '-checked');
+            _aria.aria.set(this.domCache.label, 'checked', false);
 
             return this;
         }
     }, {
         key: 'toggleCheckbox',
         value: function toggleCheckbox() {
-            if (this.dom.input.checked) {
+            if (this.domCache.input.checked) {
                 this.unsetCheckbox();
             } else {
                 this.setCheckbox();
@@ -4401,7 +4696,7 @@ var Checkbox = exports.Checkbox = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":25,"../utils/aria":34,"../utils/attributes":35,"../utils/classes":37,"../utils/focus-and-click":39,"../utils/uncategorized":41}],13:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":25,"../utils/aria":35,"../utils/attributes":36,"../utils/classes":38,"../utils/focus-and-click":40,"../utils/uncategorized":42}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4435,7 +4730,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // -----------------------------------------------------------------------------
+// HEADER NAVIGATION COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+//  - (default) initControls()
+//  - openNavigation()
+//  - closeNavigation()
+//  - toggleNavigation()
+//  - transformToMobile()
+//  - transformToDesktop()
+//  - update()
+
 
 var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
     _inherits(HeaderNavigation, _Component);
@@ -4445,7 +4752,7 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (HeaderNavigation.__proto__ || Object.getPrototypeOf(HeaderNavigation)).call(this, element, options));
 
-        _this.dom = (0, _uncategorized.extend)(_this.dom, {
+        _this.domCache = (0, _uncategorized.extend)(_this.domCache, {
             hamburger: element.querySelector('.mui-navigation-toggle'),
             shadow: element.querySelector('.mui-shadow-toggle'),
             links: element.querySelector('.links-list'),
@@ -4471,12 +4778,12 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
     _createClass(HeaderNavigation, [{
         key: 'initAria',
         value: function initAria() {
-            _aria.aria.setRole(this.dom.hamburger, 'button');
+            _aria.aria.setRole(this.domCache.hamburger, 'button');
 
-            _aria.aria.set(this.dom.shadow, 'hidden', true);
-            _aria.aria.set(this.dom.hamburger, 'haspopup', true);
+            _aria.aria.set(this.domCache.shadow, 'hidden', true);
+            _aria.aria.set(this.domCache.hamburger, 'haspopup', true);
 
-            _aria.aria.set(this.dom.links, 'labelledby', _aria.aria.setId(this.dom.hamburger));
+            _aria.aria.set(this.domCache.links, 'labelledby', _aria.aria.setId(this.domCache.hamburger));
 
             return this;
         }
@@ -4485,11 +4792,11 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
         value: function initControls() {
             var _this2 = this;
 
-            (0, _focusAndClick.makeElementClickable)(this.dom.hamburger, this.toggleNavigation.bind(this));
-            (0, _focusAndClick.makeElementClickable)(this.dom.shadow, this.toggleNavigation.bind(this), { mouse: true, keyboard: false });
+            (0, _focusAndClick.makeElementClickable)(this.domCache.hamburger, this.toggleNavigation.bind(this));
+            (0, _focusAndClick.makeElementClickable)(this.domCache.shadow, this.toggleNavigation.bind(this), { mouse: true, keyboard: false });
 
-            (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.linksList, function (index) {
-                var href = _this2.dom.linksList[index].getAttribute('href');
+            (0, _focusAndClick.makeChildElementsClickable)(this.domCache.element, this.domCache.linksList, function (index) {
+                var href = _this2.domCache.linksList[index].getAttribute('href');
 
                 if (href[0] === '#') {
                     _this2.closeNavigation();
@@ -4498,24 +4805,24 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
                 }
             });
 
-            TouchScreen.onSwipeRight(this.element, function () {
+            TouchScreen.onSwipeRight(this.domCache.element, function () {
                 if (_this2.state.mobile) {
                     _this2.closeNavigation();
                 }
             });
 
-            this.dom.focusables = (0, _focusAndClick.getFocusableChilds)(this.dom.links);
+            this.domCache.focusables = (0, _focusAndClick.getFocusableChilds)(this.domCache.links);
 
-            Keyboard.onShiftTabPressed((0, _uncategorized.firstOfList)(this.dom.focusables), function () {
+            Keyboard.onShiftTabPressed((0, _uncategorized.firstOfList)(this.domCache.focusables), function () {
                 _this2.closeNavigation();
 
-                (0, _focusAndClick.goToPreviousFocusableElement)((0, _uncategorized.firstOfList)(_this2.dom.focusables));
+                (0, _focusAndClick.goToPreviousFocusableElement)((0, _uncategorized.firstOfList)(_this2.domCache.focusables));
             });
 
-            Keyboard.onTabPressed((0, _uncategorized.lastOfList)(this.dom.focusables), function () {
+            Keyboard.onTabPressed((0, _uncategorized.lastOfList)(this.domCache.focusables), function () {
                 _this2.closeNavigation();
 
-                (0, _focusAndClick.goToNextFocusableElement)((0, _uncategorized.lastOfList)(_this2.dom.focusables));
+                (0, _focusAndClick.goToNextFocusableElement)((0, _uncategorized.lastOfList)(_this2.domCache.focusables));
             });
 
             return this;
@@ -4525,15 +4832,15 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
         value: function openNavigation() {
             if (!this.state.opened) {
                 this.state.opened = true;
-                this.dom.shadow.tabIndex = 0;
+                this.domCache.shadow.tabIndex = 0;
 
-                (0, _classes.addClass)(this.element, '-opened');
-                (0, _classes.addClass)(this.dom.shadow, '-visible');
+                (0, _classes.addClass)(this.domCache.element, '-opened');
+                (0, _classes.addClass)(this.domCache.shadow, '-visible');
 
-                _aria.aria.set(this.dom.hamburger, 'hidden', true);
-                _aria.aria.set(this.dom.links, 'hidden', false);
+                _aria.aria.set(this.domCache.hamburger, 'hidden', true);
+                _aria.aria.set(this.domCache.links, 'hidden', false);
 
-                (0, _uncategorized.firstOfList)(this.dom.focusables).focus();
+                (0, _uncategorized.firstOfList)(this.domCache.focusables).focus();
             }
 
             return this;
@@ -4543,15 +4850,15 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
         value: function closeNavigation() {
             if (this.state.opened) {
                 this.state.opened = false;
-                this.dom.shadow.tabIndex = -1;
+                this.domCache.shadow.tabIndex = -1;
 
-                (0, _classes.removeClass)(this.element, '-opened');
-                (0, _classes.removeClass)(this.dom.shadow, '-visible');
+                (0, _classes.removeClass)(this.domCache.element, '-opened');
+                (0, _classes.removeClass)(this.domCache.shadow, '-visible');
 
-                _aria.aria.set(this.dom.hamburger, 'hidden', false);
-                _aria.aria.set(this.dom.links, 'hidden', true);
+                _aria.aria.set(this.domCache.hamburger, 'hidden', false);
+                _aria.aria.set(this.domCache.links, 'hidden', true);
 
-                this.dom.hamburger.focus();
+                this.domCache.hamburger.focus();
             }
 
             return this;
@@ -4573,11 +4880,11 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
             if (!this.state.mobile || !this.state.initialized) {
                 this.closeNavigation();
 
-                _aria.aria.set(this.dom.hamburger, 'hidden', false);
-                _aria.aria.set(this.dom.links, 'hidden', true);
+                _aria.aria.set(this.domCache.hamburger, 'hidden', false);
+                _aria.aria.set(this.domCache.links, 'hidden', true);
 
-                (0, _classes.addClass)(this.element, '-mobile-version');
-                (0, _classes.removeClass)(this.element, '-desktop-version');
+                (0, _classes.addClass)(this.domCache.element, '-mobile-version');
+                (0, _classes.removeClass)(this.domCache.element, '-desktop-version');
 
                 this.state.mobile = true;
             }
@@ -4590,12 +4897,12 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
             if (this.state.mobile || !this.state.initialized) {
                 this.closeNavigation();
 
-                _aria.aria.set(this.dom.hamburger, 'hidden', true);
-                _aria.aria.set(this.dom.shadow, 'hidden', true);
-                _aria.aria.set(this.dom.links, 'hidden', false);
+                _aria.aria.set(this.domCache.hamburger, 'hidden', true);
+                _aria.aria.set(this.domCache.shadow, 'hidden', true);
+                _aria.aria.set(this.domCache.links, 'hidden', false);
 
-                (0, _classes.addClass)(this.element, '-desktop-version');
-                (0, _classes.removeClass)(this.element, '-mobile-version');
+                (0, _classes.addClass)(this.domCache.element, '-desktop-version');
+                (0, _classes.removeClass)(this.domCache.element, '-mobile-version');
 
                 this.state.mobile = false;
             }
@@ -4615,7 +4922,7 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
 
             this.transformToDesktop();
 
-            var parentNode = this.element.parentNode,
+            var parentNode = this.domCache.element.parentNode,
                 parentWidth = parentNode.clientWidth,
                 childsWidth = 0;
 
@@ -4642,50 +4949,7 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":25,"../controls/touchscreen":27,"../utils/aria":34,"../utils/classes":37,"../utils/focus-and-click":39,"../utils/uncategorized":41}],14:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.InputRange = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _input = require('./input');
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var InputRange = exports.InputRange = function (_Input) {
-    _inherits(InputRange, _Input);
-
-    function InputRange(element, options) {
-        _classCallCheck(this, InputRange);
-
-        var _this = _possibleConstructorReturn(this, (InputRange.__proto__ || Object.getPrototypeOf(InputRange)).call(this, element, options));
-
-        _this.initAria();
-        _this.initControls();
-        return _this;
-    }
-
-    _createClass(InputRange, [{
-        key: 'changeValueHandler',
-        value: function changeValueHandler() {
-            return this;
-        }
-    }]);
-
-    return InputRange;
-}(_input.Input);
-
-;
-
-},{"./input":15}],15:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":25,"../controls/touchscreen":27,"../utils/aria":35,"../utils/classes":38,"../utils/focus-and-click":40,"../utils/uncategorized":42}],15:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4713,7 +4977,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // -----------------------------------------------------------------------------
+// INPUT COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+//  - (default) initControls()
+//  - validate()
+
 
 var Input = exports.Input = function (_Component) {
     _inherits(Input, _Component);
@@ -4723,7 +4994,7 @@ var Input = exports.Input = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Input.__proto__ || Object.getPrototypeOf(Input)).call(this, element, options));
 
-        _this.dom = (0, _uncategorized.extend)(_this.dom, {
+        _this.domCache = (0, _uncategorized.extend)(_this.domCache, {
             input: element.querySelector('input'),
             labels: element.parentNode.querySelectorAll('label'),
             hint: element.parentNode.querySelector('.mui-input-hint'),
@@ -4748,12 +5019,12 @@ var Input = exports.Input = function (_Component) {
         value: function initAria() {
             var _this2 = this;
 
-            var inputId = (0, _attributes.getAttribute)(this.dom.input, 'id') || _aria.aria.setId(this.dom.input);
+            var inputId = (0, _attributes.getAttribute)(this.domCache.input, 'id') || _aria.aria.setId(this.domCache.input);
 
-            (0, _checks.ifNodeList)(this.dom.labels, function () {
-                _aria.aria.set(_this2.dom.input, 'labelledby', _aria.aria.setId(_this2.dom.labels[0]));
+            (0, _checks.ifNodeList)(this.domCache.labels, function () {
+                _aria.aria.set(_this2.domCache.input, 'labelledby', _aria.aria.setId(_this2.domCache.labels[0]));
 
-                (0, _uncategorized.forEach)(_this2.dom.labels, function (label) {
+                (0, _uncategorized.forEach)(_this2.domCache.labels, function (label) {
                     (0, _attributes.setAttribute)(label, 'for', inputId);
                 });
             }, this.state.printNotExistsWarnings);
@@ -4765,19 +5036,19 @@ var Input = exports.Input = function (_Component) {
         value: function initControls() {
             var _this3 = this;
 
-            (0, _checks.ifNodeList)(this.dom.labels, function () {
-                (0, _uncategorized.forEach)(_this3.dom.labels, function (label) {
+            (0, _checks.ifNodeList)(this.domCache.labels, function () {
+                (0, _uncategorized.forEach)(_this3.domCache.labels, function (label) {
                     (0, _focusAndClick.onFocus)(label, function () {
-                        _this3.dom.input.focus();
+                        _this3.domCache.input.focus();
                     });
                 });
             }, this.state.printNotExistsWarnings);
 
-            (0, _focusAndClick.onFocus)(this.dom.input, this.focusHandler.bind(this));
-            (0, _focusAndClick.onBlur)(this.dom.input, this.blurHandler.bind(this));
+            (0, _focusAndClick.onFocus)(this.domCache.input, this.focusHandler.bind(this));
+            (0, _focusAndClick.onBlur)(this.domCache.input, this.blurHandler.bind(this));
 
-            this.dom.input.addEventListener('change', this.changeValueHandler.bind(this));
-            this.dom.input.addEventListener('keydown', this.changeValueHandler.bind(this));
+            this.domCache.input.addEventListener('change', this.changeValueHandler.bind(this));
+            this.domCache.input.addEventListener('keydown', this.changeValueHandler.bind(this));
 
             return this;
         }
@@ -4786,10 +5057,10 @@ var Input = exports.Input = function (_Component) {
         value: function focusHandler() {
             var _this4 = this;
 
-            (0, _classes.addClass)(this.element, '-focused');
+            (0, _classes.addClass)(this.domCache.element, '-focused');
 
-            (0, _checks.ifNodeList)(this.dom.labels, function () {
-                (0, _focusAndClick.makeElementsNotFocusable)(_this4.dom.labels);
+            (0, _checks.ifNodeList)(this.domCache.labels, function () {
+                (0, _focusAndClick.makeElementsNotFocusable)(_this4.domCache.labels);
             }, this.state.printNotExistsWarnings);
 
             return this;
@@ -4799,10 +5070,10 @@ var Input = exports.Input = function (_Component) {
         value: function blurHandler() {
             var _this5 = this;
 
-            (0, _classes.removeClass)(this.element, '-focused');
+            (0, _classes.removeClass)(this.domCache.element, '-focused');
 
-            (0, _checks.ifNodeList)(this.dom.labels, function () {
-                (0, _focusAndClick.makeElementsFocusable)(_this5.dom.labels);
+            (0, _checks.ifNodeList)(this.domCache.labels, function () {
+                (0, _focusAndClick.makeElementsFocusable)(_this5.domCache.labels);
             }, this.state.printNotExistsWarnings);
 
             return this;
@@ -4812,15 +5083,15 @@ var Input = exports.Input = function (_Component) {
         value: function changeValueHandler() {
             var _this6 = this;
 
-            if (this.dom.input.value == '') {
-                (0, _classes.removeClasses)(this.element, '-has-value', '-valid', '-invalid');
+            if (this.domCache.input.value == '') {
+                (0, _classes.removeClasses)(this.domCache.element, '-has-value', '-valid', '-invalid');
 
-                (0, _checks.ifExists)(this.dom.hint, function () {
-                    (0, _classes.removeClasses)(_this6.dom.hint, '-valid', '-invalid');
-                    (0, _classes.removeClasses)(_this6.dom.indicator, '-valid', '-invalid');
+                (0, _checks.ifExists)(this.domCache.hint, function () {
+                    (0, _classes.removeClasses)(_this6.domCache.hint, '-valid', '-invalid');
+                    (0, _classes.removeClasses)(_this6.domCache.indicator, '-valid', '-invalid');
                 }, this.state.printNotExistsWarnings);
             } else {
-                (0, _classes.addClass)(this.element, '-has-value');
+                (0, _classes.addClass)(this.domCache.element, '-has-value');
 
                 var validationTimeout = this.state.validationTimeout;
 
@@ -4839,19 +5110,19 @@ var Input = exports.Input = function (_Component) {
             var _this7 = this;
 
             if (this.state.isValidationEnabled) {
-                if (this.state.regexp.test(this.dom.input.value)) {
-                    (0, _classes.replaceClass)(this.element, '-invalid', '-valid');
+                if (this.state.regexp.test(this.domCache.input.value)) {
+                    (0, _classes.replaceClass)(this.domCache.element, '-invalid', '-valid');
 
-                    (0, _checks.ifExists)(this.dom.hint, function () {
-                        (0, _classes.replaceClass)(_this7.dom.hint, '-invalid', '-valid');
-                        (0, _classes.replaceClass)(_this7.dom.indicator, '-invalid', '-valid');
+                    (0, _checks.ifExists)(this.domCache.hint, function () {
+                        (0, _classes.replaceClass)(_this7.domCache.hint, '-invalid', '-valid');
+                        (0, _classes.replaceClass)(_this7.domCache.indicator, '-invalid', '-valid');
                     }, this.state.printNotExistsWarnings);
                 } else {
-                    (0, _classes.replaceClass)(this.element, '-valid', '-invalid');
+                    (0, _classes.replaceClass)(this.domCache.element, '-valid', '-invalid');
 
-                    (0, _checks.ifExists)(this.dom.hint, function () {
-                        (0, _classes.replaceClass)(_this7.dom.hint, '-valid', '-invalid');
-                        (0, _classes.replaceClass)(_this7.dom.indicator, '-valid', '-invalid');
+                    (0, _checks.ifExists)(this.domCache.hint, function () {
+                        (0, _classes.replaceClass)(_this7.domCache.hint, '-valid', '-invalid');
+                        (0, _classes.replaceClass)(_this7.domCache.indicator, '-valid', '-invalid');
                     }, this.state.printNotExistsWarnings);
                 }
 
@@ -4867,13 +5138,15 @@ var Input = exports.Input = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils/aria":34,"../utils/attributes":35,"../utils/checks":36,"../utils/classes":37,"../utils/focus-and-click":39,"../utils/uncategorized":41}],16:[function(require,module,exports){
+},{"../component":6,"../utils/aria":35,"../utils/attributes":36,"../utils/checks":37,"../utils/classes":38,"../utils/focus-and-click":40,"../utils/uncategorized":42}],16:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.MediaView = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _component = require('../component');
 
@@ -4885,7 +5158,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // -----------------------------------------------------------------------------
+// MEDIA VIEW COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+
 
 var MediaView = exports.MediaView = function (_Component) {
     _inherits(MediaView, _Component);
@@ -4895,21 +5173,30 @@ var MediaView = exports.MediaView = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (MediaView.__proto__ || Object.getPrototypeOf(MediaView)).call(this, element, options));
 
-        _this.dom = (0, _uncategorized.extend)(_this.dom, {
-            media: _this.element.querySelector('.media'),
-            description: _this.element.querySelector('.description')
+        _this.domCache = (0, _uncategorized.extend)(_this.domCache, {
+            media: element.querySelector('.media'),
+            description: element.querySelector('.description')
         });
 
-        _aria.aria.set(_this.dom.media, 'describedby', _aria.aria.setId(_this.dom.description));
+        _this.initAria();
         return _this;
     }
+
+    _createClass(MediaView, [{
+        key: 'initAria',
+        value: function initAria() {
+            _aria.aria.set(this.domCache.media, 'describedby', _aria.aria.setId(this.domCache.description));
+
+            return this;
+        }
+    }]);
 
     return MediaView;
 }(_component.Component);
 
 ;
 
-},{"../component":6,"../utils/aria":34,"../utils/uncategorized":41}],17:[function(require,module,exports){
+},{"../component":6,"../utils/aria":35,"../utils/uncategorized":42}],17:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4943,7 +5230,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // -----------------------------------------------------------------------------
+// MODAL WINDOW COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+//  - (default) initControls()
+//  - openModal()
+//  - closeModal()
+
 
 var ModalWindow = exports.ModalWindow = function (_Component) {
     _inherits(ModalWindow, _Component);
@@ -4953,11 +5248,11 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (ModalWindow.__proto__ || Object.getPrototypeOf(ModalWindow)).call(this, element, options));
 
-        _this.dom = (0, _uncategorized.extend)(_this.dom, {
-            openers: document.querySelectorAll('[data-modal-opener=' + _this.element.getAttribute('id') + ']'),
-            modalWindow: _this.element.querySelector('.window'),
-            closeIcon: _this.element.querySelector('.close-icon'),
-            shadow: _this.element.querySelector('.mui-shadow-toggle')
+        _this.domCache = (0, _uncategorized.extend)(_this.domCache, {
+            openers: document.querySelectorAll('[data-modal-opener=' + element.getAttribute('id') + ']'),
+            modalWindow: element.querySelector('.window'),
+            closeIcon: element.querySelector('.close-icon'),
+            shadow: element.querySelector('.mui-shadow-toggle')
         });
 
         _this.state = (0, _uncategorized.extend)(_this.state, {
@@ -4973,8 +5268,8 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
     _createClass(ModalWindow, [{
         key: 'initAria',
         value: function initAria() {
-            _aria.aria.set(this.element, 'hidden', true);
-            _aria.aria.set(this.dom.shadow, 'hidden', true);
+            _aria.aria.set(this.domCache.element, 'hidden', true);
+            _aria.aria.set(this.domCache.shadow, 'hidden', true);
 
             return this;
         }
@@ -4983,7 +5278,7 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
         value: function initControls() {
             var _this2 = this;
 
-            (0, _uncategorized.forEach)(this.dom.openers, function (opener) {
+            (0, _uncategorized.forEach)(this.domCache.openers, function (opener) {
                 (0, _focusAndClick.makeElementClickable)(opener, function () {
                     _this2.state.savedOpener = opener;
                     _this2.openModal();
@@ -4996,14 +5291,14 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
                 });
             });
 
-            (0, _focusAndClick.makeElementFocusable)(this.dom.modalWindow);
+            (0, _focusAndClick.makeElementFocusable)(this.domCache.modalWindow);
 
-            Keyboard.onTabPressed(this.dom.modalWindow, this.closeModal.bind(this));
+            Keyboard.onTabPressed(this.domCache.modalWindow, this.closeModal.bind(this));
 
-            (0, _focusAndClick.makeElementClickable)(this.dom.closeIcon, this.closeModal.bind(this), { mouse: true, keyboard: false });
-            (0, _focusAndClick.makeElementClickable)(this.dom.shadow, this.closeModal.bind(this), { mouse: true, keyboard: false });
+            (0, _focusAndClick.makeElementClickable)(this.domCache.closeIcon, this.closeModal.bind(this), { mouse: true, keyboard: false });
+            (0, _focusAndClick.makeElementClickable)(this.domCache.shadow, this.closeModal.bind(this), { mouse: true, keyboard: false });
 
-            TouchScreen.onPinchOut(this.dom.modalWindow, this.closeModal.bind(this));
+            TouchScreen.onPinchOut(this.domCache.modalWindow, this.closeModal.bind(this));
 
             return this;
         }
@@ -5011,12 +5306,12 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
         key: 'openModal',
         value: function openModal() {
             if (!this.state.visible) {
-                (0, _classes.addClass)(this.element, '-visible');
-                (0, _classes.addClass)(this.dom.shadow, '-visible');
+                (0, _classes.addClass)(this.domCache.element, '-visible');
+                (0, _classes.addClass)(this.domCache.shadow, '-visible');
 
-                _aria.aria.set(this.element, 'hidden', false);
+                _aria.aria.set(this.domCache.element, 'hidden', false);
 
-                this.dom.modalWindow.focus();
+                this.domCache.modalWindow.focus();
 
                 this.state.visible = true;
             }
@@ -5027,10 +5322,10 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
         key: 'closeModal',
         value: function closeModal() {
             if (this.state.visible) {
-                (0, _classes.removeClass)(this.element, '-visible');
-                (0, _classes.removeClass)(this.dom.shadow, '-visible');
+                (0, _classes.removeClass)(this.domCache.element, '-visible');
+                (0, _classes.removeClass)(this.domCache.shadow, '-visible');
 
-                _aria.aria.set(this.element, 'hidden', true);
+                _aria.aria.set(this.domCache.element, 'hidden', true);
 
                 this.state.visible = false;
 
@@ -5049,13 +5344,15 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":25,"../controls/touchscreen":27,"../utils/aria":34,"../utils/classes":37,"../utils/focus-and-click":39,"../utils/uncategorized":41}],18:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":25,"../controls/touchscreen":27,"../utils/aria":35,"../utils/classes":38,"../utils/focus-and-click":40,"../utils/uncategorized":42}],18:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.Pagination = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _component = require('../component');
 
@@ -5065,7 +5362,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // -----------------------------------------------------------------------------
+// PAGINATION COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
 
 var Pagination = exports.Pagination = function (_Component) {
     _inherits(Pagination, _Component);
@@ -5075,16 +5376,25 @@ var Pagination = exports.Pagination = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Pagination.__proto__ || Object.getPrototypeOf(Pagination)).call(this, element, options));
 
-        _aria.aria.setRole(_this.element, 'navigation');
+        _this.initAria();
         return _this;
     }
+
+    _createClass(Pagination, [{
+        key: 'initAria',
+        value: function initAria() {
+            _aria.aria.setRole(this.domCache.element, 'navigation');
+
+            return this;
+        }
+    }]);
 
     return Pagination;
 }(_component.Component);
 
 ;
 
-},{"../component":6,"../utils/aria":34}],19:[function(require,module,exports){
+},{"../component":6,"../utils/aria":35}],19:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5110,7 +5420,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // -----------------------------------------------------------------------------
+// RADIO COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+//  - (default) initControls()
+//  - updateState()
 
 var Radio = exports.Radio = function (_Component) {
     _inherits(Radio, _Component);
@@ -5120,7 +5436,7 @@ var Radio = exports.Radio = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Radio.__proto__ || Object.getPrototypeOf(Radio)).call(this, element, options));
 
-        _this.dom = (0, _uncategorized.extend)(_this.dom, {
+        _this.domCache = (0, _uncategorized.extend)(_this.domCache, {
             inputs: element.querySelectorAll('input'),
             labels: element.querySelectorAll('label'),
             inputLabel: element.parentNode.querySelector('.mui-input-label'),
@@ -5142,25 +5458,25 @@ var Radio = exports.Radio = function (_Component) {
         value: function initAria() {
             var _this2 = this;
 
-            _aria.aria.setRole(this.element, 'radiogroup');
+            _aria.aria.setRole(this.domCache.element, 'radiogroup');
 
-            (0, _checks.ifExists)(this.dom.inputLabel, function () {
-                _aria.aria.set(_this2.element, 'labelledby', _aria.aria.setId(_this2.dom.inputLabel));
-                (0, _attributes.setAttribute)(_this2.dom.inputLabel, 'for', _aria.aria.setId(_this2.element));
+            (0, _checks.ifExists)(this.domCache.inputLabel, function () {
+                _aria.aria.set(_this2.domCache.element, 'labelledby', _aria.aria.setId(_this2.domCache.inputLabel));
+                (0, _attributes.setAttribute)(_this2.domCache.inputLabel, 'for', _aria.aria.setId(_this2.domCache.element));
             });
 
-            (0, _uncategorized.forEach)(this.dom.inputs, function (input, index) {
+            (0, _uncategorized.forEach)(this.domCache.inputs, function (input, index) {
                 _aria.aria.set(input, 'hidden', true);
                 (0, _attributes.setAttribute)(input, 'type', 'radio');
-                (0, _attributes.setAttribute)(input, 'name', (0, _attributes.getAttribute)(_this2.element, 'data-name'));
+                (0, _attributes.setAttribute)(input, 'name', (0, _attributes.getAttribute)(_this2.domCache.element, 'data-name'));
 
                 if (input.checked) {
                     _this2.state.checkedIndex = index;
                 }
             });
 
-            (0, _uncategorized.forEach)(this.dom.labels, function (label, index) {
-                (0, _attributes.setAttribute)(label, 'for', (0, _attributes.getAttribute)(_this2.dom.inputs[index], 'id'));
+            (0, _uncategorized.forEach)(this.domCache.labels, function (label, index) {
+                (0, _attributes.setAttribute)(label, 'for', (0, _attributes.getAttribute)(_this2.domCache.inputs[index], 'id'));
                 _aria.aria.setRole(label, 'radio');
             });
 
@@ -5171,7 +5487,7 @@ var Radio = exports.Radio = function (_Component) {
         value: function initControls() {
             var _this3 = this;
 
-            (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.labels, function (index) {
+            (0, _focusAndClick.makeChildElementsClickable)(this.domCache.element, this.domCache.labels, function (index) {
                 _this3.updateState(index);
             });
 
@@ -5184,13 +5500,13 @@ var Radio = exports.Radio = function (_Component) {
                 return this;
             }
 
-            this.dom.inputs[index].checked = true;
+            this.domCache.inputs[index].checked = true;
 
             if (this.state.checkedIndex >= 0) {
-                _aria.aria.set(this.dom.labels[this.state.checkedIndex], 'checked', false);
+                _aria.aria.set(this.domCache.labels[this.state.checkedIndex], 'checked', false);
             }
 
-            _aria.aria.set(this.dom.labels[index], 'checked', true);
+            _aria.aria.set(this.domCache.labels[index], 'checked', true);
 
             this.state.checkedIndex = index;
 
@@ -5203,7 +5519,7 @@ var Radio = exports.Radio = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils/aria":34,"../utils/attributes":35,"../utils/checks":36,"../utils/focus-and-click":39,"../utils/uncategorized":41}],20:[function(require,module,exports){
+},{"../component":6,"../utils/aria":35,"../utils/attributes":36,"../utils/checks":37,"../utils/focus-and-click":40,"../utils/uncategorized":42}],20:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5237,7 +5553,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // -----------------------------------------------------------------------------
+// RATING COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+//  - (default) initControls()
+//  - updateRating(newRating)
+//  - increaseRating()
+//  - decreaseRating()
+
 
 var Rating = exports.Rating = function (_Component) {
     _inherits(Rating, _Component);
@@ -5247,7 +5572,7 @@ var Rating = exports.Rating = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Rating.__proto__ || Object.getPrototypeOf(Rating)).call(this, element, options));
 
-        _this.dom = (0, _uncategorized.extend)(_this.dom, {
+        _this.domCache = (0, _uncategorized.extend)(_this.domCache, {
             stars: element.querySelectorAll('.star')
         });
 
@@ -5271,7 +5596,7 @@ var Rating = exports.Rating = function (_Component) {
     _createClass(Rating, [{
         key: 'initAria',
         value: function initAria() {
-            (0, _uncategorized.forEach)(this.dom.stars, function (star) {
+            (0, _uncategorized.forEach)(this.domCache.stars, function (star) {
                 _aria.aria.set(star, 'hidden', true);
             });
 
@@ -5282,12 +5607,12 @@ var Rating = exports.Rating = function (_Component) {
         value: function initControls() {
             var _this2 = this;
 
-            (0, _focusAndClick.makeElementFocusable)(this.element);
+            (0, _focusAndClick.makeElementFocusable)(this.domCache.element);
 
-            Keyboard.onArrowLeftPressed(this.element, this.decreaseRating.bind(this));
-            Keyboard.onArrowRightPressed(this.element, this.increaseRating.bind(this));
+            Keyboard.onArrowLeftPressed(this.domCache.element, this.decreaseRating.bind(this));
+            Keyboard.onArrowRightPressed(this.domCache.element, this.increaseRating.bind(this));
 
-            (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.stars, function (index) {
+            (0, _focusAndClick.makeChildElementsClickable)(this.domCache.element, this.domCache.stars, function (index) {
                 _this2.updateRating(index + 1);
             }, { mouse: true, keyboard: false });
 
@@ -5301,19 +5626,19 @@ var Rating = exports.Rating = function (_Component) {
                 return this;
             }
 
-            (0, _classes.removeClass)(this.element, '-r' + this.state.rating);
-            (0, _classes.addClass)(this.element, '-r' + newRating);
+            (0, _classes.removeClass)(this.domCache.element, '-r' + this.state.rating);
+            (0, _classes.addClass)(this.domCache.element, '-r' + newRating);
 
-            var newAriaLabel = _aria.aria.get(this.element, 'label').replace(this.state.rating, newRating);
+            var newAriaLabel = _aria.aria.get(this.domCache.element, 'label').replace(this.state.rating, newRating);
 
-            _aria.aria.set(this.element, 'label', newAriaLabel);
-            (0, _attributes.setAttribute)(this.element, 'data-rating', newRating);
+            _aria.aria.set(this.domCache.element, 'label', newAriaLabel);
+            (0, _attributes.setAttribute)(this.domCache.element, 'data-rating', newRating);
 
             this.state.rating = newRating;
 
-            if (this.element === document.activeElement) {
-                this.element.blur();
-                this.element.focus();
+            if (this.domCache.element === document.activeElement) {
+                this.domCache.element.blur();
+                this.domCache.element.focus();
             }
 
             return this;
@@ -5343,7 +5668,7 @@ var Rating = exports.Rating = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":25,"../utils/aria":34,"../utils/attributes":35,"../utils/classes":37,"../utils/console":38,"../utils/focus-and-click":39,"../utils/uncategorized":41}],21:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":25,"../utils/aria":35,"../utils/attributes":36,"../utils/classes":38,"../utils/console":39,"../utils/focus-and-click":40,"../utils/uncategorized":42}],21:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5377,7 +5702,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // -----------------------------------------------------------------------------
+// SELECT DROPDOWN COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+//  - (default) initControls()
+//  - getSelectedIndex()
+//  - openDropdown()
+//  - closeDropdown()
+//  - toggleDropdown()
+//  - updateState(newIndex = 0)
+
 
 var SelectDropdown = exports.SelectDropdown = function (_Component) {
     _inherits(SelectDropdown, _Component);
@@ -5387,14 +5723,14 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (SelectDropdown.__proto__ || Object.getPrototypeOf(SelectDropdown)).call(this, element, options));
 
-        _this.dom = (0, _uncategorized.extend)(_this.dom, {
-            labels: _this.element.parentNode.querySelectorAll('label'),
-            select: _this.element.querySelector('.select'),
-            state: _this.element.querySelector('.state'),
-            options: _this.element.querySelector('.mui-dropdown-options'),
-            optionsList: _this.element.querySelectorAll('.option'),
-            shadow: _this.element.querySelector('.mui-shadow-toggle'),
-            icon: _this.element.querySelector('.icon'),
+        _this.domCache = (0, _uncategorized.extend)(_this.domCache, {
+            labels: element.parentNode.querySelectorAll('label'),
+            select: element.querySelector('.select'),
+            state: element.querySelector('.state'),
+            options: element.querySelector('.mui-dropdown-options'),
+            optionsList: element.querySelectorAll('.option'),
+            shadow: element.querySelector('.mui-shadow-toggle'),
+            icon: element.querySelector('.icon'),
             focusables: []
         });
 
@@ -5416,24 +5752,24 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
             var _this2 = this;
 
             var hiddenSelect = document.createElement('select'),
-                id = this.dom.select.getAttribute('data-id');
+                id = this.domCache.select.getAttribute('data-id');
 
-            this.element.appendChild(hiddenSelect);
+            this.domCache.element.appendChild(hiddenSelect);
 
             (0, _attributes.setAttribute)(hiddenSelect, 'id', id);
             (0, _attributes.setAttribute)(hiddenSelect, 'name', id);
 
-            this.dom.hiddenSelect = hiddenSelect;
+            this.domCache.hiddenSelect = hiddenSelect;
 
-            (0, _classes.addClass)(this.dom.hiddenSelect, '_hidden');
-            _aria.aria.set(this.dom.hiddenSelect, 'hidden', true);
+            (0, _classes.addClass)(this.domCache.hiddenSelect, '_hidden');
+            _aria.aria.set(this.domCache.hiddenSelect, 'hidden', true);
 
-            (0, _uncategorized.forEach)(this.dom.optionsList, function (option) {
+            (0, _uncategorized.forEach)(this.domCache.optionsList, function (option) {
                 var hiddenOption = document.createElement('option');
 
                 hiddenOption.value = (0, _attributes.getAttribute)(option, 'data-value');
 
-                _this2.dom.hiddenSelect.add(hiddenOption);
+                _this2.domCache.hiddenSelect.add(hiddenOption);
             });
 
             return this;
@@ -5443,26 +5779,26 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
         value: function initAria() {
             var _this3 = this;
 
-            _aria.aria.setRole(this.dom.select, 'listbox');
+            _aria.aria.setRole(this.domCache.select, 'listbox');
 
-            (0, _uncategorized.forEach)(this.dom.optionsList, function (option) {
+            (0, _uncategorized.forEach)(this.domCache.optionsList, function (option) {
                 _aria.aria.setRole(option, 'option');
                 _aria.aria.setId(option);
             });
 
-            _aria.aria.set(this.dom.select, 'activedescendant', (0, _attributes.getAttribute)(this.dom.optionsList[this.state.selectedIndex], 'id'));
-            _aria.aria.set(this.dom.state, 'hidden', true);
-            _aria.aria.set(this.dom.icon, 'hidden', true);
-            _aria.aria.set(this.dom.shadow, 'hidden', true);
+            _aria.aria.set(this.domCache.select, 'activedescendant', (0, _attributes.getAttribute)(this.domCache.optionsList[this.state.selectedIndex], 'id'));
+            _aria.aria.set(this.domCache.state, 'hidden', true);
+            _aria.aria.set(this.domCache.icon, 'hidden', true);
+            _aria.aria.set(this.domCache.shadow, 'hidden', true);
 
-            (0, _checks.ifNodeList)(this.dom.labels, function () {
-                var selectId = _aria.aria.setId(_this3.dom.select);
+            (0, _checks.ifNodeList)(this.domCache.labels, function () {
+                var selectId = _aria.aria.setId(_this3.domCache.select);
 
-                (0, _uncategorized.forEach)(_this3.dom.labels, function (label) {
+                (0, _uncategorized.forEach)(_this3.domCache.labels, function (label) {
                     (0, _attributes.setAttribute)(label, 'for', selectId);
                 });
 
-                _aria.aria.set(_this3.dom.select, 'labelledby', _aria.aria.setId(_this3.dom.labels[0]));
+                _aria.aria.set(_this3.domCache.select, 'labelledby', _aria.aria.setId(_this3.domCache.labels[0]));
             });
 
             return this;
@@ -5472,67 +5808,67 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
         value: function initControls() {
             var _this4 = this;
 
-            (0, _focusAndClick.makeElementClickable)(this.dom.select, this.toggleDropdown.bind(this, { focusFirstWhenOpened: false }), { mouse: true, keyboard: false });
+            (0, _focusAndClick.makeElementClickable)(this.domCache.select, this.toggleDropdown.bind(this, { focusFirstWhenOpened: false }), { mouse: true, keyboard: false });
 
-            (0, _focusAndClick.makeElementClickable)(this.dom.select, this.toggleDropdown.bind(this, { focusFirstWhenOpened: true }), { mouse: false, keyboard: true });
+            (0, _focusAndClick.makeElementClickable)(this.domCache.select, this.toggleDropdown.bind(this, { focusFirstWhenOpened: true }), { mouse: false, keyboard: true });
 
-            Keyboard.onSpacePressed(this.dom.select, this.toggleDropdown.bind(this));
+            Keyboard.onSpacePressed(this.domCache.select, this.toggleDropdown.bind(this));
 
-            (0, _focusAndClick.makeElementClickable)(this.dom.shadow, this.toggleDropdown.bind(this), { mouse: true, keyboard: false });
+            (0, _focusAndClick.makeElementClickable)(this.domCache.shadow, this.toggleDropdown.bind(this), { mouse: true, keyboard: false });
 
-            (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.optionsList, function (index) {
+            (0, _focusAndClick.makeChildElementsClickable)(this.domCache.element, this.domCache.optionsList, function (index) {
                 _this4.updateState(index);
                 _this4.closeDropdown();
             });
 
-            (0, _checks.ifNodeList)(this.dom.labels, function () {
-                (0, _uncategorized.forEach)(_this4.dom.labels, function (label) {
+            (0, _checks.ifNodeList)(this.domCache.labels, function () {
+                (0, _uncategorized.forEach)(_this4.domCache.labels, function (label) {
                     (0, _focusAndClick.onFocus)(label, function () {
-                        _this4.dom.select.focus();
+                        _this4.domCache.select.focus();
                     });
                 });
 
-                (0, _focusAndClick.onFocus)(_this4.dom.select, function () {
-                    (0, _focusAndClick.makeElementsNotFocusable)(_this4.dom.labels);
+                (0, _focusAndClick.onFocus)(_this4.domCache.select, function () {
+                    (0, _focusAndClick.makeElementsNotFocusable)(_this4.domCache.labels);
                 });
 
-                (0, _focusAndClick.onBlur)(_this4.dom.select, function () {
-                    (0, _focusAndClick.makeElementsFocusable)(_this4.dom.labels);
+                (0, _focusAndClick.onBlur)(_this4.domCache.select, function () {
+                    (0, _focusAndClick.makeElementsFocusable)(_this4.domCache.labels);
                 });
             });
 
-            (0, _uncategorized.forEach)(this.dom.optionsList, function (option, index) {
+            (0, _uncategorized.forEach)(this.domCache.optionsList, function (option, index) {
                 Keyboard.onArrowUpPressed(option, function () {
-                    if (option == (0, _uncategorized.firstOfList)(_this4.dom.optionsList)) {
+                    if (option == (0, _uncategorized.firstOfList)(_this4.domCache.optionsList)) {
                         _this4.closeDropdown();
-                        _this4.dom.select.focus();
+                        _this4.domCache.select.focus();
                     } else {
-                        _this4.dom.optionsList[index - 1].focus();
+                        _this4.domCache.optionsList[index - 1].focus();
                     }
                 });
 
                 Keyboard.onArrowDownPressed(option, function () {
-                    if (option == (0, _uncategorized.lastOfList)(_this4.dom.optionsList)) {
+                    if (option == (0, _uncategorized.lastOfList)(_this4.domCache.optionsList)) {
                         _this4.closeDropdown();
-                        _this4.dom.select.focus();
+                        _this4.domCache.select.focus();
                     } else {
-                        _this4.dom.optionsList[index + 1].focus();
+                        _this4.domCache.optionsList[index + 1].focus();
                     }
                 });
             });
 
-            this.dom.focusables = (0, _focusAndClick.getFocusableChilds)(this.element);
+            this.domCache.focusables = (0, _focusAndClick.getFocusableChilds)(this.domCache.element);
 
-            Keyboard.onTabPressed((0, _uncategorized.lastOfList)(this.dom.optionsList), function () {
+            Keyboard.onTabPressed((0, _uncategorized.lastOfList)(this.domCache.optionsList), function () {
                 _this4.closeDropdown();
 
-                (0, _focusAndClick.goToNextFocusableElement)((0, _uncategorized.lastOfList)(_this4.dom.focusables));
+                (0, _focusAndClick.goToNextFocusableElement)((0, _uncategorized.lastOfList)(_this4.domCache.focusables));
             });
 
-            Keyboard.onShiftTabPressed((0, _uncategorized.firstOfList)(this.dom.optionsList), function () {
+            Keyboard.onShiftTabPressed((0, _uncategorized.firstOfList)(this.domCache.optionsList), function () {
                 _this4.closeDropdown();
 
-                (0, _focusAndClick.goToPreviousFocusableElement)((0, _uncategorized.firstOfList)(_this4.dom.focusables));
+                (0, _focusAndClick.goToPreviousFocusableElement)((0, _uncategorized.firstOfList)(_this4.domCache.focusables));
             });
 
             return this;
@@ -5540,8 +5876,8 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
     }, {
         key: 'getSelectedIndex',
         value: function getSelectedIndex() {
-            for (var i = 0; i < this.dom.options.length; i++) {
-                if ((0, _classes.hasClass)(this.dom.options[i], '-selected')) {
+            for (var i = 0; i < this.domCache.options.length; i++) {
+                if ((0, _classes.hasClass)(this.domCache.options[i], '-selected')) {
                     return i;
                 }
             }
@@ -5556,11 +5892,11 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
 
             this.state.isOpened = true;
 
-            (0, _classes.addClass)(this.element, '-opened');
-            (0, _classes.addClass)(this.dom.shadow, '-visible');
+            (0, _classes.addClass)(this.domCache.element, '-opened');
+            (0, _classes.addClass)(this.domCache.shadow, '-visible');
 
             if (focusFirst) {
-                (0, _uncategorized.firstOfList)(this.dom.optionsList).focus();
+                (0, _uncategorized.firstOfList)(this.domCache.optionsList).focus();
             }
 
             return this;
@@ -5584,8 +5920,8 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
         value: function closeDropdown() {
             this.state.isOpened = false;
 
-            (0, _classes.removeClass)(this.element, '-opened');
-            (0, _classes.removeClass)(this.dom.shadow, '-visible');
+            (0, _classes.removeClass)(this.domCache.element, '-opened');
+            (0, _classes.removeClass)(this.domCache.shadow, '-visible');
 
             return this;
         }
@@ -5595,10 +5931,10 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
             var newSelectedIndex = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
             this.state.selectedIndex = newSelectedIndex;
-            this.dom.state.innerHTML = this.dom.optionsList[this.state.selectedIndex].innerHTML;
-            this.dom.hiddenSelect.selectedIndex = this.state.selectedIndex.toString();
+            this.domCache.state.innerHTML = this.domCache.optionsList[this.state.selectedIndex].innerHTML;
+            this.domCache.hiddenSelect.selectedIndex = this.state.selectedIndex.toString();
 
-            _aria.aria.set(this.dom.select, 'activedescendant', (0, _attributes.getAttribute)(this.dom.optionsList[this.state.selectedIndex], 'id'));
+            _aria.aria.set(this.domCache.select, 'activedescendant', (0, _attributes.getAttribute)(this.domCache.optionsList[this.state.selectedIndex], 'id'));
 
             return this;
         }
@@ -5609,7 +5945,7 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":25,"../utils/aria":34,"../utils/attributes":35,"../utils/checks":36,"../utils/classes":37,"../utils/focus-and-click":39,"../utils/uncategorized":41}],22:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":25,"../utils/aria":35,"../utils/attributes":36,"../utils/checks":37,"../utils/classes":38,"../utils/focus-and-click":40,"../utils/uncategorized":42}],22:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5643,7 +5979,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // -----------------------------------------------------------------------------
+// TABS COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+//  - (default) initControls()
+//  - makeTabActive(index)
+//  - makeTabInactive(index)
+//  - goToPreviousTab()
+//  - goToNextTab()
+
 
 var Tabs = exports.Tabs = function (_Component) {
     _inherits(Tabs, _Component);
@@ -5653,10 +5999,10 @@ var Tabs = exports.Tabs = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Tabs.__proto__ || Object.getPrototypeOf(Tabs)).call(this, element, options));
 
-        _this.dom = (0, _uncategorized.extend)(_this.dom, {
-            tabs: _this.element.querySelectorAll('.tab'),
-            labels: _this.element.querySelectorAll('.label'),
-            labelsWrapper: _this.element.querySelector('.labels')
+        _this.domCache = (0, _uncategorized.extend)(_this.domCache, {
+            tabs: element.querySelectorAll('.tab'),
+            labels: element.querySelectorAll('.label'),
+            labelsWrapper: element.querySelector('.labels')
         });
 
         _this.state = (0, _uncategorized.extend)(_this.state, {
@@ -5673,24 +6019,24 @@ var Tabs = exports.Tabs = function (_Component) {
         value: function initAria() {
             var _this2 = this;
 
-            _aria.aria.setRole(this.dom.labelsWrapper, 'tablist');
+            _aria.aria.setRole(this.domCache.labelsWrapper, 'tablist');
 
-            (0, _uncategorized.forEach)(this.dom.labels, function (label, index) {
+            (0, _uncategorized.forEach)(this.domCache.labels, function (label, index) {
                 _aria.aria.setRole(label, 'tab');
                 _aria.aria.set(label, 'selected', false);
-                _aria.aria.set(label, 'controls', _aria.aria.setId(_this2.dom.tabs[index]));
+                _aria.aria.set(label, 'controls', _aria.aria.setId(_this2.domCache.tabs[index]));
             });
 
-            (0, _uncategorized.forEach)(this.dom.tabs, function (tab, index) {
+            (0, _uncategorized.forEach)(this.domCache.tabs, function (tab, index) {
                 _aria.aria.setRole(tab, 'tabpanel');
                 _aria.aria.set(tab, 'hidden', true);
-                _aria.aria.set(tab, 'labelledby', _aria.aria.setId(_this2.dom.labels[index]));
+                _aria.aria.set(tab, 'labelledby', _aria.aria.setId(_this2.domCache.labels[index]));
             });
 
-            (0, _classes.addClass)(this.dom.tabs[0], '-active');
-            _aria.aria.set(this.dom.tabs[0], 'hidden', false);
-            (0, _classes.addClass)(this.dom.labels[0], '-active');
-            _aria.aria.set(this.dom.labels[0], 'selected', true);
+            (0, _classes.addClass)(this.domCache.tabs[0], '-active');
+            _aria.aria.set(this.domCache.tabs[0], 'hidden', false);
+            (0, _classes.addClass)(this.domCache.labels[0], '-active');
+            _aria.aria.set(this.domCache.labels[0], 'selected', true);
 
             return this;
         }
@@ -5699,12 +6045,12 @@ var Tabs = exports.Tabs = function (_Component) {
         value: function initControls() {
             var _this3 = this;
 
-            (0, _focusAndClick.makeChildElementsClickable)(this.element, this.dom.labels, function (index) {
+            (0, _focusAndClick.makeChildElementsClickable)(this.domCache.element, this.domCache.labels, function (index) {
                 _this3.makeTabInactive(_this3.state.current);
                 _this3.makeTabActive(index);
             });
 
-            (0, _uncategorized.forEach)(this.dom.labels, function (label, index) {
+            (0, _uncategorized.forEach)(this.domCache.labels, function (label, index) {
                 if (index !== _this3.state.current) {
                     (0, _focusAndClick.makeElementNotFocusable)(label);
                 }
@@ -5713,22 +6059,22 @@ var Tabs = exports.Tabs = function (_Component) {
                 Keyboard.onArrowRightPressed(label, _this3.goToNextTab.bind(_this3));
             });
 
-            TouchScreen.onSwipeRight(this.element, this.goToPreviousTab.bind(this));
-            TouchScreen.onSwipeLeft(this.element, this.goToNextTab.bind(this));
+            TouchScreen.onSwipeRight(this.domCache.element, this.goToPreviousTab.bind(this));
+            TouchScreen.onSwipeLeft(this.domCache.element, this.goToNextTab.bind(this));
 
             return this;
         }
     }, {
         key: 'makeTabActive',
         value: function makeTabActive(index) {
-            (0, _classes.addClass)(this.dom.labels[index], '-active');
-            (0, _classes.addClass)(this.dom.tabs[index], '-active');
+            (0, _classes.addClass)(this.domCache.labels[index], '-active');
+            (0, _classes.addClass)(this.domCache.tabs[index], '-active');
 
-            _aria.aria.set(this.dom.labels[index], 'selected', true);
-            _aria.aria.set(this.dom.tabs[index], 'hidden', false);
+            _aria.aria.set(this.domCache.labels[index], 'selected', true);
+            _aria.aria.set(this.domCache.tabs[index], 'hidden', false);
 
-            (0, _focusAndClick.makeElementFocusable)(this.dom.labels[index]);
-            this.dom.labels[index].focus();
+            (0, _focusAndClick.makeElementFocusable)(this.domCache.labels[index]);
+            this.domCache.labels[index].focus();
 
             this.state.current = index;
 
@@ -5737,14 +6083,14 @@ var Tabs = exports.Tabs = function (_Component) {
     }, {
         key: 'makeTabInactive',
         value: function makeTabInactive(index) {
-            (0, _classes.removeClass)(this.dom.labels[index], '-active');
-            (0, _classes.removeClass)(this.dom.tabs[index], '-active');
+            (0, _classes.removeClass)(this.domCache.labels[index], '-active');
+            (0, _classes.removeClass)(this.domCache.tabs[index], '-active');
 
-            _aria.aria.set(this.dom.labels[index], 'selected', false);
-            _aria.aria.set(this.dom.tabs[index], 'hidden', true);
+            _aria.aria.set(this.domCache.labels[index], 'selected', false);
+            _aria.aria.set(this.domCache.tabs[index], 'hidden', true);
 
-            this.dom.labels[index].blur();
-            (0, _focusAndClick.makeElementNotFocusable)(this.dom.labels[index]);
+            this.domCache.labels[index].blur();
+            (0, _focusAndClick.makeElementNotFocusable)(this.domCache.labels[index]);
 
             return this;
         }
@@ -5761,7 +6107,7 @@ var Tabs = exports.Tabs = function (_Component) {
     }, {
         key: 'goToNextTab',
         value: function goToNextTab() {
-            if (this.state.current < this.dom.tabs.length - 1) {
+            if (this.state.current < this.domCache.tabs.length - 1) {
                 this.makeTabInactive(this.state.current);
                 this.makeTabActive(this.state.current + 1);
             }
@@ -5775,13 +6121,15 @@ var Tabs = exports.Tabs = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":25,"../controls/touchscreen":27,"../utils/aria":34,"../utils/classes":37,"../utils/focus-and-click":39,"../utils/uncategorized":41}],23:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":25,"../controls/touchscreen":27,"../utils/aria":35,"../utils/classes":38,"../utils/focus-and-click":40,"../utils/uncategorized":42}],23:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.TagsList = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _component = require('../component');
 
@@ -5791,7 +6139,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // -----------------------------------------------------------------------------
+// TAGS COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+
 
 var TagsList = exports.TagsList = function (_Component) {
     _inherits(TagsList, _Component);
@@ -5801,16 +6154,25 @@ var TagsList = exports.TagsList = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (TagsList.__proto__ || Object.getPrototypeOf(TagsList)).call(this, element, options));
 
-        _aria.aria.setRole(_this.element, 'navigation');
+        _this.initAria();
         return _this;
     }
+
+    _createClass(TagsList, [{
+        key: 'initAria',
+        value: function initAria() {
+            _aria.aria.setRole(this.domCache.element, 'navigation');
+
+            return this;
+        }
+    }]);
 
     return TagsList;
 }(_component.Component);
 
 ;
 
-},{"../component":6,"../utils/aria":34}],24:[function(require,module,exports){
+},{"../component":6,"../utils/aria":35}],24:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5838,7 +6200,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // -----------------------------------------------------------------------------
+// TEXTAREA COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+//  - (default) initControls()
+
 
 var Textarea = exports.Textarea = function (_Component) {
     _inherits(Textarea, _Component);
@@ -5848,7 +6216,7 @@ var Textarea = exports.Textarea = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Textarea.__proto__ || Object.getPrototypeOf(Textarea)).call(this, element, options));
 
-        _this.dom = (0, _uncategorized.extend)(_this.dom, {
+        _this.domCache = (0, _uncategorized.extend)(_this.domCache, {
             textarea: element.querySelector('textarea'),
             labels: element.parentNode.querySelectorAll('label')
         });
@@ -5863,12 +6231,12 @@ var Textarea = exports.Textarea = function (_Component) {
         value: function initAria() {
             var _this2 = this;
 
-            var textareaId = (0, _attributes.getAttribute)(this.dom.textarea, 'id') || _aria.aria.setId(this.dom.textarea);
+            var textareaId = (0, _attributes.getAttribute)(this.domCache.textarea, 'id') || _aria.aria.setId(this.domCache.textarea);
 
-            (0, _checks.ifNodeList)(this.dom.labels, function () {
-                _aria.aria.set(_this2.dom.textarea, 'labelledby', _aria.aria.setId(_this2.dom.labels[0]));
+            (0, _checks.ifNodeList)(this.domCache.labels, function () {
+                _aria.aria.set(_this2.domCache.textarea, 'labelledby', _aria.aria.setId(_this2.domCache.labels[0]));
 
-                (0, _uncategorized.forEach)(_this2.dom.labels, function (label) {
+                (0, _uncategorized.forEach)(_this2.domCache.labels, function (label) {
                     (0, _attributes.setAttribute)(label, 'for', textareaId);
                 });
             }, false);
@@ -5880,18 +6248,18 @@ var Textarea = exports.Textarea = function (_Component) {
         value: function initControls() {
             var _this3 = this;
 
-            (0, _checks.ifNodeList)(this.dom.labels, function () {
-                (0, _uncategorized.forEach)(_this3.dom.labels, function (label) {
+            (0, _checks.ifNodeList)(this.domCache.labels, function () {
+                (0, _uncategorized.forEach)(_this3.domCache.labels, function (label) {
                     (0, _focusAndClick.onFocus)(label, function () {
-                        _this3.dom.textarea.focus();
+                        _this3.domCache.textarea.focus();
                     });
                 });
             }, false);
 
-            (0, _focusAndClick.onFocus)(this.dom.textarea, this.focusEventHandler.bind(this));
-            (0, _focusAndClick.onBlur)(this.dom.textarea, this.blurEventHandler.bind(this));
+            (0, _focusAndClick.onFocus)(this.domCache.textarea, this.focusEventHandler.bind(this));
+            (0, _focusAndClick.onBlur)(this.domCache.textarea, this.blurEventHandler.bind(this));
 
-            this.dom.textarea.addEventListener('change', this.changeEventHandler.bind(this));
+            this.domCache.textarea.addEventListener('change', this.changeEventHandler.bind(this));
 
             return this;
         }
@@ -5900,10 +6268,10 @@ var Textarea = exports.Textarea = function (_Component) {
         value: function focusEventHandler() {
             var _this4 = this;
 
-            (0, _classes.addClass)(this.element, '-focused');
+            (0, _classes.addClass)(this.domCache.element, '-focused');
 
-            (0, _checks.ifNodeList)(this.dom.labels, function () {
-                (0, _focusAndClick.makeElementsNotFocusable)(_this4.dom.labels);
+            (0, _checks.ifNodeList)(this.domCache.labels, function () {
+                (0, _focusAndClick.makeElementsNotFocusable)(_this4.domCache.labels);
             });
         }
     }, {
@@ -5911,19 +6279,19 @@ var Textarea = exports.Textarea = function (_Component) {
         value: function blurEventHandler() {
             var _this5 = this;
 
-            (0, _classes.removeClass)(this.element, '-focused');
+            (0, _classes.removeClass)(this.domCache.element, '-focused');
 
-            (0, _checks.ifNodeList)(this.dom.labels, function () {
-                (0, _focusAndClick.makeElementsFocusable)(_this5.dom.labels);
+            (0, _checks.ifNodeList)(this.domCache.labels, function () {
+                (0, _focusAndClick.makeElementsFocusable)(_this5.domCache.labels);
             });
         }
     }, {
         key: 'changeEventHandler',
         value: function changeEventHandler() {
-            if (this.dom.textarea.value == '') {
-                (0, _classes.removeClass)(this.element, '-has-value');
+            if (this.domCache.textarea.value == '') {
+                (0, _classes.removeClass)(this.domCache.element, '-has-value');
             } else {
-                (0, _classes.addClass)(this.element, '-has-value');
+                (0, _classes.addClass)(this.domCache.element, '-has-value');
             }
         }
     }]);
@@ -5933,7 +6301,7 @@ var Textarea = exports.Textarea = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils/aria":34,"../utils/attributes":35,"../utils/checks":36,"../utils/classes":37,"../utils/focus-and-click":39,"../utils/uncategorized":41}],25:[function(require,module,exports){
+},{"../component":6,"../utils/aria":35,"../utils/attributes":36,"../utils/checks":37,"../utils/classes":38,"../utils/focus-and-click":40,"../utils/uncategorized":42}],25:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5947,6 +6315,16 @@ exports.onArrowLeftPressed = onArrowLeftPressed;
 exports.onArrowUpPressed = onArrowUpPressed;
 exports.onArrowRightPressed = onArrowRightPressed;
 exports.onArrowDownPressed = onArrowDownPressed;
+// -----------------------------------------------------------------------------
+// KEYBOARD
+// -----------------------------------------------------------------------------
+// Here is a number of wrappers written in one style for the most popular
+// keys for creating accessible components. They are arrow keys, enter and space.
+// This list of functions can be expanded by other key events if it needed.
+//
+// These functions should be used in components for better code readability.
+
+
 function onEnterPressed(element, callback) {
     element.addEventListener('keydown', function (e) {
         if (e.keyCode == 13) {
@@ -6028,6 +6406,16 @@ Object.defineProperty(exports, "__esModule", {
 exports.onClick = onClick;
 exports.onMouseOver = onMouseOver;
 exports.onMouseOut = onMouseOut;
+// -----------------------------------------------------------------------------
+// MOUSE
+// -----------------------------------------------------------------------------
+// Here is a number of wrappers written in one style for the most popular
+// mouse events. This list of functions can be expanded by other mouse actions
+// if it needed.
+//
+// These functions should be used in components for better code readability.
+
+
 function onClick(element, callback) {
     element.addEventListener('click', function (e) {
         e.preventDefault();
@@ -6058,6 +6446,16 @@ Object.defineProperty(exports, "__esModule", {
 exports.onSwipeLeft = onSwipeLeft;
 exports.onSwipeRight = onSwipeRight;
 exports.onPinchOut = onPinchOut;
+// -----------------------------------------------------------------------------
+// TOUCHSCREEN
+// -----------------------------------------------------------------------------
+// Here is a number of wrappers written in one style for the most popular
+// touchscreen actions. They can be extended by other touch-actions if it needed.
+// Documantation for the HammerJS is here: http://hammerjs.github.io/
+//
+// These functions should be used in components for better code readability.
+
+
 function onSwipeLeft(element, callback) {
     var hammertime = new Hammer(element);
 
@@ -6089,6 +6487,33 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+// -----------------------------------------------------------------------------
+// EVENTS OBSERVER
+// -----------------------------------------------------------------------------
+//
+// Should be available as window.Muilessium.Events,
+// take a look at /src/js/muilessium.js if not
+//
+// Methods:
+//   addEvent(name)
+//       Creates a new type of events.
+//   addEventListener(name, callback, executeIfAlreadyFired = false)
+//       Adds event listener to a previously created event type.
+//       Can be called if event was fired before listener added (can be useful
+//       for some scroll events based on viewport).
+//   fireEvent(name)
+//       Executes all callbacks for event with this name.
+//
+// Default events:
+//   - resize-window-height
+//   - resize-window-width
+//   - scroll-start
+//   - scroll-end
+// Additional events (initialized in /src/js/app.js):
+//   - app-initialized
+//   - images-loaded
+
 
 var Events = exports.Events = function () {
     function Events() {
@@ -6227,6 +6652,72 @@ var Events = exports.Events = function () {
 },{}],29:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Factory = undefined;
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); // -----------------------------------------------------------------------------
+// FACTORY OF COMPONENTS
+// -----------------------------------------------------------------------------
+// This is a factory of components. It should be available as
+// window.Muilessium.Factory. take a look at /src/js/muilessium.js if not.
+//
+// Methods:
+//   create(type, selector, options)
+//       Creates a component of selected type for every element selected
+//       by this selector. Options will be passed to a component's constructor.
+//
+
+// Components from /src/components/ are imported using index file - components.js.
+
+
+var _components = require('./components');
+
+var components = _interopRequireWildcard(_components);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+// The components should be created at /src/js/main.js
+
+var Factory = exports.Factory = function () {
+    function Factory() {
+        _classCallCheck(this, Factory);
+
+        if (_typeof(Factory.instance) === 'object') {
+            return Factory.instance;
+        }
+
+        Factory.instance = this;
+    }
+
+    _createClass(Factory, [{
+        key: 'create',
+        value: function create(type, selector, options) {
+            if (typeof components[type] !== 'function') {
+                throw new Error('No such component: ' + type);
+            }
+
+            var elements = document.querySelectorAll(selector);
+
+            return [].map.call(elements, function (element) {
+                return new components[type](element, options);
+            });
+        }
+    }]);
+
+    return Factory;
+}();
+
+;
+
+},{"./components":7}],30:[function(require,module,exports){
+'use strict';
+
 var _muilessium = require('./muilessium');
 
 var _muilessium2 = _interopRequireDefault(_muilessium);
@@ -6238,28 +6729,27 @@ document.addEventListener('DOMContentLoaded', function () {
     window.Muilessium = new _muilessium2.default();
 
     window.Muilessium.components = {
-        'accordions': window.Muilessium.create('accordion', '.mui-accordion', {}),
-        'breadcrumbs': window.Muilessium.create('breadcrumb', '.mui-breadcrumb', {}),
-        'dropdown-buttons': window.Muilessium.create('button-dropdown', '.mui-button-dropdown', {}),
-        'buttons': window.Muilessium.create('button', '.mui-button', {}),
-        'carousels': window.Muilessium.create('carousel', '.mui-carousel', {}),
-        'checkboxes': window.Muilessium.create('checkbox', '.mui-checkbox', {}),
-        'header-navigations': window.Muilessium.create('header-navigation', '.mui-header-navigation', {}),
-        'range-inputs': window.Muilessium.create('input-range', '.mui-input-range', {}),
-        'inputs': window.Muilessium.create('input', '.mui-input', {}),
-        'media-views': window.Muilessium.create('media-view', '.mui-media-view', {}),
-        'modal-windows': window.Muilessium.create('modal-window', '.mui-modal-window', {}),
-        'paginations': window.Muilessium.create('pagination', '.mui-pagination', {}),
-        'radio-buttons': window.Muilessium.create('radio', '.mui-radio', {}),
-        'ratings': window.Muilessium.create('rating', '.mui-rating', {}),
-        'select-dropdowns': window.Muilessium.create('select-dropdown', '.mui-select-dropdown', {}),
-        'tabs': window.Muilessium.create('tabs', '.mui-tabs', {}),
-        'tagslists': window.Muilessium.create('tags-list', '.mui-tags-list', {}),
-        'textareas': window.Muilessium.create('textarea', '.mui-textarea', {})
+        'Accordion': window.Muilessium.Factory.create('Accordion', '.mui-accordion', {}),
+        'Breadcrumb': window.Muilessium.Factory.create('Breadcrumb', '.mui-breadcrumb', {}),
+        'ButtonDropdown': window.Muilessium.Factory.create('ButtonDropdown', '.mui-button-dropdown', {}),
+        'Button': window.Muilessium.Factory.create('Button', '.mui-button', {}),
+        'Carousel': window.Muilessium.Factory.create('Carousel', '.mui-carousel', {}),
+        'Checkbox': window.Muilessium.Factory.create('Checkbox', '.mui-checkbox', {}),
+        'HeaderNavigation': window.Muilessium.Factory.create('HeaderNavigation', '.mui-header-navigation', {}),
+        'Input': window.Muilessium.Factory.create('Input', '.mui-input', {}),
+        'MediaView': window.Muilessium.Factory.create('MediaView', '.mui-media-view', {}),
+        'ModalWindow': window.Muilessium.Factory.create('ModalWindow', '.mui-modal-window', {}),
+        'Pagination': window.Muilessium.Factory.create('Pagination', '.mui-pagination', {}),
+        'Radio': window.Muilessium.Factory.create('Radio', '.mui-radio', {}),
+        'Rating': window.Muilessium.Factory.create('Rating', '.mui-rating', {}),
+        'SelectDropdown': window.Muilessium.Factory.create('SelectDropdown', '.mui-select-dropdown', {}),
+        'Tabs': window.Muilessium.Factory.create('Tabs', '.mui-tabs', {}),
+        'TagsList': window.Muilessium.Factory.create('TagsList', '.mui-tags-list', {}),
+        'Textarea': window.Muilessium.Factory.create('Textarea', '.mui-textarea', {})
     };
 });
 
-},{"./muilessium":30,"hammerjs":2}],30:[function(require,module,exports){
+},{"./muilessium":31,"hammerjs":2}],31:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -6268,7 +6758,10 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); // -----------------------------------------------------------------------------
+// MUILESSIUM BASE
+// -----------------------------------------------------------------------------
+
 
 var _utils = require('./utils');
 
@@ -6292,108 +6785,42 @@ var TouchScreen = _interopRequireWildcard(_touchscreen);
 
 var _events = require('./events');
 
-var _accordion = require('./components/accordion');
-
-var _breadcrumb = require('./components/breadcrumb');
-
-var _buttonDropdown = require('./components/button-dropdown');
-
-var _button = require('./components/button');
-
-var _carousel = require('./components/carousel');
-
-var _checkbox = require('./components/checkbox');
-
-var _headerNavigation = require('./components/header-navigation');
-
-var _input = require('./components/input');
-
-var _inputRange = require('./components/input-range');
-
-var _mediaView = require('./components/media-view');
-
-var _modalWindow = require('./components/modal-window');
-
-var _pagination = require('./components/pagination');
-
-var _radio = require('./components/radio');
-
-var _selectDropdown = require('./components/select-dropdown');
-
-var _tabs = require('./components/tabs');
-
-var _tagsList = require('./components/tags-list');
-
-var _textarea = require('./components/textarea');
-
-var _rating = require('./components/rating');
+var _factory = require('./factory');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var components = {
-    'accordion': _accordion.Accordion,
-    'breadcrumb': _breadcrumb.Breadcrumb,
-    'button-dropdown': _buttonDropdown.ButtonDropdown,
-    'button': _button.Button,
-    'carousel': _carousel.Carousel,
-    'checkbox': _checkbox.Checkbox,
-    'header-navigation': _headerNavigation.HeaderNavigation,
-    'input': _input.Input,
-    'input-range': _inputRange.InputRange,
-    'media-view': _mediaView.MediaView,
-    'modal-window': _modalWindow.ModalWindow,
-    'pagination': _pagination.Pagination,
-    'radio': _radio.Radio,
-    'select-dropdown': _selectDropdown.SelectDropdown,
-    'tabs': _tabs.Tabs,
-    'tags-list': _tagsList.TagsList,
-    'textarea': _textarea.Textarea,
-    'rating': _rating.Rating
-};
-
 var Muilessium = function () {
     function Muilessium() {
         _classCallCheck(this, Muilessium);
 
+        // This is a singleton
         if (_typeof(Muilessium.instance) === 'object') {
             return Muilessium.instance;
         }
 
+        // Utilities from /src/js/utils.js
         this.Utils = Utils;
 
+        // Controls from /src/js/controls/*
         this.Keyboard = Keyboard;
         this.Mouse = Mouse;
         this.TouchScreen = TouchScreen;
 
+        // Events observer from /src/js/events.js
         this.Events = new _events.Events();
+        this.initEvents();
+        this.initEventListeners();
 
-        this.init();
+        // Components factory from /src/js/factory.js
+        this.Factory = new _factory.Factory();
 
         Muilessium.instance = this;
-
         this.Events.fireEvent('muilessium-initialized');
     }
 
     _createClass(Muilessium, [{
-        key: 'init',
-        value: function init() {
-            var _this = this;
-
-            Utils.normalizeTabIndex();
-            Utils.aria.hideIcons('fa');
-
-            this.initEvents();
-            this.initEventListeners();
-
-            Utils.lazyLoadImages(function () {
-                _this.Events.fireEvent('images-loaded');
-            });
-
-            return this;
-        }
-    }, {
         key: 'initEvents',
         value: function initEvents() {
             this.Events.addEvent('muilessium-initialized');
@@ -6404,10 +6831,16 @@ var Muilessium = function () {
     }, {
         key: 'initEventListeners',
         value: function initEventListeners() {
-            this.Events.addEventListener('muilessium-initialized', function () {
-                Polyfills.smoothScroll();
+            var _this = this;
 
+            this.Events.addEventListener('muilessium-initialized', function () {
+                Utils.normalizeTabIndex();
                 Utils.initAnchorLinks();
+                Utils.lazyLoadImages(function () {
+                    _this.Events.fireEvent('images-loaded');
+                });
+
+                Polyfills.smoothScroll();
             });
 
             this.Events.addEventListener('images-loaded', Polyfills.objectFit);
@@ -6422,19 +6855,6 @@ var Muilessium = function () {
                 }, 300);
             });
         }
-    }, {
-        key: 'create',
-        value: function create(type, selector, options) {
-            if (typeof components[type] !== 'function') {
-                throw new Error('No such component: ' + type);
-            }
-
-            var elements = document.querySelectorAll(selector);
-
-            return [].map.call(elements, function (element) {
-                return new components[type](element, options);
-            });
-        }
     }]);
 
     return Muilessium;
@@ -6443,7 +6863,7 @@ var Muilessium = function () {
 exports.default = Muilessium;
 ;
 
-},{"./components/accordion":7,"./components/breadcrumb":8,"./components/button":10,"./components/button-dropdown":9,"./components/carousel":11,"./components/checkbox":12,"./components/header-navigation":13,"./components/input":15,"./components/input-range":14,"./components/media-view":16,"./components/modal-window":17,"./components/pagination":18,"./components/radio":19,"./components/rating":20,"./components/select-dropdown":21,"./components/tabs":22,"./components/tags-list":23,"./components/textarea":24,"./controls/keyboard":25,"./controls/mouse":26,"./controls/touchscreen":27,"./events":28,"./polyfills":31,"./utils":32}],31:[function(require,module,exports){
+},{"./controls/keyboard":25,"./controls/mouse":26,"./controls/touchscreen":27,"./events":28,"./factory":29,"./polyfills":32,"./utils":33}],32:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -6458,17 +6878,34 @@ var smoothScrollPolyfill = _interopRequireWildcard(_smoothscrollPolyfill);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-var objectFitImages = require('object-fit-images');
-
 function smoothScroll() {
     smoothScrollPolyfill.polyfill();
-};
+} // -----------------------------------------------------------------------------
+// POLYFILLS
+// -----------------------------------------------------------------------------
+// All polyfills used in the application should be imported here. Wrappers are
+// used for less dependence on polyfills realizations.
+//
+// Used polyfills:
+//   - smoothscroll-polyfill
+//   - object-fit-images
+
+
+// SMOOTH SCROLL
+// https://iamdustan.com/smoothscroll/
+;
+
+// OBJECT FIT FOR IMAGES
+// https://github.com/bfred-it/object-fit-images
+// There is a css class for this polyfill.
+// Take a look at src/css/utils.css for more information.
+var objectFitImages = require('object-fit-images'); // It doesn't support es6 import
 
 function objectFit() {
     objectFitImages();
 };
 
-},{"object-fit-images":4,"smoothscroll-polyfill":5}],32:[function(require,module,exports){
+},{"object-fit-images":4,"smoothscroll-polyfill":5}],33:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -6595,7 +7032,7 @@ Object.keys(_viewport).forEach(function (key) {
   });
 });
 
-},{"./utils/ajax":33,"./utils/aria":34,"./utils/attributes":35,"./utils/checks":36,"./utils/classes":37,"./utils/console":38,"./utils/focus-and-click":39,"./utils/scroll":40,"./utils/uncategorized":41,"./utils/viewport":42}],33:[function(require,module,exports){
+},{"./utils/ajax":34,"./utils/aria":35,"./utils/attributes":36,"./utils/checks":37,"./utils/classes":38,"./utils/console":39,"./utils/focus-and-click":40,"./utils/scroll":41,"./utils/uncategorized":42,"./utils/viewport":43}],34:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -6659,7 +7096,7 @@ var ajax = exports.ajax = {
     }
 };
 
-},{}],34:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -6672,9 +7109,19 @@ var _attributes = require('../utils/attributes');
 var _uncategorized = require('../utils/uncategorized');
 
 // -----------------------------------------------------------------------------
-// WAI-ARIA utilities
+// WAI-ARIA UTILITIES
 // -----------------------------------------------------------------------------
-// Here is some functions for operation with aria-roles and properties
+// Here is some functions for operation with aria-roles and properties.
+// These functions should be used in components for better code readability.
+//
+// Here is the full list of aria methods:
+//  - set(element, property, value = true)
+//  - setRole(element, role)
+//  - removeRole(element)
+//  - setId(element, id)
+//  - get(element, property)
+//  - getRole(element)
+//  - toggleState(element, state)
 
 
 var aria = exports.aria = {
@@ -6740,20 +7187,10 @@ var aria = exports.aria = {
 
     toggleState: function toggleState(element, state) {
         (0, _attributes.setAttribute)(element, 'aria-' + state, !(0, _uncategorized.stringToBoolean)((0, _attributes.getAttribute)(element, 'aria-' + state)));
-    },
-
-    // Hide icons
-    // ----------
-    // Sets role='presentation' to all icons with specified class name
-
-    hideIcons: function hideIcons(className) {
-        (0, _uncategorized.forEach)(document.getElementsByClassName(className), function (icon) {
-            (0, _attributes.setAttribute)(icon, 'aria-hidden', true);
-        });
     }
 };
 
-},{"../utils/attributes":35,"../utils/uncategorized":41}],35:[function(require,module,exports){
+},{"../utils/attributes":36,"../utils/uncategorized":42}],36:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -6774,8 +7211,15 @@ function setAttribute(element, attribute, value) {
         return element.setAttribute(attribute, value);
     });
 } // -----------------------------------------------------------------------------
-// Manipulating with html attributes
+// HTML ATTRIBUTES
 // -----------------------------------------------------------------------------
+// These functions should be used in components for better code readability and
+// avoiding errors when selected element does not exists.
+//
+// Here is the ful list of utilities for manipulating with attributes:
+//  - setAttribute(element, attribute, value)
+//  - getAttribute(element, attribute, defaultValue)
+//  - removeAttribute(element, attribute)
 
 
 ;
@@ -6800,7 +7244,7 @@ function removeAttribute(element, attribute) {
     });
 };
 
-},{"../utils/checks":36}],36:[function(require,module,exports){
+},{"../utils/checks":37}],37:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -6822,8 +7266,17 @@ function isInPage(element) {
     /* Use this instead of document.contains because IE has only partial support of Node.contains. */
     return element === document.body || document.body.contains(element);
 } // -----------------------------------------------------------------------------
-// Checking for html elements in page
+// CHECKS
 // -----------------------------------------------------------------------------
+// These functions should be used in components for better code readability
+// and avoiding errors when some element does not exists.
+//
+// Here is the full list of utilities:
+//  - isInPage(element)
+//  - isNotInPage(element)
+//  - ifExists(element, callback, printWarning = true)
+//  - ifNodeList(element, callback, printWarning = true)
+//  - isDescendant(parent, child)
 
 
 ;
@@ -6900,7 +7353,7 @@ function isDescendant(parent, child) {
     return false;
 };
 
-},{"../utils/console":38}],37:[function(require,module,exports){
+},{"../utils/console":39}],38:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -6924,8 +7377,21 @@ var _uncategorized = require('../utils/uncategorized');
 // Returns true if element exists and has selected class and false otherwise
 
 // -----------------------------------------------------------------------------
-// Manipulating CSS classes
+// CSS CLASSES
 // -----------------------------------------------------------------------------
+// IE11 does not support useful methods of the classList on SVG elements,
+// so it will be a good idea to use this wrappers for all elements and don't think
+// about "is this element an SVG or not?".
+//
+// Here is the full list of utilities for manipulations with CSS classes:
+//  - hasClass(element, class)
+//  - hasNotClass(element, class)
+//  - addClass(element, class)
+//  - addClasses(element, ...classes)
+//  - removeClass(element, class)
+//  - removeClasses(element, ...classes)
+//  - replaceClass(element, class, newClass)
+//  - toggleClass(element, class)
 
 
 function hasClass(element, classForTest) {
@@ -7026,7 +7492,7 @@ function toggleClass(element, classForToggle) {
     });
 };
 
-},{"../utils/checks":36,"../utils/uncategorized":41}],38:[function(require,module,exports){
+},{"../utils/checks":37,"../utils/uncategorized":42}],39:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -7071,7 +7537,7 @@ var console = exports.console = {
     }
 };
 
-},{}],39:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -7111,8 +7577,27 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 // Sets tabindex=0 to the element if it exists
 
 // -----------------------------------------------------------------------------
-// Manipulating with Focus & Click
+// FOCUS AND CLICK
 // -----------------------------------------------------------------------------
+// This is a number of function for manipulating with 'focus' and 'click' events
+// in accessible components.
+// 
+// Here is the full list of 'focus&click' utilities:
+//  - makeElementFocusable(element)
+//  - makeElementsFocusable(elementsList)
+//  - makeElementNotFocusable(element)
+//  - makeElementsNotFocusable(elementsList)
+//  - getFocusableChilds(element)
+//  - getAllFocusableElements()
+//  - getNextFocusableElement(element)
+//  - getPreviousFocusableElement(element)
+//  - goToNextFocusableElement(element)
+//  - GoToPreviousFocusableElement(element)
+//  - makeElementClickable(element, callback, { mouse = true, keyboard = true } = {})
+//  - makeChildElementsClickable(element, childs, callback, { mouse = true, keyboard = true } = {})
+//  - onFocus(element, callback)
+//  - onBlur(element, callback)
+
 
 function makeElementFocusable(element) {
     return (0, _checks.ifExists)(element, function () {
@@ -7331,7 +7816,7 @@ function onBlur(element, callback) {
     });
 };
 
-},{"../controls/keyboard":25,"../controls/mouse":26,"../utils/checks":36,"../utils/uncategorized":41}],40:[function(require,module,exports){
+},{"../controls/keyboard":25,"../controls/mouse":26,"../utils/checks":37,"../utils/uncategorized":42}],41:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -7360,8 +7845,13 @@ function scrollTo(element, callback) {
         }
     });
 } // -----------------------------------------------------------------------------
-// Scroll utilities
+// SCROLL UTILITIES
 // -----------------------------------------------------------------------------
+//
+// Here is the full list of scroll utilities:
+//  - scrollTo(element, callback)
+//  - scrollToTop(callback)
+//  - scrollFire(element, callback)
 
 
 ;
@@ -7396,7 +7886,7 @@ function scrollFire(element, callback) {
     }
 };
 
-},{"../utils/checks":36,"../utils/uncategorized":41,"../utils/viewport":42}],41:[function(require,module,exports){
+},{"../utils/checks":37,"../utils/uncategorized":42,"../utils/viewport":43}],42:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -7431,8 +7921,21 @@ function normalizeTabIndex() {
         element.tabIndex = 0;
     });
 } // -----------------------------------------------------------------------------
-// Uncategorized utilities
+// UNCATEGORIZED UTILITIES
 // -----------------------------------------------------------------------------
+//
+// Here is the full list of uncategorized utilities:
+//  - normalizeTabIndexes()
+//  - lazyLoadImages(callback)
+//  - initAnchorLinks()
+//  - generateRandomString(length = 8)
+//  - stringify(object)
+//  - extend(target, source)
+//  - debounce(func, ms)
+//  - callOnce(callback)
+//  - firstOfList(list)
+//  - lastOfList(list)
+//  - forEach(list, callback)
 
 
 ;
@@ -7599,7 +8102,7 @@ function forEach(list, callback) {
     });
 };
 
-},{"../utils/classes":37,"../utils/focus-and-click":39,"../utils/scroll":40,"imagesloaded":3}],42:[function(require,module,exports){
+},{"../utils/classes":38,"../utils/focus-and-click":40,"../utils/scroll":41,"imagesloaded":3}],43:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -7627,4 +8130,4 @@ function isInViewport(element) {
 
 ;
 
-},{"../utils/checks":36}]},{},[29]);
+},{"../utils/checks":37}]},{},[30]);
