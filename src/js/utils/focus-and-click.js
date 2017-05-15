@@ -1,6 +1,25 @@
 // -----------------------------------------------------------------------------
-// Manipulating with Focus & Click
+// FOCUS AND CLICK
 // -----------------------------------------------------------------------------
+// This is a number of function for manipulating with 'focus' and 'click' events
+// in accessible components.
+// 
+// Here is the full list of 'focus&click' utilities:
+//  - makeElementFocusable(element)
+//  - makeElementsFocusable(elementsList)
+//  - makeElementNotFocusable(element)
+//  - makeElementsNotFocusable(elementsList)
+//  - getFocusableChilds(element)
+//  - getAllFocusableElements()
+//  - getNextFocusableElement(element)
+//  - getPreviousFocusableElement(element)
+//  - goToNextFocusableElement(element)
+//  - GoToPreviousFocusableElement(element)
+//  - makeElementClickable(element, callback, { mouse = true, keyboard = true } = {})
+//  - makeChildElementsClickable(element, childs, callback, { mouse = true, keyboard = true } = {})
+//  - onFocus(element, callback)
+//  - onBlur(element, callback)
+
 
 import * as Mouse from '../controls/mouse';
 import * as Keyboard from '../controls/keyboard';

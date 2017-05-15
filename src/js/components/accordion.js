@@ -1,3 +1,16 @@
+// -----------------------------------------------------------------------------
+// ACCORDION COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+//  - (default) initControls()
+//  - foldItem(index)
+//  - foldAllItems()
+//  - unfoldItem(index)
+//  - unfoldAllItems()
+//  - toggleItem()
+
+
 import { Component } from '../component';
 
 import * as Keyboard from '../controls/keyboard';
@@ -19,7 +32,7 @@ export class Accordion extends Component {
     constructor(element, options) {
         super(element, options);
 
-        this.dom = extend(this.dom, {
+        this.domCache = extend(this.domCache, {
             items:      element.querySelectorAll('.item'),
             titles:     element.querySelectorAll('.title'),
             indicators: element.querySelectorAll('.indicator'),
@@ -32,22 +45,22 @@ export class Accordion extends Component {
 
 
     initAria() {
-        aria.setRole(this.element, 'tablist');
-        setAttribute(this.element, 'multiselectable', true);
+        aria.setRole(this.domCache.element, 'tablist');
+        setAttribute(this.domCache.element, 'multiselectable', true);
         
-        forEach(this.dom.titles, (title, index) => {
+        forEach(this.domCache.titles, (title, index) => {
             aria.setRole(title, 'tab');
             aria.set(title, 'expanded', false);
-            aria.set(title, 'controls', aria.setId(this.dom.contents[index]));
+            aria.set(title, 'controls', aria.setId(this.domCache.contents[index]));
         });
 
-        forEach(this.dom.contents, (content, index) => {
+        forEach(this.domCache.contents, (content, index) => {
             aria.setRole(content, 'tabpanel');
             aria.set(content, 'hidden', true);
-            aria.set(content, 'labelledby', aria.setId(this.dom.titles[index]));
+            aria.set(content, 'labelledby', aria.setId(this.domCache.titles[index]));
         });
 
-        forEach(this.dom.indicators, (indicator) => {
+        forEach(this.domCache.indicators, (indicator) => {
             aria.set(indicator, 'hidden', true);
         });
 
@@ -56,22 +69,22 @@ export class Accordion extends Component {
 
 
     initControls() {
-        makeChildElementsClickable(this.element, this.dom.titles, (index) => {
+        makeChildElementsClickable(this.domCache.element, this.domCache.titles, (index) => {
             this.toggleItem(index);
         });
 
-        forEach(this.dom.titles, (title, index) => {
+        forEach(this.domCache.titles, (title, index) => {
             Keyboard.onSpacePressed(title, this.toggleItem.bind(this, index));
 
-            if (title != firstOfList(this.dom.titles)) {
+            if (title != firstOfList(this.domCache.titles)) {
                 Keyboard.onArrowUpPressed(title, () => {
-                    this.dom.titles[index-1].focus(); 
+                    this.domCache.titles[index-1].focus(); 
                 });
             }
             
-            if (title != lastOfList(this.dom.titles)) {
+            if (title != lastOfList(this.domCache.titles)) {
                 Keyboard.onArrowDownPressed(title, () => {
-                    this.dom.titles[index+1].focus(); 
+                    this.domCache.titles[index+1].focus(); 
                 });
             }
         });
@@ -81,17 +94,17 @@ export class Accordion extends Component {
 
 
     foldItem(index) {
-        removeClass(this.dom.items[index], '-unfold');
+        removeClass(this.domCache.items[index], '-unfold');
 
-        aria.set(this.dom.titles[index],   'expanded', false);
-        aria.set(this.dom.contents[index], 'hidden',   true);
+        aria.set(this.domCache.titles[index],   'expanded', false);
+        aria.set(this.domCache.contents[index], 'hidden',   true);
 
         return this;
     }
 
 
     foldAllItems() {
-        forEach(this.dom.items, (item, index) => {
+        forEach(this.domCache.items, (item, index) => {
             this.foldItem(index);
         });
 
@@ -100,17 +113,17 @@ export class Accordion extends Component {
 
 
     unfoldItem(index) {
-        addClass(this.dom.items[index], '-unfold');
+        addClass(this.domCache.items[index], '-unfold');
 
-        aria.set(this.dom.titles[index],   'expanded', true);
-        aria.set(this.dom.contents[index], 'hidden',   false);
+        aria.set(this.domCache.titles[index],   'expanded', true);
+        aria.set(this.domCache.contents[index], 'hidden',   false);
 
         return this;
     }
 
 
     unfoldAllItems() {
-        forEach(this.dom.items, (item, index) => {
+        forEach(this.domCache.items, (item, index) => {
             this.unfoldItem(index);
         });
 
@@ -119,10 +132,10 @@ export class Accordion extends Component {
 
 
     toggleItem(index) {
-        toggleClass(this.dom.items[index], '-unfold');
+        toggleClass(this.domCache.items[index], '-unfold');
 
-        aria.toggleState(this.dom.titles[index],   'expanded');
-        aria.toggleState(this.dom.contents[index], 'hidden');
+        aria.toggleState(this.domCache.titles[index],   'expanded');
+        aria.toggleState(this.domCache.contents[index], 'hidden');
 
         return this;
     }

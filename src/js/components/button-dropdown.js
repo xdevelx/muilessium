@@ -1,3 +1,14 @@
+// -----------------------------------------------------------------------------
+// DROPDOWN BUTTON COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+//  - (default) initControls()
+//  - openDrpdown()
+//  - closeDrpdown()
+//  - toggleDrpdown()
+
+
 import { Component } from '../component';
 
 import * as Keyboard from '../controls/keyboard';
@@ -20,7 +31,7 @@ export class ButtonDropdown extends Component {
     constructor(element, options) {
         super(element, options);
 
-        this.dom = extend(this.dom, {
+        this.domCache = extend(this.domCache, {
             button:      element.querySelector('.mui-button'),
             dropdown:    element.querySelector('.mui-dropdown-options'),
             optionsList: element.querySelectorAll('.option'),
@@ -38,64 +49,64 @@ export class ButtonDropdown extends Component {
 
     initAria() {
         /* Remove role='button' added in base component */
-        aria.removeRole(this.element);
+        aria.removeRole(this.domCache.element);
 
-        aria.set(this.dom.button,   'haspopup', true);
-        aria.set(this.dom.dropdown, 'labelledby', aria.setId(this.dom.button));
-        aria.set(this.dom.dropdown, 'hidden', true);
-        aria.set(this.dom.shadow,   'hidden', true);
+        aria.set(this.domCache.button,   'haspopup', true);
+        aria.set(this.domCache.dropdown, 'labelledby', aria.setId(this.domCache.button));
+        aria.set(this.domCache.dropdown, 'hidden', true);
+        aria.set(this.domCache.shadow,   'hidden', true);
 
         return this;
     }
 
 
     initControls() {
-        makeElementClickable(this.dom.button,
+        makeElementClickable(this.domCache.button,
                         this.toggleDropdown.bind(this, { focusFirstWhenOpened: false }),
                                         { mouse: true, keyboard: false });
 
-        Keyboard.onEnterPressed(this.dom.button,
+        Keyboard.onEnterPressed(this.domCache.button,
                         this.toggleDropdown.bind(this, { focusFirstWhenOpened: true }),
                                         { mouse: false, keyboard: true });
 
-        Keyboard.onSpacePressed(this.dom.button,
+        Keyboard.onSpacePressed(this.domCache.button,
                         this.toggleDropdown.bind(this, { focusFirstWhenOpened: true }),
                                         { mouse: false, keyboard: true });
 
-        makeElementClickable(this.dom.shadow, this.toggleDropdown.bind(this),
+        makeElementClickable(this.domCache.shadow, this.toggleDropdown.bind(this),
                         { mouse: true, keyboard: false });
 
-        makeElementsFocusable(this.dom.optionsList);
+        makeElementsFocusable(this.domCache.optionsList);
 
-        forEach(this.dom.optionsList, (option, index) => {
+        forEach(this.domCache.optionsList, (option, index) => {
             Keyboard.onArrowUpPressed(option, () => {
-                if (option == firstOfList(this.dom.optionsList)) {
+                if (option == firstOfList(this.domCache.optionsList)) {
                     this.closeDropdown();
-                    this.dom.button.focus();
+                    this.domCache.button.focus();
                 } else {
-                    this.dom.optionsList[index-1].focus();
+                    this.domCache.optionsList[index-1].focus();
                 }
             });
 
             Keyboard.onArrowDownPressed(option, () => {
-                if (option == lastOfList(this.dom.optionsList)) {
+                if (option == lastOfList(this.domCache.optionsList)) {
                     this.closeDropdown();
-                    this.dom.button.focus();
+                    this.domCache.button.focus();
                 } else {
-                    this.dom.optionsList[index+1].focus();
+                    this.domCache.optionsList[index+1].focus();
                 }
             });
         });
 
-        Keyboard.onShiftTabPressed(firstOfList(this.dom.optionsList), () => {
+        Keyboard.onShiftTabPressed(firstOfList(this.domCache.optionsList), () => {
             this.closeDropdown();
-            this.dom.button.focus();
+            this.domCache.button.focus();
         });
 
-        Keyboard.onTabPressed(lastOfList(this.dom.optionsList), () => {
+        Keyboard.onTabPressed(lastOfList(this.domCache.optionsList), () => {
             this.closeDropdown();
 
-            goToNextFocusableElement(lastOfList(getFocusableChilds(this.element)));
+            goToNextFocusableElement(lastOfList(getFocusableChilds(this.domCache.element)));
         });
 
         return this;
@@ -103,14 +114,14 @@ export class ButtonDropdown extends Component {
 
 
     openDropdown({ focusFirst = true }) {
-        addClass(this.element,    '-opened');
-        addClass(this.dom.shadow, '-visible');
+        addClass(this.domCache.element,    '-opened');
+        addClass(this.domCache.shadow, '-visible');
 
-        aria.set(this.dom.button,   'hidden', true);
-        aria.set(this.dom.dropdown, 'hidden', false);
+        aria.set(this.domCache.button,   'hidden', true);
+        aria.set(this.domCache.dropdown, 'hidden', false);
 
         if (focusFirst) {
-            firstOfList(getFocusableChilds(this.dom.dropdown)).focus();
+            firstOfList(getFocusableChilds(this.domCache.dropdown)).focus();
         }
 
         this.state.opened = true;
@@ -120,13 +131,13 @@ export class ButtonDropdown extends Component {
 
 
     closeDropdown() {
-        removeClass(this.element,    '-opened');
-        removeClass(this.dom.shadow, '-visible');
+        removeClass(this.domCache.element,    '-opened');
+        removeClass(this.domCache.shadow, '-visible');
 
-        aria.set(this.dom.button,   'hidden', false);
-        aria.set(this.dom.dropdown, 'hidden', true);
+        aria.set(this.domCache.button,   'hidden', false);
+        aria.set(this.domCache.dropdown, 'hidden', true);
 
-        this.dom.button.focus();
+        this.domCache.button.focus();
 
         this.state.opened = false;
 

@@ -1,3 +1,12 @@
+// -----------------------------------------------------------------------------
+// INPUT COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+//  - (default) initControls()
+//  - validate()
+
+
 import { Component } from '../component';
 
 import { aria                     } from '../utils/aria';
@@ -23,7 +32,7 @@ export class Input extends Component {
     constructor(element, options) {
         super(element, options);
 
-        this.dom = extend(this.dom, {
+        this.domCache = extend(this.domCache, {
             input:     element.querySelector('input'),
             labels:    element.parentNode.querySelectorAll('label'),
             hint:      element.parentNode.querySelector('.mui-input-hint'),
@@ -44,12 +53,12 @@ export class Input extends Component {
 
 
     initAria() {
-        const inputId = getAttribute(this.dom.input, 'id') || aria.setId(this.dom.input);
+        const inputId = getAttribute(this.domCache.input, 'id') || aria.setId(this.domCache.input);
 
-        ifNodeList(this.dom.labels, () => {
-            aria.set(this.dom.input, 'labelledby', aria.setId(this.dom.labels[0]));
+        ifNodeList(this.domCache.labels, () => {
+            aria.set(this.domCache.input, 'labelledby', aria.setId(this.domCache.labels[0]));
 
-            forEach(this.dom.labels, (label) => {
+            forEach(this.domCache.labels, (label) => {
                 setAttribute(label, 'for', inputId);
             });
         }, this.state.printNotExistsWarnings);
@@ -59,29 +68,29 @@ export class Input extends Component {
 
 
     initControls() {
-        ifNodeList(this.dom.labels, () => {
-            forEach(this.dom.labels, (label) => {
+        ifNodeList(this.domCache.labels, () => {
+            forEach(this.domCache.labels, (label) => {
                 onFocus(label, () => {
-                    this.dom.input.focus();
+                    this.domCache.input.focus();
                 });
             });
         }, this.state.printNotExistsWarnings);
 
-        onFocus(this.dom.input, this.focusHandler.bind(this));
-        onBlur(this.dom.input,  this.blurHandler.bind(this));
+        onFocus(this.domCache.input, this.focusHandler.bind(this));
+        onBlur(this.domCache.input,  this.blurHandler.bind(this));
 
-        this.dom.input.addEventListener('change',  this.changeValueHandler.bind(this));
-        this.dom.input.addEventListener('keydown', this.changeValueHandler.bind(this));
+        this.domCache.input.addEventListener('change',  this.changeValueHandler.bind(this));
+        this.domCache.input.addEventListener('keydown', this.changeValueHandler.bind(this));
 
         return this;
     }
 
 
     focusHandler() {
-        addClass(this.element, '-focused');
+        addClass(this.domCache.element, '-focused');
 
-        ifNodeList(this.dom.labels, () => {
-            makeElementsNotFocusable(this.dom.labels);
+        ifNodeList(this.domCache.labels, () => {
+            makeElementsNotFocusable(this.domCache.labels);
         }, this.state.printNotExistsWarnings);
 
         return this;
@@ -89,10 +98,10 @@ export class Input extends Component {
 
 
     blurHandler() {
-        removeClass(this.element, '-focused');
+        removeClass(this.domCache.element, '-focused');
 
-        ifNodeList(this.dom.labels, () => {
-            makeElementsFocusable(this.dom.labels);
+        ifNodeList(this.domCache.labels, () => {
+            makeElementsFocusable(this.domCache.labels);
         }, this.state.printNotExistsWarnings);
 
         return this;
@@ -100,15 +109,15 @@ export class Input extends Component {
 
 
     changeValueHandler() {
-        if (this.dom.input.value == '') {
-            removeClasses(this.element, '-has-value', '-valid', '-invalid');
+        if (this.domCache.input.value == '') {
+            removeClasses(this.domCache.element, '-has-value', '-valid', '-invalid');
 
-            ifExists(this.dom.hint, () => {
-                removeClasses(this.dom.hint,      '-valid', '-invalid');
-                removeClasses(this.dom.indicator, '-valid', '-invalid');
+            ifExists(this.domCache.hint, () => {
+                removeClasses(this.domCache.hint,      '-valid', '-invalid');
+                removeClasses(this.domCache.indicator, '-valid', '-invalid');
             }, this.state.printNotExistsWarnings);
         } else {
-            addClass(this.element, '-has-value');
+            addClass(this.domCache.element, '-has-value');
 
             let validationTimeout = this.state.validationTimeout;
 
@@ -125,19 +134,19 @@ export class Input extends Component {
     
     validate() {
         if (this.state.isValidationEnabled) {
-            if (this.state.regexp.test(this.dom.input.value)) {
-                replaceClass(this.element,       '-invalid', '-valid');
+            if (this.state.regexp.test(this.domCache.input.value)) {
+                replaceClass(this.domCache.element,       '-invalid', '-valid');
 
-                ifExists(this.dom.hint, () => {
-                    replaceClass(this.dom.hint,      '-invalid', '-valid');
-                    replaceClass(this.dom.indicator, '-invalid', '-valid');
+                ifExists(this.domCache.hint, () => {
+                    replaceClass(this.domCache.hint,      '-invalid', '-valid');
+                    replaceClass(this.domCache.indicator, '-invalid', '-valid');
                 }, this.state.printNotExistsWarnings);
             } else {
-                replaceClass(this.element,       '-valid', '-invalid');
+                replaceClass(this.domCache.element,       '-valid', '-invalid');
 
-                ifExists(this.dom.hint, () => {
-                    replaceClass(this.dom.hint,      '-valid', '-invalid');
-                    replaceClass(this.dom.indicator, '-valid', '-invalid');
+                ifExists(this.domCache.hint, () => {
+                    replaceClass(this.domCache.hint,      '-valid', '-invalid');
+                    replaceClass(this.domCache.indicator, '-valid', '-invalid');
                 }, this.state.printNotExistsWarnings);
             }
 

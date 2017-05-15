@@ -5,23 +5,22 @@ document.addEventListener('DOMContentLoaded', () => {
     window.Muilessium = new Muilessium;
 
     window.Muilessium.components = {
-        'accordions':         window.Muilessium.create('accordion',         '.mui-accordion',         {}),
-        'breadcrumbs':        window.Muilessium.create('breadcrumb',        '.mui-breadcrumb',        {}),
-        'dropdown-buttons':   window.Muilessium.create('button-dropdown',   '.mui-button-dropdown',   {}),
-        'buttons':            window.Muilessium.create('button',            '.mui-button',            {}),
-        'carousels':          window.Muilessium.create('carousel',          '.mui-carousel',          {}),
-        'checkboxes':         window.Muilessium.create('checkbox',          '.mui-checkbox',          {}),
-        'header-navigations': window.Muilessium.create('header-navigation', '.mui-header-navigation', {}),
-        'range-inputs':       window.Muilessium.create('input-range',       '.mui-input-range',       {}),
-        'inputs':             window.Muilessium.create('input',             '.mui-input',             {}),
-        'media-views':        window.Muilessium.create('media-view',        '.mui-media-view',        {}),
-        'modal-windows':      window.Muilessium.create('modal-window',      '.mui-modal-window',      {}),
-        'paginations':        window.Muilessium.create('pagination',        '.mui-pagination',        {}),
-        'radio-buttons':      window.Muilessium.create('radio',             '.mui-radio',             {}),
-        'ratings':            window.Muilessium.create('rating',            '.mui-rating',            {}),
-        'select-dropdowns':   window.Muilessium.create('select-dropdown',   '.mui-select-dropdown',   {}),
-        'tabs':               window.Muilessium.create('tabs',              '.mui-tabs',              {}),
-        'tagslists':          window.Muilessium.create('tags-list',         '.mui-tags-list',         {}),
-        'textareas':          window.Muilessium.create('textarea',          '.mui-textarea',          {})
+        'Accordion':        window.Muilessium.Factory.create('Accordion',        '.mui-accordion',         {}),
+        'Breadcrumb':       window.Muilessium.Factory.create('Breadcrumb',       '.mui-breadcrumb',        {}),
+        'ButtonDropdown':   window.Muilessium.Factory.create('ButtonDropdown',   '.mui-button-dropdown',   {}),
+        'Button':           window.Muilessium.Factory.create('Button',           '.mui-button',            {}),
+        'Carousel':         window.Muilessium.Factory.create('Carousel',         '.mui-carousel',          {}),
+        'Checkbox':         window.Muilessium.Factory.create('Checkbox',         '.mui-checkbox',          {}),
+        'HeaderNavigation': window.Muilessium.Factory.create('HeaderNavigation', '.mui-header-navigation', {}),
+        'Input':            window.Muilessium.Factory.create('Input',            '.mui-input',             {}),
+        'MediaView':        window.Muilessium.Factory.create('MediaView',        '.mui-media-view',        {}),
+        'ModalWindow':      window.Muilessium.Factory.create('ModalWindow',      '.mui-modal-window',      {}),
+        'Pagination':       window.Muilessium.Factory.create('Pagination',       '.mui-pagination',        {}),
+        'Radio':            window.Muilessium.Factory.create('Radio',            '.mui-radio',             {}),
+        'Rating':           window.Muilessium.Factory.create('Rating',           '.mui-rating',            {}),
+        'SelectDropdown':   window.Muilessium.Factory.create('SelectDropdown',   '.mui-select-dropdown',   {}),
+        'Tabs':             window.Muilessium.Factory.create('Tabs',             '.mui-tabs',              {}),
+        'TagsList':         window.Muilessium.Factory.create('TagsList',         '.mui-tags-list',         {}),
+        'Textarea':         window.Muilessium.Factory.create('Textarea',         '.mui-textarea',          {})
     };
 });

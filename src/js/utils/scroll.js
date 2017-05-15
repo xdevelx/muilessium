@@ -1,6 +1,11 @@
 // -----------------------------------------------------------------------------
-// Scroll utilities
+// SCROLL UTILITIES
 // -----------------------------------------------------------------------------
+//
+// Here is the full list of scroll utilities:
+//  - scrollTo(element, callback)
+//  - scrollToTop(callback)
+//  - scrollFire(element, callback)
 
 
 import { ifExists     } from '../utils/checks';

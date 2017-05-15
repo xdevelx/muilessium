@@ -1,3 +1,14 @@
+// -----------------------------------------------------------------------------
+// RATING COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+//  - (default) initControls()
+//  - updateRating(newRating)
+//  - increaseRating()
+//  - decreaseRating()
+
+
 import { Component } from '../component';
 
 import * as Keyboard from '../controls/keyboard';
@@ -20,7 +31,7 @@ export class Rating extends Component {
     constructor(element, options) {
         super(element, options);
 
-        this.dom = extend(this.dom, {
+        this.domCache = extend(this.domCache, {
             stars: element.querySelectorAll('.star')
         });
 
@@ -42,7 +53,7 @@ export class Rating extends Component {
 
 
     initAria() {
-        forEach(this.dom.stars, (star) => {
+        forEach(this.domCache.stars, (star) => {
             aria.set(star, 'hidden', true);
         });
 
@@ -51,12 +62,12 @@ export class Rating extends Component {
 
 
     initControls() {
-        makeElementFocusable(this.element);
+        makeElementFocusable(this.domCache.element);
 
-        Keyboard.onArrowLeftPressed(this.element,  this.decreaseRating.bind(this));
-        Keyboard.onArrowRightPressed(this.element, this.increaseRating.bind(this));
+        Keyboard.onArrowLeftPressed(this.domCache.element,  this.decreaseRating.bind(this));
+        Keyboard.onArrowRightPressed(this.domCache.element, this.increaseRating.bind(this));
 
-        makeChildElementsClickable(this.element, this.dom.stars, (index) => {
+        makeChildElementsClickable(this.domCache.element, this.domCache.stars, (index) => {
             this.updateRating(index + 1);
         }, { mouse: true, keyboard: false });
 
@@ -70,19 +81,19 @@ export class Rating extends Component {
             return this;
         }
 
-        removeClass(this.element, '-r' + this.state.rating);
-        addClass(this.element, '-r' + newRating);
+        removeClass(this.domCache.element, '-r' + this.state.rating);
+        addClass(this.domCache.element, '-r' + newRating);
 
-        let newAriaLabel = aria.get(this.element, 'label').replace(this.state.rating, newRating);
+        let newAriaLabel = aria.get(this.domCache.element, 'label').replace(this.state.rating, newRating);
 
-        aria.set(this.element, 'label', newAriaLabel);
-        setAttribute(this.element, 'data-rating', newRating);
+        aria.set(this.domCache.element, 'label', newAriaLabel);
+        setAttribute(this.domCache.element, 'data-rating', newRating);
 
         this.state.rating = newRating;
 
-        if (this.element === document.activeElement) {
-            this.element.blur();
-            this.element.focus();
+        if (this.domCache.element === document.activeElement) {
+            this.domCache.element.blur();
+            this.domCache.element.focus();
         }
 
         return this;

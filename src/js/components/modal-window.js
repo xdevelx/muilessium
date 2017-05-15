@@ -1,3 +1,13 @@
+// -----------------------------------------------------------------------------
+// MODAL WINDOW COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+//  - (default) initControls()
+//  - openModal()
+//  - closeModal()
+
+
 import { Component } from '../component';
 
 import * as Keyboard from '../controls/keyboard';
@@ -17,11 +27,11 @@ export class ModalWindow extends Component {
     constructor(element, options) {
         super(element, options);
 
-        this.dom = extend(this.dom, {
-            openers:     document.querySelectorAll(`[data-modal-opener=${this.element.getAttribute('id')}]`),
-            modalWindow: this.element.querySelector('.window'),
-            closeIcon:   this.element.querySelector('.close-icon'),
-            shadow:      this.element.querySelector('.mui-shadow-toggle')
+        this.domCache = extend(this.domCache, {
+            openers:     document.querySelectorAll(`[data-modal-opener=${element.getAttribute('id')}]`),
+            modalWindow: element.querySelector('.window'),
+            closeIcon:   element.querySelector('.close-icon'),
+            shadow:      element.querySelector('.mui-shadow-toggle')
         });
 
         this.state = extend(this.state, {
@@ -35,15 +45,15 @@ export class ModalWindow extends Component {
 
 
     initAria() {
-        aria.set(this.element, 'hidden', true);
-        aria.set(this.dom.shadow,  'hidden', true);
+        aria.set(this.domCache.element, 'hidden', true);
+        aria.set(this.domCache.shadow,  'hidden', true);
 
         return this;
     }
 
 
     initControls() {
-        forEach(this.dom.openers, (opener) => {
+        forEach(this.domCache.openers, (opener) => {
             makeElementClickable(opener, () => {
                 this.state.savedOpener = opener;
                 this.openModal();
@@ -56,16 +66,16 @@ export class ModalWindow extends Component {
             });
         });
 
-        makeElementFocusable(this.dom.modalWindow);
+        makeElementFocusable(this.domCache.modalWindow);
 
-        Keyboard.onTabPressed(this.dom.modalWindow, this.closeModal.bind(this));
+        Keyboard.onTabPressed(this.domCache.modalWindow, this.closeModal.bind(this));
         
-        makeElementClickable(this.dom.closeIcon, this.closeModal.bind(this),
+        makeElementClickable(this.domCache.closeIcon, this.closeModal.bind(this),
                         { mouse: true, keyboard: false });
-        makeElementClickable(this.dom.shadow,    this.closeModal.bind(this),
+        makeElementClickable(this.domCache.shadow,    this.closeModal.bind(this),
                         { mouse: true, keyboard: false });
 
-        TouchScreen.onPinchOut(this.dom.modalWindow, this.closeModal.bind(this));
+        TouchScreen.onPinchOut(this.domCache.modalWindow, this.closeModal.bind(this));
 
         return this;
     }
@@ -73,12 +83,12 @@ export class ModalWindow extends Component {
 
     openModal() {
         if (!this.state.visible) {
-            addClass(this.element,    '-visible');
-            addClass(this.dom.shadow, '-visible');
+            addClass(this.domCache.element,    '-visible');
+            addClass(this.domCache.shadow, '-visible');
             
-            aria.set(this.element, 'hidden', false);
+            aria.set(this.domCache.element, 'hidden', false);
 
-            this.dom.modalWindow.focus();
+            this.domCache.modalWindow.focus();
 
             this.state.visible = true;
         }
@@ -89,10 +99,10 @@ export class ModalWindow extends Component {
 
     closeModal() {
         if (this.state.visible) {
-            removeClass(this.element,    '-visible');
-            removeClass(this.dom.shadow, '-visible');
+            removeClass(this.domCache.element,    '-visible');
+            removeClass(this.domCache.shadow, '-visible');
             
-            aria.set(this.element, 'hidden', true);
+            aria.set(this.domCache.element, 'hidden', true);
 
             this.state.visible = false;
 

@@ -1,11 +1,12 @@
 // @name Checkbox
-// @requires FontAwesome
 //
 // @markup
 //  <div class='mui-checkbox'>
 //      <input type='checkbox' id='dFrp7'>
 //      <label>
-//          <span class='icon'><i class='fa fa-check'></i></span>
+//          <span class='icon'>
+//              <span class='symbol'>&check;</span>
+//          </span>
 //          <span class='text'>Lorem ipsum.</span>
 //      </label>
 //  </div>
@@ -61,36 +62,21 @@
         
         border-radius: @default-border-radius;
         
-        > .fa {
-            content: '';
-            
-            display: block;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translateX(-50%) translateY(-50%);
-            
-            height: 0;
-            width: 0;
-            
-            font-size: 0;
+        > .symbol {
+            display: inline-block;
+            height: @default-ui-height;
+            width: @default-ui-height;
             text-align: center;
-            
+            line-height: @default-ui-height;
+            font-size: @default-ui-height * .8;
             color: @grey-4;
-            
             opacity: 0;
-            
             transition: all @default-animation-duration @default-animation-function;
         }
     }
     
     &.-checked > label > .icon {
-        > .fa {
-            height: @default-ui-height * .8;
-            width: @default-ui-height * .8;
-            
-            font-size: @default-ui-height * .8;
-            
+        > .symbol {
             opacity: 1;
         }
     }

@@ -1,14 +1,13 @@
 // @name Rating
 // @description Use -js-disabled class to create "view-only" rating.
-// @requires FontAwesome
 //
 // @markup
 //  <div class='mui-rating' data-rating='3' aria-label='Rating: 3 stars of 5'>
-//      <span class='star fa fa-star'></span>
-//      <span class='star fa fa-star'></span>
-//      <span class='star fa fa-star'></span>
-//      <span class='star fa fa-star'></span>
-//      <span class='star fa fa-star'></span>
+//      <span class='star'>&starf;</span>
+//      <span class='star'>&starf;</span>
+//      <span class='star'>&starf;</span>
+//      <span class='star'>&starf;</span>
+//      <span class='star'>&starf;</span>
 //  </div>
 
 
@@ -26,37 +25,37 @@
     }
     
     &.-r1 {
-        > .fa:nth-of-type(1) {
+        > .star:nth-of-type(1) {
             color: @black;
         }
     }
     
     &.-r2 {
-        > .fa:nth-of-type(1),
-        > .fa:nth-of-type(2) {
+        > .star:nth-of-type(1),
+        > .star:nth-of-type(2) {
             color: @black;
         }
     }
     
     &.-r3 {
-        > .fa:nth-of-type(1),
-        > .fa:nth-of-type(2),
-        > .fa:nth-of-type(3) {
+        > .star:nth-of-type(1),
+        > .star:nth-of-type(2),
+        > .star:nth-of-type(3) {
             color: @black;
         }
     }
     
     &.-r4 {
-        > .fa:nth-of-type(1),
-        > .fa:nth-of-type(2),
-        > .fa:nth-of-type(3),
-        > .fa:nth-of-type(4) {
+        > .star:nth-of-type(1),
+        > .star:nth-of-type(2),
+        > .star:nth-of-type(3),
+        > .star:nth-of-type(4) {
             color: @black;
         }
     }
     
     &.-r5 {
-        > .fa {
+        > .star {
             color: @black;
         }
     }

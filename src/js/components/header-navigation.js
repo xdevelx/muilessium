@@ -1,3 +1,17 @@
+// -----------------------------------------------------------------------------
+// HEADER NAVIGATION COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+//  - (default) initControls()
+//  - openNavigation()
+//  - closeNavigation()
+//  - toggleNavigation()
+//  - transformToMobile()
+//  - transformToDesktop()
+//  - update()
+
+
 import { Component } from '../component';
 
 import * as TouchScreen from '../controls/touchscreen';
@@ -21,7 +35,7 @@ export class HeaderNavigation extends Component {
     constructor(element, options) {
         super(element, options);
         
-        this.dom = extend(this.dom, {
+        this.domCache = extend(this.domCache, {
             hamburger:  element.querySelector('.mui-navigation-toggle'),
             shadow:     element.querySelector('.mui-shadow-toggle'),
             links:      element.querySelector('.links-list'),
@@ -45,24 +59,24 @@ export class HeaderNavigation extends Component {
 
 
     initAria() {
-        aria.setRole(this.dom.hamburger, 'button');
+        aria.setRole(this.domCache.hamburger, 'button');
 
-        aria.set(this.dom.shadow,    'hidden', true);
-        aria.set(this.dom.hamburger, 'haspopup', true);
+        aria.set(this.domCache.shadow,    'hidden', true);
+        aria.set(this.domCache.hamburger, 'haspopup', true);
 
-        aria.set(this.dom.links, 'labelledby', aria.setId(this.dom.hamburger));
+        aria.set(this.domCache.links, 'labelledby', aria.setId(this.domCache.hamburger));
 
         return this;
     }
 
 
     initControls() {
-        makeElementClickable(this.dom.hamburger, this.toggleNavigation.bind(this));
-        makeElementClickable(this.dom.shadow,    this.toggleNavigation.bind(this),
+        makeElementClickable(this.domCache.hamburger, this.toggleNavigation.bind(this));
+        makeElementClickable(this.domCache.shadow,    this.toggleNavigation.bind(this),
                         { mouse: true, keyboard: false });
 
-        makeChildElementsClickable(this.element, this.dom.linksList, (index) => {
-            let href = this.dom.linksList[index].getAttribute('href');
+        makeChildElementsClickable(this.domCache.element, this.domCache.linksList, (index) => {
+            let href = this.domCache.linksList[index].getAttribute('href');
 
             if (href[0] === '#') {
                 this.closeNavigation();
@@ -71,26 +85,26 @@ export class HeaderNavigation extends Component {
             }
         });
 
-        TouchScreen.onSwipeRight(this.element, () => {
+        TouchScreen.onSwipeRight(this.domCache.element, () => {
             if (this.state.mobile) {
                 this.closeNavigation();
             }
         });
 
-        this.dom.focusables = getFocusableChilds(this.dom.links);
+        this.domCache.focusables = getFocusableChilds(this.domCache.links);
 
-        Keyboard.onShiftTabPressed(firstOfList(this.dom.focusables), () => {
+        Keyboard.onShiftTabPressed(firstOfList(this.domCache.focusables), () => {
             this.closeNavigation();
 
             goToPreviousFocusableElement(
-                            firstOfList(this.dom.focusables));
+                            firstOfList(this.domCache.focusables));
         });
 
-        Keyboard.onTabPressed(lastOfList(this.dom.focusables), () => {
+        Keyboard.onTabPressed(lastOfList(this.domCache.focusables), () => {
             this.closeNavigation();
 
             goToNextFocusableElement(
-                            lastOfList(this.dom.focusables));
+                            lastOfList(this.domCache.focusables));
         });
 
         return this;
@@ -100,15 +114,15 @@ export class HeaderNavigation extends Component {
     openNavigation() {
         if (!this.state.opened) {
             this.state.opened = true;
-            this.dom.shadow.tabIndex = 0;
+            this.domCache.shadow.tabIndex = 0;
 
-            addClass(this.element,    '-opened');
-            addClass(this.dom.shadow, '-visible');
+            addClass(this.domCache.element,    '-opened');
+            addClass(this.domCache.shadow, '-visible');
 
-            aria.set(this.dom.hamburger, 'hidden', true);
-            aria.set(this.dom.links, 'hidden', false);
+            aria.set(this.domCache.hamburger, 'hidden', true);
+            aria.set(this.domCache.links, 'hidden', false);
 
-            firstOfList(this.dom.focusables).focus();
+            firstOfList(this.domCache.focusables).focus();
         }
 
         return this;
@@ -118,15 +132,15 @@ export class HeaderNavigation extends Component {
     closeNavigation() {
         if (this.state.opened) {
             this.state.opened = false;
-            this.dom.shadow.tabIndex = -1;
+            this.domCache.shadow.tabIndex = -1;
 
-            removeClass(this.element,    '-opened');
-            removeClass(this.dom.shadow, '-visible');
+            removeClass(this.domCache.element,    '-opened');
+            removeClass(this.domCache.shadow, '-visible');
 
-            aria.set(this.dom.hamburger, 'hidden', false);
-            aria.set(this.dom.links, 'hidden', true);
+            aria.set(this.domCache.hamburger, 'hidden', false);
+            aria.set(this.domCache.links, 'hidden', true);
 
-            this.dom.hamburger.focus();
+            this.domCache.hamburger.focus();
         }
 
         return this;
@@ -147,11 +161,11 @@ export class HeaderNavigation extends Component {
         if (!this.state.mobile || !this.state.initialized) {
             this.closeNavigation();
 
-            aria.set(this.dom.hamburger, 'hidden', false);
-            aria.set(this.dom.links, 'hidden', true);
+            aria.set(this.domCache.hamburger, 'hidden', false);
+            aria.set(this.domCache.links, 'hidden', true);
 
-            addClass(this.element, '-mobile-version');
-            removeClass(this.element, '-desktop-version');
+            addClass(this.domCache.element, '-mobile-version');
+            removeClass(this.domCache.element, '-desktop-version');
 
             this.state.mobile = true;
         }
@@ -164,12 +178,12 @@ export class HeaderNavigation extends Component {
         if (this.state.mobile || !this.state.initialized) {
             this.closeNavigation();
 
-            aria.set(this.dom.hamburger, 'hidden', true);
-            aria.set(this.dom.shadow,    'hidden', true);
-            aria.set(this.dom.links,     'hidden', false);
+            aria.set(this.domCache.hamburger, 'hidden', true);
+            aria.set(this.domCache.shadow,    'hidden', true);
+            aria.set(this.domCache.links,     'hidden', false);
 
-            addClass(this.element, '-desktop-version');
-            removeClass(this.element, '-mobile-version');
+            addClass(this.domCache.element, '-desktop-version');
+            removeClass(this.domCache.element, '-mobile-version');
 
             this.state.mobile = false;
         }
@@ -189,7 +203,7 @@ export class HeaderNavigation extends Component {
 
         this.transformToDesktop();
 
-        let parentNode = this.element.parentNode,
+        let parentNode = this.domCache.element.parentNode,
             parentWidth = parentNode.clientWidth,
             childsWidth = 0;
 

@@ -1,3 +1,8 @@
+// -----------------------------------------------------------------------------
+// UTILITIES INDEX
+// -----------------------------------------------------------------------------
+// This is the index file for utilities from /src/js/utils/
+
 export * from './utils/ajax';
 export * from './utils/aria';
 export * from './utils/attributes';

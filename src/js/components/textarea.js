@@ -1,3 +1,11 @@
+// -----------------------------------------------------------------------------
+// TEXTAREA COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+//  - (default) initControls()
+
+
 import { Component } from '../component';
 
 import { aria                     } from '../utils/aria';
@@ -19,7 +27,7 @@ export class Textarea extends Component {
     constructor(element, options) {
         super(element, options);
         
-        this.dom = extend(this.dom, {
+        this.domCache = extend(this.domCache, {
             textarea: element.querySelector('textarea'),
             labels:   element.parentNode.querySelectorAll('label')
         });
@@ -30,12 +38,12 @@ export class Textarea extends Component {
 
 
     initAria() {
-        const textareaId = getAttribute(this.dom.textarea, 'id') || aria.setId(this.dom.textarea);
+        const textareaId = getAttribute(this.domCache.textarea, 'id') || aria.setId(this.domCache.textarea);
 
-        ifNodeList(this.dom.labels, () => {
-            aria.set(this.dom.textarea, 'labelledby', aria.setId(this.dom.labels[0]));
+        ifNodeList(this.domCache.labels, () => {
+            aria.set(this.domCache.textarea, 'labelledby', aria.setId(this.domCache.labels[0]));
 
-            forEach(this.dom.labels, (label) => {
+            forEach(this.domCache.labels, (label) => {
                 setAttribute(label, 'for', textareaId);
             });
         }, false);
@@ -45,46 +53,46 @@ export class Textarea extends Component {
 
 
     initControls() {
-        ifNodeList(this.dom.labels, () => {
-            forEach(this.dom.labels, (label) => {
+        ifNodeList(this.domCache.labels, () => {
+            forEach(this.domCache.labels, (label) => {
                 onFocus(label, () => {
-                    this.dom.textarea.focus();
+                    this.domCache.textarea.focus();
                 });
             });
         }, false);
 
-        onFocus(this.dom.textarea,  this.focusEventHandler.bind(this));
-        onBlur(this.dom.textarea,   this.blurEventHandler.bind(this));
+        onFocus(this.domCache.textarea,  this.focusEventHandler.bind(this));
+        onBlur(this.domCache.textarea,   this.blurEventHandler.bind(this));
 
-        this.dom.textarea.addEventListener('change', this.changeEventHandler.bind(this));
+        this.domCache.textarea.addEventListener('change', this.changeEventHandler.bind(this));
 
         return this;
     }
 
 
     focusEventHandler() {
-        addClass(this.element, '-focused');
+        addClass(this.domCache.element, '-focused');
 
-        ifNodeList(this.dom.labels, () => {
-            makeElementsNotFocusable(this.dom.labels);
+        ifNodeList(this.domCache.labels, () => {
+            makeElementsNotFocusable(this.domCache.labels);
         });
     }
 
 
     blurEventHandler() {
-        removeClass(this.element, '-focused');
+        removeClass(this.domCache.element, '-focused');
 
-        ifNodeList(this.dom.labels, () => {
-            makeElementsFocusable(this.dom.labels);
+        ifNodeList(this.domCache.labels, () => {
+            makeElementsFocusable(this.domCache.labels);
         });
     }
 
 
     changeEventHandler() {
-        if (this.dom.textarea.value == '') {
-            removeClass(this.element, '-has-value');
+        if (this.domCache.textarea.value == '') {
+            removeClass(this.domCache.element, '-has-value');
         } else {
-            addClass(this.element, '-has-value');
+            addClass(this.domCache.element, '-has-value');
         }
     }
 };

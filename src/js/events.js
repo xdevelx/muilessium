@@ -1,3 +1,30 @@
+// -----------------------------------------------------------------------------
+// EVENTS OBSERVER
+// -----------------------------------------------------------------------------
+//
+// Should be available as window.Muilessium.Events,
+// take a look at /src/js/muilessium.js if not
+//
+// Methods:
+//   addEvent(name)
+//       Creates a new type of events.
+//   addEventListener(name, callback, executeIfAlreadyFired = false)
+//       Adds event listener to a previously created event type.
+//       Can be called if event was fired before listener added (can be useful
+//       for some scroll events based on viewport).
+//   fireEvent(name)
+//       Executes all callbacks for event with this name.
+//
+// Default events:
+//   - resize-window-height
+//   - resize-window-width
+//   - scroll-start
+//   - scroll-end
+// Additional events (initialized in /src/js/app.js):
+//   - app-initialized
+//   - images-loaded
+
+
 export class Events {
     constructor() {
         if (typeof Events.instance === 'object') {

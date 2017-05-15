@@ -1,3 +1,16 @@
+// -----------------------------------------------------------------------------
+// CAROUSEL COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+//  - (default) initControls()
+//  - startRotating()
+//  - stopRotating()
+//  - makeSlideActive(index)
+//  - makeSlideInactive(index)
+//  - rotate(param)
+
+
 import { Component } from '../component';
 
 import * as Mouse       from '../controls/mouse';
@@ -20,7 +33,7 @@ export class Carousel extends Component {
     constructor(element, options) {
         super(element, options);
 
-        this.dom = extend(this.dom, {
+        this.domCache = extend(this.domCache, {
             slides: element.querySelectorAll('.mui-slide'),
             controls: {
                 prev: element.querySelectorAll('.prev'),
@@ -30,9 +43,9 @@ export class Carousel extends Component {
         });
 
         this.state = extend(this.state, {
-            numberOfSlides: this.dom.slides.length,
+            numberOfSlides: this.domCache.slides.length,
             currentSlide: 0,
-            interval: (parseFloat(this.element.getAttribute('data-interval'), 10) || 5),
+            interval: (parseFloat(element.getAttribute('data-interval'), 10) || 5),
             isRotating: false,
             rotateInterval: null
         });
@@ -50,49 +63,49 @@ export class Carousel extends Component {
 
 
     initControls() {
-        Mouse.onMouseOver(this.element, this.stopRotating.bind(this));
-        Mouse.onMouseOut(this.element, this.startRotating.bind(this));
+        Mouse.onMouseOver(this.domCache.element, this.stopRotating.bind(this));
+        Mouse.onMouseOut(this.domCache.element, this.startRotating.bind(this));
 
-        makeElementFocusable(this.element);
+        makeElementFocusable(this.domCache.element);
 
-        onFocus(this.element, () => {
+        onFocus(this.domCache.element, () => {
             this.stopRotating();
 
-            forEach(this.dom.controls.prev, (prev) => {
+            forEach(this.domCache.controls.prev, (prev) => {
                 addClass(prev, '-focused');
             });
 
-            forEach(this.dom.controls.next, (next) => {
+            forEach(this.domCache.controls.next, (next) => {
                 addClass(next, '-focused');
             });
         });
 
-        onBlur(this.element, () => {
+        onBlur(this.domCache.element, () => {
             this.startRotating();
 
-            forEach(this.dom.controls.prev, (prev) => {
+            forEach(this.domCache.controls.prev, (prev) => {
                 removeClass(prev, '-focused');
             });
 
-            forEach(this.dom.controls.next, (next) => {
+            forEach(this.domCache.controls.next, (next) => {
                 removeClass(next, '-focused');
             });
         });
 
-        makeChildElementsClickable(this.element, this.dom.controls.prev,
+        makeChildElementsClickable(this.domCache.element, this.domCache.controls.prev,
                         this.rotate.bind(this, 'prev'), { mouse: true, keyboard: false });
-        makeChildElementsClickable(this.element, this.dom.controls.next,
+        makeChildElementsClickable(this.domCache.element, this.domCache.controls.next,
                         this.rotate.bind(this, 'next'), { mouse: true, keyboard: false });
 
-        makeChildElementsClickable(this.element, this.dom.indicators, (index) => {
+        makeChildElementsClickable(this.domCache.element, this.domCache.indicators, (index) => {
             this.rotate(index);
         }, { mouse: true, keyboard: false });
 
-        TouchScreen.onSwipeRight(this.element, this.rotate.bind(this, 'prev'));
-        TouchScreen.onSwipeLeft(this.element,  this.rotate.bind(this, 'next'));
+        TouchScreen.onSwipeRight(this.domCache.element, this.rotate.bind(this, 'prev'));
+        TouchScreen.onSwipeLeft(this.domCache.element,  this.rotate.bind(this, 'next'));
 
-        Keyboard.onArrowLeftPressed(this.element, this.rotate.bind(this, 'prev'));
-        Keyboard.onArrowRightPressed(this.element, this.rotate.bind(this, 'next'));
+        Keyboard.onArrowLeftPressed(this.domCache.element, this.rotate.bind(this, 'prev'));
+        Keyboard.onArrowRightPressed(this.domCache.element, this.rotate.bind(this, 'next'));
 
         return this;
     }
@@ -122,16 +135,16 @@ export class Carousel extends Component {
 
 
     makeSlideActive(index) {
-        addClass(this.dom.slides[index],     '-active');
-        addClass(this.dom.indicators[index], '-active');
+        addClass(this.domCache.slides[index],     '-active');
+        addClass(this.domCache.indicators[index], '-active');
 
         return this;
     }
 
 
     makeSlideInactive(index) {
-        removeClass(this.dom.slides[index],     '-active');
-        removeClass(this.dom.indicators[index], '-active');
+        removeClass(this.domCache.slides[index],     '-active');
+        removeClass(this.domCache.indicators[index], '-active');
 
         return this;
     }

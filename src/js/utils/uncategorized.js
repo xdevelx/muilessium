@@ -1,6 +1,19 @@
 // -----------------------------------------------------------------------------
-// Uncategorized utilities
+// UNCATEGORIZED UTILITIES
 // -----------------------------------------------------------------------------
+//
+// Here is the full list of uncategorized utilities:
+//  - normalizeTabIndexes()
+//  - lazyLoadImages(callback)
+//  - initAnchorLinks()
+//  - generateRandomString(length = 8)
+//  - stringify(object)
+//  - extend(target, source)
+//  - debounce(func, ms)
+//  - callOnce(callback)
+//  - firstOfList(list)
+//  - lastOfList(list)
+//  - forEach(list, callback)
 
 
 import { addClass             } from '../utils/classes';

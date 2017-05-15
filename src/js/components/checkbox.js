@@ -1,3 +1,14 @@
+// -----------------------------------------------------------------------------
+// CHECKBOX COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+//  - (default) initControls()
+//  - setCheckbox()
+//  - unsetCheckbox()
+//  - toggleCheckbox()
+
+
 import { Component } from '../component';
 
 import * as Keyboard from '../controls/keyboard';
@@ -15,7 +26,7 @@ export class Checkbox extends Component {
     constructor(element, options) {
         super(element, options);
 
-        this.dom = extend(this.dom, {
+        this.domCache = extend(this.domCache, {
             input: element.querySelector('input'),
             label: element.querySelector('label'),
         });
@@ -26,53 +37,53 @@ export class Checkbox extends Component {
 
 
     initAria() {
-        aria.setRole(this.dom.label, 'checkbox');
+        aria.setRole(this.domCache.label, 'checkbox');
 
-        const inputId = this.dom.input.getAttribute('id') || aria.setId(this.dom.input);
+        const inputId = this.domCache.input.getAttribute('id') || aria.setId(this.domCache.input);
 
-        this.dom.input.checked = false;
+        this.domCache.input.checked = false;
 
-        setAttribute(this.dom.label, 'for', inputId);
+        setAttribute(this.domCache.label, 'for', inputId);
 
-        aria.set(this.dom.label, 'controls', inputId);
-        aria.set(this.dom.label, 'checked', false);
-        aria.set(this.dom.input, 'labelledby', aria.setId(this.dom.label));
+        aria.set(this.domCache.label, 'controls', inputId);
+        aria.set(this.domCache.label, 'checked', false);
+        aria.set(this.domCache.input, 'labelledby', aria.setId(this.domCache.label));
 
         return this;
     }
 
 
     initControls() {
-        makeElementClickable(this.dom.label, this.toggleCheckbox.bind(this));
+        makeElementClickable(this.domCache.label, this.toggleCheckbox.bind(this));
 
-        Keyboard.onSpacePressed(this.dom.label, this.toggleCheckbox.bind(this));
+        Keyboard.onSpacePressed(this.domCache.label, this.toggleCheckbox.bind(this));
 
         return this;
     }
 
 
     setCheckbox() {
-        this.dom.input.checked = true;
+        this.domCache.input.checked = true;
 
-        addClass(this.element, '-checked');
-        aria.set(this.dom.label, 'checked', true);
+        addClass(this.domCache.element, '-checked');
+        aria.set(this.domCache.label, 'checked', true);
 
         return this;
     }
 
 
     unsetCheckbox() {
-        this.dom.input.checked = false;
+        this.domCache.input.checked = false;
 
-        removeClass(this.element, '-checked');
-        aria.set(this.dom.label, 'checked', false);
+        removeClass(this.domCache.element, '-checked');
+        aria.set(this.domCache.label, 'checked', false);
 
         return this;
     }
 
 
     toggleCheckbox() {
-        if (this.dom.input.checked) {
+        if (this.domCache.input.checked) {
             this.unsetCheckbox();
         } else {
             this.setCheckbox();

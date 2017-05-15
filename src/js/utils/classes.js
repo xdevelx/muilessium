@@ -1,6 +1,19 @@
 // -----------------------------------------------------------------------------
-// Manipulating CSS classes
+// CSS CLASSES
 // -----------------------------------------------------------------------------
+// IE11 does not support useful methods of the classList on SVG elements,
+// so it will be a good idea to use this wrappers for all elements and don't think
+// about "is this element an SVG or not?".
+//
+// Here is the full list of utilities for manipulations with CSS classes:
+//  - hasClass(element, class)
+//  - hasNotClass(element, class)
+//  - addClass(element, class)
+//  - addClasses(element, ...classes)
+//  - removeClass(element, class)
+//  - removeClasses(element, ...classes)
+//  - replaceClass(element, class, newClass)
+//  - toggleClass(element, class)
 
 
 import { ifExists } from '../utils/checks'; 

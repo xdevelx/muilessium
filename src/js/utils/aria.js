@@ -1,7 +1,17 @@
 // -----------------------------------------------------------------------------
-// WAI-ARIA utilities
+// WAI-ARIA UTILITIES
 // -----------------------------------------------------------------------------
-// Here is some functions for operation with aria-roles and properties
+// Here is some functions for operation with aria-roles and properties.
+// These functions should be used in components for better code readability.
+//
+// Here is the full list of aria methods:
+//  - set(element, property, value = true)
+//  - setRole(element, role)
+//  - removeRole(element)
+//  - setId(element, id)
+//  - get(element, property)
+//  - getRole(element)
+//  - toggleState(element, state)
 
 
 import { setAttribute         } from '../utils/attributes';
@@ -80,17 +90,6 @@ export const aria = {
 
     toggleState: (element, state) => {
         setAttribute(element, `aria-${state}`, !stringToBoolean(getAttribute(element, `aria-${state}`)));
-    },
-
-
-    // Hide icons
-    // ----------
-    // Sets role='presentation' to all icons with specified class name
-
-    hideIcons: (className) => {
-        forEach(document.getElementsByClassName(className), (icon) => {
-            setAttribute(icon, 'aria-hidden', true);
-        });
     }
 };
 

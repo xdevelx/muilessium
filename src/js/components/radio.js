@@ -1,3 +1,11 @@
+// -----------------------------------------------------------------------------
+// RADIO COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+//  - (default) initControls()
+//  - updateState()
+
 import { Component } from '../component';
 
 import { aria                       } from '../utils/aria';
@@ -14,7 +22,7 @@ export class Radio extends Component {
     constructor(element, options) {
         super(element, options);
 
-        this.dom = extend(this.dom, {
+        this.domCache = extend(this.domCache, {
             inputs:     element.querySelectorAll('input'),
             labels:     element.querySelectorAll('label'),
             inputLabel: element.parentNode.querySelector('.mui-input-label'),
@@ -32,25 +40,25 @@ export class Radio extends Component {
 
 
     initAria() {
-        aria.setRole(this.element, 'radiogroup');
+        aria.setRole(this.domCache.element, 'radiogroup');
 
-        ifExists(this.dom.inputLabel, () => {
-            aria.set(this.element, 'labelledby', aria.setId(this.dom.inputLabel));
-            setAttribute(this.dom.inputLabel, 'for', aria.setId(this.element));
+        ifExists(this.domCache.inputLabel, () => {
+            aria.set(this.domCache.element, 'labelledby', aria.setId(this.domCache.inputLabel));
+            setAttribute(this.domCache.inputLabel, 'for', aria.setId(this.domCache.element));
         });
 
-        forEach(this.dom.inputs, (input, index) => {
+        forEach(this.domCache.inputs, (input, index) => {
             aria.set(input, 'hidden', true);
             setAttribute(input, 'type', 'radio');
-            setAttribute(input, 'name', getAttribute(this.element, 'data-name'));
+            setAttribute(input, 'name', getAttribute(this.domCache.element, 'data-name'));
 
             if (input.checked) {
                 this.state.checkedIndex = index;
             }
         });
 
-        forEach(this.dom.labels, (label, index) => {
-            setAttribute(label, 'for', getAttribute(this.dom.inputs[index], 'id'));
+        forEach(this.domCache.labels, (label, index) => {
+            setAttribute(label, 'for', getAttribute(this.domCache.inputs[index], 'id'));
             aria.setRole(label, 'radio');
         });
 
@@ -59,7 +67,7 @@ export class Radio extends Component {
 
 
     initControls() {
-        makeChildElementsClickable(this.element, this.dom.labels, (index) => {
+        makeChildElementsClickable(this.domCache.element, this.domCache.labels, (index) => {
             this.updateState(index);
         });
 
@@ -72,13 +80,13 @@ export class Radio extends Component {
             return this;
         }
 
-        this.dom.inputs[index].checked = true;
+        this.domCache.inputs[index].checked = true;
 
         if (this.state.checkedIndex >= 0) {
-            aria.set(this.dom.labels[this.state.checkedIndex], 'checked', false);
+            aria.set(this.domCache.labels[this.state.checkedIndex], 'checked', false);
         }
 
-        aria.set(this.dom.labels[index], 'checked', true);
+        aria.set(this.domCache.labels[index], 'checked', true);
 
         this.state.checkedIndex = index;
 

@@ -1,3 +1,15 @@
+// -----------------------------------------------------------------------------
+// TABS COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+//  - (default) initControls()
+//  - makeTabActive(index)
+//  - makeTabInactive(index)
+//  - goToPreviousTab()
+//  - goToNextTab()
+
+
 import { Component } from '../component';
 
 import * as Keyboard from '../controls/keyboard';
@@ -18,10 +30,10 @@ export class Tabs extends Component {
     constructor(element, options) {
         super(element, options);
         
-        this.dom = extend(this.dom, {
-            tabs:          this.element.querySelectorAll('.tab'),
-            labels:        this.element.querySelectorAll('.label'),
-            labelsWrapper: this.element.querySelector('.labels')
+        this.domCache = extend(this.domCache, {
+            tabs:          element.querySelectorAll('.tab'),
+            labels:        element.querySelectorAll('.label'),
+            labelsWrapper: element.querySelector('.labels')
         });
 
         this.state = extend(this.state, {
@@ -34,36 +46,36 @@ export class Tabs extends Component {
 
 
     initAria() {
-        aria.setRole(this.dom.labelsWrapper, 'tablist');
+        aria.setRole(this.domCache.labelsWrapper, 'tablist');
 
-        forEach(this.dom.labels, (label, index) => {
+        forEach(this.domCache.labels, (label, index) => {
             aria.setRole(label, 'tab');
             aria.set(label, 'selected', false);
-            aria.set(label, 'controls', aria.setId(this.dom.tabs[index]));
+            aria.set(label, 'controls', aria.setId(this.domCache.tabs[index]));
         });
 
-        forEach(this.dom.tabs, (tab, index) => {
+        forEach(this.domCache.tabs, (tab, index) => {
             aria.setRole(tab, 'tabpanel');
             aria.set(tab, 'hidden', true);
-            aria.set(tab, 'labelledby', aria.setId(this.dom.labels[index]));
+            aria.set(tab, 'labelledby', aria.setId(this.domCache.labels[index]));
         });
 
-        addClass(this.dom.tabs[0],   '-active');
-        aria.set(this.dom.tabs[0],   'hidden', false);
-        addClass(this.dom.labels[0], '-active');
-        aria.set(this.dom.labels[0], 'selected', true);
+        addClass(this.domCache.tabs[0],   '-active');
+        aria.set(this.domCache.tabs[0],   'hidden', false);
+        addClass(this.domCache.labels[0], '-active');
+        aria.set(this.domCache.labels[0], 'selected', true);
         
         return this;
     }
 
 
     initControls() {
-        makeChildElementsClickable(this.element, this.dom.labels, (index) => {
+        makeChildElementsClickable(this.domCache.element, this.domCache.labels, (index) => {
             this.makeTabInactive(this.state.current);
             this.makeTabActive(index);
         });
 
-        forEach(this.dom.labels, (label, index) => {
+        forEach(this.domCache.labels, (label, index) => {
             if (index !== this.state.current) {
                 makeElementNotFocusable(label);
             }
@@ -72,22 +84,22 @@ export class Tabs extends Component {
             Keyboard.onArrowRightPressed(label, this.goToNextTab.bind(this));
         });
 
-        TouchScreen.onSwipeRight(this.element, this.goToPreviousTab.bind(this));
-        TouchScreen.onSwipeLeft(this.element, this.goToNextTab.bind(this));
+        TouchScreen.onSwipeRight(this.domCache.element, this.goToPreviousTab.bind(this));
+        TouchScreen.onSwipeLeft(this.domCache.element, this.goToNextTab.bind(this));
 
         return this;
     }
 
 
     makeTabActive(index) {
-        addClass(this.dom.labels[index], '-active');
-        addClass(this.dom.tabs[index],   '-active');
+        addClass(this.domCache.labels[index], '-active');
+        addClass(this.domCache.tabs[index],   '-active');
 
-        aria.set(this.dom.labels[index], 'selected', true);
-        aria.set(this.dom.tabs[index], 'hidden', false);
+        aria.set(this.domCache.labels[index], 'selected', true);
+        aria.set(this.domCache.tabs[index], 'hidden', false);
         
-        makeElementFocusable(this.dom.labels[index]);
-        this.dom.labels[index].focus();
+        makeElementFocusable(this.domCache.labels[index]);
+        this.domCache.labels[index].focus();
 
         this.state.current = index;
 
@@ -96,14 +108,14 @@ export class Tabs extends Component {
 
 
     makeTabInactive(index) {
-        removeClass(this.dom.labels[index], '-active');
-        removeClass(this.dom.tabs[index],   '-active');
+        removeClass(this.domCache.labels[index], '-active');
+        removeClass(this.domCache.tabs[index],   '-active');
 
-        aria.set(this.dom.labels[index], 'selected', false);
-        aria.set(this.dom.tabs[index], 'hidden', true);
+        aria.set(this.domCache.labels[index], 'selected', false);
+        aria.set(this.domCache.tabs[index], 'hidden', true);
 
-        this.dom.labels[index].blur();
-        makeElementNotFocusable(this.dom.labels[index]);
+        this.domCache.labels[index].blur();
+        makeElementNotFocusable(this.domCache.labels[index]);
 
         return this;
     }
@@ -120,7 +132,7 @@ export class Tabs extends Component {
 
 
     goToNextTab() {
-        if (this.state.current < this.dom.tabs.length - 1) {
+        if (this.state.current < this.domCache.tabs.length - 1) {
             this.makeTabInactive(this.state.current);
             this.makeTabActive(this.state.current + 1);
         }

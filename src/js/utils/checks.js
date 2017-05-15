@@ -1,6 +1,15 @@
 // -----------------------------------------------------------------------------
-// Checking for html elements in page
+// CHECKS
 // -----------------------------------------------------------------------------
+// These functions should be used in components for better code readability
+// and avoiding errors when some element does not exists.
+//
+// Here is the full list of utilities:
+//  - isInPage(element)
+//  - isNotInPage(element)
+//  - ifExists(element, callback, printWarning = true)
+//  - ifNodeList(element, callback, printWarning = true)
+//  - isDescendant(parent, child)
 
 
 import { console } from '../utils/console';
