@@ -12,6 +12,7 @@
 </head>
 <body>
     <header class='mui-page-header -black-bg'>
+    <div class='mui-content-container'>
         <div class='mui-header-logo _left'>
             <img class='mui-image -logo -js-lazy-load' data-src='images/muilessium.png' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt='logo'>
             <a class='_right' href='/'>
@@ -21,7 +22,7 @@
 
         <nav class='mui-header-navigation _right'>
             <div class='mui-navigation-toggle -hamburger -white -f-grey-3-bg -f-black' role='button' aria-label='Open navigation'>
-                <i class='fa fa-bars'></i>
+                <span>&equiv;</span>
             </div>
             <ul class='links-list'>
                 <li><a class='-white -f-grey-3-bg -f-black' href='#overview' aria-label='Link to the framework overview'>Overview</a></li>
@@ -31,15 +32,16 @@
             </ul>
             <div class='mui-navigation-toggle mui-shadow-toggle' aria-label='Close navigation'></div>
         </nav>
+    </div>
     </header>
 
 
 
-    <div class='mui-row'>
+    <div class='mui-content-container'>
 
 
 
-        <aside class='mui-column -s12 -m3 -grey-2-bg'>
+        <aside class='mui-column -s12 -m3 _right'>
             <div class='aside-navigation _smaller-1 _line-1-25 _separate-3' role='navigation'>
                 <a class='-f-orange-3' href='#overview'>Overview</a>
                 <ul class='sub-list _separate-1'>
@@ -97,23 +99,7 @@
                     <p class='mui-p _separate-1'>Muilessium is the UI framework or rather a collection of UI components and helpers for developing responsive and accessible websites. This framework written in LESS and ES6 and can be included in a project as is or can be easily customized for your needs. Muilessium supports WAI-ARIA attributes and generates most of them automatically.</p>
 
                     <div class='_separate-1'>
-                        <a class='mui-button -orange-3-bg -white -f-black-bg' href='https://github.com/sfi0zy/muilessium'>See on GitHub <i class='fa fa-github'></i></a>
-                    </div>
-
-                    <div class='_separate-2'>
-                    <p class='mui-p _separate-1'>Here is some examples of pages created using Muilessium:</p>
-                    <div class='mui-row _separate-1'>
-                        <div class='mui-column -s6 -m4 template-preview'>
-                            <a href='example1.html'>
-                                <img class='mui-image -js-lazy-load -violet-5-bg' data-src='images/example1.png' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt='Example of page created using Muilessium'>
-                            </a>
-                        </div>
-                        <div class='mui-column -s6 -m4 template-preview'>
-                            <a href='example2.html'>
-                                <img class='mui-image -js-lazy-load -red-3-bg' data-src='images/example2.png' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt='Example of page created using Muilessium'>
-                            </a>
-                        </div>
-                    </div>
+                        <a class='mui-button -orange-3-bg -white -f-black-bg' href='https://github.com/sfi0zy/muilessium'>Muilessium on GitHub</a>
                     </div>
                 </div>
 
@@ -328,22 +314,6 @@
                 </div>
 
 
-
-                <div class='_separate-5'>
-                    <div class='mui-row'>
-                        <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#libraries'>&#182;</a>
-                        <h3 class='_bigger-2' id='libraries'>Libraries</h3>
-                    </div>
-
-                    <p class='mui-p _separate-1'>Muilessium uses some other libraries and if you need to use them too - no need to include them again</p>
-
-                    <ul>
-                        <li>FontAwesome</li>
-                        <li>Hammer.js</li>
-                    </ul>
-                </div>
-
-
                 <div class='_separate-5'>
                     <div class='mui-row'>
                         <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#components'>&#182;</a>
@@ -439,7 +409,7 @@
 
 
     <div id='scroll-to-top' class='( mui-button -icon ) -white-bg -black -f-blue-2-bg -f-white scroll-to-top -hidden _shadow-3'>
-        <i class='fa fa-arrow-up'></i>
+        <span>&uarr;</span>
     </div>
 
 
