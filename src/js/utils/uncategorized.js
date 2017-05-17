@@ -13,8 +13,7 @@
 //  - callOnce(callback)
 //  - firstOfList(list)
 //  - lastOfList(list)
-//  - forEach(list, callback)
-
+//  - forEach(list, callback, delay)
 
 import { addClass             } from '../utils/classes';
 import { makeElementClickable } from '../utils/focus-and-click';
