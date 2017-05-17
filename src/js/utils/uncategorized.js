@@ -208,11 +208,24 @@ export function lastOfList(list) {
 
 // For Each
 // --------
+// Executes callback function for every item in the list.
 
-export function forEach(list, callback) {
-    return [].forEach.call(list, (item, index) => {
-        callback(item, index, list);
-    });
+export function forEach(list, callback, delay = 0) {
+    if (delay > 0) {
+        let counter = 0;
+
+        return [].forEach.call(list, (item, index) => {
+            setTimeout(() => {
+                callback(item, index, list);
+            }, delay * counter);
+
+            counter++;
+        });
+    } else {
+        return [].forEach.call(list, (item, index) => {
+            callback(item, index, list);
+        });
+    }
 };
 
 
