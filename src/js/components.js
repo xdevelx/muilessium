@@ -14,6 +14,7 @@ export { Input            } from './components/input';
 export { MediaView        } from './components/media-view';
 export { ModalWindow      } from './components/modal-window';
 export { Pagination       } from './components/pagination';
+export { ProgressBar      } from './components/progress-bar';
 export { Radio            } from './components/radio';
 export { SelectDropdown   } from './components/select-dropdown';
 export { Tabs             } from './components/tabs';

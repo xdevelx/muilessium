@@ -31,25 +31,6 @@ module.exports = function(grunt) {
                         filter: 'isFile'
                     }
                 ]
-            },
-
-            fontAwesome: {
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'node_modules/font-awesome/fonts/',
-                        src: ['*'],
-                        dest: 'dist/fonts/font-awesome/',
-                        filter: 'isFile'
-                    }, 
-                    {
-                        expand: true,
-                        cwd: 'node_modules/font-awesome/fonts/',
-                        src: ['*'],
-                        dest: 'docs/assets/fonts/',
-                        filter: 'isFile'
-                    }
-                ]
             }
         },
 
