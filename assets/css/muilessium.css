@@ -3196,7 +3196,6 @@ mark {
 }
 .mui-page-header {
   position: relative;
-  overflow: hidden;
   max-height: 4rem;
   background: #FFFFFF;
 }
@@ -3334,6 +3333,27 @@ mark {
   .mui-post-footer > .-read-more {
     float: left;
   }
+}
+.mui-progress-bar {
+  position: relative;
+  background: #F4F4F4;
+  border-radius: 0.2rem;
+  overflow: hidden;
+}
+.mui-progress-bar > .indicator {
+  height: 2rem;
+  width: 0;
+  background: #C6C6C6;
+}
+.mui-progress-bar > .value {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  line-height: 2rem;
+  text-align: center;
+  color: #383838;
 }
 .mui-radio {
   -webkit-user-select: none;

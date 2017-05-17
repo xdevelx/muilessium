@@ -107,14 +107,13 @@
 <li>callOnce(callback)</li>
 <li>firstOfList(list)</li>
 <li>lastOfList(list)</li>
-<li>forEach(list, callback)</li>
+<li>forEach(list, callback, delay)</li>
 </ul>
 
                     </div>
                     <div class='mui-content-container'>
                         
                             <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
-
 <span class="hljs-keyword">import</span> { addClass             } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/classes'</span>;
 <span class="hljs-keyword">import</span> { makeElementClickable } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/focus-and-click'</span>;
 <span class="hljs-keyword">import</span> { scrollTo             } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/scroll'</span>;</pre></div></div>
@@ -605,15 +604,28 @@
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-27'>&#182;</a>
                         </div>
-                        
+                        <p>Executes callback function for every item in the list.</p>
+
                     </div>
                     <div class='mui-content-container'>
                         
                             <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">forEach</span>(<span class="hljs-params">list, callback</span>) </span>{
-    <span class="hljs-keyword">return</span> [].forEach.call(list, (item, index) =&gt; {
-        callback(item, index, list);
-    });
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">forEach</span>(<span class="hljs-params">list, callback, delay = <span class="hljs-number">0</span></span>) </span>{
+    <span class="hljs-keyword">if</span> (delay &gt; <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">let</span> counter = <span class="hljs-number">0</span>;
+
+        <span class="hljs-keyword">return</span> [].forEach.call(list, (item, index) =&gt; {
+            setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+                callback(item, index, list);
+            }, delay * counter);
+
+            counter++;
+        });
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> [].forEach.call(list, (item, index) =&gt; {
+            callback(item, index, list);
+        });
+    }
 };</pre></div></div>
                         
                     </div>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Muilessium - animations.js</title>
+
+    <meta http-equiv='content-type' content='text/html; charset=UTF-8'>
+    <meta name='viewport' content='user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1'>
+
+    <link rel='stylesheet' media='all' href='../../assets/css/muilessium.css?v=2984133754352165' />
+    <link rel='stylesheet' media='all' href='../../assets/css/docs-styles.css?v=2984133754352165' />
+
+    <link rel='icon' href='./favicon.ico' type='image/x-icon' />
+
+    <style>
+        h2 {
+            font-size: 2rem !important;
+        }
+
+        hr {
+            display: none;
+        }
+
+        .mui-content-container {
+            padding: .2rem 0;
+        }
+
+        ._separate-1-bottom {
+            margin-bottom: 1rem;
+        }
+
+        .anchor-link {
+            opacity: 0;
+        }
+
+        .anchor-link:hover,
+        .anchor-link:focus {
+            opacity: 1;
+        }
+    </style>
+
+</head>
+<body>
+    <header class='mui-page-header -black-bg'>
+    <div class='mui-content-container'>
+        <div class='mui-header-logo _left'>
+            <img class='mui-image -logo -js-lazy-load' data-src='../../images/muilessium.png' alt='logo'>
+            <a class='_right' href='/'>
+                <h1 class='-white _bigger-1'>
+                    <span>Muilessium</span>
+                    
+                        <span class='_smaller-1'> (animations.js) </span>
+                    
+                </h1>
+            </a>
+        </div>
+    </div>
+    </header>
+
+    <main class='mui-page-container _separate-3'>
+            
+                
+                <div class='' id='section-1'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-1'>&#182;</a>
+                        </div>
+                        <hr>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-2'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-2'>&#182;</a>
+                        </div>
+                        <h2 id="animations">ANIMATIONS</h2>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-3'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-3'>&#182;</a>
+                        </div>
+                        <p>Here is the full list of animations:</p>
+<ul>
+<li>typeText(element, text, delay = 120, cycle = false, times = -1, callback = null)</li>
+<li>typeTexts(element, textsList)</li>
+</ul>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+
+<span class="hljs-keyword">import</span> { ifExists } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/checks'</span>;</pre></div></div>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-4'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-4'>&#182;</a>
+                        </div>
+                        <h2 id="type-text">Type text</h2>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-5'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-5'>&#182;</a>
+                        </div>
+                        <p>“Typing” effect for text in the element</p>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">typeText</span>(<span class="hljs-params">element, text, delay = <span class="hljs-number">120</span>, cycle = false, times = <span class="hljs-number">-1</span>, callback = null</span>) </span>{
+    ifExists(element, () =&gt; {
+        <span class="hljs-keyword">let</span> lettersCounter = <span class="hljs-number">0</span>,
+            pauseCounter   = <span class="hljs-number">0</span>,
+            timesCounter   = <span class="hljs-number">0</span>,
+            direction = <span class="hljs-string">'right'</span>;
+            
+        <span class="hljs-keyword">let</span> interval = setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+            element.innerHTML = text.substring(<span class="hljs-number">0</span>, lettersCounter) || <span class="hljs-string">' '</span>;
+
+            <span class="hljs-keyword">if</span> (direction === <span class="hljs-string">'right'</span>) {
+                lettersCounter++;
+
+                <span class="hljs-keyword">if</span> (lettersCounter &gt; text.length) {
+                    <span class="hljs-keyword">if</span> (cycle) {
+                        pauseCounter++;
+
+                        <span class="hljs-keyword">if</span> (pauseCounter &gt; <span class="hljs-number">5</span>) {
+                            pauseCounter = <span class="hljs-number">0</span>;
+                            lettersCounter--;
+                            direction = <span class="hljs-string">'left'</span>;
+                        }
+                    } <span class="hljs-keyword">else</span> {
+                        clearInterval(interval);
+
+                        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> callback == <span class="hljs-string">'function'</span>) {
+                            callback();
+                        }
+                    }
+                }
+            } <span class="hljs-keyword">else</span> {
+                lettersCounter--;
+            
+                <span class="hljs-keyword">if</span> (lettersCounter &lt; <span class="hljs-number">0</span>) {
+                    <span class="hljs-keyword">if</span> ((times &lt; <span class="hljs-number">0</span>) || (timesCounter &lt; times - <span class="hljs-number">1</span>)) {
+                        pauseCounter++;
+
+                        <span class="hljs-keyword">if</span> (pauseCounter &gt; <span class="hljs-number">5</span>) {
+                            pauseCounter = <span class="hljs-number">0</span>;
+                            direction = <span class="hljs-string">'right'</span>;
+                            timesCounter++;
+                        }
+
+                        lettersCounter = <span class="hljs-number">0</span>;
+                    } <span class="hljs-keyword">else</span> {
+                        clearInterval(interval);
+
+                        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> callback == <span class="hljs-string">'function'</span>) {
+                            callback();
+                        }
+                    }
+                }
+            }
+        }, delay);
+    });    
+};</pre></div></div>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-6'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-6'>&#182;</a>
+                        </div>
+                        <h2 id="type-multiple-texts">Type multiple texts</h2>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-7'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-7'>&#182;</a>
+                        </div>
+                        <p>“Typing” effect for texts in the element</p>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">typeTexts</span>(<span class="hljs-params">element, texts</span>) </span>{
+    ifExists(element, () =&gt; {
+        <span class="hljs-keyword">let</span> textIndex = <span class="hljs-number">0</span>,
+            next = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+                typeText(element,
+                        texts[(textIndex++)%texts.length],
+                        <span class="hljs-number">120</span>,   <span class="hljs-comment">// delay</span>
+                        <span class="hljs-literal">true</span>,  <span class="hljs-comment">// cycle</span>
+                        <span class="hljs-number">1</span>,     <span class="hljs-comment">// times</span>
+                        next); <span class="hljs-comment">// callback</span>
+            };
+
+        next();
+    });
+};</pre></div></div>
+                        
+                    </div>
+                </div>
+            
+    </main>
+
+    <div class='mui-page-footer _text-center _line-3r -white -black-bg'>
+        <span>Copyright &copy; Ivan Bogachev, 2016-2017</span>
+    </div>
+
+    <div id='scroll-to-top-button' class='( mui-button -icon ) -white-bg -black -f-blue-2-bg -f-white scroll-to-top -hidden _shadow-3'>
+        <i class='fa fa-arrow-up'></i>
+    </div>
+
+
+    <script src='../../assets/js/muilessium.js?v=2984133754352165'></script>
+</body>
+</html>
