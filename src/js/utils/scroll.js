@@ -8,9 +8,10 @@
 //  - scrollFire(element, callback)
 
 
-import { ifExists     } from '../utils/checks';
-import { isInViewport } from '../utils/viewport';
-import { callOnce     } from '../utils/uncategorized';
+import { ifExists        } from '../utils/checks';
+import { isInViewport    } from '../utils/viewport';
+import { isAboveViewport } from '../utils/viewport';
+import { callOnce        } from '../utils/uncategorized';
 
 
 // Scroll to element
@@ -48,7 +49,7 @@ export function scrollToTop(callback) {
 // Executes a callback when the element becomes visible in viewport
 
 export function scrollFire(element, callback) {
-    if (isInViewport(element)) {
+    if (isInViewport(element) || isAboveViewport(element)) {
         callback();
     } else {
         let modifiedCallback = callOnce(callback);

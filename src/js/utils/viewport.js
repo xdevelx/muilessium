@@ -25,3 +25,16 @@ export function isInViewport(element) {
 };
 
 
+// Is above viewport
+// -----------------
+// Returns true if the element is above viewport
+
+export function isAboveViewport(element) {
+    return ifExists(element, () => {
+        return (
+            element.offsetTop + element.offsetHeight < window.pageYOffset
+        );
+    });
+};
+
+
