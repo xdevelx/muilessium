@@ -107,9 +107,10 @@
                         
                             <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
 
-<span class="hljs-keyword">import</span> { ifExists     } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/checks'</span>;
-<span class="hljs-keyword">import</span> { isInViewport } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/viewport'</span>;
-<span class="hljs-keyword">import</span> { callOnce     } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/uncategorized'</span>;</pre></div></div>
+<span class="hljs-keyword">import</span> { ifExists        } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/checks'</span>;
+<span class="hljs-keyword">import</span> { isInViewport    } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/viewport'</span>;
+<span class="hljs-keyword">import</span> { isAboveViewport } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/viewport'</span>;
+<span class="hljs-keyword">import</span> { callOnce        } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/uncategorized'</span>;</pre></div></div>
                         
                     </div>
                 </div>
@@ -223,7 +224,7 @@
                         
                             <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scrollFire</span>(<span class="hljs-params">element, callback</span>) </span>{
-    <span class="hljs-keyword">if</span> (isInViewport(element)) {
+    <span class="hljs-keyword">if</span> (isInViewport(element) || isAboveViewport(element)) {
         callback();
     } <span class="hljs-keyword">else</span> {
         <span class="hljs-keyword">let</span> modifiedCallback = callOnce(callback);

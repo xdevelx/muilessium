@@ -8043,15 +8043,7 @@ var _uncategorized = require('../utils/uncategorized');
 // -----------------
 // Scrolls to the element and executes callback after scroll animation ends
 
-function scrollTo(element, callback) {
-    (0, _checks.ifExists)(element, function () {
-        element.scrollIntoView({ 'behavior': 'smooth' });
-
-        if (typeof callback === 'function') {
-            setTimeout(callback, 470); /* Default scroll time in smoothscroll-polyfill is 468ms */
-        }
-    });
-} // -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // SCROLL UTILITIES
 // -----------------------------------------------------------------------------
 //
@@ -8061,7 +8053,15 @@ function scrollTo(element, callback) {
 //  - scrollFire(element, callback)
 
 
-;
+function scrollTo(element, callback) {
+    (0, _checks.ifExists)(element, function () {
+        element.scrollIntoView({ 'behavior': 'smooth' });
+
+        if (typeof callback === 'function') {
+            setTimeout(callback, 470); /* Default scroll time in smoothscroll-polyfill is 468ms */
+        }
+    });
+};
 
 // Scroll to top
 // -------------
@@ -8080,7 +8080,7 @@ function scrollToTop(callback) {
 // Executes a callback when the element becomes visible in viewport
 
 function scrollFire(element, callback) {
-    if ((0, _viewport.isInViewport)(element)) {
+    if ((0, _viewport.isInViewport)(element) || (0, _viewport.isAboveViewport)(element)) {
         callback();
     } else {
         var modifiedCallback = (0, _uncategorized.callOnce)(callback);
@@ -8330,6 +8330,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.isInViewport = isInViewport;
+exports.isAboveViewport = isAboveViewport;
 
 var _checks = require('../utils/checks');
 
@@ -8350,5 +8351,15 @@ function isInViewport(element) {
 
 
 ;
+
+// Is above viewport
+// -----------------
+// Returns true if the element is above viewport
+
+function isAboveViewport(element) {
+    return (0, _checks.ifExists)(element, function () {
+        return element.offsetTop + element.offsetHeight < window.pageYOffset;
+    });
+};
 
 },{"../utils/checks":39}]},{},[31]);

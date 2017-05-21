@@ -3197,7 +3197,6 @@ mark {
 .mui-page-header {
   position: relative;
   max-height: 4rem;
-  background: #FFFFFF;
 }
 .mui-page-header:after {
   content: '';

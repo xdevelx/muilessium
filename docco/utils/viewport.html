@@ -151,6 +151,45 @@
                     </div>
                 </div>
             
+                
+                <div class='' id='section-6'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-6'>&#182;</a>
+                        </div>
+                        <h2 id="is-above-viewport">Is above viewport</h2>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-7'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-7'>&#182;</a>
+                        </div>
+                        <p>Returns true if the element is above viewport</p>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isAboveViewport</span>(<span class="hljs-params">element</span>) </span>{
+    <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
+        <span class="hljs-keyword">return</span> (
+            element.offsetTop + element.offsetHeight &lt; <span class="hljs-built_in">window</span>.pageYOffset
+        );
+    });
+};</pre></div></div>
+                        
+                    </div>
+                </div>
+            
     </main>
 
     <div class='mui-page-footer _text-center _line-3r -white -black-bg'>
