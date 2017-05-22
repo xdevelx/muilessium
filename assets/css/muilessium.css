@@ -2533,6 +2533,13 @@ h6,
   object-fit: cover;
   font-family: 'object-fit: cover;';
 }
+.mui-hero-header > .effects {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: inherit;
+  width: inherit;
+}
 .mui-hero-header > .content {
   position: absolute;
   top: 50%;
@@ -2543,8 +2550,16 @@ h6,
   text-align: center;
   color: #FFFFFF;
 }
+.mui-hero-header > .scroll-icon {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #FFFFFF;
+}
 .mui-hero-header.-full-height {
   height: 100vh;
+  min-height: 15rem;
 }
 .mui-image {
   margin-left: auto;
