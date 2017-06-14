@@ -42,7 +42,19 @@ let imagesLoaded = require('imagesloaded');
 
 export function lazyLoadImages(callback) {
     forEach(document.querySelectorAll('.-js-lazy-load'), (image) => {
-        image.src = image.getAttribute('data-src');
+        image.src    = image.getAttribute('data-src', '');
+
+        let srcset = image.getAttribute('data-srcset', '');
+
+        if (srcset) {
+            image.srcset = srcset;
+        }
+
+        let sizes = image.getAttribute('data-sizes', '');
+
+        if (sizes) {
+            image.sizes = sizes;
+        }
 
         image.addEventListener('load', function() {
             addClass(this, '-loaded'); 
