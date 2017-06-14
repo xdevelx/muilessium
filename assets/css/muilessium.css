@@ -770,6 +770,9 @@
 ._lowercase {
   text-transform: lowercase !important;
 }
+._smaller-0 {
+  font-size: 1em   !important;
+}
 ._smaller-1 {
   font-size: .80em !important;
 }
@@ -818,6 +821,9 @@
   ._smaller-1 {
     font-size: 1em !important;
   }
+}
+._bigger-0 {
+  font-size: 1em    !important;
 }
 ._bigger-1 {
   font-size: 1.25em !important;

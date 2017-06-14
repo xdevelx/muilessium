@@ -8153,7 +8153,19 @@ var imagesLoaded = require('imagesloaded');
 
 function lazyLoadImages(callback) {
     forEach(document.querySelectorAll('.-js-lazy-load'), function (image) {
-        image.src = image.getAttribute('data-src');
+        image.src = image.getAttribute('data-src', '');
+
+        var srcset = image.getAttribute('data-srcset', '');
+
+        if (srcset) {
+            image.srcset = srcset;
+        }
+
+        var sizes = image.getAttribute('data-sizes', '');
+
+        if (sizes) {
+            image.sizes = sizes;
+        }
 
         image.addEventListener('load', function () {
             (0, _classes.addClass)(this, '-loaded');

@@ -192,7 +192,19 @@
 
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lazyLoadImages</span>(<span class="hljs-params">callback</span>) </span>{
     forEach(<span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">'.-js-lazy-load'</span>), (image) =&gt; {
-        image.src = image.getAttribute(<span class="hljs-string">'data-src'</span>);
+        image.src    = image.getAttribute(<span class="hljs-string">'data-src'</span>, <span class="hljs-string">''</span>);
+
+        <span class="hljs-keyword">let</span> srcset = image.getAttribute(<span class="hljs-string">'data-srcset'</span>, <span class="hljs-string">''</span>);
+
+        <span class="hljs-keyword">if</span> (srcset) {
+            image.srcset = srcset;
+        }
+
+        <span class="hljs-keyword">let</span> sizes = image.getAttribute(<span class="hljs-string">'data-sizes'</span>, <span class="hljs-string">''</span>);
+
+        <span class="hljs-keyword">if</span> (sizes) {
+            image.sizes = sizes;
+        }
 
         image.addEventListener(<span class="hljs-string">'load'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
             addClass(<span class="hljs-keyword">this</span>, <span class="hljs-string">'-loaded'</span>); 
