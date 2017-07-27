@@ -4,9 +4,9 @@
     <meta http-equiv="content-type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
     <title>Muilessium UI Framework</title>  
-    <link rel="stylesheet" href="assets/css/muilessium.css?v=6943488058388996">
+    <link rel="stylesheet" href="assets/css/muilessium.css?v=3366371934429975">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,600">
-    <link rel="stylesheet" href="assets/css/docs-styles.css?v=38480588312543995">
+    <link rel="stylesheet" href="assets/css/docs-styles.css?v=3366371934429975">
 <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
@@ -24,8 +24,8 @@
     <div class="mui-content-container">
         <div class="mui-header-logo _left">
             <img class="mui-image -logo -js-lazy-load" data-src="images/muilessium.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="logo">
-            <a class="_right" href="/">
-                <h1 class="-white _bigger-1">muilessium <span class="_smaller-3">v0.1.26</span></h1>
+            <a class="link _right" href="/">
+                <h1 class="-white _bigger-1">muilessium <span class="_smaller-3">v0.1.27</span></h1>
             </a>
         </div>
         <nav class="mui-header-navigation -mobile-version _right">
@@ -33,10 +33,10 @@
                 <span>&equiv;</span>
             </div>
             <ul class="links-list">
-                <li><a class="-white -f-grey-3-bg -f-black" href="#overview" aria-label="Link to the framework overview">Overview</a></li>
-                <li><a class="-white -f-grey-3-bg -f-black" href="#utils" aria-label="Link to the utils overview">Utils</a></li>
-                <li><a class="-white -f-grey-3-bg -f-black" href="#components" aria-label="Link to the components">Components</a></li>
-                <li><a class="-white -f-grey-3-bg -f-black" href="#faq" aria-label="Link to the f.a.q.">F.A.Q.</a></li>
+                <li class="item"><a class="link -white -f-grey-3-bg -f-black" href="#overview" aria-label="Link to the framework overview">Overview</a></li>
+                <li class="item"><a class="link -white -f-grey-3-bg -f-black" href="#utils" aria-label="Link to the utils overview">Utils</a></li>
+                <li class="item"><a class="link -white -f-grey-3-bg -f-black" href="#components" aria-label="Link to the components">Components</a></li>
+                <li class="item"><a class="link -white -f-grey-3-bg -f-black" href="#faq" aria-label="Link to the f.a.q.">F.A.Q.</a></li>
             </ul>
             <div class="mui-navigation-toggle mui-shadow-toggle" aria-label="Close navigation"></div>
         </nav>
@@ -68,8 +68,6 @@
                     <li><a class="-f-orange-3" href="#utils-viewport">Viewport</a></li>
                     <li><a class="-f-orange-3" href="#utils-uncategorized">Uncategorized</a></li>
                 </ul>
-                <hr class="_separate-1">
-                <a class="-f-orange-3" href="#libraries">Libraries</a>
                 <hr class="_separate-1">
                 <a class="-f-orange-3" href="#components">Components</a>
                 <ul class="sub-list _separate-1">
@@ -507,23 +505,23 @@
                                 <div class="_smaller-2 -grey-4">src/less/components/breadcrumb.less</div>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-breadcrumb" aria-label="Breadcrumb">
-      <a href="" aria-label="Category C">category</a>
-      <a href="" aria-label="Subcategory S">subcategory</a>
-      <a href="" aria-label="This product T">title</a>
+      <a class="link" href="" aria-label="Category C">category</a>
+      <a class="link" href="" aria-label="Subcategory S">subcategory</a>
+      <a class="link" href="" aria-label="This product T">title</a>
   </div></div>
                                             <div class="state _separate-2">
                                                 <h5 class="_smaller-1">Breadcrumb with -slash-delimiter option</h5>
                                                 <div class="example _separate-2" data-class="-slash-delimiter">  <div class="mui-breadcrumb" aria-label="Breadcrumb">
-      <a href="" aria-label="Category C">category</a>
-      <a href="" aria-label="Subcategory S">subcategory</a>
-      <a href="" aria-label="This product T">title</a>
+      <a class="link" href="" aria-label="Category C">category</a>
+      <a class="link" href="" aria-label="Subcategory S">subcategory</a>
+      <a class="link" href="" aria-label="This product T">title</a>
   </div></div>
                                             </div>
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-breadcrumb' aria-label='Breadcrumb'&gt;
-      &lt;a href='' aria-label='Category C'&gt;category&lt;/a&gt;
-      &lt;a href='' aria-label='Subcategory S'&gt;subcategory&lt;/a&gt;
-      &lt;a href='' aria-label='This product T'&gt;title&lt;/a&gt;
+      &lt;a class='link' href='' aria-label='Category C'&gt;category&lt;/a&gt;
+      &lt;a class='link' href='' aria-label='Subcategory S'&gt;subcategory&lt;/a&gt;
+      &lt;a class='link' href='' aria-label='This product T'&gt;title&lt;/a&gt;
   &lt;/div&gt;</pre>
                                         </div>
                                     </div>
@@ -1211,13 +1209,13 @@
                                     <div class="_smaller-2 -blue-4">Depends on page-header</div>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-header-logo">
-      <a href="">
+      <a class="link" href="">
           <h1>Logo</h1>
       </a>
   </div></div>
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-header-logo'&gt;
-      &lt;a href=''&gt;
+      &lt;a class='link' href=''&gt;
           &lt;h1&gt;Logo&lt;/h1&gt;
       &lt;/a&gt;
   &lt;/div&gt;</pre>
@@ -1239,9 +1237,9 @@
           <span>&equiv;</span>
       </div>
       <ul class="links-list">
-          <li><a href="" aria-label="Home page">home</a></li>
-          <li><a href="" aria-label="Page about me">about</a></li>
-          <li><a href="" aria-label="Page with my contacts">contacts</a></li>
+          <li class="item"><a class="link" href="" aria-label="Home page">home</a></li>
+          <li class="item"><a class="link" href="" aria-label="Page about me">about</a></li>
+          <li class="item"><a class="link" href="" aria-label="Page with my contacts">contacts</a></li>
       </ul>
       <div class="mui-navigation-toggle mui-shadow-toggle"></div>
   </nav></div>
@@ -1251,9 +1249,9 @@
           &lt;span&gt;&equiv;&lt;/span&gt;
       &lt;/div&gt;
       &lt;ul class='links-list'&gt;
-          &lt;li&gt;&lt;a href='' aria-label='Home page'&gt;home&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href='' aria-label='Page about me'&gt;about&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href='' aria-label='Page with my contacts'&gt;contacts&lt;/a&gt;&lt;/li&gt;
+          &lt;li class='item'&gt;&lt;a class='link' href='' aria-label='Home page'&gt;home&lt;/a&gt;&lt;/li&gt;
+          &lt;li class='item'&gt;&lt;a class='link' href='' aria-label='Page about me'&gt;about&lt;/a&gt;&lt;/li&gt;
+          &lt;li class='item'&gt;&lt;a class='link' href='' aria-label='Page with my contacts'&gt;contacts&lt;/a&gt;&lt;/li&gt;
       &lt;/ul&gt;
       &lt;div class='mui-navigation-toggle mui-shadow-toggle'&gt;&lt;/div&gt;
   &lt;/nav&gt;</pre>
@@ -1284,35 +1282,35 @@
                                 <div class="_smaller-2 -grey-4">src/less/components/pagination.less</div>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-pagination" aria-label="Pagination">
-      <div class="page-link"><a href="" aria-label="Previous page">&larr;</a></div>
-      <div class="page-link"><a href="" aria-label="Page number 1">1</a></div>
-      <div class="page-link"><a href="" aria-label="Page number 2">2</a></div>
-      <div class="page-link -current"><a href="" aria-label="Current page">3</a></div>
-      <div class="page-link"><a href="" aria-label="Page number 4">4</a></div>
-      <div class="page-link"><a href="" aria-label="Page number 5">5</a></div>
-      <div class="page-link"><a href="" aria-label="Next page">&rarr;</a></div>
+      <div class="page"><a class="link" href="" aria-label="Previous page">&larr;</a></div>
+      <div class="page"><a class="link" href="" aria-label="Page number 1">1</a></div>
+      <div class="page"><a class="link" href="" aria-label="Page number 2">2</a></div>
+      <div class="page -current"><a class="link" href="" aria-label="Current page">3</a></div>
+      <div class="page"><a class="link" href="" aria-label="Page number 4">4</a></div>
+      <div class="page"><a class="link" href="" aria-label="Page number 5">5</a></div>
+      <div class="page"><a class="link" href="" aria-label="Next page">&rarr;</a></div>
   </div></div>
                                             <div class="state _separate-2">
                                                 <h5 class="_smaller-1">Pagination with -bordered option</h5>
                                                 <div class="example _separate-2" data-class="-bordered">  <div class="mui-pagination" aria-label="Pagination">
-      <div class="page-link"><a href="" aria-label="Previous page">&larr;</a></div>
-      <div class="page-link"><a href="" aria-label="Page number 1">1</a></div>
-      <div class="page-link"><a href="" aria-label="Page number 2">2</a></div>
-      <div class="page-link -current"><a href="" aria-label="Current page">3</a></div>
-      <div class="page-link"><a href="" aria-label="Page number 4">4</a></div>
-      <div class="page-link"><a href="" aria-label="Page number 5">5</a></div>
-      <div class="page-link"><a href="" aria-label="Next page">&rarr;</a></div>
+      <div class="page"><a class="link" href="" aria-label="Previous page">&larr;</a></div>
+      <div class="page"><a class="link" href="" aria-label="Page number 1">1</a></div>
+      <div class="page"><a class="link" href="" aria-label="Page number 2">2</a></div>
+      <div class="page -current"><a class="link" href="" aria-label="Current page">3</a></div>
+      <div class="page"><a class="link" href="" aria-label="Page number 4">4</a></div>
+      <div class="page"><a class="link" href="" aria-label="Page number 5">5</a></div>
+      <div class="page"><a class="link" href="" aria-label="Next page">&rarr;</a></div>
   </div></div>
                                             </div>
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-pagination' aria-label='Pagination'&gt;
-      &lt;div class='page-link'         &gt;&lt;a href='' aria-label='Previous page'&gt;&larr;&lt;/a&gt;&lt;/div&gt;
-      &lt;div class='page-link'         &gt;&lt;a href='' aria-label='Page number 1'&gt;1&lt;/a&gt;&lt;/div&gt;
-      &lt;div class='page-link'         &gt;&lt;a href='' aria-label='Page number 2'&gt;2&lt;/a&gt;&lt;/div&gt;
-      &lt;div class='page-link -current'&gt;&lt;a href='' aria-label='Current page' &gt;3&lt;/a&gt;&lt;/div&gt;
-      &lt;div class='page-link'         &gt;&lt;a href='' aria-label='Page number 4'&gt;4&lt;/a&gt;&lt;/div&gt;
-      &lt;div class='page-link'         &gt;&lt;a href='' aria-label='Page number 5'&gt;5&lt;/a&gt;&lt;/div&gt;
-      &lt;div class='page-link'         &gt;&lt;a href='' aria-label='Next page'&gt;&rarr;&lt;/a&gt;&lt;/div&gt;
+      &lt;div class='page'         &gt;&lt;a class='link' href='' aria-label='Previous page'&gt;&larr;&lt;/a&gt;&lt;/div&gt;
+      &lt;div class='page'         &gt;&lt;a class='link' href='' aria-label='Page number 1'&gt;1&lt;/a&gt;&lt;/div&gt;
+      &lt;div class='page'         &gt;&lt;a class='link' href='' aria-label='Page number 2'&gt;2&lt;/a&gt;&lt;/div&gt;
+      &lt;div class='page -current'&gt;&lt;a class='link' href='' aria-label='Current page' &gt;3&lt;/a&gt;&lt;/div&gt;
+      &lt;div class='page'         &gt;&lt;a class='link' href='' aria-label='Page number 4'&gt;4&lt;/a&gt;&lt;/div&gt;
+      &lt;div class='page'         &gt;&lt;a class='link' href='' aria-label='Page number 5'&gt;5&lt;/a&gt;&lt;/div&gt;
+      &lt;div class='page'         &gt;&lt;a class='link' href='' aria-label='Next page'&gt;&rarr;&lt;/a&gt;&lt;/div&gt;
   &lt;/div&gt;</pre>
                                         </div>
                                     </div>
@@ -1347,9 +1345,9 @@
                                         <div class="example _separate-2">  <article class="mui-post">
       <header class="mui-post-header">
           <div class="title">
-              <a href="" aria-label="Link to the post Lorem ipsum dolor"><h4>Lorem ipsum dolor</h4></a>
+              <a class="link" href="" aria-label="Link to the post Lorem ipsum dolor"><h4>Lorem ipsum dolor</h4></a>
           </div>
-          <div class="information">Post by<span class="author"><a href="" aria-label="Link to the author page">John Doe</a></span>, <span class="date">27 Jul 2016</span></div>
+          <div class="information">Post by<span class="author"><a class="link" href="" aria-label="Link to the author page">John Doe</a></span>, <span class="date">27 Jul 2016</span></div>
       </header>
       <div class="mui-post-content">
           ...
@@ -1370,9 +1368,9 @@
                                             <pre class="( prettyprint lang-html )">  &lt;article class='mui-post'&gt;
       &lt;header class='mui-post-header'&gt;
           &lt;div class='title'&gt;
-              &lt;a href='' aria-label='Link to the post Lorem ipsum dolor'&gt;&lt;h4&gt;Lorem ipsum dolor&lt;/h4&gt;&lt;/a&gt;
+              &lt;a class='link' href='' aria-label='Link to the post Lorem ipsum dolor'&gt;&lt;h4&gt;Lorem ipsum dolor&lt;/h4&gt;&lt;/a&gt;
           &lt;/div&gt;
-          &lt;div class='information'&gt;Post by&lt;span class='author'&gt;&lt;a href='' aria-label='Link to the author page'&gt;John Doe&lt;/a&gt;&lt;/span&gt;, &lt;span class='date'&gt;27 Jul 2016&lt;/span&gt;&lt;/div&gt;
+          &lt;div class='information'&gt;Post by&lt;span class='author'&gt;&lt;a class='link' href='' aria-label='Link to the author page'&gt;John Doe&lt;/a&gt;&lt;/span&gt;, &lt;span class='date'&gt;27 Jul 2016&lt;/span&gt;&lt;/div&gt;
       &lt;/header&gt;
       &lt;div class='mui-post-content'&gt;
           ...
@@ -1773,8 +1771,8 @@
     <div id="scroll-to-top" class="( mui-button -icon ) -white-bg -black -f-blue-2-bg -f-white scroll-to-top -hidden _shadow-3">
         <span>&uarr;</span>
     </div>
-    <script src="assets/js/prettify/prettify.js?v=1485353800520"></script>
-    <script src="assets/js/muilessium.js?v=6943488058388996"></script>
+    <script src="assets/js/prettify/prettify.js?v=3366371934429975"></script>
+    <script src="assets/js/muilessium.js?v=3366371934429975"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             [].forEach.call(document.querySelectorAll('.state .example'), function(example) {
