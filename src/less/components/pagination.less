@@ -3,13 +3,13 @@
 //
 // @markup
 //  <div class='mui-pagination' aria-label='Pagination'>
-//      <div class='page-link'         ><a href='' aria-label='Previous page'>&larr;</a></div>
-//      <div class='page-link'         ><a href='' aria-label='Page number 1'>1</a></div>
-//      <div class='page-link'         ><a href='' aria-label='Page number 2'>2</a></div>
-//      <div class='page-link -current'><a href='' aria-label='Current page' >3</a></div>
-//      <div class='page-link'         ><a href='' aria-label='Page number 4'>4</a></div>
-//      <div class='page-link'         ><a href='' aria-label='Page number 5'>5</a></div>
-//      <div class='page-link'         ><a href='' aria-label='Next page'>&rarr;</a></div>
+//      <div class='page'         ><a class='link' href='' aria-label='Previous page'>&larr;</a></div>
+//      <div class='page'         ><a class='link' href='' aria-label='Page number 1'>1</a></div>
+//      <div class='page'         ><a class='link' href='' aria-label='Page number 2'>2</a></div>
+//      <div class='page -current'><a class='link' href='' aria-label='Current page' >3</a></div>
+//      <div class='page'         ><a class='link' href='' aria-label='Page number 4'>4</a></div>
+//      <div class='page'         ><a class='link' href='' aria-label='Page number 5'>5</a></div>
+//      <div class='page'         ><a class='link' href='' aria-label='Next page'>&rarr;</a></div>
 //  </div>
 
 
@@ -21,14 +21,14 @@
     
     user-select: none;
     
-    > .page-link {
+    > .page {
         display: inline-block;
         height: @default-ui-height;
         margin: 0;
         overflow: hidden;
     }
     
-    > .page-link > a {
+    > .page > .link {
         display: inline-block;
         height: ~'calc(' @default-ui-height ~' - 2px)';
         padding: 0 1rem;
@@ -54,52 +54,39 @@
         }
     }
     
-    > .page-link.-current {
-        > a { 
-            color: @black;
-            background: @grey-2;
+    > .page.-current > .link { 
+        color: @black;
+        background: @grey-2;
         
+        &:hover,
+        &:focus {
+            color: @black;
+            background: @grey-3;
+        }
+    }
+    
+    &.-bordered {
+        > .page > .link {
+            border: 1px solid @grey-3;
+            line-height: ~'calc(' @default-ui-height ~' - ' 2px ~')';
+
             &:hover,
             &:focus {
                 color: @black;
                 background: @grey-3;
+                border-color: @grey-3;
             }
         }
-    }
-    
-    > .page-link.-current > a {
-        color: @black;
-    }
-    
-    .fa {
-        display: inline-block;
-        vertical-align: middle;
-    }
-    
-    &.-bordered {
-        > .page-link {
-            &:first-child > a {
-                border-top-left-radius: @default-border-radius;
-                border-bottom-left-radius: @default-border-radius;
-            }
-            
-            &:last-child > a {
-                border-top-right-radius: @default-border-radius;
-                border-bottom-right-radius: @default-border-radius;
-            }
-            
-            > a {
-                border: 1px solid @grey-3;
-                line-height: ~'calc(' @default-ui-height ~' - ' 2px ~')';
 
-                &:hover,
-                &:focus {
-                    color: @black;
-                    background: @grey-3;
-                    border-color: @grey-3;
-                }
-            }
+        > .page:first-child > .link {
+            border-top-left-radius: @default-border-radius;
+            border-bottom-left-radius: @default-border-radius;
         }
+            
+        > .page:last-child > .link {
+            border-top-right-radius: @default-border-radius;
+            border-bottom-right-radius: @default-border-radius;
+        }            
     }
 }
 

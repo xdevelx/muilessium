@@ -39,7 +39,7 @@ export class HeaderNavigation extends Component {
             hamburger:  element.querySelector('.mui-navigation-toggle'),
             shadow:     element.querySelector('.mui-shadow-toggle'),
             links:      element.querySelector('.links-list'),
-            linksList:  element.querySelectorAll('a'),
+            linksList:  element.querySelectorAll('.link'),
             focusables: []
         });
 

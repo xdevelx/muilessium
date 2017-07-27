@@ -3,9 +3,9 @@
 //
 // @markup
 //  <div class='mui-breadcrumb' aria-label='Breadcrumb'>
-//      <a href='' aria-label='Category C'>category</a>
-//      <a href='' aria-label='Subcategory S'>subcategory</a>
-//      <a href='' aria-label='This product T'>title</a>
+//      <a class='link' href='' aria-label='Category C'>category</a>
+//      <a class='link' href='' aria-label='Subcategory S'>subcategory</a>
+//      <a class='link' href='' aria-label='This product T'>title</a>
 //  </div>
 
 
@@ -19,7 +19,7 @@
     background: @grey-2;
     border-radius: @default-border-radius;
     
-    > a {
+    > .link {
         text-decoration: none;
         
         &:not(:last-of-type):after {
@@ -34,7 +34,7 @@
     }
     
     &.-slash-delimiter {
-        > a:not(:last-of-type):after {
+        > .link:not(:last-of-type):after {
             content: '/';
         }
     }

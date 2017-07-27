@@ -8,9 +8,9 @@
 //          <span>&equiv;</span>
 //      </div>
 //      <ul class='links-list'>
-//          <li><a href='' aria-label='Home page'>home</a></li>
-//          <li><a href='' aria-label='Page about me'>about</a></li>
-//          <li><a href='' aria-label='Page with my contacts'>contacts</a></li>
+//          <li class='item'><a class='link' href='' aria-label='Home page'>home</a></li>
+//          <li class='item'><a class='link' href='' aria-label='Page about me'>about</a></li>
+//          <li class='item'><a class='link' href='' aria-label='Page with my contacts'>contacts</a></li>
 //      </ul>
 //      <div class='mui-navigation-toggle mui-shadow-toggle'></div>
 //  </nav>
@@ -24,12 +24,12 @@
         margin: 0;
     }
     
-    > .links-list > li {
+    > .links-list > .item {
         display: inline-block;
         margin: 0;
     }
     
-    > .links-list > li > a {
+    > .links-list > .item > .link {
         padding: calc((@default-ui-height * 2 - 1em) / 2);
         
         line-height: @default-ui-height * 2;
@@ -73,7 +73,7 @@
             transition: all @default-animation-duration @default-animation-function;
         }
         
-        > .links-list > li {
+        > .links-list > .item {
             display: block;
             overflow: hidden;
             
@@ -88,23 +88,25 @@
             }
         }
         
-        > .links-list > li > a {
+        > .links-list > .item > .link {
             display: block;
             padding: .5rem 1rem;
         }
         
-        &.-opened > .links-list {
-            transform: translateX(0);
-            visibility: visible;
-        }
+        &.-opened {
+            > .links-list {
+                transform: translateX(0);
+                visibility: visible;
+            }
         
-        &.-opened > .-hamburger {
-            color: @black;
-        }
+            > .-hamburger {
+                color: @black;
+            }
         
-        &.-opened > .-shadow {
-            opacity: 1;
-            pointer-events: auto;
+            > .-shadow {
+                opacity: 1;
+                pointer-events: auto;
+            }
         }
     }
 
