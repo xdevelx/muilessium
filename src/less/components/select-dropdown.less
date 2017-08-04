@@ -80,12 +80,21 @@
     }
 
     .mui-dropdown-options {
-        display: none;
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        transform: translateY(80%);
+        transition: all @default-animation-duration @default-animation-function;
     }
 
     &.-opened {
         .mui-dropdown-options {
-            display: block;
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(100%);
             z-index: 11;
         }
     }
