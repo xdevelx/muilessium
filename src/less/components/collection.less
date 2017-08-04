@@ -3,10 +3,24 @@
 //
 // @markup
 //  <ul class='mui-collection'>
-//      <li class='item'>Lorem ipsum dolor sit amet. <span class='mui-badge'>2</span></li>
-//      <li class='item'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, quas.</li>
-//      <li class='item'>Lorem ipsum dolor sit. <span class='mui-badge'>5</span></li>
-//      <li class='item'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur repellendus nulla eos deleniti ullam! Aliquid voluptate dicta cupiditate accusamus odit. <span class='mui-badge'>106</span></li>
+//      <li class='item'>
+//          <div class='content'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+//          <div class='badge'>
+//              <span class='mui-badge'>2</span>
+//          </div>
+//      </li>
+//      <li class='item'>
+//          <div class='content'>Lorem ipsum dolor sit amet.</div>
+//          <div class='badge'>
+//              <span class='mui-badge'>1024</span>
+//          </div>
+//      </li>
+//      <li class='item'>
+//          <div class='content'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+//          <div class='badge'>
+//              <span class='mui-badge'>14</span>
+//          </div>
+//      </li>
 //  </ul>
 
 
@@ -16,11 +30,10 @@
     list-style: none;
     
     > .item {
-        display: block;
-        position: relative;
+        display: table;
+        width: 100%;
         
         margin: 0;
-        padding: 1rem 3rem 1rem 1rem;
         
         border: 1px solid @grey-3;
 
@@ -38,11 +51,17 @@
             border-bottom-right-radius: @default-border-radius;    
         }
     }
-    
-    > .item > .@{muilessium-prefix}badge {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
+
+    > .item > .content {
+        display: table-cell;
+        padding: 1rem;
+    }
+
+
+    > .item > .badge {
+        display: table-cell;
+        padding: 1rem;
+        text-align: right;
     }
 }
 
