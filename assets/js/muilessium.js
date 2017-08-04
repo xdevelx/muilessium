@@ -3604,12 +3604,15 @@ module.exports = fix;
         return;
       }
 
+      var left = arguments[0].left;
+      var top = arguments[0].top;
+
       // LET THE SMOOTHNESS BEGIN!
       smoothScroll.call(
           this,
           this,
-          arguments[0].left,
-          arguments[0].top
+          typeof left === 'number' ? left : this.scrollLeft,
+          typeof top === 'number' ? top : this.scrollTop
       );
     };
 
@@ -3635,7 +3638,10 @@ module.exports = fix;
     Element.prototype.scrollIntoView = function() {
       // avoid smooth behavior if not required
       if (shouldBailOut(arguments[0])) {
-        original.scrollIntoView.call(this, arguments[0] || true);
+        original.scrollIntoView.call(
+          this,
+          arguments[0] === undefined ? true : arguments[0]
+        );
         return;
       }
 
