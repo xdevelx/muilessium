@@ -3387,6 +3387,27 @@ mark {
   opacity: 1;
   pointer-events: auto;
 }
+.mui-table {
+  width: 100%;
+  border-collapse: collapse;
+  /* Use 'tr', 'th' and 'td' instead of CSS classes for simple HTML markup. */
+}
+.mui-table.-fixed {
+  table-layout: fixed;
+}
+.mui-table.-striped tr:nth-child(even) {
+  background: #F4F4F4;
+}
+.mui-table tr:not(:last-of-type) {
+  border-bottom: 1px solid #C6C6C6;
+}
+.mui-table th {
+  text-align: left;
+}
+.mui-table th,
+.mui-table td {
+  padding: .5rem;
+}
 .mui-tabs > .labels {
   display: table;
   width: 100%;
