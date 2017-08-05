@@ -233,70 +233,114 @@
                         <h3 class='_bigger-2' id='colors-overview'>Colors</h3>
                     </div>
 
-                    <p class='mui-p _separate-1'>See <a class='-f-blue-3' href='https://github.com/sfi0zy/muilessium/blob/master/src/less/colors.less'>src/less/colors</a> for more information</p>
+                    <p class='mui-p _separate-1'>A number of classes for painting from <a class='-f-blue-3' href='https://github.com/sfi0zy/muilessium/blob/master/src/less/colors.less'>src/less/colors</a>. There are four types of classes:</p>
+                    <ul>
+                        <li><b>-color-number</b> - text color for the element</li>
+                        <li><b>-color-number-bg</b> - background for the element</li>
+                        <li><b>-f-color-number</b> - text color for the :hover and :focus states of the element</li>
+                        <li><b>-f-color-number-bg</b> - background color for the :hover and :focus states</li>
+                    </ul>
 
                     <div class='_separate-2'>
-                        <div class='color-preview -white-bg'></div>
-                        <div class='color-preview -grey-1-bg'></div>
-                        <div class='color-preview -grey-2-bg'></div>
-                        <div class='color-preview -grey-3-bg'></div>
-                        <div class='color-preview -grey-4-bg'></div>
-                        <div class='color-preview -grey-5-bg'></div>
-                        <div class='color-preview -black-bg'></div>
-                        <br>
-                        <div class='color-preview -brown-1-bg'></div>
-                        <div class='color-preview -brown-2-bg'></div>
-                        <div class='color-preview -brown-3-bg'></div>
-                        <div class='color-preview -brown-4-bg'></div>
-                        <div class='color-preview -brown-5-bg'></div>
-                        <br>
-                        <div class='color-preview -blue-1-bg'></div>
-                        <div class='color-preview -blue-2-bg'></div>
-                        <div class='color-preview -blue-3-bg'></div>
-                        <div class='color-preview -blue-4-bg'></div>
-                        <div class='color-preview -blue-5-bg'></div>
-                        <br>
-                        <div class='color-preview -violet-1-bg'></div>
-                        <div class='color-preview -violet-2-bg'></div>
-                        <div class='color-preview -violet-3-bg'></div>
-                        <div class='color-preview -violet-4-bg'></div>
-                        <div class='color-preview -violet-5-bg'></div>
-                        <br>
-                        <div class='color-preview -purple-1-bg'></div>
-                        <div class='color-preview -purple-2-bg'></div>
-                        <div class='color-preview -purple-3-bg'></div>
-                        <div class='color-preview -purple-4-bg'></div>
-                        <div class='color-preview -purple-5-bg'></div>
-                        <br>
-                        <div class='color-preview -green-1-bg'></div>
-                        <div class='color-preview -green-2-bg'></div>
-                        <div class='color-preview -green-3-bg'></div>
-                        <div class='color-preview -green-4-bg'></div>
-                        <div class='color-preview -green-5-bg'></div>
-                        <br>
-                        <div class='color-preview -cyan-1-bg'></div>
-                        <div class='color-preview -cyan-2-bg'></div>
-                        <div class='color-preview -cyan-3-bg'></div>
-                        <div class='color-preview -cyan-4-bg'></div>
-                        <div class='color-preview -cyan-5-bg'></div>
-                        <br>
-                        <div class='color-preview -red-1-bg'></div>
-                        <div class='color-preview -red-2-bg'></div>
-                        <div class='color-preview -red-3-bg'></div>
-                        <div class='color-preview -red-4-bg'></div>
-                        <div class='color-preview -red-5-bg'></div>
-                        <br>
-                        <div class='color-preview -yellow-1-bg'></div>
-                        <div class='color-preview -yellow-2-bg'></div>
-                        <div class='color-preview -yellow-3-bg'></div>
-                        <div class='color-preview -yellow-4-bg'></div>
-                        <div class='color-preview -yellow-5-bg'></div>
-                        <br>
-                        <div class='color-preview -orange-1-bg'></div>
-                        <div class='color-preview -orange-2-bg'></div>
-                        <div class='color-preview -orange-3-bg'></div>
-                        <div class='color-preview -orange-4-bg'></div>
-                        <div class='color-preview -orange-5-bg'></div>
+                        <div class='mui-row'>
+                            <div class='color-preview -white-bg'></div>
+                            <div class='color-name'>White</div>
+                        </div>
+
+                        <div class='mui-row'>
+                            <div class='color-preview -grey-1-bg'></div>
+                            <div class='color-preview -grey-2-bg'></div>
+                            <div class='color-preview -grey-3-bg'></div>
+                            <div class='color-preview -grey-4-bg'></div>
+                            <div class='color-preview -grey-5-bg'></div>
+                            <div class='color-name'>Grey 1-5</div>
+                        </div>
+
+                        <div class='mui-row'>
+                            <div class='color-preview -black-bg'></div>
+                            <div class='color-name'>Black</div>
+                        </div>
+
+                        <div class='mui-row'>
+                            <div class='color-preview -brown-1-bg'></div>
+                            <div class='color-preview -brown-2-bg'></div>
+                            <div class='color-preview -brown-3-bg'></div>
+                            <div class='color-preview -brown-4-bg'></div>
+                            <div class='color-preview -brown-5-bg'></div>
+                            <div class='color-name'>Brown 1-5</div>
+                        </div>
+
+                        <div class='mui-row'>
+                            <div class='color-preview -blue-1-bg'></div>
+                            <div class='color-preview -blue-2-bg'></div>
+                            <div class='color-preview -blue-3-bg'></div>
+                            <div class='color-preview -blue-4-bg'></div>
+                            <div class='color-preview -blue-5-bg'></div>
+                            <div class='color-name'>Blue 1-5</div>
+                        </div>
+
+                        <div class='mui-row'>
+                            <div class='color-preview -violet-1-bg'></div>
+                            <div class='color-preview -violet-2-bg'></div>
+                            <div class='color-preview -violet-3-bg'></div>
+                            <div class='color-preview -violet-4-bg'></div>
+                            <div class='color-preview -violet-5-bg'></div>
+                            <div class='color-name'>Violet 1-5</div>
+                        </div>
+
+                        <div class='mui-row'>
+                            <div class='color-preview -purple-1-bg'></div>
+                            <div class='color-preview -purple-2-bg'></div>
+                            <div class='color-preview -purple-3-bg'></div>
+                            <div class='color-preview -purple-4-bg'></div>
+                            <div class='color-preview -purple-5-bg'></div>
+                            <div class='color-name'>Purple 1-5</div>
+                        </div>
+
+                        <div class='mui-row'>
+                            <div class='color-preview -green-1-bg'></div>
+                            <div class='color-preview -green-2-bg'></div>
+                            <div class='color-preview -green-3-bg'></div>
+                            <div class='color-preview -green-4-bg'></div>
+                            <div class='color-preview -green-5-bg'></div>
+                            <div class='color-name'>Green 1-5</div>
+                        </div>
+
+                        <div class='mui-row'>
+                            <div class='color-preview -cyan-1-bg'></div>
+                            <div class='color-preview -cyan-2-bg'></div>
+                            <div class='color-preview -cyan-3-bg'></div>
+                            <div class='color-preview -cyan-4-bg'></div>
+                            <div class='color-preview -cyan-5-bg'></div>
+                            <div class='color-name'>Cyan 1-5</div>
+                        </div>
+
+                        <div class='mui-row'>
+                            <div class='color-preview -red-1-bg'></div>
+                            <div class='color-preview -red-2-bg'></div>
+                            <div class='color-preview -red-3-bg'></div>
+                            <div class='color-preview -red-4-bg'></div>
+                            <div class='color-preview -red-5-bg'></div>
+                            <div class='color-name'>Red 1-5</div>
+                        </div>
+
+                        <div class='mui-row'>
+                            <div class='color-preview -yellow-1-bg'></div>
+                            <div class='color-preview -yellow-2-bg'></div>
+                            <div class='color-preview -yellow-3-bg'></div>
+                            <div class='color-preview -yellow-4-bg'></div>
+                            <div class='color-preview -yellow-5-bg'></div>
+                            <div class='color-name'>Yellow 1-5</div>
+                        </div>
+
+                        <div class='mui-row'>
+                            <div class='color-preview -orange-1-bg'></div>
+                            <div class='color-preview -orange-2-bg'></div>
+                            <div class='color-preview -orange-3-bg'></div>
+                            <div class='color-preview -orange-4-bg'></div>
+                            <div class='color-preview -orange-5-bg'></div>
+                            <div class='color-name'>Orange 1-5</div>
+                        </div>
                     </div>
                 </div>
 
@@ -311,16 +355,112 @@
                     <p class='mui-p _separate-1'>Muilessium exports a number of internal utilities as window.Muilessium.Utils including</p>
 
                     <ul>
-                        <li id='utils-ajax'>Ajax utilities (<a class='-f-blue-3' href='docco/utils/ajax.html'>link</a>)</li>
-                        <li id='utils-animations'>Animations (<a class='-f-blue-3' href='docco/utils/animations.html'>link</a>)</li>
-                        <li id='utils-aria'>WAI-ARIA utilities (<a class='-f-blue-3' href='docco/utils/aria.html'>link</a>)</li>
-                        <li id='utils-attributes'>Manipulating with HTML attributes (<a class='-f-blue-3' href='docco/utils/attributes.html'>link</a>)</li>
-                        <li id='utils-checks'>Checking for elements in page (<a class='-f-blue-3' href='docco/utils/checks.html'>link</a>)</li>
-                        <li id='utils-css-classes'>Manipulating with CSS classes (<a class='-f-blue-3' href='docco/utils/classes.html'>link</a>)</li>
-                        <li id='utils-focus-and-click'>Manipulating with Focus &amp; Click events (<a class='-f-blue-3' href='docco/utils/focus-and-click.html'>link</a>)</li>
-                        <li id='utils-scroll'>Scroll utilities (smooth scrolling, scrollFire) (<a class='-f-blue-3' href='docco/utils/scroll.html'>link</a>)</li>
-                        <li id='utils-viewport'>Viewport utilities (<a class='-f-blue-3' href='docco/utils/viewport.html'>link</a>)</li>
-                        <li id='utils-uncategorized'>Uncategorized utilities (debounce, callOnce, extend e.t.c) (<a class='-f-blue-3' href='docco/utils/uncategorized.html'>link</a>)</li>
+                        <li id='utils-ajax'><a class='-f-blue-3' href='docco/utils/ajax.html'>AJAX</a>
+                            <ol>
+                                <li>ajax.post</li>
+                                <li>ajax.get</li>
+                            </ol>
+                        </li>
+
+                        <li id='utils-animations'><a class='-f-blue-3' href='docco/utils/animations.html'>Animations</a>
+                            <ol>
+                                <li>typeText</li>
+                                <li>typeTexsts</li>
+                            </ol>
+                        </li>
+
+                        <li id='utils-aria'><a class='-f-blue-3' href='docco/utils/aria.html'>WAI-ARIA</a>
+                            <ol>
+                                <li>aria.set</li>
+                                <li>aria.setRole</li>
+                                <li>aria.removeRole</li>
+                                <li>aria.setId</li>
+                                <li>aria.get</li>
+                                <li>aria.getRole</li>
+                                <li>aria.toggleState</li>
+                            </ol>
+                        </li>
+
+                        <li id='utils-attributes'><a class='-f-blue-3' href='docco/utils/attributes.html'>HTML attributes</a>
+                            <ol>
+                                <li>setAttribute</li>
+                                <li>getAttribute</li>
+                                <li>removeAttribute</li>
+                            </ol>
+                        </li>
+
+                        <li id='utils-checks'><a class='-f-blue-3' href='docco/utils/checks.html'>Checking</a>
+                            <ol>
+                                <li>isInPage</li>
+                                <li>isNotInPage</li>
+                                <li>ifExists</li>
+                                <li>ifNodeList</li>
+                                <li>isDescendant</li>
+                            </ol>
+                        </li>
+
+                        <li id='utils-css-classes'><a class='-f-blue-3' href='docco/utils/classes.html'>CSS classes</a>
+                            <ol>
+                                <li>hasClass</li>
+                                <li>hasNotClass</li>
+                                <li>addClass</li>
+                                <li>addClasses</li>
+                                <li>removeClass</li>
+                                <li>removeClasses</li>
+                                <li>replaceClass</li>
+                                <li>toggleClass</li>
+                            </ol>
+                        </li>
+
+                        <li id='utils-focus-and-click'><a class='-f-blue-3' href='docco/utils/focus-and-click.html'>Focus &amp; click</a>
+                            <ol>
+                                <li>makeElementFocusable</li>
+                                <li>makeElementsFocusable</li>
+                                <li>makeElementNotFocusable</li>
+                                <li>makeElementsNotFocusable</li>
+                                <li>getFocusableChilds</li>
+                                <li>getAllFocusableElements</li>
+                                <li>getNextFocusableElement</li>
+                                <li>getPreviousFocusableElement</li>
+                                <li>goToNextFocusableElement</li>
+                                <li>goToPreviousFocusableElement</li>
+                                <li>makeElementClickable</li>
+                                <li>makeChildElementsClickable</li>
+                                <li>onFocus</li>
+                                <li>onBlur</li>
+                            </ol>
+                        </li>
+
+                        <li id='utils-scroll'><a class='-f-blue-3' href='docco/utils/scroll.html'>Scroll</a>
+                            <ol>
+                                <li>scrollTo</li>
+                                <li>scrollToTop</li>
+                                <li>scrollFire</li>
+                            </ol>
+                        </li>
+
+                        <li id='utils-viewport'><a class='-f-blue-3' href='docco/utils/viewport.html'>Viewport</a>
+                            <ol>
+                                <li>isInViewport</li>
+                                <li>isAboveViewport</li>
+                            </ol>
+                        </li>
+
+                        <li id='utils-uncategorized'><a class='-f-blue-3' href='docco/utils/uncategorized.html'>Uncategorized</a>
+                            <ol>
+                                <li>normalizeTabIndexes</li>
+                                <li>lazyLoadImages</li>
+                                <li>initAnchorLinks</li>
+                                <li>generateRandomString</li>
+                                <li>stringify</li>
+                                <li>extend</li>
+                                <li>debounce</li>
+                                <li>callOnce</li>
+                                <li>firstOfList</li>
+                                <li>lastOfList</li>
+                                <li>forEach</li>
+                            </ol>
+                        </li>
                     </ul>
                 </div>
 
