@@ -1,0 +1,50 @@
+// @name Table
+//
+// @description Use -fixed option to create table with fixed layout, -striped option to create a zebra-striped table;
+//
+// @markup
+//  <table class='mui-table'>
+//      <tr class='header'>
+//          <th>Table</th>
+//          <th>Header</th>
+//      </tr>
+//      <tr>
+//          <td>lorem ipsum</td>
+//          <td>lorem ipsum dolor sit</td>
+//      </tr>
+//      <tr>
+//          <td>lorem ipsum</td>
+//          <td>lorem ipsum dolor sit</td>
+//      </tr>
+//  </table>
+
+
+.@{muilessium-prefix}table {
+    width: 100%;
+    border-collapse: collapse;
+
+    &.-fixed {
+        table-layout: fixed;
+    }
+
+    &.-striped {
+        tr:nth-child(even) {
+            background: @grey-1;
+        }
+    }
+
+    /* Use 'tr', 'th' and 'td' instead of CSS classes for simple HTML markup. */
+
+    tr:not(:last-of-type) {
+        border-bottom: 1px solid @grey-3;
+    }
+
+    th {
+        text-align: left;
+    }
+
+    th, td {
+        padding: .5rem;
+    }
+}
+
