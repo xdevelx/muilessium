@@ -3,6 +3,11 @@ html {
 }
 .mui-page-header {
   padding-left: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
 }
 .mui-image.-logo {
   float: left;
@@ -14,8 +19,12 @@ html {
 .mui-header-logo h1 {
   line-height: 3.7rem;
 }
+.mui-hero-header > .effects {
+  background: linear-gradient(to right, #7b4397, #dc2430);
+  opacity: .3;
+}
 .mui-header-navigation.-mobile-version .links-list {
-  background: #000;
+  background: #fff;
 }
 .example .mui-header-navigation.-mobile-version .links-list {
   background: #fff;
@@ -112,10 +121,18 @@ ol.linenums {
 }
 .color-preview {
   display: inline-block !important;
+  float: left;
   height: 2rem;
   width: 2rem;
   margin: .3rem;
   border: 1px solid #000;
+}
+.color-name {
+  display: inline-block;
+  height: 2rem;
+  line-height: 2rem;
+  padding: 0 .5rem;
+  margin: .3rem;
 }
 .example:after {
   content: '';
@@ -230,4 +247,21 @@ hr {
   opacity: 0;
   pointer-events: none;
   transition: opacity 600ms cubic-bezier(0.53, 0.05, 0.13, 0.94);
+}
+.page-preview {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 1rem;
+  transition: opacity 600ms cubic-bezier(0.53, 0.05, 0.13, 0.94);
+}
+.page-preview > .version {
+  text-decoration: none;
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+  padding: 0 .5rem;
+}
+.page-preview:hover,
+.page-preview:focus {
+  opacity: .5;
 }
