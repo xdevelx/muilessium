@@ -4,6 +4,11 @@ html {
 
 .mui-page-header {
     padding-left: 1rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
 }
 
 .mui-image.-logo {
@@ -18,14 +23,21 @@ html {
     line-height: 3.7rem;
 }
 
+.mui-hero-header {
+    > .effects {
+        background: linear-gradient(to right, #7b4397, #dc2430);
+        opacity: .3;
+    }
+}
 
 .mui-header-navigation.-mobile-version .links-list {
-    background: #000;
+    background: #fff;
 }
 
 .example .mui-header-navigation.-mobile-version .links-list {
     background: #fff;
 }
+
 
 @media screen and (max-width: 600px) {
 
@@ -270,3 +282,22 @@ hr {
     }
 }
 
+.page-preview {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 1rem;
+    transition: opacity 600ms cubic-bezier(.53, .05, .13, .94);
+
+    > .version {
+        text-decoration: none;
+        position: absolute;
+        top: .5rem;
+        right: .5rem;
+        padding: 0 .5rem;
+    }
+
+    &:hover,
+    &:focus {
+        opacity: .5;
+    }
+}
