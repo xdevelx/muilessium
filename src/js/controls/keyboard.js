@@ -38,6 +38,16 @@ export function onTabPressed(element, callback) {
 };
 
 
+export function onEscapePressed(element, callback) {
+    element.addEventListener('keydown', (e) => {
+        if (e.keyCode == 27 && !e.shiftKey) {
+            e.preventDefault();
+            callback(e);
+        }
+    });
+};
+
+
 export function onShiftTabPressed(element, callback) {
     element.addEventListener('keydown', (e) => {
         if (e.keyCode == 9 && e.shiftKey) {

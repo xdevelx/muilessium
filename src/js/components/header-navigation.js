@@ -96,8 +96,7 @@ export class HeaderNavigation extends Component {
         Keyboard.onShiftTabPressed(firstOfList(this.domCache.focusables), () => {
             this.closeNavigation();
 
-            goToPreviousFocusableElement(
-                            firstOfList(this.domCache.focusables));
+            goToPreviousFocusableElement(this.domCache.hamburger);
         });
 
         Keyboard.onTabPressed(lastOfList(this.domCache.focusables), () => {
@@ -116,11 +115,11 @@ export class HeaderNavigation extends Component {
             this.state.opened = true;
             this.domCache.shadow.tabIndex = 0;
 
-            addClass(this.domCache.element,    '-opened');
-            addClass(this.domCache.shadow, '-visible');
+            addClass(this.domCache.element, '-opened');
+            addClass(this.domCache.shadow,  '-visible');
 
             aria.set(this.domCache.hamburger, 'hidden', true);
-            aria.set(this.domCache.links, 'hidden', false);
+            aria.set(this.domCache.links,     'hidden', false);
 
             firstOfList(this.domCache.focusables).focus();
         }
@@ -134,11 +133,11 @@ export class HeaderNavigation extends Component {
             this.state.opened = false;
             this.domCache.shadow.tabIndex = -1;
 
-            removeClass(this.domCache.element,    '-opened');
-            removeClass(this.domCache.shadow, '-visible');
+            removeClass(this.domCache.element, '-opened');
+            removeClass(this.domCache.shadow,  '-visible');
 
             aria.set(this.domCache.hamburger, 'hidden', false);
-            aria.set(this.domCache.links, 'hidden', true);
+            aria.set(this.domCache.links,     'hidden', true);
 
             this.domCache.hamburger.focus();
         }

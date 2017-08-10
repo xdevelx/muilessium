@@ -13,13 +13,16 @@ import { Component } from '../component';
 import * as Keyboard from '../controls/keyboard';
 import * as TouchScreen from '../controls/touchscreen';
 
-import { aria                 } from '../utils/aria';
-import { addClass             } from '../utils/classes';
-import { removeClass          } from '../utils/classes';
-import { makeElementFocusable } from '../utils/focus-and-click';
-import { makeElementClickable } from '../utils/focus-and-click';
-import { extend               } from '../utils/uncategorized';
-import { forEach              } from '../utils/uncategorized';
+import { aria                         } from '../utils/aria';
+import { addClass                     } from '../utils/classes';
+import { removeClass                  } from '../utils/classes';
+import { makeElementFocusable         } from '../utils/focus-and-click';
+import { makeElementNotFocusable      } from '../utils/focus-and-click';
+import { makeElementClickable         } from '../utils/focus-and-click';
+import { goToNextFocusableElement     } from '../utils/focus-and-click';
+import { goToPreviousFocusableElement } from '../utils/focus-and-click';
+import { extend                       } from '../utils/uncategorized';
+import { forEach                      } from '../utils/uncategorized';
 
 
 
@@ -35,7 +38,7 @@ export class ModalWindow extends Component {
         });
 
         this.state = extend(this.state, {
-            visible: false,
+            isOpened: false,
             savedOpener: null
         });
 
@@ -59,16 +62,15 @@ export class ModalWindow extends Component {
                 this.openModal();
             });
 
-            /* Not sure it is good idea to open modal on space pressed, need tests. */
             Keyboard.onSpacePressed(opener, () => {
                 this.state.savedOpened = opener;
                 this.openModal();
             });
         });
 
-        makeElementFocusable(this.domCache.modalWindow);
-
-        Keyboard.onTabPressed(this.domCache.modalWindow, this.closeModal.bind(this));
+        Keyboard.onEscapePressed  (this.domCache.modalWindow, this.closeModal.bind(this));
+        Keyboard.onTabPressed     (this.domCache.modalWindow, this.closeModal.bind(this));
+        Keyboard.onShiftTabPressed(this.domCache.modalWindow, this.closeModal.bind(this));
         
         makeElementClickable(this.domCache.closeIcon, this.closeModal.bind(this),
                         { mouse: true, keyboard: false });
@@ -82,15 +84,16 @@ export class ModalWindow extends Component {
 
 
     openModal() {
-        if (!this.state.visible) {
-            addClass(this.domCache.element,    '-visible');
-            addClass(this.domCache.shadow, '-visible');
+        if (!this.state.isOpened) {
+            addClass(this.domCache.element, '-opened');
+            addClass(this.domCache.shadow,  '-visible');
             
             aria.set(this.domCache.element, 'hidden', false);
 
-            this.domCache.modalWindow.focus();
+            makeElementFocusable(this.domCache.modalWindow);
+            this.state.isOpened = true;
 
-            this.state.visible = true;
+            this.domCache.modalWindow.focus();
         }
 
         return this;
@@ -98,13 +101,14 @@ export class ModalWindow extends Component {
 
 
     closeModal() {
-        if (this.state.visible) {
-            removeClass(this.domCache.element,    '-visible');
-            removeClass(this.domCache.shadow, '-visible');
+        if (this.state.isOpened) {
+            removeClass(this.domCache.element, '-opened');
+            removeClass(this.domCache.shadow,  '-visible');
             
             aria.set(this.domCache.element, 'hidden', true);
 
-            this.state.visible = false;
+            makeElementNotFocusable(this.domCache.modalWindow);
+            this.state.isOpened = false;
 
             if (this.state.savedOpener) {
                 this.state.savedOpener.focus();
