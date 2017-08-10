@@ -10,6 +10,7 @@ import { Component } from '../component';
 
 import { aria         } from '../utils/aria';
 import { getAttribute } from '../utils/attributes';
+import { hasClass     } from '../utils/classes';
 import { extend       } from '../utils/uncategorized';
 
 
@@ -23,8 +24,14 @@ export class ProgressBar extends Component {
         });
 
         this.state = extend(this.state, {
+            isRadial: hasClass(element, '-radial'),
             value: parseInt(getAttribute(element, 'data-value', 0))
         });
+
+        if (this.state.isRadial) {
+            this.domCache.indicator = this.domCache.indicator.querySelector('.progress');
+            this.state.radialRadius = getAttribute(this.domCache.indicator, 'r', 10);
+        }
 
         this.setValue(this.state.value);
     }
@@ -38,7 +45,15 @@ export class ProgressBar extends Component {
 
         let update = () => {
             this.domCache.value.innerText = this.state.value + '%';
-            this.domCache.indicator.style.width = this.state.value + '%';
+
+            if (this.state.isRadial) {
+                const dasharray  = 2 * Math.PI * this.state.radialRadius;
+                const dashoffset = this.state.value * dasharray / 100;
+
+                this.domCache.indicator.style.strokeDashoffset = dasharray - dashoffset;
+            } else {
+                this.domCache.indicator.style.width = this.state.value + '%';
+            }
 
             this.state.value += sign;
 

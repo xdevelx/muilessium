@@ -1,4 +1,4 @@
-// @name Progress Bar
+// @name Progress bar
 // @description Progress bar component
 //
 // @markup
@@ -7,6 +7,17 @@
 //      <div class='value'></div>
 //  </div>
 
+// @name Radial progress bar
+// @description Radial progress bar component
+//
+// @markup
+//  <div class='mui-progress-bar -radial' data-value='60'>
+//      <svg class='indicator' viewbox='0 0 100 100'>
+//          <circle class='background' cx='50' cy='50' r='34'></circle>
+//          <circle class='progress'   cx='50' cy='50' r='34'></circle>
+//      </svg>
+//      <div class='value'></div>
+//  </div>
 
 .@{muilessium-prefix}progress-bar {
     position: relative;
@@ -29,6 +40,39 @@
         line-height: @default-ui-height;
         text-align: center;
         color: @grey-5;
+    }
+
+    &.-radial {
+        height: @default-ui-height * 4;
+        width:  @default-ui-height * 4;
+        background: transparent;
+
+        > .indicator {
+            height: inherit;
+            width:  inherit;
+            background: inherit;
+            transform: rotate(-90deg);
+        }
+
+        > .indicator > .background,
+        > .indicator > .progress {
+            fill: none;
+            stroke-width: @default-ui-height / 2;
+        }
+
+        > .indicator > .background {
+            stroke: @grey-1;
+        }
+
+        > .indicator > .progress {
+            stroke: @grey-3;
+            stroke-dasharray:  213.628; /* 2 PI R */
+            stroke-dashoffset: 213.628; /* 2 PI R */
+        }
+
+        > .value {
+            line-height: @default-ui-height * 4;
+        }
     }
 }
 
