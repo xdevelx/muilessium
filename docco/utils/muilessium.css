@@ -3148,6 +3148,35 @@ mark {
   text-align: center;
   color: #383838;
 }
+.mui-progress-bar.-radial {
+  height: 8rem;
+  width: 8rem;
+  background: transparent;
+}
+.mui-progress-bar.-radial > .indicator {
+  height: inherit;
+  width: inherit;
+  background: inherit;
+  transform: rotate(-90deg);
+}
+.mui-progress-bar.-radial > .indicator > .background,
+.mui-progress-bar.-radial > .indicator > .progress {
+  fill: none;
+  stroke-width: 1rem;
+}
+.mui-progress-bar.-radial > .indicator > .background {
+  stroke: #F4F4F4;
+}
+.mui-progress-bar.-radial > .indicator > .progress {
+  stroke: #C6C6C6;
+  stroke-dasharray: 213.628;
+  /* 2 PI R */
+  stroke-dashoffset: 213.628;
+  /* 2 PI R */
+}
+.mui-progress-bar.-radial > .value {
+  line-height: 8rem;
+}
 .mui-radio {
   -webkit-user-select: none;
      -moz-user-select: none;

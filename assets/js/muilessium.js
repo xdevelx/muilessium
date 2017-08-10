@@ -5428,6 +5428,8 @@ var _aria = require('../utils/aria');
 
 var _attributes = require('../utils/attributes');
 
+var _classes = require('../utils/classes');
+
 var _uncategorized = require('../utils/uncategorized');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -5456,8 +5458,14 @@ var ProgressBar = exports.ProgressBar = function (_Component) {
         });
 
         _this.state = (0, _uncategorized.extend)(_this.state, {
+            isRadial: (0, _classes.hasClass)(element, '-radial'),
             value: parseInt((0, _attributes.getAttribute)(element, 'data-value', 0))
         });
+
+        if (_this.state.isRadial) {
+            _this.domCache.indicator = _this.domCache.indicator.querySelector('.progress');
+            _this.state.radialRadius = (0, _attributes.getAttribute)(_this.domCache.indicator, 'r', 10);
+        }
 
         _this.setValue(_this.state.value);
         return _this;
@@ -5476,7 +5484,15 @@ var ProgressBar = exports.ProgressBar = function (_Component) {
 
             var update = function update() {
                 _this2.domCache.value.innerText = _this2.state.value + '%';
-                _this2.domCache.indicator.style.width = _this2.state.value + '%';
+
+                if (_this2.state.isRadial) {
+                    var dasharray = 2 * Math.PI * _this2.state.radialRadius;
+                    var dashoffset = _this2.state.value * dasharray / 100;
+
+                    _this2.domCache.indicator.style.strokeDashoffset = dasharray - dashoffset;
+                } else {
+                    _this2.domCache.indicator.style.width = _this2.state.value + '%';
+                }
 
                 _this2.state.value += sign;
 
@@ -5494,7 +5510,7 @@ var ProgressBar = exports.ProgressBar = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils/aria":37,"../utils/attributes":38,"../utils/uncategorized":44}],20:[function(require,module,exports){
+},{"../component":6,"../utils/aria":37,"../utils/attributes":38,"../utils/classes":40,"../utils/uncategorized":44}],20:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

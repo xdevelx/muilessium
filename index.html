@@ -23,7 +23,7 @@
         <div class="mui-header-logo _left">
             <img class="mui-image -logo -js-lazy-load" data-src="images/muilessium.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="logo">
             <a class="link -black -f-blue-3 _right" href="/">
-                <h1 class="_bigger-1">muilessium <span class="_smaller-3">v0.1.31</span></h1>
+                <h1 class="_bigger-1">muilessium <span class="_smaller-3">v0.1.32</span></h1>
             </a>
         </div>
         <nav class="mui-header-navigation -mobile-version _right">
@@ -172,7 +172,10 @@
                             <a class="-f-blue-3" href="#src/less/components/post.less">Post</a>
                         </li>
                         <li>
-                            <a class="-f-blue-3" href="#src/less/components/progress-bar.less">Progress Bar</a>
+                            <a class="-f-blue-3" href="#src/less/components/progress-bar.less">Progress bar</a>
+                        </li>
+                        <li>
+                            <a class="-f-blue-3" href="#src/less/components/progress-bar.less">Radial progress bar</a>
                         </li>
                         <li>
                             <a class="-f-blue-3" href="#src/less/components/radio.less">Radio</a>
@@ -1578,7 +1581,7 @@
                             <div class="_separate-5">
                                 <div class="mui-row">
                                     <a class="anchor-link _smaller-2 -grey-3 -f-blue-3" href="#src/less/components/progress-bar.less">&#182;</a>
-                                    <h4 class="_bigger-1">Progress Bar</h4>
+                                    <h4 class="_bigger-1">Progress bar</h4>
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/progress-bar.less</div>
                                     <p class="mui-p _separate-1">Progress bar component</p>
@@ -1590,6 +1593,32 @@
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-progress-bar' data-value='60'&gt;
       &lt;div class='indicator'&gt;&lt;/div&gt;
+      &lt;div class='value'&gt;&lt;/div&gt;
+  &lt;/div&gt;</pre>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="_separate-5">
+                                <div class="mui-row">
+                                    <a class="anchor-link _smaller-2 -grey-3 -f-blue-3" href="#src/less/components/progress-bar.less">&#182;</a>
+                                    <h4 class="_bigger-1">Radial progress bar</h4>
+                                </div>
+                                <div class="_smaller-2 -grey-4">src/less/components/progress-bar.less</div>
+                                    <p class="mui-p _separate-1">Radial progress bar component</p>
+                                    <div class="_separate-1">
+                                        <div class="example _separate-2">  <div class="mui-progress-bar -radial" data-value="60">
+      <svg class="indicator" viewbox="0 0 100 100">
+          <circle class="background" cx="50" cy="50" r="34"/>
+          <circle class="progress" cx="50" cy="50" r="34"/>
+      </svg>
+      <div class="value"></div>
+  </div></div>
+                                        <div class="code _separate-2 _smaller-2">
+                                            <pre class="( prettyprint lang-html )">  &lt;div class='mui-progress-bar -radial' data-value='60'&gt;
+      &lt;svg class='indicator' viewbox='0 0 100 100'&gt;
+          &lt;circle class='background' cx='50' cy='50' r='34'&gt;&lt;/circle&gt;
+          &lt;circle class='progress'   cx='50' cy='50' r='34'&gt;&lt;/circle&gt;
+      &lt;/svg&gt;
       &lt;div class='value'&gt;&lt;/div&gt;
   &lt;/div&gt;</pre>
                                         </div>
@@ -1996,10 +2025,10 @@
     <div id="scroll-to-top" class="( mui-button -icon ) -white-bg -black -f-blue-2-bg -f-white scroll-to-top -hidden _shadow-3">
         <span>&uarr;</span>
     </div>
-    <link rel="stylesheet" href="assets/css/muilessium.css?v=11778349428388446">
+    <link rel="stylesheet" href="assets/css/muilessium.css?v=08780522981113625">
     <link rel="stylesheet" href="assets/css/docs-styles.css?v=11778349428388446">
     <script src="assets/js/prettify/prettify.js?v=3366371934429975"></script>
-    <script src="assets/js/muilessium.js?v=8919168328946547"></script>
+    <script src="assets/js/muilessium.js?v=08780522981113625"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             [].forEach.call(document.querySelectorAll('.state .example'), function(example) {
