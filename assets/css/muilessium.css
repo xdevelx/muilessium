@@ -2835,7 +2835,7 @@ mark {
   pointer-events: none;
   transition: opacity cubic-bezier(0.53, 0.05, 0.13, 0.94) 600ms;
 }
-.mui-modal-window.-visible {
+.mui-modal-window.-opened {
   opacity: 1;
   pointer-events: auto;
 }

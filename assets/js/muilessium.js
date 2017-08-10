@@ -4834,7 +4834,7 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
             Keyboard.onShiftTabPressed((0, _uncategorized.firstOfList)(this.domCache.focusables), function () {
                 _this2.closeNavigation();
 
-                (0, _focusAndClick.goToPreviousFocusableElement)((0, _uncategorized.firstOfList)(_this2.domCache.focusables));
+                (0, _focusAndClick.goToPreviousFocusableElement)(_this2.domCache.hamburger);
             });
 
             Keyboard.onTabPressed((0, _uncategorized.lastOfList)(this.domCache.focusables), function () {
@@ -5274,7 +5274,7 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
         });
 
         _this.state = (0, _uncategorized.extend)(_this.state, {
-            visible: false,
+            isOpened: false,
             savedOpener: null
         });
 
@@ -5302,16 +5302,15 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
                     _this2.openModal();
                 });
 
-                /* Not sure it is good idea to open modal on space pressed, need tests. */
                 Keyboard.onSpacePressed(opener, function () {
                     _this2.state.savedOpened = opener;
                     _this2.openModal();
                 });
             });
 
-            (0, _focusAndClick.makeElementFocusable)(this.domCache.modalWindow);
-
+            Keyboard.onEscapePressed(this.domCache.modalWindow, this.closeModal.bind(this));
             Keyboard.onTabPressed(this.domCache.modalWindow, this.closeModal.bind(this));
+            Keyboard.onShiftTabPressed(this.domCache.modalWindow, this.closeModal.bind(this));
 
             (0, _focusAndClick.makeElementClickable)(this.domCache.closeIcon, this.closeModal.bind(this), { mouse: true, keyboard: false });
             (0, _focusAndClick.makeElementClickable)(this.domCache.shadow, this.closeModal.bind(this), { mouse: true, keyboard: false });
@@ -5323,15 +5322,16 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
     }, {
         key: 'openModal',
         value: function openModal() {
-            if (!this.state.visible) {
-                (0, _classes.addClass)(this.domCache.element, '-visible');
+            if (!this.state.isOpened) {
+                (0, _classes.addClass)(this.domCache.element, '-opened');
                 (0, _classes.addClass)(this.domCache.shadow, '-visible');
 
                 _aria.aria.set(this.domCache.element, 'hidden', false);
 
-                this.domCache.modalWindow.focus();
+                (0, _focusAndClick.makeElementFocusable)(this.domCache.modalWindow);
+                this.state.isOpened = true;
 
-                this.state.visible = true;
+                this.domCache.modalWindow.focus();
             }
 
             return this;
@@ -5339,13 +5339,14 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
     }, {
         key: 'closeModal',
         value: function closeModal() {
-            if (this.state.visible) {
-                (0, _classes.removeClass)(this.domCache.element, '-visible');
+            if (this.state.isOpened) {
+                (0, _classes.removeClass)(this.domCache.element, '-opened');
                 (0, _classes.removeClass)(this.domCache.shadow, '-visible');
 
                 _aria.aria.set(this.domCache.element, 'hidden', true);
 
-                this.state.visible = false;
+                (0, _focusAndClick.makeElementNotFocusable)(this.domCache.modalWindow);
+                this.state.isOpened = false;
 
                 if (this.state.savedOpener) {
                     this.state.savedOpener.focus();
@@ -6426,6 +6427,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.onEnterPressed = onEnterPressed;
 exports.onSpacePressed = onSpacePressed;
 exports.onTabPressed = onTabPressed;
+exports.onEscapePressed = onEscapePressed;
 exports.onShiftTabPressed = onShiftTabPressed;
 exports.onArrowLeftPressed = onArrowLeftPressed;
 exports.onArrowUpPressed = onArrowUpPressed;
@@ -6462,6 +6464,15 @@ function onSpacePressed(element, callback) {
 function onTabPressed(element, callback) {
     element.addEventListener('keydown', function (e) {
         if (e.keyCode == 9 && !e.shiftKey) {
+            e.preventDefault();
+            callback(e);
+        }
+    });
+};
+
+function onEscapePressed(element, callback) {
+    element.addEventListener('keydown', function (e) {
+        if (e.keyCode == 27 && !e.shiftKey) {
             e.preventDefault();
             callback(e);
         }

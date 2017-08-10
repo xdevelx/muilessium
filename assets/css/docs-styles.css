@@ -228,10 +228,7 @@ hr {
   font-weight: bold;
 }
 .anchor-link {
-  position: absolute;
-  left: -1rem;
-  top: 50%;
-  transform: translateY(-50%);
+  text-decoration: none;
 }
 .scroll-to-top {
   display: block;
