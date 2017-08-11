@@ -23,7 +23,7 @@
         <div class="mui-header-logo _left">
             <img class="mui-image -logo -js-lazy-load" data-src="images/muilessium.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="logo">
             <a class="link -black -f-blue-3 _right" href="/">
-                <h1 class="_bigger-1">muilessium <span class="_smaller-3">v0.1.33</span></h1>
+                <h1 class="_bigger-1">muilessium <span class="_smaller-3">v0.1.34</span></h1>
             </a>
         </div>
         <nav class="mui-header-navigation -mobile-version _right">
@@ -716,10 +716,12 @@
           <span>button</span>
           <span>&nbsp;&nbsp;&darr;</span>
       </a>          
-      <div class="mui-dropdown-options _shadow-1">
-          <div class="option">Option 1</div>
-          <div class="option">Option 2</div>
-          <div class="option">Option 3</div>
+      <div class="mui-dropdown-options">
+          <div class="wrapper">
+              <div class="option">Option 1</div>
+              <div class="option">Option 2</div>
+              <div class="option">Option 3</div>
+          </div>
       </div>
       <div class="mui-shadow-toggle" aria-label="Close dropdown menu"></div>
   </div></div>
@@ -729,10 +731,12 @@
           &lt;span&gt;button&lt;/span&gt;
           &lt;span&gt;&nbsp;&nbsp;&darr;&lt;/span&gt;
       &lt;/a&gt;          
-      &lt;div class='mui-dropdown-options _shadow-1'&gt;
-          &lt;div class='option'&gt;Option 1&lt;/div&gt;
-          &lt;div class='option'&gt;Option 2&lt;/div&gt;
-          &lt;div class='option'&gt;Option 3&lt;/div&gt;
+      &lt;div class='mui-dropdown-options'&gt;
+          &lt;div class='wrapper'&gt;
+              &lt;div class='option'&gt;Option 1&lt;/div&gt;
+              &lt;div class='option'&gt;Option 2&lt;/div&gt;
+              &lt;div class='option'&gt;Option 3&lt;/div&gt;
+          &lt;/div&gt;
       &lt;/div&gt;
       &lt;div class='mui-shadow-toggle' aria-label='Close dropdown menu'&gt;&lt;/div&gt;
   &lt;/div&gt;</pre>
@@ -1145,6 +1149,24 @@
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/dropdown-options.less</div>
                                     <p class="mui-p _separate-1">This component should be used as a part of more complex components. See button-dropdown and select-dropdown components for more information.</p>
+                                    <div class="_separate-1">
+                                        <div class="example _separate-2">  <div class="mui-dropdown-options">
+      <div class="wrapper">
+          <div class="option">Option 1</div>
+          <div class="option">Option 2</div>
+          <div class="option">Option 3</div>
+      </div>
+  </div></div>
+                                        <div class="code _separate-2 _smaller-2">
+                                            <pre class="( prettyprint lang-html )">  &lt;div class='mui-dropdown-options'&gt;
+      &lt;div class='wrapper'&gt;
+          &lt;div class='option'&gt;Option 1&lt;/div&gt;
+          &lt;div class='option'&gt;Option 2&lt;/div&gt;
+          &lt;div class='option'&gt;Option 3&lt;/div&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;</pre>
+                                        </div>
+                                    </div>
                             </div>
                         <div id="src/less/components/grid-flex.less" class="_allow-empty"></div>
                         <div id="src/less/components/grid.less" class="_allow-empty"></div>
@@ -1792,10 +1814,12 @@
           <div class="select" data-id="fGrt3">
               <div class="state"></div>
               <div class="mui-dropdown-options _shadow-1">
-                  <div class="option -selected" data-value="red">Red</div>
-                  <div class="option" data-value="green">Green</div>
-                  <div class="option" data-value="blue">Blue</div>
-                  <div class="option" data-value="orange">Orange</div>
+                  <div class="wrapper">
+                      <div class="option -selected" data-value="red">Red</div>
+                      <div class="option" data-value="green">Green</div>
+                      <div class="option" data-value="blue">Blue</div>
+                      <div class="option" data-value="orange">Orange</div>
+                  </div>
               </div>
           </div>
           <div class="mui-shadow-toggle"></div>
@@ -1811,10 +1835,12 @@
           &lt;div class='select' data-id='fGrt3'&gt;
               &lt;div class='state'&gt;&lt;/div&gt;
               &lt;div class='mui-dropdown-options _shadow-1'&gt;
-                  &lt;div class='option -selected' data-value='red'&gt;Red&lt;/div&gt;
-                  &lt;div class='option' data-value='green'&gt;Green&lt;/div&gt;
-                  &lt;div class='option' data-value='blue'&gt;Blue&lt;/div&gt;
-                  &lt;div class='option' data-value='orange'&gt;Orange&lt;/div&gt;
+                  &lt;div class='wrapper'&gt;
+                      &lt;div class='option -selected' data-value='red'&gt;Red&lt;/div&gt;
+                      &lt;div class='option' data-value='green'&gt;Green&lt;/div&gt;
+                      &lt;div class='option' data-value='blue'&gt;Blue&lt;/div&gt;
+                      &lt;div class='option' data-value='orange'&gt;Orange&lt;/div&gt;
+                  &lt;/div&gt;
               &lt;/div&gt;
           &lt;/div&gt;
           &lt;div class='mui-shadow-toggle'&gt;&lt;/div&gt;
@@ -2081,7 +2107,7 @@
     <div id="scroll-to-top" class="( mui-button -icon ) -white-bg -black -f-blue-2-bg -f-white scroll-to-top -hidden _shadow-3">
         <span>&uarr;</span>
     </div>
-    <link rel="stylesheet" href="assets/css/muilessium.css?v=24388945426223096">
+    <link rel="stylesheet" href="assets/css/muilessium.css?v=24388945426223097">
     <link rel="stylesheet" href="assets/css/docs-styles.css?v=24388945426223096">
     <script src="assets/js/prettify/prettify.js?v=24388945426223096"></script>
     <script src="assets/js/muilessium.js?v=24388945426223096"></script>

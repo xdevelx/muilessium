@@ -749,17 +749,14 @@
   object-fit: cover;
   font-family: 'object-fit: cover;';
 }
-._no-break {
-  white-space: nowrap !important;
-}
 ._text-left {
-  text-align: left !important;
+  text-align: left    !important;
 }
 ._text-right {
-  text-align: right !important;
+  text-align: right   !important;
 }
 ._text-center {
-  text-align: center !important;
+  text-align: center  !important;
 }
 ._text-justify {
   text-align: justify !important;
@@ -843,6 +840,15 @@
 ._line-1r {
   line-height: 1rem !important;
 }
+._line-1-25 {
+  line-height: 1.25 !important;
+}
+._line-1-50 {
+  line-height: 1.50 !important;
+}
+._line-1-75 {
+  line-height: 1.75 !important;
+}
 ._line-2r {
   line-height: 2rem !important;
 }
@@ -855,20 +861,31 @@
 ._line-5r {
   line-height: 5rem !important;
 }
-._line-1-25 {
-  line-height: 1.25 !important;
-}
-._line-1-50 {
-  line-height: 1.50 !important;
-}
-._line-1-75 {
-  line-height: 1.75 !important;
-}
 ._left {
-  float: left !important;
+  float: left  !important;
 }
 ._right {
   float: right !important;
+}
+._separate-1 {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+._separate-2 {
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
+}
+._separate-3 {
+  margin-top: 3rem !important;
+  margin-bottom: 3rem !important;
+}
+._separate-4 {
+  margin-top: 4rem !important;
+  margin-bottom: 4rem !important;
+}
+._separate-5 {
+  margin-top: 5rem !important;
+  margin-bottom: 5rem !important;
 }
 ._shadow-1 {
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3) !important;
@@ -892,34 +909,16 @@
 ._no-overflow {
   overflow: hidden !important;
 }
-._truncate-line,
-.mui-tabs > .labels > .label {
+._truncate-line {
   white-space: nowrap !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
 }
+._no-break {
+  white-space: nowrap !important;
+}
 ._hidden {
   display: none !important;
-}
-._separate-1 {
-  margin-top: 1rem !important;
-  margin-bottom: 1rem !important;
-}
-._separate-2 {
-  margin-top: 2rem !important;
-  margin-bottom: 2rem !important;
-}
-._separate-3 {
-  margin-top: 3rem !important;
-  margin-bottom: 3rem !important;
-}
-._separate-4 {
-  margin-top: 4rem !important;
-  margin-bottom: 4rem !important;
-}
-._separate-5 {
-  margin-top: 5rem !important;
-  margin-bottom: 5rem !important;
 }
 ._disable-pointer-events {
   pointer-events: none !important;
@@ -1370,7 +1369,7 @@ a:focus {
 a:visited {
   color: #383838;
 }
-a:empty:after {
+a:empty::after {
   content: attr(href);
 }
 :focus {
@@ -1933,10 +1932,10 @@ h6,
   transform: rotate(90deg);
 }
 .mui-badge {
+  font-size: .80em !important;
   display: inline-block;
   padding: 0 .5em;
   margin-left: .3em;
-  font-size: .80em !important;
   line-height: 1.5;
   text-align: center;
   color: #FFFFFF;
@@ -1948,7 +1947,7 @@ h6,
 .mui-badge.-rounded {
   border-radius: .6em;
 }
-.mui-badge.-new:after {
+.mui-badge.-new::after {
   content: ' new';
 }
 .mui-blockquote {
@@ -1956,17 +1955,17 @@ h6,
   padding: 1rem 2rem;
 }
 .mui-blockquote .text {
+  font-size: 1.25em !important;
   display: block;
   max-width: 1100px;
   margin: 0 auto .5rem;
-  font-size: 1.25em !important;
   font-weight: 600;
   text-align: center;
 }
-.mui-blockquote .text:before {
+.mui-blockquote .text::before {
   content: '\201C';
 }
-.mui-blockquote .text:after {
+.mui-blockquote .text::after {
   content: '\201D';
 }
 .mui-blockquote .author {
@@ -1986,7 +1985,7 @@ h6,
 .mui-breadcrumb > .link {
   text-decoration: none;
 }
-.mui-breadcrumb > .link:not(:last-of-type):after {
+.mui-breadcrumb > .link:not(:last-of-type)::after {
   content: '\0203A';
   padding: 0 .5rem;
 }
@@ -1994,7 +1993,7 @@ h6,
 .mui-breadcrumb > .link:focus {
   color: #C6C6C6;
 }
-.mui-breadcrumb.-slash-delimiter > .link:not(:last-of-type):after {
+.mui-breadcrumb.-slash-delimiter > .link:not(:last-of-type)::after {
   content: '/';
 }
 .mui-button-dropdown {
@@ -2009,10 +2008,9 @@ h6,
   pointer-events: none;
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -0.72rem;
   transform: translateY(80%);
   width: 100%;
-  z-index: 11;
   transition: all 210ms cubic-bezier(0.53, 0.05, 0.13, 0.94);
 }
 .mui-button-dropdown.-opened > .mui-button {
@@ -2064,7 +2062,7 @@ h6,
 .mui-button-group.-or > .mui-button:not(:first-of-type) {
   padding-left: 1.2rem;
 }
-.mui-button-group.-or > .mui-button:not(:first-of-type):before {
+.mui-button-group.-or > .mui-button:not(:first-of-type)::before {
   content: 'or';
   position: absolute;
   left: -0.6rem;
@@ -2259,10 +2257,10 @@ h6,
   opacity: 1;
 }
 .mui-slide > img.background {
-  height: inherit;
-  width: inherit;
   object-fit: cover;
   font-family: 'object-fit: cover;';
+  height: inherit;
+  width: inherit;
 }
 .mui-slide-content {
   position: absolute;
@@ -2365,7 +2363,7 @@ h6,
 .mui-carousel-indicators > .indicator:hover:after {
   background: #FFFFFF;
 }
-.mui-carousel-indicators > .indicator:after {
+.mui-carousel-indicators > .indicator::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -2377,7 +2375,7 @@ h6,
   border-radius: 50%;
   transition: all 210ms cubic-bezier(0.53, 0.05, 0.13, 0.94);
 }
-.mui-carousel-indicators > .indicator.-active:after {
+.mui-carousel-indicators > .indicator.-active::after {
   background: rgba(255, 255, 255, 0.5);
 }
 .mui-carousel-indicators > .indicator.-active:hover:after,
@@ -2441,8 +2439,8 @@ h6,
   overflow: hidden;
   transition: all 210ms cubic-bezier(0.53, 0.05, 0.13, 0.94);
 }
-.mui-checkbox.-toggle > label > .icon:before,
-.mui-checkbox.-toggle > label > .icon:after {
+.mui-checkbox.-toggle > label > .icon::before,
+.mui-checkbox.-toggle > label > .icon::after {
   display: block;
   position: absolute;
   top: -1px;
@@ -2458,20 +2456,20 @@ h6,
   border-radius: 0.2rem;
   transition: all 210ms cubic-bezier(0.53, 0.05, 0.13, 0.94);
 }
-.mui-checkbox.-toggle > label > .icon:before {
+.mui-checkbox.-toggle > label > .icon::before {
   content: 'off';
 }
-.mui-checkbox.-toggle > label > .icon:after {
+.mui-checkbox.-toggle > label > .icon::after {
   content: 'on';
   opacity: 0;
 }
-.mui-checkbox.-toggle.-checked > label > .icon:before,
-.mui-checkbox.-toggle.-checked > label > .icon:after {
+.mui-checkbox.-toggle.-checked > label > .icon::before,
+.mui-checkbox.-toggle.-checked > label > .icon::after {
   left: calc(100% -  2rem );
   background: #000000;
   color: #FFFFFF;
 }
-.mui-checkbox.-toggle.-checked > label > .icon:after {
+.mui-checkbox.-toggle.-checked > label > .icon::after {
   opacity: 1;
 }
 .mui-collection {
@@ -2523,22 +2521,49 @@ h6,
       flex: 1 0 auto;
 }
 .mui-dropdown-options {
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3) !important;
+  z-index: 11;
   position: relative;
   width: 100%;
-  padding: 1rem;
-  list-style: none;
-  background: #FFFFFF;
-  text-align: left;
   border-radius: 0.2rem;
 }
-.mui-dropdown-options > .option {
+.mui-dropdown-options::before {
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3) !important;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 1rem;
+  width: 1rem;
+  transform: translateX(-50%) translateY(calc(-49%)) rotate(45deg);
+  z-index: -1;
+}
+.mui-dropdown-options > .wrapper {
+  position: relative;
+  padding: 1rem;
+  text-align: left;
+  border-radius: 0.2rem;
+  background: #FFFFFF;
+}
+.mui-dropdown-options > .wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 1rem;
+  width: 1rem;
+  transform: translateX(-50%) translateY(calc(-49%)) rotate(45deg);
+  z-index: 1;
+  background: #FFFFFF;
+}
+.mui-dropdown-options > .wrapper > .option {
   cursor: pointer;
 }
-.mui-dropdown-options > .option:hover,
-.mui-dropdown-options > .option:focus {
+.mui-dropdown-options > .wrapper > .option:hover,
+.mui-dropdown-options > .wrapper > .option:focus {
   color: #6D6D6D;
 }
-.mui-dropdown-options > .option > .link {
+.mui-dropdown-options > .wrapper > .option > .link {
   text-decoration: none;
 }
 .mui-hero-header {
@@ -2548,10 +2573,10 @@ h6,
   overflow: hidden;
 }
 .mui-hero-header > .background {
-  height: inherit;
-  width: inherit;
   object-fit: cover;
   font-family: 'object-fit: cover;';
+  height: inherit;
+  width: inherit;
 }
 .mui-hero-header > .effects {
   position: absolute;
@@ -2711,8 +2736,8 @@ h6,
   overflow: visible;
 }
 .mui-input.-material.-focused > label {
-  transform: translateY(-200%);
   font-size: .80em !important;
+  transform: translateY(-200%);
   color: #6D6D6D;
 }
 .mui-input.-material > label {
@@ -2733,8 +2758,8 @@ h6,
   margin-bottom: 0;
 }
 .mui-input.-material.-has-value > label {
-  transform: translateY(-200%);
   font-size: .80em !important;
+  transform: translateY(-200%);
   color: #6D6D6D;
 }
 .mui-input.-valid {
@@ -3197,8 +3222,8 @@ mark {
 .mui-radio > label:focus > .icon {
   border-color: #000000;
 }
-.mui-radio > label:hover > .icon:after,
-.mui-radio > label:focus > .icon:after {
+.mui-radio > label:hover > .icon::after,
+.mui-radio > label:focus > .icon::after {
   background: #000000;
 }
 .mui-radio > label > .icon {
@@ -3211,7 +3236,7 @@ mark {
   border: 1px solid #6D6D6D;
   border-radius: 50%;
 }
-.mui-radio > label > .icon:after {
+.mui-radio > label > .icon::after {
   content: '';
   display: block;
   position: absolute;
@@ -3225,7 +3250,7 @@ mark {
   opacity: 0;
   transition: all 210ms cubic-bezier(0.53, 0.05, 0.13, 0.94);
 }
-.mui-radio > input[type=radio]:checked + label > .icon:after {
+.mui-radio > input[type=radio]:checked + label > .icon::after {
   opacity: 1;
   height: 0.8rem;
   width: 0.8rem;
@@ -3305,7 +3330,7 @@ mark {
 .mui-ribbon.-bookmark.-right {
   right: 1rem;
 }
-.mui-ribbon.-bookmark:after {
+.mui-ribbon.-bookmark::after {
   content: '';
   position: absolute;
   bottom: calc( -50px  / 2 + .5px);
@@ -3381,7 +3406,7 @@ mark {
   opacity: 0;
   pointer-events: none;
   position: absolute;
-  bottom: 0;
+  bottom: -0.72rem;
   left: 0;
   width: 100%;
   transform: translateY(80%);
@@ -3444,6 +3469,9 @@ mark {
   margin-right: -0.5px;
 }
 .mui-tabs > .labels > .label {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
   display: table-cell;
   width: 1px;
   padding: 0 1rem;
@@ -3537,8 +3565,8 @@ mark {
   animation: spinner-dash-animation 1.5s linear infinite;
 }
 .mui-tag {
-  display: inline-block;
   font-size: .80em !important;
+  display: inline-block;
   text-decoration: none;
   color: #6D6D6D;
   transition: all 210ms cubic-bezier(0.53, 0.05, 0.13, 0.94);
@@ -3646,8 +3674,8 @@ mark {
   border-radius: 0;
 }
 .mui-textarea.-material > textarea:focus + label {
-  transform: translateY(-200%);
   font-size: .80em !important;
+  transform: translateY(-200%);
   color: #6D6D6D;
 }
 .mui-textarea.-material > label {
@@ -3667,7 +3695,7 @@ mark {
   color: #000000;
 }
 .mui-textarea.-has-value > label {
-  transform: translateY(-200%);
   font-size: .80em !important;
+  transform: translateY(-200%);
   color: #6D6D6D;
 }
