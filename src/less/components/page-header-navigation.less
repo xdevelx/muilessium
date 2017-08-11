@@ -30,13 +30,10 @@
     }
     
     > .links-list > .item > .link {
-        padding: calc((@default-ui-height * 2 - 1em) / 2);
-        
+        padding: calc((@default-ui-height * 2 - 1em) / 2);        
         line-height: @default-ui-height * 2;
         text-decoration: none;
-        
         color: @black;
-        
         transition: all @default-animation-duration @default-animation-function;        
 
         &:hover,
@@ -56,20 +53,14 @@
             right: 0;
             z-index: 11;
             overflow-y: scroll;
-            
             height: 100%;
             width: 80%;
-            
             padding: 1rem;
-        
             font-size: 2rem;
             text-align: right;
-
             transform: translateX(100%);
-            
             background: @white;
             box-shadow: 0 0 10rem darken(@default-shadow-color, 10%);
-            
             transition: all @default-animation-duration @default-animation-function;
         }
         
@@ -122,16 +113,11 @@
         display: inline-block;
         position: relative;
         float: right;
-        
         height: @default-ui-height * 2;
         line-height: @default-ui-height * 2;
-        
         padding: 0 1rem;
-        
         font-size: 2rem;
-
         color: @grey-4;
-
         transition: all @default-animation-duration @default-animation-function;
         
         &:hover {

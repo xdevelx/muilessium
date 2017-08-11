@@ -14,11 +14,9 @@
 
 
 .@{muilessium-prefix}pagination {
-    position: relative;
-    
+    position: relative;    
     text-align: center;
     list-style: none;
-    
     user-select: none;
     
     > .page {
@@ -32,14 +30,11 @@
         display: inline-block;
         height: ~'calc(' @default-ui-height ~' - 2px)';
         padding: 0 1rem;
-
         font-size: @default-ui-height * .5;
         line-height: ~'calc(' @default-ui-height ~' - 1px)';
         text-decoration: none;
-        
         color: @black;
         background: @white;
-        
         transition: all @default-animation-duration @default-animation-function;
         
         &:visited,

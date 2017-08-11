@@ -10,19 +10,16 @@
 
 
 .@{muilessium-prefix}breadcrumb {
-    height: @default-ui-height;
-    
+    height: @default-ui-height;    
     padding: 0 1rem;
-    
     line-height: @default-ui-height;
-    
     background: @grey-2;
     border-radius: @default-border-radius;
     
     > .link {
         text-decoration: none;
         
-        &:not(:last-of-type):after {
+        &:not(:last-of-type)::after {
             content: '\0203A';
             padding: 0 .5rem;
         }

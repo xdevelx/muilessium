@@ -5,13 +5,12 @@
 //  <div class='mui-content-container'></div>
 
 .@{muilessium-prefix}content-container {
+    #utils > .clearfix;
+
     position: relative;
     width: 90%;
-    max-width: @max-container-width;
-    
+    max-width: @max-container-width;    
     margin: 0 auto;
-    
-    #utils > .clearfix;
     
     &.-no-limit-width {
         max-width: 100%;

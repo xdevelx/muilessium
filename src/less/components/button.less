@@ -35,24 +35,17 @@
 
 .@{muilessium-prefix}button {
     display: inline-block;
-    position: relative;
-    
+    position: relative;    
     padding: 0 1em;
-    
     font-size: 1rem;
     line-height: 2;
-    
     text-decoration: none;
     text-align: center;
-
     color: @white;
     background: @grey-4;
-    
     border: none;
     border-radius: @default-border-radius;
-    
     user-select: none;
-    
     transition: all @default-animation-duration @default-animation-function;
     
     &:visited {
@@ -84,7 +77,6 @@
     &.-dangerous {
         color: @white;
         background: @grey-5;
-        
         text-transform: uppercase;
         
         &:visited {
@@ -131,7 +123,6 @@
     &.-icon {
         height: @default-ui-height;
         width:  @default-ui-height;
-
         padding: 0;
     }
 
@@ -152,35 +143,31 @@
     > .label {
         display: inline-block;
         height: 100%;
-
         padding: 0 1rem;
-
         color: @white;
         background: @grey-5;
     }
 
     &.-label-right {
-        padding-right: 0;
-
         #utils > .clearfix;
+
+        padding-right: 0;
 
         > .label {
             float: right;
             margin-left: 1rem;
-
             border-radius: 0 @default-border-radius @default-border-radius 0;
         }
     }
 
     &.-label-left {
-        padding-left: 0;
-
         #utils > .clearfix;
+
+        padding-left: 0;
 
         > .label {
             float: left;
             margin-right: 1rem;
-
             border-radius: @default-border-radius 0 0 @default-border-radius;
         }
     }

@@ -29,13 +29,10 @@
     
     > .item {
         display: block;
-        position: relative;
-        
+        position: relative;        
         margin: 0;
         padding: 0 1rem;
-       
         border: 1px solid @grey-2;
-
         overflow: hidden;
         
         &:first-of-type {
@@ -57,15 +54,10 @@
         display: block;
         position: relative;
         left: -1rem;
-        
         width: ~'calc(100% + 2rem)';
-        
         padding: 1rem;
-
         line-height: 1;
-
         background: @grey-2;
-
         transition: border-bottom-left-radius  @default-animation-duration @default-animation-function,
                     border-bottom-right-radius @default-animation-duration @default-animation-function;
         
@@ -91,7 +83,6 @@
         height: 1em;
         width: 1em;
         vertical-align: middle;
-
         transition: transform @default-animation-duration @default-animation-function;
     }
 
@@ -100,27 +91,27 @@
         overflow: hidden;
         opacity: 0;
         transform: rotateX(90deg);
-        
         transition: all @default-animation-duration @default-animation-function;
         will-change: max-height, margin, opacity, transform;
     } 
         
-    > .item.-unfold > .content {
-        max-height: 30rem;
-        margin: 1rem 0;
-        opacity: 1;
-        transform: rotateX(0);
-            
-        transition: all @default-animation-duration @default-animation-function;
-    }
+    > .item.-unfold {
+        > .content {
+            max-height: 30rem;
+            margin: 1rem 0;
+            opacity: 1;
+            transform: rotateX(0);
+            transition: all @default-animation-duration @default-animation-function;
+        }
 
-    > .item.-unfold > .title {
-        border-bottom-left-radius: @default-border-radius;
-        border-bottom-right-radius: @default-border-radius;
-    }
+        > .title {
+            border-bottom-left-radius: @default-border-radius;
+            border-bottom-right-radius: @default-border-radius;
+        }
 
-    > .item.-unfold > .title > .indicator {
-        transform: rotate(90deg);
+        > .title > .indicator {
+            transform: rotate(90deg);
+        }
     }
 }
 

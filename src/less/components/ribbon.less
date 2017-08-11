@@ -23,12 +23,10 @@
 
 
 .@{muilessium-prefix}ribbon {
-    position: absolute;
-    
+    position: absolute;    
     text-align: center;
     font-size: .8rem;
     text-transform: uppercase;
-    
     color: @black;
     background: @white;
     
@@ -42,7 +40,6 @@
         
         top: 0;
         width: @width;
-        
         font-size: .8rem;
         text-transform: uppercase;
         line-height: 4;
@@ -57,14 +54,11 @@
         
         &::after {
             content: '';
-            
             position: absolute;
             bottom: ~'calc(' -@width ~' / 2 + .5px)';
             left: 0;
-            
             height: 0;
             width: 0;
-            
             border-left: @width / 2 solid @white;
             border-right: @width / 2 solid @white;
             border-bottom: @width / 2 solid transparent;
@@ -73,7 +67,6 @@
     
     &.-classic {
         line-height: 2;
-        
         width: 8rem;
         
         &.-top.-left {

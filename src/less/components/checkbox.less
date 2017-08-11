@@ -53,13 +53,10 @@
     > label > .icon {
         display: inline-block;
         position: relative;
-        vertical-align: middle;
-        
+        vertical-align: middle; 
         height: @default-ui-height;
         width: @default-ui-height;
-        
         border: 1px solid @grey-3;
-        
         border-radius: @default-border-radius;
         
         > .symbol {
@@ -90,7 +87,6 @@
             background: @grey-3;
             width: @default-ui-height * 2;
             overflow: hidden;
-            
             transition: all @default-animation-duration @default-animation-function;
             
             &::before,
@@ -99,20 +95,15 @@
                 position: absolute;
                 top: -1px;
                 left: 0;
-                
                 height: @default-ui-height;
                 width: @default-ui-height;
-                
                 line-height: @default-ui-height;
                 font-size: @default-ui-height * .4;
                 text-align: center;
                 text-transform: uppercase;
-
                 background: @grey-5;
                 color: @white;
-                
                 border-radius: @default-border-radius;
-                
                 transition: all @default-animation-duration @default-animation-function;
             }
             
@@ -130,7 +121,6 @@
             &::before,
             &::after {
                 left: ~'calc(100% - ' @default-ui-height ~')';
-
                 background: @black;
                 color: @white;
             }

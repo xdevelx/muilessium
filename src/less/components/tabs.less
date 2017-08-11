@@ -24,25 +24,20 @@
     }
     
     > .labels > .label {
+        ._truncate-line;
+
         display: table-cell;
-        width: 1px;
-        
+        width: 1px;        
         padding: 0 1rem;
-        
         text-align: center;
         line-height: @default-ui-height;
-        
         color: @black;
         background: @grey-1;
-        
         border: 1px solid @grey-3;
         border-top-left-radius: @default-border-radius;
         border-top-right-radius: @default-border-radius;
-        
         transition: all @default-animation-duration @default-animation-function;
-        &:extend(._truncate-line);
 
-        
         &:not(:first-of-type) {
             border-left: none;
         }
@@ -69,8 +64,7 @@
     }
     
     > .tabs {
-        margin: 0;
-        
+        margin: 0;        
         border: 1px solid @grey-3;
         border-top: none;
         border-bottom-left-radius: @default-border-radius;
@@ -82,17 +76,12 @@
     > .tabs > .tab {
         display: block;
         float: left;
-        
         width: 100%;
-        
         padding: 1rem;
-        
         color: @black;
         background: @white;
         opacity: 0;
-        
         transform: rotateX(90deg);
-        
         transition: all @default-animation-duration @default-animation-function;
         
         &:not(:first-of-type) {

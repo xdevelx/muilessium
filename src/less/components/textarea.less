@@ -30,13 +30,9 @@
         width: 100%;
         max-width: 100%;
         min-height: 10rem;
-
         padding: 1em;
-
         color: @black;
-
         border: 1px solid @grey-4;
-
         outline: none;
         resize: none;
         overflow: auto;
@@ -46,7 +42,6 @@
             color: @grey-4;
             text-indent: 0;
             opacity: 1;
-
             transition: all @default-animation-duration @default-animation-function;
         }
 
@@ -68,7 +63,6 @@
 
     &.-material {
         margin-top: 1rem;
-
         overflow: visible;
         
         > textarea {
@@ -79,24 +73,20 @@
         }
 
         > textarea:focus + label {
-            transform: translateY(-200%);
             ._smaller-1;
 
+            transform: translateY(-200%);
             color: @grey-4;
         }
 
         > label {
             display: block;
-
             position: absolute;
             left: 1rem;
             top: 1.5rem;
             transform: translateY(-50%);
-
             font-size: 1rem;
-
             color: @black;
-
             transition: all @default-animation-duration @default-animation-function;
 
             &:hover {
@@ -111,9 +101,9 @@
         }
         
         > label {
-            transform: translateY(-200%);
             ._smaller-1;
 
+            transform: translateY(-200%);
             color: @grey-4;
         }
     }

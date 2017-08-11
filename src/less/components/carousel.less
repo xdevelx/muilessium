@@ -39,20 +39,16 @@
 
 
 .@{muilessium-prefix}carousel {
-    position: relative;
-    
+    position: relative;    
     height: 20rem;
     width: 100%;
 }
 
 .@{muilessium-prefix}slides {
     position: inherit;
-    
     height: inherit;
     width: inherit;
-    
     margin: 0;
-    
     list-style: none;
 }
 
@@ -60,14 +56,10 @@
     position: absolute;
     top: 0;
     left: 0;
- 
     height: inherit;
     width: inherit;
-    
     overflow: hidden;
-    
     margin: 0 !important;
-
     opacity: 0;
     transition: opacity 600ms @default-animation-function;
 
@@ -76,10 +68,10 @@
     }
     
     > img.background {
-        height: inherit;
-        width: inherit;
-        
         #utils > .object-fit-cover;
+
+        height: inherit;
+        width: inherit;        
     }
 }
 
@@ -88,13 +80,9 @@
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
- 
     width: inherit;
-    
     padding: 1rem 6rem;
-    
     text-align: center;
-    
     color: @white;
 
     &.-content-center {
@@ -128,7 +116,6 @@
     position: absolute;
     top: 0;
     left: 0;
-
     height: inherit;
     width: inherit;
     
@@ -136,17 +123,13 @@
     > .next {
         position: absolute;
         top: 0;
-        
         height: inherit;
         width: 5rem;
-        
         font-size: 2rem;
         line-height: 20rem;
         text-align: center;
-        
         color: @white;
         background: fade(@black, 30%);
-        
         transition: all @default-animation-duration @default-animation-function;
         
         &:hover,
@@ -176,29 +159,21 @@
     position: absolute;
     left: 0;
     bottom: 0;
-    
     width: inherit;
     height: 2rem;
-
     margin: 0;
     padding: .5rem;
-
     text-align: center;
-    
     list-style: none;
 
     > .indicator {
         display: inline-block;
         position: relative;
-        
         height: 1rem;
         width: 1rem;
-        
         margin: 0 .2rem;
-        
         background: fade(@black, 30%);
         border-radius: 50%;
-
         transition: all @default-animation-duration @default-animation-function;        
 
         &:hover,
@@ -216,18 +191,14 @@
 
         &::after {
             content: '';
-            
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translateX(-50%) translateY(-50%);
-
             height: .5rem;
             width: .5rem;
-            
             background: fade(@white, 20%);
             border-radius: 50%;
-            
             transition: all @default-animation-duration @default-animation-function;
         }
 
