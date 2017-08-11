@@ -9,10 +9,12 @@
 //          <span>button</span>
 //          <span>&nbsp;&nbsp;&darr;</span>
 //      </a>          
-//      <div class='mui-dropdown-options _shadow-1'>
-//          <div class='option'>Option 1</div>
-//          <div class='option'>Option 2</div>
-//          <div class='option'>Option 3</div>
+//      <div class='mui-dropdown-options'>
+//          <div class='wrapper'>
+//              <div class='option'>Option 1</div>
+//              <div class='option'>Option 2</div>
+//              <div class='option'>Option 3</div>
+//          </div>
 //      </div>
 //      <div class='mui-shadow-toggle' aria-label='Close dropdown menu'></div>
 //  </div>
@@ -31,10 +33,9 @@
         pointer-events: none;
         position: absolute;
         left: 0;
-        bottom: 0;
+        bottom: -.72rem;
         transform: translateY(80%);
         width: 100%;
-        z-index: 11;
         transition: all @default-animation-duration @default-animation-function;
     }
 

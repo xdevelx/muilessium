@@ -1,21 +1,60 @@
 // @name Dropdown options
 // @description This component should be used as a part of more complex components. See button-dropdown and select-dropdown components for more information.
-
+// @markup
+//  <div class='mui-dropdown-options'>
+//      <div class='wrapper'>
+//          <div class='option'>Option 1</div>
+//          <div class='option'>Option 2</div>
+//          <div class='option'>Option 3</div>
+//      </div>
+//  </div>
 
 .@{muilessium-prefix}dropdown-options {
+    z-index: 11;
     position: relative;
     width: 100%;
 
-    padding: 1rem;
+    ._shadow-1;
 
-    list-style: none;
 
-    background: @white;
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        height: 1rem;
+        width: 1rem;
+        transform: translateX(-50%) translateY(calc(-50% + 1px)) rotate(45deg);
+        z-index: -1;
 
-    text-align: left;
-    border-radius: @default-border-radius;
+        ._shadow-1;
+    }
 
-    > .option {
+    > .wrapper {
+        position: relative;
+        padding: 1rem;
+        text-align: left;
+        border-radius: @default-border-radius;
+        background: @white;
+        
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            height: 1rem;
+            width: 1rem;
+            transform: translateX(-50%) translateY(calc(-50% + 1px)) rotate(45deg);
+        }
+
+        &::after {
+            z-index: 1;
+            background: @white;
+        }
+    }
+
+
+    > .wrapper > .option {
         cursor: pointer;
 
         &:hover,
@@ -24,7 +63,7 @@
         }
     }
 
-    > .option > .link {
+    > .wrapper > .option > .link {
         text-decoration: none;
     }
 }

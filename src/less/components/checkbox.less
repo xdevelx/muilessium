@@ -93,8 +93,8 @@
             
             transition: all @default-animation-duration @default-animation-function;
             
-            &:before,
-            &:after {
+            &::before,
+            &::after {
                 display: block;
                 position: absolute;
                 top: -1px;
@@ -116,26 +116,26 @@
                 transition: all @default-animation-duration @default-animation-function;
             }
             
-            &:before {
+            &::before {
                 content: 'off';
             }
             
-            &:after {
+            &::after {
                 content: 'on';
                 opacity: 0;
             }
         }
         
         &.-checked > label > .icon {
-            &:before,
-            &:after {
+            &::before,
+            &::after {
                 left: ~'calc(100% - ' @default-ui-height ~')';
 
                 background: @black;
                 color: @white;
             }
             
-            &:after {
+            &::after {
                 opacity: 1;
             }
         }

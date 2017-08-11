@@ -36,7 +36,7 @@
             > .icon {
                 border-color: @black;
                 
-                &:after {
+                &::after {
                     background: @black;
                 }
             }
@@ -56,7 +56,7 @@
         border: 1px solid @grey-4;
         border-radius: 50%;
         
-        &:after {
+        &::after {
             content: '';
             
             display: block;
@@ -78,7 +78,7 @@
     }
     
     > input[type=radio]:checked + label > .icon {
-        &:after {
+        &::after {
             opacity: 1;
             height: @default-ui-height * .4;
             width: @default-ui-height * .4;

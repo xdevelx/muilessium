@@ -214,7 +214,7 @@
             }
         }
 
-        &:after {
+        &::after {
             content: '';
             
             position: absolute;
@@ -232,7 +232,7 @@
         }
 
         &.-active {
-            &:after {
+            &::after {
                 background: fade(@white, 50%);
             }
 
