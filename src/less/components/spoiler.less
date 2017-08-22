@@ -1,0 +1,42 @@
+// @name Spoiler
+// @description No description
+//
+// @markup
+//  <div class='mui-spoiler'>
+//      <div class='title'>spoiler</div>
+//      <div class='content'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam et minus explicabo consectetur reprehenderit dolor dolorem quaerat necessitatibus optio aut, quas cum ex eveniet, quidem. Sunt ad eligendi numquam cupiditate asperiores quod, aspernatur delectus labore est? Nisi sapiente, doloremque cupiditate vel eos numquam aliquam possimus?</div>
+//  </div>
+
+
+
+.@{muilessium-prefix}spoiler {
+    > .title {
+        display: inline-block;
+        color: @grey-4;
+        border-bottom: 1px dashed @grey-4;
+
+        &:hover,
+        &:focus {
+            color: @black;
+            cursor: pointer;
+        }
+    }
+
+    > .content {
+        max-height: 0;
+        padding-top: 1rem;
+        opacity: 0;
+        overflow: hidden;
+        transform: rotateX(90deg) translateY(-40%);
+        transition: all @default-animation-duration @default-animation-function;
+        will-change: opacity, max-height, transform;
+    }
+
+    &.-opened {
+        > .content {
+            max-height: 30rem;
+            opacity: 1;
+            transform: rotateX(0) translateY(0);
+        }
+    }
+}

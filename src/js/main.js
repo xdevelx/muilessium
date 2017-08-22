@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Radio':            window.Muilessium.Factory.create('Radio',            '.mui-radio',             {}),
         'Rating':           window.Muilessium.Factory.create('Rating',           '.mui-rating',            {}),
         'SelectDropdown':   window.Muilessium.Factory.create('SelectDropdown',   '.mui-select-dropdown',   {}),
+        'Spoiler':          window.Muilessium.Factory.create('Spoiler',          '.mui-spoiler',           {}),
         'Tabs':             window.Muilessium.Factory.create('Tabs',             '.mui-tabs',              {}),
         'TagsList':         window.Muilessium.Factory.create('TagsList',         '.mui-tags-list',         {}),
         'Textarea':         window.Muilessium.Factory.create('Textarea',         '.mui-textarea',          {})

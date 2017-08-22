@@ -17,6 +17,7 @@ export { Pagination       } from './components/pagination';
 export { ProgressBar      } from './components/progress-bar';
 export { Radio            } from './components/radio';
 export { SelectDropdown   } from './components/select-dropdown';
+export { Spoiler          } from './components/spoiler';
 export { Tabs             } from './components/tabs';
 export { TagsList         } from './components/tags-list';
 export { Textarea         } from './components/textarea';
