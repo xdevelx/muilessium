@@ -3743,7 +3743,7 @@ var Component = exports.Component = function () {
     return Component;
 }();
 
-},{"./utils":34}],7:[function(require,module,exports){
+},{"./utils":35}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3876,6 +3876,15 @@ Object.defineProperty(exports, 'SelectDropdown', {
   }
 });
 
+var _spoiler = require('./components/spoiler');
+
+Object.defineProperty(exports, 'Spoiler', {
+  enumerable: true,
+  get: function get() {
+    return _spoiler.Spoiler;
+  }
+});
+
 var _tabs = require('./components/tabs');
 
 Object.defineProperty(exports, 'Tabs', {
@@ -3912,7 +3921,7 @@ Object.defineProperty(exports, 'Rating', {
   }
 });
 
-},{"./components/accordion":8,"./components/breadcrumb":9,"./components/button":11,"./components/button-dropdown":10,"./components/carousel":12,"./components/checkbox":13,"./components/header-navigation":14,"./components/input":15,"./components/media-view":16,"./components/modal-window":17,"./components/pagination":18,"./components/progress-bar":19,"./components/radio":20,"./components/rating":21,"./components/select-dropdown":22,"./components/tabs":23,"./components/tags-list":24,"./components/textarea":25}],8:[function(require,module,exports){
+},{"./components/accordion":8,"./components/breadcrumb":9,"./components/button":11,"./components/button-dropdown":10,"./components/carousel":12,"./components/checkbox":13,"./components/header-navigation":14,"./components/input":15,"./components/media-view":16,"./components/modal-window":17,"./components/pagination":18,"./components/progress-bar":19,"./components/radio":20,"./components/rating":21,"./components/select-dropdown":22,"./components/spoiler":23,"./components/tabs":24,"./components/tags-list":25,"./components/textarea":26}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4089,7 +4098,7 @@ var Accordion = exports.Accordion = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":26,"../utils/aria":37,"../utils/attributes":38,"../utils/classes":40,"../utils/focus-and-click":42,"../utils/uncategorized":44}],9:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":27,"../utils/aria":38,"../utils/attributes":39,"../utils/classes":41,"../utils/focus-and-click":43,"../utils/uncategorized":45}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4140,7 +4149,7 @@ var Breadcrumb = exports.Breadcrumb = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils/aria":37}],10:[function(require,module,exports){
+},{"../component":6,"../utils/aria":38}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4322,7 +4331,7 @@ var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":26,"../utils/aria":37,"../utils/classes":40,"../utils/focus-and-click":42,"../utils/uncategorized":44}],11:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":27,"../utils/aria":38,"../utils/classes":41,"../utils/focus-and-click":43,"../utils/uncategorized":45}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4376,7 +4385,7 @@ var Button = exports.Button = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils/aria":37}],12:[function(require,module,exports){
+},{"../component":6,"../utils/aria":38}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4589,7 +4598,7 @@ var Carousel = exports.Carousel = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":26,"../controls/mouse":27,"../controls/touchscreen":28,"../utils/classes":40,"../utils/console":41,"../utils/focus-and-click":42,"../utils/uncategorized":44}],13:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":27,"../controls/mouse":28,"../controls/touchscreen":29,"../utils/classes":41,"../utils/console":42,"../utils/focus-and-click":43,"../utils/uncategorized":45}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4714,7 +4723,7 @@ var Checkbox = exports.Checkbox = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":26,"../utils/aria":37,"../utils/attributes":38,"../utils/classes":40,"../utils/focus-and-click":42,"../utils/uncategorized":44}],14:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":27,"../utils/aria":38,"../utils/attributes":39,"../utils/classes":41,"../utils/focus-and-click":43,"../utils/uncategorized":45}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -4967,7 +4976,7 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":26,"../controls/touchscreen":28,"../utils/aria":37,"../utils/classes":40,"../utils/focus-and-click":42,"../utils/uncategorized":44}],15:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":27,"../controls/touchscreen":29,"../utils/aria":38,"../utils/classes":41,"../utils/focus-and-click":43,"../utils/uncategorized":45}],15:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5156,7 +5165,7 @@ var Input = exports.Input = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils/aria":37,"../utils/attributes":38,"../utils/checks":39,"../utils/classes":40,"../utils/focus-and-click":42,"../utils/uncategorized":44}],16:[function(require,module,exports){
+},{"../component":6,"../utils/aria":38,"../utils/attributes":39,"../utils/checks":40,"../utils/classes":41,"../utils/focus-and-click":43,"../utils/uncategorized":45}],16:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5214,7 +5223,7 @@ var MediaView = exports.MediaView = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils/aria":37,"../utils/uncategorized":44}],17:[function(require,module,exports){
+},{"../component":6,"../utils/aria":38,"../utils/uncategorized":45}],17:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5363,7 +5372,7 @@ var ModalWindow = exports.ModalWindow = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":26,"../controls/touchscreen":28,"../utils/aria":37,"../utils/classes":40,"../utils/focus-and-click":42,"../utils/uncategorized":44}],18:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":27,"../controls/touchscreen":29,"../utils/aria":38,"../utils/classes":41,"../utils/focus-and-click":43,"../utils/uncategorized":45}],18:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5413,7 +5422,7 @@ var Pagination = exports.Pagination = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils/aria":37}],19:[function(require,module,exports){
+},{"../component":6,"../utils/aria":38}],19:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5511,7 +5520,7 @@ var ProgressBar = exports.ProgressBar = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils/aria":37,"../utils/attributes":38,"../utils/classes":40,"../utils/uncategorized":44}],20:[function(require,module,exports){
+},{"../component":6,"../utils/aria":38,"../utils/attributes":39,"../utils/classes":41,"../utils/uncategorized":45}],20:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5636,7 +5645,7 @@ var Radio = exports.Radio = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils/aria":37,"../utils/attributes":38,"../utils/checks":39,"../utils/focus-and-click":42,"../utils/uncategorized":44}],21:[function(require,module,exports){
+},{"../component":6,"../utils/aria":38,"../utils/attributes":39,"../utils/checks":40,"../utils/focus-and-click":43,"../utils/uncategorized":45}],21:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5785,7 +5794,7 @@ var Rating = exports.Rating = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":26,"../utils/aria":37,"../utils/attributes":38,"../utils/classes":40,"../utils/console":41,"../utils/focus-and-click":42,"../utils/uncategorized":44}],22:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":27,"../utils/aria":38,"../utils/attributes":39,"../utils/classes":41,"../utils/console":42,"../utils/focus-and-click":43,"../utils/uncategorized":45}],22:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -6062,7 +6071,125 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":26,"../utils/aria":37,"../utils/attributes":38,"../utils/checks":39,"../utils/classes":40,"../utils/focus-and-click":42,"../utils/uncategorized":44}],23:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":27,"../utils/aria":38,"../utils/attributes":39,"../utils/checks":40,"../utils/classes":41,"../utils/focus-and-click":43,"../utils/uncategorized":45}],23:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Spoiler = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _component = require('../component');
+
+var _keyboard = require('../controls/keyboard');
+
+var Keyboard = _interopRequireWildcard(_keyboard);
+
+var _aria = require('../utils/aria');
+
+var _classes = require('../utils/classes');
+
+var _focusAndClick = require('../utils/focus-and-click');
+
+var _uncategorized = require('../utils/uncategorized');
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // -----------------------------------------------------------------------------
+// SPOILER COMPONENT
+// -----------------------------------------------------------------------------
+// Methods list:
+//  - (default) initAria()
+//  - (default) initControls()
+//  - open()
+//  - toggle()
+//  - close()
+
+
+var Spoiler = exports.Spoiler = function (_Component) {
+    _inherits(Spoiler, _Component);
+
+    function Spoiler(element, options) {
+        _classCallCheck(this, Spoiler);
+
+        var _this = _possibleConstructorReturn(this, (Spoiler.__proto__ || Object.getPrototypeOf(Spoiler)).call(this, element, options));
+
+        _this.domCache = (0, _uncategorized.extend)(_this.domCache, {
+            title: element.querySelector('.title'),
+            content: element.querySelector('.content')
+        });
+
+        _this.initAria();
+        _this.initControls();
+        return _this;
+    }
+
+    _createClass(Spoiler, [{
+        key: 'initAria',
+        value: function initAria() {
+            _aria.aria.setRole(this.domCache.element, 'tablist');
+
+            _aria.aria.setRole(this.domCache.title, 'tab');
+            _aria.aria.set(this.domCache.title, 'expanded', false);
+            _aria.aria.set(this.domCache.title, 'controls', _aria.aria.setId(this.domCache.content));
+
+            _aria.aria.setRole(this.domCache.content, 'tabpanel');
+            _aria.aria.set(this.domCache.content, 'hidden', true);
+            _aria.aria.set(this.domCache.content, 'labelledby', _aria.aria.setId(this.domCache.title));
+
+            return this;
+        }
+    }, {
+        key: 'initControls',
+        value: function initControls() {
+            (0, _focusAndClick.makeElementClickable)(this.domCache.title, this.toggle.bind(this));
+
+            return this;
+        }
+    }, {
+        key: 'open',
+        value: function open() {
+            (0, _classes.removeClass)(this.domCache.element, '-opened');
+
+            _aria.aria.set(this.domCache.title, 'expanded', false);
+            _aria.aria.set(this.domCache.content, 'hidden', true);
+
+            return this;
+        }
+    }, {
+        key: 'toggle',
+        value: function toggle() {
+            (0, _classes.toggleClass)(this.domCache.element, '-opened');
+
+            _aria.aria.toggleState(this.domCache.title, 'expanded');
+            _aria.aria.toggleState(this.domCache.content, 'hidden');
+
+            return this;
+        }
+    }, {
+        key: 'close',
+        value: function close() {
+            (0, _classes.addClass)(this.domCache.element, '-opened');
+
+            _aria.aria.set(this.domCache.title, 'expanded', true);
+            _aria.aria.set(this.domCache.content, 'hidden', false);
+
+            return this;
+        }
+    }]);
+
+    return Spoiler;
+}(_component.Component);
+
+;
+
+},{"../component":6,"../controls/keyboard":27,"../utils/aria":38,"../utils/classes":41,"../utils/focus-and-click":43,"../utils/uncategorized":45}],24:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -6238,7 +6365,7 @@ var Tabs = exports.Tabs = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":26,"../controls/touchscreen":28,"../utils/aria":37,"../utils/classes":40,"../utils/focus-and-click":42,"../utils/uncategorized":44}],24:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":27,"../controls/touchscreen":29,"../utils/aria":38,"../utils/classes":41,"../utils/focus-and-click":43,"../utils/uncategorized":45}],25:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -6289,7 +6416,7 @@ var TagsList = exports.TagsList = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils/aria":37}],25:[function(require,module,exports){
+},{"../component":6,"../utils/aria":38}],26:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -6418,7 +6545,7 @@ var Textarea = exports.Textarea = function (_Component) {
 
 ;
 
-},{"../component":6,"../utils/aria":37,"../utils/attributes":38,"../utils/checks":39,"../utils/classes":40,"../utils/focus-and-click":42,"../utils/uncategorized":44}],26:[function(require,module,exports){
+},{"../component":6,"../utils/aria":38,"../utils/attributes":39,"../utils/checks":40,"../utils/classes":41,"../utils/focus-and-click":43,"../utils/uncategorized":45}],27:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -6524,7 +6651,7 @@ function onArrowDownPressed(element, callback) {
     });
 };
 
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -6564,7 +6691,7 @@ function onMouseOut(element, callback) {
     });
 };
 
-},{}],28:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -6602,7 +6729,7 @@ function onPinchOut(element, callback) {
     hammertime.on('pinchout', callback);
 };
 
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -6776,7 +6903,7 @@ var Events = exports.Events = function () {
     return Events;
 }();
 
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -6842,7 +6969,7 @@ var Factory = exports.Factory = function () {
 
 ;
 
-},{"./components":7}],31:[function(require,module,exports){
+},{"./components":7}],32:[function(require,module,exports){
 'use strict';
 
 var _muilessium = require('./muilessium');
@@ -6871,13 +6998,14 @@ document.addEventListener('DOMContentLoaded', function () {
         'Radio': window.Muilessium.Factory.create('Radio', '.mui-radio', {}),
         'Rating': window.Muilessium.Factory.create('Rating', '.mui-rating', {}),
         'SelectDropdown': window.Muilessium.Factory.create('SelectDropdown', '.mui-select-dropdown', {}),
+        'Spoiler': window.Muilessium.Factory.create('Spoiler', '.mui-spoiler', {}),
         'Tabs': window.Muilessium.Factory.create('Tabs', '.mui-tabs', {}),
         'TagsList': window.Muilessium.Factory.create('TagsList', '.mui-tags-list', {}),
         'Textarea': window.Muilessium.Factory.create('Textarea', '.mui-textarea', {})
     };
 });
 
-},{"./muilessium":32,"hammerjs":2}],32:[function(require,module,exports){
+},{"./muilessium":33,"hammerjs":2}],33:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -6991,7 +7119,7 @@ var Muilessium = function () {
 exports.default = Muilessium;
 ;
 
-},{"./controls/keyboard":26,"./controls/mouse":27,"./controls/touchscreen":28,"./events":29,"./factory":30,"./polyfills":33,"./utils":34}],33:[function(require,module,exports){
+},{"./controls/keyboard":27,"./controls/mouse":28,"./controls/touchscreen":29,"./events":30,"./factory":31,"./polyfills":34,"./utils":35}],34:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -7033,7 +7161,7 @@ function objectFit() {
     objectFitImages();
 };
 
-},{"object-fit-images":4,"smoothscroll-polyfill":5}],34:[function(require,module,exports){
+},{"object-fit-images":4,"smoothscroll-polyfill":5}],35:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -7172,7 +7300,7 @@ Object.keys(_viewport).forEach(function (key) {
   });
 });
 
-},{"./utils/ajax":35,"./utils/animations.js":36,"./utils/aria":37,"./utils/attributes":38,"./utils/checks":39,"./utils/classes":40,"./utils/console":41,"./utils/focus-and-click":42,"./utils/scroll":43,"./utils/uncategorized":44,"./utils/viewport":45}],35:[function(require,module,exports){
+},{"./utils/ajax":36,"./utils/animations.js":37,"./utils/aria":38,"./utils/attributes":39,"./utils/checks":40,"./utils/classes":41,"./utils/console":42,"./utils/focus-and-click":43,"./utils/scroll":44,"./utils/uncategorized":45,"./utils/viewport":46}],36:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -7236,7 +7364,7 @@ var ajax = exports.ajax = {
     }
 };
 
-},{}],36:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -7339,7 +7467,7 @@ function typeTexts(element, texts) {
     });
 };
 
-},{"../utils/checks":39}],37:[function(require,module,exports){
+},{"../utils/checks":40}],38:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -7433,7 +7561,7 @@ var aria = exports.aria = {
     }
 };
 
-},{"../utils/attributes":38,"../utils/uncategorized":44}],38:[function(require,module,exports){
+},{"../utils/attributes":39,"../utils/uncategorized":45}],39:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -7487,7 +7615,7 @@ function removeAttribute(element, attribute) {
     });
 };
 
-},{"../utils/checks":39}],39:[function(require,module,exports){
+},{"../utils/checks":40}],40:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -7596,7 +7724,7 @@ function isDescendant(parent, child) {
     return false;
 };
 
-},{"../utils/console":41}],40:[function(require,module,exports){
+},{"../utils/console":42}],41:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -7735,7 +7863,7 @@ function toggleClass(element, classForToggle) {
     });
 };
 
-},{"../utils/checks":39,"../utils/uncategorized":44}],41:[function(require,module,exports){
+},{"../utils/checks":40,"../utils/uncategorized":45}],42:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -7780,7 +7908,7 @@ var console = exports.console = {
     }
 };
 
-},{}],42:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -8059,7 +8187,7 @@ function onBlur(element, callback) {
     });
 };
 
-},{"../controls/keyboard":26,"../controls/mouse":27,"../utils/checks":39,"../utils/uncategorized":44}],43:[function(require,module,exports){
+},{"../controls/keyboard":27,"../controls/mouse":28,"../utils/checks":40,"../utils/uncategorized":45}],44:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -8129,7 +8257,7 @@ function scrollFire(element, callback) {
     }
 };
 
-},{"../utils/checks":39,"../utils/uncategorized":44,"../utils/viewport":45}],44:[function(require,module,exports){
+},{"../utils/checks":40,"../utils/uncategorized":45,"../utils/viewport":46}],45:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -8371,7 +8499,7 @@ function forEach(list, callback) {
     }
 };
 
-},{"../utils/classes":40,"../utils/focus-and-click":42,"../utils/scroll":43,"imagesloaded":3}],45:[function(require,module,exports){
+},{"../utils/classes":41,"../utils/focus-and-click":43,"../utils/scroll":44,"imagesloaded":3}],46:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -8410,4 +8538,4 @@ function isAboveViewport(element) {
     });
 };
 
-},{"../utils/checks":39}]},{},[31]);
+},{"../utils/checks":40}]},{},[32]);
