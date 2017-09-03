@@ -1,0 +1,31 @@
+// @name Content section
+// @description Section with optional background
+//
+// @markup
+//  <section class='mui-content-section'>
+//      <img class='mui-image background -js-lazy-load' data-src='https://placehold.it/1200x800' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt=''>
+//      <div class='content'>
+//          ....<br>.....<br>.....<br>....
+//      </div>
+//  </section>
+
+
+.@{muilessium-prefix}content-section {
+    position: relative;
+    z-index: 1;
+
+    > .background {
+        #utils > .object-fit-cover;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+    }
+
+    > .content {
+        position: relative;
+        z-index: 1;
+    }
+}
