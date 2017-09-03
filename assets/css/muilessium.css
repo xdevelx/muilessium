@@ -762,10 +762,13 @@
   text-align: justify !important;
 }
 ._uppercase {
-  text-transform: uppercase !important;
+  text-transform: uppercase  !important;
 }
 ._lowercase {
-  text-transform: lowercase !important;
+  text-transform: lowercase  !important;
+}
+._capitalize {
+  text-transform: capitalize !important;
 }
 ._smaller-0 {
   font-size: 1em   !important;
@@ -909,6 +912,9 @@
 ._no-overflow {
   overflow: hidden !important;
 }
+._no-decoration {
+  text-decoration: none;
+}
 ._truncate-line {
   white-space: nowrap !important;
   overflow: hidden !important;
@@ -916,6 +922,9 @@
 }
 ._no-break {
   white-space: nowrap !important;
+}
+._allow-empty {
+  /* by default all empty elements are hidden, this class allows to show empty element */
 }
 ._hidden {
   display: none !important;
@@ -1396,20 +1405,6 @@ img {
   height: auto;
   max-width: 100%;
 }
-ul,
-ol {
-  list-style-position: inside;
-}
-ul ul,
-ol ul,
-ul ol,
-ol ol {
-  padding-left: 2rem;
-  margin-top: .5rem;
-}
-li:not(:first-of-type) {
-  margin-top: .5rem;
-}
 html {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-size: calc( 14px  + ( 22  -  14 ) * ((100vw -  400px ) / ( 1200  -  400 )));
@@ -1566,6 +1561,10 @@ h6,
   -ms-flex-preferred-size: 0;
       flex-basis: 0;
   max-width: 100%;
+}
+.mui-column.-with-gutter {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 @media screen and (max-width: 400px) {
   .mui-column {
@@ -1761,6 +1760,10 @@ h6,
   .mui-column.-m-offset-11 {
     margin-left: 91.66666667%;
   }
+  .mui-column.-m-gutter {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 @media screen and (min-width: 1200px) {
   .mui-column.-l1 {
@@ -1855,6 +1858,10 @@ h6,
   }
   .mui-column.-l-offset-11 {
     margin-left: 91.66666667%;
+  }
+  .mui-column.-l-gutter {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 .mui-accordion {
@@ -2520,6 +2527,23 @@ h6,
   -ms-flex: 1 0 auto;
       flex: 1 0 auto;
 }
+.mui-content-section {
+  position: relative;
+  z-index: 1;
+}
+.mui-content-section > .background {
+  object-fit: cover;
+  font-family: 'object-fit: cover;';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+.mui-content-section > .content {
+  position: relative;
+  z-index: 1;
+}
 .mui-dropdown-options {
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3) !important;
   z-index: 11;
@@ -2821,6 +2845,19 @@ h6,
 .mui-input-indicator.-invalid > .invalid-icon {
   opacity: 1;
   color: #E2181C;
+}
+ul.mui-list,
+ol.mui-list {
+  list-style-position: inside;
+}
+ul.mui-list .mui-list,
+ol.mui-list .mui-list {
+  padding-left: 2rem;
+  margin-top: .5rem;
+}
+ul.mui-list .item:not(:first-of-type),
+ol.mui-list .item:not(:first-of-type) {
+  margin-top: .5rem;
 }
 .mui-marker,
 mark {
