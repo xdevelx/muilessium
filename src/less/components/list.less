@@ -1,0 +1,45 @@
+// @name List
+// @description Ordered and unordered lists with a number of aditional styles
+//
+// @markup
+//  <ul class='mui-list _separate-1'>
+//      <li class='item'>list item</li>
+//      <li class='item'>list item</li>
+//      <li class='item'>list item</li>
+//  </ul>
+//  <ol class='mui-list _separate-1'>
+//      <li class='item'>list item</li>
+//      <li class='item'>list item</li>
+//      <li class='item'>list item</li>
+//  </ol>
+//  <ul class='mui-list _separate-1'>
+//      <li class='item'>list item</li>
+//      <li class='item'>list item</li>
+//      <ul class='mui-list'>
+//          <li class='item'>list item</li>
+//          <li class='item'>list item</li>
+//          <ul class='mui-list _separate-1'>
+//              <li class='item'>list item</li>
+//              <li class='item'>list item</li>
+//          </ul>
+//          <li class='item'>list item</li>
+//      </ul>
+//  </ul>
+
+
+ul.@{muilessium-prefix}list,
+ol.@{muilessium-prefix}list {
+    list-style-position: inside;
+    
+    .mui-list {
+        padding-left: 2rem;
+        margin-top: .5rem;
+    }
+
+    .item {
+        &:not(:first-of-type) {
+            margin-top: .5rem;
+        }
+    }
+}
+
