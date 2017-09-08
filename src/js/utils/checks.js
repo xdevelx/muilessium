@@ -5,6 +5,7 @@
 // and avoiding errors when some element does not exists.
 //
 // Here is the full list of utilities:
+//  - isNode(element)
 //  - isInPage(element)
 //  - isNotInPage(element)
 //  - ifExists(element, callback, printWarning = true)
@@ -15,20 +16,30 @@
 import { console } from '../utils/console';
 
 
+// Is Node
+// -------
+// Returns true if element is Node and false otherwise
+
+export function isNode(element) {
+    return (element instanceof Node);
+}
+
+
+
 // Is in page
 // ----------
-// Returns true if elements is exists in a document.body and false otherwise
+// Returns true if elements exists in a document.body and false otherwise
 
 export function isInPage(element) {
     /* Use this instead of document.contains because IE has only partial support of Node.contains. */
-    return (element === document.body) || document.body.contains(element);
+    return isNode(element) && ((element === document.body) || document.body.contains(element));
 };
 
 
 
 // Is not in page
 // --------------
-// Returns false if element is exists in a document.body and true otherwise
+// Returns false if element exists in a document.body and true otherwise
 
 export function isNotInPage(element) {
     return !isInPage(element);
