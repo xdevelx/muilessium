@@ -23,7 +23,7 @@
         <div class="mui-header-logo _left">
             <img class="mui-image -logo -js-lazy-load" data-src="images/muilessium.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="logo">
             <a class="link -black -f-blue-3 _right" href="/">
-                <h1 class="_bigger-1">muilessium <span class="_smaller-3">v0.1.38</span></h1>
+                <h1 class="_bigger-1">muilessium <span class="_smaller-3">v0.1.39</span></h1>
             </a>
         </div>
         <nav class="mui-header-navigation -mobile-version _right">
@@ -43,8 +43,8 @@
     <div class="mui-hero-header -full-height -blue-4-bg">
         <div class="effects _allow-empty"></div>
         <div class="content">
-            <h2 class="_uppercase">Muilessium</h2>
-            <p>simple should be simple</p>
+            <h2 class="_uppercase" id="animated-title-1">Muilessium</h2>
+            <p id="animated-title-2">simple should be simple</p>
         </div>
         <div class="scroll-icon">&darr;</div>
     </div>
@@ -58,6 +58,7 @@
                     <li><a class="-f-blue-3" href="#page-layout-overview">Page layout</a></li>
                     <li><a class="-f-blue-3" href="#meta-viewport">Viewport</a></li>
                     <li><a class="-f-blue-3" href="#helpers-overview">Helpers</a></li>
+                    <li><a class="-f-blue-3" href="#events-overview">Events</a></li>
                     <li><a class="-f-blue-3" href="#lazy-loading-images-overview">Lazy load</a></li>
                     <li><a class="-f-blue-3" href="#colors-overview">Colors</a></li>
                 </ul>
@@ -273,7 +274,7 @@
                             <h3 class="_bigger-2" id="grid-overview">Grid</h3>
                         </a>
                     </div>
-                    <p class="mui-p _separate-1">Muilessium uses a grid with 12 columns based on flexbox (and has legacy version based on floats, but only in custom builds). Rows and columns have classes .mui-row and .mui-column and columns can have options -s* for a small screen, -m* for a medium screen and -l* for a large screen. Default breakpoints are 400, 600 and 1200px. See <a class="-f-blue-3" href="https://github.com/sfi0zy/muilessium/blob/master/src/less/components/grid-flex.less">src/less/components/grid-flex.less</a> for more information.</p>
+                    <p class="mui-p _separate-1">Muilessium uses a grid with 12 columns based on flexbox (and has legacy version based on floats, but only in custom builds). Rows and columns have classes .mui-row and .mui-column and columns can have options -s* for a small screen, -m* for a medium screen and -l* for a large screen. Default breakpoints are 400, 600 and 1200px. It behavior is similar to the grid from flexboxgrid.com, but it uses RSCSS-style class names. See <a class="-f-blue-3" href="https://github.com/sfi0zy/muilessium/blob/master/src/less/components/grid-flex.less">src/less/components/grid-flex.less</a> for more information.</p>
                     <div class="grid-preview _separate-2">
                         <div class="mui-row">
                             <div class="mui-column -s1 -blue-5-bg -blue-1 _text-center _line-2r _smaller-1">-s1</div>
@@ -348,6 +349,28 @@
                 </div>
                 <div class="_separate-5">
                     <div class="mui-row">
+                        <a class="anchor-link -black -f-blue-3" href="#events-overview">
+                            <h3 class="_bigger-2" id="events-overview">Events</h3>
+                        </a>
+                    </div>
+                    <p class="mui-p _separate-1">Muilessium has a system of internal events. It exports that system as window.Muilessium.Events. The main methods are:</p>
+                    <ul class="mui-list _separate-1">
+                        <li class="item">addEvent(name)</li>
+                        <li class="item">addEventListener(name, callback, executeIfAlreadyFired=false)</li>
+                        <li class="item">fireEvent(name)</li>
+                    </ul>
+                    <p class="mui-p _separate-1">There are six default events:</p>
+                    <ol class="mui-list">
+                        <li class="item">resize-window-height</li>
+                        <li class="item">resize-window-width</li>
+                        <li class="item">scroll-start</li>
+                        <li class="item">scroll-end</li>
+                        <li class="item">app-initialized</li>
+                        <li class="item">images-loaded</li>
+                    </ol>
+                </div>
+                <div class="_separate-5">
+                    <div class="mui-row">
                         <a class="anchor-link -black -f-blue-3" href="#lazy-loading-images-overview">
                             <h3 class="_bigger-2" id="lazy-loading-images-overview">Lazy loading images</h3>
                         </a>
@@ -401,52 +424,12 @@
                             <div class="color-name">Brown 1-5</div>
                         </div>
                         <div class="mui-row">
-                            <div class="color-preview -blue-1-bg"></div>
-                            <div class="color-preview -blue-2-bg"></div>
-                            <div class="color-preview -blue-3-bg"></div>
-                            <div class="color-preview -blue-4-bg"></div>
-                            <div class="color-preview -blue-5-bg"></div>
-                            <div class="color-name">Blue 1-5</div>
-                        </div>
-                        <div class="mui-row">
-                            <div class="color-preview -violet-1-bg"></div>
-                            <div class="color-preview -violet-2-bg"></div>
-                            <div class="color-preview -violet-3-bg"></div>
-                            <div class="color-preview -violet-4-bg"></div>
-                            <div class="color-preview -violet-5-bg"></div>
-                            <div class="color-name">Violet 1-5</div>
-                        </div>
-                        <div class="mui-row">
-                            <div class="color-preview -purple-1-bg"></div>
-                            <div class="color-preview -purple-2-bg"></div>
-                            <div class="color-preview -purple-3-bg"></div>
-                            <div class="color-preview -purple-4-bg"></div>
-                            <div class="color-preview -purple-5-bg"></div>
-                            <div class="color-name">Purple 1-5</div>
-                        </div>
-                        <div class="mui-row">
-                            <div class="color-preview -green-1-bg"></div>
-                            <div class="color-preview -green-2-bg"></div>
-                            <div class="color-preview -green-3-bg"></div>
-                            <div class="color-preview -green-4-bg"></div>
-                            <div class="color-preview -green-5-bg"></div>
-                            <div class="color-name">Green 1-5</div>
-                        </div>
-                        <div class="mui-row">
-                            <div class="color-preview -cyan-1-bg"></div>
-                            <div class="color-preview -cyan-2-bg"></div>
-                            <div class="color-preview -cyan-3-bg"></div>
-                            <div class="color-preview -cyan-4-bg"></div>
-                            <div class="color-preview -cyan-5-bg"></div>
-                            <div class="color-name">Cyan 1-5</div>
-                        </div>
-                        <div class="mui-row">
-                            <div class="color-preview -red-1-bg"></div>
-                            <div class="color-preview -red-2-bg"></div>
-                            <div class="color-preview -red-3-bg"></div>
-                            <div class="color-preview -red-4-bg"></div>
-                            <div class="color-preview -red-5-bg"></div>
-                            <div class="color-name">Red 1-5</div>
+                            <div class="color-preview -orange-1-bg"></div>
+                            <div class="color-preview -orange-2-bg"></div>
+                            <div class="color-preview -orange-3-bg"></div>
+                            <div class="color-preview -orange-4-bg"></div>
+                            <div class="color-preview -orange-5-bg"></div>
+                            <div class="color-name">Orange 1-5</div>
                         </div>
                         <div class="mui-row">
                             <div class="color-preview -yellow-1-bg"></div>
@@ -457,12 +440,60 @@
                             <div class="color-name">Yellow 1-5</div>
                         </div>
                         <div class="mui-row">
-                            <div class="color-preview -orange-1-bg"></div>
-                            <div class="color-preview -orange-2-bg"></div>
-                            <div class="color-preview -orange-3-bg"></div>
-                            <div class="color-preview -orange-4-bg"></div>
-                            <div class="color-preview -orange-5-bg"></div>
-                            <div class="color-name">Orange 1-5</div>
+                            <div class="color-preview -red-1-bg"></div>
+                            <div class="color-preview -red-2-bg"></div>
+                            <div class="color-preview -red-3-bg"></div>
+                            <div class="color-preview -red-4-bg"></div>
+                            <div class="color-preview -red-5-bg"></div>
+                            <div class="color-name">Red 1-5</div>
+                        </div>
+                        <div class="mui-row">
+                            <div class="color-preview -purple-1-bg"></div>
+                            <div class="color-preview -purple-2-bg"></div>
+                            <div class="color-preview -purple-3-bg"></div>
+                            <div class="color-preview -purple-4-bg"></div>
+                            <div class="color-preview -purple-5-bg"></div>
+                            <div class="color-name">Purple 1-5</div>
+                        </div>
+                        <div class="mui-row">
+                            <div class="color-preview -violet-1-bg"></div>
+                            <div class="color-preview -violet-2-bg"></div>
+                            <div class="color-preview -violet-3-bg"></div>
+                            <div class="color-preview -violet-4-bg"></div>
+                            <div class="color-preview -violet-5-bg"></div>
+                            <div class="color-name">Violet 1-5</div>
+                        </div>
+                        <div class="mui-row">
+                            <div class="color-preview -blue-1-bg"></div>
+                            <div class="color-preview -blue-2-bg"></div>
+                            <div class="color-preview -blue-3-bg"></div>
+                            <div class="color-preview -blue-4-bg"></div>
+                            <div class="color-preview -blue-5-bg"></div>
+                            <div class="color-name">Blue 1-5</div>
+                        </div>
+                        <div class="mui-row">
+                            <div class="color-preview -light-blue-1-bg"></div>
+                            <div class="color-preview -light-blue-2-bg"></div>
+                            <div class="color-preview -light-blue-3-bg"></div>
+                            <div class="color-preview -light-blue-4-bg"></div>
+                            <div class="color-preview -light-blue-5-bg"></div>
+                            <div class="color-name">Light blue 1-5</div>
+                        </div>
+                        <div class="mui-row">
+                            <div class="color-preview -cyan-1-bg"></div>
+                            <div class="color-preview -cyan-2-bg"></div>
+                            <div class="color-preview -cyan-3-bg"></div>
+                            <div class="color-preview -cyan-4-bg"></div>
+                            <div class="color-preview -cyan-5-bg"></div>
+                            <div class="color-name">Cyan 1-5</div>
+                        </div>
+                        <div class="mui-row">
+                            <div class="color-preview -green-1-bg"></div>
+                            <div class="color-preview -green-2-bg"></div>
+                            <div class="color-preview -green-3-bg"></div>
+                            <div class="color-preview -green-4-bg"></div>
+                            <div class="color-preview -green-5-bg"></div>
+                            <div class="color-name">Green 1-5</div>
                         </div>
                     </div>
                 </div>
@@ -612,6 +643,9 @@
           <div class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, quaerat!</div>
       </li>
   </ul></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;ul class='mui-accordion'&gt;
       &lt;li class='item'&gt;
@@ -634,6 +668,7 @@
       &lt;/li&gt;
   &lt;/ul&gt;</pre>
                                         </div>
+                                        </div>
                                     </div>
                             </div>
                         <div id="src/less/components/badge.less" class="_allow-empty"></div>
@@ -650,11 +685,15 @@
   <span class="mui-badge -rounded" aria-label="5 items total">5</span>
   <span class="mui-badge -new" aria-label="5 items total">5</span>
   <span class="mui-badge -new -rounded" aria-label="5 items total">5</span></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;span class='mui-badge'               aria-label='5 items total'&gt;5&lt;/span&gt;
   &lt;span class='mui-badge -rounded'      aria-label='5 items total'&gt;5&lt;/span&gt;
   &lt;span class='mui-badge -new'          aria-label='5 items total'&gt;5&lt;/span&gt;
   &lt;span class='mui-badge -new -rounded' aria-label='5 items total'&gt;5&lt;/span&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -672,11 +711,15 @@
       <span class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, fugit?</span>
       <span class="author">John Doe</span>
   </blockquote></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;blockquote class='mui-blockquote'&gt;
       &lt;span class='text'&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, fugit?&lt;/span&gt;
       &lt;span class='author'&gt;John Doe&lt;/span&gt;
   &lt;/blockquote&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -702,12 +745,16 @@
       <a class="link" href="" aria-label="This product T">title</a>
   </div></div>
                                             </div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-breadcrumb' aria-label='Breadcrumb'&gt;
       &lt;a class='link' href='' aria-label='Category C'&gt;category&lt;/a&gt;
       &lt;a class='link' href='' aria-label='Subcategory S'&gt;subcategory&lt;/a&gt;
       &lt;a class='link' href='' aria-label='This product T'&gt;title&lt;/a&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -737,6 +784,9 @@
       </div>
       <div class="mui-shadow-toggle" aria-label="Close dropdown menu"></div>
   </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-button-dropdown'&gt;
       &lt;a class='mui-button' aria-label='Dropdown button'&gt;
@@ -752,6 +802,7 @@
       &lt;/div&gt;
       &lt;div class='mui-shadow-toggle' aria-label='Close dropdown menu'&gt;&lt;/div&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -787,12 +838,16 @@
       <button class="mui-button" aria-label="">third</button>
   </div></div>
                                             </div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-button-group'&gt;
       &lt;button class='mui-button' aria-label=''&gt;first&lt;/button&gt;
       &lt;button class='mui-button' aria-label=''&gt;second&lt;/button&gt;
       &lt;button class='mui-button' aria-label=''&gt;third&lt;/button&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -835,6 +890,9 @@
       <span>button</span>
       <span class="label">label</span>
   </a></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;a class='mui-button'               aria-label=''&gt;button&lt;/a&gt;
   &lt;a class='mui-button -small'        aria-label=''&gt;button&lt;/a&gt;
@@ -866,6 +924,7 @@
       &lt;span class='label'&gt;label&lt;/span&gt;
   &lt;/a&gt;</pre>
                                         </div>
+                                        </div>
                                     </div>
                             </div>
                         <div id="src/less/components/card.less" class="_allow-empty"></div>
@@ -886,6 +945,9 @@
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt, magni.</p>
       </div>
   </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-card _shadow-1'&gt;
       &lt;div class='header'&gt;
@@ -895,6 +957,7 @@
           &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt, magni.&lt;/p&gt;
       &lt;/div&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -915,6 +978,9 @@
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt, magni.</p>
       </div>
   </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-card -with-image _shadow-1'&gt;
       &lt;div class='header'&gt;
@@ -924,6 +990,7 @@
           &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt, magni.&lt;/p&gt;
       &lt;/div&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -971,6 +1038,9 @@
               <li class="indicator"></li>
           </ul>
       </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">      &lt;div class='mui-carousel' data-interval='4s'&gt;
           &lt;ul class='mui-slides'&gt;
@@ -1007,6 +1077,7 @@
           &lt;/ul&gt;
       &lt;/div&gt;</pre>
                                         </div>
+                                        </div>
                                     </div>
                             </div>
                         <div id="src/less/components/checkbox.less" class="_allow-empty"></div>
@@ -1027,6 +1098,9 @@
           <span class="text">Lorem ipsum.</span>
       </label>
   </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-checkbox'&gt;
       &lt;input type='checkbox' id='dFrp7'&gt;
@@ -1037,6 +1111,7 @@
           &lt;span class='text'&gt;Lorem ipsum.&lt;/span&gt;
       &lt;/label&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1056,6 +1131,9 @@
           <span class="text">Lorem ipsum.</span>
       </label>
   </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-checkbox -toggle'&gt;
       &lt;input type='checkbox' id='qW30v'&gt;
@@ -1064,6 +1142,7 @@
           &lt;span class='text'&gt;Lorem ipsum.&lt;/span&gt;
       &lt;/label&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1097,6 +1176,9 @@
           </div>
       </li>
   </ul></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;ul class='mui-collection'&gt;
       &lt;li class='item'&gt;
@@ -1119,6 +1201,7 @@
       &lt;/li&gt;
   &lt;/ul&gt;</pre>
                                         </div>
+                                        </div>
                                     </div>
                             </div>
                         <div id="src/less/components/containers.less" class="_allow-empty"></div>
@@ -1132,8 +1215,12 @@
                                     <p class="mui-p _separate-1">Container for content with limited width.</p>
                                     <div class="_separate-1">
                                         <div class="example _separate-2"><div class="mui-content-container"></div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">&lt;div class='mui-content-container'&gt;&lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1147,8 +1234,12 @@
                                     <p class="mui-p _separate-1">Container for creating sticky footer. Should include all page content before page-footer.</p>
                                     <div class="_separate-1">
                                         <div class="example _separate-2"><div class="mui-page-container"></div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">&lt;div class='mui-page-container'&gt;&lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1168,6 +1259,9 @@
           ....<br>.....<br>.....<br>....
       </div>
   </section></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;section class='mui-content-section'&gt;
       &lt;img class='mui-image background -js-lazy-load' data-src='https://placehold.it/1200x800' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt=''&gt;
@@ -1175,6 +1269,7 @@
           ....&lt;br&gt;.....&lt;br&gt;.....&lt;br&gt;....
       &lt;/div&gt;
   &lt;/section&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1195,6 +1290,9 @@
           <div class="option">Option 3</div>
       </div>
   </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-dropdown-options'&gt;
       &lt;div class='wrapper'&gt;
@@ -1203,6 +1301,7 @@
           &lt;div class='option'&gt;Option 3&lt;/div&gt;
       &lt;/div&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1228,6 +1327,9 @@
           <span>&darr;</span>
       </div>
   </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-hero-header'&gt;
       &lt;img class='mui-image background -js-lazy-load' data-src='https://placehold.it/1200x800' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt='' role='presentation'&gt;
@@ -1240,6 +1342,7 @@
           &lt;span&gt;&darr;&lt;/span&gt;
       &lt;/div&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1262,8 +1365,12 @@
                                                 <h5 class="_smaller-1">Image with -circle option</h5>
                                                 <div class="example _separate-2" data-class="-circle"><img class="mui-image -js-lazy-load" data-src="https://placehold.it/250x250" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""></div>
                                             </div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">&lt;img class='mui-image -js-lazy-load' data-src='https://placehold.it/250x250' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt=''&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1290,6 +1397,9 @@
           <input type="text" id="lUDbS" placeholder="Select your username">
       </div>
   </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-input-wrapper'&gt;
       &lt;label class='mui-input-label'&gt;Username&lt;/label&gt;
@@ -1304,6 +1414,7 @@
           &lt;input type='text' id='lUDbS' placeholder='Select your username'&gt;
       &lt;/div&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1330,6 +1441,9 @@
           <input type="text" id="TEz8D" placeholder="Select your username">
       </div>
   </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-input-wrapper'&gt;
       &lt;label class='mui-input-label'&gt;Username&lt;/label&gt;
@@ -1345,6 +1459,7 @@
           &lt;input type='text' id='TEz8D' placeholder='Select your username'&gt;
       &lt;/div&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1372,6 +1487,9 @@
           <input type="text" id="8vrWA">
       </div>
   </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-input-wrapper'&gt;
       &lt;div class='mui-input -material' data-regexp='^[a-zA-Z]{3,}$'&gt;
@@ -1388,6 +1506,7 @@
           &lt;input type='text' id='8vrWA'&gt;
       &lt;/div&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1424,6 +1543,9 @@
           <li class="item">list item</li>
       </ul>
   </ul></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;ul class='mui-list _separate-1'&gt;
       &lt;li class='item'&gt;list item&lt;/li&gt;
@@ -1449,6 +1571,7 @@
       &lt;/ul&gt;
   &lt;/ul&gt;</pre>
                                         </div>
+                                        </div>
                                     </div>
                             </div>
                         <div id="src/less/components/marker.less" class="_allow-empty"></div>
@@ -1461,8 +1584,12 @@
                                 <div class="_smaller-2 -grey-4">src/less/components/marker.less</div>
                                     <div class="_separate-1">
                                         <div class="example _separate-2"><span class="mui-marker">lorem ipsum</span></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">&lt;span class='mui-marker'&gt;lorem ipsum&lt;/span&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1480,11 +1607,15 @@
       <img class="mui-image media -js-lazy-load" data-src="https://placehold.it/1200x800" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Lorem ipsum">
       <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, ea.</div>
   </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-media-view'&gt;
       &lt;img class='mui-image media -js-lazy-load' data-src='https://placehold.it/1200x800' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt='Lorem ipsum'&gt;
       &lt;div class='description'&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, ea.&lt;/div&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1509,6 +1640,9 @@
      </div>
      <div class="mui-shadow-toggle"></div>
  </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )"> &lt;div class='mui-button' data-modal-opener='Wer45'&gt;Open modal&lt;/div&gt;
  &lt;div class='mui-modal-window' id='Wer45'&gt;
@@ -1523,6 +1657,7 @@
      &lt;div class='mui-shadow-toggle'&gt;&lt;/div&gt;
  &lt;/div&gt;</pre>
                                         </div>
+                                        </div>
                                     </div>
                             </div>
                         <div id="src/less/components/page-footer.less" class="_allow-empty"></div>
@@ -1536,8 +1671,12 @@
                                     <p class="mui-p _separate-1">Should be used with .mui-page-container for creating sticky footer.</p>
                                     <div class="_separate-1">
                                         <div class="example _separate-2"><footer class="mui-page-footer"></footer></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">&lt;footer class='mui-page-footer'&gt;&lt;/footer&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1556,12 +1695,16 @@
           <h1>Logo</h1>
       </a>
   </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-header-logo'&gt;
       &lt;a class='link' href=''&gt;
           &lt;h1&gt;Logo&lt;/h1&gt;
       &lt;/a&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1587,6 +1730,9 @@
       </ul>
       <div class="mui-navigation-toggle mui-shadow-toggle"></div>
   </nav></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;nav class='mui-header-navigation -mobile-version'&gt;
       &lt;div class='mui-navigation-toggle -hamburger' aria-label='Main website navigation'&gt;
@@ -1599,6 +1745,7 @@
       &lt;/ul&gt;
       &lt;div class='mui-navigation-toggle mui-shadow-toggle'&gt;&lt;/div&gt;
   &lt;/nav&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1613,8 +1760,12 @@
                                     <p class="mui-p _separate-1">Some components like page-header-logo and page-header-navigation should be placed into this component.</p>
                                     <div class="_separate-1">
                                         <div class="example _separate-2"><header class="mui-page-header"></header></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">&lt;header class='mui-page-header'&gt;&lt;/header&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1648,6 +1799,9 @@
       <div class="page"><a class="link" href="" aria-label="Next page">&rarr;</a></div>
   </div></div>
                                             </div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-pagination' aria-label='Pagination'&gt;
       &lt;div class='page'         &gt;&lt;a class='link' href='' aria-label='Previous page'&gt;&larr;&lt;/a&gt;&lt;/div&gt;
@@ -1658,6 +1812,7 @@
       &lt;div class='page'         &gt;&lt;a class='link' href='' aria-label='Page number 5'&gt;5&lt;/a&gt;&lt;/div&gt;
       &lt;div class='page'         &gt;&lt;a class='link' href='' aria-label='Next page'&gt;&rarr;&lt;/a&gt;&lt;/div&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1675,8 +1830,12 @@
                                                 <h5 class="_smaller-1">Paragraph with -no-width-limit option</h5>
                                                 <div class="example _separate-2" data-class="-no-width-limit"><p class="mui-p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, excepturi sequi quibusdam iusto, repellendus veritatis quaerat maxime repudiandae, voluptate saepe tempora beatae rerum consectetur odio amet possimus est quam, accusamus vitae officiis minima provident doloribus eveniet dolore. Possimus maxime nulla, et nisi eveniet nam corporis architecto corrupti vero voluptate. Architecto.</p></div>
                                             </div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">&lt;p class='mui-p'&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, excepturi sequi quibusdam iusto, repellendus veritatis quaerat maxime repudiandae, voluptate saepe tempora beatae rerum consectetur odio amet possimus est quam, accusamus vitae officiis minima provident doloribus eveniet dolore. Possimus maxime nulla, et nisi eveniet nam corporis architecto corrupti vero voluptate. Architecto.&lt;/p&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1712,6 +1871,9 @@
           <a href="" class="mui-button -read-more">read more</a>
       </footer>
    </article></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;article class='mui-post'&gt;
       &lt;header class='mui-post-header'&gt;
@@ -1736,6 +1898,7 @@
       &lt;/footer&gt;
    &lt;/article&gt;</pre>
                                         </div>
+                                        </div>
                                     </div>
                             </div>
                         <div id="src/less/components/progress-bar.less" class="_allow-empty"></div>
@@ -1752,11 +1915,15 @@
       <div class="indicator"></div>
       <div class="value"></div>
   </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-progress-bar' data-value='60'&gt;
       &lt;div class='indicator'&gt;&lt;/div&gt;
       &lt;div class='value'&gt;&lt;/div&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1776,6 +1943,9 @@
       </svg>
       <div class="value"></div>
   </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-progress-bar -radial' data-value='60'&gt;
       &lt;svg class='indicator' viewbox='0 0 100 100'&gt;
@@ -1784,6 +1954,7 @@
       &lt;/svg&gt;
       &lt;div class='value'&gt;&lt;/div&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1812,6 +1983,9 @@
           </label>
       </div>
   </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-input-wrapper'&gt;
       &lt;div class='mui-input-label'&gt;Select Your gender&lt;/div&gt;
@@ -1828,6 +2002,7 @@
           &lt;/label&gt;
       &lt;/div&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1848,6 +2023,9 @@
       <span class="star">&starf;</span>
       <span class="star">&starf;</span>
   </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-rating' data-rating='3' aria-label='Rating: 3 stars of 5'&gt;
       &lt;span class='star'&gt;&starf;&lt;/span&gt;
@@ -1856,6 +2034,7 @@
       &lt;span class='star'&gt;&starf;&lt;/span&gt;
       &lt;span class='star'&gt;&starf;&lt;/span&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1879,6 +2058,9 @@
       <div class="mui-ribbon -bookmark -left" aria-hidden="true">new</div>
       <div class="mui-ribbon -bookmark -right" aria-hidden="true">new</div>
   </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-ribbon-wrapper'&gt;
       &lt;div class='mui-ribbon -classic -top -left' aria-hidden='true'&gt;new&lt;/div&gt;
@@ -1890,6 +2072,7 @@
       &lt;div class='mui-ribbon -bookmark -left' aria-hidden='true'&gt;new&lt;/div&gt;
       &lt;div class='mui-ribbon -bookmark -right' aria-hidden='true'&gt;new&lt;/div&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1926,6 +2109,9 @@
           </div>
       </div>
   </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-input-wrapper'&gt;
       &lt;label class='mui-input-label'&gt;Select color&lt;/label&gt;
@@ -1947,6 +2133,7 @@
           &lt;/div&gt;
       &lt;/div&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1972,10 +2159,14 @@
                                         <div class="example _separate-2">  <svg class="mui-spinner" viewbox="0 0 100 100" role="presentation">
       <circle class="path" cx="50" cy="50" r="40" fill="none" stroke-width="10"/>
   </svg></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;svg class='mui-spinner' viewBox='0 0 100 100' role='presentation'&gt;
       &lt;circle class='path' cx='50' cy='50' r='40' fill='none' stroke-width='10'&gt;&lt;/circle&gt;
   &lt;/svg&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -1993,11 +2184,15 @@
       <div class="title">spoiler</div>
       <div class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam et minus explicabo consectetur reprehenderit dolor dolorem quaerat necessitatibus optio aut, quas cum ex eveniet, quidem. Sunt ad eligendi numquam cupiditate asperiores quod, aspernatur delectus labore est? Nisi sapiente, doloremque cupiditate vel eos numquam aliquam possimus?</div>
   </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-spoiler'&gt;
       &lt;div class='title'&gt;spoiler&lt;/div&gt;
       &lt;div class='content'&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam et minus explicabo consectetur reprehenderit dolor dolorem quaerat necessitatibus optio aut, quas cum ex eveniet, quidem. Sunt ad eligendi numquam cupiditate asperiores quod, aspernatur delectus labore est? Nisi sapiente, doloremque cupiditate vel eos numquam aliquam possimus?&lt;/div&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -2025,6 +2220,9 @@
           <td>lorem ipsum dolor sit</td>
       </tr>
   </table></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;table class='mui-table'&gt;
       &lt;tr class='header'&gt;
@@ -2040,6 +2238,7 @@
           &lt;td&gt;lorem ipsum dolor sit&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/table&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -2064,6 +2263,9 @@
           <div class="tab">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam et minus explicabo consectetur reprehenderit dolor dolorem quaerat necessitatibus optio aut, quas cum ex eveniet, quidem. Sunt ad eligendi numquam cupiditate asperiores quod, aspernatur delectus labore est? Nisi sapiente, doloremque cupiditate vel eos numquam aliquam possimus? Ex officia debitis facere recusandae, reiciendis ullam praesentium ratione dolor eveniet nesciunt natus tempora, blanditiis obcaecati at impedit cupiditate adipisci corporis. Blanditiis nam facere impedit necessitatibus, assumenda quis. Eveniet veniam odio ducimus, debitis reprehenderit? Quasi, perferendis culpa magni deleniti dolorum sit voluptatem fugiat distinctio odio ipsa nemo qui, beatae aperiam! A harum tempora cupiditate consectetur.</div>
       </div>
   </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-tabs'&gt;
       &lt;div class='labels'&gt;
@@ -2077,6 +2279,7 @@
           &lt;div class='tab'&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam et minus explicabo consectetur reprehenderit dolor dolorem quaerat necessitatibus optio aut, quas cum ex eveniet, quidem. Sunt ad eligendi numquam cupiditate asperiores quod, aspernatur delectus labore est? Nisi sapiente, doloremque cupiditate vel eos numquam aliquam possimus? Ex officia debitis facere recusandae, reiciendis ullam praesentium ratione dolor eveniet nesciunt natus tempora, blanditiis obcaecati at impedit cupiditate adipisci corporis. Blanditiis nam facere impedit necessitatibus, assumenda quis. Eveniet veniam odio ducimus, debitis reprehenderit? Quasi, perferendis culpa magni deleniti dolorum sit voluptatem fugiat distinctio odio ipsa nemo qui, beatae aperiam! A harum tempora cupiditate consectetur.&lt;/div&gt;
       &lt;/div&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -2097,6 +2300,9 @@
           <div class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag mountains">mountains</a></div>
           <div class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag sea">sea</a></div>
       </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">      &lt;div class='mui-tags-list' aria-label='Tags list'&gt;
           &lt;div class='mui-tag-wrapper -icon' role='presentation'&gt;&lowast;&lt;/div&gt;
@@ -2106,6 +2312,7 @@
           &lt;div class='mui-tag-wrapper'&gt;&lt;a href='' class='mui-tag' aria-label='Search by tag mountains'&gt;mountains&lt;/a&gt;&lt;/div&gt;
           &lt;div class='mui-tag-wrapper'&gt;&lt;a href='' class='mui-tag' aria-label='Search by tag sea'&gt;sea&lt;/a&gt;&lt;/div&gt;
       &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -2125,6 +2332,9 @@
       <div class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag mountains">mountains</a></div>
       <div class="mui-tag-wrapper"><a href="" class="mui-tag" aria-label="Search by tag sea">sea</a></div>
   </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-tags-list -solid' aria-label='Tags list'&gt;
       &lt;div class='mui-tag-wrapper'&gt;&lt;a href='' class='mui-tag' aria-label='Search by tag nature'&gt;nature&lt;/a&gt;&lt;/div&gt;
@@ -2133,6 +2343,7 @@
       &lt;div class='mui-tag-wrapper'&gt;&lt;a href='' class='mui-tag' aria-label='Search by tag mountains'&gt;mountains&lt;/a&gt;&lt;/div&gt;
       &lt;div class='mui-tag-wrapper'&gt;&lt;a href='' class='mui-tag' aria-label='Search by tag sea'&gt;sea&lt;/a&gt;&lt;/div&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -2153,6 +2364,9 @@
           <textarea id="fmVs1" placeholder="Print your message here"></textarea>
       </div>
   </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-input-wrapper'&gt;
       &lt;label class='mui-input-label'&gt;Your message&lt;/label&gt;
@@ -2160,6 +2374,7 @@
           &lt;textarea id='fmVs1' placeholder='Print your message here'&gt;&lt;/textarea&gt;
       &lt;/div&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -2178,6 +2393,9 @@
           <label class="mui-input-label">Your text</label>
       </div>
   </div></div>
+                                        <div class="mui-spoiler">
+                                            <div class="title">Source code</div>
+                                            <div class="content">
                                         <div class="code _separate-2 _smaller-2">
                                             <pre class="( prettyprint lang-html )">  &lt;div class='mui-input-wrapper'&gt;
       &lt;div class='mui-textarea -material'&gt;   
@@ -2185,6 +2403,7 @@
           &lt;label class='mui-input-label'&gt;Your text&lt;/label&gt;
       &lt;/div&gt;
   &lt;/div&gt;</pre>
+                                        </div>
                                         </div>
                                     </div>
                             </div>
@@ -2215,7 +2434,7 @@
                     </div>
                 </div>
             </div>
-        </main>
+        </div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></main>
     </div>
     <div class="mui-page-footer _text-center _line-3r -white -black-bg">
         <span>Copyright &copy; Ivan Bogachev, 2016-2017</span>
@@ -2223,26 +2442,43 @@
     <div id="scroll-to-top" class="( mui-button -icon ) -white-bg -black -f-blue-2-bg -f-white scroll-to-top -hidden _shadow-3">
         <span>&uarr;</span>
     </div>
-    <link rel="stylesheet" href="assets/css/muilessium.css?v=24388945426223099">
-    <link rel="stylesheet" href="assets/css/docs-styles.css?v=24388945426223099">
-    <script src="assets/js/prettify/prettify.js?v=24388945426223099"></script>
-    <script src="assets/js/muilessium.js?v=24388945426223100"></script>
+    <link rel="stylesheet" href="assets/css/muilessium-0.1.39.min.css">
+    <link rel="stylesheet" href="assets/css/docs-styles.css?v=5458161178934731">
+    <script src="assets/js/prettify/prettify.js"></script>
+    <script src="assets/js/muilessium-0.1.39.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            [].forEach.call(document.querySelectorAll('.state .example'), function(example) {
-                var stateClass = example.getAttribute('data-class'),
-                    targetChild = 0;
-                if (example.childNodes[1]) {
-                    targetChild = 1;
-                }
-                example.childNodes[targetChild].className += ' ' + stateClass;
-            });
-            prettyPrint();
-            Muilessium.Utils.scrollFire(document.getElementById('page-layout-overview'), function() {
-                var scrollToTopButton = document.getElementById('scroll-to-top');
-                Muilessium.Utils.removeClass(scrollToTopButton, '-hidden');
-                Muilessium.Utils.makeElementClickable(scrollToTopButton, Muilessium.Utils.scrollToTop);
-            });
+            var $ = Muilessium.Utils;
+            function animateTitles() {
+                var title1 = document.getElementById('animated-title-1'),
+                    title2 = document.getElementById('animated-title-2');
+                title1.innerHTML = '';
+                title2.innerHTML = '';
+                $.typeText(title1, 'MUILESSIUM', 120, false, -1, function() {
+                    $.typeText(title2, 'simple should be simple');
+                });
+            }
+            function initExamples() {
+                $.forEach(document.querySelectorAll('.state .example'), function(example) {
+                    var stateClass = $.getAttribute(example, 'data-class'),
+                        targetChild = 0;
+                    if (example.childNodes[1]) {
+                        targetChild = 1;
+                    }
+                    $.addClass(example.childNodes[targetChild], stateClass);
+                });
+                prettyPrint();
+            }
+            function initScrollToTopButton() {
+                var button = document.getElementById('scroll-to-top');
+                $.scrollFire(document.getElementById('page-layout-overview'), function() {
+                    $.removeClass(button, '-hidden');
+                    $.makeElementClickable(button, $.scrollToTop);
+                });
+            }
+            animateTitles();
+            initExamples();
+            initScrollToTopButton();
         });
     </script>
 </body>
