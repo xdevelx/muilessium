@@ -114,6 +114,7 @@
 and avoiding errors when some element does not exists.</p>
 <p>Here is the full list of utilities:</p>
 <ul>
+<li>isNode(element)</li>
 <li>isInPage(element)</li>
 <li>isNotInPage(element)</li>
 <li>ifExists(element, callback, printWarning = true)</li>
@@ -138,7 +139,7 @@ and avoiding errors when some element does not exists.</p>
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-4'>&#182;</a>
                         </div>
-                        <h2 id="is-in-page">Is in page</h2>
+                        <h2 id="is-node">Is Node</h2>
 
                     </div>
                     <div class='mui-content-container'>
@@ -153,16 +154,15 @@ and avoiding errors when some element does not exists.</p>
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-5'>&#182;</a>
                         </div>
-                        <p>Returns true if elements is exists in a document.body and false otherwise</p>
+                        <p>Returns true if element is Node and false otherwise</p>
 
                     </div>
                     <div class='mui-content-container'>
                         
                             <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isInPage</span>(<span class="hljs-params">element</span>) </span>{
-    <span class="hljs-comment">/* Use this instead of document.contains because IE has only partial support of Node.contains. */</span>
-    <span class="hljs-keyword">return</span> (element === <span class="hljs-built_in">document</span>.body) || <span class="hljs-built_in">document</span>.body.contains(element);
-};</pre></div></div>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNode</span>(<span class="hljs-params">element</span>) </span>{
+    <span class="hljs-keyword">return</span> (element <span class="hljs-keyword">instanceof</span> Node);
+}</pre></div></div>
                         
                     </div>
                 </div>
@@ -174,7 +174,7 @@ and avoiding errors when some element does not exists.</p>
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-6'>&#182;</a>
                         </div>
-                        <h2 id="is-not-in-page">Is not in page</h2>
+                        <h2 id="is-in-page">Is in page</h2>
 
                     </div>
                     <div class='mui-content-container'>
@@ -189,14 +189,15 @@ and avoiding errors when some element does not exists.</p>
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-7'>&#182;</a>
                         </div>
-                        <p>Returns false if element is exists in a document.body and true otherwise</p>
+                        <p>Returns true if elements exists in a document.body and false otherwise</p>
 
                     </div>
                     <div class='mui-content-container'>
                         
                             <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNotInPage</span>(<span class="hljs-params">element</span>) </span>{
-    <span class="hljs-keyword">return</span> !isInPage(element);
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isInPage</span>(<span class="hljs-params">element</span>) </span>{
+    <span class="hljs-comment">/* Use this instead of document.contains because IE has only partial support of Node.contains. */</span>
+    <span class="hljs-keyword">return</span> isNode(element) &amp;&amp; ((element === <span class="hljs-built_in">document</span>.body) || <span class="hljs-built_in">document</span>.body.contains(element));
 };</pre></div></div>
                         
                     </div>
@@ -209,7 +210,7 @@ and avoiding errors when some element does not exists.</p>
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-8'>&#182;</a>
                         </div>
-                        <h2 id="if-exists">If exists</h2>
+                        <h2 id="is-not-in-page">Is not in page</h2>
 
                     </div>
                     <div class='mui-content-container'>
@@ -223,6 +224,41 @@ and avoiding errors when some element does not exists.</p>
                         
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-9'>&#182;</a>
+                        </div>
+                        <p>Returns false if element exists in a document.body and true otherwise</p>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNotInPage</span>(<span class="hljs-params">element</span>) </span>{
+    <span class="hljs-keyword">return</span> !isInPage(element);
+};</pre></div></div>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-10'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-10'>&#182;</a>
+                        </div>
+                        <h2 id="if-exists">If exists</h2>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-11'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-11'>&#182;</a>
                         </div>
                         <p>Executes callback function if the element exists in document.body
 and prints warning otherwise by default</p>
@@ -247,11 +283,11 @@ and prints warning otherwise by default</p>
                 </div>
             
                 
-                <div class='' id='section-10'>
+                <div class='' id='section-12'>
                     <div class='mui-content-container'>
                         
                         <div class=''>
-                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-10'>&#182;</a>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-12'>&#182;</a>
                         </div>
                         <h2 id="if-nodelist">If nodelist</h2>
 
@@ -262,11 +298,11 @@ and prints warning otherwise by default</p>
                 </div>
             
                 
-                <div class='' id='section-11'>
+                <div class='' id='section-13'>
                     <div class='mui-content-container'>
                         
                         <div class=''>
-                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-11'>&#182;</a>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-13'>&#182;</a>
                         </div>
                         <p>If first parameter is NodeList or HTMLCollection or Array of HTMLElements
 executes callback function and prints warning otherwise by default</p>
@@ -299,11 +335,11 @@ executes callback function and prints warning otherwise by default</p>
                 </div>
             
                 
-                <div class='' id='section-12'>
+                <div class='' id='section-14'>
                     <div class='mui-content-container'>
                         
                         <div class=''>
-                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-12'>&#182;</a>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-14'>&#182;</a>
                         </div>
                         <h2 id="is-descendant">Is descendant</h2>
 
@@ -314,11 +350,11 @@ executes callback function and prints warning otherwise by default</p>
                 </div>
             
                 
-                <div class='' id='section-13'>
+                <div class='' id='section-15'>
                     <div class='mui-content-container'>
                         
                         <div class=''>
-                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-13'>&#182;</a>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-15'>&#182;</a>
                         </div>
                         <p>Returns true if the second element is a descendant of the first element and false otherwise</p>
 
@@ -354,6 +390,6 @@ executes callback function and prints warning otherwise by default</p>
     </div>
 
 
-    <script src='../../assets/js/muilessium.js?v=8919168328946548'></script>
+    <script src='../../assets/js/muilessium.js?v=8919168328946549'></script>
 </body>
 </html>

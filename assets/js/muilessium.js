@@ -7309,59 +7309,91 @@ Object.defineProperty(exports, "__esModule", {
 // -----------------------------------------------------------------------------
 // Ajax utilities
 // -----------------------------------------------------------------------------
+// Here is the full list of ajax utilities:
+//  - post(url, data, successCallback, errorCallback)
+//  - postProtected(url, data, successCallback)
+//  - get(url, successCallback, errorCallback)
+//  - getProtected(url, successCallback)
+
+
+// Post
+// ----
+// Makes a POST request and executes a success or error callback when
+// the request state changes
+
+function post(url, data, successCallback, errorCallback) {
+    var request = new XMLHttpRequest();
+
+    request.open('POST', url, true);
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+    request.onreadystatechange = function () {
+        if (request.readyState === 4) {
+            /* Only 2xx codes are successful for the POST request. */
+            if (request.status >= 200 && request.status < 300) {
+                successCallback(request.responseText);
+            } else {
+                console.error('POST (' + url + '): error ' + request.status + ' ' + request.statusText);
+                errorCallback(request.status, request.statusText);
+            }
+        }
+    };
+
+    request.send(data);
+};
+
+// Protected post
+// --------------
+// Makes a POST request and executes a callback if it was success
+// and tries to repeat request otherwise
+
+function postProtected(url, data, callback) {
+    post(url, data, callback, function (error) {
+        setTimeout(postProtected.bind(null, url, data, callback), 1500);
+    });
+};
+
+// Get
+// ---
+// Makes a GET request and executes a success or error callback when
+// the request state changes
+
+function get(url, successCallback, errorCallback) {
+    var request = new XMLHttpRequest();
+
+    request.open('GET', url, true);
+
+    request.onreadystatechange = function () {
+        if (request.readyState === 4) {
+            /* Status 304 (Not Modified) is also a successful for the GET request.*/
+            if (request.status >= 200 && request.status < 300 || request.status === 304) {
+                successCallback(request.responseText);
+            } else {
+                console.error('GET (' + url + '): error ' + request.status + ' ' + request.statusText);
+                errorCallback(request.status, request.statusText);
+            }
+        }
+    };
+
+    request.send(null);
+};
+
+// Protected get
+// --------------
+// Makes a GET request and executes a callback if it was success
+// and tries to repeat request otherwise
+
+function getProtected(url, callback) {
+    get(url, callback, function (error) {
+        setTimeout(getProtected.bind(null, url, callback), 1500);
+    });
+};
 
 var ajax = exports.ajax = {
-
-    // Post
-    // ----
-    // Makes a POST request and executes a success or error callback when
-    // the request state changes
-
-    post: function post(url, data, successCallback, errorCallback) {
-        var request = new XMLHttpRequest();
-
-        request.open('POST', url, true);
-        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-
-        request.onreadystatechange = function () {
-            if (request.readyState === 4) {
-                /* Only 2xx codes are successful for the POST request. */
-                if (request.status >= 200 && request.status < 300) {
-                    successCallback(request.responseText);
-                } else {
-                    console.error('POST (' + url + '): error ' + request.status + ' ' + request.statusText);
-                    errorCallback(request.status, request.statusText);
-                }
-            }
-        };
-
-        request.send(data);
-    },
-
-    // Get
-    // ---
-    // Makes a GET request and executes a success or error callback when
-    // the request state changes
-
-    get: function get(url, successCallback, errorCallback) {
-        var request = new XMLHttpRequest();
-
-        request.open('GET', url, true);
-
-        request.onreadystatechange = function () {
-            if (request.readyState === 4) {
-                /* Status 304 (Not Modified) is also a successful for the GET request.*/
-                if (request.status >= 200 && request.status < 300 || request.status === 304) {
-                    successCallback(request.responseText);
-                } else {
-                    console.error('GET (' + url + '): error ' + request.status + ' ' + request.statusText);
-                    errorCallback(request.status, request.statusText);
-                }
-            }
-        };
-
-        request.send(null);
-    }
+    post: post,
+    postProtected: postProtected,
+    get: get,
+    getProtected: getProtected
 };
 
 },{}],37:[function(require,module,exports){
@@ -7482,7 +7514,7 @@ var _uncategorized = require('../utils/uncategorized');
 // -----------------------------------------------------------------------------
 // WAI-ARIA UTILITIES
 // -----------------------------------------------------------------------------
-// Here is some functions for operation with aria-roles and properties.
+// Here is some functions for operations with aria-roles and properties.
 // These functions should be used in components for better code readability.
 //
 // Here is the full list of aria methods:
@@ -7621,6 +7653,7 @@ function removeAttribute(element, attribute) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.isNode = isNode;
 exports.isInPage = isInPage;
 exports.isNotInPage = isNotInPage;
 exports.ifExists = ifExists;
@@ -7629,20 +7662,26 @@ exports.isDescendant = isDescendant;
 
 var _console = require('../utils/console');
 
+// Is Node
+// -------
+// Returns true if element is Node and false otherwise
+
+function isNode(element) {
+    return element instanceof Node;
+}
+
 // Is in page
 // ----------
-// Returns true if elements is exists in a document.body and false otherwise
+// Returns true if elements exists in a document.body and false otherwise
 
-function isInPage(element) {
-    /* Use this instead of document.contains because IE has only partial support of Node.contains. */
-    return element === document.body || document.body.contains(element);
-} // -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // CHECKS
 // -----------------------------------------------------------------------------
 // These functions should be used in components for better code readability
 // and avoiding errors when some element does not exists.
 //
 // Here is the full list of utilities:
+//  - isNode(element)
 //  - isInPage(element)
 //  - isNotInPage(element)
 //  - ifExists(element, callback, printWarning = true)
@@ -7650,11 +7689,14 @@ function isInPage(element) {
 //  - isDescendant(parent, child)
 
 
-;
+function isInPage(element) {
+    /* Use this instead of document.contains because IE has only partial support of Node.contains. */
+    return isNode(element) && (element === document.body || document.body.contains(element));
+};
 
 // Is not in page
 // --------------
-// Returns false if element is exists in a document.body and true otherwise
+// Returns false if element exists in a document.body and true otherwise
 
 function isNotInPage(element) {
     return !isInPage(element);
