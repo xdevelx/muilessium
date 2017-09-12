@@ -37,8 +37,8 @@
     <div class='mui-hero-header -full-height -blue-4-bg'>
         <div class='effects _allow-empty'></div>
         <div class='content'>
-            <h2 class='_uppercase'>Muilessium</h2>
-            <p>simple should be simple</p>
+            <h2 class='_uppercase' id='animated-title-1'>Muilessium</h2>
+            <p id='animated-title-2'>simple should be simple</p>
         </div>
         <div class='scroll-icon'>&darr;</div>
     </div>
@@ -58,6 +58,7 @@
                     <li><a class='-f-blue-3' href='#page-layout-overview'>Page layout</a></li>
                     <li><a class='-f-blue-3' href='#meta-viewport'>Viewport</a></li>
                     <li><a class='-f-blue-3' href='#helpers-overview'>Helpers</a></li>
+                    <li><a class='-f-blue-3' href='#events-overview'>Events</a></li>
                     <li><a class='-f-blue-3' href='#lazy-loading-images-overview'>Lazy load</a></li>
                     <li><a class='-f-blue-3' href='#colors-overview'>Colors</a></li>
                 </ul>
@@ -150,7 +151,7 @@
                         </a>
                     </div>
 
-                    <p class='mui-p _separate-1'>Muilessium uses a grid with 12 columns based on flexbox (and has legacy version based on floats, but only in custom builds). Rows and columns have classes .mui-row and .mui-column and columns can have options -s* for a small screen, -m* for a medium screen and -l* for a large screen. Default breakpoints are 400, 600 and 1200px. See <a class='-f-blue-3' href='https://github.com/sfi0zy/muilessium/blob/master/src/less/components/grid-flex.less'>src/less/components/grid-flex.less</a> for more information.</p>
+                    <p class='mui-p _separate-1'>Muilessium uses a grid with 12 columns based on flexbox (and has legacy version based on floats, but only in custom builds). Rows and columns have classes .mui-row and .mui-column and columns can have options -s* for a small screen, -m* for a medium screen and -l* for a large screen. Default breakpoints are 400, 600 and 1200px. It behavior is similar to the grid from flexboxgrid.com, but it uses RSCSS-style class names. See <a class='-f-blue-3' href='https://github.com/sfi0zy/muilessium/blob/master/src/less/components/grid-flex.less'>src/less/components/grid-flex.less</a> for more information.</p>
 
                     <div class='grid-preview _separate-2'>
                         <div class='mui-row'>
@@ -240,6 +241,30 @@
                     <p class='mui-p _separate-1'>Muilessium has a lot of CSS helpers, no need to add description for every of them - just look at <a class='-f-blue-3' href='https://github.com/sfi0zy/muilessium/blob/master/src/less/helpers.less'>src/less/helpers.less</a>.</p>
                 </div>
 
+
+                <div class='_separate-5'>
+                    <div class='mui-row'>
+                        <a class='anchor-link -black -f-blue-3' href='#events-overview'>
+                            <h3 class='_bigger-2' id='events-overview'>Events</h3>
+                        </a>
+                    </div>
+
+                    <p class='mui-p _separate-1'>Muilessium has a system of internal events. It exports that system as window.Muilessium.Events. The main methods are:</p>
+                    <ul class='mui-list _separate-1'>
+                        <li class='item'>addEvent(name)</li>
+                        <li class='item'>addEventListener(name, callback, executeIfAlreadyFired=false)</li>
+                        <li class='item'>fireEvent(name)</li>
+                    </ul>
+                    <p class='mui-p _separate-1'>There are six default events:</p>
+                    <ol class='mui-list'>
+                        <li class='item'>resize-window-height</li>
+                        <li class='item'>resize-window-width</li>
+                        <li class='item'>scroll-start</li>
+                        <li class='item'>scroll-end</li>
+                        <li class='item'>app-initialized</li>
+                        <li class='item'>images-loaded</li>
+                    </ol>
+                </div>
 
 
                 <div class='_separate-5'>
@@ -552,8 +577,12 @@
                                                 <div class='example _separate-2' data-class='{{name}}'>{{{ ../markup.example }}}</div>
                                             </div>
                                         {{/state}}
+                                        <div class='mui-spoiler'>
+                                            <div class='title'>Source code</div>
+                                            <div class='content'>
                                         <div class='code _separate-2 _smaller-2'>
                                             <pre class='( prettyprint lang-html )'>{{{markup.escaped}}}</pre>
+                                        </div>
                                         </div>
                                     </div>
                                 {{/if}}
@@ -612,32 +641,56 @@
     </div>
 
 
-    <link rel='stylesheet' href='assets/css/muilessium.css?v=24388945426223099'>
-    <link rel='stylesheet' href='assets/css/docs-styles.css?v=24388945426223099'/>
-    <script src='assets/js/prettify/prettify.js?v=24388945426223099'></script>
-    <script src='assets/js/muilessium.js?v=24388945426223100'></script>
+    <link rel='stylesheet' href='assets/css/muilessium-0.1.39.min.css'>
+    <link rel='stylesheet' href='assets/css/docs-styles.css?v=5458161178934731'/>
+    <script src='assets/js/prettify/prettify.js'></script>
+    <script src='assets/js/muilessium-0.1.39.min.js'></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            [].forEach.call(document.querySelectorAll('.state .example'), function(example) {
-                var stateClass = example.getAttribute('data-class'),
-                    targetChild = 0;
+            var $ = Muilessium.Utils;
 
-                if (example.childNodes[1]) {
-                    targetChild = 1;
-                }
 
-                example.childNodes[targetChild].className += ' ' + stateClass;
-            });
+            function animateTitles() {
+                var title1 = document.getElementById('animated-title-1'),
+                    title2 = document.getElementById('animated-title-2');
 
-            prettyPrint();
+                title1.innerHTML = '';
+                title2.innerHTML = '';
 
-            Muilessium.Utils.scrollFire(document.getElementById('page-layout-overview'), function() {
-                var scrollToTopButton = document.getElementById('scroll-to-top');
+                $.typeText(title1, 'MUILESSIUM', 120, false, -1, function() {
+                    $.typeText(title2, 'simple should be simple');
+                });
+            }
 
-                Muilessium.Utils.removeClass(scrollToTopButton, '-hidden');
 
-                Muilessium.Utils.makeElementClickable(scrollToTopButton, Muilessium.Utils.scrollToTop);
-            });
+            function initExamples() {
+                $.forEach(document.querySelectorAll('.state .example'), function(example) {
+                    var stateClass = $.getAttribute(example, 'data-class'),
+                        targetChild = 0;
+
+                    if (example.childNodes[1]) {
+                        targetChild = 1;
+                    }
+
+                    $.addClass(example.childNodes[targetChild], stateClass);
+                });
+
+                prettyPrint();
+            }
+
+
+            function initScrollToTopButton() {
+                var button = document.getElementById('scroll-to-top');
+
+                $.scrollFire(document.getElementById('page-layout-overview'), function() {
+                    $.removeClass(button, '-hidden');
+                    $.makeElementClickable(button, $.scrollToTop);
+                });
+            }
+
+            animateTitles();
+            initExamples();
+            initScrollToTopButton();
         });
     </script>
 </body>
