@@ -1,6 +1,6 @@
 {
   "name": "muilessium",
-  "version": "0.1.39",
+  "version": "0.1.40",
   "description": "UI Framework",
   "author": "Ivan Bogachev <sfi0zy@gmail.com>",
   "license": "MIT",
@@ -9,6 +9,9 @@
     "url": "git://github.com/sfi0zy/muilessium.git"
   },
   "main": "Gruntfile.js",
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "test": "grunt test"
   },

@@ -14,6 +14,13 @@ npm i
 grunt server
 ```
 
+## CDN
+[https://unpkg.com/muilessium/dist/js/muilessium.min.js](https://unpkg.com/muilessium/dist/js/muilessium.min.js)
+
+
+[https://unpkg.com/muilessium/dist/css/muilessium.min.css](https://unpkg.com/muilessium/dist/css/muilessium.min.css)
+
+
 ## NPM
 ```sh
 npm install muilessium
@@ -21,8 +28,10 @@ npm install muilessium
 
 To use Muilessium You should include two files into the bottom of Your page:
 
- - node_modules/muilessium/dist/css/muilessium-\*.\*.\*.min.css
- - node_modules/muilessium/dist/js/muilessium-\*.\*.\*.min.js
+```
+node_modules/muilessium/dist/css/muilessium.min.css
+node_modules/muilessium/dist/js/muilessium.min.js
+```
 
 ## License
 Muilessium is distributed under the MIT license.

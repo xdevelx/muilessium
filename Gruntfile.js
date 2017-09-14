@@ -73,7 +73,7 @@ module.exports = function(grunt) {
         cssmin: {
             dist: {
                 files: {
-                    'dist/css/muilessium-<%= pkg.version %>.min.css': ['dist/css/muilessium.css']
+                    'dist/css/muilessium.min.css': ['dist/css/muilessium.css']
                 }
             }
         },
@@ -112,7 +112,7 @@ module.exports = function(grunt) {
         uglify: {
             dist: {
                 files: {
-                    'dist/js/muilessium-<%= pkg.version %>.min.js': [
+                    'dist/js/muilessium.min.js': [
                         'dist/js/muilessium.js'
                     ]
                 }
