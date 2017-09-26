@@ -18,12 +18,13 @@
 <meta name="msapplication-config" content="icons/browserconfig.xml">
 <meta name="theme-color" content="#ffffff"></head>
 <body>
+    <div class="mui-scroll-fix"></div>
     <header class="mui-page-header -white-bg">
     <div class="mui-content-container">
         <div class="mui-header-logo _left">
             <img class="mui-image -logo -js-lazy-load" data-src="images/muilessium.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="logo">
             <a class="link -black -f-blue-3 _right" href="/">
-                <h1 class="_bigger-1">muilessium <span class="_smaller-3">v0.1.40</span></h1>
+                <h1 class="_bigger-1">muilessium <span class="_smaller-3">v0.1.42</span></h1>
             </a>
         </div>
         <nav class="mui-header-navigation -mobile-version _right">
@@ -196,6 +197,9 @@
                             <a class="-f-blue-3" href="#src/less/components/ribbon.less">Ribbon</a>
                         </li>
                         <li>
+                            <a class="-f-blue-3" href="#src/less/components/scroll-fix.less">ScrollFix</a>
+                        </li>
+                        <li>
                             <a class="-f-blue-3" href="#src/less/components/select-dropdown.less">Select dropdown</a>
                         </li>
                         <li>
@@ -335,6 +339,7 @@
                     <p class="mui-p _separate-1">Basic page layout includes header, page container and footer. This layout is the simplest way to create a sticky footer, but IE11 does not support flexbox greatly, so we have some incorrect behavior in it.</p>
                     <div class="code-example _separate-2 _smaller-2">
                         <pre class="prettyprint lang-html">
+    &lt;div class='mui-scroll-fix'&gt;&lt;/div&gt;
     &lt;header class='mui-page-header'&gt;header&lt;/header&gt;
     &lt;div class='mui-page-container'&gt;...&lt;/div&gt;
     &lt;footer class='mui-page-footer'&gt;footer&lt;/footer&gt;</pre>
@@ -2109,6 +2114,16 @@
                                         </div>
                                     </div>
                             </div>
+                        <div id="src/less/components/scroll-fix.less" class="_allow-empty"></div>
+                            <div class="_separate-5">
+                                <div class="mui-row">
+                                    <a class="anchor-link -black -f-blue-3" href="#src/less/components/scroll-fix.less">
+                                        <h4 class="_bigger-1">ScrollFix</h4>
+                                    </a>
+                                </div>
+                                <div class="_smaller-2 -grey-4">src/less/components/scroll-fix.less</div>
+                                    <p class="mui-p _separate-1">Internal component.</p>
+                            </div>
                         <div id="src/less/components/select-dropdown.less" class="_allow-empty"></div>
                             <div class="_separate-5">
                                 <div class="mui-row">
@@ -2475,10 +2490,10 @@
     <div id="scroll-to-top" class="( mui-button -icon ) -white-bg -black -f-blue-2-bg -f-white scroll-to-top -hidden _shadow-3">
         <span>&uarr;</span>
     </div>
-    <link rel="stylesheet" href="assets/css/muilessium.min.css?v=0.1.40">
+    <link rel="stylesheet" href="assets/css/muilessium.min.css?v=0.1.42">
     <link rel="stylesheet" href="assets/css/docs-styles.css?v=5458161178934731">
     <script src="assets/js/prettify/prettify.js"></script>
-    <script src="assets/js/muilessium.min.js?v=0.1.40"></script>
+    <script src="assets/js/muilessium.min.js?v=0.1.42"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var $ = Muilessium.Utils;

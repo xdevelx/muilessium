@@ -2739,12 +2739,6 @@ h6,
   overflow: hidden;
   border: none;
 }
-.mui-input > input::-webkit-input-placeholder {
-  color: #6D6D6D;
-  text-indent: 0;
-  opacity: 1;
-  transition: all 210ms cubic-bezier(0.53, 0.05, 0.13, 0.94);
-}
 .mui-input > input:-ms-input-placeholder {
   color: #6D6D6D;
   text-indent: 0;
@@ -2761,11 +2755,6 @@ h6,
 .mui-input.-icon-left.-focused > input {
   color: #000000;
 }
-.mui-input.-focused > input::-webkit-input-placeholder,
-.mui-input.-icon-left.-focused > input::-webkit-input-placeholder {
-  text-indent: -50rem;
-  opacity: 0;
-}
 .mui-input.-focused > input:-ms-input-placeholder,
 .mui-input.-icon-left.-focused > input:-ms-input-placeholder {
   text-indent: -50rem;
@@ -2780,9 +2769,6 @@ h6,
   background: linear-gradient(to right, #6D6D6D, #6D6D6D 2rem, #FFFFFF 2rem, #FFFFFF 100%);
 }
 .mui-input.-icon-left > input {
-  text-indent: 2rem;
-}
-.mui-input.-icon-left > input::-webkit-input-placeholder {
   text-indent: 2rem;
 }
 .mui-input.-icon-left > input:-ms-input-placeholder {
@@ -2859,9 +2845,6 @@ h6,
 .mui-input.-valid {
   border-color: #1eb53a;
 }
-.mui-input.-valid > input::-webkit-input-placeholder {
-  color: #1eb53a;
-}
 .mui-input.-valid > input:-ms-input-placeholder {
   color: #1eb53a;
 }
@@ -2870,9 +2853,6 @@ h6,
 }
 .mui-input.-invalid {
   border-color: #f93f26;
-}
-.mui-input.-invalid > input::-webkit-input-placeholder {
-  color: #f93f26;
 }
 .mui-input.-invalid > input:-ms-input-placeholder {
   color: #f93f26;
@@ -3464,6 +3444,18 @@ mark {
 .mui-ribbon.-classic.-bottom.-left {
   transform: translateX(-25%) translateY(-50%) rotate(45deg);
 }
+.mui-scroll-fix {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 100;
+  pointer-events: none;
+}
+.mui-scroll-fix.-active {
+  pointer-events: auto;
+}
 .mui-select-dropdown {
   position: relative;
   height: 2rem;
@@ -3758,12 +3750,6 @@ mark {
   overflow: auto;
   border-radius: 0.2rem;
 }
-.mui-textarea > textarea::-webkit-input-placeholder {
-  color: #6D6D6D;
-  text-indent: 0;
-  opacity: 1;
-  transition: all 210ms cubic-bezier(0.53, 0.05, 0.13, 0.94);
-}
 .mui-textarea > textarea:-ms-input-placeholder {
   color: #6D6D6D;
   text-indent: 0;
@@ -3778,10 +3764,6 @@ mark {
 }
 .mui-textarea > textarea:focus {
   color: #000000;
-}
-.mui-textarea > textarea:focus::-webkit-input-placeholder {
-  text-indent: -50rem;
-  opacity: 0;
 }
 .mui-textarea > textarea:focus:-ms-input-placeholder {
   text-indent: -50rem;
