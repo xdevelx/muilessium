@@ -1,0 +1,16 @@
+// @name ScrollFix
+// @description Internal component.
+
+.@{muilessium-prefix}scroll-fix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 100;
+    pointer-events: none;
+
+    &.-active {
+        pointer-events: auto;
+    }
+}

@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'ProgressBar':      window.Muilessium.Factory.create('ProgressBar',      '.mui-progress-bar',      {}),
         'Radio':            window.Muilessium.Factory.create('Radio',            '.mui-radio',             {}),
         'Rating':           window.Muilessium.Factory.create('Rating',           '.mui-rating',            {}),
+        'ScrollFix':        window.Muilessium.Factory.create('ScrollFix',        '.mui-scroll-fix',        {}),
         'SelectDropdown':   window.Muilessium.Factory.create('SelectDropdown',   '.mui-select-dropdown',   {}),
         'Spoiler':          window.Muilessium.Factory.create('Spoiler',          '.mui-spoiler',           {}),
         'Tabs':             window.Muilessium.Factory.create('Tabs',             '.mui-tabs',              {}),

@@ -16,6 +16,7 @@ export { ModalWindow      } from './components/modal-window';
 export { Pagination       } from './components/pagination';
 export { ProgressBar      } from './components/progress-bar';
 export { Radio            } from './components/radio';
+export { ScrollFix        } from './components/scroll-fix';
 export { SelectDropdown   } from './components/select-dropdown';
 export { Spoiler          } from './components/spoiler';
 export { Tabs             } from './components/tabs';
