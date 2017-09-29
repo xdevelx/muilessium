@@ -4951,9 +4951,6 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
             if (window.innerWidth < 600) {
                 this.transformToMobile();
                 return this;
-            } else if (window.innerWidth > 1200) {
-                this.transformToDesktop();
-                return this;
             }
 
             this.transformToDesktop();
@@ -4962,7 +4959,7 @@ var HeaderNavigation = exports.HeaderNavigation = function (_Component) {
                 parentWidth = parentNode.clientWidth,
                 childsWidth = 0;
 
-            [].forEach.call(parentNode.childNodes, function (child) {
+            (0, _uncategorized.forEach)(parentNode.childNodes, function (child) {
                 var width = child.offsetWidth;
 
                 if (width) {
