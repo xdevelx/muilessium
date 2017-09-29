@@ -26,6 +26,7 @@ import { makeChildElementsClickable   } from '../utils/focus-and-click';
 import { goToPreviousFocusableElement } from '../utils/focus-and-click';
 import { goToNextFocusableElement     } from '../utils/focus-and-click';
 import { extend                       } from '../utils/uncategorized';
+import { forEach                      } from '../utils/uncategorized';
 import { firstOfList                  } from '../utils/uncategorized';
 import { lastOfList                   } from '../utils/uncategorized';
 
@@ -195,9 +196,6 @@ export class HeaderNavigation extends Component {
         if (window.innerWidth < 600) {
             this.transformToMobile();
             return this;
-        } else if (window.innerWidth > 1200) {
-            this.transformToDesktop();
-            return this;
         }
 
         this.transformToDesktop();
@@ -206,7 +204,7 @@ export class HeaderNavigation extends Component {
             parentWidth = parentNode.clientWidth,
             childsWidth = 0;
 
-        [].forEach.call(parentNode.childNodes, (child) => {
+        forEach(parentNode.childNodes, (child) => {
             let width = child.offsetWidth;
 
             if (width) {
