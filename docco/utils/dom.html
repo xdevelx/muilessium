@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Muilessium - viewport.js</title>
+    <title>Muilessium - dom.js</title>
 
     <meta http-equiv='content-type' content='text/html; charset=UTF-8'>
     <meta name='viewport' content='user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1'>
@@ -64,7 +64,7 @@
                 <h1 class='-white _bigger-1'>
                     <span>Muilessium</span>
                     
-                        <span class='_smaller-1'> (viewport.js) </span>
+                        <span class='_smaller-1'> (dom.js) </span>
                     
                 </h1>
             </a>
@@ -96,7 +96,7 @@
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-2'>&#182;</a>
                         </div>
-                        <h2 id="viewport-utilities">Viewport utilities</h2>
+                        <h2 id="dom-utilities">DOM utilities</h2>
 
                     </div>
                     <div class='mui-content-container'>
@@ -115,10 +115,6 @@
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
-
-<span class="hljs-keyword">import</span> { ifExists } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/checks'</span>;</pre></div></div>
-                        
                     </div>
                 </div>
             
@@ -129,7 +125,7 @@
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-4'>&#182;</a>
                         </div>
-                        <h2 id="is-in-viewport">Is in viewport</h2>
+                        <h2 id="get">Get</h2>
 
                     </div>
                     <div class='mui-content-container'>
@@ -144,24 +140,14 @@
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-5'>&#182;</a>
                         </div>
-                        <p>Returns true if the element is in viewport</p>
+                        <p>Wrapper for querySelector </p>
 
                     </div>
                     <div class='mui-content-container'>
                         
                             <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isInViewport</span>(<span class="hljs-params">element</span>) </span>{
-    <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
-        <span class="hljs-keyword">let</span> rect = element.getBoundingClientRect(),
-            html = <span class="hljs-built_in">document</span>.documentElement;
-
-        <span class="hljs-keyword">return</span> (
-            rect.top    &gt;= <span class="hljs-number">0</span> &amp;&amp;
-            rect.left   &gt;= <span class="hljs-number">0</span> &amp;&amp;
-            rect.bottom &lt;= (<span class="hljs-built_in">window</span>.innerHeight || html.clientHeight) &amp;&amp;
-            rect.right  &lt;= (<span class="hljs-built_in">window</span>.innerWidth  || html.clientWidth)
-        );
-    });
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get</span>(<span class="hljs-params">element, query</span>) </span>{
+    <span class="hljs-keyword">return</span> element.querySelector(query);
 };</pre></div></div>
                         
                     </div>
@@ -174,7 +160,7 @@
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-6'>&#182;</a>
                         </div>
-                        <h2 id="is-above-viewport">Is above viewport</h2>
+                        <h2 id="getall">GetAll</h2>
 
                     </div>
                     <div class='mui-content-container'>
@@ -189,18 +175,14 @@
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-7'>&#182;</a>
                         </div>
-                        <p>Returns true if the element is above viewport</p>
+                        <p>Wrapper for querySelectorAll</p>
 
                     </div>
                     <div class='mui-content-container'>
                         
                             <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isAboveViewport</span>(<span class="hljs-params">element</span>) </span>{
-    <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
-        <span class="hljs-keyword">return</span> (
-            element.offsetTop + element.offsetHeight &lt; <span class="hljs-built_in">window</span>.pageYOffset
-        );
-    });
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getAll</span>(<span class="hljs-params">elementquery</span>) </span>{
+    <span class="hljs-keyword">return</span> element.querySelectorAll(query);
 };</pre></div></div>
                         
                     </div>

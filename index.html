@@ -24,7 +24,7 @@
         <div class="mui-header-logo _left">
             <img class="mui-image -logo -js-lazy-load" data-src="images/muilessium.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="logo">
             <a class="link -black -f-blue-3 _right" href="/">
-                <h1 class="_bigger-1">muilessium <span class="_smaller-3">v0.1.43</span></h1>
+                <h1 class="_bigger-1">muilessium <span class="_smaller-3">v0.1.44</span></h1>
             </a>
         </div>
         <nav class="mui-header-navigation -mobile-version _right">
@@ -651,7 +651,7 @@
                             <h3 class="_bigger-2" id="components">Components</h3>
                         </a>
                     </div>
-                    <p class="mui-p _separate-1">Muilessium has a number of components listed below. Every component has a markup shown in example and this markup should be used as is, because some initializations of components are based on their markups.</p>
+                    <p class="mui-p _separate-1">Muilessium has a number of components listed below. Every component has a markup shown in example and this markup should be used as is, because some initializations of components are based on their markups. All components are stored in window.Muilessium.components.</p>
                         <div id="src/less/components/accordion.less" class="_allow-empty"></div>
                             <div class="_separate-5">
                                 <div class="mui-row">
@@ -660,6 +660,28 @@
                                     </a>
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/accordion.less</div>
+                                    <div class="_separate-1">
+                                            <div class="_smaller-2">
+                                                <span>foldItem(index)</span>
+                                                    <span class="-grey-3"> - folds item with selected index</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>foldAllItems()</span>
+                                                    <span class="-grey-3"> - folds all items</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>unfoldItem(index)</span>
+                                                    <span class="-grey-3"> - unfolds item with selected index</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>unfoldAllItems()</span>
+                                                    <span class="-grey-3"> - unfolds all items</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>toggleItem(index)</span>
+                                                    <span class="-grey-3"> - unfolds item with selected index if it is folded and folds it otherwise</span>
+                                            </div>
+                                    </div>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <ul class="mui-accordion">
       <li class="item">
@@ -804,6 +826,20 @@
                                     </a>
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/button-dropdown.less</div>
+                                    <div class="_separate-1">
+                                            <div class="_smaller-2">
+                                                <span>openDropdown()</span>
+                                                    <span class="-grey-3"> - opens dropdown menu</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>closeDropdown()</span>
+                                                    <span class="-grey-3"> - closes dropdown menu</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>toggleDropdown()</span>
+                                                    <span class="-grey-3"> - opens dropdown menu if it is closed and closes it otherwise</span>
+                                            </div>
+                                    </div>
                                     <div class="_smaller-2 -blue-4">Depends on button</div>
                                     <div class="_smaller-2 -blue-4">Depends on dropdown-options</div>
                                     <div class="_smaller-2 -blue-4">Depends on shadow-toggle</div>
@@ -1042,6 +1078,20 @@
                                 <div class="_smaller-2 -grey-4">src/less/components/carousel.less</div>
                                     <p class="mui-p _separate-1">Interval in seconds can be setted using data-attribute.</p>
                                     <div class="_separate-1">
+                                            <div class="_smaller-2">
+                                                <span>startRotation()</span>
+                                                    <span class="-grey-3"> - starts rotation</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>stopRotation()</span>
+                                                    <span class="-grey-3"> - stops rotation</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>rotate(param)</span>
+                                                    <span class="-grey-3"> - rotates carousel to the selected slide (&#x27;next&#x27;, &#x27;prev&#x27; or selected by numerical index)</span>
+                                            </div>
+                                    </div>
+                                    <div class="_separate-1">
                                         <div class="example _separate-2">      <div class="mui-carousel" data-interval="4s">
           <ul class="mui-slides">
               <li class="mui-slide">
@@ -1127,6 +1177,20 @@
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/checkbox.less</div>
                                     <div class="_separate-1">
+                                            <div class="_smaller-2">
+                                                <span>setCheckbox()</span>
+                                                    <span class="-grey-3"> - sets checkbox checked</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>unsetCheckbox()</span>
+                                                    <span class="-grey-3"> - sets checkbox unchecked</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>toggleCheckbox()</span>
+                                                    <span class="-grey-3"> - sets checkbox checked if it is unchecked and sets it unchecked otherwise</span>
+                                            </div>
+                                    </div>
+                                    <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-checkbox">
       <input type="checkbox" id="dFrp7">
       <label>
@@ -1161,6 +1225,20 @@
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/checkbox.less</div>
                                     <p class="mui-p _separate-1">Toggle variation of the checkbox component.</p>
+                                    <div class="_separate-1">
+                                            <div class="_smaller-2">
+                                                <span>setCheckbox()</span>
+                                                    <span class="-grey-3"> - sets checkbox checked</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>unsetCheckbox()</span>
+                                                    <span class="-grey-3"> - sets checkbox unchecked</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>toggleCheckbox()</span>
+                                                    <span class="-grey-3"> - sets checkbox checked if it is unchecked and sets it unchecked otherwise</span>
+                                            </div>
+                                    </div>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-checkbox -toggle">
       <input type="checkbox" id="qW30v">
@@ -1422,6 +1500,12 @@
                                 <div class="_smaller-2 -grey-4">src/less/components/input.less</div>
                                     <p class="mui-p _separate-1">Has two parameters: regexp (/^(?:)$/ by default) and validation-delay (300ms by defaut). Use -js-no-validation class on mui-input to create input without validation. Use -js-allow-not-exists to hide console warnings when labels or hints are not present.</p>
                                     <div class="_separate-1">
+                                            <div class="_smaller-2">
+                                                <span>validate()</span>
+                                                    <span class="-grey-3"> - validates input</span>
+                                            </div>
+                                    </div>
+                                    <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-input-wrapper">
       <label class="mui-input-label">Username</label>
       <div class="mui-input-hint">
@@ -1464,6 +1548,12 @@
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/input.less</div>
                                     <p class="mui-p _separate-1">Input component with an icon</p>
+                                    <div class="_separate-1">
+                                            <div class="_smaller-2">
+                                                <span>validate()</span>
+                                                    <span class="-grey-3"> - validates input</span>
+                                            </div>
+                                    </div>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-input-wrapper">
       <label class="mui-input-label">Username</label>
@@ -1509,6 +1599,12 @@
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/input.less</div>
                                     <p class="mui-p _separate-1">Input component (material-style variation)</p>
+                                    <div class="_separate-1">
+                                            <div class="_smaller-2">
+                                                <span>validate()</span>
+                                                    <span class="-grey-3"> - validates input</span>
+                                            </div>
+                                    </div>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-input-wrapper">
       <div class="mui-input -material" data-regexp="^[a-zA-Z]{3,}$">
@@ -1666,6 +1762,16 @@
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/modal-window.less</div>
                                     <div class="_separate-1">
+                                            <div class="_smaller-2">
+                                                <span>openModal()</span>
+                                                    <span class="-grey-3"> - opens modal window</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>closeModal()</span>
+                                                    <span class="-grey-3"> - closes modal window</span>
+                                            </div>
+                                    </div>
+                                    <div class="_separate-1">
                                         <div class="example _separate-2"> <div class="mui-button" data-modal-opener="Wer45">Open modal</div>
  <div class="mui-modal-window" id="Wer45">
      <div class="window">
@@ -1754,6 +1860,28 @@
                                     </a>
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/page-header-navigation.less</div>
+                                    <div class="_separate-1">
+                                            <div class="_smaller-2">
+                                                <span>openNavigation()</span>
+                                                    <span class="-grey-3"> - opens mobile navigation</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>closeNavigation()</span>
+                                                    <span class="-grey-3"> - closes mobile navigation</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>toggleNavigation()</span>
+                                                    <span class="-grey-3"> - opens mobile navigation if it is closed and closes it otherwise</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>transformToMobile()</span>
+                                                    <span class="-grey-3"> - transforms navigation to mobile version</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>transformToDesktop()</span>
+                                                    <span class="-grey-3"> - transforms navigation to desktop version</span>
+                                            </div>
+                                    </div>
                                     <div class="_smaller-2 -blue-4">Depends on page-header</div>
                                     <div class="_smaller-2 -blue-4">Depends on shadow-toggle</div>
                                     <div class="_separate-1">
@@ -1949,6 +2077,12 @@
                                 <div class="_smaller-2 -grey-4">src/less/components/progress-bar.less</div>
                                     <p class="mui-p _separate-1">Progress bar component</p>
                                     <div class="_separate-1">
+                                            <div class="_smaller-2">
+                                                <span>setValue(newValue)</span>
+                                                    <span class="-grey-3"> - sets new value and animates progress bar</span>
+                                            </div>
+                                    </div>
+                                    <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-progress-bar" data-value="60">
       <div class="indicator"></div>
       <div class="value"></div>
@@ -1973,6 +2107,12 @@
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/progress-bar.less</div>
                                     <p class="mui-p _separate-1">Radial progress bar component</p>
+                                    <div class="_separate-1">
+                                            <div class="_smaller-2">
+                                                <span>setValue(newValue)</span>
+                                                    <span class="-grey-3"> - sets new value and animates progress bar</span>
+                                            </div>
+                                    </div>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-progress-bar -radial" data-value="60">
       <svg class="indicator" viewbox="0 0 100 100">
@@ -2004,6 +2144,12 @@
                                     </a>
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/radio.less</div>
+                                    <div class="_separate-1">
+                                            <div class="_smaller-2">
+                                                <span>updateState(index)</span>
+                                                    <span class="-grey-3"> - makes input with selected index selected</span>
+                                            </div>
+                                    </div>
                                     <div class="_smaller-2 -blue-4">Depends on input</div>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-input-wrapper">
@@ -2053,6 +2199,20 @@
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/rating.less</div>
                                     <p class="mui-p _separate-1">Use -js-disabled class to create &quot;view-only&quot; rating.</p>
+                                    <div class="_separate-1">
+                                            <div class="_smaller-2">
+                                                <span>updateRating(newRating)</span>
+                                                    <span class="-grey-3"> - sets new rating value</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>increaseRating()</span>
+                                                    <span class="-grey-3"> - increases rating value</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>decreaseRating()</span>
+                                                    <span class="-grey-3"> - decreases rating value</span>
+                                            </div>
+                                    </div>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-rating" data-rating="3" aria-label="Rating: 3 stars of 5">
       <span class="star">&starf;</span>
@@ -2133,6 +2293,28 @@
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/select-dropdown.less</div>
                                     <p class="mui-p _separate-1">Data-id attribute should be used to select id and name attributes for the hidden html select element. Should be usew with label for the better accessibility.</p>
+                                    <div class="_separate-1">
+                                            <div class="_smaller-2">
+                                                <span>getSelectedIndex()</span>
+                                                    <span class="-grey-3"> - returns index of the selected item</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>openDropdown()</span>
+                                                    <span class="-grey-3"> - opens dropdown menu</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>closeDropdown()</span>
+                                                    <span class="-grey-3"> - closes dropdown menu</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>toggleDropdown()</span>
+                                                    <span class="-grey-3"> - opens dropdown menu if it is closed and closes it otherwise</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>updateState(newIndex = 0)</span>
+                                                    <span class="-grey-3"> - selects item with selected index</span>
+                                            </div>
+                                    </div>
                                     <div class="_smaller-2 -blue-4">Depends on input</div>
                                     <div class="_smaller-2 -blue-4">Depends on dropdown-options</div>
                                     <div class="_smaller-2 -blue-4">Depends on shadow-toggle</div>
@@ -2228,6 +2410,20 @@
                                 <div class="_smaller-2 -grey-4">src/less/components/spoiler.less</div>
                                     <p class="mui-p _separate-1">No description</p>
                                     <div class="_separate-1">
+                                            <div class="_smaller-2">
+                                                <span>open()</span>
+                                                    <span class="-grey-3"> - opens spoiler</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>close()</span>
+                                                    <span class="-grey-3"> - closes spoiler</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>toggle()</span>
+                                                    <span class="-grey-3"> - opens spoiler if it is closed and closes it otherwise</span>
+                                            </div>
+                                    </div>
+                                    <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-spoiler">
       <div class="title">spoiler</div>
       <div class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam et minus explicabo consectetur reprehenderit dolor dolorem quaerat necessitatibus optio aut, quas cum ex eveniet, quidem. Sunt ad eligendi numquam cupiditate asperiores quod, aspernatur delectus labore est? Nisi sapiente, doloremque cupiditate vel eos numquam aliquam possimus?</div>
@@ -2298,6 +2494,17 @@
                                     </a>
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/tabs.less</div>
+                                    <p class="mui-p _separate-1">Horizontal tabs</p>
+                                    <div class="_separate-1">
+                                            <div class="_smaller-2">
+                                                <span>goToPreviousTab()</span>
+                                                    <span class="-grey-3"> - switches component to next tab</span>
+                                            </div>
+                                            <div class="_smaller-2">
+                                                <span>goToNextTab()</span>
+                                                    <span class="-grey-3"> - switches component to previous tab</span>
+                                            </div>
+                                    </div>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <div class="mui-tabs">
       <div class="labels">
@@ -2490,10 +2697,10 @@
     <div id="scroll-to-top" class="( mui-button -icon ) -white-bg -black -f-blue-2-bg -f-white scroll-to-top -hidden _shadow-3">
         <span>&uarr;</span>
     </div>
-    <link rel="stylesheet" href="assets/css/muilessium.min.css?v=0.1.43">
+    <link rel="stylesheet" href="assets/css/muilessium.min.css?v=0.1.44">
     <link rel="stylesheet" href="assets/css/docs-styles.css?v=5458161178934731">
     <script src="assets/js/prettify/prettify.js"></script>
-    <script src="assets/js/muilessium.min.js?v=0.1.43"></script>
+    <script src="assets/js/muilessium.min.js?v=0.1.44"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var $ = Muilessium.Utils;

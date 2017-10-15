@@ -4194,9 +4194,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // Methods list:
 //  - (default) initAria()
 //  - (default) initControls()
-//  - openDrpdown()
-//  - closeDrpdown()
-//  - toggleDrpdown()
+//  - openDropdown()
+//  - closeDropdown()
+//  - toggleDropdown()
 
 
 var ButtonDropdown = exports.ButtonDropdown = function (_Component) {
@@ -4438,8 +4438,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // Methods list:
 //  - (default) initAria()
 //  - (default) initControls()
-//  - startRotating()
-//  - stopRotating()
+//  - startRotation()
+//  - stopRotation()
 //  - makeSlideActive(index)
 //  - makeSlideInactive(index)
 //  - rotate(param)
@@ -4473,7 +4473,7 @@ var Carousel = exports.Carousel = function (_Component) {
         _this.initAria();
         _this.initControls();
         _this.makeSlideActive(0);
-        _this.startRotating();
+        _this.startRotation();
         return _this;
     }
 
@@ -4487,13 +4487,13 @@ var Carousel = exports.Carousel = function (_Component) {
         value: function initControls() {
             var _this2 = this;
 
-            Mouse.onMouseOver(this.domCache.element, this.stopRotating.bind(this));
-            Mouse.onMouseOut(this.domCache.element, this.startRotating.bind(this));
+            Mouse.onMouseOver(this.domCache.element, this.stopRotation.bind(this));
+            Mouse.onMouseOut(this.domCache.element, this.startRotation.bind(this));
 
             (0, _focusAndClick.makeElementFocusable)(this.domCache.element);
 
             (0, _focusAndClick.onFocus)(this.domCache.element, function () {
-                _this2.stopRotating();
+                _this2.stopRotation();
 
                 (0, _uncategorized.forEach)(_this2.domCache.controls.prev, function (prev) {
                     (0, _classes.addClass)(prev, '-focused');
@@ -4505,7 +4505,7 @@ var Carousel = exports.Carousel = function (_Component) {
             });
 
             (0, _focusAndClick.onBlur)(this.domCache.element, function () {
-                _this2.startRotating();
+                _this2.startRotation();
 
                 (0, _uncategorized.forEach)(_this2.domCache.controls.prev, function (prev) {
                     (0, _classes.removeClass)(prev, '-focused');
@@ -4532,8 +4532,8 @@ var Carousel = exports.Carousel = function (_Component) {
             return this;
         }
     }, {
-        key: 'startRotating',
-        value: function startRotating() {
+        key: 'startRotation',
+        value: function startRotation() {
             if (!this.state.isRotating) {
                 this.state.rotateInterval = setInterval(this.rotate.bind(this, 'next'), this.state.interval * 1000);
 
@@ -4543,8 +4543,8 @@ var Carousel = exports.Carousel = function (_Component) {
             return this;
         }
     }, {
-        key: 'stopRotating',
-        value: function stopRotating() {
+        key: 'stopRotation',
+        value: function stopRotation() {
             clearInterval(this.state.rotateInterval);
 
             this.state.rotateInterval = null;
@@ -4632,6 +4632,8 @@ var _classes = require('../utils/classes');
 var _focusAndClick = require('../utils/focus-and-click');
 
 var _uncategorized = require('../utils/uncategorized');
+
+var _console = require('../utils/console');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -4732,7 +4734,7 @@ var Checkbox = exports.Checkbox = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":28,"../utils/aria":39,"../utils/attributes":40,"../utils/classes":42,"../utils/focus-and-click":44,"../utils/uncategorized":46}],14:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":28,"../utils/aria":39,"../utils/attributes":40,"../utils/classes":42,"../utils/console":43,"../utils/focus-and-click":44,"../utils/uncategorized":46}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5558,7 +5560,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // Methods list:
 //  - (default) initAria()
 //  - (default) initControls()
-//  - updateState()
+//  - updateState(index)
 
 var Radio = exports.Radio = function (_Component) {
     _inherits(Radio, _Component);
@@ -5628,7 +5630,7 @@ var Radio = exports.Radio = function (_Component) {
     }, {
         key: 'updateState',
         value: function updateState(index) {
-            if (typeof index !== 'number' || index < 0) {
+            if (typeof index !== 'number' || index < 0 || index > this.domCache.inputs.length - 1) {
                 return this;
             }
 
@@ -5672,8 +5674,6 @@ var _aria = require('../utils/aria');
 var _attributes = require('../utils/attributes');
 
 var _classes = require('../utils/classes');
-
-var _console = require('../utils/console');
 
 var _focusAndClick = require('../utils/focus-and-click');
 
@@ -5754,7 +5754,6 @@ var Rating = exports.Rating = function (_Component) {
         key: 'updateRating',
         value: function updateRating(newRating) {
             if (newRating < this.state.minRating || newRating > this.state.maxRating) {
-                _console.console.error('wrong rating value');
                 return this;
             }
 
@@ -5800,7 +5799,7 @@ var Rating = exports.Rating = function (_Component) {
 
 ;
 
-},{"../component":6,"../controls/keyboard":28,"../utils/aria":39,"../utils/attributes":40,"../utils/classes":42,"../utils/console":43,"../utils/focus-and-click":44,"../utils/uncategorized":46}],22:[function(require,module,exports){
+},{"../component":6,"../controls/keyboard":28,"../utils/aria":39,"../utils/attributes":40,"../utils/classes":42,"../utils/focus-and-click":44,"../utils/uncategorized":46}],22:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -6078,13 +6077,15 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
     }, {
         key: 'getSelectedIndex',
         value: function getSelectedIndex() {
-            for (var i = 0; i < this.domCache.options.length; i++) {
-                if ((0, _classes.hasClass)(this.domCache.options[i], '-selected')) {
-                    return i;
-                }
-            }
+            var result = 0;
 
-            return 0;
+            (0, _uncategorized.forEach)(this.domCache.optionsList, function (option, index) {
+                if ((0, _classes.hasClass)(option, '-selected')) {
+                    result = index;
+                }
+            });
+
+            return result;
         }
     }, {
         key: 'openDropdown',
@@ -6131,6 +6132,13 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
         key: 'updateState',
         value: function updateState() {
             var newSelectedIndex = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+
+            if (newSelectedIndex < 0 || newSelectedIndex > this.domCache.optionsList.length - 1) {
+                return this;
+            }
+
+            (0, _classes.removeClass)(this.domCache.optionsList[this.state.selectedIndex], '-selected');
+            (0, _classes.addClass)(this.domCache.optionsList[newSelectedIndex], '-selected');
 
             this.state.selectedIndex = newSelectedIndex;
             this.domCache.state.innerHTML = this.domCache.optionsList[this.state.selectedIndex].innerHTML;
@@ -6184,8 +6192,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 //  - (default) initAria()
 //  - (default) initControls()
 //  - open()
-//  - toggle()
 //  - close()
+//  - toggle()
 
 
 var Spoiler = exports.Spoiler = function (_Component) {
