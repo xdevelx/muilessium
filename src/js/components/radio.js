@@ -4,7 +4,7 @@
 // Methods list:
 //  - (default) initAria()
 //  - (default) initControls()
-//  - updateState()
+//  - updateState(index)
 
 import { Component } from '../component';
 
@@ -76,7 +76,7 @@ export class Radio extends Component {
 
 
     updateState(index) {
-        if ((typeof index !== 'number') || (index < 0)) {
+        if ((typeof index !== 'number') || (index < 0) || (index > this.domCache.inputs.length - 1)) {
             return this;
         }
 

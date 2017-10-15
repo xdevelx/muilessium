@@ -19,6 +19,7 @@ import { addClass              } from '../utils/classes';
 import { removeClass           } from '../utils/classes';
 import { makeElementClickable  } from '../utils/focus-and-click';
 import { extend                } from '../utils/uncategorized';
+import { console               } from '../utils/console';
 
 
 

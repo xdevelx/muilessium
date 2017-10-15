@@ -5,8 +5,8 @@
 //  - (default) initAria()
 //  - (default) initControls()
 //  - open()
-//  - toggle()
 //  - close()
+//  - toggle()
 
 
 import { Component } from '../component';

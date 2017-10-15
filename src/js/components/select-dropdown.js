@@ -193,13 +193,15 @@ export class SelectDropdown extends Component {
 
 
     getSelectedIndex() {
-        for (let i = 0; i < this.domCache.options.length; i++) {
-            if (hasClass(this.domCache.options[i], '-selected')) {
-                return i;
-            }
-        }
+        let result = 0;
 
-        return 0;
+        forEach(this.domCache.optionsList, (option, index) => {
+            if (hasClass(option, '-selected')) {
+                result = index;
+            }
+        });
+
+        return result;
     }
 
     openDropdown({ focusFirst = true }) {
@@ -237,6 +239,13 @@ export class SelectDropdown extends Component {
 
 
     updateState(newSelectedIndex = 0) {
+        if (newSelectedIndex < 0 || newSelectedIndex > this.domCache.optionsList.length - 1) {
+            return this;
+        }
+
+        removeClass(this.domCache.optionsList[this.state.selectedIndex], '-selected');
+        addClass(this.domCache.optionsList[newSelectedIndex], '-selected');
+
         this.state.selectedIndex = newSelectedIndex;
         this.domCache.state.innerHTML = this.domCache.optionsList[this.state.selectedIndex].innerHTML;
         this.domCache.hiddenSelect.selectedIndex = this.state.selectedIndex.toString();

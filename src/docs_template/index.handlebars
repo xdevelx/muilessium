@@ -586,7 +586,7 @@
                         </a>
                     </div>
 
-                    <p class='mui-p _separate-1'>Muilessium has a number of components listed below. Every component has a markup shown in example and this markup should be used as is, because some initializations of components are based on their markups.</p>
+                    <p class='mui-p _separate-1'>Muilessium has a number of components listed below. Every component has a markup shown in example and this markup should be used as is, because some initializations of components are based on their markups. All components are stored in window.Muilessium.components.</p>
 
                     {{#files}}
                         <div id='{{file}}' class='_allow-empty'></div>
@@ -601,7 +601,19 @@
                                 {{#if description }}
                                     <p class='mui-p _separate-1'>{{ description }}</p>
                                 {{/if}}
-                                {{#depends }}
+                                {{#if method}}
+                                    <div class='_separate-1'>
+                                        {{#method}}
+                                            <div class='_smaller-2'>
+                                                <span>{{ name }}</span>
+                                                {{#if description }}
+                                                    <span class='-grey-3'> - {{ description }}</span>
+                                                {{/if}}
+                                            </div>
+                                        {{/method}}
+                                    </div>
+                                {{/if}}
+                                {{#depends}}
                                     <div class='_smaller-2 -blue-4'>Depends on {{ depends }}</div>
                                 {{/depends}}
                                 {{#requires}}

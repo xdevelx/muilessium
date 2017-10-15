@@ -19,7 +19,6 @@ import { setAttribute               } from '../utils/attributes';
 import { addClass                   } from '../utils/classes';
 import { removeClass                } from '../utils/classes';
 import { hasClass                   } from '../utils/classes';
-import { console                    } from '../utils/console';
 import { makeElementFocusable       } from '../utils/focus-and-click';
 import { makeChildElementsClickable } from '../utils/focus-and-click';
 import { extend                     } from '../utils/uncategorized';
@@ -77,7 +76,6 @@ export class Rating extends Component {
 
     updateRating(newRating) {
         if (newRating < this.state.minRating || newRating > this.state.maxRating) {
-            console.error('wrong rating value');
             return this;
         }
 

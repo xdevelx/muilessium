@@ -4,9 +4,9 @@
 // Methods list:
 //  - (default) initAria()
 //  - (default) initControls()
-//  - openDrpdown()
-//  - closeDrpdown()
-//  - toggleDrpdown()
+//  - openDropdown()
+//  - closeDropdown()
+//  - toggleDropdown()
 
 
 import { Component } from '../component';

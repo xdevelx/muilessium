@@ -4,8 +4,8 @@
 // Methods list:
 //  - (default) initAria()
 //  - (default) initControls()
-//  - startRotating()
-//  - stopRotating()
+//  - startRotation()
+//  - stopRotation()
 //  - makeSlideActive(index)
 //  - makeSlideInactive(index)
 //  - rotate(param)
@@ -53,7 +53,7 @@ export class Carousel extends Component {
         this.initAria();
         this.initControls();
         this.makeSlideActive(0);
-        this.startRotating();
+        this.startRotation();
     }
 
 
@@ -63,13 +63,13 @@ export class Carousel extends Component {
 
 
     initControls() {
-        Mouse.onMouseOver(this.domCache.element, this.stopRotating.bind(this));
-        Mouse.onMouseOut(this.domCache.element, this.startRotating.bind(this));
+        Mouse.onMouseOver(this.domCache.element, this.stopRotation.bind(this));
+        Mouse.onMouseOut(this.domCache.element, this.startRotation.bind(this));
 
         makeElementFocusable(this.domCache.element);
 
         onFocus(this.domCache.element, () => {
-            this.stopRotating();
+            this.stopRotation();
 
             forEach(this.domCache.controls.prev, (prev) => {
                 addClass(prev, '-focused');
@@ -81,7 +81,7 @@ export class Carousel extends Component {
         });
 
         onBlur(this.domCache.element, () => {
-            this.startRotating();
+            this.startRotation();
 
             forEach(this.domCache.controls.prev, (prev) => {
                 removeClass(prev, '-focused');
@@ -111,7 +111,7 @@ export class Carousel extends Component {
     }
 
 
-    startRotating() {
+    startRotation() {
         if (!this.state.isRotating) {
             this.state.rotateInterval = setInterval(
                             this.rotate.bind(this, 'next'),
@@ -124,7 +124,7 @@ export class Carousel extends Component {
     }
 
 
-    stopRotating() {
+    stopRotation() {
         clearInterval(this.state.rotateInterval);
 
         this.state.rotateInterval = null;
