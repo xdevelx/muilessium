@@ -82,36 +82,13 @@
     border-right: 2px solid #fff;
 }
 
-@media screen {
-    .str { color: #1F4C77; } // string content
-    .kwd { color: #400F54; } // a keyword
-    .com { color: #6D6D6D; } // a comment
-    .typ { color: #400F54; } // a type name
-    .lit { color: #1F4C77; } // a literal value
-    .pun { color: #383838; } // punctuation
-    .opn { color: #383838; } // lisp open bracket
-    .clo { color: #383838; } // lisp close bracket
-    .tag { color: #400F54; } // a markup tag name
-    .atn { color: #35540F; } // a markup attribute name
-    .atv { color: #1F4C77; } // a markup attribute value
-    .dec { color: #400F54; } // a declaration
-    .var { color: #383838; } // a variable name
-    .fun { color: #383838; } // a function name
-}
-
-pre.prettyprint,
-.hljs {
-    background: #EDEDED;
+.source-code {
+    background: #f1f1f1;
     font-family: Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, monospace;
     font-size: .7rem;
     padding: 1rem;
     overflow-x: scroll;
-    border-left: 2px solid #6D6D6D;
-}
-
-ol.linenums {
-    margin-top: 0;
-    margin-bottom: 0;
+    border-left: 3px solid #777;
 }
 
 .color-preview {
@@ -184,79 +161,6 @@ hr {
 }
 
 
-.hljs,
-.hljs-subst {
-  color: #444;
-}
-
-.hljs-comment {
-  color: #888888;
-}
-
-.hljs-keyword,
-.hljs-attribute,
-.hljs-selector-tag,
-.hljs-meta-keyword,
-.hljs-doctag,
-.hljs-name {
-  font-weight: bold;
-}
-
-.hljs-type,
-.hljs-string,
-.hljs-number,
-.hljs-selector-id,
-.hljs-selector-class,
-.hljs-quote,
-.hljs-template-tag,
-.hljs-deletion {
-  color: #880000;
-}
-
-.hljs-title,
-.hljs-section {
-  color: #880000;
-  font-weight: bold;
-}
-
-.hljs-regexp,
-.hljs-symbol,
-.hljs-variable,
-.hljs-template-variable,
-.hljs-link,
-.hljs-selector-attr,
-.hljs-selector-pseudo {
-  color: #BC6060;
-}
-
-.hljs-literal {
-  color: #78A960;
-}
-
-.hljs-built_in,
-.hljs-bullet,
-.hljs-code,
-.hljs-addition {
-  color: #397300;
-}
-
-.hljs-meta {
-  color: #1f7199;
-}
-
-.hljs-meta-string {
-  color: #4d99bf;
-}
-
-.hljs-emphasis {
-  font-style: italic;
-}
-
-.hljs-strong {
-  font-weight: bold;
-}
-
-
 .anchor-link {
     text-decoration: none;
 }
@@ -294,3 +198,4 @@ hr {
         opacity: .5;
     }
 }
+
