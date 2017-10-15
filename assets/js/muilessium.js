@@ -4650,6 +4650,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 //  - setCheckbox()
 //  - unsetCheckbox()
 //  - toggleCheckbox()
+//  - getState()
 
 
 var Checkbox = exports.Checkbox = function (_Component) {
@@ -4665,6 +4666,10 @@ var Checkbox = exports.Checkbox = function (_Component) {
             label: element.querySelector('label')
         });
 
+        _this.state = (0, _uncategorized.extend)(_this.state, {
+            isChecked: _this.domCache.input.checked
+        });
+
         _this.initAria();
         _this.initControls();
         return _this;
@@ -4677,13 +4682,16 @@ var Checkbox = exports.Checkbox = function (_Component) {
 
             var inputId = this.domCache.input.getAttribute('id') || _aria.aria.setId(this.domCache.input);
 
-            this.domCache.input.checked = false;
-
             (0, _attributes.setAttribute)(this.domCache.label, 'for', inputId);
 
             _aria.aria.set(this.domCache.label, 'controls', inputId);
-            _aria.aria.set(this.domCache.label, 'checked', false);
             _aria.aria.set(this.domCache.input, 'labelledby', _aria.aria.setId(this.domCache.label));
+
+            if (this.state.isChecked) {
+                this.setCheckbox();
+            } else {
+                this.unsetCheckbox();
+            }
 
             return this;
         }
@@ -4699,6 +4707,7 @@ var Checkbox = exports.Checkbox = function (_Component) {
     }, {
         key: 'setCheckbox',
         value: function setCheckbox() {
+            this.state.isChecked = true;
             this.domCache.input.checked = true;
 
             (0, _classes.addClass)(this.domCache.element, '-checked');
@@ -4709,6 +4718,7 @@ var Checkbox = exports.Checkbox = function (_Component) {
     }, {
         key: 'unsetCheckbox',
         value: function unsetCheckbox() {
+            this.state.isChecked = false;
             this.domCache.input.checked = false;
 
             (0, _classes.removeClass)(this.domCache.element, '-checked');
@@ -4719,13 +4729,18 @@ var Checkbox = exports.Checkbox = function (_Component) {
     }, {
         key: 'toggleCheckbox',
         value: function toggleCheckbox() {
-            if (this.domCache.input.checked) {
+            if (this.state.isChecked) {
                 this.unsetCheckbox();
             } else {
                 this.setCheckbox();
             }
 
             return this;
+        }
+    }, {
+        key: 'getState',
+        value: function getState() {
+            return this.state.isChecked;
         }
     }]);
 
@@ -5019,6 +5034,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 //  - (default) initAria()
 //  - (default) initControls()
 //  - validate()
+//  - getValue()
+//  - isValid()
 
 
 var Input = exports.Input = function (_Component) {
@@ -5037,6 +5054,8 @@ var Input = exports.Input = function (_Component) {
         });
 
         _this.state = (0, _uncategorized.extend)(_this.state, {
+            value: '',
+            isValid: true,
             regexp: new RegExp((0, _attributes.getAttribute)(element, 'data-regexp', '')),
             isValidationEnabled: !(0, _classes.hasClass)(element, '-js-no-validation'),
             validationDelay: (0, _attributes.getAttribute)(element, 'data-validation-delay', 300),
@@ -5118,7 +5137,9 @@ var Input = exports.Input = function (_Component) {
         value: function changeValueHandler() {
             var _this6 = this;
 
-            if (this.domCache.input.value == '') {
+            this.state.value = this.domCache.input.value;
+
+            if (this.state.value == '') {
                 (0, _classes.removeClasses)(this.domCache.element, '-has-value', '-valid', '-invalid');
 
                 (0, _checks.ifExists)(this.domCache.hint, function () {
@@ -5145,13 +5166,15 @@ var Input = exports.Input = function (_Component) {
             var _this7 = this;
 
             if (this.state.isValidationEnabled) {
-                if (this.state.regexp.test(this.domCache.input.value)) {
+                if (this.state.regexp.test(this.state.value)) {
                     (0, _classes.replaceClass)(this.domCache.element, '-invalid', '-valid');
 
                     (0, _checks.ifExists)(this.domCache.hint, function () {
                         (0, _classes.replaceClass)(_this7.domCache.hint, '-invalid', '-valid');
                         (0, _classes.replaceClass)(_this7.domCache.indicator, '-invalid', '-valid');
                     }, this.state.printNotExistsWarnings);
+
+                    this.state.isValid = true;
                 } else {
                     (0, _classes.replaceClass)(this.domCache.element, '-valid', '-invalid');
 
@@ -5159,12 +5182,26 @@ var Input = exports.Input = function (_Component) {
                         (0, _classes.replaceClass)(_this7.domCache.hint, '-valid', '-invalid');
                         (0, _classes.replaceClass)(_this7.domCache.indicator, '-valid', '-invalid');
                     }, this.state.printNotExistsWarnings);
+
+                    this.state.isValid = false;
                 }
 
                 this.state.validationTimeout = null;
             }
 
             return this;
+        }
+    }, {
+        key: 'getValue',
+        value: function getValue() {
+            return this.state.value;
+        }
+    }, {
+        key: 'isValid',
+        value: function isValid() {
+            this.validate();
+
+            return this.state.isValid;
         }
     }]);
 
@@ -5460,6 +5497,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // Methods list:
 //  - (default) initAria()
 //  - setValue(newValue)
+//  - getValue()
 
 
 var ProgressBar = exports.ProgressBar = function (_Component) {
@@ -5512,14 +5550,19 @@ var ProgressBar = exports.ProgressBar = function (_Component) {
                     _this2.domCache.indicator.style.width = _this2.state.value + '%';
                 }
 
-                _this2.state.value += sign;
+                if (sign > 0 && _this2.state.value < newValue || sign < 0 && _this2.state.value > newValue) {
+                    _this2.state.value += sign;
 
-                if (sign > 0 && _this2.state.value <= newValue || sign < 0 && _this2.state.value >= newValue) {
                     requestAnimationFrame(update);
                 }
             };
 
             update();
+        }
+    }, {
+        key: 'getValue',
+        value: function getValue() {
+            return this.state.value;
         }
     }]);
 
@@ -5561,6 +5604,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 //  - (default) initAria()
 //  - (default) initControls()
 //  - updateState(index)
+//  - getState()
 
 var Radio = exports.Radio = function (_Component) {
     _inherits(Radio, _Component);
@@ -5646,6 +5690,11 @@ var Radio = exports.Radio = function (_Component) {
 
             return this;
         }
+    }, {
+        key: 'getState',
+        value: function getState() {
+            return this.state.checkedIndex;
+        }
     }]);
 
     return Radio;
@@ -5694,6 +5743,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 //  - updateRating(newRating)
 //  - increaseRating()
 //  - decreaseRating()
+//  - getRating()
 
 
 var Rating = exports.Rating = function (_Component) {
@@ -5791,6 +5841,11 @@ var Rating = exports.Rating = function (_Component) {
             }
 
             return this;
+        }
+    }, {
+        key: 'getRating',
+        value: function getRating() {
+            return this.state.rating;
         }
     }]);
 
@@ -5914,6 +5969,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 //  - closeDropdown()
 //  - toggleDropdown()
 //  - updateState(newIndex = 0)
+//  - getState(newIndex = 0)
 
 
 var SelectDropdown = exports.SelectDropdown = function (_Component) {
@@ -6089,9 +6145,8 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
         }
     }, {
         key: 'openDropdown',
-        value: function openDropdown(_ref) {
-            var _ref$focusFirst = _ref.focusFirst,
-                focusFirst = _ref$focusFirst === undefined ? true : _ref$focusFirst;
+        value: function openDropdown() {
+            var focusFirst = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
 
             this.state.isOpened = true;
 
@@ -6106,14 +6161,13 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
         }
     }, {
         key: 'toggleDropdown',
-        value: function toggleDropdown(_ref2) {
-            var _ref2$focusFirstWhenO = _ref2.focusFirstWhenOpened,
-                focusFirstWhenOpened = _ref2$focusFirstWhenO === undefined ? true : _ref2$focusFirstWhenO;
+        value: function toggleDropdown() {
+            var focusFirstWhenOpened = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
 
             if (this.state.isOpened) {
                 this.closeDropdown();
             } else {
-                this.openDropdown({ focusFirst: focusFirstWhenOpened });
+                this.openDropdown(focusFirstWhenOpened);
             }
 
             return this;
@@ -6147,6 +6201,11 @@ var SelectDropdown = exports.SelectDropdown = function (_Component) {
             _aria.aria.set(this.domCache.select, 'activedescendant', (0, _attributes.getAttribute)(this.domCache.optionsList[this.state.selectedIndex], 'id'));
 
             return this;
+        }
+    }, {
+        key: 'getState',
+        value: function getState() {
+            return this.state.selectedIndex;
         }
     }]);
 
@@ -6534,6 +6593,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // Methods list:
 //  - (default) initAria()
 //  - (default) initControls()
+//  - getValue()
 
 
 var Textarea = exports.Textarea = function (_Component) {
@@ -6547,6 +6607,10 @@ var Textarea = exports.Textarea = function (_Component) {
         _this.domCache = (0, _uncategorized.extend)(_this.domCache, {
             textarea: element.querySelector('textarea'),
             labels: element.parentNode.querySelectorAll('label')
+        });
+
+        _this.state = (0, _uncategorized.extend)(_this.state, {
+            value: ''
         });
 
         _this.initAria();
@@ -6616,11 +6680,18 @@ var Textarea = exports.Textarea = function (_Component) {
     }, {
         key: 'changeEventHandler',
         value: function changeEventHandler() {
-            if (this.domCache.textarea.value == '') {
+            this.state.value = this.domCache.textarea.value;
+
+            if (this.state.value == '') {
                 (0, _classes.removeClass)(this.domCache.element, '-has-value');
             } else {
                 (0, _classes.addClass)(this.domCache.element, '-has-value');
             }
+        }
+    }, {
+        key: 'getValue',
+        value: function getValue() {
+            return this.state.value;
         }
     }]);
 
@@ -7064,28 +7135,32 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 document.addEventListener('DOMContentLoaded', function () {
     window.Hammer = require('hammerjs');
+
     window.Muilessium = new _muilessium2.default();
+
+    var create = window.Muilessium.Factory.create;
+
+    window.Muilessium.Factory.create('Breadcrumb', '.mui-breadcrumb', {});
+    window.Muilessium.Factory.create('Button', '.mui-button', {});
+    window.Muilessium.Factory.create('MediaView', '.mui-media-view', {});
+    window.Muilessium.Factory.create('Pagination', '.mui-pagination', {});
+    window.Muilessium.Factory.create('ScrollFix', '.mui-scroll-fix', {});
+    window.Muilessium.Factory.create('TagsList', '.mui-tags-list', {});
 
     window.Muilessium.components = {
         'Accordion': window.Muilessium.Factory.create('Accordion', '.mui-accordion', {}),
-        'Breadcrumb': window.Muilessium.Factory.create('Breadcrumb', '.mui-breadcrumb', {}),
         'ButtonDropdown': window.Muilessium.Factory.create('ButtonDropdown', '.mui-button-dropdown', {}),
-        'Button': window.Muilessium.Factory.create('Button', '.mui-button', {}),
         'Carousel': window.Muilessium.Factory.create('Carousel', '.mui-carousel', {}),
         'Checkbox': window.Muilessium.Factory.create('Checkbox', '.mui-checkbox', {}),
         'HeaderNavigation': window.Muilessium.Factory.create('HeaderNavigation', '.mui-header-navigation', {}),
         'Input': window.Muilessium.Factory.create('Input', '.mui-input', {}),
-        'MediaView': window.Muilessium.Factory.create('MediaView', '.mui-media-view', {}),
         'ModalWindow': window.Muilessium.Factory.create('ModalWindow', '.mui-modal-window', {}),
-        'Pagination': window.Muilessium.Factory.create('Pagination', '.mui-pagination', {}),
         'ProgressBar': window.Muilessium.Factory.create('ProgressBar', '.mui-progress-bar', {}),
         'Radio': window.Muilessium.Factory.create('Radio', '.mui-radio', {}),
         'Rating': window.Muilessium.Factory.create('Rating', '.mui-rating', {}),
-        'ScrollFix': window.Muilessium.Factory.create('ScrollFix', '.mui-scroll-fix', {}),
         'SelectDropdown': window.Muilessium.Factory.create('SelectDropdown', '.mui-select-dropdown', {}),
         'Spoiler': window.Muilessium.Factory.create('Spoiler', '.mui-spoiler', {}),
         'Tabs': window.Muilessium.Factory.create('Tabs', '.mui-tabs', {}),
-        'TagsList': window.Muilessium.Factory.create('TagsList', '.mui-tags-list', {}),
         'Textarea': window.Muilessium.Factory.create('Textarea', '.mui-textarea', {})
     };
 });
@@ -7157,6 +7232,8 @@ var Muilessium = function () {
         // Components factory from /src/js/factory.js
         this.Factory = new _factory.Factory();
 
+        this.components = {};
+
         Muilessium.instance = this;
         this.Events.fireEvent('muilessium-initialized');
     }
@@ -7185,6 +7262,19 @@ var Muilessium = function () {
             });
 
             this.Events.addEventListener('images-loaded', Polyfills.objectFit);
+        }
+    }, {
+        key: 'get',
+        value: function get(componentName, id) {
+            var result = null;
+
+            Utils.forEach(this.components[componentName], function (component) {
+                if (component.domCache.element.id === id) {
+                    result = component;
+                }
+            });
+
+            return result;
         }
     }]);
 
