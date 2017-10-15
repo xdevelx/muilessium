@@ -4,6 +4,7 @@
 // Methods list:
 //  - (default) initAria()
 //  - (default) initControls()
+//  - getValue()
 
 
 import { Component } from '../component';
@@ -30,6 +31,10 @@ export class Textarea extends Component {
         this.domCache = extend(this.domCache, {
             textarea: element.querySelector('textarea'),
             labels:   element.parentNode.querySelectorAll('label')
+        });
+
+        this.state = extend(this.state, {
+            value: ''
         });
 
         this.initAria();
@@ -89,11 +94,18 @@ export class Textarea extends Component {
 
 
     changeEventHandler() {
-        if (this.domCache.textarea.value == '') {
+        this.state.value = this.domCache.textarea.value;
+
+        if (this.state.value == '') {
             removeClass(this.domCache.element, '-has-value');
         } else {
             addClass(this.domCache.element, '-has-value');
         }
+    }
+
+
+    getValue() {
+        return this.state.value;
     }
 };
 

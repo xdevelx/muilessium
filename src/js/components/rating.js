@@ -7,6 +7,7 @@
 //  - updateRating(newRating)
 //  - increaseRating()
 //  - decreaseRating()
+//  - getRating()
 
 
 import { Component } from '../component';
@@ -113,6 +114,11 @@ export class Rating extends Component {
         }
 
         return this;
+    }
+
+
+    getRating() {
+        return this.state.rating;
     }
 };
 

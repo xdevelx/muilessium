@@ -5,6 +5,8 @@
 //  - (default) initAria()
 //  - (default) initControls()
 //  - validate()
+//  - getValue()
+//  - isValid()
 
 
 import { Component } from '../component';
@@ -40,10 +42,12 @@ export class Input extends Component {
         });
 
         this.state = extend(this.state, {
-            regexp:            new RegExp(getAttribute(element, 'data-regexp', '')),
-            isValidationEnabled: !hasClass(element, '-js-no-validation'),
-            validationDelay:   getAttribute(element, 'data-validation-delay', 300),
-            validationTimeout: null,
+            value:                  '',
+            isValid:                true,
+            regexp:                 new RegExp(getAttribute(element, 'data-regexp', '')),
+            isValidationEnabled:    !hasClass(element, '-js-no-validation'),
+            validationDelay:        getAttribute(element, 'data-validation-delay', 300),
+            validationTimeout:      null,
             printNotExistsWarnings: !hasClass(element, '-js-allow-not-exists')
         });
 
@@ -108,8 +112,10 @@ export class Input extends Component {
     }
 
 
-    changeValueHandler() {
-        if (this.domCache.input.value == '') {
+    changeValueHandler() { 
+        this.state.value = this.domCache.input.value;
+
+        if (this.state.value == '') {
             removeClasses(this.domCache.element, '-has-value', '-valid', '-invalid');
 
             ifExists(this.domCache.hint, () => {
@@ -134,13 +140,15 @@ export class Input extends Component {
     
     validate() {
         if (this.state.isValidationEnabled) {
-            if (this.state.regexp.test(this.domCache.input.value)) {
+            if (this.state.regexp.test(this.state.value)) {
                 replaceClass(this.domCache.element,       '-invalid', '-valid');
 
                 ifExists(this.domCache.hint, () => {
                     replaceClass(this.domCache.hint,      '-invalid', '-valid');
                     replaceClass(this.domCache.indicator, '-invalid', '-valid');
                 }, this.state.printNotExistsWarnings);
+
+                this.state.isValid = true;
             } else {
                 replaceClass(this.domCache.element,       '-valid', '-invalid');
 
@@ -148,12 +156,26 @@ export class Input extends Component {
                     replaceClass(this.domCache.hint,      '-valid', '-invalid');
                     replaceClass(this.domCache.indicator, '-valid', '-invalid');
                 }, this.state.printNotExistsWarnings);
+
+                this.state.isValid = false;
             }
 
             this.state.validationTimeout = null;
         }
 
         return this;
-    }    
+    }
+
+
+    getValue() {
+        return this.state.value;
+    }
+
+
+    isValid() {
+        this.validate();
+
+        return this.state.isValid;
+    }
 };
 

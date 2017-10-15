@@ -205,6 +205,9 @@ module.exports = function(grunt) {
                                 name:        method[0] ? method[0] : '',
                                 description: method[1] ? method[1] : ''
                             };
+                        },
+                        component: function(i, line,block) {
+                            return line;
                         }
                     }
                 }

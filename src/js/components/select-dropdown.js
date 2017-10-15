@@ -9,6 +9,7 @@
 //  - closeDropdown()
 //  - toggleDropdown()
 //  - updateState(newIndex = 0)
+//  - getState(newIndex = 0)
 
 
 import { Component } from '../component';
@@ -204,7 +205,7 @@ export class SelectDropdown extends Component {
         return result;
     }
 
-    openDropdown({ focusFirst = true }) {
+    openDropdown(focusFirst = true) {
         this.state.isOpened = true;
 
         addClass(this.domCache.element, '-opened');
@@ -217,11 +218,11 @@ export class SelectDropdown extends Component {
         return this;
     }
 
-    toggleDropdown({ focusFirstWhenOpened = true }) {
+    toggleDropdown(focusFirstWhenOpened = true) {
         if (this.state.isOpened) {
             this.closeDropdown();
         } else {
-            this.openDropdown({ focusFirst: focusFirstWhenOpened });
+            this.openDropdown(focusFirstWhenOpened);
         }
 
         return this;
@@ -254,6 +255,11 @@ export class SelectDropdown extends Component {
                     getAttribute(this.domCache.optionsList[this.state.selectedIndex], 'id'));
 
         return this;
+    }
+
+
+    getState() {
+        return this.state.selectedIndex;
     }
 };
 

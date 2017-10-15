@@ -7,6 +7,7 @@
 //  - setCheckbox()
 //  - unsetCheckbox()
 //  - toggleCheckbox()
+//  - getState()
 
 
 import { Component } from '../component';
@@ -32,6 +33,10 @@ export class Checkbox extends Component {
             label: element.querySelector('label'),
         });
 
+        this.state = extend(this.state, {
+            isChecked: this.domCache.input.checked
+        });
+
         this.initAria();
         this.initControls();
     }
@@ -42,13 +47,16 @@ export class Checkbox extends Component {
 
         const inputId = this.domCache.input.getAttribute('id') || aria.setId(this.domCache.input);
 
-        this.domCache.input.checked = false;
-
         setAttribute(this.domCache.label, 'for', inputId);
 
         aria.set(this.domCache.label, 'controls', inputId);
-        aria.set(this.domCache.label, 'checked', false);
         aria.set(this.domCache.input, 'labelledby', aria.setId(this.domCache.label));
+
+        if (this.state.isChecked) {
+            this.setCheckbox();
+        } else {
+            this.unsetCheckbox();
+        }
 
         return this;
     }
@@ -64,6 +72,7 @@ export class Checkbox extends Component {
 
 
     setCheckbox() {
+        this.state.isChecked = true;
         this.domCache.input.checked = true;
 
         addClass(this.domCache.element, '-checked');
@@ -74,6 +83,7 @@ export class Checkbox extends Component {
 
 
     unsetCheckbox() {
+        this.state.isChecked = false;
         this.domCache.input.checked = false;
 
         removeClass(this.domCache.element, '-checked');
@@ -84,13 +94,18 @@ export class Checkbox extends Component {
 
 
     toggleCheckbox() {
-        if (this.domCache.input.checked) {
+        if (this.state.isChecked) {
             this.unsetCheckbox();
         } else {
             this.setCheckbox();
         }
 
         return this;
+    }
+
+
+    getState() {
+        return this.state.isChecked;
     }
 };
 

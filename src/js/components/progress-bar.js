@@ -4,6 +4,7 @@
 // Methods list:
 //  - (default) initAria()
 //  - setValue(newValue)
+//  - getValue()
 
 
 import { Component } from '../component';
@@ -55,15 +56,21 @@ export class ProgressBar extends Component {
                 this.domCache.indicator.style.width = this.state.value + '%';
             }
 
-            this.state.value += sign;
 
-            if (((sign > 0) && (this.state.value <= newValue)) ||
-                ((sign < 0) && (this.state.value >= newValue))) {
+            if (((sign > 0) && (this.state.value < newValue)) ||
+                ((sign < 0) && (this.state.value > newValue))) {
+                this.state.value += sign;
+
                 requestAnimationFrame(update);
             }
         };
 
         update();
+    }
+
+
+    getValue() {
+        return this.state.value;
     }
 };
 

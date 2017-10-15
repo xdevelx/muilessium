@@ -586,7 +586,7 @@
                         </a>
                     </div>
 
-                    <p class='mui-p _separate-1'>Muilessium has a number of components listed below. Every component has a markup shown in example and this markup should be used as is, because some initializations of components are based on their markups. All components are stored in window.Muilessium.components.</p>
+                    <p class='mui-p _separate-1'>Muilessium has a number of components listed below. Every component has a markup shown in example and this markup should be used as is, because some initializations of components are based on their markups. All components with public methods are stored in window.Muilessium.components. If the main element of such component has an ID, the component can be obtained using <i>Muilessium.get(componentName, id)</i>.</p>
 
                     {{#files}}
                         <div id='{{file}}' class='_allow-empty'></div>
@@ -601,16 +601,21 @@
                                 {{#if description }}
                                     <p class='mui-p _separate-1'>{{ description }}</p>
                                 {{/if}}
+                                {{#if component }}
+                                    <div class='_separate-1 _smaller-2'>[[ {{ component }} ]] <span class='-grey-3'>- Use Muilessium.get('{{ component }}', id) to get it.</span></div>
+                                {{/if}}
                                 {{#if method}}
                                     <div class='_separate-1'>
-                                        {{#method}}
-                                            <div class='_smaller-2'>
-                                                <span>{{ name }}</span>
-                                                {{#if description }}
-                                                    <span class='-grey-3'> - {{ description }}</span>
-                                                {{/if}}
-                                            </div>
-                                        {{/method}}
+                                        <ul>
+                                            {{#method}}
+                                                <li class='_smaller-2'>
+                                                    <span>{{ name }}</span>
+                                                    {{#if description }}
+                                                        <span class='-grey-3'> - {{ description }}</span>
+                                                    {{/if}}
+                                                </li>
+                                            {{/method}}
+                                        </ul>
                                     </div>
                                 {{/if}}
                                 {{#depends}}

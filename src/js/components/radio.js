@@ -5,6 +5,7 @@
 //  - (default) initAria()
 //  - (default) initControls()
 //  - updateState(index)
+//  - getState()
 
 import { Component } from '../component';
 
@@ -91,6 +92,11 @@ export class Radio extends Component {
         this.state.checkedIndex = index;
 
         return this;
+    }
+
+    
+    getState() {
+        return this.state.checkedIndex;
     }
 };
 

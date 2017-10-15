@@ -37,6 +37,8 @@ export default class Muilessium {
         // Components factory from /src/js/factory.js
         this.Factory = new Factory;
 
+        this.components = {};
+
         Muilessium.instance = this;
         this.Events.fireEvent('muilessium-initialized');
     }
@@ -62,6 +64,18 @@ export default class Muilessium {
         });
 
         this.Events.addEventListener('images-loaded', Polyfills.objectFit);
+    }
+
+    get(componentName, id) {
+        let result = null;
+
+        Utils.forEach(this.components[componentName], (component) => {
+            if (component.domCache.element.id === id) {
+                result = component;
+            }
+        });
+
+        return result;
     }
 };
 
