@@ -59,62 +59,13 @@
 .grid-preview .mui-column:first-of-type {
   border-right: 2px solid #fff;
 }
-@media screen {
-  .str {
-    color: #1F4C77;
-  }
-  .kwd {
-    color: #400F54;
-  }
-  .com {
-    color: #6D6D6D;
-  }
-  .typ {
-    color: #400F54;
-  }
-  .lit {
-    color: #1F4C77;
-  }
-  .pun {
-    color: #383838;
-  }
-  .opn {
-    color: #383838;
-  }
-  .clo {
-    color: #383838;
-  }
-  .tag {
-    color: #400F54;
-  }
-  .atn {
-    color: #35540F;
-  }
-  .atv {
-    color: #1F4C77;
-  }
-  .dec {
-    color: #400F54;
-  }
-  .var {
-    color: #383838;
-  }
-  .fun {
-    color: #383838;
-  }
-}
-pre.prettyprint,
-.hljs {
-  background: #EDEDED;
+.source-code {
+  background: #f1f1f1;
   font-family: Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, monospace;
   font-size: .7rem;
   padding: 1rem;
   overflow-x: scroll;
-  border-left: 2px solid #6D6D6D;
-}
-ol.linenums {
-  margin-top: 0;
-  margin-bottom: 0;
+  border-left: 3px solid #777;
 }
 .color-preview {
   display: inline-block !important;
@@ -166,66 +117,6 @@ hr {
   border: 0;
   height: 0;
   border-top: 1px solid #c6c6c6;
-}
-.hljs,
-.hljs-subst {
-  color: #444;
-}
-.hljs-comment {
-  color: #888888;
-}
-.hljs-keyword,
-.hljs-attribute,
-.hljs-selector-tag,
-.hljs-meta-keyword,
-.hljs-doctag,
-.hljs-name {
-  font-weight: bold;
-}
-.hljs-type,
-.hljs-string,
-.hljs-number,
-.hljs-selector-id,
-.hljs-selector-class,
-.hljs-quote,
-.hljs-template-tag,
-.hljs-deletion {
-  color: #880000;
-}
-.hljs-title,
-.hljs-section {
-  color: #880000;
-  font-weight: bold;
-}
-.hljs-regexp,
-.hljs-symbol,
-.hljs-variable,
-.hljs-template-variable,
-.hljs-link,
-.hljs-selector-attr,
-.hljs-selector-pseudo {
-  color: #BC6060;
-}
-.hljs-literal {
-  color: #78A960;
-}
-.hljs-built_in,
-.hljs-bullet,
-.hljs-code,
-.hljs-addition {
-  color: #397300;
-}
-.hljs-meta {
-  color: #1f7199;
-}
-.hljs-meta-string {
-  color: #4d99bf;
-}
-.hljs-emphasis {
-  font-style: italic;
-}
-.hljs-strong {
-  font-weight: bold;
 }
 .anchor-link {
   text-decoration: none;

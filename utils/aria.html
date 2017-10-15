@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Muilessium - classes.js</title>
+    <title>Muilessium - aria.js</title>
 
     <meta http-equiv='content-type' content='text/html; charset=UTF-8'>
     <meta name='viewport' content='user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1'>
 
-    <link rel='stylesheet' media='all' href='../../assets/css/muilessium.min.css?v=0.1.45' />
-    <link rel='stylesheet' media='all' href='../../assets/css/docs-styles.css?v=5458161178934731' />
+    <link rel='stylesheet' media='all' href='../assets/css/muilessium.min.css?v=0.1.46' />
+    <link rel='stylesheet' media='all' href='../assets/css/docs-styles.css?v=0663251985523079' />
 
-    <link rel='icon' href='./favicon.ico' type='image/x-icon' />
+    <link rel='icon' href='../icons/favicon.ico' type='image/x-icon' />
 
     <style>
         h2 {
@@ -59,12 +59,12 @@
     <header class='mui-page-header -black-bg'>
     <div class='mui-content-container'>
         <div class='mui-header-logo _left'>
-            <img class='mui-image -logo -js-lazy-load' data-src='../../images/muilessium.png' alt='logo'>
+            <img class='mui-image -logo -js-lazy-load' data-src='../images/muilessium.png' alt='logo'>
             <a class='link _right' href='/'>
                 <h1 class='-white _bigger-1'>
                     <span>Muilessium</span>
                     
-                        <span class='_smaller-1'> (classes.js) </span>
+                        <span class='_smaller-1'> (aria.js) </span>
                     
                 </h1>
             </a>
@@ -96,7 +96,7 @@
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-2'>&#182;</a>
                         </div>
-                        <h2 id="css-classes">CSS CLASSES</h2>
+                        <h2 id="wai-aria-utilities">WAI-ARIA UTILITIES</h2>
 
                     </div>
                     <div class='mui-content-container'>
@@ -111,28 +111,33 @@
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-3'>&#182;</a>
                         </div>
-                        <p>IE11 does not support useful methods of the classList on SVG elements,
-so it will be a good idea to use this wrappers for all elements and don’t think
-about “is this element an SVG or not?”.</p>
-<p>Here is the full list of utilities for manipulations with CSS classes:</p>
+                        <p>Here is some functions for operations with aria-roles and properties.
+These functions should be used in components for better code readability.</p>
+<p>Here is the full list of aria methods:</p>
 <ul>
-<li>hasClass(element, class)</li>
-<li>hasNotClass(element, class)</li>
-<li>addClass(element, class)</li>
-<li>addClasses(element, …classes)</li>
-<li>removeClass(element, class)</li>
-<li>removeClasses(element, …classes)</li>
-<li>replaceClass(element, class, newClass)</li>
-<li>toggleClass(element, class)</li>
+<li>set(element, property, value = true)</li>
+<li>setRole(element, role)</li>
+<li>removeRole(element)</li>
+<li>setId(element, id)</li>
+<li>get(element, property)</li>
+<li>getRole(element)</li>
+<li>toggleState(element, state)</li>
 </ul>
 
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 
-<span class="hljs-keyword">import</span> { ifExists } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/checks'</span>; 
-<span class="hljs-keyword">import</span> { forEach } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/uncategorized'</span>;</pre></div></div>
+<span class="hljs-keyword">import</span> { setAttribute         } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/attributes'</span>;
+<span class="hljs-keyword">import</span> { getAttribute         } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/attributes'</span>;
+<span class="hljs-keyword">import</span> { removeAttribute      } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/attributes'</span>;
+<span class="hljs-keyword">import</span> { generateRandomString } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/uncategorized'</span>;
+<span class="hljs-keyword">import</span> { stringToBoolean      } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/uncategorized'</span>;
+<span class="hljs-keyword">import</span> { forEach              } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/uncategorized'</span>;
+
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> aria = {</pre></div></div>
                         
                     </div>
                 </div>
@@ -144,7 +149,7 @@ about “is this element an SVG or not?”.</p>
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-4'>&#182;</a>
                         </div>
-                        <h2 id="has-class">Has class</h2>
+                        <h2 id="set-property">Set property</h2>
 
                     </div>
                     <div class='mui-content-container'>
@@ -159,18 +164,15 @@ about “is this element an SVG or not?”.</p>
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-5'>&#182;</a>
                         </div>
-                        <p>Returns true if element exists and has selected class and false otherwise</p>
+                        <p>Sets aria-property to the element</p>
 
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hasClass</span>(<span class="hljs-params">element, classForTest</span>) </span>{
-    <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
-        <span class="hljs-comment">/* Use className instead of classList because IE11 does not have support for slassList on SVG */</span>
-        <span class="hljs-keyword">return</span> (element.className.indexOf(classForTest) !== <span class="hljs-number">-1</span>);
-    });
-};</pre></div></div>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
+    set: <span class="hljs-function">(<span class="hljs-params">element, property, value = <span class="hljs-literal">true</span></span>) =&gt;</span> {
+        <span class="hljs-keyword">return</span> setAttribute(element, <span class="hljs-string">`aria-<span class="hljs-subst">${property}</span>`</span>, value);
+    },</pre></div></div>
                         
                     </div>
                 </div>
@@ -182,7 +184,7 @@ about “is this element an SVG or not?”.</p>
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-6'>&#182;</a>
                         </div>
-                        <h2 id="has-not-class">Has not class</h2>
+                        <h2 id="set-role">Set role</h2>
 
                     </div>
                     <div class='mui-content-container'>
@@ -197,17 +199,15 @@ about “is this element an SVG or not?”.</p>
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-7'>&#182;</a>
                         </div>
-                        <p>Returns false if element exists and has selected class and true otherwise</p>
+                        <p>Sets aria-role to the element</p>
 
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hasNotClass</span>(<span class="hljs-params">element, classForTest</span>) </span>{
-    <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
-        <span class="hljs-keyword">return</span> !hasClass(element, classForTest);
-    });
-};</pre></div></div>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
+    setRole: <span class="hljs-function">(<span class="hljs-params">element, role</span>) =&gt;</span> {
+        <span class="hljs-keyword">return</span> setAttribute(element, <span class="hljs-string">'role'</span>, role);
+    },</pre></div></div>
                         
                     </div>
                 </div>
@@ -219,7 +219,7 @@ about “is this element an SVG or not?”.</p>
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-8'>&#182;</a>
                         </div>
-                        <h2 id="add-class">Add class</h2>
+                        <h2 id="remove-role">Remove role</h2>
 
                     </div>
                     <div class='mui-content-container'>
@@ -234,22 +234,15 @@ about “is this element an SVG or not?”.</p>
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-9'>&#182;</a>
                         </div>
-                        <p>Adds class to the element if it exists</p>
+                        <p>Removes aria-role from the element</p>
 
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addClass</span>(<span class="hljs-params">element, newClass</span>) </span>{
-    <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
-        <span class="hljs-keyword">if</span> (hasClass(element, newClass)) {
-            <span class="hljs-keyword">return</span>;
-        }
-
-        <span class="hljs-comment">/* Use className instead of classList because IE11 does not have support for slassList on SVG */</span>
-        element.className += <span class="hljs-string">' '</span> + newClass;
-    });
-};</pre></div></div>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
+    removeRole: <span class="hljs-function">(<span class="hljs-params">element</span>) =&gt;</span> {
+        <span class="hljs-keyword">return</span> removeAttribute(element, <span class="hljs-string">'role'</span>);
+    },</pre></div></div>
                         
                     </div>
                 </div>
@@ -261,7 +254,7 @@ about “is this element an SVG or not?”.</p>
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-10'>&#182;</a>
                         </div>
-                        <h2 id="add-multiple-classes">Add multiple classes</h2>
+                        <h2 id="set-id">Set id</h2>
 
                     </div>
                     <div class='mui-content-container'>
@@ -276,19 +269,20 @@ about “is this element an SVG or not?”.</p>
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-11'>&#182;</a>
                         </div>
-                        <p>Adds multiple classs to the element if it exists</p>
+                        <p>Sets ID to the element (generates a random ID if ID not passed as a parameter),
+returns this ID</p>
 
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addClasses</span>(<span class="hljs-params">element, ...newClasses</span>) </span>{
-    <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
-        forEach(newClasses, (c) =&gt; {
-            addClass(element, c);
-        });
-    });
-};</pre></div></div>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
+    setId: <span class="hljs-function">(<span class="hljs-params">element, id</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> newId = id || (<span class="hljs-string">`mui-id-<span class="hljs-subst">${generateRandomString(<span class="hljs-number">6</span>)}</span>`</span>);
+
+        setAttribute(element, <span class="hljs-string">'id'</span>, newId);
+
+        <span class="hljs-keyword">return</span> newId;
+    },</pre></div></div>
                         
                     </div>
                 </div>
@@ -300,7 +294,7 @@ about “is this element an SVG or not?”.</p>
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-12'>&#182;</a>
                         </div>
-                        <h2 id="remove-class">Remove class</h2>
+                        <h2 id="get-property">Get property</h2>
 
                     </div>
                     <div class='mui-content-container'>
@@ -315,18 +309,15 @@ about “is this element an SVG or not?”.</p>
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-13'>&#182;</a>
                         </div>
-                        <p>Removes class from the element if it exists</p>
+                        <p>Gets aria-property from the element</p>
 
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">removeClass</span>(<span class="hljs-params">element, classForRemoving</span>) </span>{
-    <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
-        <span class="hljs-comment">/* Use className instead of classList because IE11 does not have support for slassList on SVG */</span>
-        element.className = element.className.replace(classForRemoving, <span class="hljs-string">''</span>);
-    });
-};</pre></div></div>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
+    get: <span class="hljs-function">(<span class="hljs-params">element, property</span>) =&gt;</span> {
+        <span class="hljs-keyword">return</span> getAttribute(element, <span class="hljs-string">`aria-<span class="hljs-subst">${property}</span>`</span>);
+    },</pre></div></div>
                         
                     </div>
                 </div>
@@ -338,7 +329,7 @@ about “is this element an SVG or not?”.</p>
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-14'>&#182;</a>
                         </div>
-                        <h2 id="remove-multiple-classes">Remove multiple classes</h2>
+                        <h2 id="get-role">Get role</h2>
 
                     </div>
                     <div class='mui-content-container'>
@@ -353,19 +344,15 @@ about “is this element an SVG or not?”.</p>
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-15'>&#182;</a>
                         </div>
-                        <p>Removes multiple classs to the element if it exists</p>
+                        <p>Gets aria-role from the element</p>
 
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">removeClasses</span>(<span class="hljs-params">element, ...classesForRemoving</span>) </span>{
-    <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
-        forEach(classesForRemoving, (c) =&gt; {
-            removeClass(element, c);
-        });
-    });
-};</pre></div></div>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
+    getRole: <span class="hljs-function">(<span class="hljs-params">element</span>) =&gt;</span> {
+        <span class="hljs-keyword">return</span> getAttribute(element, <span class="hljs-string">'role'</span>);
+    },</pre></div></div>
                         
                     </div>
                 </div>
@@ -377,7 +364,7 @@ about “is this element an SVG or not?”.</p>
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-16'>&#182;</a>
                         </div>
-                        <h2 id="replace-class">Replace class</h2>
+                        <h2 id="toggle-state">Toggle state</h2>
 
                     </div>
                     <div class='mui-content-container'>
@@ -392,56 +379,15 @@ about “is this element an SVG or not?”.</p>
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-17'>&#182;</a>
                         </div>
-                        <p>Removes first selected class and adds second one</p>
+                        <p>Changes boolean state from true to false and from false to true.</p>
 
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">replaceClass</span>(<span class="hljs-params">element, classForRemoving, newClass</span>) </span>{
-    removeClass(element, classForRemoving);
-    addClass(element, newClass);
-};</pre></div></div>
-                        
-                    </div>
-                </div>
-            
-                
-                <div class='' id='section-18'>
-                    <div class='mui-content-container'>
-                        
-                        <div class=''>
-                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-18'>&#182;</a>
-                        </div>
-                        <h2 id="toggle-class">Toggle class</h2>
-
-                    </div>
-                    <div class='mui-content-container'>
-                        
-                    </div>
-                </div>
-            
-                
-                <div class='' id='section-19'>
-                    <div class='mui-content-container'>
-                        
-                        <div class=''>
-                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-19'>&#182;</a>
-                        </div>
-                        <p>Toggles class for the element if it exists</p>
-
-                    </div>
-                    <div class='mui-content-container'>
-                        
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toggleClass</span>(<span class="hljs-params">element, classForToggle</span>) </span>{
-    <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
-        <span class="hljs-keyword">if</span> (hasNotClass(element, classForToggle)) {
-            addClass(element, classForToggle);
-        } <span class="hljs-keyword">else</span> {
-            removeClass(element, classForToggle);
-        }
-    });
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
+    toggleState: <span class="hljs-function">(<span class="hljs-params">element, state</span>) =&gt;</span> {
+        setAttribute(element, <span class="hljs-string">`aria-<span class="hljs-subst">${state}</span>`</span>, !stringToBoolean(getAttribute(element, <span class="hljs-string">`aria-<span class="hljs-subst">${state}</span>`</span>)));
+    }
 };</pre></div></div>
                         
                     </div>
@@ -458,6 +404,6 @@ about “is this element an SVG or not?”.</p>
     </div>
 
 
-    <script src='../../assets/js/muilessium.min.js?v=0.1.45'></script>
+    <script src='../assets/js/muilessium.min.js?v=0.1.46'></script>
 </body>
 </html>

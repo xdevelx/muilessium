@@ -6,10 +6,10 @@
     <meta http-equiv='content-type' content='text/html; charset=UTF-8'>
     <meta name='viewport' content='user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1'>
 
-    <link rel='stylesheet' media='all' href='../../assets/css/muilessium.min.css?v=0.1.45' />
-    <link rel='stylesheet' media='all' href='../../assets/css/docs-styles.css?v=5458161178934731' />
+    <link rel='stylesheet' media='all' href='../assets/css/muilessium.min.css?v=0.1.46' />
+    <link rel='stylesheet' media='all' href='../assets/css/docs-styles.css?v=0663251985523079' />
 
-    <link rel='icon' href='./favicon.ico' type='image/x-icon' />
+    <link rel='icon' href='../icons/favicon.ico' type='image/x-icon' />
 
     <style>
         h2 {
@@ -59,7 +59,7 @@
     <header class='mui-page-header -black-bg'>
     <div class='mui-content-container'>
         <div class='mui-header-logo _left'>
-            <img class='mui-image -logo -js-lazy-load' data-src='../../images/muilessium.png' alt='logo'>
+            <img class='mui-image -logo -js-lazy-load' data-src='../images/muilessium.png' alt='logo'>
             <a class='link _right' href='/'>
                 <h1 class='-white _bigger-1'>
                     <span>Muilessium</span>
@@ -126,7 +126,7 @@ and avoiding errors when some element does not exists.</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 
 <span class="hljs-keyword">import</span> { <span class="hljs-built_in">console</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/console'</span>;</pre></div></div>
                         
@@ -160,7 +160,7 @@ and avoiding errors when some element does not exists.</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNode</span>(<span class="hljs-params">element</span>) </span>{
     <span class="hljs-keyword">return</span> (element <span class="hljs-keyword">instanceof</span> Node);
 }</pre></div></div>
@@ -195,7 +195,7 @@ and avoiding errors when some element does not exists.</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isInPage</span>(<span class="hljs-params">element</span>) </span>{
     <span class="hljs-comment">/* Use this instead of document.contains because IE has only partial support of Node.contains. */</span>
     <span class="hljs-keyword">return</span> isNode(element) &amp;&amp; ((element === <span class="hljs-built_in">document</span>.body) || <span class="hljs-built_in">document</span>.body.contains(element));
@@ -231,7 +231,7 @@ and avoiding errors when some element does not exists.</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNotInPage</span>(<span class="hljs-params">element</span>) </span>{
     <span class="hljs-keyword">return</span> !isInPage(element);
 };</pre></div></div>
@@ -267,7 +267,7 @@ and prints warning otherwise by default</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ifExists</span>(<span class="hljs-params">element, callback, printWarning = true</span>) </span>{
     <span class="hljs-keyword">if</span> (isInPage(element)) {
         <span class="hljs-keyword">return</span> callback();
@@ -311,7 +311,7 @@ executes callback function and prints warning otherwise by default</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ifNodeList</span>(<span class="hljs-params">x, callback, printWarning = true</span>) </span>{
     <span class="hljs-keyword">if</span> (((x <span class="hljs-keyword">instanceof</span> NodeList) || (x <span class="hljs-keyword">instanceof</span> HTMLCollection)) &amp;&amp; (x.length &gt; <span class="hljs-number">0</span>)) {
         <span class="hljs-keyword">return</span> callback();
@@ -362,7 +362,7 @@ executes callback function and prints warning otherwise by default</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isDescendant</span>(<span class="hljs-params">parent, child</span>) </span>{
     <span class="hljs-keyword">let</span> node = child.parentNode;
 
@@ -391,6 +391,6 @@ executes callback function and prints warning otherwise by default</p>
     </div>
 
 
-    <script src='../../assets/js/muilessium.min.js?v=0.1.45'></script>
+    <script src='../assets/js/muilessium.min.js?v=0.1.46'></script>
 </body>
 </html>

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Muilessium - scroll.js</title>
+    <title>Muilessium - console.js</title>
 
     <meta http-equiv='content-type' content='text/html; charset=UTF-8'>
     <meta name='viewport' content='user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1'>
 
-    <link rel='stylesheet' media='all' href='../../assets/css/muilessium.min.css?v=0.1.45' />
-    <link rel='stylesheet' media='all' href='../../assets/css/docs-styles.css?v=5458161178934731' />
+    <link rel='stylesheet' media='all' href='../assets/css/muilessium.min.css?v=0.1.46' />
+    <link rel='stylesheet' media='all' href='../assets/css/docs-styles.css?v=0663251985523079' />
 
-    <link rel='icon' href='./favicon.ico' type='image/x-icon' />
+    <link rel='icon' href='../icons/favicon.ico' type='image/x-icon' />
 
     <style>
         h2 {
@@ -59,12 +59,12 @@
     <header class='mui-page-header -black-bg'>
     <div class='mui-content-container'>
         <div class='mui-header-logo _left'>
-            <img class='mui-image -logo -js-lazy-load' data-src='../../images/muilessium.png' alt='logo'>
+            <img class='mui-image -logo -js-lazy-load' data-src='../images/muilessium.png' alt='logo'>
             <a class='link _right' href='/'>
                 <h1 class='-white _bigger-1'>
                     <span>Muilessium</span>
                     
-                        <span class='_smaller-1'> (scroll.js) </span>
+                        <span class='_smaller-1'> (console.js) </span>
                     
                 </h1>
             </a>
@@ -96,7 +96,7 @@
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-2'>&#182;</a>
                         </div>
-                        <h2 id="scroll-utilities">SCROLL UTILITIES</h2>
+                        <h2 id="custom-console">Custom console</h2>
 
                     </div>
                     <div class='mui-content-container'>
@@ -111,22 +111,12 @@
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-3'>&#182;</a>
                         </div>
-                        <p>Here is the full list of scroll utilities:</p>
-<ul>
-<li>scrollTo(element, callback)</li>
-<li>scrollToTop(callback)</li>
-<li>scrollFire(element, callback)</li>
-</ul>
-
+                        
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
-
-<span class="hljs-keyword">import</span> { ifExists        } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/checks'</span>;
-<span class="hljs-keyword">import</span> { isInViewport    } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/viewport'</span>;
-<span class="hljs-keyword">import</span> { isAboveViewport } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/viewport'</span>;
-<span class="hljs-keyword">import</span> { callOnce        } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/uncategorized'</span>;</pre></div></div>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-built_in">console</span> = {</pre></div></div>
                         
                     </div>
                 </div>
@@ -138,7 +128,7 @@
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-4'>&#182;</a>
                         </div>
-                        <h2 id="scroll-to-element">Scroll to element</h2>
+                        <h2 id="log">Log</h2>
 
                     </div>
                     <div class='mui-content-container'>
@@ -153,21 +143,15 @@
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-5'>&#182;</a>
                         </div>
-                        <p>Scrolls to the element and executes callback after scroll animation ends</p>
+                        <p>Prints message to the standart browser console</p>
 
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scrollTo</span>(<span class="hljs-params">element, callback</span>) </span>{
-    ifExists(element, () =&gt; {
-        element.scrollIntoView({ <span class="hljs-string">'behavior'</span>: <span class="hljs-string">'smooth'</span> });
-
-        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> callback === <span class="hljs-string">'function'</span>) {
-            setTimeout(callback, <span class="hljs-number">470</span>); <span class="hljs-comment">/* Default scroll time in smoothscroll-polyfill is 468ms */</span>
-        }
-    });
-};</pre></div></div>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
+    log: <span class="hljs-function">(<span class="hljs-params">message</span>) =&gt;</span> {
+        <span class="hljs-built_in">window</span>.console.log(<span class="hljs-string">`<span class="hljs-subst">${message}</span>`</span>);
+    },</pre></div></div>
                         
                     </div>
                 </div>
@@ -179,7 +163,7 @@
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-6'>&#182;</a>
                         </div>
-                        <h2 id="scroll-to-top">Scroll to top</h2>
+                        <h2 id="info">Info</h2>
 
                     </div>
                     <div class='mui-content-container'>
@@ -194,19 +178,15 @@
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-7'>&#182;</a>
                         </div>
-                        <p>Scrolls to the top of page</p>
+                        <p>Prints info message to the standart browser console</p>
 
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scrollToTop</span>(<span class="hljs-params">callback</span>) </span>{
-    <span class="hljs-built_in">window</span>.scroll({ <span class="hljs-attr">top</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">left</span>: <span class="hljs-number">0</span>, <span class="hljs-string">'behavior'</span>: <span class="hljs-string">'smooth'</span> });
-
-    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> callback === <span class="hljs-string">'function'</span>) {
-        setTimeout(callback, <span class="hljs-number">470</span>); <span class="hljs-comment">/* Default scroll time in smoothscroll-polyfill is 468ms */</span>
-    }
-};</pre></div></div>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
+    info: <span class="hljs-function">(<span class="hljs-params">message</span>) =&gt;</span> {
+        <span class="hljs-built_in">window</span>.console.info(<span class="hljs-string">`[ INFO ] <span class="hljs-subst">${message}</span>`</span>);
+    },</pre></div></div>
                         
                     </div>
                 </div>
@@ -218,7 +198,7 @@
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-8'>&#182;</a>
                         </div>
-                        <h2 id="scrollfire">Scrollfire</h2>
+                        <h2 id="warning">Warning</h2>
 
                     </div>
                     <div class='mui-content-container'>
@@ -233,23 +213,49 @@
                         <div class=''>
                             <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-9'>&#182;</a>
                         </div>
-                        <p>Executes a callback when the element becomes visible in viewport</p>
+                        <p>Prints warning message to the standart browser console</p>
 
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scrollFire</span>(<span class="hljs-params">element, callback</span>) </span>{
-    <span class="hljs-keyword">if</span> (isInViewport(element) || isAboveViewport(element)) {
-        callback();
-    } <span class="hljs-keyword">else</span> {
-        <span class="hljs-keyword">let</span> modifiedCallback = callOnce(callback);
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
+    warning: <span class="hljs-function">(<span class="hljs-params">message</span>) =&gt;</span> {
+        <span class="hljs-built_in">window</span>.console.warn(<span class="hljs-string">`[ WARNING ] <span class="hljs-subst">${message}</span>`</span>);
+    },</pre></div></div>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-10'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-10'>&#182;</a>
+                        </div>
+                        <h2 id="error">Error</h2>
 
-        <span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">'scroll'</span>, () =&gt; {
-            <span class="hljs-keyword">if</span> (isInViewport(element)) {
-                setTimeout(modifiedCallback, <span class="hljs-number">200</span>);
-            }
-        });
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-11'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-11'>&#182;</a>
+                        </div>
+                        <p>Prints error message to the standart browser console</p>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
+    error: <span class="hljs-function">(<span class="hljs-params">message</span>) =&gt;</span> {
+        <span class="hljs-built_in">window</span>.console.error(<span class="hljs-string">`[ ERROR ] <span class="hljs-subst">${message}</span>`</span>);
     }
 };</pre></div></div>
                         
@@ -267,6 +273,6 @@
     </div>
 
 
-    <script src='../../assets/js/muilessium.min.js?v=0.1.45'></script>
+    <script src='../assets/js/muilessium.min.js?v=0.1.46'></script>
 </body>
 </html>

@@ -6,10 +6,10 @@
     <meta http-equiv='content-type' content='text/html; charset=UTF-8'>
     <meta name='viewport' content='user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1'>
 
-    <link rel='stylesheet' media='all' href='../../assets/css/muilessium.min.css?v=0.1.45' />
-    <link rel='stylesheet' media='all' href='../../assets/css/docs-styles.css?v=5458161178934731' />
+    <link rel='stylesheet' media='all' href='../assets/css/muilessium.min.css?v=0.1.46' />
+    <link rel='stylesheet' media='all' href='../assets/css/docs-styles.css?v=0663251985523079' />
 
-    <link rel='icon' href='./favicon.ico' type='image/x-icon' />
+    <link rel='icon' href='../icons/favicon.ico' type='image/x-icon' />
 
     <style>
         h2 {
@@ -59,7 +59,7 @@
     <header class='mui-page-header -black-bg'>
     <div class='mui-content-container'>
         <div class='mui-header-logo _left'>
-            <img class='mui-image -logo -js-lazy-load' data-src='../../images/muilessium.png' alt='logo'>
+            <img class='mui-image -logo -js-lazy-load' data-src='../images/muilessium.png' alt='logo'>
             <a class='link _right' href='/'>
                 <h1 class='-white _bigger-1'>
                     <span>Muilessium</span>
@@ -129,7 +129,7 @@
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">import</span> { addClass             } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/classes'</span>;
 <span class="hljs-keyword">import</span> { makeElementClickable } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/focus-and-click'</span>;
 <span class="hljs-keyword">import</span> { scrollTo             } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/scroll'</span>;</pre></div></div>
@@ -163,7 +163,7 @@
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">normalizeTabIndex</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">var</span> focusableElements = [].slice.call(
         <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">'a, button, input, label, select, textarea, object'</span>)
@@ -203,7 +203,7 @@
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">let</span> imagesLoaded = <span class="hljs-built_in">require</span>(<span class="hljs-string">'imagesloaded'</span>);
 
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lazyLoadImages</span>(<span class="hljs-params">callback</span>) </span>{
@@ -261,7 +261,7 @@
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">initAnchorLinks</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">let</span> links = <span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">'a'</span>);
 
@@ -317,7 +317,7 @@
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">generateRandomString</span>(<span class="hljs-params">length = <span class="hljs-number">8</span></span>) </span>{
     <span class="hljs-keyword">let</span> str = <span class="hljs-string">''</span>,
         possibleChars = <span class="hljs-string">'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'</span>;
@@ -358,7 +358,7 @@
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">stringify</span>(<span class="hljs-params">object</span>) </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">JSON</span>.stringify(object, (key, value) =&gt; {
         <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> value === <span class="hljs-string">'function'</span>) {
@@ -398,7 +398,7 @@
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-comment">/* Use this function instead of Object.assign because IE11 has no support for Object.assign
    https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign */</span>
 
@@ -441,7 +441,7 @@
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">debounce</span>(<span class="hljs-params">func, ms</span>) </span>{
     <span class="hljs-keyword">let</span> callAllowed = <span class="hljs-literal">true</span>;
 
@@ -489,7 +489,7 @@
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">stringToBoolean</span>(<span class="hljs-params">str</span>) </span>{
     <span class="hljs-keyword">return</span> str === <span class="hljs-string">'true'</span>;
 };</pre></div></div>
@@ -524,7 +524,7 @@
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">callOnce</span>(<span class="hljs-params">callback</span>) </span>{
     <span class="hljs-keyword">let</span> executed = <span class="hljs-literal">false</span>;
 
@@ -567,7 +567,7 @@
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">firstOfList</span>(<span class="hljs-params">list</span>) </span>{
     <span class="hljs-keyword">return</span> list[<span class="hljs-number">0</span>];
 };</pre></div></div>
@@ -602,7 +602,7 @@
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lastOfList</span>(<span class="hljs-params">list</span>) </span>{
     <span class="hljs-keyword">return</span> list[list.length - <span class="hljs-number">1</span>];
 };</pre></div></div>
@@ -637,7 +637,7 @@
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">forEach</span>(<span class="hljs-params">list, callback, delay = <span class="hljs-number">0</span></span>) </span>{
     <span class="hljs-keyword">if</span> (delay &gt; <span class="hljs-number">0</span>) {
         <span class="hljs-keyword">let</span> counter = <span class="hljs-number">0</span>;
@@ -670,6 +670,6 @@
     </div>
 
 
-    <script src='../../assets/js/muilessium.min.js?v=0.1.45'></script>
+    <script src='../assets/js/muilessium.min.js?v=0.1.46'></script>
 </body>
 </html>

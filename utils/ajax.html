@@ -6,10 +6,10 @@
     <meta http-equiv='content-type' content='text/html; charset=UTF-8'>
     <meta name='viewport' content='user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1'>
 
-    <link rel='stylesheet' media='all' href='../../assets/css/muilessium.min.css?v=0.1.45' />
-    <link rel='stylesheet' media='all' href='../../assets/css/docs-styles.css?v=5458161178934731' />
+    <link rel='stylesheet' media='all' href='../assets/css/muilessium.min.css?v=0.1.46' />
+    <link rel='stylesheet' media='all' href='../assets/css/docs-styles.css?v=0663251985523079' />
 
-    <link rel='icon' href='./favicon.ico' type='image/x-icon' />
+    <link rel='icon' href='../icons/favicon.ico' type='image/x-icon' />
 
     <style>
         h2 {
@@ -59,7 +59,7 @@
     <header class='mui-page-header -black-bg'>
     <div class='mui-content-container'>
         <div class='mui-header-logo _left'>
-            <img class='mui-image -logo -js-lazy-load' data-src='../../images/muilessium.png' alt='logo'>
+            <img class='mui-image -logo -js-lazy-load' data-src='../images/muilessium.png' alt='logo'>
             <a class='link _right' href='/'>
                 <h1 class='-white _bigger-1'>
                     <span>Muilessium</span>
@@ -153,7 +153,7 @@ the request state changes</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">post</span>(<span class="hljs-params">url, data, successCallback, errorCallback</span>) </span>{
     <span class="hljs-keyword">let</span> request = <span class="hljs-keyword">new</span> XMLHttpRequest();
 
@@ -206,7 +206,7 @@ and tries to repeat request otherwise</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">postProtected</span>(<span class="hljs-params">url, data, callback</span>) </span>{
     post(url, data, callback, (error) =&gt; {
         setTimeout(
@@ -247,7 +247,7 @@ the request state changes</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get</span>(<span class="hljs-params">url, successCallback, errorCallback</span>) </span>{
     <span class="hljs-keyword">let</span> request = <span class="hljs-keyword">new</span> XMLHttpRequest();
 
@@ -299,7 +299,7 @@ and tries to repeat request otherwise</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getProtected</span>(<span class="hljs-params">url, callback</span>) </span>{
     get(url, callback, (error) =&gt; {
         setTimeout(
@@ -331,6 +331,6 @@ and tries to repeat request otherwise</p>
     </div>
 
 
-    <script src='../../assets/js/muilessium.min.js?v=0.1.45'></script>
+    <script src='../assets/js/muilessium.min.js?v=0.1.46'></script>
 </body>
 </html>

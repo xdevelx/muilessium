@@ -6,10 +6,10 @@
     <meta http-equiv='content-type' content='text/html; charset=UTF-8'>
     <meta name='viewport' content='user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1'>
 
-    <link rel='stylesheet' media='all' href='../../assets/css/muilessium.min.css?v=0.1.45' />
-    <link rel='stylesheet' media='all' href='../../assets/css/docs-styles.css?v=5458161178934731' />
+    <link rel='stylesheet' media='all' href='../assets/css/muilessium.min.css?v=0.1.46' />
+    <link rel='stylesheet' media='all' href='../assets/css/docs-styles.css?v=0663251985523079' />
 
-    <link rel='icon' href='./favicon.ico' type='image/x-icon' />
+    <link rel='icon' href='../icons/favicon.ico' type='image/x-icon' />
 
     <style>
         h2 {
@@ -59,7 +59,7 @@
     <header class='mui-page-header -black-bg'>
     <div class='mui-content-container'>
         <div class='mui-header-logo _left'>
-            <img class='mui-image -logo -js-lazy-load' data-src='../../images/muilessium.png' alt='logo'>
+            <img class='mui-image -logo -js-lazy-load' data-src='../images/muilessium.png' alt='logo'>
             <a class='link _right' href='/'>
                 <h1 class='-white _bigger-1'>
                     <span>Muilessium</span>
@@ -134,7 +134,7 @@ in accessible components.</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 
 <span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> Mouse <span class="hljs-keyword">from</span> <span class="hljs-string">'../controls/mouse'</span>;
 <span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> Keyboard <span class="hljs-keyword">from</span> <span class="hljs-string">'../controls/keyboard'</span>;
@@ -174,7 +174,7 @@ in accessible components.</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">makeElementFocusable</span>(<span class="hljs-params">element</span>) </span>{
     <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
         element.tabIndex = <span class="hljs-number">0</span>;
@@ -211,7 +211,7 @@ in accessible components.</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">makeElementsFocusable</span>(<span class="hljs-params">elements</span>) </span>{
     <span class="hljs-keyword">return</span> ifNodeList(elements, () =&gt; {
         forEach(elements, (element) =&gt; {
@@ -250,7 +250,7 @@ in accessible components.</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">makeElementNotFocusable</span>(<span class="hljs-params">element</span>) </span>{
     <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
         element.tabIndex = <span class="hljs-number">-1</span>;
@@ -287,7 +287,7 @@ in accessible components.</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">makeElementsNotFocusable</span>(<span class="hljs-params">elements</span>) </span>{
     <span class="hljs-keyword">return</span> ifNodeList(elements, () =&gt; {
         forEach(elements, (element) =&gt; {
@@ -326,7 +326,7 @@ in accessible components.</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getFocusableChilds</span>(<span class="hljs-params">element</span>) </span>{
     <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
         <span class="hljs-keyword">return</span> element.querySelectorAll(<span class="hljs-string">'[tabindex]:not([tabindex="-1"])'</span>);
@@ -363,7 +363,7 @@ in accessible components.</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getAllFocusableElements</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">'[tabindex]:not([tabindex="-1"])'</span>);
 };</pre></div></div>
@@ -398,7 +398,7 @@ in accessible components.</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getNextFocusableElement</span>(<span class="hljs-params">element</span>) </span>{
     <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
         <span class="hljs-keyword">let</span> focusables = getAllFocusableElements(),
@@ -442,7 +442,7 @@ in accessible components.</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getPreviousFocusableElement</span>(<span class="hljs-params">element</span>) </span>{
     <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
         <span class="hljs-keyword">let</span> focusables = getAllFocusableElements(),
@@ -486,7 +486,7 @@ in accessible components.</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">goToNextFocusableElement</span>(<span class="hljs-params">element</span>) </span>{
     <span class="hljs-keyword">let</span> nextFocusable = getNextFocusableElement(element);
 
@@ -527,7 +527,7 @@ in accessible components.</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">goToPreviousFocusableElement</span>(<span class="hljs-params">element</span>) </span>{
     <span class="hljs-keyword">let</span> previousFocusable = getPreviousFocusableElement(element);
 
@@ -569,7 +569,7 @@ enter key press with callback to the element if it exists</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">makeElementClickable</span>(<span class="hljs-params">element, callback, { mouse = true, keyboard = true } = {}</span>) </span>{
     <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
         <span class="hljs-keyword">if</span> (mouse) {
@@ -620,7 +620,7 @@ with callback to the childs if they exists</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">makeChildElementsClickable</span>(<span class="hljs-params">element, childs, callback, { mouse = true, keyboard = true } = {}</span>) </span>{
     <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
         <span class="hljs-keyword">return</span> ifNodeList(childs, () =&gt; {
@@ -687,7 +687,7 @@ with callback to the childs if they exists</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onFocus</span>(<span class="hljs-params">element, callback</span>) </span>{
     <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
         element.addEventListener(<span class="hljs-string">'focus'</span>, callback);
@@ -724,7 +724,7 @@ with callback to the childs if they exists</p>
                     </div>
                     <div class='mui-content-container'>
                         
-                            <div class='hljs _separate-1-bottom'><div class='highlight'><pre>
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onBlur</span>(<span class="hljs-params">element, callback</span>) </span>{
     <span class="hljs-keyword">return</span> ifExists(element, () =&gt; {
         element.addEventListener(<span class="hljs-string">'blur'</span>, callback);
@@ -745,6 +745,6 @@ with callback to the childs if they exists</p>
     </div>
 
 
-    <script src='../../assets/js/muilessium.min.js?v=0.1.45'></script>
+    <script src='../assets/js/muilessium.min.js?v=0.1.46'></script>
 </body>
 </html>
