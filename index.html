@@ -291,7 +291,7 @@
                             <h3 class="_bigger-2" id="grid-overview">Grid</h3>
                         </a>
                     </div>
-                    <p class="mui-p _separate-1">Muilessium uses a grid with 12 columns based on flexbox (and has legacy version based on floats, but only in custom builds). Rows and columns have classes .mui-row and .mui-column and columns can have options -s* for a small screen, -m* for a medium screen and -l* for a large screen. Default breakpoints are 400, 600 and 1200px. It behavior is similar to the grid from flexboxgrid.com, but it uses RSCSS-style class names. See <a class="-f-blue-3" href="https://github.com/sfi0zy/muilessium/blob/master/src/less/components/grid-flex.less">src/less/components/grid-flex.less</a> for more information.</p>
+                    <p class="mui-p _separate-1">Muilessium uses a grid with 12 columns based on flexbox (and has a legacy version based on floats, but only in custom builds). Rows and columns have classes .mui-row and .mui-column and columns can have options -s* for a small screen, -m* for a medium screen and -l* for a large screen. Default breakpoints are 400, 600 and 1200px. Its behavior is similar to the grid from flexboxgrid.com, but it uses RSCSS-style class names. See <a class="-f-blue-3" href="https://github.com/sfi0zy/muilessium/blob/master/src/less/components/grid-flex.less">src/less/components/grid-flex.less</a> for more information.</p>
                     <div class="grid-preview _separate-2">
                         <div class="mui-row">
                             <div class="mui-column -s1 -blue-5-bg -blue-1 _text-center _line-2r _smaller-1">-s1</div>
@@ -336,7 +336,7 @@
                             <h3 class="_bigger-2" id="page-layout-overview">Page layout</h3>
                         </a>
                     </div>
-                    <p class="mui-p _separate-1">Basic page layout includes header, page container and footer. This layout is the simplest way to create a sticky footer, but IE11 does not support flexbox greatly, so we have some incorrect behavior in it.</p>
+                    <p class="mui-p _separate-1">The basic page layout includes header, page container and footer. This layout is the simplest way to create a sticky footer, but IE11 does not support flexbox greatly, so we have some incorrect behavior in it.</p>
                     <div class="code-example _separate-2 _smaller-2">
                         <pre class="source-code">
     &lt;div class='mui-scroll-fix'&gt;&lt;/div&gt;
@@ -351,7 +351,7 @@
                             <h3 class="_bigger-2" id="meta-viewport">Recommended viewport</h3>
                         </a>
                     </div>
-                    <p class="mui-p _separate-1">Muilessium uses Hammer.js and it is recommended to use the following meta in your pages:</p>
+                    <p class="mui-p _separate-1">Muilessium uses Hammer.js, and it is recommended to use the following meta in your pages:</p>
                     <div class="code-example _separate-2 _smaller-2">
                         <pre class="source-code">
     &lt;meta name='viewport' content='user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1'&gt;</pre>
@@ -363,7 +363,7 @@
                             <h3 class="_bigger-2" id="typography-overview">Typography</h3>
                         </a>
                     </div>
-                    <p class="mui-p _separate-1">Typography in Muilessium is fluid and it is based on default system fonts and _bigger-* and _smaller-* <a href="#helpers-overview">helpers</a>. Note: these helpers have different behavior on different screen sizes to avoid troubles with readability.</p>
+                    <p class="mui-p _separate-1">Typography in Muilessium is fluid, and it is based on default system fonts and _bigger-* and _smaller-* <a href="#helpers-overview">helpers</a>. Note: these helpers have different behavior on different screen sizes to avoid troubles with readability.</p>
                     <div class="h1">H1 Heading (+5)</div>
                     <div class="h2">H2 Heading (+4)</div>
                     <div class="h3">H3 Heading (+3)</div>
@@ -1369,7 +1369,7 @@
                                     </a>
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/containers.less</div>
-                                    <p class="mui-p _separate-1">Container for creating sticky footer. Should include all page content before page-footer.</p>
+                                    <p class="mui-p _separate-1">Container for creation of sticky footers. Should include all page content before page-footer.</p>
                                     <div class="_separate-1">
                                         <div class="example _separate-2"><div class="mui-page-container"></div></div>
                                         <div class="mui-spoiler">
@@ -1492,7 +1492,7 @@
                                     </a>
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/image.less</div>
-                                    <p class="mui-p _separate-1">Helper component, includes visual effects for images like creating rounded courners or a circle image from a square image.</p>
+                                    <p class="mui-p _separate-1">Helper component, includes visual effects for images like creating rounded corners or a circular image from a square image.</p>
                                     <div class="_separate-1">
                                         <div class="example _separate-2"><img class="mui-image -js-lazy-load" data-src="https://placehold.it/250x250" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""></div>
                                             <div class="state _separate-2">
@@ -2381,7 +2381,7 @@
                                     </a>
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/select-dropdown.less</div>
-                                    <p class="mui-p _separate-1">Data-id attribute should be used to select id and name attributes for the hidden html select element. Should be usew with label for the better accessibility.</p>
+                                    <p class="mui-p _separate-1">Data-id attribute should be used to select id and name attributes for the hidden html select element. Should be used with label for better accessibility.</p>
                                     <div class="_separate-1 _smaller-2">[[ SelectDropdown ]] <span class="-grey-3">- Use Muilessium.get('SelectDropdown', id) to get it.</span></div>
                                     <div class="_separate-1">
                                         <ul>
@@ -2547,7 +2547,7 @@
                                     </a>
                                 </div>
                                 <div class="_smaller-2 -grey-4">src/less/components/table.less</div>
-                                    <p class="mui-p _separate-1">Use -fixed option to create table with fixed layout, -striped option to create a zebra-striped table;</p>
+                                    <p class="mui-p _separate-1">Use -fixed option to create a table with fixed layout, -striped option to create a zebra-striped table;</p>
                                     <div class="_separate-1">
                                         <div class="example _separate-2">  <table class="mui-table">
       <tr class="header">
@@ -2800,7 +2800,7 @@
                         </div>
                         <div class="_separate-1">
                             <div class="question">What can I do if I found a bug?</div>
-                            <div class="answer">If you found a bug - don't worry, Muilessium is is pre-pre-release state and can have some bugs, You can open an issue on <a href="https://github.com/sfi0zy/muilessium" class="-f-blue-3">GitHub</a> or send me an <a href="mailto:sfi0zy@gmail.com" class="-f-blue-3">email</a> and I will fix a problem.</div>
+                            <div class="answer">If you found a bug - don't worry, Muilessium is in pre-pre-release state and can have some bugs, You can open an issue on <a href="https://github.com/sfi0zy/muilessium" class="-f-blue-3">GitHub</a> or send me an <a href="mailto:sfi0zy@gmail.com" class="-f-blue-3">email</a> and I will fix a problem.</div>
                         </div>
                         <div class="_separate-1">
                             <div class="question">I have some suggestions for improvement of Muilessium</div>
