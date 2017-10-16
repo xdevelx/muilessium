@@ -1,7 +1,7 @@
 // -----------------------------------------------------------------------------
 // FOCUS AND CLICK
 // -----------------------------------------------------------------------------
-// This is a number of function for manipulating with 'focus' and 'click' events
+// This is a number of functions for manipulating with 'focus' and 'click' events
 // in accessible components.
 // 
 // Here is the full list of 'focus&click' utilities:
@@ -84,7 +84,7 @@ export function makeElementsNotFocusable(elements) {
 
 // Get focusable childs
 // --------------------
-// Returns NodeList of childs of selected element with tabindex >= 0
+// Returns NodeList of childs of the selected element with tabindex >= 0
 
 export function getFocusableChilds(element) {
     return ifExists(element, () => {
@@ -242,7 +242,7 @@ export function makeChildElementsClickable(element, childs, callback, { mouse = 
 
 // On focus
 // --------
-// Execues callback when selected element being focused
+// Execues callback when the selected element being focused
 
 export function onFocus(element, callback) {
     return ifExists(element, () => {
@@ -253,7 +253,7 @@ export function onFocus(element, callback) {
 
 // On blur
 // -------
-// Execues callback when selected element being unfocused
+// Execues callback when the selected element being unfocused
 
 export function onBlur(element, callback) {
     return ifExists(element, () => {

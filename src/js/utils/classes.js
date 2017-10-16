@@ -22,7 +22,7 @@ import { forEach } from '../utils/uncategorized';
 
 // Has class
 // ---------
-// Returns true if element exists and has selected class and false otherwise
+// Returns true if the element exists and has selected class and false otherwise
 
 export function hasClass(element, classForTest) {
     return ifExists(element, () => {
@@ -35,7 +35,7 @@ export function hasClass(element, classForTest) {
 
 // Has not class
 // -------------
-// Returns false if element exists and has selected class and true otherwise
+// Returns false if the element exists and has selected class and true otherwise
 
 export function hasNotClass(element, classForTest) {
     return ifExists(element, () => {
@@ -64,7 +64,7 @@ export function addClass(element, newClass) {
 
 // Add multiple classes
 // --------------------
-// Adds multiple classs to the element if it exists
+// Adds multiple clases to the element if it exists
 
 export function addClasses(element, ...newClasses) {
     return ifExists(element, () => {
@@ -105,7 +105,7 @@ export function removeClasses(element, ...classesForRemoving) {
 
 // Replace class
 // -------------
-// Removes first selected class and adds second one
+// Removes the first selected class and adds the second one
 
 export function replaceClass(element, classForRemoving, newClass) {
     removeClass(element, classForRemoving);
@@ -116,7 +116,7 @@ export function replaceClass(element, classForRemoving, newClass) {
 
 // Toggle class
 // ------------
-// Toggles class for the element if it exists
+// Toggles the class for the element if it exists
 
 export function toggleClass(element, classForToggle) {
     return ifExists(element, () => {

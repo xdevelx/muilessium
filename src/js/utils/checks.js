@@ -2,7 +2,7 @@
 // CHECKS
 // -----------------------------------------------------------------------------
 // These functions should be used in components for better code readability
-// and avoiding errors when some element does not exists.
+// and avoiding errors when some element does not exist.
 //
 // Here is the full list of utilities:
 //  - isNode(element)
@@ -68,7 +68,7 @@ export function ifExists(element, callback, printWarning = true) {
 
 // If nodelist
 // -----------
-// If first parameter is NodeList or HTMLCollection or Array of HTMLElements
+// If the first parameter is NodeList or HTMLCollection or Array of HTMLElements
 // executes callback function and prints warning otherwise by default
 
 export function ifNodeList(x, callback, printWarning = true) {

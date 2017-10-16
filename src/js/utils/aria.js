@@ -1,7 +1,7 @@
 // -----------------------------------------------------------------------------
 // WAI-ARIA UTILITIES
 // -----------------------------------------------------------------------------
-// Here is some functions for operations with aria-roles and properties.
+// Here are some functions for operations with aria-roles and properties.
 // These functions should be used in components for better code readability.
 //
 // Here is the full list of aria methods:

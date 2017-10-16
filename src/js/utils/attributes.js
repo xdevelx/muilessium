@@ -2,9 +2,9 @@
 // HTML ATTRIBUTES
 // -----------------------------------------------------------------------------
 // These functions should be used in components for better code readability and
-// avoiding errors when selected element does not exists.
+// avoiding errors when the selected element does not exist.
 //
-// Here is the ful list of utilities for manipulating with attributes:
+// Here is the full list of utilities for manipulating with attributes:
 //  - setAttribute(element, attribute, value)
 //  - getAttribute(element, attribute, defaultValue)
 //  - removeAttribute(element, attribute)
