@@ -1,11 +1,14 @@
 var gulp         = require('gulp'),
+    argv         = require('yargs').argv,
     rename       = require('gulp-rename'),
     less         = require('gulp-less'),
     postcss      = require('gulp-postcss'),
     cssnano      = require('gulp-cssnano'),
     webpack      = require('webpack-stream'),
-    browserSync  = require('browser-sync').create(),
-    dss          = require('gulp-dss');
+    browserSync  = require('browser-sync').create();
+
+
+const ENVIRONMENT = argv.production ? 'production' : 'development';
 
 
 gulp.task('less', function() {
@@ -21,7 +24,7 @@ gulp.task('less', function() {
 
 gulp.task('js', function() {
     return gulp.src('./src/js/main.js')
-        .pipe(webpack(require('./webpack.config.js')))
+        .pipe(webpack(require('./webpack.config.js')[ENVIRONMENT]))
         .pipe(rename('muilessium.min.js'))
         .pipe(gulp.dest('./dist/js'))
         .pipe(browserSync.stream());

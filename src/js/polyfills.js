@@ -22,7 +22,7 @@ export function smoothScroll() {
 // https://github.com/bfred-it/object-fit-images
 // There is a css class for this polyfill.
 // Take a look at src/css/utils.css for more information.
-let objectFitImages = require('object-fit-images'); // It doesn't support es6 import
+import objectFitImages from 'object-fit-images';
 
 export function objectFit() {
     objectFitImages();
