@@ -1,8 +1,0 @@
-{
-    "important": false,
-    "box-sizing": false,
-    "known-properties": false,
-    "universal-selector": false,
-    "ids": false,
-    "unique-headings": false
-}
