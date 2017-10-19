@@ -6,7 +6,7 @@
     <meta http-equiv='content-type' content='text/html; charset=UTF-8'>
     <meta name='viewport' content='user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1'>
 
-    <link rel='stylesheet' media='all' href='../assets/css/muilessium.min.css?v=0.1.46' />
+    <link rel='stylesheet' media='all' href='../assets/css/muilessium.min.css?v=0.1.47' />
     <link rel='stylesheet' media='all' href='../assets/css/docs-styles.css?v=0663251985523079' />
 
     <link rel='icon' href='../icons/favicon.ico' type='image/x-icon' />
@@ -115,6 +115,8 @@
 <ul>
 <li>typeText(element, text, delay = 120, cycle = false, times = -1, callback = null)</li>
 <li>typeTexts(element, textsList)</li>
+<li>activateAnimation(element)</li>
+<li>animateElement(element, animation)</li>
 </ul>
 
                     </div>
@@ -122,7 +124,11 @@
                         
                             <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
 
-<span class="hljs-keyword">import</span> { ifExists } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/checks'</span>;</pre></div></div>
+<span class="hljs-keyword">import</span> { ifExists    } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/checks'</span>;
+<span class="hljs-keyword">import</span> { addClass    } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/classes'</span>;
+<span class="hljs-keyword">import</span> { hasClass    } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/classes'</span>;
+<span class="hljs-keyword">import</span> { removeClass } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/classes'</span>;
+<span class="hljs-keyword">import</span> { forEach     } <span class="hljs-keyword">from</span> <span class="hljs-string">'../utils/uncategorized'</span>;</pre></div></div>
                         
                     </div>
                 </div>
@@ -262,6 +268,90 @@
                     </div>
                 </div>
             
+                
+                <div class='' id='section-8'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-8'>&#182;</a>
+                        </div>
+                        <h2 id="activate-animation">Activate animation</h2>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-9'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-9'>&#182;</a>
+                        </div>
+                        <p>Activates mui-js-animation from src/less/animations.less</p>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">activateAnimation</span>(<span class="hljs-params">element</span>) </span>{
+    ifExists(element, () =&gt; {
+        addClass(element, <span class="hljs-string">'-activated'</span>);
+    });
+};</pre></div></div>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-10'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-10'>&#182;</a>
+                        </div>
+                        <h2 id="animate-element">Animate element</h2>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                    </div>
+                </div>
+            
+                
+                <div class='' id='section-11'>
+                    <div class='mui-content-container'>
+                        
+                        <div class=''>
+                            <a class='anchor-link _smaller-2 -grey-3 -f-blue-3' href='#section-11'>&#182;</a>
+                        </div>
+                        <p>Animates element with selected animation from src/less/animations.less</p>
+
+                    </div>
+                    <div class='mui-content-container'>
+                        
+                            <div class='source-code _separate-1-bottom'><div class='highlight'><pre>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">animateElement</span>(<span class="hljs-params">element, animation</span>) </span>{
+    ifExists(element, () =&gt; {
+        addClass(element, <span class="hljs-string">'-js-animation'</span>);
+
+        forEach([<span class="hljs-string">'-fade-in'</span>,  <span class="hljs-string">'-fade-in-left'</span>,  <span class="hljs-string">'-fade-in-up'</span>,  <span class="hljs-string">'-fade-in-right'</span>,  <span class="hljs-string">'-fade-in-down'</span>,
+                 <span class="hljs-string">'-fade-out'</span>, <span class="hljs-string">'-fade-out-left'</span>, <span class="hljs-string">'-fade-out-up'</span>, <span class="hljs-string">'-fade-out-right'</span>, <span class="hljs-string">'-fade-out-down'</span>], (name) =&gt; {
+            <span class="hljs-keyword">if</span> (hasClass(element, name)) {
+                removeClass(element, name);
+            }
+        });
+
+        addClass(element, <span class="hljs-string">'-'</span> + animation);
+        addClass(element, <span class="hljs-string">'-activated'</span>);
+    });
+};</pre></div></div>
+                        
+                    </div>
+                </div>
+            
     </main>
 
     <div class='mui-page-footer _text-center _line-3r -white -black-bg'>
@@ -273,6 +363,6 @@
     </div>
 
 
-    <script src='../assets/js/muilessium.min.js?v=0.1.46'></script>
+    <script src='../assets/js/muilessium.min.js?v=0.1.47'></script>
 </body>
 </html>
