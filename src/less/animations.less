@@ -1,0 +1,186 @@
+@keyframes mui-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes mui-fade-in-left {
+    from {
+        opacity: 0;
+        transform: translateX(-5rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+@keyframes mui-fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(-5rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes mui-fade-in-right {
+    from {
+        opacity: 0;
+        transform: translateX(5rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+@keyframes mui-fade-in-down {
+    from {
+        opacity: 0;
+        transform: translateY(5rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes mui-fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+
+@keyframes mui-fade-out-left {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-5rem);
+    }
+}
+
+
+@keyframes mui-fade-out-up {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-5rem);
+    }
+}
+
+
+@keyframes mui-fade-out-right {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(5rem);
+    }
+}
+
+
+@keyframes mui-fade-out-down {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(5rem);
+    }
+}
+
+
+.-js-animation {
+    &.-hidden-by-default {
+        opacity: 0;
+    }
+
+    &.-scrollfire-point {
+
+    }
+
+    &.-fade-in {
+        &.-activated {
+            animation: mui-fade-in forwards @default-animation-duration * 2 @default-animation-function;
+        }
+    }
+
+    &.-fade-in-left {
+        &.-activated {
+            animation: mui-fade-in-left forwards @default-animation-duration * 2 @default-animation-function;
+        }
+    }
+
+    &.-fade-in-up {
+        &.-activated {
+            animation: mui-fade-in-up forwards @default-animation-duration * 2 @default-animation-function;
+        }
+    }
+
+    &.-fade-in-right {
+        &.-activated {
+            animation: mui-fade-in-right forwards @default-animation-duration * 2 @default-animation-function;
+        }
+    }
+
+    &.-fade-in-down {
+        &.-activated {
+            animation: mui-fade-in-down forwards @default-animation-duration * 2 @default-animation-function;
+        }
+    }
+
+    &.-fade-out {
+        &.-activated {
+            animation: mui-fade-out forwards @default-animation-duration * 2 @default-animation-function;
+        }
+    }
+
+    &.-fade-out-left {
+        &.-activated {
+            animation: mui-fade-out-left forwards @default-animation-duration * 2 @default-animation-function;
+        }
+    }
+
+    &.-fade-out-up {
+        &.-activated {
+            animation: mui-fade-out-up forwards @default-animation-duration * 2 @default-animation-function;
+        }
+    }
+
+    &.-fade-out-right {
+        &.-activated {
+            animation: mui-fade-out-right forwards @default-animation-duration * 2 @default-animation-function;
+        }
+    }
+
+    &.-fade-out-down {
+        &.-activated {
+            animation: mui-fade-out-down forwards @default-animation-duration * 2 @default-animation-function;
+        }
+    }
+}
+

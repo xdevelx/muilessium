@@ -4,9 +4,15 @@
 // Here is the full list of animations:
 //  - typeText(element, text, delay = 120, cycle = false, times = -1, callback = null)
 //  - typeTexts(element, textsList)
+//  - activateAnimation(element)
+//  - animateElement(element, animation)
 
 
-import { ifExists } from '../utils/checks';
+import { ifExists    } from '../utils/checks';
+import { addClass    } from '../utils/classes';
+import { hasClass    } from '../utils/classes';
+import { removeClass } from '../utils/classes';
+import { forEach     } from '../utils/uncategorized';
 
 
 // Type text
@@ -88,6 +94,38 @@ export function typeTexts(element, texts) {
             };
 
         next();
+    });
+};
+
+
+// Activate animation
+// ------------------
+// Activates mui-js-animation from src/less/animations.less
+
+export function activateAnimation(element) {
+    ifExists(element, () => {
+        addClass(element, '-activated');
+    });
+};
+
+
+// Animate element
+// ---------------
+// Animates element with selected animation from src/less/animations.less
+
+export function animateElement(element, animation) {
+    ifExists(element, () => {
+        addClass(element, '-js-animation');
+
+        forEach(['-fade-in',  '-fade-in-left',  '-fade-in-up',  '-fade-in-right',  '-fade-in-down',
+                 '-fade-out', '-fade-out-left', '-fade-out-up', '-fade-out-right', '-fade-out-down'], (name) => {
+            if (hasClass(element, name)) {
+                removeClass(element, name);
+            }
+        });
+
+        addClass(element, '-' + animation);
+        addClass(element, '-activated');
     });
 };
 
