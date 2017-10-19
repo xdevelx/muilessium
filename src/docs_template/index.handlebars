@@ -465,114 +465,118 @@
 
                     <p class='mui-p _separate-1'>Muilessium exports a number of internal utilities as window.Muilessium.Utils including</p>
 
-                    <ul class='mui-list'>
+                    <ul class='mui-list _smaller-2'>
                         <li id='utils-ajax' class='item'><a class='-f-blue-3' href='utils/ajax.html'>AJAX</a>
                             <ol class='mui-list'>
-                                <li class='item'>ajax.post</li>
-                                <li class='item'>ajax.postProtected</li>
-                                <li class='item'>ajax.get</li>
-                                <li class='item'>ajax.getProtected</li>
+                                <li class='item'>ajax.post <span class='-grey-3'>(url, data, successCallback, errorCallback)</span></li>
+                                <li class='item'>ajax.postProtected <span class='-grey-3'>(url, data, successCallback)</span></li>
+                                <li class='item'>ajax.get <span class='-grey-3'>(url, successCallback, errorCallback)</span></li>
+                                <li class='item'>ajax.getProtected <span class='-grey-3'>(url, successCallback)</span></li>
                             </ol>
                         </li>
 
                         <li id='utils-animations' class='item'><a class='-f-blue-3' href='utils/animations.html'>Animations</a>
                             <ol class='mui-list'>
-                                <li class='item'>typeText</li>
-                                <li class='item'>typeTexsts</li>
+                                <li class='item'>typeText <span class='-grey-3'>(element, text, delay = 120, cycle = false, times = -1, callback = null)</span></li>
+                                <li class='item'>typeTexsts <span class='-grey-3'>(element, textsList)</span></li>
+                                <li class='item'>activateAnimation <span class='-grey-3'>(element)</span></li>
+                                <li class='item'>animateElement <span class='-grey-3'>(element, animation)</span></li>
                             </ol>
                         </li>
 
                         <li id='utils-aria' class='item'><a class='-f-blue-3' href='utils/aria.html'>WAI-ARIA</a>
                             <ol class='mui-list'>
-                                <li class='item'>aria.set</li>
-                                <li class='item'>aria.setRole</li>
-                                <li class='item'>aria.removeRole</li>
-                                <li class='item'>aria.setId</li>
-                                <li class='item'>aria.get</li>
-                                <li class='item'>aria.getRole</li>
-                                <li class='item'>aria.toggleState</li>
+                                <li class='item'>aria.set <span class='-grey-3'>(element, property, value = true)</span></li>
+                                <li class='item'>aria.setRole <span class='-grey-3'>(element, role)</span></li>
+                                <li class='item'>aria.removeRole <span class='-grey-3'>(element)</span></li>
+                                <li class='item'>aria.setId <span class='-grey-3'>(element, id)</span></li>
+                                <li class='item'>aria.get <span class='-grey-3'>(element, property)</span></li>
+                                <li class='item'>aria.getRole <span class='-grey-3'>(element)</span></li>
+                                <li class='item'>aria.toggleState <span class='-grey-3'>(element, state)</span></li>
                             </ol>
                         </li>
 
                         <li id='utils-attributes' class='item'><a class='-f-blue-3' href='utils/attributes.html'>HTML attributes</a>
                             <ol class='mui-list'>
-                                <li class='item'>setAttribute</li>
-                                <li class='item'>getAttribute</li>
-                                <li class='item'>removeAttribute</li>
+                                <li class='item'>setAttribute <span class='-grey-3'>(element, attribute, value)</span></li>
+                                <li class='item'>getAttribute <span class='-grey-3'>(element, attribute, defaultValue)</span></li>
+                                <li class='item'>removeAttribute <span class='-grey-3'>(element, attribute)</span></li>
                             </ol>
                         </li>
 
                         <li id='utils-checks' class='item'><a class='-f-blue-3' href='utils/checks.html'>Checking</a>
                             <ol class='mui-list'>
-                                <li class='item'>isNode</li>
-                                <li class='item'>isInPage</li>
-                                <li class='item'>isNotInPage</li>
-                                <li class='item'>ifExists</li>
-                                <li class='item'>ifNodeList</li>
-                                <li class='item'>isDescendant</li>
+                                <li class='item'>isNode <span class='-grey-3'>(element)</span></li>
+                                <li class='item'>isInPage <span class='-grey-3'>(element)</span></li>
+                                <li class='item'>isNotInPage <span class='-grey-3'>(element)</span></li>
+                                <li class='item'>ifExists <span class='-grey-3'>(element, callback, printWarning = true)</span></li>
+                                <li class='item'>ifNodeList <span class='-grey-3'>(element, callback, printWarning = true)</span></li>
+                                <li class='item'>isDescendant <span class='-grey-3'>(parent, child)</span></li>
                             </ol>
                         </li>
 
                         <li id='utils-css-classes' class='item'><a class='-f-blue-3' href='utils/classes.html'>CSS classes</a>
                             <ol class='mui-list'>
-                                <li class='item'>hasClass</li>
-                                <li class='item'>hasNotClass</li>
-                                <li class='item'>addClass</li>
-                                <li class='item'>addClasses</li>
-                                <li class='item'>removeClass</li>
-                                <li class='item'>removeClasses</li>
-                                <li class='item'>replaceClass</li>
-                                <li class='item'>toggleClass</li>
+                                <li class='item'>hasClass <span class='-grey-3'>(element, class)</span></li>
+                                <li class='item'>hasNotClass <span class='-grey-3'>(element, class)</span></li>
+                                <li class='item'>addClass <span class='-grey-3'>(element, class)</span></li>
+                                <li class='item'>addClasses <span class='-grey-3'>(element, ...classes)</span></li>
+                                <li class='item'>removeClass <span class='-grey-3'>(element, class)</span></li>
+                                <li class='item'>removeClasses <span class='-grey-3'>(element, ...classes)</span></li>
+                                <li class='item'>replaceClass <span class='-grey-3'>(element, class, newClass)</span></li>
+                                <li class='item'>toggleClass <span class='-grey-3'>(element, class)</span></li>
                             </ol>
                         </li>
 
                         <li id='utils-focus-and-click' class='item'><a class='-f-blue-3' href='utils/focus-and-click.html'>Focus &amp; click</a>
                             <ol class='mui-list'>
-                                <li class='item'>makeElementFocusable</li>
-                                <li class='item'>makeElementsFocusable</li>
-                                <li class='item'>makeElementNotFocusable</li>
-                                <li class='item'>makeElementsNotFocusable</li>
-                                <li class='item'>getFocusableChilds</li>
-                                <li class='item'>getAllFocusableElements</li>
-                                <li class='item'>getNextFocusableElement</li>
-                                <li class='item'>getPreviousFocusableElement</li>
-                                <li class='item'>goToNextFocusableElement</li>
-                                <li class='item'>goToPreviousFocusableElement</li>
-                                <li class='item'>makeElementClickable</li>
-                                <li class='item'>makeChildElementsClickable</li>
-                                <li class='item'>onFocus</li>
-                                <li class='item'>onBlur</li>
+                                <li class='item'>makeElementFocusable <span class='-grey-3'>(element)</span></li>
+                                <li class='item'>makeElementsFocusable <span class='-grey-3'>(elementsList)</span></li>
+                                <li class='item'>makeElementNotFocusable <span class='-grey-3'>(element)</span></li>
+                                <li class='item'>makeElementsNotFocusable <span class='-grey-3'>(elementsList)</span></li>
+                                <li class='item'>getFocusableChilds <span class='-grey-3'>(element)</span></li>
+                                <li class='item'>getAllFocusableElements <span class='-grey-3'>()</span></li>
+                                <li class='item'>getNextFocusableElement <span class='-grey-3'>(element)</span></li>
+                                <li class='item'>getPreviousFocusableElement <span class='-grey-3'>(element)</span></li>
+                                <li class='item'>goToNextFocusableElement <span class='-grey-3'>(element)</span></li>
+                                <li class='item'>goToPreviousFocusableElement <span class='-grey-3'>(element)</span></li>
+                                <li class='item'>makeElementClickable <span class='-grey-3'>(element, callback, { mouse = true, keyboard = true } = {})</span></li>
+                                <li class='item'>makeChildElementsClickable <span class='-grey-3'>(element, childs, callback, { mouse = true, keyboard = true } = {})</span></li>
+                                <li class='item'>onFocus <span class='-grey-3'>(element, callback)</span></li>
+                                <li class='item'>onBlur <span class='-grey-3'>(element, callback)</span></li>
                             </ol>
                         </li>
 
                         <li id='utils-scroll' class='item'><a class='-f-blue-3' href='utils/scroll.html'>Scroll</a>
                             <ol class='mui-list'>
-                                <li class='item'>scrollTo</li>
-                                <li class='item'>scrollToTop</li>
-                                <li class='item'>scrollFire</li>
+                                <li class='item'>scrollTo <span class='-grey-3'>(element, callback)
+</span></li>
+                                <li class='item'>scrollToTop <span class='-grey-3'>(callback)</span></li>
+                                <li class='item'>scrollFire <span class='-grey-3'>(element, callback)
+</span></li>
                             </ol>
                         </li>
 
                         <li id='utils-viewport' class='item'><a class='-f-blue-3' href='utils/viewport.html'>Viewport</a>
                             <ol class='mui-list'>
-                                <li class='item'>isInViewport</li>
-                                <li class='item'>isAboveViewport</li>
+                                <li class='item'>isInViewport <span class='-grey-3'>(element)</span></li>
+                                <li class='item'>isAboveViewport <span class='-grey-3'>(element)</span></li>
                             </ol>
                         </li>
 
                         <li id='utils-uncategorized' class='item'><a class='-f-blue-3' href='utils/uncategorized.html'>Uncategorized</a>
                             <ol class='mui-list'>
-                                <li class='item'>normalizeTabIndexes</li>
-                                <li class='item'>lazyLoadImages</li>
-                                <li class='item'>initAnchorLinks</li>
-                                <li class='item'>generateRandomString</li>
-                                <li class='item'>stringify</li>
-                                <li class='item'>extend</li>
-                                <li class='item'>debounce</li>
-                                <li class='item'>callOnce</li>
-                                <li class='item'>firstOfList</li>
-                                <li class='item'>lastOfList</li>
-                                <li class='item'>forEach</li>
+                                <li class='item'>normalizeTabIndexes <span class='-grey-3'>()</span></li>
+                                <li class='item'>lazyLoadImages <span class='-grey-3'>(callback)</span></li>
+                                <li class='item'>initAnchorLinks <span class='-grey-3'>()</span></li>
+                                <li class='item'>generateRandomString <span class='-grey-3'>(length = 8)</span></li>
+                                <li class='item'>stringify <span class='-grey-3'>(object)</span></li>
+                                <li class='item'>extend <span class='-grey-3'>(target, source)</span></li>
+                                <li class='item'>debounce <span class='-grey-3'>(func, ms)</span></li>
+                                <li class='item'>callOnce <span class='-grey-3'>(callback)</span></li>
+                                <li class='item'>firstOfList <span class='-grey-3'>(list)</span></li>
+                                <li class='item'>lastOfList <span class='-grey-3'>(list)</span></li>
+                                <li class='item'>forEach <span class='-grey-3'>(list, callback, delay)</span></li>
                             </ol>
                         </li>
                     </ul>
