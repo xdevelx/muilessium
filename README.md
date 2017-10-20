@@ -6,6 +6,20 @@
 ## Description
 Muilessium is a UI framework for simple websites. This is a collection of components, utilities and helpers. Muilessium is under development now and it is not recommended to use it in production, because it hasn't backward compatibility and some features are not realized yet.
 
+## Build instructions
+```sh
+git clone https://github.com/sfi0zy/muilessium.git
+cd muilessium
+npm i
+```
+### Development:
+```sh
+gulp server
+```
+### Production:
+```sh
+gulp --production
+```
 
 ## CDN
 [https://unpkg.com/muilessium/dist/js/muilessium.min.js](https://unpkg.com/muilessium/dist/js/muilessium.min.js)
