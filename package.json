@@ -13,10 +13,6 @@
     "last 2 versions",
     "ie >= 11"
   ],
-  "files": [
-    "dist/",
-    "README.md"
-  ],
   "scripts": {
     "test": "gulp test"
   },
