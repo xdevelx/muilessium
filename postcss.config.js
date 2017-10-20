@@ -5,7 +5,8 @@ module.exports = {
             features: {
                 rem: {
                     html: false
-                }
+                },
+                calc: false
             }
         }),
         require('postcss-fixes')({ preset: 'safe' }),

@@ -2,15 +2,15 @@
 
 @min-font-size: 14;
 @min-font-size-px: 14px;
-@max-font-size: 22;
-@max-font-size-px: 22px;
+@max-font-size: 20;
+@max-font-size-px: 20px;
 
 
 html {
     font-family: @default-font-family;
 
     // Font size formula (for default values):
-    // size = ( 12px + (20 - 12) * ((100vw - 400px) / ( 1200 - 400)))
+    // size = ( 14px + (20 - 14) * ((100vw - 400px) / ( 1200 - 400)))
     font-size: ~'calc(' @min-font-size-px ~' + (' @max-font-size ~' - ' @min-font-size ~') * ((100vw - ' @grid-breakpoint-small-px ~') / (' @grid-breakpoint-large ~' - ' @grid-breakpoint-small ~')))';
 
     line-height: 1.50;
