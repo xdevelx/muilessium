@@ -12,9 +12,6 @@ var gulp         = require('gulp'),
 const ENVIRONMENT = argv.production ? 'production' : 'development';
 
 
-require('gulp-grunt')(gulp);
-
-
 gulp.task('less', () => {
     return gulp.src('./src/less/main.less')
         .pipe(less())
@@ -35,8 +32,10 @@ gulp.task('js', () => {
 });
 
 
-gulp.task('dss-sync', () => {
-    return gulp.src('./dist/index.html')
+gulp.task('dss', () => {
+    return gulp.src('./src/less/components/*.less')
+        .pipe(dss(require('./dss.config.js')))
+        .pipe(gulp.dest('./dist'))
         .pipe(browserSync.stream());
 });
 
@@ -51,7 +50,7 @@ gulp.task('browser-sync', function() {
     gulp.watch([
         './src/less/*.less',
         './src/less/components/*.less'
-    ], ['less']);
+    ], ['less', 'dss']);
 
     gulp.watch([
         './src/js/*.js',
@@ -59,14 +58,10 @@ gulp.task('browser-sync', function() {
     ], ['js']);
 
     gulp.watch([
-        './src/dss/*.handlebars'
-    ], ['grunt-dss']);
-
-    gulp.watch([
-        './dist/index.html'
-    ], ['dss-sync']);
+        './src/dss/index.handlebars'
+    ], ['dss']);
 });
 
-gulp.task('default', ['less', 'js', 'grunt-dss']);
+gulp.task('default', ['less', 'js', 'dss']);
 gulp.task('server', ['default', 'browser-sync']);
 
