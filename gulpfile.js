@@ -1,4 +1,5 @@
 var gulp         = require('gulp'),
+    run          = require('run-sequence'),
     argv         = require('yargs').argv,
     rename       = require('gulp-rename'),
     less         = require('gulp-less'),
@@ -6,7 +7,8 @@ var gulp         = require('gulp'),
     cssnano      = require('gulp-cssnano'),
     webpack      = require('webpack-stream'),
     browserSync  = require('browser-sync').create(),
-    dss          = require('gulp-dss');
+    dss          = require('gulp-dss'),
+    nodeunit     = require('gulp-nodeunit');
 
 
 const ENVIRONMENT = argv.production ? 'production' : 'development';
@@ -40,6 +42,12 @@ gulp.task('dss', () => {
 });
 
 
+gulp.task('test', () => {
+    return gulp.src('./test/*.js')
+        .pipe(nodeunit());
+});
+
+
 gulp.task('browser-sync', function() {
     browserSync.init({
         server: {
@@ -62,6 +70,16 @@ gulp.task('browser-sync', function() {
     ], ['dss']);
 });
 
-gulp.task('default', ['less', 'js', 'dss']);
-gulp.task('server', ['default', 'browser-sync']);
+
+if (ENVIRONMENT === 'production') {
+    gulp.task('default', () => {
+        run('less', 'test', 'js', 'dss');
+    });
+} else {
+    gulp.task('default', () => {
+        run('less', 'js', 'dss');
+    });
+}
+
+gulp.task('server', ['browser-sync']);
 
