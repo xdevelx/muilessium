@@ -29,8 +29,11 @@ module.exports = {
         _.aria.set(element, 'hidden', false);
         test.equal(element.getAttribute('aria-hidden'), 'false', 'it should set the attribute to the selected value');
 
-        test.doesNotThrow(() => _.aria.set(null, null));
-        test.doesNotThrow(() => _.aria.set(undefined, undefined));
+        test.doesNotThrow(() => _.aria.set(null));
+        test.doesNotThrow(() => _.aria.set(undefined));
+        test.doesNotThrow(() => _.aria.set(element, null));
+        test.doesNotThrow(() => _.aria.set(element, null, null));
+        test.doesNotThrow(() => _.aria.set(element, undefined));
 
         test.done();
     },
@@ -46,8 +49,10 @@ module.exports = {
 
         test.equal(element.getAttribute('role'), 'button', 'it should set the role of the element to the selected value');
 
-        test.doesNotThrow(() => _.aria.setRole(null, null));
-        test.doesNotThrow(() => _.aria.setRole(undefined, undefined));
+        test.doesNotThrow(() => _.aria.setRole(null));
+        test.doesNotThrow(() => _.aria.setRole(undefined));
+        test.doesNotThrow(() => _.aria.setRole(element, null));
+        test.doesNotThrow(() => _.aria.setRole(element, undefined));
 
         test.done();
     },
@@ -63,8 +68,8 @@ module.exports = {
 
         test.equal(element.getAttribute('role'), null, 'it should remove the role from the element');
 
-        test.doesNotThrow(() => _.aria.removeRole(null, null));
-        test.doesNotThrow(() => _.aria.removeRole(undefined, undefined));
+        test.doesNotThrow(() => _.aria.removeRole(null));
+        test.doesNotThrow(() => _.aria.removeRole(undefined));
 
         test.done();
     },
@@ -80,8 +85,10 @@ module.exports = {
 
         test.equal(element.getAttribute('id'), 'test-id', 'it should set the id of the element to the selected value');
 
-        test.doesNotThrow(() => _.aria.setId(null, null));
-        test.doesNotThrow(() => _.aria.setId(undefined, undefined));
+        test.doesNotThrow(() => _.aria.setId(null));
+        test.doesNotThrow(() => _.aria.setId(undefined));
+        test.doesNotThrow(() => _.aria.setId(element, null));
+        test.doesNotThrow(() => _.aria.setId(element, undefined));
 
         test.done();
     },
@@ -95,8 +102,10 @@ module.exports = {
 
         test.equal(_.aria.get(element, 'hidden'), 'true', 'it should return the value of the attribute');
 
-        test.doesNotThrow(() => _.aria.get(null, null));
-        test.doesNotThrow(() => _.aria.get(undefined, undefined));
+        test.doesNotThrow(() => _.aria.get(null));
+        test.doesNotThrow(() => _.aria.get(undefined));
+        test.doesNotThrow(() => _.aria.get(element, null));
+        test.doesNotThrow(() => _.aria.get(element, undefined));
 
         test.done();
     },
@@ -110,8 +119,8 @@ module.exports = {
 
         test.equal(_.aria.getRole(element), 'button', 'it should return the role of the element');
     
-        test.doesNotThrow(() => _.aria.getRole(null, null));
-        test.doesNotThrow(() => _.aria.getRole(undefined, undefined));
+        test.doesNotThrow(() => _.aria.getRole(null));
+        test.doesNotThrow(() => _.aria.getRole(undefined));
 
         test.done();
     },
@@ -127,8 +136,10 @@ module.exports = {
 
         test.equal(element.getAttribute('aria-hidden'), 'true', 'it should toggle the selected state of the element');
 
-        test.doesNotThrow(() => _.aria.toggleState(null, null));
-        test.doesNotThrow(() => _.aria.toggleState(undefined, undefined));
+        test.doesNotThrow(() => _.aria.toggleState(null));
+        test.doesNotThrow(() => _.aria.toggleState(undefined));
+        test.doesNotThrow(() => _.aria.toggleState(element, null));
+        test.doesNotThrow(() => _.aria.toggleState(element, undefined));
 
         test.done();
     }

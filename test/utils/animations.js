@@ -23,7 +23,7 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        test.expect(3);
+        test.expect(4);
 
         _.typeText(element, { text: 'text', delay: 120, cycle: false, times: -1 }, function() {
             test.equal(element.innerHTML, 'text', 'it should print the text into the element');
@@ -32,6 +32,7 @@ module.exports = {
 
         test.doesNotThrow(() => _.typeText(null));
         test.doesNotThrow(() => _.typeText(undefined));
+        test.doesNotThrow(() => _.typeText(element, undefined));
     },
 
 
@@ -83,8 +84,10 @@ module.exports = {
         test.ok(element.classList.contains('-activated'),    'it should add "-activated" class to the element');
         test.ok(element.classList.contains('other-class'),   'it should not remove other classes from the element');
 
-        test.doesNotThrow(() => _.animateElement(null, null));
-        test.doesNotThrow(() => _.animateElement(undefined, undefined));
+        test.doesNotThrow(() => _.animateElement(null));
+        test.doesNotThrow(() => _.animateElement(undefined));
+        test.doesNotThrow(() => _.animateElement(element, null));
+        test.doesNotThrow(() => _.animateElement(element, undefined));
 
         test.done(); 
     }

@@ -26,8 +26,10 @@ module.exports = {
         test.ok(_.hasClass(element, 'test-class'),     'it should return true if the element has the class');
         test.ok(!_.hasClass(element, 'another-class'), 'it should return false if the element has not the class');
 
-        test.doesNotThrow(() => _.hasClass(null, null));
-        test.doesNotThrow(() => _.hasClass(undefined, undefined));
+        test.doesNotThrow(() => _.hasClass(null));
+        test.doesNotThrow(() => _.hasClass(undefined));
+        test.doesNotThrow(() => _.hasClass(element, null));
+        test.doesNotThrow(() => _.hasClass(element, undefined));
 
         test.done();
     },
@@ -42,8 +44,10 @@ module.exports = {
         test.ok(!_.hasNotClass(element, 'test-class'),   'it should return false if the element has the class');
         test.ok(_.hasNotClass(element, 'another-class'), 'it should return true if the element has not the class');
 
-        test.doesNotThrow(() => _.hasNotClass(null, null));
-        test.doesNotThrow(() => _.hasNotClass(undefined, undefined));
+        test.doesNotThrow(() => _.hasNotClass(null));
+        test.doesNotThrow(() => _.hasNotClass(undefined));
+        test.doesNotThrow(() => _.hasNotClass(element, null));
+        test.doesNotThrow(() => _.hasNotClass(element, undefined));
 
         test.done();
     },
@@ -60,8 +64,10 @@ module.exports = {
         test.ok(element.classList.contains('new-class'), 'it should add the new class to the element');
         test.ok(element.classList.contains('old-class'), 'it should not remove the old classes from the element');
 
-        test.doesNotThrow(() => _.addClass(null, null));
-        test.doesNotThrow(() => _.addClass(undefined, undefined));
+        test.doesNotThrow(() => _.addClass(null));
+        test.doesNotThrow(() => _.addClass(undefined));
+        test.doesNotThrow(() => _.addClass(element, null));
+        test.doesNotThrow(() => _.addClass(element, undefined));
 
         test.done();
     },
@@ -79,8 +85,10 @@ module.exports = {
         test.ok(element.classList.contains('new-class-1'), 'it should add the new classes to the element');
         test.ok(element.classList.contains('old-class'),   'it should not remove the old classes from the element');
 
-        test.doesNotThrow(() => _.addClasses(null, null));
-        test.doesNotThrow(() => _.addClasses(undefined, undefined));
+        test.doesNotThrow(() => _.addClasses(null));
+        test.doesNotThrow(() => _.addClasses(undefined));
+        test.doesNotThrow(() => _.addClasses(element, null));
+        test.doesNotThrow(() => _.addClasses(element, undefined));
 
         test.done();
     },
@@ -97,8 +105,10 @@ module.exports = {
         test.ok(!element.classList.contains('old-class'),  'it should remove the old class from the element');
         test.ok(element.classList.contains('other-class'), 'it should not remove other classes from the element');
 
-        test.doesNotThrow(() => _.removeClass(null, null));
-        test.doesNotThrow(() => _.removeClass(undefined, undefined));
+        test.doesNotThrow(() => _.removeClass(null));
+        test.doesNotThrow(() => _.removeClass(undefined));
+        test.doesNotThrow(() => _.removeClass(element, null));
+        test.doesNotThrow(() => _.removeClass(element, undefined));
 
         test.done();
     },
@@ -116,8 +126,10 @@ module.exports = {
         test.ok(!element.classList.contains('old-class-2'),  'it should remove the old classes from the element');
         test.ok(element.classList.contains('other-class'),   'it should not remove other classes from the element');
 
-        test.doesNotThrow(() => _.removeClasses(null, null));
-        test.doesNotThrow(() => _.removeClasses(undefined, undefined));
+        test.doesNotThrow(() => _.removeClasses(null));
+        test.doesNotThrow(() => _.removeClasses(undefined));
+        test.doesNotThrow(() => _.removeClasses(element, null));
+        test.doesNotThrow(() => _.removeClasses(element, undefined));
 
         test.done();
     },
@@ -135,8 +147,12 @@ module.exports = {
         test.ok(element.classList.contains('new-class'),   'it should add the new class to the element');
         test.ok(element.classList.contains('other-class'), 'it should not remove other classes from the element');
 
-        test.doesNotThrow(() => _.replaceClass(null, null, null));
-        test.doesNotThrow(() => _.replaceClass(undefined, undefined, undefined));
+        test.doesNotThrow(() => _.replaceClass(null));
+        test.doesNotThrow(() => _.replaceClass(undefined));
+        test.doesNotThrow(() => _.replaceClass(element, null));
+        test.doesNotThrow(() => _.replaceClass(element, undefined));
+        test.doesNotThrow(() => _.replaceClass(element, 'old-class', null));
+        test.doesNotThrow(() => _.replaceClass(element, 'old-class', undefined));
 
         test.done();
     },
@@ -158,8 +174,10 @@ module.exports = {
         test.ok(element.classList.contains('test-class'),  'it should add the class to the element');
         test.ok(element.classList.contains('other-class'), 'it should not remove other classes from the element');
 
-        test.doesNotThrow(() => _.toggleClass(null, null));
-        test.doesNotThrow(() => _.toggleClass(undefined, undefined));
+        test.doesNotThrow(() => _.toggleClass(null));
+        test.doesNotThrow(() => _.toggleClass(undefined));
+        test.doesNotThrow(() => _.toggleClass(element, null));
+        test.doesNotThrow(() => _.toggleClass(element, undefined));
 
         test.done();
     },
