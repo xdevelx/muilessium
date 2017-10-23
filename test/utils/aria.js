@@ -19,21 +19,27 @@ var _ = require('../../src/js/utils.js');
 
 module.exports = {
     ['set']: function(test) {
-        document.body.innerHTML = '<div></div>';
+        document.body.innerHTML = '<div></div><div></div>';
 
-        var element = document.querySelector('div');
+        var elements = document.querySelectorAll('div');
 
-        _.aria.set(element, 'hidden');
-        test.equal(element.getAttribute('aria-hidden'), 'true', 'it should set the attribute to "true" by default');
+        // ---
 
-        _.aria.set(element, 'hidden', false);
-        test.equal(element.getAttribute('aria-hidden'), 'false', 'it should set the attribute to the selected value');
+        _.aria.set(elements[0], 'hidden');
+        _.aria.set(elements[1], 'hidden', false);
 
-        test.doesNotThrow(() => _.aria.set(null));
-        test.doesNotThrow(() => _.aria.set(undefined));
-        test.doesNotThrow(() => _.aria.set(element, null));
-        test.doesNotThrow(() => _.aria.set(element, null, null));
-        test.doesNotThrow(() => _.aria.set(element, undefined));
+        // ---
+
+        test.equal(elements[0].getAttribute('aria-hidden'), 'true',  'it should set the attribute to "true" by default');
+        test.equal(elements[1].getAttribute('aria-hidden'), 'false', 'it should set the attribute to the selected value');
+
+        test.doesNotThrow(function() {
+            _.aria.set(null);
+            _.aria.set(undefined);
+            _.aria.set(elements[0], null);
+            _.aria.set(elements[0], null, null);
+            _.aria.set(elements[0], undefined);
+        });
 
         test.done();
     },
@@ -45,14 +51,20 @@ module.exports = {
 
         var element = document.querySelector('div');
 
+        // ---
+
         _.aria.setRole(element, 'button');
+
+        // ---
 
         test.equal(element.getAttribute('role'), 'button', 'it should set the role of the element to the selected value');
 
-        test.doesNotThrow(() => _.aria.setRole(null));
-        test.doesNotThrow(() => _.aria.setRole(undefined));
-        test.doesNotThrow(() => _.aria.setRole(element, null));
-        test.doesNotThrow(() => _.aria.setRole(element, undefined));
+        test.doesNotThrow(function() {
+            _.aria.setRole(null);
+            _.aria.setRole(undefined);
+            _.aria.setRole(element, null);
+            _.aria.setRole(element, undefined);
+        });
 
         test.done();
     },
@@ -64,12 +76,18 @@ module.exports = {
 
         var element = document.querySelector('div');
 
+        // ---
+
         _.aria.removeRole(element);
+
+        // ---
 
         test.equal(element.getAttribute('role'), null, 'it should remove the role from the element');
 
-        test.doesNotThrow(() => _.aria.removeRole(null));
-        test.doesNotThrow(() => _.aria.removeRole(undefined));
+        test.doesNotThrow(function() {
+            _.aria.removeRole(null);
+            _.aria.removeRole(undefined);
+        });
 
         test.done();
     },
@@ -81,14 +99,20 @@ module.exports = {
 
         var element = document.querySelector('div');
 
+        // ---
+
         _.aria.setId(element, 'test-id');
+
+        // ---
 
         test.equal(element.getAttribute('id'), 'test-id', 'it should set the id of the element to the selected value');
 
-        test.doesNotThrow(() => _.aria.setId(null));
-        test.doesNotThrow(() => _.aria.setId(undefined));
-        test.doesNotThrow(() => _.aria.setId(element, null));
-        test.doesNotThrow(() => _.aria.setId(element, undefined));
+        test.doesNotThrow(function() {
+            _.aria.setId(null);
+            _.aria.setId(undefined);
+            _.aria.setId(element, null);
+            _.aria.setId(element, undefined);
+        });
 
         test.done();
     },
@@ -100,12 +124,20 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        test.equal(_.aria.get(element, 'hidden'), 'true', 'it should return the value of the attribute');
+        // ---
 
-        test.doesNotThrow(() => _.aria.get(null));
-        test.doesNotThrow(() => _.aria.get(undefined));
-        test.doesNotThrow(() => _.aria.get(element, null));
-        test.doesNotThrow(() => _.aria.get(element, undefined));
+        var result = _.aria.get(element, 'hidden');
+
+        // ---
+
+        test.equal(result, 'true', 'it should return the value of the attribute');
+
+        test.doesNotThrow(function() {
+            _.aria.get(null);
+            _.aria.get(undefined);
+            _.aria.get(element, null);
+            _.aria.get(element, undefined);
+        });
 
         test.done();
     },
@@ -117,10 +149,18 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        test.equal(_.aria.getRole(element), 'button', 'it should return the role of the element');
+        // ---
+
+        var result = _.aria.getRole(element);
+
+        // ---
+
+        test.equal(result, 'button', 'it should return the role of the element');
     
-        test.doesNotThrow(() => _.aria.getRole(null));
-        test.doesNotThrow(() => _.aria.getRole(undefined));
+        test.doesNotThrow(function() {
+            _.aria.getRole(null);
+            _.aria.getRole(undefined);
+        });
 
         test.done();
     },
@@ -132,14 +172,20 @@ module.exports = {
 
         var element = document.querySelector('div');
 
+        // ---
+
         _.aria.toggleState(element, 'hidden');
+
+        // ---
 
         test.equal(element.getAttribute('aria-hidden'), 'true', 'it should toggle the selected state of the element');
 
-        test.doesNotThrow(() => _.aria.toggleState(null));
-        test.doesNotThrow(() => _.aria.toggleState(undefined));
-        test.doesNotThrow(() => _.aria.toggleState(element, null));
-        test.doesNotThrow(() => _.aria.toggleState(element, undefined));
+        test.doesNotThrow(function() {
+            _.aria.toggleState(null);
+            _.aria.toggleState(undefined);
+            _.aria.toggleState(element, null);
+            _.aria.toggleState(element, undefined);
+        });
 
         test.done();
     }

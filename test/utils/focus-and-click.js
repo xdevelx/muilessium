@@ -23,12 +23,18 @@ module.exports = {
 
         var element = document.querySelector('div');
 
+        // ---
+
         _.makeElementFocusable(element);
+
+        // ---
 
         test.equal(element.tabIndex, 0, 'it should set the tabIndex attribute to zero');
 
-        test.doesNotThrow(() => _.makeElementFocusable(null));
-        test.doesNotThrow(() => _.makeElementFocusable(undefined));
+        test.doesNotThrow(function() {
+            _.makeElementFocusable(null);
+            _.makeElementFocusable(undefined);
+        });
 
         test.done();
     },
@@ -40,14 +46,20 @@ module.exports = {
 
         var elements = document.querySelectorAll('div');
 
+        // ---
+
         _.makeElementsFocusable(elements);
+
+        // ---
 
         [].forEach.call(elements, (element) => {
             test.equal(element.tabIndex, 0, 'it should set the tabIndex attribute of all selected elements to zero');
         });
 
-        test.doesNotThrow(() => _.makeElementsFocusable(null));
-        test.doesNotThrow(() => _.makeElementsFocusable(undefined));
+        test.doesNotThrow(function() {
+            _.makeElementsFocusable(null);
+            _.makeElementsFocusable(undefined);
+        });
 
         test.done();
     },
@@ -59,12 +71,18 @@ module.exports = {
 
         var element = document.querySelector('div');
 
+        // ---
+
         _.makeElementNotFocusable(element);
+
+        // ---
 
         test.equal(element.tabIndex, -1, 'it should set the tabIndex attribute to -1');
 
-        test.doesNotThrow(() => _.makeElementNotFocusable(null));
-        test.doesNotThrow(() => _.makeElementNotFocusable(undefined));
+        test.doesNotThrow(function() {
+            _.makeElementNotFocusable(null);
+            _.makeElementNotFocusable(undefined);
+        });
 
         test.done();
     },
@@ -76,14 +94,20 @@ module.exports = {
 
         var elements = document.querySelectorAll('div');
 
+        // ---
+
         _.makeElementsNotFocusable(elements);
+
+        // ---
 
         [].forEach.call(elements, (element) => {
             test.equal(element.tabIndex, -1, 'it should set the tabIndex attribute of all selected elements to zero');
         });
 
-        test.doesNotThrow(() => _.makeElementsNotFocusable(null));
-        test.doesNotThrow(() => _.makeElementsNotFocusable(undefined));
+        test.doesNotThrow(function() {
+            _.makeElementsNotFocusable(null);
+            _.makeElementsNotFocusable(undefined);
+        });
 
         test.done();
     },
@@ -93,8 +117,13 @@ module.exports = {
     ['getFocusableChilds']: function(test) {
         document.body.innerHTML = '<div id="parent"><div tabindex="0"></div><div tabindex="1"></div><div></div></div>';
 
-        var parent = document.querySelector('#parent'),
-            childs = _.getFocusableChilds(parent);
+        var parent = document.querySelector('#parent');
+
+        // ---
+
+        var childs = _.getFocusableChilds(parent);
+
+        // ---
 
         test.equal(childs.length, 2);
 
@@ -102,8 +131,10 @@ module.exports = {
             test.ok(element.tabIndex >= 0, 'it should return the array of focusable elements');
         });
 
-        test.doesNotThrow(() => _.getFocusableChilds(null));
-        test.doesNotThrow(() => _.getFocusableChilds(undefined));
+        test.doesNotThrow(function() {
+            _.getFocusableChilds(null);
+            _.getFocusableChilds(undefined);
+        });
 
         test.done();
     },
@@ -113,7 +144,11 @@ module.exports = {
     ['getAllFocusableElements']: function(test) {
         document.body.innerHTML = '<div><div tabindex="0"></div><div tabindex="1"></div><div></div></div>';
 
+        // ---
+
         var elements = _.getAllFocusableElements();
+
+        // ---
 
         test.equal(elements.length, 2);
 
@@ -129,17 +164,22 @@ module.exports = {
     ['getNextFocusableElement']: function(test) {
         document.body.innerHTML = '<div><div id="prev" tabindex="0"></div><div id="next" tabindex="1"></div><div></div></div>';
 
-        var element = document.querySelector('#prev'),
-            next = _.getNextFocusableElement(element);
+        var element = document.querySelector('#prev');
 
-        test.equal(next.id, 'next');
+        // ---
 
-        next = _.getNextFocusableElement(next);
+        var next1 = _.getNextFocusableElement(element),
+            next2 = _.getNextFocusableElement(next1);
 
-        test.equal(next, null);
+        // ---
 
-        test.doesNotThrow(() => _.getNextFocusableElement(null));
-        test.doesNotThrow(() => _.getNextFocusableElement(undefined));
+        test.equal(next1.id, 'next');
+        test.equal(next2, null);
+
+        test.doesNotThrow(function() {
+            _.getNextFocusableElement(null);
+            _.getNextFocusableElement(undefined);
+        });
 
         test.done();
     },
@@ -149,17 +189,22 @@ module.exports = {
     ['getPreviousFocusableElement']: function(test) {
         document.body.innerHTML = '<div><div id="prev" tabindex="0"></div><div id="next" tabindex="1"></div><div></div></div>';
 
-        var element = document.querySelector('#next'),
-            prev = _.getPreviousFocusableElement(element);
+        var element = document.querySelector('#next');
 
-        test.equal(prev.id, 'prev');
+        // ---
 
-        prev = _.getPreviousFocusableElement(prev);
+        var prev1 = _.getPreviousFocusableElement(element),
+            prev2 = _.getPreviousFocusableElement(prev1);
 
-        test.equal(prev, null);
+        // ---
 
-        test.doesNotThrow(() => _.getPreviousFocusableElement(null));
-        test.doesNotThrow(() => _.getPreviousFocusableElement(undefined));
+        test.equal(prev1.id, 'prev');
+        test.equal(prev2, null);
+
+        test.doesNotThrow(function() {
+            _.getPreviousFocusableElement(null);
+            _.getPreviousFocusableElement(undefined);
+        });
 
         test.done();
     },
@@ -173,13 +218,19 @@ module.exports = {
         
         element.focus();
 
+        // ---
+
         _.goToNextFocusableElement(element);
+
+        // ---
 
         test.equal(document.activeElement.id, 'next');
 
-        test.doesNotThrow(() => _.goToNextFocusableElement(element));
-        test.doesNotThrow(() => _.goToNextFocusableElement(null));
-        test.doesNotThrow(() => _.goToNextFocusableElement(undefined));
+        test.doesNotThrow(function() {
+            _.goToNextFocusableElement(element);
+            _.goToNextFocusableElement(null);
+            _.goToNextFocusableElement(undefined);
+        });
 
         test.done();
     },
@@ -193,13 +244,19 @@ module.exports = {
         
         element.focus();
 
+        // ---
+
         _.goToPreviousFocusableElement(element);
+
+        // ---
 
         test.equal(document.activeElement.id, 'prev');
 
-        test.doesNotThrow(() => _.goToPreviousFocusableElement(element));
-        test.doesNotThrow(() => _.goToPreviousFocusableElement(null));
-        test.doesNotThrow(() => _.goToPreviousFocusableElement(undefined));
+        test.doesNotThrow(function() {
+            _.goToPreviousFocusableElement(element);
+            _.goToPreviousFocusableElement(null);
+            _.goToPreviousFocusableElement(undefined);
+        });
 
         test.done();
     },
@@ -211,18 +268,27 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        test.expect(5);
+        test.expect(2);
 
-        _.makeElementClickable(element, () => {
+        // ---
+
+        _.makeElementClickable(element, callback);
+
+        // ---
+
+
+        function callback() {
             test.ok(true, 'it should execute callback on the click event for the element');
-        });
+        }
 
         element.click();
 
-        test.doesNotThrow(() => _.makeElementClickable(null));
-        test.doesNotThrow(() => _.makeElementClickable(undefined));
-        test.doesNotThrow(() => _.makeElementClickable(element, null));
-        test.doesNotThrow(() => _.makeElementClickable(element, undefined));
+        test.doesNotThrow(function() {
+            _.makeElementClickable(null);
+            _.makeElementClickable(undefined);
+            _.makeElementClickable(element, null);
+            _.makeElementClickable(element, undefined);
+        });
 
         test.done();
     },
@@ -233,27 +299,37 @@ module.exports = {
         document.body.innerHTML = '<div id="parent"><div></div><div></div></div>';
 
         var parent = document.querySelector('#parent'),
-            childs = parent.querySelectorAll('div'),
-            counter = 0;
+            childs = parent.querySelectorAll('div');
 
-        test.expect(10);
+        test.expect(5);
 
-        _.makeChildElementsClickable(parent, childs, (index) => {
-            test.ok(true, 'it should set event listener on the click event for the element');
-            test.equal(index, counter++, 'it should pass the index of the child element to the callback'); 
-        });
+        // ---
+
+        _.makeChildElementsClickable(parent, childs, callback());
+
+        // ---
+
+        function callback() {
+            var counter = 0;
+
+            return function(index) {
+                test.ok(true, 'it should set event listener on the click event for the element');
+                test.equal(index, counter++, 'it should pass the index of the child element to the callback'); 
+            }
+        }
 
         [].forEach.call(childs, (child) => {
             child.click();
         });
 
-
-        test.doesNotThrow(() => _.makeChildElementsClickable(null));
-        test.doesNotThrow(() => _.makeChildElementsClickable(undefined));
-        test.doesNotThrow(() => _.makeChildElementsClickable(parent, null));
-        test.doesNotThrow(() => _.makeChildElementsClickable(parent, undefined));
-        test.doesNotThrow(() => _.makeChildElementsClickable(parent, childs, null));
-        test.doesNotThrow(() => _.makeChildElementsClickable(parent, childs, undefined));
+        test.doesNotThrow(function() {
+            _.makeChildElementsClickable(null);
+            _.makeChildElementsClickable(undefined);
+            _.makeChildElementsClickable(parent, null);
+            _.makeChildElementsClickable(parent, undefined);
+            _.makeChildElementsClickable(parent, childs, null);
+            _.makeChildElementsClickable(parent, childs, undefined);
+        });
 
         test.done();
     },
@@ -265,18 +341,26 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        test.expect(5);
+        test.expect(2);
 
-        _.onFocus(element, () => {
+        // ---
+
+        _.onFocus(element, callback);
+
+        // ---
+
+        function callback() {
             test.ok(true, 'it should execute the callback function on focus event');
-        });
+        }
 
         element.focus();
 
-        test.doesNotThrow(() => _.onFocus(null));
-        test.doesNotThrow(() => _.onFocus(undefined));
-        test.doesNotThrow(() => _.onFocus(element, null));
-        test.doesNotThrow(() => _.onFocus(element, undefined));
+        test.doesNotThrow(function() {
+            _.onFocus(null);
+            _.onFocus(undefined);
+            _.onFocus(element, null);
+            _.onFocus(element, undefined);
+        });
 
         test.done();
     },
@@ -288,19 +372,27 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        test.expect(5);
+        test.expect(2);
 
-        _.onBlur(element, () => {
+        // ---
+
+        _.onBlur(element, callback);
+
+        // ---
+
+        function callback() {
             test.ok(true, 'it should execute the callback function on blur event');
-        });
+        }
 
         element.focus();
         element.blur();
 
-        test.doesNotThrow(() => _.onBlur(null));
-        test.doesNotThrow(() => _.onBlur(undefined));
-        test.doesNotThrow(() => _.onBlur(element, null));
-        test.doesNotThrow(() => _.onBlur(element, undefined));
+        test.doesNotThrow(function() {
+            _.onBlur(null);
+            _.onBlur(undefined);
+            _.onBlur(element, null);
+            _.onBlur(element, undefined);
+        });
 
         test.done();
     },

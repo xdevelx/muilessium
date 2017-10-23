@@ -24,16 +24,26 @@ module.exports = {
     ['post']: function(test) {
         test.expect(1);
 
-        _.ajax.post('http://jsonplaceholder.typicode.com/posts', {},
-            function(responseText) {
-                test.equal(JSON.parse(responseText).id, 101);
-                test.done();
-            },
-            function(status, statusText) {
-                test.ok(false, 'it seems like jsonplaceholder is down');            
-                test.done();
-            }
+        // ---
+
+        _.ajax.post(
+            'http://jsonplaceholder.typicode.com/posts',
+            { /* data */ },
+            callbackPositive,
+            callbackNegative
         );
+
+        // ---
+
+        function callbackPositive(responseText) {
+            test.equal(JSON.parse(responseText).id, 101);
+            test.done();
+        }
+
+        function callbackNegative(status, statusText) {
+            test.ok(false, 'it seems like jsonplaceholder is down');            
+            test.done();
+        }
     },
     
 
@@ -41,12 +51,20 @@ module.exports = {
     ['postProtected']: function(test) {
         test.expect(1);
 
-        _.ajax.postProtected('http://jsonplaceholder.typicode.com/posts', {},
-            function(responseText) {
-                test.equal(JSON.parse(responseText).id, 101);
-                test.done();
-            }
+        // ---
+
+        _.ajax.postProtected(
+            'http://jsonplaceholder.typicode.com/posts',
+            { /* data */ },
+            callbackPositive
         );
+
+        // ---
+
+        function callbackPositive(responseText) {
+            test.equal(JSON.parse(responseText).id, 101);
+            test.done();
+        }
     },
 
 
@@ -54,16 +72,26 @@ module.exports = {
     ['get']: function(test) {
         test.expect(1);
 
-        _.ajax.get('http://jsonplaceholder.typicode.com/posts',
-            function(responseText) {
-                test.equal(JSON.parse(responseText)[0].id, 1);
-                test.done();
-            },
-            function(status, statusText) {
-                test.ok(false, 'it seems like jsonplaceholder is down');            
-                test.done();
-            }
+        // ---
+
+        _.ajax.get(
+            'http://jsonplaceholder.typicode.com/posts',
+            callbackPositive,
+            callbackNegative
         );
+
+        // ---
+
+        function callbackPositive(responseText) {
+            test.equal(JSON.parse(responseText)[0].id, 1);
+            test.done();
+        }
+
+        function callbackNegative(status, statusText) {
+            test.ok(false, 'it seems like jsonplaceholder is down');            
+            test.done();
+        }
+        
     },
     
 
@@ -71,12 +99,19 @@ module.exports = {
     ['getProtected']: function(test) {
         test.expect(1);
 
-        _.ajax.getProtected('http://jsonplaceholder.typicode.com/posts',
-            function(responseText) {
-                test.equal(JSON.parse(responseText)[0].id, 1);
-                test.done();
-            }
+        // ---
+
+        _.ajax.getProtected(
+            'http://jsonplaceholder.typicode.com/posts',
+            callbackPositive
         );
+
+        // ---
+
+        function callbackPositive(responseText) {
+            test.equal(JSON.parse(responseText)[0].id, 1);
+            test.done();
+        }
     },
 };
 

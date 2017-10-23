@@ -23,10 +23,17 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        test.ok(_.isNode(element),    'it should return "true" if the argument is a Node');
-        test.ok(!_.isNode([]),        'it should return "false" if the argument is not a Node');
-        test.ok(!_.isNode(null),      'it should return "false" if the argument is not a Node');
-        test.ok(!_.isNode(undefined), 'it should return "false" if the argument is not a Node');
+        // ---
+
+        var resultPositive  = _.isNode(element),
+            resultNegative  = _.isNode([])        ||
+                              _.isNode(null)      ||
+                              _.isNode(undefined);
+
+        // ---
+
+        test.ok(resultPositive,  'it should return "true" if the argument is a Node');
+        test.ok(!resultNegative, 'it should return "false" if the argument is not a Node');
 
         test.done();
     },
@@ -38,14 +45,18 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        test.ok(_.isInPage(element),
-                'it should return "true" if the element is in page');
-        test.ok(!_.isInPage(document.createElement('div')),
-                'it should return "false" if the element is not in page');
+        // ---
 
-        test.ok(!_.isInPage([]),        'it should return "false" if the argument is invalid');
-        test.ok(!_.isInPage(null),      'it should return "false" if the argument is invalid');
-        test.ok(!_.isInPage(undefined), 'it should return "false" if the argument is invalid');
+        var resultPositive = _.isInPage(element),
+            resultNegative = _.isInPage(document.createElement('div')) ||
+                             _.isInPage([])                            ||
+                             _.isInPage(null)                          ||
+                             _.isInPage(undefined);
+
+        // ---
+
+        test.ok(resultPositive, 'it should return "true" if the element is in page');
+        test.ok(!resultNegative, 'it should return "false" if the element is not in page');
 
         test.done();
     },
@@ -57,14 +68,18 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        test.ok(!_.isNotInPage(element),
-                'it should return "false" if the element is in page');
-        test.ok(_.isNotInPage(document.createElement('div')),
-                'it should return "true" if the element is not in page');
+        // ---
 
-        test.ok(_.isNotInPage([]),        'it should return "true" if the argument is invalid');
-        test.ok(_.isNotInPage(null),      'it should return "true" if the argument is invalid');
-        test.ok(_.isNotInPage(undefined), 'it should return "true" if the argument is invalid');
+        var resultPositive = _.isNotInPage(document.createElement('div')) ||
+                             _.isNotInPage([])                            ||
+                             _.isNotInPage(null)                          ||
+                             _.isNotInPage(undefined),
+            resultNegative = _.isNotInPage(element);
+
+        // ---
+
+        test.ok(resultPositive,  'it should return "true" if the element is not in page or invalid');
+        test.ok(!resultNegative, 'it should return "false" if the element is in page');
 
         test.done();
     },
@@ -76,36 +91,29 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        test.expect(5);
+        test.expect(2);
 
-        var result = _.ifExists(element, function() {
+        // ---
+
+        var result = _.ifExists(element, callbackPositive);
+
+        _.ifExists(document.createElement('div'), callbackNegative);
+        _.ifExists([],                            callbackNegative);
+        _.ifExists(null,                          callbackNegative);
+        _.ifExists(undefined,                     callbackNegative);
+
+        // ---
+
+        function callbackPositive() {
             test.ok(true, 'it should execute the callback function if the element exists');
             return 1;
-        });
+        }
+
+        function callbackNegative() {
+            test.ok(false, 'it should not execute the callback function if the argument is invalid');
+        }
 
         test.equal(result, 1, 'it should return the result of execution of the callback function');
-
-        _.ifExists(document.createElement('div'), function() {
-            test.ok(false, 'it should not execute the callback function if the element not exists in the page');
-        });
-
-        test.doesNotThrow(() => {
-            _.ifExists([], function() {
-                test.ok(false, 'it should not execute the callback function if the argument is invalid');
-            });
-        });
-
-        test.doesNotThrow(() => {
-            _.ifExists(null, function() {
-                test.ok(false, 'it should not execute the callback function if the argument is invalid');
-            });
-        });
-
-        test.doesNotThrow(() => {
-            _.ifExists(undefined, function() {
-                test.ok(false, 'it should not execute the callback function if the argument is invalid');
-            });
-        });
 
         test.done();
     },
@@ -117,36 +125,29 @@ module.exports = {
 
         var elements = document.querySelectorAll('div');
 
-        test.expect(5);
+        test.expect(2);
 
-        var result = _.ifNodeList(elements, function() {
-            test.ok(true, 'it should execute the callback function if the argument is a NodeList');
-            return 1;
-        });
+        // ---
+
+        var result = _.ifNodeList(elements, callbackPositive);
+
+        _.ifNodeList(elements[0], callbackNegative);
+        _.ifNodeList([],          callbackNegative);
+        _.ifNodeList(null,        callbackNegative);
+        _.ifNodeList(undefined,   callbackNegative);
+
+        // ---
 
         test.equal(result, 1, 'it should return the result of execution of the callback function');
 
-        _.ifNodeList(elements[0], function() {
-            test.ok(false, 'it should not execute the callback function if the argument is a Node');
-        });
+        function callbackPositive() {
+            test.ok(true, 'it should execute the callback function if the argument is a NodeList');
+            return 1;
+        }
 
-        test.doesNotThrow(() => {
-            _.ifNodeList([], function() {
-                test.ok(false, 'it should not execute the callback function if the argument is invalid');
-            });
-        });
-
-        test.doesNotThrow(() => {
-            _.ifNodeList(null, function() {
-                test.ok(false, 'it should not execute the callback function if the argument is invalid');
-            });
-        });
-
-        test.doesNotThrow(() => {
-            _.ifNodeList(undefined, function() {
-                test.ok(false, 'it should not execute the callback function if the argument is invalid');
-            });
-        });
+        function callbackNegative() {
+            test.ok(false, 'it should not execute the callback function if the argument is invalid');
+        }
 
         test.done();
     },
@@ -159,18 +160,19 @@ module.exports = {
         var parent = document.querySelector('#parent'),
             child  = document.querySelector('#child');
 
-        test.ok(_.isDescendant(parent, child),
-                'it should return "true" if the second element is the descendant of the first one');
-        test.ok(!_.isDescendant(child, parent),
-                'it should return "false" if the second element is not the descendant of the first one');
-        test.ok(!_.isDescendant(child, child),
-                'it should return "false" if the second element is not the descendant of the first one');
-        test.ok(!_.isDescendant([], []),
-                'it should return "false" if the arguments are invalid');
-        test.ok(!_.isDescendant(null, null),
-                'it should return "false" if the arguments are invalid');
-        test.ok(!_.isDescendant(undefined, undefined),
-                'it should return "false" if the arguments are invalid');
+        // ---
+    
+        var resultPositive = _.isDescendant(parent, child),
+            resultNegative = _.isDescendant(child, parent) ||
+                             _.isDescendant(child, child)  ||
+                             _.isDescendant([], [])        ||
+                             _.isDescendant(null, null)    ||
+                             _.isDescendant(undefined, undefined);
+
+        // ---
+
+        test.ok(resultPositive,  'it should return "true" if the second element is the descendant of the first one');
+        test.ok(!resultNegative, 'it should return false if the second element is not the descendant of the first one or the arguments are invalid');
 
         test.done();
     },
