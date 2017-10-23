@@ -2,6 +2,7 @@
 // Unit test template
 // -----------------------------------------------------------------------------
 
+
 var traceur = require('traceur');
 
 traceur.require.makeDefault(function(filename) {
@@ -10,7 +11,10 @@ traceur.require.makeDefault(function(filename) {
 
 require('jsdom-global/register');
 
+
+
 var _ = require('../../src/js/utils.js');
+
 
 
 module.exports = {

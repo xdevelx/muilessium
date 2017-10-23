@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // Unit tests for utilities
-// ./src/js/utilities/ajax.js
+// /src/js/utilities/ajax.js
 //
 // https://github.com/typicode/jsonplaceholder
 // -----------------------------------------------------------------------------
