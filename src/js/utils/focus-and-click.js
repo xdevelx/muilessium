@@ -223,16 +223,10 @@ export function makeChildElementsClickable(element, childs, callback, { mouse = 
             }
 
             if (keyboard) {
-                forEach(childs, (child) => {
-                    child.tabIndex = 0;
-                });
-
-                Keyboard.onEnterPressed(element, (e) => {
-                    let index = [].indexOf.call(childs, e.target);
-
-                    if (index >= 0) {
+                forEach(childs, (child, index) => {
+                    makeElementClickable(child, () => {
                         callback(index);
-                    }
+                    }, { mouse: false, keyboard: true });
                 });
             }
         });
