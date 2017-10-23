@@ -26,6 +26,8 @@ module.exports = {
         _.setAttribute(element, 'data-test', 'true');
 
         test.equal(element.getAttribute('data-test'), 'true', 'it should set the attribute of the element to the selected value');
+        test.doesNotThrow(() => _.setAttribute(null, null));
+        test.doesNotThrow(() => _.setAttribute(undefined, undefined));
 
         test.done();
     },
@@ -38,6 +40,8 @@ module.exports = {
         var element = document.querySelector('div');
 
         test.equal(_.getAttribute(element, 'data-test'), 'true', 'it should return the value of the attribute of the element');
+        test.doesNotThrow(() => _.getAttribute(null, null));
+        test.doesNotThrow(() => _.getAttribute(undefined, undefined));
 
         test.done();
     },
@@ -52,6 +56,8 @@ module.exports = {
         _.removeAttribute(element, 'data-test');
 
         test.equal(element.getAttribute('data-test'), null, 'it should remove the attribute from the element');
+        test.doesNotThrow(() => _.removeAttribute(null, null));
+        test.doesNotThrow(() => _.removeAttribute(undefined, undefined));
 
         test.done();
     }

@@ -23,12 +23,15 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        test.expect(1);
+        test.expect(3);
 
-        _.typeText(element, 'text', 120, false, -1, function() {
+        _.typeText(element, { text: 'text', delay: 120, cycle: false, times: -1 }, function() {
             test.equal(element.innerHTML, 'text', 'it should print the text into the element');
             test.done();
         });
+
+        test.doesNotThrow(() => _.typeText(null));
+        test.doesNotThrow(() => _.typeText(undefined));
     },
 
 
@@ -39,8 +42,10 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        // No callbacks here, the behavior of this animation should be tested manually
         _.typeTexts(element, ['text-1', 'text-2']);
+        
+        test.doesNotThrow(() => _.typeTexts(null));
+        test.doesNotThrow(() => _.typeTexts(undefined));
 
         test.done();
     },
@@ -57,6 +62,10 @@ module.exports = {
 
         test.ok(element.classList.contains('-activated'),  'it should add "-activated" class to the element');
         test.ok(element.classList.contains('other-class'), 'it should not remove other classes from the element');
+
+        test.doesNotThrow(() => _.activateAnimation(null));
+        test.doesNotThrow(() => _.activateAnimation(undefined));
+
         test.done();
     },
 
@@ -73,6 +82,10 @@ module.exports = {
         test.ok(element.classList.contains('-fade-out'),     'it should add "-<animation-name>" class to the element');
         test.ok(element.classList.contains('-activated'),    'it should add "-activated" class to the element');
         test.ok(element.classList.contains('other-class'),   'it should not remove other classes from the element');
+
+        test.doesNotThrow(() => _.animateElement(null, null));
+        test.doesNotThrow(() => _.animateElement(undefined, undefined));
+
         test.done(); 
     }
 };

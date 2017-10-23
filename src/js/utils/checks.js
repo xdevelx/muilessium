@@ -90,16 +90,22 @@ export function ifNodeList(x, callback, printWarning = true) {
 // Returns true if the second element is a descendant of the first element and false otherwise
 
 export function isDescendant(parent, child) {
-    let node = child.parentNode;
+    let result = false;
 
-    while (node != null) {
-        if (node == parent) {
-            return true;
-        }
+    ifExists(parent, () => {
+        ifExists(child, () => {
+            let node = child.parentNode;
 
-        node = node.parentNode;
-    }
+            while (node != null) {
+                if (node == parent) {
+                    result = true;
+                }
 
-    return false;
+                node = node.parentNode;
+            }
+        });
+    });
+
+    return result;
 };
 

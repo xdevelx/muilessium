@@ -2,7 +2,7 @@
 // ANIMATIONS
 // -----------------------------------------------------------------------------
 // Here is the full list of animations:
-//  - typeText(element, text, delay = 120, cycle = false, times = -1, callback = null)
+//  - typeText(element, {text = '', delay = 120, cycle = false, times = -1}, callback = null)
 //  - typeTexts(element, textsList)
 //  - activateAnimation(element)
 //  - animateElement(element, animation)
@@ -19,8 +19,9 @@ import { forEach     } from '../utils/uncategorized';
 // ---------
 // "Typing" effect for text in the element
 
-export function typeText(element, text, delay = 120, cycle = false, times = -1, callback = null) {
+export function typeText(element, { text = '', delay = 120, cycle = false, times = -1} = {}, callback = null) {
     ifExists(element, () => {
+        
         let lettersCounter = 0,
             pauseCounter   = 0,
             timesCounter   = 0,
@@ -86,11 +87,13 @@ export function typeTexts(element, texts) {
         let textIndex = 0,
             next = () => {
                 typeText(element,
-                        texts[(textIndex++)%texts.length],
-                        120,   // delay
-                        true,  // cycle
-                        1,     // times
-                        next); // callback
+                        {
+                            text: texts[(textIndex++)%texts.length],
+                            delay: 120,
+                            cycle: true,
+                            times: 1
+                        },
+                        next);
             };
 
         next();

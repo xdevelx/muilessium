@@ -76,7 +76,7 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        test.expect(2);
+        test.expect(5);
 
         var result = _.ifExists(element, function() {
             test.ok(true, 'it should execute the callback function if the element exists');
@@ -89,16 +89,22 @@ module.exports = {
             test.ok(false, 'it should not execute the callback function if the element not exists in the page');
         });
 
-        _.ifExists([], function() {
-            test.ok(false, 'it should not execute the callback function if the argument is invalid');
+        test.doesNotThrow(() => {
+            _.ifExists([], function() {
+                test.ok(false, 'it should not execute the callback function if the argument is invalid');
+            });
         });
 
-        _.ifExists(null, function() {
-            test.ok(false, 'it should not execute the callback function if the argument is invalid');
+        test.doesNotThrow(() => {
+            _.ifExists(null, function() {
+                test.ok(false, 'it should not execute the callback function if the argument is invalid');
+            });
         });
 
-        _.ifExists(undefined, function() {
-            test.ok(false, 'it should not execute the callback function if the argument is invalid');
+        test.doesNotThrow(() => {
+            _.ifExists(undefined, function() {
+                test.ok(false, 'it should not execute the callback function if the argument is invalid');
+            });
         });
 
         test.done();
@@ -111,7 +117,7 @@ module.exports = {
 
         var elements = document.querySelectorAll('div');
 
-        test.expect(2);
+        test.expect(5);
 
         var result = _.ifNodeList(elements, function() {
             test.ok(true, 'it should execute the callback function if the argument is a NodeList');
@@ -124,16 +130,22 @@ module.exports = {
             test.ok(false, 'it should not execute the callback function if the argument is a Node');
         });
 
-        _.ifNodeList([], function() {
-            test.ok(false, 'it should not execute the callback function if the argument is invalid');
+        test.doesNotThrow(() => {
+            _.ifNodeList([], function() {
+                test.ok(false, 'it should not execute the callback function if the argument is invalid');
+            });
         });
 
-        _.ifNodeList(null, function() {
-            test.ok(false, 'it should not execute the callback function if the argument is invalid');
+        test.doesNotThrow(() => {
+            _.ifNodeList(null, function() {
+                test.ok(false, 'it should not execute the callback function if the argument is invalid');
+            });
         });
 
-        _.ifNodeList(undefined, function() {
-            test.ok(false, 'it should not execute the callback function if the argument is invalid');
+        test.doesNotThrow(() => {
+            _.ifNodeList(undefined, function() {
+                test.ok(false, 'it should not execute the callback function if the argument is invalid');
+            });
         });
 
         test.done();

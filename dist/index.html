@@ -795,7 +795,7 @@
 
                         <li id='utils-animations' class='item'><h4 class='_bigger-0'>Animations</h4>
                             <ol class='mui-list'>
-                                <li class='item'>typeText <span class='-grey-3'>(element, text, delay = 120, cycle = false, times = -1, callback = null)</span></li>
+                                <li class='item'>typeText <span class='-grey-3'>(element, { text = '', delay = 120, cycle = false, times = -1}, callback = null)</span></li>
                                 <li class='item'>typeTexsts <span class='-grey-3'>(element, textsList)</span></li>
                                 <li class='item'>activateAnimation <span class='-grey-3'>(element)</span></li>
                                 <li class='item'>animateElement <span class='-grey-3'>(element, animation)</span></li>
@@ -3335,8 +3335,8 @@
                 title1.innerHTML = '';
                 title2.innerHTML = '';
 
-                _.typeText(title1, 'MUILESSIUM', 120, false, -1, function() {
-                    _.typeText(title2, 'simple should be simple');
+                _.typeText(title1, { text: 'MUILESSIUM' }, function() {
+                    _.typeText(title2, { text: 'simple should be simple' });
                 });
             }
 
