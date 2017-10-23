@@ -23,12 +23,12 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        // ---
+        // ---------------
 
         var resultPositive = _.hasClass(element, 'test-class'),
             resultNegative = _.hasClass(element, 'another-class');
 
-        // ---
+        // ---------------
 
         test.ok(resultPositive,  'it should return true if the element has the class');
         test.ok(!resultNegative, 'it should return false if the element has not the class');
@@ -50,12 +50,12 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        // ---
+        // ---------------
 
         var resultPositive = _.hasNotClass(element, 'another-class'),
             resultNegative = _.hasNotClass(element, 'test-class');
 
-        // ---
+        // ---------------
 
         test.ok(resultPositive,  'it should return true if the element has not the class');
         test.ok(!resultNegative, 'it should return false if the element has the class');
@@ -77,11 +77,11 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        // ---
+        // ---------------
 
         _.addClass(element, 'new-class');
 
-        // ---
+        // ---------------
 
         test.ok(element.classList.contains('new-class'), 'it should add the new class to the element');
         test.ok(element.classList.contains('old-class'), 'it should not remove the old classes from the element');
@@ -103,11 +103,11 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        // ---
+        // ---------------
 
         _.addClasses(element, 'new-class-1', 'new-class-2');
 
-        // ---
+        // ---------------
 
         test.ok(element.classList.contains('new-class-1'), 'it should add the new classes to the element');
         test.ok(element.classList.contains('new-class-1'), 'it should add the new classes to the element');
@@ -130,11 +130,11 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        // ---
+        // ---------------
 
         _.removeClass(element, 'old-class');
 
-        // ---
+        // ---------------
 
         test.ok(!element.classList.contains('old-class'),  'it should remove the old class from the element');
         test.ok(element.classList.contains('other-class'), 'it should not remove other classes from the element');
@@ -156,11 +156,11 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        // ---
+        // ---------------
 
         _.removeClasses(element, 'old-class-1', 'old-class-2');
 
-        // ---
+        // ---------------
 
         test.ok(!element.classList.contains('old-class-1'),  'it should remove the old classes from the element');
         test.ok(!element.classList.contains('old-class-2'),  'it should remove the old classes from the element');
@@ -183,11 +183,11 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        // ---
+        // ---------------
 
         _.replaceClass(element, 'old-class', 'new-class');
 
-        // ---
+        // ---------------
 
         test.ok(!element.classList.contains('old-class'),  'it should remove the old class from the element');
         test.ok(element.classList.contains('new-class'),   'it should add the new class to the element');
@@ -212,12 +212,12 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        // ---
+        // ---------------
 
         _.toggleClass(element, 'test-class-1');
         _.toggleClass(element, 'test-class-2');
 
-        // ---
+        // ---------------
 
         test.ok(!element.classList.contains('test-class-1'), 'it should remove the class from the element');
         test.ok(element.classList.contains('test-class-2'),  'it should add the class to the element');

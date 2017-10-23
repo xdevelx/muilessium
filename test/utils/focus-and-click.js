@@ -23,11 +23,11 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        // ---
+        // ---------------
 
         _.makeElementFocusable(element);
 
-        // ---
+        // ---------------
 
         test.equal(element.tabIndex, 0, 'it should set the tabIndex attribute to zero');
 
@@ -46,11 +46,11 @@ module.exports = {
 
         var elements = document.querySelectorAll('div');
 
-        // ---
+        // ---------------
 
         _.makeElementsFocusable(elements);
 
-        // ---
+        // ---------------
 
         [].forEach.call(elements, (element) => {
             test.equal(element.tabIndex, 0, 'it should set the tabIndex attribute of all selected elements to zero');
@@ -71,11 +71,11 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        // ---
+        // ---------------
 
         _.makeElementNotFocusable(element);
 
-        // ---
+        // ---------------
 
         test.equal(element.tabIndex, -1, 'it should set the tabIndex attribute to -1');
 
@@ -94,11 +94,11 @@ module.exports = {
 
         var elements = document.querySelectorAll('div');
 
-        // ---
+        // ---------------
 
         _.makeElementsNotFocusable(elements);
 
-        // ---
+        // ---------------
 
         [].forEach.call(elements, (element) => {
             test.equal(element.tabIndex, -1, 'it should set the tabIndex attribute of all selected elements to zero');
@@ -119,11 +119,11 @@ module.exports = {
 
         var parent = document.querySelector('#parent');
 
-        // ---
+        // ---------------
 
         var childs = _.getFocusableChilds(parent);
 
-        // ---
+        // ---------------
 
         test.equal(childs.length, 2);
 
@@ -144,11 +144,11 @@ module.exports = {
     ['getAllFocusableElements']: function(test) {
         document.body.innerHTML = '<div><div tabindex="0"></div><div tabindex="1"></div><div></div></div>';
 
-        // ---
+        // ---------------
 
         var elements = _.getAllFocusableElements();
 
-        // ---
+        // ---------------
 
         test.equal(elements.length, 2);
 
@@ -166,12 +166,12 @@ module.exports = {
 
         var element = document.querySelector('#prev');
 
-        // ---
+        // ---------------
 
         var next1 = _.getNextFocusableElement(element),
             next2 = _.getNextFocusableElement(next1);
 
-        // ---
+        // ---------------
 
         test.equal(next1.id, 'next');
         test.equal(next2, null);
@@ -191,12 +191,12 @@ module.exports = {
 
         var element = document.querySelector('#next');
 
-        // ---
+        // ---------------
 
         var prev1 = _.getPreviousFocusableElement(element),
             prev2 = _.getPreviousFocusableElement(prev1);
 
-        // ---
+        // ---------------
 
         test.equal(prev1.id, 'prev');
         test.equal(prev2, null);
@@ -218,11 +218,11 @@ module.exports = {
         
         element.focus();
 
-        // ---
+        // ---------------
 
         _.goToNextFocusableElement(element);
 
-        // ---
+        // ---------------
 
         test.equal(document.activeElement.id, 'next');
 
@@ -244,11 +244,11 @@ module.exports = {
         
         element.focus();
 
-        // ---
+        // ---------------
 
         _.goToPreviousFocusableElement(element);
 
-        // ---
+        // ---------------
 
         test.equal(document.activeElement.id, 'prev');
 
@@ -273,13 +273,13 @@ module.exports = {
 
         test.expect(11);
 
-        // ---
+        // ---------------
 
         _.makeElementClickable(elements[0], callback);
         _.makeElementClickable(elements[1], callback, { mouse: true,  keyboard: false });
         _.makeElementClickable(elements[2], callback, { mouse: false, keyboard: true  });
 
-        // ---
+        // ---------------
 
 
         function callback() {
@@ -348,13 +348,13 @@ module.exports = {
 
         test.expect(29);
 
-        // ---
+        // ---------------
 
         _.makeChildElementsClickable(parents[0], elements[0], callback());
         _.makeChildElementsClickable(parents[1], elements[1], callback(), { mouse: true,  keyboard: false });
         _.makeChildElementsClickable(parents[2], elements[2], callback(), { mouse: false, keyboard: true  });
 
-        // ---
+        // ---------------
 
         function callback() {
             var counter = 0;
@@ -418,11 +418,11 @@ module.exports = {
 
         test.expect(2);
 
-        // ---
+        // ---------------
 
         _.onFocus(element, callback);
 
-        // ---
+        // ---------------
 
         function callback() {
             test.ok(true, 'it should execute the callback function on focus event');
@@ -449,11 +449,11 @@ module.exports = {
 
         test.expect(2);
 
-        // ---
+        // ---------------
 
         _.onBlur(element, callback);
 
-        // ---
+        // ---------------
 
         function callback() {
             test.ok(true, 'it should execute the callback function on blur event');

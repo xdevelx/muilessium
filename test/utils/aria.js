@@ -23,12 +23,12 @@ module.exports = {
 
         var elements = document.querySelectorAll('div');
 
-        // ---
+        // ---------------
 
         _.aria.set(elements[0], 'hidden');
         _.aria.set(elements[1], 'hidden', false);
 
-        // ---
+        // ---------------
 
         test.equal(elements[0].getAttribute('aria-hidden'), 'true',  'it should set the attribute to "true" by default');
         test.equal(elements[1].getAttribute('aria-hidden'), 'false', 'it should set the attribute to the selected value');
@@ -51,11 +51,11 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        // ---
+        // ---------------
 
         _.aria.setRole(element, 'button');
 
-        // ---
+        // ---------------
 
         test.equal(element.getAttribute('role'), 'button', 'it should set the role of the element to the selected value');
 
@@ -76,11 +76,11 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        // ---
+        // ---------------
 
         _.aria.removeRole(element);
 
-        // ---
+        // ---------------
 
         test.equal(element.getAttribute('role'), null, 'it should remove the role from the element');
 
@@ -99,11 +99,11 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        // ---
+        // ---------------
 
         _.aria.setId(element, 'test-id');
 
-        // ---
+        // ---------------
 
         test.equal(element.getAttribute('id'), 'test-id', 'it should set the id of the element to the selected value');
 
@@ -124,11 +124,11 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        // ---
+        // ---------------
 
         var result = _.aria.get(element, 'hidden');
 
-        // ---
+        // ---------------
 
         test.equal(result, 'true', 'it should return the value of the attribute');
 
@@ -149,11 +149,11 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        // ---
+        // ---------------
 
         var result = _.aria.getRole(element);
 
-        // ---
+        // ---------------
 
         test.equal(result, 'button', 'it should return the role of the element');
     
@@ -172,11 +172,11 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        // ---
+        // ---------------
 
         _.aria.toggleState(element, 'hidden');
 
-        // ---
+        // ---------------
 
         test.equal(element.getAttribute('aria-hidden'), 'true', 'it should toggle the selected state of the element');
 

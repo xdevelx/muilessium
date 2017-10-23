@@ -23,11 +23,11 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        // ---
+        // ---------------
 
         _.setAttribute(element, 'data-test', 'true');
 
-        // ---
+        // ---------------
 
         test.equal(element.getAttribute('data-test'), 'true', 'it should set the attribute of the element to the selected value');
 
@@ -50,11 +50,11 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        // ---
+        // ---------------
 
         var result = _.getAttribute(element, 'data-test');
 
-        // ---
+        // ---------------
 
         test.equal(result, 'true', 'it should return the value of the attribute of the element');
 
@@ -75,11 +75,11 @@ module.exports = {
 
         var element = document.querySelector('div');
 
-        // ---
+        // ---------------
     
         _.removeAttribute(element, 'data-test');
 
-        // ---
+        // ---------------
 
         test.equal(element.getAttribute('data-test'), null, 'it should remove the attribute from the element');
 
