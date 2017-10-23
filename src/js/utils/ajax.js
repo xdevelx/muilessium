@@ -1,11 +1,8 @@
 // -----------------------------------------------------------------------------
 // Ajax utilities
+//
+// Tests: /test/utils/ajax.js
 // -----------------------------------------------------------------------------
-// Here is the full list of ajax utilities:
-//  - post(url, data, successCallback, errorCallback)
-//  - postProtected(url, data, successCallback)
-//  - get(url, successCallback, errorCallback)
-//  - getProtected(url, successCallback)
 
 
 // Post

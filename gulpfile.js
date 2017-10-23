@@ -43,7 +43,7 @@ gulp.task('dss', () => {
 
 
 gulp.task('test', () => {
-    return gulp.src('./test/*.js')
+    return gulp.src('./test/utils/*.js')
         .pipe(nodeunit());
 });
 
