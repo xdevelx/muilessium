@@ -264,30 +264,57 @@ module.exports = {
 
 
     ['makeElementClickable']: function(test) {
-        document.body.innerHTML = '<div></div>';
+        document.body.innerHTML = '<div></div><div></div><div></div>';
 
-        var element = document.querySelector('div');
+        var elements = document.querySelectorAll('div'),
+            isClicked = false,
+            expectedResultsForMouse    = [true, true, false],
+            expectedResultsForKeyboard = [true, false, true];
 
-        test.expect(2);
+        test.expect(11);
 
         // ---
 
-        _.makeElementClickable(element, callback);
+        _.makeElementClickable(elements[0], callback);
+        _.makeElementClickable(elements[1], callback, { mouse: true,  keyboard: false });
+        _.makeElementClickable(elements[2], callback, { mouse: false, keyboard: true  });
 
         // ---
 
 
         function callback() {
             test.ok(true, 'it should execute callback on the click event for the element');
+            isClicked = true;
         }
 
-        element.click();
+        [0,1,2].forEach(function(i) {
+            isClicked = false;
+
+            elements[i].click();
+
+            test.equal(isClicked, expectedResultsForMouse[i],
+                    'it should execute the callback function for the mouse click event');
+        });
+
+        [0,1,2].forEach(function(i) {
+            isClicked = false;
+
+            elements[i].dispatchEvent(
+                new KeyboardEvent('keydown', {
+                    keyCode: 13,
+                    which:   13
+                })
+            );
+
+            test.equal(isClicked, expectedResultsForKeyboard[i],
+                    'it should execute the callback function for the "enter pressed" event');
+        });
 
         test.doesNotThrow(function() {
             _.makeElementClickable(null);
             _.makeElementClickable(undefined);
-            _.makeElementClickable(element, null);
-            _.makeElementClickable(element, undefined);
+            _.makeElementClickable(elements[0], null);
+            _.makeElementClickable(elements[0], undefined);
         });
 
         test.done();
@@ -296,16 +323,36 @@ module.exports = {
 
 
     ['makeChildElementsClickable']: function(test) {
-        document.body.innerHTML = '<div id="parent"><div></div><div></div></div>';
+        document.body.innerHTML = `<div class="parent">
+                                       <div></div>
+                                       <div></div>
+                                   </div> 
+                                   <div class="parent">
+                                       <div></div>
+                                       <div></div>
+                                   </div>
+                                   <div class="parent">
+                                       <div></div>
+                                       <div></div>
+                                   </div>`;
 
-        var parent = document.querySelector('#parent'),
-            childs = parent.querySelectorAll('div');
+        var parents = document.querySelectorAll('.parent'),
+            elements = [
+                parents[0].querySelectorAll('div'),
+                parents[1].querySelectorAll('div'),
+                parents[2].querySelectorAll('div')
+            ],
+            isClicked = false,
+            expectedResultsForMouse    = [true, true, false],
+            expectedResultsForKeyboard = [true, false, true];
 
-        test.expect(5);
+        test.expect(29);
 
         // ---
 
-        _.makeChildElementsClickable(parent, childs, callback());
+        _.makeChildElementsClickable(parents[0], elements[0], callback());
+        _.makeChildElementsClickable(parents[1], elements[1], callback(), { mouse: true,  keyboard: false });
+        _.makeChildElementsClickable(parents[2], elements[2], callback(), { mouse: false, keyboard: true  });
 
         // ---
 
@@ -314,12 +361,40 @@ module.exports = {
 
             return function(index) {
                 test.ok(true, 'it should set event listener on the click event for the element');
-                test.equal(index, counter++, 'it should pass the index of the child element to the callback'); 
+                test.equal(index, (counter++)%2, 'it should pass the index of the child element to the callback'); 
+                isClicked = true;
             }
         }
 
-        [].forEach.call(childs, (child) => {
-            child.click();
+        [0,1,2].forEach(function(testNumber) {
+            var expectedResult = expectedResultsForMouse[testNumber];
+
+            [0,1].forEach(function(i) {
+                isClicked = false;
+
+                elements[testNumber][i].click();
+
+                test.equal(isClicked, expectedResult,
+                        'it should execute the callback function for the "mouse click" event');
+            });
+        });
+
+        [0,1,2].forEach(function(testNumber) {
+            var expectedResult = expectedResultsForKeyboard[testNumber];
+
+            [0,1].forEach(function(i) {
+                isClicked = false;
+
+                elements[testNumber][i].dispatchEvent(
+                    new KeyboardEvent('keydown', {
+                        keyCode: 13,
+                        which:   13
+                    })
+                );
+
+                test.equal(isClicked, expectedResult,
+                        'it should execute the callback function for the "enter pressed" event');
+            });
         });
 
         test.doesNotThrow(function() {
@@ -327,8 +402,8 @@ module.exports = {
             _.makeChildElementsClickable(undefined);
             _.makeChildElementsClickable(parent, null);
             _.makeChildElementsClickable(parent, undefined);
-            _.makeChildElementsClickable(parent, childs, null);
-            _.makeChildElementsClickable(parent, childs, undefined);
+            _.makeChildElementsClickable(parent, elements, null);
+            _.makeChildElementsClickable(parent, elements, undefined);
         });
 
         test.done();
