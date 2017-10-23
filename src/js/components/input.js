@@ -47,8 +47,7 @@ export class Input extends Component {
             regexp:                 new RegExp(getAttribute(element, 'data-regexp', '')),
             isValidationEnabled:    !hasClass(element, '-js-no-validation'),
             validationDelay:        getAttribute(element, 'data-validation-delay', 300),
-            validationTimeout:      null,
-            printNotExistsWarnings: !hasClass(element, '-js-allow-not-exists')
+            validationTimeout:      null
         });
 
         this.initAria();
@@ -65,7 +64,7 @@ export class Input extends Component {
             forEach(this.domCache.labels, (label) => {
                 setAttribute(label, 'for', inputId);
             });
-        }, this.state.printNotExistsWarnings);
+        });
 
         return this;
     }
@@ -78,7 +77,7 @@ export class Input extends Component {
                     this.domCache.input.focus();
                 });
             });
-        }, this.state.printNotExistsWarnings);
+        });
 
         onFocus(this.domCache.input, this.focusHandler.bind(this));
         onBlur(this.domCache.input,  this.blurHandler.bind(this));
@@ -95,7 +94,7 @@ export class Input extends Component {
 
         ifNodeList(this.domCache.labels, () => {
             makeElementsNotFocusable(this.domCache.labels);
-        }, this.state.printNotExistsWarnings);
+        });
 
         return this;
     }
@@ -106,7 +105,7 @@ export class Input extends Component {
 
         ifNodeList(this.domCache.labels, () => {
             makeElementsFocusable(this.domCache.labels);
-        }, this.state.printNotExistsWarnings);
+        });
 
         return this;
     }
@@ -121,7 +120,7 @@ export class Input extends Component {
             ifExists(this.domCache.hint, () => {
                 removeClasses(this.domCache.hint,      '-valid', '-invalid');
                 removeClasses(this.domCache.indicator, '-valid', '-invalid');
-            }, this.state.printNotExistsWarnings);
+            });
         } else {
             addClass(this.domCache.element, '-has-value');
 
@@ -146,7 +145,7 @@ export class Input extends Component {
                 ifExists(this.domCache.hint, () => {
                     replaceClass(this.domCache.hint,      '-invalid', '-valid');
                     replaceClass(this.domCache.indicator, '-invalid', '-valid');
-                }, this.state.printNotExistsWarnings);
+                });
 
                 this.state.isValid = true;
             } else {
@@ -155,7 +154,7 @@ export class Input extends Component {
                 ifExists(this.domCache.hint, () => {
                     replaceClass(this.domCache.hint,      '-valid', '-invalid');
                     replaceClass(this.domCache.indicator, '-valid', '-invalid');
-                }, this.state.printNotExistsWarnings);
+                });
 
                 this.state.isValid = false;
             }

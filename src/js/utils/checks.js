@@ -52,16 +52,12 @@ export function isNotInPage(element) {
 // Executes callback function if the element exists in document.body
 // and prints warning otherwise by default
 
-export function ifExists(element, callback, printWarning = true) {
+export function ifExists(element, callback) {
     if (isInPage(element)) {
         return callback();
-    } else {
-        if (printWarning) {
-            console.warning('element does not exists');
-        }
-
-        return null;
     }
+
+    return null;
 };
 
 
@@ -82,10 +78,6 @@ export function ifNodeList(x, callback, printWarning = true) {
         if (isArrayOfElements) {
             return callback();
         }
-    }
-    
-    if (printWarning) {
-        console.warning('element is not an instance of NodeList or HTMLCollection');
     }
 
     return null;
