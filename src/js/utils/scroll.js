@@ -49,17 +49,21 @@ export function scrollToTop(callback) {
 // Executes a callback when the element becomes visible in viewport
 
 export function scrollFire(element, callback) {
-    if (isInViewport(element) || isAboveViewport(element)) {
-        callback();
-    } else {
-        let modifiedCallback = callOnce(callback);
+    ifExists(element, () => {
+        if (typeof callback === 'function') {
+            if (isInViewport(element) || isAboveViewport(element)) {
+                callback();
+            } else {
+                let modifiedCallback = callOnce(callback);
 
-        document.addEventListener('scroll', () => {
-            if (isInViewport(element)) {
-                setTimeout(modifiedCallback, 200);
+                document.addEventListener('scroll', () => {
+                    if (isInViewport(element)) {
+                        setTimeout(modifiedCallback, 200);
+                    }
+                });
             }
-        });
-    }
+        }
+    });
 };
 
 

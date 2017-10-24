@@ -18,6 +18,16 @@ var _ = require('../../src/js/utils.js');
 
 
 module.exports = {
+    setUp: function (callback) {
+        console.log('\x1b[33m%s %s\x1b[0m\n  %s', '!',
+                'The appearance is important.',
+                'All utilities for the animations should be tested manually.');
+
+        callback();
+    },
+
+
+
     ['typeText']: function(test) {
         document.body.innerHTML = '<div></div>';
 
