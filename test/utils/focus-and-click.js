@@ -13,13 +13,13 @@ traceur.require.makeDefault(function(filename) {
 require('jsdom-global/register');
 
 
-var _ = require('../../src/js/utils.js');
-
+var log = require('../../nodeunit.config.js').log,
+    _   = require('../../src/js/utils.js');
 
 
 module.exports = {
     ['makeElementFocusable']: function(test) {
-        document.body.innerHTML = '<div></div>';
+        document.body.innerHTML = `<div></div>`;
 
         var element = document.querySelector('div');
 
@@ -29,7 +29,7 @@ module.exports = {
 
         // ---------------
 
-        test.equal(element.tabIndex, 0, 'it should set the tabIndex attribute to zero');
+        test.equal(element.tabIndex, 0, 'It should set the tabIndex attribute to zero.');
 
         test.doesNotThrow(function() {
             _.makeElementFocusable(null);
@@ -42,7 +42,9 @@ module.exports = {
 
 
     ['makeElementsFocusable']: function(test) {
-        document.body.innerHTML = '<div></div><div></div>';
+        document.body.innerHTML =
+                `<div></div>
+                 <div></div>`;
 
         var elements = document.querySelectorAll('div');
 
@@ -53,7 +55,7 @@ module.exports = {
         // ---------------
 
         [].forEach.call(elements, (element) => {
-            test.equal(element.tabIndex, 0, 'it should set the tabIndex attribute of all selected elements to zero');
+            test.equal(element.tabIndex, 0, 'It should set the tabIndex attribute of all selected elements to zero.');
         });
 
         test.doesNotThrow(function() {
@@ -67,7 +69,7 @@ module.exports = {
 
 
     ['makeElementNotFocusable']: function(test) {
-        document.body.innerHTML = '<div tabindex="0"></div>';
+        document.body.innerHTML = `<div tabindex='0'></div>`;
 
         var element = document.querySelector('div');
 
@@ -77,7 +79,7 @@ module.exports = {
 
         // ---------------
 
-        test.equal(element.tabIndex, -1, 'it should set the tabIndex attribute to -1');
+        test.equal(element.tabIndex, -1, 'It should set the tabIndex attribute to -1.');
 
         test.doesNotThrow(function() {
             _.makeElementNotFocusable(null);
@@ -90,7 +92,9 @@ module.exports = {
 
 
     ['makeElementsNotFocusable']: function(test) {
-        document.body.innerHTML = '<div tabindex="0"></div><div tabindex="1"></div>';
+        document.body.innerHTML =
+                `<div tabindex='0'></div>
+                 <div tabindex='1'></div>`;
 
         var elements = document.querySelectorAll('div');
 
@@ -101,7 +105,7 @@ module.exports = {
         // ---------------
 
         [].forEach.call(elements, (element) => {
-            test.equal(element.tabIndex, -1, 'it should set the tabIndex attribute of all selected elements to zero');
+            test.equal(element.tabIndex, -1, 'It should set the tabIndex attribute of all selected elements to -1.');
         });
 
         test.doesNotThrow(function() {
@@ -115,7 +119,12 @@ module.exports = {
 
 
     ['getFocusableChilds']: function(test) {
-        document.body.innerHTML = '<div id="parent"><div tabindex="0"></div><div tabindex="1"></div><div></div></div>';
+        document.body.innerHTML =
+                `<div id='parent'>
+                    <div tabindex='0'></div>
+                    <div tabindex='1'></div>
+                    <div></div>
+                 </div>`;
 
         var parent = document.querySelector('#parent');
 
@@ -128,7 +137,7 @@ module.exports = {
         test.equal(childs.length, 2);
 
         [].forEach.call(childs, (element) => {
-            test.ok(element.tabIndex >= 0, 'it should return the array of focusable elements');
+            test.ok(element.tabIndex >= 0, 'It should return the array of focusable elements.');
         });
 
         test.doesNotThrow(function() {
@@ -142,7 +151,12 @@ module.exports = {
 
 
     ['getAllFocusableElements']: function(test) {
-        document.body.innerHTML = '<div><div tabindex="0"></div><div tabindex="1"></div><div></div></div>';
+        document.body.innerHTML =
+                `<div>
+                     <div tabindex='0'></div>
+                     <div tabindex='1'></div>
+                     <div></div>
+                 </div>`;
 
         // ---------------
 
@@ -153,7 +167,7 @@ module.exports = {
         test.equal(elements.length, 2);
 
         [].forEach.call(elements, (element) => {
-            test.ok(element.tabIndex >= 0, 'it should return the array of focusable elements');
+            test.ok(element.tabIndex >= 0, 'It should return the array of focusable elements.');
         });
 
         test.done();
@@ -162,7 +176,12 @@ module.exports = {
 
 
     ['getNextFocusableElement']: function(test) {
-        document.body.innerHTML = '<div><div id="prev" tabindex="0"></div><div id="next" tabindex="1"></div><div></div></div>';
+        document.body.innerHTML =
+                `<div>
+                     <div id='prev' tabindex='0'></div>
+                     <div id='next' tabindex='1'></div>
+                     <div></div>
+                 </div>`;
 
         var element = document.querySelector('#prev');
 
@@ -173,8 +192,8 @@ module.exports = {
 
         // ---------------
 
-        test.equal(next1.id, 'next');
-        test.equal(next2, null);
+        test.equal(next1.id, 'next', 'It should return the next focusable element.');
+        test.equal(next2,    null,   'It should return "null" if the selected element is the last focusable element.');
 
         test.doesNotThrow(function() {
             _.getNextFocusableElement(null);
@@ -187,7 +206,12 @@ module.exports = {
 
 
     ['getPreviousFocusableElement']: function(test) {
-        document.body.innerHTML = '<div><div id="prev" tabindex="0"></div><div id="next" tabindex="1"></div><div></div></div>';
+        document.body.innerHTML =
+                `<div>
+                     <div id='prev' tabindex='0'></div>
+                     <div id='next' tabindex='1'></div>
+                     <div></div>
+                 </div>`;
 
         var element = document.querySelector('#next');
 
@@ -198,8 +222,8 @@ module.exports = {
 
         // ---------------
 
-        test.equal(prev1.id, 'prev');
-        test.equal(prev2, null);
+        test.equal(prev1.id, 'prev', 'It should return the previous focusable element.');
+        test.equal(prev2,    null,   'It should return "null" if the selected element is the first focusable element.');
 
         test.doesNotThrow(function() {
             _.getPreviousFocusableElement(null);
@@ -212,7 +236,12 @@ module.exports = {
 
 
     ['goToNextFocusableElement']: function(test) {
-        document.body.innerHTML = '<div><div id="prev" tabindex="0"></div><div id="next" tabindex="1"></div><div></div></div>';
+        document.body.innerHTML =
+                `<div>
+                     <div id='prev' tabindex='0'></div>
+                     <div id='next' tabindex='1'></div>
+                     <div></div>
+                 </div>`;
 
         var element = document.querySelector('#prev');
         
@@ -224,7 +253,7 @@ module.exports = {
 
         // ---------------
 
-        test.equal(document.activeElement.id, 'next');
+        test.equal(document.activeElement.id, 'next', 'It should move the focus to the next focusable element.');
 
         test.doesNotThrow(function() {
             _.goToNextFocusableElement(element);
@@ -238,7 +267,12 @@ module.exports = {
 
 
     ['goToPreviousFocusableElement']: function(test) {
-        document.body.innerHTML = '<div><div id="prev" tabindex="1"></div><div id="next" tabindex="1"></div><div></div></div>';
+        document.body.innerHTML =
+                `<div>
+                     <div id='prev' tabindex='1'></div>
+                     <div id='next' tabindex='1'></div>
+                     <div></div>
+                 </div>`;
 
         var element = document.querySelector('#next');
         
@@ -250,7 +284,7 @@ module.exports = {
 
         // ---------------
 
-        test.equal(document.activeElement.id, 'prev');
+        test.equal(document.activeElement.id, 'prev', 'It should move the focus to the previous focusable element.');
 
         test.doesNotThrow(function() {
             _.goToPreviousFocusableElement(element);
@@ -264,7 +298,10 @@ module.exports = {
 
 
     ['makeElementClickable']: function(test) {
-        document.body.innerHTML = '<div></div><div></div><div></div>';
+        document.body.innerHTML =
+                `<div></div>
+                 <div></div>
+                 <div></div>`;
 
         var elements = document.querySelectorAll('div'),
             isClicked = false,
@@ -283,7 +320,7 @@ module.exports = {
 
 
         function callback() {
-            test.ok(true, 'it should execute callback on the click event for the element');
+            test.ok(true, 'It should execute the callback function on the "click" event for the element.');
             isClicked = true;
         }
 
@@ -293,7 +330,7 @@ module.exports = {
             elements[i].click();
 
             test.equal(isClicked, expectedResultsForMouse[i],
-                    'it should execute the callback function for the mouse click event');
+                    'It should execute the callback function on the "mouse click" event.');
         });
 
         [0,1,2].forEach(function(i) {
@@ -307,7 +344,7 @@ module.exports = {
             );
 
             test.equal(isClicked, expectedResultsForKeyboard[i],
-                    'it should execute the callback function for the "enter pressed" event');
+                    'It should execute the callback function on the "enter pressed" event.');
         });
 
         test.doesNotThrow(function() {
@@ -323,18 +360,19 @@ module.exports = {
 
 
     ['makeChildElementsClickable']: function(test) {
-        document.body.innerHTML = `<div class="parent">
-                                       <div></div>
-                                       <div></div>
-                                   </div> 
-                                   <div class="parent">
-                                       <div></div>
-                                       <div></div>
-                                   </div>
-                                   <div class="parent">
-                                       <div></div>
-                                       <div></div>
-                                   </div>`;
+        document.body.innerHTML =
+                `<div class='parent'>
+                     <div></div>
+                     <div></div>
+                 </div> 
+                 <div class='parent'>
+                     <div></div>
+                     <div></div>
+                 </div>
+                 <div class='parent'>
+                     <div></div>
+                     <div></div>
+                 </div>`;
 
         var parents = document.querySelectorAll('.parent'),
             elements = [
@@ -360,8 +398,8 @@ module.exports = {
             var counter = 0;
 
             return function(index) {
-                test.ok(true, 'it should set event listener on the click event for the element');
-                test.equal(index, (counter++)%2, 'it should pass the index of the child element to the callback'); 
+                test.ok(true, 'It should set the event listener for the click event for the element.');
+                test.equal(index, (counter++)%2, 'It should pass the index of the child element to the callback function.'); 
                 isClicked = true;
             }
         }
@@ -375,7 +413,7 @@ module.exports = {
                 elements[testNumber][i].click();
 
                 test.equal(isClicked, expectedResult,
-                        'it should execute the callback function for the "mouse click" event');
+                        'It should execute the callback function on the "mouse click" event.');
             });
         });
 
@@ -393,7 +431,7 @@ module.exports = {
                 );
 
                 test.equal(isClicked, expectedResult,
-                        'it should execute the callback function for the "enter pressed" event');
+                        'It should execute the callback function on the "enter pressed" event.');
             });
         });
 
@@ -412,7 +450,7 @@ module.exports = {
 
 
     ['onFocus']: function(test) {
-        document.body.innerHTML = '<div tabindex="0"></div>';
+        document.body.innerHTML = `<div tabindex='0'></div>`;
 
         var element = document.querySelector('div');
 
@@ -425,7 +463,7 @@ module.exports = {
         // ---------------
 
         function callback() {
-            test.ok(true, 'it should execute the callback function on focus event');
+            test.ok(true, 'It should execute the callback function on the "focus" event.');
         }
 
         element.focus();
@@ -443,7 +481,7 @@ module.exports = {
 
 
     ['onBlur']: function(test) {
-        document.body.innerHTML = '<div tabindex="0"></div>';
+        document.body.innerHTML = `<div tabindex='0'></div>`;
 
         var element = document.querySelector('div');
 
@@ -456,7 +494,7 @@ module.exports = {
         // ---------------
 
         function callback() {
-            test.ok(true, 'it should execute the callback function on blur event');
+            test.ok(true, 'It should execute the callback function on the "blur" event.');
         }
 
         element.focus();
@@ -470,6 +508,6 @@ module.exports = {
         });
 
         test.done();
-    },
+    }
 };
 

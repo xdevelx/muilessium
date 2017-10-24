@@ -13,23 +13,17 @@ traceur.require.makeDefault(function(filename) {
 require('jsdom-global/register');
 
 
-var _ = require('../../src/js/utils.js');
+var log = require('../../nodeunit.config.js').log,
+    _   = require('../../src/js/utils.js');
 
 
 
 module.exports = {
-    setUp: function (callback) {
-        console.log('\x1b[33m%s %s\x1b[0m\n  %s', '!',
-                'The appearance is important.',
-                'All utilities for the animations should be tested manually.');
-
-        callback();
-    },
-
-
-
     ['typeText']: function(test) {
-        document.body.innerHTML = '<div></div>';
+        log.warning('The appearance is important.',
+                    'All utilities for the animations should be tested manually.');
+
+        document.body.innerHTML = `<div></div>`;
 
         var element = document.querySelector('div');
 
@@ -47,7 +41,7 @@ module.exports = {
         // ---------------
         
         function callback() {
-            test.equal(element.innerHTML, 'text', 'it should print the text into the element');
+            test.equal(element.innerHTML, 'text', 'It should print the text in the element.');
             test.done();
         }
 
@@ -62,7 +56,7 @@ module.exports = {
 
     
     ['typeTexts']: function(test) {
-        document.body.innerHTML = '<div></div>';
+        document.body.innerHTML = `<div></div>`;
 
         var element = document.querySelector('div');
 
@@ -84,7 +78,7 @@ module.exports = {
 
 
     ['activateAnimation']: function(test) {
-        document.body.innerHTML = '<div class="other-class"></div>';
+        document.body.innerHTML = `<div class='other-class'></div>`;
 
         var element = document.querySelector('div');
 
@@ -94,8 +88,8 @@ module.exports = {
 
         // ---------------
 
-        test.ok(element.classList.contains('-activated'),  'it should add "-activated" class to the element');
-        test.ok(element.classList.contains('other-class'), 'it should not remove other classes from the element');
+        test.ok(element.classList.contains('-activated'),  'It should add the "-activated" class to the element.');
+        test.ok(element.classList.contains('other-class'), 'It should not remove other classes from the element.');
 
         test.doesNotThrow(function() {
             _.activateAnimation(null);
@@ -108,7 +102,7 @@ module.exports = {
 
 
     ['animateElement']: function(test) {
-        document.body.innerHTML = '<div class="other-class fade-in"></div>';
+        document.body.innerHTML = `<div class='other-class fade-in'></div>`;
 
         var element = document.querySelector('div');
 
@@ -118,10 +112,10 @@ module.exports = {
 
         // ---------------
 
-        test.ok(element.classList.contains('-js-animation'), 'it should add "-js-animation" class to the element');
-        test.ok(element.classList.contains('-fade-out'),     'it should add "-<animation-name>" class to the element');
-        test.ok(element.classList.contains('-activated'),    'it should add "-activated" class to the element');
-        test.ok(element.classList.contains('other-class'),   'it should not remove other classes from the element');
+        test.ok(element.classList.contains('-js-animation'), 'It should add the "-js-animation" class to the element.');
+        test.ok(element.classList.contains('-fade-out'),     'It should add the "-<animation-name>" class to the element.');
+        test.ok(element.classList.contains('-activated'),    'It should add the "-activated" class to the element.');
+        test.ok(element.classList.contains('other-class'),   'It should not remove other classes from the element.');
 
         test.doesNotThrow(function() {
             _.animateElement(null);

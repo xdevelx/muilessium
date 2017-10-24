@@ -13,13 +13,15 @@ traceur.require.makeDefault(function(filename) {
 require('jsdom-global/register');
 
 
-var _ = require('../../src/js/utils.js');
-
+var log = require('../../nodeunit.config.js').log,
+    _   = require('../../src/js/utils.js');
 
 
 module.exports = {
     ['set']: function(test) {
-        document.body.innerHTML = '<div></div><div></div>';
+        document.body.innerHTML =
+                `<div></div>
+                 <div></div>`;
 
         var elements = document.querySelectorAll('div');
 
@@ -30,8 +32,8 @@ module.exports = {
 
         // ---------------
 
-        test.equal(elements[0].getAttribute('aria-hidden'), 'true',  'it should set the attribute to "true" by default');
-        test.equal(elements[1].getAttribute('aria-hidden'), 'false', 'it should set the attribute to the selected value');
+        test.equal(elements[0].getAttribute('aria-hidden'), 'true',  'It should set the attribute to "true" by default.');
+        test.equal(elements[1].getAttribute('aria-hidden'), 'false', 'It should set the attribute to the selected value.');
 
         test.doesNotThrow(function() {
             _.aria.set(null);
@@ -47,7 +49,7 @@ module.exports = {
 
 
     ['setRole']: function(test) {
-        document.body.innerHTML = '<div></div>';
+        document.body.innerHTML = `<div></div>`;
 
         var element = document.querySelector('div');
 
@@ -57,7 +59,7 @@ module.exports = {
 
         // ---------------
 
-        test.equal(element.getAttribute('role'), 'button', 'it should set the role of the element to the selected value');
+        test.equal(element.getAttribute('role'), 'button', 'It should set the role of the element to the selected value.');
 
         test.doesNotThrow(function() {
             _.aria.setRole(null);
@@ -72,7 +74,7 @@ module.exports = {
 
 
     ['removeRole']: function(test) {
-        document.body.innerHTML = '<div role="button"></div>';
+        document.body.innerHTML = `<div role='button'></div>`;
 
         var element = document.querySelector('div');
 
@@ -82,7 +84,7 @@ module.exports = {
 
         // ---------------
 
-        test.equal(element.getAttribute('role'), null, 'it should remove the role from the element');
+        test.equal(element.getAttribute('role'), null, 'It should remove the role from the element.');
 
         test.doesNotThrow(function() {
             _.aria.removeRole(null);
@@ -95,7 +97,7 @@ module.exports = {
 
 
     ['setId']: function(test) {
-        document.body.innerHTML = '<div></div>';
+        document.body.innerHTML = `<div></div>`;
 
         var element = document.querySelector('div');
 
@@ -105,7 +107,7 @@ module.exports = {
 
         // ---------------
 
-        test.equal(element.getAttribute('id'), 'test-id', 'it should set the id of the element to the selected value');
+        test.equal(element.getAttribute('id'), 'test-id', 'It should set the id of the element to the selected value.');
 
         test.doesNotThrow(function() {
             _.aria.setId(null);
@@ -120,7 +122,7 @@ module.exports = {
 
 
     ['get']: function(test) {
-        document.body.innerHTML = '<div aria-hidden="true"></div>';
+        document.body.innerHTML = `<div aria-hidden='true'></div>`;
 
         var element = document.querySelector('div');
 
@@ -130,7 +132,7 @@ module.exports = {
 
         // ---------------
 
-        test.equal(result, 'true', 'it should return the value of the attribute');
+        test.equal(result, 'true', 'It should return the value of the attribute.');
 
         test.doesNotThrow(function() {
             _.aria.get(null);
@@ -145,7 +147,7 @@ module.exports = {
 
 
     ['getRole']: function(test) {
-        document.body.innerHTML = '<div role="button"></div>';
+        document.body.innerHTML = `<div role='button'></div>`;
 
         var element = document.querySelector('div');
 
@@ -155,7 +157,7 @@ module.exports = {
 
         // ---------------
 
-        test.equal(result, 'button', 'it should return the role of the element');
+        test.equal(result, 'button', 'It should return the role of the element.');
     
         test.doesNotThrow(function() {
             _.aria.getRole(null);
@@ -168,7 +170,7 @@ module.exports = {
 
 
     ['toggleState']: function(test) {
-        document.body.innerHTML = '<div aria-hidden="false"></div>';
+        document.body.innerHTML = `<div aria-hidden='false'></div>`;
 
         var element = document.querySelector('div');
 
@@ -178,7 +180,7 @@ module.exports = {
 
         // ---------------
 
-        test.equal(element.getAttribute('aria-hidden'), 'true', 'it should toggle the selected state of the element');
+        test.equal(element.getAttribute('aria-hidden'), 'true', 'It should toggle the selected state of the element.');
 
         test.doesNotThrow(function() {
             _.aria.toggleState(null);

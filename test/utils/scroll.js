@@ -13,7 +13,8 @@ traceur.require.makeDefault(function(filename) {
 require('jsdom-global/register');
 
 
-var _ = require('../../src/js/utils.js');
+var log = require('../../nodeunit.config.js').log,
+    _   = require('../../src/js/utils.js');
 
 
 // This will fix the following error from jsdom runtime:
@@ -28,17 +29,11 @@ require('smoothscroll-polyfill').polyfill()
 
 
 module.exports = {
-    setUp: function (callback) {
-        console.log('\x1b[33m%s %s\x1b[0m\n  %s', '!',
-                'Window.scroll is not implemented in jsdom.',
-                'All scroll utilities should be tested manually');
-
-        callback();
-    },
-
-
     ['scrollTo']: function(test) {
-        document.body.innerHTML = '<div></div>';
+        log.warning('Window.scroll is not implemented in jsdom.',
+                    'All scroll utilities should be tested manually.');
+
+        document.body.innerHTML = `<div></div>`;
 
         var element = document.querySelector('div');
  
@@ -49,7 +44,7 @@ module.exports = {
         // ---------------
 
         function callback() {
-            test.ok(true, 'it should execute the callback function');
+            test.ok(true, 'It should execute the callback function when scroll ends.');
             test.done();
         }
 
@@ -64,7 +59,7 @@ module.exports = {
 
 
     ['scrollToTop']: function(test) {
-        document.body.innerHTML = '';
+        document.body.innerHTML = ``;
  
         // ---------------
 
@@ -73,7 +68,7 @@ module.exports = {
         // ---------------
 
         function callback() {
-            test.ok(true, 'it should execute the callback function');
+            test.ok(true, 'It should execute the callback function when scroll ends.');
             test.done();
         }
 
@@ -86,7 +81,7 @@ module.exports = {
 
 
     ['scrollFire']: function(test) {
-        document.body.innerHTML = '<div></div>';
+        document.body.innerHTML = `<div></div>`;
  
         var element = document.querySelector('div');
 
@@ -99,7 +94,7 @@ module.exports = {
         // ---------------
 
         function callback() {
-            test.ok(true, 'it should execute the callback function');
+            test.ok(true, 'It should execute the callback function.');
         }
 
         test.doesNotThrow(function() {

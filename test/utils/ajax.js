@@ -16,12 +16,15 @@ require('jsdom-global/register');
 
 
 
-var _ = require('../../src/js/utils.js');
+var log = require('../../nodeunit.config.js').log,
+    _   = require('../../src/js/utils.js');
 
 
 
 module.exports = {
     ['post']: function(test) {
+        log.info('POST http://jsonplaceholder.typicode.com/posts');
+
         test.expect(1);
 
         // ---------------
@@ -49,6 +52,8 @@ module.exports = {
 
 
     ['postProtected']: function(test) {
+        log.info('POST http://jsonplaceholder.typicode.com/posts');
+
         test.expect(1);
 
         // ---------------
@@ -70,6 +75,8 @@ module.exports = {
 
 
     ['get']: function(test) {
+        log.info('GET http://jsonplaceholder.typicode.com/posts');
+
         test.expect(1);
 
         // ---------------
@@ -97,6 +104,8 @@ module.exports = {
 
 
     ['getProtected']: function(test) {
+        log.info('GET http://jsonplaceholder.typicode.com/posts');
+
         test.expect(1);
 
         // ---------------

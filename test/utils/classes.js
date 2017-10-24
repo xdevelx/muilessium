@@ -13,13 +13,13 @@ traceur.require.makeDefault(function(filename) {
 require('jsdom-global/register');
 
 
-var _ = require('../../src/js/utils.js');
-
+var log = require('../../nodeunit.config.js').log,
+    _   = require('../../src/js/utils.js');
 
 
 module.exports = {
     ['hasClass']: function(test) {
-        document.body.innerHTML = '<div class="test-class"></div>';
+        document.body.innerHTML = `<div class='test-class'></div>`;
 
         var element = document.querySelector('div');
 
@@ -30,8 +30,8 @@ module.exports = {
 
         // ---------------
 
-        test.ok(resultPositive,  'it should return true if the element has the class');
-        test.ok(!resultNegative, 'it should return false if the element has not the class');
+        test.ok(resultPositive,  'It should return true if the element has the class.');
+        test.ok(!resultNegative, 'It should return false if the element has not the class.');
 
         test.doesNotThrow(function() {
             _.hasClass(null);
@@ -46,7 +46,7 @@ module.exports = {
 
 
     ['hasNotClass']: function(test) {
-        document.body.innerHTML = '<div class="test-class"></div>';
+        document.body.innerHTML = `<div class='test-class'></div>`;
 
         var element = document.querySelector('div');
 
@@ -57,8 +57,8 @@ module.exports = {
 
         // ---------------
 
-        test.ok(resultPositive,  'it should return true if the element has not the class');
-        test.ok(!resultNegative, 'it should return false if the element has the class');
+        test.ok(resultPositive,  'It should return true if the element has not the class.');
+        test.ok(!resultNegative, 'It should return false if the element has the class.');
 
         test.doesNotThrow(function() {
             _.hasNotClass(null);
@@ -73,7 +73,7 @@ module.exports = {
 
 
     ['addClass']: function(test) {
-        document.body.innerHTML = '<div class="old-class"></div>';
+        document.body.innerHTML = `<div class='old-class'></div>`;
 
         var element = document.querySelector('div');
 
@@ -83,8 +83,8 @@ module.exports = {
 
         // ---------------
 
-        test.ok(element.classList.contains('new-class'), 'it should add the new class to the element');
-        test.ok(element.classList.contains('old-class'), 'it should not remove the old classes from the element');
+        test.ok(element.classList.contains('new-class'), 'It should add the new class to the element.');
+        test.ok(element.classList.contains('old-class'), 'It should not remove the old classes from the element.');
 
         test.doesNotThrow(function() {
             _.addClass(null);
@@ -99,7 +99,7 @@ module.exports = {
 
 
     ['addClasses']: function(test) {
-        document.body.innerHTML = '<div class="old-class"></div>';
+        document.body.innerHTML = `<div class='old-class'></div>`;
 
         var element = document.querySelector('div');
 
@@ -109,9 +109,9 @@ module.exports = {
 
         // ---------------
 
-        test.ok(element.classList.contains('new-class-1'), 'it should add the new classes to the element');
-        test.ok(element.classList.contains('new-class-1'), 'it should add the new classes to the element');
-        test.ok(element.classList.contains('old-class'),   'it should not remove the old classes from the element');
+        test.ok(element.classList.contains('new-class-1'), 'It should add the new classes to the element.');
+        test.ok(element.classList.contains('new-class-1'), 'It should add the new classes to the element.');
+        test.ok(element.classList.contains('old-class'),   'It should not remove the old classes from the element.');
 
         test.doesNotThrow(function() {
             _.addClasses(null);
@@ -126,7 +126,7 @@ module.exports = {
 
 
     ['removeClass']: function(test) {
-        document.body.innerHTML = '<div class="old-class other-class"></div>';
+        document.body.innerHTML = `<div class='old-class other-class'></div>`;
 
         var element = document.querySelector('div');
 
@@ -136,8 +136,8 @@ module.exports = {
 
         // ---------------
 
-        test.ok(!element.classList.contains('old-class'),  'it should remove the old class from the element');
-        test.ok(element.classList.contains('other-class'), 'it should not remove other classes from the element');
+        test.ok(!element.classList.contains('old-class'),  'It should remove the old class from the element.');
+        test.ok(element.classList.contains('other-class'), 'It should not remove other classes from the element.');
 
         test.doesNotThrow(function() {
             _.removeClass(null);
@@ -152,7 +152,7 @@ module.exports = {
 
 
     ['removeClasses']: function(test) {
-        document.body.innerHTML = '<div class="old-class-1 old-class-2 other-class"></div>';
+        document.body.innerHTML = `<div class='old-class-1 old-class-2 other-class'></div>`;
 
         var element = document.querySelector('div');
 
@@ -162,9 +162,9 @@ module.exports = {
 
         // ---------------
 
-        test.ok(!element.classList.contains('old-class-1'),  'it should remove the old classes from the element');
-        test.ok(!element.classList.contains('old-class-2'),  'it should remove the old classes from the element');
-        test.ok(element.classList.contains('other-class'),   'it should not remove other classes from the element');
+        test.ok(!element.classList.contains('old-class-1'), 'It should remove the old classes from the element.');
+        test.ok(!element.classList.contains('old-class-2'), 'It should remove the old classes from the element.');
+        test.ok(element.classList.contains('other-class'),  'It should not remove other classes from the element.');
 
         test.doesNotThrow(function() {
             _.removeClasses(null);
@@ -179,7 +179,7 @@ module.exports = {
 
 
     ['replaceClass']: function(test) {
-        document.body.innerHTML = '<div class="old-class other-class"></div>';
+        document.body.innerHTML = `<div class='old-class other-class'></div>`;
 
         var element = document.querySelector('div');
 
@@ -189,9 +189,9 @@ module.exports = {
 
         // ---------------
 
-        test.ok(!element.classList.contains('old-class'),  'it should remove the old class from the element');
-        test.ok(element.classList.contains('new-class'),   'it should add the new class to the element');
-        test.ok(element.classList.contains('other-class'), 'it should not remove other classes from the element');
+        test.ok(!element.classList.contains('old-class'),  'It should remove the old class from the element.');
+        test.ok(element.classList.contains('new-class'),   'It should add the new class to the element.');
+        test.ok(element.classList.contains('other-class'), 'It should not remove other classes from the element.');
 
         test.doesNotThrow(function() {
             _.replaceClass(null);
@@ -208,7 +208,7 @@ module.exports = {
 
 
     ['toggleClass']: function(test) {
-        document.body.innerHTML = '<div class="test-class-1 other-class"></div>';
+        document.body.innerHTML = `<div class='test-class-1 other-class'></div>`;
 
         var element = document.querySelector('div');
 
@@ -219,9 +219,9 @@ module.exports = {
 
         // ---------------
 
-        test.ok(!element.classList.contains('test-class-1'), 'it should remove the class from the element');
-        test.ok(element.classList.contains('test-class-2'),  'it should add the class to the element');
-        test.ok(element.classList.contains('other-class'), 'it should not remove other classes from the element');
+        test.ok(!element.classList.contains('test-class-1'), 'It should remove the class from the element.');
+        test.ok(element.classList.contains('test-class-2'),  'It should add the class to the element.');
+        test.ok(element.classList.contains('other-class'),   'It should not remove other classes from the element.');
 
         test.doesNotThrow(function() {
             _.toggleClass(null);

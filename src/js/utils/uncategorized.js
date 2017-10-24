@@ -119,6 +119,10 @@ export function generateRandomString(length = 8) {
 // -------------------------------
 
 export function stringify(object) {
+    if (object === undefined) {
+        return 'undefined';
+    }
+
     return JSON.stringify(object, (key, value) => {
         if (typeof value === 'function') {
             return 'function';
@@ -203,6 +207,10 @@ export function callOnce(callback) {
 // Returns first element of array-like objects
 
 export function firstOfList(list) {
+    if (!list || !list.length) {
+        return undefined;
+    }
+
     return list[0];
 };
 
@@ -213,6 +221,10 @@ export function firstOfList(list) {
 // Returns last element of array-like objects
 
 export function lastOfList(list) {
+    if (!list || !list.length) {
+        return undefined;
+    }
+
     return list[list.length - 1];
 };
 
@@ -222,6 +234,10 @@ export function lastOfList(list) {
 // Executes callback function for every item in the list.
 
 export function forEach(list, callback, delay = 0) {
+    if (typeof callback !== 'function') {
+        return undefined;
+    }
+
     if (delay > 0) {
         let counter = 0;
 

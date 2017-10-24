@@ -13,13 +13,13 @@ traceur.require.makeDefault(function(filename) {
 require('jsdom-global/register');
 
 
-var _ = require('../../src/js/utils.js');
-
+var log = require('../../nodeunit.config.js').log,
+    _   = require('../../src/js/utils.js');
 
 
 module.exports = {
     ['setAttribute']: function(test) {
-        document.body.innerHTML = '<div></div>';
+        document.body.innerHTML = `<div></div>`;
 
         var element = document.querySelector('div');
 
@@ -29,7 +29,7 @@ module.exports = {
 
         // ---------------
 
-        test.equal(element.getAttribute('data-test'), 'true', 'it should set the attribute of the element to the selected value');
+        test.equal(element.getAttribute('data-test'), 'true', 'It should set the attribute of the element to the selected value.');
 
         test.doesNotThrow(function() {
             _.setAttribute(null);
@@ -46,7 +46,7 @@ module.exports = {
 
 
     ['getAttribute']: function(test) {
-        document.body.innerHTML = '<div data-test="true"></div>';
+        document.body.innerHTML = `<div data-test='true'></div>`;
 
         var element = document.querySelector('div');
 
@@ -56,7 +56,7 @@ module.exports = {
 
         // ---------------
 
-        test.equal(result, 'true', 'it should return the value of the attribute of the element');
+        test.equal(result, 'true', 'It should return the value of the selected attribute of the element.');
 
         test.doesNotThrow(function() {
             _.getAttribute(null);
@@ -71,7 +71,7 @@ module.exports = {
 
 
     ['removeAttribute']: function(test) {
-        document.body.innerHTML = '<div data-test="true"></div>';
+        document.body.innerHTML = `<div data-test='true'></div>`;
 
         var element = document.querySelector('div');
 
@@ -81,7 +81,7 @@ module.exports = {
 
         // ---------------
 
-        test.equal(element.getAttribute('data-test'), null, 'it should remove the attribute from the element');
+        test.equal(element.getAttribute('data-test'), null, 'It should remove the attribute from the element.');
 
         test.doesNotThrow(function() {
             _.removeAttribute(null);

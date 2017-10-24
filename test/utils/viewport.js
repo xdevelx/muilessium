@@ -13,22 +13,17 @@ traceur.require.makeDefault(function(filename) {
 require('jsdom-global/register');
 
 
-var _ = require('../../src/js/utils.js');
+var log = require('../../nodeunit.config.js').log,
+    _   = require('../../src/js/utils.js');
+
 
 
 module.exports = {
-    setUp: function (callback) {
-        console.log('\x1b[33m%s %s\x1b[0m\n  %s', '!',
-                'Rendering is not implemented in jsdom.',
-                'All viewport utilities should be tested manually');
-
-        callback();
-    },
-
-
-
     ['isInViewport']: function(test) {
-        document.body.innerHTML = '<div></div>';
+        log.warning('The rendering is not implemented in jsdom.',
+                    'All viewport utilities should be tested manually.');
+
+        document.body.innerHTML = `<div></div>`;
 
         var element = document.querySelector('div');
  
@@ -38,7 +33,7 @@ module.exports = {
 
         // ---------------
 
-        test.ok(result, 'it should return true if the element is in the viewport');
+        test.ok(result, 'It should return "true" if the element is in the viewport.');
 
 
         test.doesNotThrow(function() {
@@ -52,7 +47,7 @@ module.exports = {
 
 
     ['isAboveViewport']: function(test) {
-        document.body.innerHTML = '<div></div>';
+        document.body.innerHTML = `<div></div>`;
 
         var element = document.querySelector('div');
  
@@ -62,7 +57,7 @@ module.exports = {
 
         // ---------------
 
-        test.ok(result, 'it should return true if the element is above the viewport');
+        test.ok(result, 'It should return "true" if the element is above the viewport.');
 
         test.doesNotThrow(function() {
             _.isInViewport(null);
