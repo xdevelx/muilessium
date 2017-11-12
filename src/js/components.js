@@ -9,6 +9,7 @@ export { ButtonDropdown   } from './components/button-dropdown';
 export { Button           } from './components/button';
 export { Carousel         } from './components/carousel';
 export { Checkbox         } from './components/checkbox';
+export { CustomScroll     } from './components/custom-scroll';
 export { HeaderNavigation } from './components/header-navigation';
 export { Input            } from './components/input';
 export { MediaView        } from './components/media-view';

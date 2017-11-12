@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'ButtonDropdown':   window.Muilessium.Factory.create('ButtonDropdown',   '.mui-button-dropdown',   {}),
         'Carousel':         window.Muilessium.Factory.create('Carousel',         '.mui-carousel',          {}),
         'Checkbox':         window.Muilessium.Factory.create('Checkbox',         '.mui-checkbox',          {}),
+        'CustomScroll':     window.Muilessium.Factory.create('CustomScroll',     '.mui-custom-scroll',     {}),
         'HeaderNavigation': window.Muilessium.Factory.create('HeaderNavigation', '.mui-header-navigation', {}),
         'Input':            window.Muilessium.Factory.create('Input',            '.mui-input',             {}),
         'ModalWindow':      window.Muilessium.Factory.create('ModalWindow',      '.mui-modal-window',      {}),
