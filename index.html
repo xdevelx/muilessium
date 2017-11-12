@@ -185,7 +185,7 @@
             <div class='mui-header-logo _left'>
                 <img class='mui-image -logo -js-lazy-load' data-src='./muilessium.png' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt='logo'>
                 <a class='link -black -f-blue-3 _right' href='/'>
-                    <h1 class='heading _bigger-1'>muilessium <span class='_smaller-2'>v0.2.4</span></h1>
+                    <h1 class='heading _bigger-1'>muilessium <span class='_smaller-2'>v0.2.6</span></h1>
                 </a>
             </div>
             <!-- /header-logo -->
@@ -314,6 +314,9 @@
                         </li>
                         <li>
                             <a class='-f-blue-3' href='#../../src/less/components/content-section.less'>Content section</a>
+                        </li>
+                        <li>
+                            <a class='-f-blue-3' href='#../../src/less/components/custom-scroll.less'>Custom scroll</a>
                         </li>
                         <li>
                             <a class='-f-blue-3' href='#../../src/less/components/dropdown-options.less'>Dropdown options</a>
@@ -1115,14 +1118,22 @@
                                     <div class='_separate-1'>
                                         <div class='example _separate-2'>  <div class='mui-button-dropdown'>
       <a class='mui-button' aria-label='Dropdown button'>
-          <span>button</span>
+          <span>dropdown button</span>
           <span>&nbsp;&nbsp;&darr;</span>
       </a>          
       <div class='mui-dropdown-options'>
           <div class='wrapper'>
-              <div class='option'>Option 1</div>
-              <div class='option'>Option 2</div>
-              <div class='option'>Option 3</div>
+              <div class='mui-custom-scroll'>
+                  <div class='option'>Option 1</div>
+                  <div class='option'>Option 2</div>
+                  <div class='option'>Option 3</div>
+                  <div class='option'>Option 4</div>
+                  <div class='option'>Option 5</div>
+                  <div class='option'>Option 6</div>
+                  <div class='option'>Option 7</div>
+                  <div class='option'>Option 8</div>
+                  <div class='option'>Option 9</div>
+              </div>
           </div>
       </div>
       <div class='mui-shadow-toggle' aria-label='Close dropdown menu'></div>
@@ -1133,14 +1144,22 @@
                                                 <div class='code _separate-2 _smaller-1'>
                                                     <pre class='source-code'>  &lt;div class='mui-button-dropdown'&gt;
       &lt;a class='mui-button' aria-label='Dropdown button'&gt;
-          &lt;span&gt;button&lt;/span&gt;
+          &lt;span&gt;dropdown button&lt;/span&gt;
           &lt;span&gt;&nbsp;&nbsp;&darr;&lt;/span&gt;
       &lt;/a&gt;          
       &lt;div class='mui-dropdown-options'&gt;
           &lt;div class='wrapper'&gt;
-              &lt;div class='option'&gt;Option 1&lt;/div&gt;
-              &lt;div class='option'&gt;Option 2&lt;/div&gt;
-              &lt;div class='option'&gt;Option 3&lt;/div&gt;
+              &lt;div class='mui-custom-scroll'&gt;
+                  &lt;div class='option'&gt;Option 1&lt;/div&gt;
+                  &lt;div class='option'&gt;Option 2&lt;/div&gt;
+                  &lt;div class='option'&gt;Option 3&lt;/div&gt;
+                  &lt;div class='option'&gt;Option 4&lt;/div&gt;
+                  &lt;div class='option'&gt;Option 5&lt;/div&gt;
+                  &lt;div class='option'&gt;Option 6&lt;/div&gt;
+                  &lt;div class='option'&gt;Option 7&lt;/div&gt;
+                  &lt;div class='option'&gt;Option 8&lt;/div&gt;
+                  &lt;div class='option'&gt;Option 9&lt;/div&gt;
+              &lt;/div&gt;
           &lt;/div&gt;
       &lt;/div&gt;
       &lt;div class='mui-shadow-toggle' aria-label='Close dropdown menu'&gt;&lt;/div&gt;
@@ -1687,6 +1706,35 @@
                                         </div>
                                     </div>
                             </div>
+                        <div id='../../src/less/components/custom-scroll.less' class='_allow-empty'></div>
+                            <div class='_separate-5'>
+                                <div class='mui-row'>
+                                    <a class='anchor-link -black -f-blue-3' href='#../../src/less/components/custom-scroll.less'>
+                                        <h4 class='_bigger-1'>Custom scroll</h4>
+                                    </a>
+                                </div>
+                                <div class='_smaller-2 -grey-4'>../../src/less/components/custom-scroll.less</div>
+                                    <p class='mui-p _separate-1'>Element with custom scrollbar (based on simplebar.js). Default max-height is 10rem;</p>
+                                    <div class='_separate-1'>
+                                        <div class='example _separate-2'>  <section class='mui-custom-scroll'>
+      ...<br>...<br>...<br>...<br>...<br>
+      ...<br>...<br>...<br>...<br>...<br>
+      ...<br>...<br>...<br>...<br>...<br>
+  </section></div>
+                                        <div class='mui-spoiler'>
+                                            <div class='title'>Source code</div>
+                                            <div class='content'>
+                                                <div class='code _separate-2 _smaller-1'>
+                                                    <pre class='source-code'>  &lt;section class='mui-custom-scroll'&gt;
+      ...&lt;br&gt;...&lt;br&gt;...&lt;br&gt;...&lt;br&gt;...&lt;br&gt;
+      ...&lt;br&gt;...&lt;br&gt;...&lt;br&gt;...&lt;br&gt;...&lt;br&gt;
+      ...&lt;br&gt;...&lt;br&gt;...&lt;br&gt;...&lt;br&gt;...&lt;br&gt;
+  &lt;/section&gt;</pre>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
                         <div id='../../src/less/components/dropdown-options.less' class='_allow-empty'></div>
                             <div class='_separate-5'>
                                 <div class='mui-row'>
@@ -1699,9 +1747,23 @@
                                     <div class='_separate-1'>
                                         <div class='example _separate-2'>  <div class='mui-dropdown-options'>
       <div class='wrapper'>
-          <div class='option'>Option 1</div>
-          <div class='option'>Option 2</div>
-          <div class='option'>Option 3</div>
+          <div class='mui-custom-scroll'>
+              <div class='option'>Option 1</div>
+              <div class='option'>Option 2</div>
+              <div class='option'>Option 3</div>
+              <div class='option'>Option 4</div>
+              <div class='option'>Option 5</div>
+              <div class='option'>Option 6</div>
+              <div class='option'>Option 7</div>
+              <div class='option'>Option 8</div>
+              <div class='option'>Option 9</div>
+              <div class='option'>Option 10</div>
+              <div class='option'>Option 11</div>
+              <div class='option'>Option 12</div>
+              <div class='option'>Option 13</div>
+              <div class='option'>Option 14</div>
+              <div class='option'>Option 15</div>
+          </div>
       </div>
   </div></div>
                                         <div class='mui-spoiler'>
@@ -1710,9 +1772,23 @@
                                                 <div class='code _separate-2 _smaller-1'>
                                                     <pre class='source-code'>  &lt;div class='mui-dropdown-options'&gt;
       &lt;div class='wrapper'&gt;
-          &lt;div class='option'&gt;Option 1&lt;/div&gt;
-          &lt;div class='option'&gt;Option 2&lt;/div&gt;
-          &lt;div class='option'&gt;Option 3&lt;/div&gt;
+          &lt;div class='mui-custom-scroll'&gt;
+              &lt;div class='option'&gt;Option 1&lt;/div&gt;
+              &lt;div class='option'&gt;Option 2&lt;/div&gt;
+              &lt;div class='option'&gt;Option 3&lt;/div&gt;
+              &lt;div class='option'&gt;Option 4&lt;/div&gt;
+              &lt;div class='option'&gt;Option 5&lt;/div&gt;
+              &lt;div class='option'&gt;Option 6&lt;/div&gt;
+              &lt;div class='option'&gt;Option 7&lt;/div&gt;
+              &lt;div class='option'&gt;Option 8&lt;/div&gt;
+              &lt;div class='option'&gt;Option 9&lt;/div&gt;
+              &lt;div class='option'&gt;Option 10&lt;/div&gt;
+              &lt;div class='option'&gt;Option 11&lt;/div&gt;
+              &lt;div class='option'&gt;Option 12&lt;/div&gt;
+              &lt;div class='option'&gt;Option 13&lt;/div&gt;
+              &lt;div class='option'&gt;Option 14&lt;/div&gt;
+              &lt;div class='option'&gt;Option 15&lt;/div&gt;
+          &lt;/div&gt;
       &lt;/div&gt;
   &lt;/div&gt;</pre>
                                                 </div>
@@ -2720,10 +2796,12 @@
               <div class='state'></div>
               <div class='mui-dropdown-options _shadow-1'>
                   <div class='wrapper'>
-                      <div class='option -selected' data-value='red'>Red</div>
-                      <div class='option' data-value='green'>Green</div>
-                      <div class='option' data-value='blue'>Blue</div>
-                      <div class='option' data-value='orange'>Orange</div>
+                      <div class='mui-custom-scroll'>
+                          <div class='option -selected' data-value='red'>Red</div>
+                          <div class='option' data-value='green'>Green</div>
+                          <div class='option' data-value='blue'>Blue</div>
+                          <div class='option' data-value='orange'>Orange</div>
+                      </div>
                   </div>
               </div>
           </div>
@@ -2744,10 +2822,12 @@
               &lt;div class='state'&gt;&lt;/div&gt;
               &lt;div class='mui-dropdown-options _shadow-1'&gt;
                   &lt;div class='wrapper'&gt;
-                      &lt;div class='option -selected' data-value='red'&gt;Red&lt;/div&gt;
-                      &lt;div class='option' data-value='green'&gt;Green&lt;/div&gt;
-                      &lt;div class='option' data-value='blue'&gt;Blue&lt;/div&gt;
-                      &lt;div class='option' data-value='orange'&gt;Orange&lt;/div&gt;
+                      &lt;div class='mui-custom-scroll'&gt;
+                          &lt;div class='option -selected' data-value='red'&gt;Red&lt;/div&gt;
+                          &lt;div class='option' data-value='green'&gt;Green&lt;/div&gt;
+                          &lt;div class='option' data-value='blue'&gt;Blue&lt;/div&gt;
+                          &lt;div class='option' data-value='orange'&gt;Orange&lt;/div&gt;
+                      &lt;/div&gt;
                   &lt;/div&gt;
               &lt;/div&gt;
           &lt;/div&gt;
@@ -3138,8 +3218,8 @@
         <span>Copyright &copy; Ivan Bogachev, 2016-2017</span>
     </div>
 
-    <link rel='stylesheet' href='./css/muilessium.min.css?v=0.2.4'>
-    <script src='./js/muilessium.min.js?v=0.2.4'></script>
+    <link rel='stylesheet' href='./css/muilessium.min.css?v=0.2.6'>
+    <script src='./js/muilessium.min.js?v=0.2.6'></script>
 
 
     <style>
@@ -3297,6 +3377,12 @@
 
         .anchor-link {
             text-decoration: none;
+        }
+
+        .example > .mui-custom-scroll {
+            max-height: 10rem;
+            border-top: 1px solid #c6c6c6;
+            border-bottom: 1px solid #c6c6c6;
         }
 
         .page-preview {
