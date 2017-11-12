@@ -12,7 +12,12 @@ traceur.require.makeDefault(function(filename) {
     return filename.indexOf('node_modules') === -1;
 });
 
-require('jsdom-global/register');
+// NOTICE: jsdom-global can pass options to the jsdom,
+// but this feature is undocumented. Here is source code:
+// https://github.com/rstacruz/jsdom-global/blob/master/index.js#L29
+require('jsdom-global')('', {
+    url: 'https://jsonplaceholder.typicode.com'
+});
 
 
 
@@ -20,17 +25,16 @@ var log = require('../../nodeunit.config.js').log,
     _   = require('../../src/js/utils.js');
 
 
-
 module.exports = {
     ['post']: function(test) {
-        log.info('POST http://jsonplaceholder.typicode.com/posts');
+        log.info('POST https://jsonplaceholder.typicode.com/posts');
 
         test.expect(1);
 
         // ---------------
 
         _.ajax.post(
-            'http://jsonplaceholder.typicode.com/posts',
+            'https://jsonplaceholder.typicode.com/posts',
             { /* data */ },
             callbackPositive,
             callbackNegative
@@ -52,14 +56,14 @@ module.exports = {
 
 
     ['postProtected']: function(test) {
-        log.info('POST http://jsonplaceholder.typicode.com/posts');
+        log.info('POST https://jsonplaceholder.typicode.com/posts');
 
         test.expect(1);
 
         // ---------------
 
         _.ajax.postProtected(
-            'http://jsonplaceholder.typicode.com/posts',
+            'https://jsonplaceholder.typicode.com/posts',
             { /* data */ },
             callbackPositive
         );
@@ -75,14 +79,14 @@ module.exports = {
 
 
     ['get']: function(test) {
-        log.info('GET http://jsonplaceholder.typicode.com/posts');
+        log.info('GET https://jsonplaceholder.typicode.com/posts');
 
         test.expect(1);
 
         // ---------------
 
         _.ajax.get(
-            'http://jsonplaceholder.typicode.com/posts',
+            'https://jsonplaceholder.typicode.com/posts',
             callbackPositive,
             callbackNegative
         );
@@ -104,14 +108,14 @@ module.exports = {
 
 
     ['getProtected']: function(test) {
-        log.info('GET http://jsonplaceholder.typicode.com/posts');
+        log.info('GET https://jsonplaceholder.typicode.com/posts');
 
         test.expect(1);
 
         // ---------------
 
         _.ajax.getProtected(
-            'http://jsonplaceholder.typicode.com/posts',
+            'https://jsonplaceholder.typicode.com/posts',
             callbackPositive
         );
 
