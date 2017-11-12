@@ -1,5 +1,5 @@
 // @name Custom scroll
-// @description Element with custom scrollbar (simplebar.js). Max-height property should be added to the element.
+// @description Element with custom scrollbar (based on simplebar.js). Default max-height is 10rem;
 //
 // @markup
 //  <section class='mui-custom-scroll'>
@@ -11,6 +11,7 @@
 
 .mui-custom-scroll {
     display: flex;
+    max-height: 10rem;
     position: relative;
     z-index: 0;
     overflow: hidden;
@@ -27,12 +28,15 @@
         overflow-x: scroll;
         overflow-y: hidden;
         min-height: 100%;
+        // Simplebar.js sets inline padding-bottom: 20px (what for?) to this element.
+        // This !important rule must put an end to its behavior.
+        padding-bottom: 1rem !important;
     }
 
     > .track {
         position: absolute;
         right: 0;
-        bottom: 1px;
+        bottom: 3px;
         width: .8rem;
         z-index: 1;
 
