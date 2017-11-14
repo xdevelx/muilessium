@@ -1,23 +1,24 @@
 module.exports = {
     ignore: [
-        'rem',              // ok
-        'viewport-units',   // only vmax is not supported in ie11
-        'transforms2d',     // ok
-        'css-animation',    // ok
-        'css-transitions',  // ok
-        'border-radius',    // ok
-        'css-boxshadow',    // ok
-        'user-select-none', // mobile browsers have some issues with it, it's ok
-        'pointer-events',   // ok
-        'css-appearance',   // it does not matter
-        'css-fixed',        // ok
-        'outline',          // ie11 has only partial support of it
-        'css-gradients',    // ok
-        'will-change',      // some browsers are not support it, it's ok
-        'css-textshadow',   // ok
-        'css-resize',       // ?
-        'object-fit',       // used polyfill
-        'calc'              // if browser doesn't support viewport units in calc, it's not very horrible
+        'rem',              // IE10 has partial support of rem units.
+        'viewport-units',   // Only vmax isn't supported in IE11.
+        'outline',          // IE11 has partial support of it.
+        'css-resize',       // IE, Edge, iOS Safari and Opera Mini don't support it.
+        'transforms2d',     // Opera Mini doesn't support them.
+        'css-animation',    // ..again Opera Mini
+        'css-transitions',  // ..and again
+        'border-radius',    // ..same thing..
+        'css-boxshadow',    // ..yes, Opera Mini doesn't support it too..
+        'css-fixed',        // ..and this too..
+        'css-gradients',    // ..and this..
+        'css-textshadow',   // ..Opera Mini has partial support of it.
+
+        'user-select-none', // Mobile browsers have some issues with it, it's ok.
+        'pointer-events',   // This rule related to the specification, not the "pointer-events" CSS property.
+        'css-appearance',   // All browsers have partial support of this thing.
+        'will-change',      // Some browsers don't support it, it's ok.
+        'object-fit',       // Muilessium uses polyfill.
+        'calc'              // If browser doesn't support viewport units in calc, it's not very horrible.
     ]
 };
 
