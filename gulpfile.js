@@ -21,7 +21,10 @@ const ENVIRONMENT = argv.production ? 'production' : 'development';
 
 console.log('\x1b[33m%s %s\x1b[0m\n  ⇒ %s', ' ',
     ENVIRONMENT.toUpperCase(),
-    'Muilessium v' + packageInfo.version);
+    packageInfo.name + ' v' + packageInfo.version);
+console.log('\x1b[36m%s %s\x1b[0m\n  ⇒ %s', ' ',
+    'Browsers:',
+    packageInfo.browserslist);
 
 
 
@@ -32,7 +35,7 @@ gulp.task('less', () => {
         .pipe(postcss())
         .pipe(cssnano({ discardComments: { removeAll: true }}))
         .pipe(gulpif(ENVIRONMENT === 'development', sourcemaps.write()))
-        .pipe(gulpif(ENVIRONMENT === 'production', postcss([doiuse(require('./doiuse.config.js'))])))
+        .pipe(postcss([doiuse(require('./doiuse.config.js'))]))
         .pipe(rename('muilessium.min.css'))
         .pipe(size({ showFiles: true }))
         .pipe(gulp.dest('./dist/css'))
