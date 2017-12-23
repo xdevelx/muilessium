@@ -1,6 +1,7 @@
 // -----------------------------------------------------------------------------
 // CAROUSEL COMPONENT
 // -----------------------------------------------------------------------------
+//
 // Methods list:
 //  - (default) initAria()
 //  - (default) initControls()
@@ -9,13 +10,15 @@
 //  - makeSlideActive(index)
 //  - makeSlideInactive(index)
 //  - rotate(param)
+//
+// -----------------------------------------------------------------------------
 
 
-import { Component } from '../component';
+import Component from '../component';
 
-import * as Mouse       from '../controls/mouse';
-import * as Keyboard    from '../controls/keyboard';
-import * as TouchScreen from '../controls/touchscreen';
+import { MOUSE       } from '../controls/mouse';
+import { KEYBOARD    } from '../controls/keyboard';
+import { TOUCHSCREEN } from '../controls/touchscreen';
 
 import { addClass                   } from '../utils/classes';
 import { removeClass                } from '../utils/classes';
@@ -29,7 +32,7 @@ import { forEach                    } from '../utils/uncategorized';
 
 
 
-export class Carousel extends Component {
+export default class Carousel extends Component {
     constructor(element, options) {
         super(element, options);
 
@@ -63,8 +66,8 @@ export class Carousel extends Component {
 
 
     initControls() {
-        Mouse.onMouseOver(this.domCache.element, this.stopRotation.bind(this));
-        Mouse.onMouseOut(this.domCache.element, this.startRotation.bind(this));
+        MOUSE.onMouseOver(this.domCache.element, this.stopRotation.bind(this));
+        MOUSE.onMouseOut(this.domCache.element, this.startRotation.bind(this));
 
         makeElementFocusable(this.domCache.element);
 
@@ -101,11 +104,11 @@ export class Carousel extends Component {
             this.rotate(index);
         }, { mouse: true, keyboard: false });
 
-        TouchScreen.onSwipeRight(this.domCache.element, this.rotate.bind(this, 'prev'));
-        TouchScreen.onSwipeLeft(this.domCache.element,  this.rotate.bind(this, 'next'));
+        TOUCHSCREEN.onSwipeRight(this.domCache.element, this.rotate.bind(this, 'prev'));
+        TOUCHSCREEN.onSwipeLeft(this.domCache.element,  this.rotate.bind(this, 'next'));
 
-        Keyboard.onArrowLeftPressed(this.domCache.element, this.rotate.bind(this, 'prev'));
-        Keyboard.onArrowRightPressed(this.domCache.element, this.rotate.bind(this, 'next'));
+        KEYBOARD.onArrowLeftPressed(this.domCache.element, this.rotate.bind(this, 'prev'));
+        KEYBOARD.onArrowRightPressed(this.domCache.element, this.rotate.bind(this, 'next'));
 
         return this;
     }

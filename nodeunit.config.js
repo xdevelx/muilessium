@@ -1,5 +1,8 @@
 module.exports = {
     log: {
+        error: function(title, text) {
+            console.log('\x1b[31m%s %s\x1b[0m\n  ⇒ %s', '!', title, text)
+        },
         warning: function(title, text) {
             console.log('\x1b[33m%s %s\x1b[0m\n  ⇒ %s', '!', title, text)
         },

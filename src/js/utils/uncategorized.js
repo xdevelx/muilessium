@@ -8,12 +8,18 @@
 //  - initAnchorLinks()
 //  - generateRandomString(length = 8)
 //  - stringify(object)
-//  - extend(target, source)
+//  - extend(target, ...sources)
 //  - debounce(func, ms)
 //  - callOnce(callback)
 //  - firstOfList(list)
 //  - lastOfList(list)
 //  - forEach(list, callback, delay)
+//
+// -----------------------------------------------------------------------------
+
+
+import { POLYFILLS } from '../polyfills';
+
 
 import { addClass             } from '../utils/classes';
 import { makeElementClickable } from '../utils/focus-and-click';
@@ -136,18 +142,15 @@ export function stringify(object) {
 
 // Extend
 // ------
+// Wrapper for the Object.assign method
 
-/* Use this function instead of Object.assign because IE11 has no support for Object.assign
-   https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign */
-
-export function extend(target, source) {
-    target = target || {};
-
-    for (let prop in source) {
-        target[prop] = source[prop];
+export function extend() {
+    // Here is a little fix for the polyfill
+    if (arguments[0] == undefined) {
+        return {};
     }
 
-    return target;
+    return POLYFILLS.objectAssign.apply(null, arguments);
 };
 
 

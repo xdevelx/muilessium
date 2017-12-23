@@ -1,13 +1,16 @@
 // -----------------------------------------------------------------------------
 // PROGRESS BAR COMPONENT
 // -----------------------------------------------------------------------------
+//
 // Methods list:
 //  - (default) initAria()
 //  - setValue(newValue)
 //  - getValue()
+//
+// -----------------------------------------------------------------------------
 
 
-import { Component } from '../component';
+import Component from '../component';
 
 import { aria         } from '../utils/aria';
 import { getAttribute } from '../utils/attributes';
@@ -15,7 +18,7 @@ import { hasClass     } from '../utils/classes';
 import { extend       } from '../utils/uncategorized';
 
 
-export class ProgressBar extends Component {
+export default class ProgressBar extends Component {
     constructor(element, options) {
         super(element, options);
 

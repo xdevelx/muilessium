@@ -6,6 +6,8 @@
 //  - scrollTo(element, callback)
 //  - scrollToTop(callback)
 //  - scrollFire(element, callback)
+//
+// -----------------------------------------------------------------------------
 
 
 import { ifExists        } from '../utils/checks';

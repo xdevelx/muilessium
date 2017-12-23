@@ -1,6 +1,6 @@
 {
   "name": "muilessium",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "UI Framework",
   "author": "Ivan Bogachev <sfi0zy@gmail.com>",
   "license": "MIT",
@@ -37,6 +37,7 @@
     "jsdom": "^11.3.0",
     "jsdom-global": "^3.0.2",
     "normalize.css": "^5.0.0",
+    "object-assign": "^4.1.1",
     "object-fit-images": "^2.5.6",
     "postcss-cssnext": "^3.0.2",
     "postcss-fixes": "^2.0.1",

@@ -185,7 +185,7 @@
             <div class='mui-header-logo _left'>
                 <img class='mui-image -logo -js-lazy-load' data-src='./muilessium.png' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt='logo'>
                 <a class='link -black -f-blue-3 _right' href='/'>
-                    <h1 class='heading _bigger-1'>muilessium <span class='_smaller-2'>v0.2.6</span></h1>
+                    <h1 class='heading _bigger-1'>muilessium <span class='_smaller-2'>v0.2.7</span></h1>
                 </a>
             </div>
             <!-- /header-logo -->
@@ -465,6 +465,25 @@
                 <!-- /CDN -->
 
 
+                <!-- Globals -->
+                <div class='_separate-5'>
+                    <div class='mui-row'>
+                        <a class='anchor-link -black -f-blue-3' href='#cdn'>
+                            <h3 class='_bigger-2' id='cdn'>Global Variables</h3>
+                        </a>
+                    </div>
+                    <p class='mui-p _separate-1'>Muilessium has one global entry point - window.Muilessium. It has a number of useful fields:</p>
+                    <ul class='mui-list _separate-1'>
+                        <li class='item'><a href='#events-overview'>EVENTS</a> - the events observer</li>
+                        <li class='item'><a href='#utils'>UTILS</a> - a number of useful utilities</li>
+                        <li class='item'>POLYFILLS - a number of polyfills for internal usage</li>
+                        <li class='item'>FACTORY - the main factory of components</li>
+                        <li class='item'>KEYBOARD, MOUSE, TOUCHPAD - a number of utilities for controls</li>
+                    </ul>
+                </div>
+                <!-- /Globals -->
+
+
                 <!-- grid overview -->
                 <div class='_separate-5'>
                     <div class='mui-row'>
@@ -603,7 +622,7 @@
                         </a>
                     </div>
 
-                    <p class='mui-p _separate-1'>Muilessium has a system of internal events. It exports that system as window.Muilessium.Events. The main methods are:</p>
+                    <p class='mui-p _separate-1'>Muilessium has a system of internal events. It exports that system as window.Muilessium.EVENTS. The main methods are:</p>
                     <ul class='mui-list _separate-1 _smaller-1'>
                         <li class='item'>addEvent(name)</li>
                         <li class='item'>addEventListener(name, callback, executeIfAlreadyFired=false)</li>
@@ -784,7 +803,7 @@
                         </a>
                     </div>
 
-                    <p class='mui-p _separate-1'>Muilessium exports a number of internal utilities as window.Muilessium.Utils including</p>
+                    <p class='mui-p _separate-1'>Muilessium exports a number of internal utilities as window.Muilessium.UTILS including</p>
 
                     <ul class='mui-list _smaller-1'>
                         <li id='utils-ajax' class='item'><h4 class='_bigger-0'>AJAX</h4>
@@ -3218,8 +3237,8 @@
         <span>Copyright &copy; Ivan Bogachev, 2016-2017</span>
     </div>
 
-    <link rel='stylesheet' href='./css/muilessium.min.css?v=0.2.6'>
-    <script src='./js/muilessium.min.js?v=0.2.6'></script>
+    <link rel='stylesheet' href='./css/muilessium.min.css?v=0.2.7'>
+    <script src='./js/muilessium.min.js?v=0.2.7'></script>
 
 
     <style>
@@ -3412,7 +3431,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var _ = Muilessium.Utils;
+            var _ = Muilessium.UTILS;
 
             function animateTitles() {
                 var title1 = document.getElementById('animated-title-1'),

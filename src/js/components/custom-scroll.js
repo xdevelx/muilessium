@@ -3,7 +3,7 @@
 // -----------------------------------------------------------------------------
 
 
-import { Component } from '../component';
+import Component from '../component';
 
 import { setAttribute } from '../utils/attributes';
 import { extend       } from '../utils/uncategorized';
@@ -11,7 +11,7 @@ import { extend       } from '../utils/uncategorized';
 import * as SimpleBar from 'simplebar';
 
 
-export class CustomScroll extends Component {
+export default class CustomScroll extends Component {
     constructor(element, options) {
         super(element, options);
 

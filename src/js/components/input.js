@@ -1,15 +1,18 @@
 // -----------------------------------------------------------------------------
 // INPUT COMPONENT
 // -----------------------------------------------------------------------------
+//
 // Methods list:
 //  - (default) initAria()
 //  - (default) initControls()
 //  - validate()
 //  - getValue()
 //  - isValid()
+//
+// -----------------------------------------------------------------------------
 
 
-import { Component } from '../component';
+import Component from '../component';
 
 import { aria                     } from '../utils/aria';
 import { setAttribute             } from '../utils/attributes';
@@ -30,7 +33,7 @@ import { forEach                  } from '../utils/uncategorized';
 
 
 
-export class Input extends Component {
+export default class Input extends Component {
     constructor(element, options) {
         super(element, options);
 

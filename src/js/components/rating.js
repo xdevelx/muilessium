@@ -1,6 +1,7 @@
 // -----------------------------------------------------------------------------
 // RATING COMPONENT
 // -----------------------------------------------------------------------------
+//
 // Methods list:
 //  - (default) initAria()
 //  - (default) initControls()
@@ -8,11 +9,13 @@
 //  - increaseRating()
 //  - decreaseRating()
 //  - getRating()
+//
+// -----------------------------------------------------------------------------
 
 
-import { Component } from '../component';
+import Component from '../component';
 
-import * as Keyboard from '../controls/keyboard';
+import { KEYBOARD } from '../controls/keyboard';
 
 import { aria                       } from '../utils/aria';
 import { getAttribute               } from '../utils/attributes';
@@ -27,7 +30,7 @@ import { forEach                    } from '../utils/uncategorized';
 
 
 
-export class Rating extends Component {
+export default class Rating extends Component {
     constructor(element, options) {
         super(element, options);
 
@@ -64,8 +67,8 @@ export class Rating extends Component {
     initControls() {
         makeElementFocusable(this.domCache.element);
 
-        Keyboard.onArrowLeftPressed(this.domCache.element,  this.decreaseRating.bind(this));
-        Keyboard.onArrowRightPressed(this.domCache.element, this.increaseRating.bind(this));
+        KEYBOARD.onArrowLeftPressed(this.domCache.element,  this.decreaseRating.bind(this));
+        KEYBOARD.onArrowRightPressed(this.domCache.element, this.increaseRating.bind(this));
 
         makeChildElementsClickable(this.domCache.element, this.domCache.stars, (index) => {
             this.updateRating(index + 1);

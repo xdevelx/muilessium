@@ -1,27 +1,58 @@
 // -----------------------------------------------------------------------------
 // COMPONENTS INDEX
 // -----------------------------------------------------------------------------
+//
 // This is the index file for components from /src/js/components/
+//
+// -----------------------------------------------------------------------------
 
-export { Accordion        } from './components/accordion';
-export { Breadcrumb       } from './components/breadcrumb';
-export { ButtonDropdown   } from './components/button-dropdown';
-export { Button           } from './components/button';
-export { Carousel         } from './components/carousel';
-export { Checkbox         } from './components/checkbox';
-export { CustomScroll     } from './components/custom-scroll';
-export { HeaderNavigation } from './components/header-navigation';
-export { Input            } from './components/input';
-export { MediaView        } from './components/media-view';
-export { ModalWindow      } from './components/modal-window';
-export { Pagination       } from './components/pagination';
-export { ProgressBar      } from './components/progress-bar';
-export { Radio            } from './components/radio';
-export { ScrollFix        } from './components/scroll-fix';
-export { SelectDropdown   } from './components/select-dropdown';
-export { Spoiler          } from './components/spoiler';
-export { Tabs             } from './components/tabs';
-export { TagsList         } from './components/tags-list';
-export { Textarea         } from './components/textarea';
-export { Rating           } from './components/rating';
+
+import Accordion         from './components/accordion';
+import Breadcrumb        from './components/breadcrumb';
+import ButtonDropdown    from './components/button-dropdown';
+import Button            from './components/button';
+import Carousel          from './components/carousel';
+import Checkbox          from './components/checkbox';
+import CustomScroll      from './components/custom-scroll';
+import HeaderNavigation  from './components/header-navigation';
+import Input             from './components/input';
+import MediaView         from './components/media-view';
+import ModalWindow       from './components/modal-window';
+import Pagination        from './components/pagination';
+import ProgressBar       from './components/progress-bar';
+import Radio             from './components/radio';
+import ScrollFix         from './components/scroll-fix';
+import SelectDropdown    from './components/select-dropdown';
+import Spoiler           from './components/spoiler';
+import Tabs              from './components/tabs';
+import TagsList          from './components/tags-list';
+import Textarea          from './components/textarea';
+import Rating            from './components/rating';
+
+
+// -----------------------------------------------------------------------------
+
+export let COMPONENTS = {
+    Accordion,
+    Breadcrumb,
+    ButtonDropdown,
+    Button,
+    Carousel,
+    Checkbox,
+    CustomScroll,
+    HeaderNavigation,
+    Input,
+    MediaView,
+    ModalWindow,
+    Pagination,
+    ProgressBar,
+    Radio,
+    ScrollFix,
+    SelectDropdown,
+    Spoiler,
+    Tabs,
+    TagsList,
+    Textarea,
+    Rating
+};
 

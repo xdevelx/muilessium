@@ -1,6 +1,7 @@
 // -----------------------------------------------------------------------------
 // WAI-ARIA UTILITIES
 // -----------------------------------------------------------------------------
+//
 // Here are some functions for operations with aria-roles and properties.
 // These functions should be used in components for better code readability.
 //
@@ -12,6 +13,8 @@
 //  - get(element, property)
 //  - getRole(element)
 //  - toggleState(element, state)
+//
+// -----------------------------------------------------------------------------
 
 
 import { setAttribute         } from '../utils/attributes';

@@ -1,6 +1,7 @@
 // -----------------------------------------------------------------------------
 // FOCUS AND CLICK
 // -----------------------------------------------------------------------------
+//
 // This is a number of functions for manipulating with 'focus' and 'click' events
 // in accessible components.
 // 
@@ -19,10 +20,12 @@
 //  - makeChildElementsClickable(element, childs, callback, { mouse = true, keyboard = true } = {})
 //  - onFocus(element, callback)
 //  - onBlur(element, callback)
+//
+// -----------------------------------------------------------------------------
 
 
-import * as Mouse from '../controls/mouse';
-import * as Keyboard from '../controls/keyboard';
+import { MOUSE    } from '../controls/mouse';
+import { KEYBOARD } from '../controls/keyboard';
 
 import { ifExists       } from '../utils/checks';
 import { ifNodeList     } from '../utils/checks';
@@ -180,7 +183,7 @@ export function goToPreviousFocusableElement(element) {
 export function makeElementClickable(element, callback, { mouse = true, keyboard = true } = {}) {
     return ifExists(element, () => {
         if (mouse) {
-            Mouse.onClick(element, (e) => {
+            MOUSE.onClick(element, (e) => {
                 callback(e);
             });
         }
@@ -188,7 +191,7 @@ export function makeElementClickable(element, callback, { mouse = true, keyboard
         if (keyboard) {
             element.tabIndex = 0;
 
-            Keyboard.onEnterPressed(element, (e) => {
+            KEYBOARD.onEnterPressed(element, (e) => {
                 callback(e);
             });
         }
@@ -207,7 +210,7 @@ export function makeChildElementsClickable(element, childs, callback, { mouse = 
     return ifExists(element, () => {
         return ifNodeList(childs, () => {
             if (mouse) {
-                Mouse.onClick(element, (e) => {
+                MOUSE.onClick(element, (e) => {
                     let index = -1;
 
                     forEach(childs, (child, i) => {

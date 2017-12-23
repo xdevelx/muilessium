@@ -1,6 +1,7 @@
 // -----------------------------------------------------------------------------
 // ACCORDION COMPONENT
 // -----------------------------------------------------------------------------
+//
 // Methods list:
 //  - (default) initAria()
 //  - (default) initControls()
@@ -9,11 +10,13 @@
 //  - unfoldItem(index)
 //  - unfoldAllItems()
 //  - toggleItem()
+//
+// -----------------------------------------------------------------------------
 
 
-import { Component } from '../component';
+import Component from '../component';
 
-import * as Keyboard from '../controls/keyboard';
+import { KEYBOARD } from '../controls/keyboard';
 
 import { aria                       } from '../utils/aria';
 import { setAttribute               } from '../utils/attributes';
@@ -28,7 +31,7 @@ import { lastOfList                 } from '../utils/uncategorized';
 
 
 
-export class Accordion extends Component {
+export default class Accordion extends Component {
     constructor(element, options) {
         super(element, options);
 
@@ -74,16 +77,16 @@ export class Accordion extends Component {
         });
 
         forEach(this.domCache.titles, (title, index) => {
-            Keyboard.onSpacePressed(title, this.toggleItem.bind(this, index));
+            KEYBOARD.onSpacePressed(title, this.toggleItem.bind(this, index));
 
             if (title != firstOfList(this.domCache.titles)) {
-                Keyboard.onArrowUpPressed(title, () => {
+                KEYBOARD.onArrowUpPressed(title, () => {
                     this.domCache.titles[index-1].focus(); 
                 });
             }
             
             if (title != lastOfList(this.domCache.titles)) {
-                Keyboard.onArrowDownPressed(title, () => {
+                KEYBOARD.onArrowDownPressed(title, () => {
                     this.domCache.titles[index+1].focus(); 
                 });
             }

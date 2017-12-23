@@ -1,13 +1,16 @@
 // -----------------------------------------------------------------------------
 // RADIO COMPONENT
 // -----------------------------------------------------------------------------
+//
 // Methods list:
 //  - (default) initAria()
 //  - (default) initControls()
 //  - updateState(index)
 //  - getState()
+//
+// -----------------------------------------------------------------------------
 
-import { Component } from '../component';
+import Component from '../component';
 
 import { aria                       } from '../utils/aria';
 import { setAttribute               } from '../utils/attributes';
@@ -19,7 +22,7 @@ import { forEach                    } from '../utils/uncategorized';
 
 
 
-export class Radio extends Component {
+export default class Radio extends Component {
     constructor(element, options) {
         super(element, options);
 

@@ -14,7 +14,7 @@ require('jsdom-global/register');
 
 
 var log = require('../../nodeunit.config.js').log,
-    _   = require('../../src/js/utils.js');
+    _   = require('../../src/js/utils.js').UTILS;
 
 
 

@@ -1,14 +1,28 @@
 // -----------------------------------------------------------------------------
 // KEYBOARD
 // -----------------------------------------------------------------------------
+//
 // Here is a number of wrappers written in one style for the most popular
 // keys for creating accessible components. They are arrow keys, enter and space.
 // This list of functions can be expanded by other key events if it needed.
 //
 // These functions should be used in components for better code readability.
+//
+// Functions list:
+//  - onEnterPressed
+//  - onSpacePressed
+//  - onTabPressed
+//  - onEscapePressed
+//  - onShiftTabPressed
+//  - onArrowUpPressed
+//  - onArrowRightPressed
+//  - onArrowDownPressed
+//  - onArrowLeftPressed
+//
+// -----------------------------------------------------------------------------
 
 
-export function onEnterPressed(element, callback) {
+function onEnterPressed(element, callback) {
     element.addEventListener('keydown', (e) => {
         if (e.keyCode == 13) {
             e.preventDefault();
@@ -18,7 +32,7 @@ export function onEnterPressed(element, callback) {
 };
 
 
-export function onSpacePressed(element, callback) {
+function onSpacePressed(element, callback) {
     element.addEventListener('keydown', (e) => {
         if (e.keyCode == 32) {
             e.preventDefault();
@@ -28,7 +42,7 @@ export function onSpacePressed(element, callback) {
 };
 
 
-export function onTabPressed(element, callback) {
+function onTabPressed(element, callback) {
     element.addEventListener('keydown', (e) => {
         if (e.keyCode == 9 && !e.shiftKey) {
             e.preventDefault();
@@ -38,7 +52,7 @@ export function onTabPressed(element, callback) {
 };
 
 
-export function onEscapePressed(element, callback) {
+function onEscapePressed(element, callback) {
     element.addEventListener('keydown', (e) => {
         if (e.keyCode == 27 && !e.shiftKey) {
             e.preventDefault();
@@ -48,7 +62,7 @@ export function onEscapePressed(element, callback) {
 };
 
 
-export function onShiftTabPressed(element, callback) {
+function onShiftTabPressed(element, callback) {
     element.addEventListener('keydown', (e) => {
         if (e.keyCode == 9 && e.shiftKey) {
             e.preventDefault();
@@ -58,7 +72,7 @@ export function onShiftTabPressed(element, callback) {
 };
 
 
-export function onArrowLeftPressed(element, callback) {
+function onArrowLeftPressed(element, callback) {
     element.addEventListener('keydown', (e) => {
         if (e.keyCode == 37) {
             e.preventDefault();
@@ -68,7 +82,7 @@ export function onArrowLeftPressed(element, callback) {
 };
 
 
-export function onArrowUpPressed(element, callback) {
+function onArrowUpPressed(element, callback) {
     element.addEventListener('keydown', (e) => {
         if (e.keyCode == 38) {
             e.preventDefault();
@@ -78,7 +92,7 @@ export function onArrowUpPressed(element, callback) {
 };
 
 
-export function onArrowRightPressed(element, callback) {
+function onArrowRightPressed(element, callback) {
     element.addEventListener('keydown', (e) => {
         if (e.keyCode == 39) {
             e.preventDefault();
@@ -88,7 +102,7 @@ export function onArrowRightPressed(element, callback) {
 };
 
 
-export function onArrowDownPressed(element, callback) {
+function onArrowDownPressed(element, callback) {
     element.addEventListener('keydown', (e) => {
         if (e.keyCode == 40) {
             e.preventDefault();
@@ -96,4 +110,20 @@ export function onArrowDownPressed(element, callback) {
         }
     });
 };
+
+
+// -----------------------------------------------------------------------------
+
+export let KEYBOARD = {
+    onEnterPressed,
+    onSpacePressed,
+    onTabPressed,
+    onEscapePressed,
+    onShiftTabPressed,
+    onArrowUpPressed,
+    onArrowRightPressed,
+    onArrowDownPressed,
+    onArrowLeftPressed
+};
+
 

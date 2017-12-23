@@ -1,6 +1,7 @@
 // -----------------------------------------------------------------------------
 // HEADER NAVIGATION COMPONENT
 // -----------------------------------------------------------------------------
+//
 // Methods list:
 //  - (default) initAria()
 //  - (default) initControls()
@@ -10,12 +11,16 @@
 //  - transformToMobile()
 //  - transformToDesktop()
 //  - update()
+//
+// -----------------------------------------------------------------------------
 
 
-import { Component } from '../component';
+import Component from '../component';
 
-import * as TouchScreen from '../controls/touchscreen';
-import * as Keyboard    from '../controls/keyboard';
+import { EVENTS } from '../events';
+
+import { TOUCHSCREEN } from '../controls/touchscreen';
+import { KEYBOARD    } from '../controls/keyboard';
 
 import { aria                         } from '../utils/aria';
 import { addClass                     } from '../utils/classes';
@@ -32,7 +37,7 @@ import { lastOfList                   } from '../utils/uncategorized';
 
 
 
-export class HeaderNavigation extends Component {
+export default class HeaderNavigation extends Component {
     constructor(element, options) {
         super(element, options);
         
@@ -53,7 +58,7 @@ export class HeaderNavigation extends Component {
         this.initControls();
         this.update();
 
-        window.Muilessium.Events.addEventListener('resize-window-width', this.update.bind(this)); 
+        EVENTS.addEventListener('resize-window-width', this.update.bind(this)); 
 
         this.state.initialized = true;
     }
@@ -86,7 +91,7 @@ export class HeaderNavigation extends Component {
             }
         });
 
-        TouchScreen.onSwipeRight(this.domCache.element, () => {
+        TOUCHSCREEN.onSwipeRight(this.domCache.element, () => {
             if (this.state.mobile) {
                 this.closeNavigation();
             }
@@ -94,13 +99,13 @@ export class HeaderNavigation extends Component {
 
         this.domCache.focusables = getFocusableChilds(this.domCache.links);
 
-        Keyboard.onShiftTabPressed(firstOfList(this.domCache.focusables), () => {
+        KEYBOARD.onShiftTabPressed(firstOfList(this.domCache.focusables), () => {
             this.closeNavigation();
 
             goToPreviousFocusableElement(this.domCache.hamburger);
         });
 
-        Keyboard.onTabPressed(lastOfList(this.domCache.focusables), () => {
+        KEYBOARD.onTabPressed(lastOfList(this.domCache.focusables), () => {
             this.closeNavigation();
 
             goToNextFocusableElement(

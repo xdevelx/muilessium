@@ -1,6 +1,7 @@
 // -----------------------------------------------------------------------------
 // TABS COMPONENT
 // -----------------------------------------------------------------------------
+//
 // Methods list:
 //  - (default) initAria()
 //  - (default) initControls()
@@ -8,12 +9,14 @@
 //  - makeTabInactive(index)
 //  - goToPreviousTab()
 //  - goToNextTab()
+//
+// -----------------------------------------------------------------------------
 
 
-import { Component } from '../component';
+import Component from '../component';
 
-import * as Keyboard from '../controls/keyboard';
-import * as TouchScreen from '../controls/touchscreen';
+import { KEYBOARD    } from '../controls/keyboard';
+import { TOUCHSCREEN } from '../controls/touchscreen';
 
 import { aria                       } from '../utils/aria';
 import { addClass                   } from '../utils/classes';
@@ -26,7 +29,7 @@ import { forEach                    } from '../utils/uncategorized';
 
 
 
-export class Tabs extends Component {
+export default class Tabs extends Component {
     constructor(element, options) {
         super(element, options);
         
@@ -80,12 +83,12 @@ export class Tabs extends Component {
                 makeElementNotFocusable(label);
             }
 
-            Keyboard.onArrowLeftPressed(label, this.goToPreviousTab.bind(this));
-            Keyboard.onArrowRightPressed(label, this.goToNextTab.bind(this));
+            KEYBOARD.onArrowLeftPressed(label, this.goToPreviousTab.bind(this));
+            KEYBOARD.onArrowRightPressed(label, this.goToNextTab.bind(this));
         });
 
-        TouchScreen.onSwipeRight(this.domCache.element, this.goToPreviousTab.bind(this));
-        TouchScreen.onSwipeLeft(this.domCache.element, this.goToNextTab.bind(this));
+        TOUCHSCREEN.onSwipeRight(this.domCache.element, this.goToPreviousTab.bind(this));
+        TOUCHSCREEN.onSwipeLeft(this.domCache.element, this.goToNextTab.bind(this));
 
         return this;
     }

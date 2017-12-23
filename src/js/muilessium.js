@@ -3,73 +3,88 @@
 // -----------------------------------------------------------------------------
 
 
-import * as Utils     from './utils';
-import * as Polyfills from './polyfills';
-
-import * as Keyboard    from './controls/keyboard';
-import * as Mouse       from './controls/mouse';
-import * as TouchScreen from './controls/touchscreen';
-
-import { Events  } from './events';
-import { Factory } from './factory';
+import { UTILS       } from './utils';
+import { EVENTS      } from './events';
+import { FACTORY     } from './factory';
+import { POLYFILLS   } from './polyfills';
+import { KEYBOARD    } from './controls/keyboard';
+import { MOUSE       } from './controls/mouse';
+import { TOUCHSCREEN } from './controls/touchscreen';
 
 
-export default class Muilessium {
+class Muilessium {
     constructor() {
-        // This is a singleton
-        if (typeof Muilessium.instance === 'object') {
-            return Muilessium.instance;
-        }
+        this.UTILS       = UTILS;
+        this.EVENTS      = EVENTS;
+        this.FACTORY     = FACTORY;
+        this.POLYFILLS   = POLYFILLS;
+        this.KEYBOARD    = KEYBOARD;
+        this.MOUSE       = MOUSE;
+        this.TOUCHSCREEN = TOUCHSCREEN;
 
-        // Utilities from /src/js/utils.js
-        this.Utils = Utils;
-
-        // Controls from /src/js/controls/*
-        this.Keyboard    = Keyboard;
-        this.Mouse       = Mouse;
-        this.TouchScreen = TouchScreen;
-
-        // Events observer from /src/js/events.js
-        this.Events  = new Events;
         this.initEvents();
         this.initEventListeners();
+        this.initComponents();
 
-        // Components factory from /src/js/factory.js
-        this.Factory = new Factory;
-
-        this.components = {};
-
-        Muilessium.instance = this;
-        this.Events.fireEvent('muilessium-initialized');
+        this.EVENTS.fireEvent('muilessium-initialized');
     }
 
 
     initEvents() {
-        this.Events.addEvent('muilessium-initialized');
-        this.Events.addEvent('images-loaded');
+        EVENTS.addEvent('muilessium-initialized');
+        EVENTS.addEvent('images-loaded');
 
         return this;
     }
 
 
     initEventListeners() {
-        this.Events.addEventListener('muilessium-initialized', () => {
-            Utils.normalizeTabIndex();
-            Utils.initAnchorLinks();
-            Utils.lazyLoadImages(() => {
-                this.Events.fireEvent('images-loaded');
+        EVENTS.addEventListener('muilessium-initialized', () => {
+            UTILS.normalizeTabIndex();
+            UTILS.initAnchorLinks();
+            UTILS.lazyLoadImages(() => {
+                EVENTS.fireEvent('images-loaded');
             });
 
-            Polyfills.smoothScroll();
+            POLYFILLS.smoothScroll();
         });
 
-        this.Events.addEventListener('images-loaded', Polyfills.objectFit);
+        EVENTS.addEventListener('images-loaded', POLYFILLS.objectFit);
     }
+
+
+    initComponents() {
+        FACTORY.create('Breadcrumb', '.mui-breadcrumb', {});
+        FACTORY.create('Button',     '.mui-button',     {});
+        FACTORY.create('MediaView',  '.mui-media-view', {});
+        FACTORY.create('Pagination', '.mui-pagination', {});
+        FACTORY.create('ScrollFix',  '.mui-scroll-fix', {});
+        FACTORY.create('TagsList',   '.mui-tags-list',  {});
+
+        this.components = {
+            'Accordion':        FACTORY.create('Accordion',        '.mui-accordion',         {}),
+            'ButtonDropdown':   FACTORY.create('ButtonDropdown',   '.mui-button-dropdown',   {}),
+            'Carousel':         FACTORY.create('Carousel',         '.mui-carousel',          {}),
+            'Checkbox':         FACTORY.create('Checkbox',         '.mui-checkbox',          {}),
+            'CustomScroll':     FACTORY.create('CustomScroll',     '.mui-custom-scroll',     {}),
+            'HeaderNavigation': FACTORY.create('HeaderNavigation', '.mui-header-navigation', {}),
+            'Input':            FACTORY.create('Input',            '.mui-input',             {}),
+            'ModalWindow':      FACTORY.create('ModalWindow',      '.mui-modal-window',      {}),
+            'ProgressBar':      FACTORY.create('ProgressBar',      '.mui-progress-bar',      {}),
+            'Radio':            FACTORY.create('Radio',            '.mui-radio',             {}),
+            'Rating':           FACTORY.create('Rating',           '.mui-rating',            {}),
+            'SelectDropdown':   FACTORY.create('SelectDropdown',   '.mui-select-dropdown',   {}),
+            'Spoiler':          FACTORY.create('Spoiler',          '.mui-spoiler',           {}),
+            'Tabs':             FACTORY.create('Tabs',             '.mui-tabs',              {}),
+            'Textarea':         FACTORY.create('Textarea',         '.mui-textarea',          {})
+        };
+    }
+
 
     get(componentName, id) {
         let result = null;
 
-        Utils.forEach(this.components[componentName], (component) => {
+        UTILS.forEach(this.components[componentName], (component) => {
             if (component.domCache.element.id === id) {
                 result = component;
             }
@@ -78,4 +93,10 @@ export default class Muilessium {
         return result;
     }
 };
+
+
+// -----------------------------------------------------------------------------
+
+export let MUILESSIUM = new Muilessium;
+
 

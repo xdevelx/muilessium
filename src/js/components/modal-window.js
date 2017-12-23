@@ -1,17 +1,20 @@
 // -----------------------------------------------------------------------------
 // MODAL WINDOW COMPONENT
 // -----------------------------------------------------------------------------
+//
 // Methods list:
 //  - (default) initAria()
 //  - (default) initControls()
 //  - openModal()
 //  - closeModal()
+//
+// -----------------------------------------------------------------------------
 
 
-import { Component } from '../component';
+import Component from '../component';
 
-import * as Keyboard from '../controls/keyboard';
-import * as TouchScreen from '../controls/touchscreen';
+import { KEYBOARD    } from '../controls/keyboard';
+import { TOUCHSCREEN } from '../controls/touchscreen';
 
 import { aria                         } from '../utils/aria';
 import { addClass                     } from '../utils/classes';
@@ -26,7 +29,7 @@ import { forEach                      } from '../utils/uncategorized';
 
 
 
-export class ModalWindow extends Component {
+export default class ModalWindow extends Component {
     constructor(element, options) {
         super(element, options);
 
@@ -62,22 +65,22 @@ export class ModalWindow extends Component {
                 this.openModal();
             });
 
-            Keyboard.onSpacePressed(opener, () => {
+            KEYBOARD.onSpacePressed(opener, () => {
                 this.state.savedOpened = opener;
                 this.openModal();
             });
         });
 
-        Keyboard.onEscapePressed  (this.domCache.modalWindow, this.closeModal.bind(this));
-        Keyboard.onTabPressed     (this.domCache.modalWindow, this.closeModal.bind(this));
-        Keyboard.onShiftTabPressed(this.domCache.modalWindow, this.closeModal.bind(this));
+        KEYBOARD.onEscapePressed  (this.domCache.modalWindow, this.closeModal.bind(this));
+        KEYBOARD.onTabPressed     (this.domCache.modalWindow, this.closeModal.bind(this));
+        KEYBOARD.onShiftTabPressed(this.domCache.modalWindow, this.closeModal.bind(this));
         
         makeElementClickable(this.domCache.closeIcon, this.closeModal.bind(this),
                         { mouse: true, keyboard: false });
         makeElementClickable(this.domCache.shadow,    this.closeModal.bind(this),
                         { mouse: true, keyboard: false });
 
-        TouchScreen.onPinchOut(this.domCache.modalWindow, this.closeModal.bind(this));
+        TOUCHSCREEN.onPinchOut(this.domCache.modalWindow, this.closeModal.bind(this));
 
         return this;
     }

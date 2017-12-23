@@ -1,6 +1,7 @@
 // -----------------------------------------------------------------------------
 // HTML ATTRIBUTES
 // -----------------------------------------------------------------------------
+//
 // These functions should be used in components for better code readability and
 // avoiding errors when the selected element does not exist.
 //
@@ -8,6 +9,8 @@
 //  - setAttribute(element, attribute, value)
 //  - getAttribute(element, attribute, defaultValue)
 //  - removeAttribute(element, attribute)
+//
+// -----------------------------------------------------------------------------
 
 
 import { ifExists } from '../utils/checks';

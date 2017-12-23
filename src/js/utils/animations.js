@@ -1,11 +1,14 @@
 // -----------------------------------------------------------------------------
 // ANIMATIONS
 // -----------------------------------------------------------------------------
+//
 // Here is the full list of animations:
 //  - typeText(element, {text = '', delay = 120, cycle = false, times = -1}, callback = null)
 //  - typeTexts(element, textsList)
 //  - activateAnimation(element)
 //  - animateElement(element, animation)
+//
+// -----------------------------------------------------------------------------
 
 
 import { ifExists    } from '../utils/checks';

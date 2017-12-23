@@ -1,6 +1,7 @@
 // -----------------------------------------------------------------------------
 // CHECKBOX COMPONENT
 // -----------------------------------------------------------------------------
+//
 // Methods list:
 //  - (default) initAria()
 //  - (default) initControls()
@@ -8,11 +9,13 @@
 //  - unsetCheckbox()
 //  - toggleCheckbox()
 //  - getState()
+//
+// -----------------------------------------------------------------------------
 
 
-import { Component } from '../component';
+import Component from '../component';
 
-import * as Keyboard from '../controls/keyboard';
+import { KEYBOARD } from '../controls/keyboard';
 
 import { aria                  } from '../utils/aria';
 import { setAttribute          } from '../utils/attributes';
@@ -24,7 +27,7 @@ import { console               } from '../utils/console';
 
 
 
-export class Checkbox extends Component {
+export default class Checkbox extends Component {
     constructor(element, options) {
         super(element, options);
 
@@ -65,7 +68,7 @@ export class Checkbox extends Component {
     initControls() {
         makeElementClickable(this.domCache.label, this.toggleCheckbox.bind(this));
 
-        Keyboard.onSpacePressed(this.domCache.label, this.toggleCheckbox.bind(this));
+        KEYBOARD.onSpacePressed(this.domCache.label, this.toggleCheckbox.bind(this));
 
         return this;
     }

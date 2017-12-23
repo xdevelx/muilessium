@@ -1,14 +1,22 @@
 // -----------------------------------------------------------------------------
 // MOUSE
 // -----------------------------------------------------------------------------
+//
 // Here is a number of wrappers written in one style for the most popular
 // mouse events. This list of functions can be expanded by other mouse actions
 // if it needed.
 //
 // These functions should be used in components for better code readability.
+//
+// Functions list:
+//  - onClick
+//  - onMouseOver
+//  - onMouseOut
+//
+// -----------------------------------------------------------------------------
 
 
-export function onClick(element, callback) {
+function onClick(element, callback) {
     element.addEventListener('click', (e) => {
         e.preventDefault();
         callback(e);
@@ -16,7 +24,7 @@ export function onClick(element, callback) {
 };
 
 
-export function onMouseOver(element, callback) {
+function onMouseOver(element, callback) {
     element.addEventListener('mouseover', (e) => {
         e.preventDefault();
         callback(e);
@@ -24,10 +32,20 @@ export function onMouseOver(element, callback) {
 };
 
 
-export function onMouseOut(element, callback) {
+function onMouseOut(element, callback) {
     element.addEventListener('mouseout', (e) => {
         e.preventDefault();
         callback(e);
     });
 };
+
+
+// -----------------------------------------------------------------------------
+
+export let MOUSE = {
+    onClick,
+    onMouseOver,
+    onMouseOut
+};
+
 

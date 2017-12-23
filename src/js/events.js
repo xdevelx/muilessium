@@ -2,7 +2,7 @@
 // EVENTS OBSERVER
 // -----------------------------------------------------------------------------
 //
-// Should be available as window.Muilessium.Events,
+// Should be available as window.Muilessium.EVENTS,
 // take a look at /src/js/muilessium.js if not
 //
 // Methods:
@@ -23,14 +23,12 @@
 // Additional events (initialized in /src/js/app.js):
 //   - app-initialized
 //   - images-loaded
+//
+// -----------------------------------------------------------------------------
 
 
-export class Events {
+class Events {
     constructor() {
-        if (typeof Events.instance === 'object') {
-            return Events.instance;
-        }
-
         this.data = {
             window: {}
         };
@@ -42,8 +40,6 @@ export class Events {
         this.eventsData = {};
 
         this.initDefaultEvents();
-
-        Events.instance = this;
     }
 
 
@@ -148,4 +144,10 @@ export class Events {
         return this;
     }
 }
+
+
+// -----------------------------------------------------------------------------
+
+export let EVENTS = new Events;
+
 

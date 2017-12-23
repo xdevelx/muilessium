@@ -22,7 +22,7 @@ require('jsdom-global')('', {
 
 
 var log = require('../../nodeunit.config.js').log,
-    _   = require('../../src/js/utils.js');
+    _   = require('../../src/js/utils.js').UTILS;
 
 
 module.exports = {

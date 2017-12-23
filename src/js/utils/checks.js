@@ -1,6 +1,7 @@
 // -----------------------------------------------------------------------------
 // CHECKS
 // -----------------------------------------------------------------------------
+//
 // These functions should be used in components for better code readability
 // and avoiding errors when some element does not exist.
 //
@@ -11,6 +12,8 @@
 //  - ifExists(element, callback, printWarning = true)
 //  - ifNodeList(element, callback, printWarning = true)
 //  - isDescendant(parent, child)
+//
+// -----------------------------------------------------------------------------
 
 
 import { console } from '../utils/console';

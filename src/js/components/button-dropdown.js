@@ -1,17 +1,20 @@
 // -----------------------------------------------------------------------------
 // DROPDOWN BUTTON COMPONENT
 // -----------------------------------------------------------------------------
+//
 // Methods list:
 //  - (default) initAria()
 //  - (default) initControls()
 //  - openDropdown()
 //  - closeDropdown()
 //  - toggleDropdown()
+//
+// -----------------------------------------------------------------------------
 
 
-import { Component } from '../component';
+import Component from '../component';
 
-import * as Keyboard from '../controls/keyboard';
+import { KEYBOARD } from '../controls/keyboard';
 
 import { aria                     } from '../utils/aria';
 import { addClass                 } from '../utils/classes';
@@ -27,7 +30,7 @@ import { forEach                  } from '../utils/uncategorized';
 
 
 
-export class ButtonDropdown extends Component {
+export default class ButtonDropdown extends Component {
     constructor(element, options) {
         super(element, options);
 
@@ -65,11 +68,11 @@ export class ButtonDropdown extends Component {
                         this.toggleDropdown.bind(this, { focusFirstWhenOpened: false }),
                                         { mouse: true, keyboard: false });
 
-        Keyboard.onEnterPressed(this.domCache.button,
+        KEYBOARD.onEnterPressed(this.domCache.button,
                         this.toggleDropdown.bind(this, { focusFirstWhenOpened: true }),
                                         { mouse: false, keyboard: true });
 
-        Keyboard.onSpacePressed(this.domCache.button,
+        KEYBOARD.onSpacePressed(this.domCache.button,
                         this.toggleDropdown.bind(this, { focusFirstWhenOpened: true }),
                                         { mouse: false, keyboard: true });
 
@@ -79,7 +82,7 @@ export class ButtonDropdown extends Component {
         makeElementsFocusable(this.domCache.optionsList);
 
         forEach(this.domCache.optionsList, (option, index) => {
-            Keyboard.onArrowUpPressed(option, () => {
+            KEYBOARD.onArrowUpPressed(option, () => {
                 if (option == firstOfList(this.domCache.optionsList)) {
                     this.closeDropdown();
                     this.domCache.button.focus();
@@ -88,7 +91,7 @@ export class ButtonDropdown extends Component {
                 }
             });
 
-            Keyboard.onArrowDownPressed(option, () => {
+            KEYBOARD.onArrowDownPressed(option, () => {
                 if (option == lastOfList(this.domCache.optionsList)) {
                     this.closeDropdown();
                     this.domCache.button.focus();
@@ -98,12 +101,12 @@ export class ButtonDropdown extends Component {
             });
         });
 
-        Keyboard.onShiftTabPressed(firstOfList(this.domCache.optionsList), () => {
+        KEYBOARD.onShiftTabPressed(firstOfList(this.domCache.optionsList), () => {
             this.closeDropdown();
             this.domCache.button.focus();
         });
 
-        Keyboard.onTabPressed(lastOfList(this.domCache.optionsList), () => {
+        KEYBOARD.onTabPressed(lastOfList(this.domCache.optionsList), () => {
             this.closeDropdown();
 
             goToNextFocusableElement(lastOfList(getFocusableChilds(this.domCache.element)));

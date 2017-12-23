@@ -1,17 +1,18 @@
 // -----------------------------------------------------------------------------
 // SPOILER COMPONENT
 // -----------------------------------------------------------------------------
+//
 // Methods list:
 //  - (default) initAria()
 //  - (default) initControls()
 //  - open()
 //  - close()
 //  - toggle()
+//
+// -----------------------------------------------------------------------------
 
 
-import { Component } from '../component';
-
-import * as Keyboard from '../controls/keyboard';
+import Component from '../component';
 
 import { aria                 } from '../utils/aria';
 import { addClass             } from '../utils/classes';
@@ -21,7 +22,7 @@ import { makeElementClickable } from '../utils/focus-and-click';
 import { extend               } from '../utils/uncategorized';
 
 
-export class Spoiler extends Component {
+export default class Spoiler extends Component {
     constructor(element, options) {
         super(element, options);
 
