@@ -17,6 +17,16 @@ var log = require('../../nodeunit.config.js').log,
     _   = require('../../src/js/utils.js').UTILS;
 
 
+// This will fix the following error from jsdom runtime:
+// - Error: Not implemented: window.scroll
+window.scroll = function() {}
+
+// It looks like smoothscroll-polyfill doesn't work with the latest jsdom
+// versions. Here is little fix for it.
+// See /src/js/polyfills.js for more information about polyfills.
+window.HTMLElement.prototype.scrollIntoView = function() {}
+
+
 module.exports = {
     ['normalizeTabIndex']: function(test) {
         document.body.innerHTML =
@@ -53,7 +63,7 @@ module.exports = {
 
 
     ['lazyLoadImages']: function(test) {
-        log.warning('imagesLoaded does not works with jsdom.',
+        log.warning('imagesLoaded does not work with jsdom.',
                     'The lazyLoadImages utility should be tested manually');
 
         var src    = 'http://via.placeholder.com/100x100',
@@ -91,24 +101,18 @@ module.exports = {
 
 
     ['initAnchorLinks']: function(test) {
+        log.warning('Window.scroll is not implemented in jsdom.',
+                    'All scroll utilities should be tested manually.');
+
         document.body.innerHTML =
                 `<a href='#test-id'></a>
                  <div id='test-id'></div>`;
 
         var link = document.querySelector('a');
  
-        //test.expect(1);
+        test.expect(1);
 
         // ---------------
-
-
-        // !!!!!!!!!!!!!!!!!!!!
-        // WARNING
-        // !!!!!!!!!!!!!!!!!!!!
-        log.error('Some tests with smoothscroll-polyfill have been broken.', 'Repair needed.');
-        test.done();
-        return;
-
 
         _.initAnchorLinks();
 

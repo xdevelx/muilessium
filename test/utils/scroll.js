@@ -21,11 +21,10 @@ var log = require('../../nodeunit.config.js').log,
 // - Error: Not implemented: window.scroll
 window.scroll = function() {}
 
-// Because of the es6 imports does not work with the previous fix
-// we need to require polyfills manually.
+// It looks like smoothscroll-polyfill doesn't work with the latest jsdom
+// versions. Here is little fix for it.
 // See /src/js/polyfills.js for more information about polyfills.
-require('smoothscroll-polyfill').polyfill()
-
+window.HTMLElement.prototype.scrollIntoView = function() {}
 
 
 module.exports = {
@@ -38,14 +37,6 @@ module.exports = {
         var element = document.querySelector('div');
  
         // ---------------
-
-
-        // !!!!!!!!!!!!!!!!!!!!
-        // WARNING
-        // !!!!!!!!!!!!!!!!!!!!
-        log.error('Some tests with smoothscroll-polyfill have been broken.', 'Repair needed.');
-        test.done();
-        return;
 
         _.scrollTo(element, callback);
 
