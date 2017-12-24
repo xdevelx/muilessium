@@ -5,6 +5,7 @@
 
 import { UTILS       } from './utils';
 import { EVENTS      } from './events';
+import { STORE       } from './store';
 import { FACTORY     } from './factory';
 import { POLYFILLS   } from './polyfills';
 import { KEYBOARD    } from './controls/keyboard';
@@ -16,6 +17,7 @@ class Muilessium {
     constructor() {
         this.UTILS       = UTILS;
         this.EVENTS      = EVENTS;
+        this.STORE       = STORE;
         this.FACTORY     = FACTORY;
         this.POLYFILLS   = POLYFILLS;
         this.KEYBOARD    = KEYBOARD;

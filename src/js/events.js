@@ -20,9 +20,11 @@
 //   - resize-window-width
 //   - scroll-start
 //   - scroll-end
-// Additional events (initialized in /src/js/app.js):
+// Additional events (initialized in /src/js/muilessium.js):
 //   - app-initialized
 //   - images-loaded
+// Additional events (initialized in /src/js/store.js):
+//   - state-changed
 //
 // -----------------------------------------------------------------------------
 
