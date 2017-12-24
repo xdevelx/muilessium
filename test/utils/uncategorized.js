@@ -397,5 +397,64 @@ module.exports = {
 
         test.done();
     },
+
+
+    ['deepGet']: function(test) {
+        var obj = {
+            level1: {
+                level2: 'value'
+            }
+        },
+
+        goodPathResult = null,
+        badPathResult = null;
+ 
+        // ---------------
+
+        goodPathResult = _.deepGet(obj, 'level1.level2');
+        badPathResult  = _.deepGet(obj, 'wrong-path');
+
+        // ---------------
+
+        test.equal(goodPathResult, 'value');
+        test.equal(badPathResult, undefined);
+
+        test.doesNotThrow(function() {
+            _.deepGet(null);
+            _.deepGet(undefined);
+            _.deepGet(test, null);
+            _.deepGet(test, undefined);
+        });
+
+        test.done();
+    },
+
+
+    ['deepSet']: function(test) {
+        var obj = {
+            level1: {
+                level2: 'value'
+            }
+        };
+ 
+        // ---------------
+
+        _.deepSet(obj, 'level1.level2', 'new-value');
+        _.deepSet(obj, 'another_path', 'new-value');
+
+        // ---------------
+
+        test.equal(obj.level1.level2, 'new-value');
+        test.equal(obj.another_path,  'new-value');
+
+        test.doesNotThrow(function() {
+            _.deepSet(null);
+            _.deepSet(undefined);
+            _.deepSet(test, null);
+            _.deepSet(test, undefined);
+        });
+
+        test.done();
+    },
 };
 

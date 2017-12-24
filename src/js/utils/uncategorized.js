@@ -14,6 +14,8 @@
 //  - firstOfList(list)
 //  - lastOfList(list)
 //  - forEach(list, callback, delay)
+//  - deepGet(obj, path)
+//  - deepSet(obj, path, data)
 //
 // -----------------------------------------------------------------------------
 
@@ -256,6 +258,59 @@ export function forEach(list, callback, delay = 0) {
             callback(item, index, list);
         });
     }
+};
+
+
+// Deep Get
+// --------
+// Gets a value from the object field by path
+
+export function deepGet (obj, path) {
+    if (!obj || !path) {
+        return;
+    }
+
+    const keys = path.split('.');
+
+    for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
+
+        if (!obj.hasOwnProperty(key)) {
+            obj = undefined;
+            break;
+        }
+
+        obj = obj[key];
+    }
+
+    return obj;
+};
+
+
+// Deep Set
+// --------
+// Sets a value to the object field by path
+
+export function deepSet (obj, path, data) {
+    if (!obj || !path) {
+        return;
+    }
+
+    const keys = path.split('.');
+
+    for (var i = 0; i < keys.length - 1; i++) {
+        const key = keys[i];
+
+        if (!obj.hasOwnProperty(key)) {
+            obj[key] = {};
+        }
+
+        obj = obj[key];
+    }
+
+    obj[keys[i]] = data;
+
+    return data;
 };
 
 
