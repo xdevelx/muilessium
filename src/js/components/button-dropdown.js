@@ -19,6 +19,7 @@ import { KEYBOARD } from '../controls/keyboard';
 import { aria                     } from '../utils/aria';
 import { addClass                 } from '../utils/classes';
 import { removeClass              } from '../utils/classes';
+import { onFocus                  } from '../utils/focus-and-click';
 import { makeElementClickable     } from '../utils/focus-and-click';
 import { makeElementsFocusable    } from '../utils/focus-and-click';
 import { getFocusableChilds       } from '../utils/focus-and-click';
@@ -79,9 +80,12 @@ export default class ButtonDropdown extends Component {
         makeElementClickable(this.domCache.shadow, this.toggleDropdown.bind(this),
                         { mouse: true, keyboard: false });
 
-        makeElementsFocusable(this.domCache.optionsList);
 
         forEach(this.domCache.optionsList, (option, index) => {
+            makeElementClickable(option, () => {
+                this.closeDropdown();
+            });
+
             KEYBOARD.onArrowUpPressed(option, () => {
                 if (option == firstOfList(this.domCache.optionsList)) {
                     this.closeDropdown();
@@ -99,6 +103,16 @@ export default class ButtonDropdown extends Component {
                     this.domCache.optionsList[index+1].focus();
                 }
             });
+        });
+
+        KEYBOARD.onTabPressed(this.domCache.button, () => {
+            goToNextFocusableElement(lastOfList(this.domCache.optionsList));
+        });
+
+        onFocus(lastOfList(this.domCache.optionsList), () => {
+            if (!this.state.isOpened) {
+                this.domCache.button.focus();
+            }
         });
 
         KEYBOARD.onShiftTabPressed(firstOfList(this.domCache.optionsList), () => {
@@ -127,7 +141,7 @@ export default class ButtonDropdown extends Component {
             firstOfList(getFocusableChilds(this.domCache.dropdown)).focus();
         }
 
-        this.state.opened = true;
+        this.state.isOpened = true;
 
         return this;
     }
@@ -142,14 +156,14 @@ export default class ButtonDropdown extends Component {
 
         this.domCache.button.focus();
 
-        this.state.opened = false;
+        this.state.isOpened = false;
 
         return this;
     }
 
 
     toggleDropdown({ focusFirstWhenOpened = true }) {
-        if (this.state.opened) {
+        if (this.state.isOpened) {
             this.closeDropdown();
         } else {
             this.openDropdown({ focusFirst: focusFirstWhenOpened });
