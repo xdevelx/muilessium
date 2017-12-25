@@ -133,13 +133,11 @@ export default class SelectDropdown extends Component {
 
         KEYBOARD.onSpacePressed(this.domCache.select, this.toggleDropdown.bind(this));
 
+
+
         makeElementClickable(this.domCache.shadow, this.toggleDropdown.bind(this),
                         { mouse: true, keyboard: false });
 
-        makeChildElementsClickable(this.domCache.element, this.domCache.optionsList, (index) => {
-            this.updateState(index);
-            this.closeDropdown();
-        });
 
         ifNodeList(this.domCache.labels, () => {
             forEach(this.domCache.labels, (label) => {
@@ -158,38 +156,56 @@ export default class SelectDropdown extends Component {
             
         });
 
+
+        makeChildElementsClickable(this.domCache.select, this.domCache.optionsList, (index) => {
+            this.updateState(index);
+
+            setTimeout(() => {
+                this.closeDropdown();
+            }, 50);
+        });
+
         forEach(this.domCache.optionsList, (option, index) => {
-            KEYBOARD.onArrowUpPressed(option, () => {
+            let goToPrevOption = () => {
                 if (option == firstOfList(this.domCache.optionsList)) {
                     this.closeDropdown();
-                    this.domCache.select.focus();
                 } else {
                     this.domCache.optionsList[index-1].focus();
                 }
-            });
+            };
 
-            KEYBOARD.onArrowDownPressed(option, () => {
+            KEYBOARD.onArrowUpPressed(option, goToPrevOption);
+            KEYBOARD.onShiftTabPressed(option, goToPrevOption);
+
+
+            let goToNextOption = () => {
                 if (option == lastOfList(this.domCache.optionsList)) {
                     this.closeDropdown();
-                    this.domCache.select.focus();
                 } else {
                     this.domCache.optionsList[index+1].focus();
                 }
+            };
+
+            KEYBOARD.onArrowDownPressed(option, goToNextOption);
+            KEYBOARD.onTabPressed(option, goToNextOption);
+
+            KEYBOARD.onEscapePressed(option, () => {
+                this.closeDropdown();
             });
         });
 
-        this.domCache.focusables = getFocusableChilds(this.domCache.element);
 
-        KEYBOARD.onTabPressed(lastOfList(this.domCache.optionsList), () => {
-            this.closeDropdown();
-
-            goToNextFocusableElement(lastOfList(this.domCache.focusables));
+        KEYBOARD.onTabPressed(this.domCache.select, () => {
+            if (!this.state.isOpened) {
+                goToNextFocusableElement(this.domCache.hiddenSelect);
+            }
         });
 
-        KEYBOARD.onShiftTabPressed(firstOfList(this.domCache.optionsList), () => {
-            this.closeDropdown();
 
-            goToPreviousFocusableElement(firstOfList(this.domCache.focusables));
+        onFocus(lastOfList(this.domCache.optionsList), () => {
+            if (!this.state.isOpened) {
+                this.domCache.select.focus();
+            }
         });
 
         return this;
@@ -237,6 +253,8 @@ export default class SelectDropdown extends Component {
 
         removeClass(this.domCache.element, '-opened');
         removeClass(this.domCache.shadow, '-visible');
+
+        this.domCache.select.focus();
 
         return this;
     }
