@@ -185,7 +185,7 @@
             <div class='mui-header-logo _left'>
                 <img class='mui-image -logo -js-lazy-load' data-src='./muilessium.png' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt='logo'>
                 <a class='link -black -f-blue-3 _right' href='/'>
-                    <h1 class='heading _bigger-1'>muilessium <span class='_smaller-2'>v0.2.9</span></h1>
+                    <h1 class='heading _bigger-1'>muilessium <span class='_smaller-2'>v0.2.10</span></h1>
                 </a>
             </div>
             <!-- /header-logo -->
@@ -834,9 +834,10 @@
                         </a>
                     </div>
 
-                    <p class='mui-p _separate-1'>Muilessium has a factory of components. It exports that system as window.Muilessium.FACTORY. The main method is:</p>
+                    <p class='mui-p _separate-1'>Muilessium has a factory of components. It exports that system as window.Muilessium.FACTORY. The main methods are:</p>
                     <ul class='mui-list _separate-1 _smaller-1'>
-                        <li class='item'>create<span class='-grey-3'>(componentName, selector, options)</span></li>
+                        <li class='item'>registerComponent<span class='-grey-3'>(type, component)</span></li>
+                        <li class='item'>create<span class='-grey-3'>(type, selector, options)</span></li>
                     </ul>
                 </div>
                 <!-- /factory overview -->
@@ -1030,6 +1031,7 @@
                                 <li class='item'>forEach <span class='-grey-3'>(list, callback, delay)</span></li>
                                 <li class='item'>deepGet <span class='-grey-3'>(obj, path)</span></li>
                                 <li class='item'>deepSet <span class='-grey-3'>(obj, path, data)</span></li>
+                                <li class='item'>toLispCase <span class='-grey-3'>(str)</span></li>
                             </ol>
                         </li>
                     </ul>
@@ -3350,8 +3352,8 @@
         <span>Copyright &copy; Ivan Bogachev, 2016-2017</span>
     </div>
 
-    <link rel='stylesheet' href='./css/muilessium.min.css?v=0.2.9'>
-    <script src='./js/muilessium.min.js?v=0.2.9'></script>
+    <link rel='stylesheet' href='./css/muilessium.min.css?v=0.2.10'>
+    <script src='./js/muilessium.min.js?v=0.2.10'></script>
 
 
     <style>
