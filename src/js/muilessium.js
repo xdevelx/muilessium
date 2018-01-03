@@ -26,7 +26,6 @@ class Muilessium {
 
         this.initEvents();
         this.initEventListeners();
-        this.initComponents();
 
         this.EVENTS.fireEvent('muilessium-initialized');
     }
@@ -55,38 +54,10 @@ class Muilessium {
     }
 
 
-    initComponents() {
-        FACTORY.create('Breadcrumb', '.mui-breadcrumb', {});
-        FACTORY.create('Button',     '.mui-button',     {});
-        FACTORY.create('MediaView',  '.mui-media-view', {});
-        FACTORY.create('Pagination', '.mui-pagination', {});
-        FACTORY.create('ScrollFix',  '.mui-scroll-fix', {});
-        FACTORY.create('TagsList',   '.mui-tags-list',  {});
-
-        this.components = {
-            'Accordion':        FACTORY.create('Accordion',        '.mui-accordion',         {}),
-            'ButtonDropdown':   FACTORY.create('ButtonDropdown',   '.mui-button-dropdown',   {}),
-            'Carousel':         FACTORY.create('Carousel',         '.mui-carousel',          {}),
-            'Checkbox':         FACTORY.create('Checkbox',         '.mui-checkbox',          {}),
-            'CustomScroll':     FACTORY.create('CustomScroll',     '.mui-custom-scroll',     {}),
-            'HeaderNavigation': FACTORY.create('HeaderNavigation', '.mui-header-navigation', {}),
-            'Input':            FACTORY.create('Input',            '.mui-input',             {}),
-            'ModalWindow':      FACTORY.create('ModalWindow',      '.mui-modal-window',      {}),
-            'ProgressBar':      FACTORY.create('ProgressBar',      '.mui-progress-bar',      {}),
-            'Radio':            FACTORY.create('Radio',            '.mui-radio',             {}),
-            'Rating':           FACTORY.create('Rating',           '.mui-rating',            {}),
-            'SelectDropdown':   FACTORY.create('SelectDropdown',   '.mui-select-dropdown',   {}),
-            'Spoiler':          FACTORY.create('Spoiler',          '.mui-spoiler',           {}),
-            'Tabs':             FACTORY.create('Tabs',             '.mui-tabs',              {}),
-            'Textarea':         FACTORY.create('Textarea',         '.mui-textarea',          {})
-        };
-    }
-
-
     get(componentName, id) {
         let result = null;
 
-        UTILS.forEach(this.components[componentName], (component) => {
+        UTILS.forEach(this.FACTORY.componentsCache[componentName], (component) => {
             if (component.domCache.element.id === id) {
                 result = component;
             }

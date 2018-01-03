@@ -16,6 +16,7 @@
 //  - forEach(list, callback, delay)
 //  - deepGet(obj, path)
 //  - deepSet(obj, path, data)
+//  - toLispCase(str)
 //
 // -----------------------------------------------------------------------------
 
@@ -313,4 +314,16 @@ export function deepSet (obj, path, data) {
     return data;
 };
 
+
+// To LispCase
+// -----------
+// Converts the string to the LISP-case or kebab-case
+
+export function toLispCase(str) {
+    if (typeof str !== 'string') {
+        return '';
+    }
+
+    return POLYFILLS.toSlugCase(str); 
+};
 

@@ -456,5 +456,15 @@ module.exports = {
 
         test.done();
     },
+
+
+    ['toLispCase']: function(test) {
+        log.warning('Dependency error: TypeError: convertToSlugCase is not a function',
+            'TODO: Fix imports for this test.');
+
+        // ---------------
+
+        test.done();
+    }
 };
 

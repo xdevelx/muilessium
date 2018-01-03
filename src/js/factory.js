@@ -9,27 +9,61 @@
 //   create(type, selector, options)
 //       Creates a component of selected type for every element selected
 //       by this selector. Options will be passed to a component's constructor.
+//   registerComponent(type, component)
+//       Adds new component to the factory.
 //
 // -----------------------------------------------------------------------------
 
 
 import { COMPONENTS } from './components';
 
+import { toLispCase } from './utils/uncategorized';
+
 
 class Factory {
     constructor() {
-        // ...
+        this.components = COMPONENTS;
+        this.componentsCache = {};
+
+        this.initComponents();
     }
 
+
+    registerComponent(type, component) {
+        if (!this.components[type]) {
+            this.components[type] = component;
+        }
+    }
+
+
+    initComponents() {
+        for (let type in this.components) {
+            if (!this.components.hasOwnProperty(type)) {
+                continue;
+            }
+
+            this.create(type, '.mui-' + toLispCase(type), {});
+        }
+    }
+
+
     create(type, selector, options) {
-        if (typeof COMPONENTS[type] !== 'function') {
+        if (typeof this.components[type] !== 'function') {
             throw new Error('No such component: ' + type);
+        }
+
+        if (!this.componentsCache[type]) {
+            this.componentsCache[type] = [];
         }
         
         let elements = document.querySelectorAll(selector);
         
-        return [].map.call(elements, function(element) {
-            return new COMPONENTS[type](element, options);
+        return [].map.call(elements, (element) => {
+            let newComponent = new this.components[type](element, options);
+
+            this.componentsCache[type].push(newComponent);
+
+            return newComponent;
         });
     };
 };

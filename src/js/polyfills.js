@@ -9,6 +9,7 @@
 //   - smoothscroll-polyfill
 //   - object-fit-images
 //   - object-assign
+//   - to-slug-case
 //
 // -----------------------------------------------------------------------------
 
@@ -42,11 +43,22 @@ function objectAssign() {
 };
 
 
+
+// toSlugCase
+// https://github.com/ianstormtaylor/to-slug-case
+import * as convertToSlugCase from 'to-slug-case';
+
+function toSlugCase(str) {
+    return convertToSlugCase(str);
+};
+
+
 // -----------------------------------------------------------------------------
 
 export let POLYFILLS = {
     smoothScroll,
     objectFitImages,
-    objectAssign
+    objectAssign,
+    toSlugCase
 };
 
