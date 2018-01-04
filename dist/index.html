@@ -176,7 +176,7 @@
 
 
     <!-- page-header -->
-    <header class='mui-page-header -absolute -white-bg'>
+    <header class='mui-page-header -black-bg'>
         <!-- content-container -->
         <div class='mui-content-container'>
 
@@ -184,7 +184,7 @@
             <!-- header-logo -->
             <div class='mui-header-logo _left'>
                 <img class='mui-image -logo -js-lazy-load' data-src='./muilessium.png' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt='logo'>
-                <a class='link -black -f-blue-3 _right' href='/'>
+                <a class='link -white -f-blue-3 _right' href='/'>
                     <h1 class='heading _bigger-1'>muilessium <span class='_smaller-2'>v0.2.10</span></h1>
                 </a>
             </div>
@@ -193,14 +193,14 @@
 
             <!-- header-navigation -->
             <nav class='mui-header-navigation -mobile-version _right'>
-                <div class='mui-navigation-toggle -hamburger -black -f-blue-3-bg -f-white' role='button' aria-label='Open navigation'>
+                <div class='mui-navigation-toggle -hamburger -white -f-blue-3-bg -f-white' role='button' aria-label='Open navigation'>
                     <span>&equiv;</span>
                 </div>
                 <ul class='links-list'>
-                    <li class='item'><a class='link -black -f-blue-3-bg -f-white' href='#overview' aria-label='Framework overview'>Overview</a></li>
-                    <li class='item'><a class='link -black -f-blue-3-bg -f-white' href='#utils' aria-label='Utils overview'>Utils</a></li>
-                    <li class='item'><a class='link -black -f-blue-3-bg -f-white' href='#components' aria-label='Components'>Components</a></li>
-                    <li class='item'><a class='link -black -f-blue-3-bg -f-white' href='#faq' aria-label='f.a.q.'>F.A.Q.</a></li>
+                    <li class='item'><a class='link -white -f-blue-3-bg -f-white' href='#overview' aria-label='Framework overview'>Overview</a></li>
+                    <li class='item'><a class='link -white -f-blue-3-bg -f-white' href='#utils' aria-label='Utils overview'>Utils</a></li>
+                    <li class='item'><a class='link -white -f-blue-3-bg -f-white' href='#components' aria-label='Components'>Components</a></li>
+                    <li class='item'><a class='link -white -f-blue-3-bg -f-white' href='#faq' aria-label='f.a.q.'>F.A.Q.</a></li>
                 </ul>
                 <div class='mui-navigation-toggle mui-shadow-toggle' aria-label='Close navigation'></div>
             </nav>
@@ -217,14 +217,14 @@
 
 
     <!-- hero-header -->
-    <div class='mui-hero-header -full-height -blue-4-bg'>
+    <!--<div class='mui-hero-header -full-height -blue-4-bg'>
         <div class='effects _allow-empty'></div>
         <div class='content'>
             <h2 class='_uppercase' id='animated-title-1'>Muilessium</h2>
             <p id='animated-title-2'>simple should be simple</p>
         </div>
         <div class='scroll-icon'>&darr;</div>
-    </div>
+    </div>-->
     <!-- /hero-header -->
 
 
@@ -3359,9 +3359,9 @@
     <style>
         .mui-page-header {
             padding-left: 1rem;
-            position: absolute;
+            /*position: absolute;
             top: 0;
-            left: 0;
+            left: 0;*/
             width: 100%;
             z-index: 1;
         }
@@ -3384,11 +3384,13 @@
         }
 
         .mui-header-navigation.-mobile-version .links-list {
-            background: #fff;
+            background: #000;
+            color: #fff;
         }
 
         .example .mui-header-navigation.-mobile-version .links-list {
             background: #fff;
+            color: #000;
         }
 
         @media screen and (max-width: 600px) {
@@ -3548,7 +3550,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             var _ = Muilessium.UTILS;
 
-            function animateTitles() {
+            /*function animateTitles() {
                 var title1 = document.getElementById('animated-title-1'),
                     title2 = document.getElementById('animated-title-2');
 
@@ -3558,7 +3560,7 @@
                 _.typeText(title1, { text: 'MUILESSIUM' }, function() {
                     _.typeText(title2, { text: 'simple should be simple' });
                 });
-            }
+            }*/
 
 
             function initExamples() {
@@ -3582,7 +3584,7 @@
                 }, 100);
             }
 
-            animateTitles();
+            /*animateTitles();*/
             initExamples();
             hidePreloader();
         });
