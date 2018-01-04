@@ -46,7 +46,10 @@ function objectAssign() {
 
 // toSlugCase
 // https://github.com/ianstormtaylor/to-slug-case
-import * as convertToSlugCase from 'to-slug-case';
+// Notice: Really don't know why it's happening,
+//   but es6 import of this dependency brokes the tests.
+//   Use require instead.
+let convertToSlugCase = require('to-slug-case');
 
 function toSlugCase(str) {
     return convertToSlugCase(str);

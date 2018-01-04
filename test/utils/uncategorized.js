@@ -4,11 +4,10 @@
 // -----------------------------------------------------------------------------
 
 
-var traceur = require('traceur');
-
-traceur.require.makeDefault(function(filename) {
-    return filename.indexOf('node_modules') === -1;
+require('babel-register')({
+    presets: ['env']
 });
+
 
 require('jsdom-global/register');
 
@@ -459,10 +458,31 @@ module.exports = {
 
 
     ['toLispCase']: function(test) {
-        log.warning('Dependency error: TypeError: convertToSlugCase is not a function',
-            'TODO: Fix imports for this test.');
+        var strings = [
+            'testTest',
+            'test_test',
+            'test.test'
+        ],
+        results = [];
 
         // ---------------
+
+        strings.forEach(function(str) {
+            results.push(_.toLispCase(str));
+        });
+
+        // ---------------
+
+        test.deepEqual(results, [
+            'test-test',
+            'test-test',
+            'test-test'
+        ]);
+
+        test.doesNotThrow(function() {
+            _.toLispCase(null);
+            _.toLispCase(undefined);
+        });
 
         test.done();
     }

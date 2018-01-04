@@ -6,11 +6,10 @@
 // -----------------------------------------------------------------------------
 
 
-var traceur = require('traceur');
-
-traceur.require.makeDefault(function(filename) {
-    return filename.indexOf('node_modules') === -1;
+require('babel-register')({
+    presets: ['env']
 });
+
 
 // NOTICE: jsdom-global can pass options to the jsdom,
 // but this feature is undocumented. Here is source code:
