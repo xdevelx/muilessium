@@ -185,7 +185,7 @@
             <div class='mui-header-logo _left'>
                 <img class='mui-image -logo -js-lazy-load' data-src='./muilessium.png' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt='logo'>
                 <a class='link -white -f-blue-3 _right' href='/'>
-                    <h1 class='heading _bigger-1'>muilessium <span class='_smaller-2'>v0.2.11</span></h1>
+                    <h1 class='heading _bigger-1'>muilessium <span class='_smaller-2'>v0.2.13</span></h1>
                 </a>
             </div>
             <!-- /header-logo -->
@@ -211,22 +211,6 @@
         <!-- /content-container -->
     </header>
     <!-- /page-header -->
-
-
-
-
-
-    <!-- hero-header -->
-    <!--<div class='mui-hero-header -full-height -blue-4-bg'>
-        <div class='effects _allow-empty'></div>
-        <div class='content'>
-            <h2 class='_uppercase' id='animated-title-1'>Muilessium</h2>
-            <p id='animated-title-2'>simple should be simple</p>
-        </div>
-        <div class='scroll-icon'>&darr;</div>
-    </div>-->
-    <!-- /hero-header -->
-
 
 
 
@@ -476,8 +460,9 @@
                             <h3 class='_bigger-2' id='grid-overview'>Grid</h3>
                         </a>
                     </div>
+                    <div class='_smaller-2 -grey-4'>/src/less/components/grid-flex.less</div>
 
-                    <p class='mui-p _separate-1'>Muilessium uses a grid with 12 columns based on flexbox (and has a legacy version based on floats, but only in custom builds). Rows and columns have classes .mui-row and .mui-column and columns can have options -s* for a small screen, -m* for a medium screen and -l* for a large screen. Default breakpoints are 400, 600 and 1200px. Its behavior is similar to the grid from flexboxgrid.com, but it uses RSCSS-style class names. See <a class='-f-blue-3' href='https://github.com/sfi0zy/muilessium/blob/master/src/less/components/grid-flex.less'>src/less/components/grid-flex.less</a> for more information.</p>
+                    <p class='mui-p _separate-1'>Muilessium uses a grid with 12 columns based on flexbox (and has a legacy version based on floats, but only in custom builds). Rows and columns have classes .mui-row and .mui-column and columns can have options -s* for a small screen, -m* for a medium screen and -l* for a large screen. Default breakpoints are 400, 600 and 1200px. Its behavior is similar to the grid from flexboxgrid.com, but it uses RSCSS-style class names.</p>
 
                     <div class='grid-preview _separate-2'>
                         <div class='mui-row'>
@@ -568,6 +553,7 @@
                             <h3 class='_bigger-2' id='typography-overview'>Typography</h3>
                         </a>
                     </div>
+                    <div class='_smaller-2 -grey-4'>/src/less/fonts.less</div>
 
                     <p class='mui-p _separate-1'>Typography in Muilessium is fluid, and it is based on default system fonts and _bigger-* and _smaller-* <a href='#helpers-overview'>helpers</a>. Note: these helpers have different behavior on different screen sizes to avoid troubles with readability.</p>
                     <div class='h1'>H1 Heading (+5)</div>
@@ -594,8 +580,9 @@
                             <h3 class='_bigger-2' id='colors-overview'>Colors</h3>
                         </a>
                     </div>
+                    <div class='_smaller-2 -grey-4'>/src/less/colors.less</div>
 
-                    <p class='mui-p _separate-1'>A number of classes for painting from <a class='-f-blue-3' href='https://github.com/sfi0zy/muilessium/blob/master/src/less/colors.less'>src/less/colors</a>. There are four types of classes:</p>
+                    <p class='mui-p _separate-1'>A number of classes for painting. There are four types of classes:</p>
                     <ul class='mui-list _separate-1 _smaller-1'>
                         <li class='item'><b>-color-number</b> - text color for the element</li>
                         <li class='item'><b>-color-number-bg</b> - background for the element</li>
@@ -725,8 +712,9 @@
                             <h3 class='_bigger-2' id='helpers-overview'>Helpers</h3>
                         </a>
                     </div>
+                    <div class='_smaller-2 -grey-4'>/src/less/helpers.less</div>
 
-                    <p class='mui-p _separate-1'>Muilessium has a lot of CSS helpers, no need to add description for every of them - just look at <a class='-f-blue-3' href='https://github.com/sfi0zy/muilessium/blob/master/src/less/helpers.less'>src/less/helpers.less</a>.</p>
+                    <p class='mui-p _separate-1'>Muilessium has a lot of CSS helpers, no need to add description for every of them. Only helpers can include the "!important" rules.</p>
                 </div>
                 <!-- /helpers overview -->
 
@@ -738,7 +726,8 @@
                             <h3 class='_bigger-2' id='globals-overview'>Global Variables</h3>
                         </a>
                     </div>
-                    <p class='mui-p _separate-1'>Muilessium has one global entry point - window.Muilessium. It has a number of useful fields:</p>
+                    <div class='_smaller-2 -grey-4'>/src/js/muilessium.js</div>
+                    <p class='mui-p _separate-1'>Muilessium has only one global entry point - <i>window.Muilessium</i>. It has a number of useful fields:</p>
                     <ul class='mui-list _separate-1'>
                         <li class='item'><a class='-f-blue-3' href='#events-overview'>EVENTS</a> - the events observer</li>
                         <li class='item'><a class='-f-blue-3' href='#store-overview'>STORE</a> - global store for data</li>
@@ -789,8 +778,9 @@
                             <h3 class='_bigger-2' id='events-overview'>Events</h3>
                         </a>
                     </div>
+                    <div class='_smaller-2 -grey-4'>/src/js/events.js</div>
 
-                    <p class='mui-p _separate-1'>Muilessium has a system of internal events. It exports that system as window.Muilessium.EVENTS. The main methods are:</p>
+                    <p class='mui-p _separate-1'>Muilessium has a system of internal events. It exports that system as <i>Muilessium.EVENTS</i>. The main methods are:</p>
                     <ul class='mui-list _separate-1 _smaller-1'>
                         <li class='item'>addEvent<span class='-grey-3'>(name)</span></li>
                         <li class='item'>addEventListener<span class='-grey-3'>(name, callback, executeIfAlreadyFired=false)</span></li>
@@ -816,8 +806,9 @@
                             <h3 class='_bigger-2' id='store-overview'>Store</h3>
                         </a>
                     </div>
+                    <div class='_smaller-2 -grey-4'>/src/js/store.js</div>
 
-                    <p class='mui-p _separate-1'>Muilessium has a global store. It exports that system as window.Muilessium.STORE. The main methods are:</p>
+                    <p class='mui-p _separate-1'>Muilessium has a global store. It should be used to store different data and share it between components. Muilessium exports the store as <i>Muilessium.STORE</i>. The main methods are:</p>
                     <ul class='mui-list _separate-1 _smaller-1'>
                         <li class='item'>set<span class='-grey-3'>(path, data)</span></li>
                         <li class='item'>get<span class='-grey-3'>(path)</span></li>
@@ -833,8 +824,9 @@
                             <h3 class='_bigger-2' id='factory-overview'>Factory</h3>
                         </a>
                     </div>
+                    <div class='_smaller-2 -grey-4'>/src/js/factory.js</div>
 
-                    <p class='mui-p _separate-1'>Muilessium has a factory of components. It exports that system as window.Muilessium.FACTORY. The main methods are:</p>
+                    <p class='mui-p _separate-1'>Muilessium has a factory of components. It exports that system as <i>Muilessium.FACTORY</i>. The main methods are:</p>
                     <ul class='mui-list _separate-1 _smaller-1'>
                         <li class='item'>registerComponent<span class='-grey-3'>(type, component)</span></li>
                         <li class='item'>create<span class='-grey-3'>(type, selector, options)</span></li>
@@ -850,39 +842,39 @@
                             <h3 class='_bigger-2' id='controls-overview'>Controls</h3>
                         </a>
                     </div>
+                    <div class='_smaller-2 -grey-4'>/src/js/controls/*.js</div>
 
-                    <p class='mui-p _separate-1'>Muilessium has a number of utilities for controls. It exports them as window.Muilessium.KEYBOARD, window.Muilessium.MOUSE and window.Muilessium.TOUCHPAD. The main methods are:</p>
-                    <ul class='mui-list _separate-1 _smaller-1'>
-                        <li id='utils-aria' class='item'><h4 class='_bigger-0'>KEYBOARD</h4>
-                            <ol class='mui-list'>
-                                <li class='item'>onEnterPressed<span class='-grey-3'>(element, calback)</span></li>
-                                <li class='item'>onSpacePressed<span class='-grey-3'>(element, calback)</span></li>
-                                <li class='item'>onEscapePressed<span class='-grey-3'>(element, calback)</span></li>
-                                <li class='item'>onTabPressed<span class='-grey-3'>(element, calback)</span></li>
-                                <li class='item'>onShiftTabPressed<span class='-grey-3'>(element, calback)</span></li>
-                                <li class='item'>onArrowUpPressed<span class='-grey-3'>(element, calback)</span></li>
-                                <li class='item'>onArrowDownPressed<span class='-grey-3'>(element, calback)</span></li>
-                                <li class='item'>onArrowLeftPressed<span class='-grey-3'>(element, calback)</span></li>
-                                <li class='item'>onArrowRightPressed<span class='-grey-3'>(element, calback)</span></li>
-                            </ol>
-                        </li>
-                        <li id='utils-aria' class='item'><h4 class='_bigger-0'>MOUSE</h4>
-                            <ol class='mui-list'>
-                                <li class='item'>onClick<span class='-grey-3'>(element, calback)</span></li>
-                                <li class='item'>onMouseOver<span class='-grey-3'>(element, calback)</span></li>
-                                <li class='item'>onMouseOut<span class='-grey-3'>(element, calback)</span></li>
-                            </ol>
-                        </li>
-                        <li id='utils-aria' class='item'><h4 class='_bigger-0'>TOUCHPAD</h4>
-                            <ol class='mui-list'>
-                                <li class='item'>onSwipeLeft<span class='-grey-3'>(element, calback)</span></li>
-                                <li class='item'>onSwipeRight<span class='-grey-3'>(element, calback)</span></li>
-                                <li class='item'>onPinchOut<span class='-grey-3'>(element, calback)</span></li>
-                            </ol>
-                        </li>
-                    </ul>
+                    <p class='mui-p _separate-1'>Muilessium has a number of handy utilities for controls. It exports them as <i>Muilessium.KEYBOARD, Muilessium.MOUSE and Muilessium.TOUCHPAD</i>.</p>
                 </div>
                 <!-- /controls overview -->
+
+
+                <!-- utils overview -->
+                <div class='_separate-5'>
+                    <div class='mui-row'>
+                        <a class='anchor-link -black -f-blue-3' href='#utils'>
+                            <h3 class='_bigger-2' id='utils'>Utils</h3>
+                        </a>
+                    </div>
+                    <div class='_smaller-2 -grey-4'>/src/js/utils.js</div>
+
+                    <p class='mui-p _separate-1'>Muilessium exports over 60 internal utilities as <i>Muilessium.UTILS</i>. In the source code they are separated by categories:</p>
+
+                    <ul class='mui-list _smaller-1'>
+                        <li id='utils-ajax' class='item'>AJAX</li>
+                        <li id='utils-animations' class='item'>Animations</li>
+                        <li id='utils-aria' class='item'>WAI-ARIA</li>
+                        <li id='utils-attributes' class='item'>HTML attributes</li>
+                        <li id='utils-checks' class='item'>Checking</li>
+                        <li id='utils-css-classes' class='item'>CSS classes</li>
+                        <li id='utils-focus-and-click' class='item'>Focus &amp; click</li>
+                        <li id='utils-scroll' class='item'>Scroll</li>
+                        <li id='utils-viewport' class='item'>Viewport</li>
+                        <li id='utils-uncategorized' class='item'>Uncategorized</li>
+                    </ul>
+                </div>
+                <!-- /utils overview -->
+
 
 
                 <!-- lazy loading overview -->
@@ -892,6 +884,7 @@
                             <h3 class='_bigger-2' id='lazy-loading-images-overview'>Lazy loading images</h3>
                         </a>
                     </div>
+                    <div class='_smaller-2 -grey-4'>/src/js/utils/uncategorized.js</div>
 
                     <div class='code-example _separate-2 _smaller-1'>
                         <pre class='source-code'>
@@ -905,140 +898,6 @@
                 </div>
                 <!-- /lazy loading overview -->
 
-
-
-                <!-- utils overview -->
-                <div class='_separate-5'>
-                    <div class='mui-row'>
-                        <a class='anchor-link -black -f-blue-3' href='#utils'>
-                            <h3 class='_bigger-2' id='utils'>Utils</h3>
-                        </a>
-                    </div>
-
-                    <p class='mui-p _separate-1'>Muilessium exports a number of internal utilities as window.Muilessium.UTILS including</p>
-
-                    <ul class='mui-list _smaller-1'>
-                        <li id='utils-ajax' class='item'><h4 class='_bigger-0'>AJAX</h4>
-                            <ol class='mui-list'>
-                                <li class='item'>ajax.post <span class='-grey-3'>(url, data, successCallback, errorCallback)</span></li>
-                                <li class='item'>ajax.postProtected <span class='-grey-3'>(url, data, successCallback)</span></li>
-                                <li class='item'>ajax.get <span class='-grey-3'>(url, successCallback, errorCallback)</span></li>
-                                <li class='item'>ajax.getProtected <span class='-grey-3'>(url, successCallback)</span></li>
-                            </ol>
-                        </li>
-
-                        <li id='utils-animations' class='item'><h4 class='_bigger-0'>Animations</h4>
-                            <ol class='mui-list'>
-                                <li class='item'>typeText <span class='-grey-3'>(element, { text = '', delay = 120, cycle = false, times = -1}, callback = null)</span></li>
-                                <li class='item'>typeTexsts <span class='-grey-3'>(element, textsList)</span></li>
-                                <li class='item'>activateAnimation <span class='-grey-3'>(element)</span></li>
-                                <li class='item'>animateElement <span class='-grey-3'>(element, animation)</span></li>
-                            </ol>
-                        </li>
-
-                        <li id='utils-aria' class='item'><h4 class='_bigger-0'>WAI-ARIA</h4>
-                            <ol class='mui-list'>
-                                <li class='item'>aria.set <span class='-grey-3'>(element, property, value = true)</span></li>
-                                <li class='item'>aria.setRole <span class='-grey-3'>(element, role)</span></li>
-                                <li class='item'>aria.removeRole <span class='-grey-3'>(element)</span></li>
-                                <li class='item'>aria.setId <span class='-grey-3'>(element, id)</span></li>
-                                <li class='item'>aria.get <span class='-grey-3'>(element, property)</span></li>
-                                <li class='item'>aria.getRole <span class='-grey-3'>(element)</span></li>
-                                <li class='item'>aria.toggleState <span class='-grey-3'>(element, state)</span></li>
-                            </ol>
-                        </li>
-
-                        <li id='utils-attributes' class='item'><h4 class='_bigger-0'>HTML attributes</h4>
-                            <ol class='mui-list'>
-                                <li class='item'>setAttribute <span class='-grey-3'>(element, attribute, value)</span></li>
-                                <li class='item'>getAttribute <span class='-grey-3'>(element, attribute, defaultValue)</span></li>
-                                <li class='item'>removeAttribute <span class='-grey-3'>(element, attribute)</span></li>
-                            </ol>
-                        </li>
-
-                        <li id='utils-checks' class='item'><h4 class='_bigger-0'>Checking</h4>
-                            <ol class='mui-list'>
-                                <li class='item'>isNode <span class='-grey-3'>(element)</span></li>
-                                <li class='item'>isInPage <span class='-grey-3'>(element)</span></li>
-                                <li class='item'>isNotInPage <span class='-grey-3'>(element)</span></li>
-                                <li class='item'>ifExists <span class='-grey-3'>(element, callback, printWarning = true)</span></li>
-                                <li class='item'>ifNodeList <span class='-grey-3'>(element, callback, printWarning = true)</span></li>
-                                <li class='item'>isDescendant <span class='-grey-3'>(parent, child)</span></li>
-                            </ol>
-                        </li>
-
-                        <li id='utils-css-classes' class='item'><h4 class='_bigger-0'>CSS classes</h4>
-                            <ol class='mui-list'>
-                                <li class='item'>hasClass <span class='-grey-3'>(element, class)</span></li>
-                                <li class='item'>hasNotClass <span class='-grey-3'>(element, class)</span></li>
-                                <li class='item'>addClass <span class='-grey-3'>(element, class)</span></li>
-                                <li class='item'>addClasses <span class='-grey-3'>(element, ...classes)</span></li>
-                                <li class='item'>removeClass <span class='-grey-3'>(element, class)</span></li>
-                                <li class='item'>removeClasses <span class='-grey-3'>(element, ...classes)</span></li>
-                                <li class='item'>replaceClass <span class='-grey-3'>(element, class, newClass)</span></li>
-                                <li class='item'>toggleClass <span class='-grey-3'>(element, class)</span></li>
-                            </ol>
-                        </li>
-
-                        <li id='utils-focus-and-click' class='item'><h4 class='_bigger-0'>Focus &amp; click</h4>
-                            <ol class='mui-list'>
-                                <li class='item'>makeElementFocusable <span class='-grey-3'>(element)</span></li>
-                                <li class='item'>makeElementsFocusable <span class='-grey-3'>(elementsList)</span></li>
-                                <li class='item'>makeElementNotFocusable <span class='-grey-3'>(element)</span></li>
-                                <li class='item'>makeElementsNotFocusable <span class='-grey-3'>(elementsList)</span></li>
-                                <li class='item'>getFocusableChilds <span class='-grey-3'>(element)</span></li>
-                                <li class='item'>getAllFocusableElements <span class='-grey-3'>()</span></li>
-                                <li class='item'>getNextFocusableElement <span class='-grey-3'>(element)</span></li>
-                                <li class='item'>getPreviousFocusableElement <span class='-grey-3'>(element)</span></li>
-                                <li class='item'>goToNextFocusableElement <span class='-grey-3'>(element)</span></li>
-                                <li class='item'>goToPreviousFocusableElement <span class='-grey-3'>(element)</span></li>
-                                <li class='item'>makeElementClickable <span class='-grey-3'>(element, callback, { mouse = true, keyboard = true } = {})</span></li>
-                                <li class='item'>makeChildElementsClickable <span class='-grey-3'>(element, childs, callback, { mouse = true, keyboard = true } = {})</span></li>
-                                <li class='item'>onFocus <span class='-grey-3'>(element, callback)</span></li>
-                                <li class='item'>onBlur <span class='-grey-3'>(element, callback)</span></li>
-                            </ol>
-                        </li>
-
-                        <li id='utils-scroll' class='item'><h4 class='_bigger-0'>Scroll</h4>
-                            <ol class='mui-list'>
-                                <li class='item'>scrollTo <span class='-grey-3'>(element, callback)
-</span></li>
-                                <li class='item'>scrollToTop <span class='-grey-3'>(callback)</span></li>
-                                <li class='item'>scrollFire <span class='-grey-3'>(element, callback)
-</span></li>
-                            </ol>
-                        </li>
-
-                        <li id='utils-viewport' class='item'><h4 class='_bigger-0'>Viewport</h4>
-                            <ol class='mui-list'>
-                                <li class='item'>isInViewport <span class='-grey-3'>(element)</span></li>
-                                <li class='item'>isAboveViewport <span class='-grey-3'>(element)</span></li>
-                            </ol>
-                        </li>
-
-                        <li id='utils-uncategorized' class='item'><h4 class='_bigger-0'>Uncategorized</h4>
-                            <ol class='mui-list'>
-                                <li class='item'>normalizeTabIndexes <span class='-grey-3'>()</span></li>
-                                <li class='item'>lazyLoadImages <span class='-grey-3'>(callback)</span></li>
-                                <li class='item'>initAnchorLinks <span class='-grey-3'>()</span></li>
-                                <li class='item'>generateRandomString <span class='-grey-3'>(length = 8)</span></li>
-                                <li class='item'>stringify <span class='-grey-3'>(object)</span></li>
-                                <li class='item'>extend <span class='-grey-3'>(target, source)</span></li>
-                                <li class='item'>debounce <span class='-grey-3'>(func, ms)</span></li>
-                                <li class='item'>callOnce <span class='-grey-3'>(callback)</span></li>
-                                <li class='item'>firstOfList <span class='-grey-3'>(list)</span></li>
-                                <li class='item'>lastOfList <span class='-grey-3'>(list)</span></li>
-                                <li class='item'>forEach <span class='-grey-3'>(list, callback, delay)</span></li>
-                                <li class='item'>deepGet <span class='-grey-3'>(obj, path)</span></li>
-                                <li class='item'>deepSet <span class='-grey-3'>(obj, path, data)</span></li>
-                                <li class='item'>toLispCase <span class='-grey-3'>(str)</span></li>
-                            </ol>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /utils overview -->
-
-
                 <!-- components overview -->
                 <div class='_separate-5'>
                     <div class='mui-row'>
@@ -1047,7 +906,7 @@
                         </a>
                     </div>
 
-                    <p class='mui-p _separate-1'>Muilessium has a number of components listed below. Every component has a markup shown in example and this markup should be used as is, because some initializations of components are based on their markups. All components with public methods are stored in window.Muilessium.components. If the main element of such component has an ID, the component can be obtained using <i>Muilessium.get(componentName, id)</i>.</p>
+                    <p class='mui-p _separate-1'>Muilessium has a number of components listed below. Every component has a markup shown in example and this markup should be used as is, because some initializations of components are based on their markups. All components are stored in <i>Muilessium.FACTORY.componentsCache</i>. If the main element of such component has an ID, the component can be obtained using <i>Muilessium.get(componentName, id)</i>.</p>
 
                         <div id='../../src/less/components/accordion.less' class='_allow-empty'></div>
                             <div class='_separate-5'>
@@ -3352,8 +3211,8 @@
         <span>Copyright &copy; Ivan Bogachev, 2016-2017</span>
     </div>
 
-    <link rel='stylesheet' href='./css/muilessium.min.css?v=0.2.11'>
-    <script src='./js/muilessium.min.js?v=0.2.11'></script>
+    <link rel='stylesheet' href='./css/muilessium.min.css?v=0.2.13'>
+    <script src='./js/muilessium.min.js?v=0.2.13'></script>
 
 
     <style>
