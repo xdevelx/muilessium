@@ -15,10 +15,11 @@
 
 import Component from '../component';
 
-import { KEYBOARD    } from '../controls/keyboard';
-import { TOUCHSCREEN } from '../controls/touchscreen';
+import KEYBOARD    from '../controls/keyboard';
+import TOUCHSCREEN from '../controls/touchscreen';
 
-import { aria                       } from '../utils/aria';
+import aria from '../utils/aria';
+
 import { addClass                   } from '../utils/classes';
 import { removeClass                } from '../utils/classes';
 import { makeChildElementsClickable } from '../utils/focus-and-click';
@@ -142,5 +143,5 @@ export default class Tabs extends Component {
 
         return this;
     }
-};
+}
 

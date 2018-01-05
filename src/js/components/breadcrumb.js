@@ -10,7 +10,7 @@
 
 import Component from '../component';
 
-import { aria } from '../utils/aria';
+import aria from '../utils/aria';
 
 
 export default class Breadcrumb extends Component {
@@ -25,5 +25,5 @@ export default class Breadcrumb extends Component {
 
         return this;
     }
-};
+}
  

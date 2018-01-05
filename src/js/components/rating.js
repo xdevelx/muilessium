@@ -15,9 +15,10 @@
 
 import Component from '../component';
 
-import { KEYBOARD } from '../controls/keyboard';
+import KEYBOARD from '../controls/keyboard';
 
-import { aria                       } from '../utils/aria';
+import aria from '../utils/aria';
+
 import { getAttribute               } from '../utils/attributes';
 import { setAttribute               } from '../utils/attributes';
 import { addClass                   } from '../utils/classes';
@@ -83,10 +84,10 @@ export default class Rating extends Component {
             return this;
         }
 
-        removeClass(this.domCache.element, '-r' + this.state.rating);
-        addClass(this.domCache.element, '-r' + newRating);
+        removeClass(this.domCache.element, `-r${this.state.rating}`);
+        addClass(this.domCache.element, `-r${newRating}`);
 
-        let newAriaLabel = aria.get(this.domCache.element, 'label').replace(this.state.rating, newRating);
+        const newAriaLabel = aria.get(this.domCache.element, 'label').replace(this.state.rating, newRating);
 
         aria.set(this.domCache.element, 'label', newAriaLabel);
         setAttribute(this.domCache.element, 'data-rating', newRating);
@@ -123,5 +124,5 @@ export default class Rating extends Component {
     getRating() {
         return this.state.rating;
     }
-};
+}
 

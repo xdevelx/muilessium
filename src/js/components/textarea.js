@@ -12,7 +12,8 @@
 
 import Component from '../component';
 
-import { aria                     } from '../utils/aria';
+import aria from '../utils/aria';
+
 import { setAttribute             } from '../utils/attributes';
 import { getAttribute             } from '../utils/attributes';
 import { ifNodeList               } from '../utils/checks';
@@ -99,7 +100,7 @@ export default class Textarea extends Component {
     changeEventHandler() {
         this.state.value = this.domCache.textarea.value;
 
-        if (this.state.value == '') {
+        if (this.state.value === '') {
             removeClass(this.domCache.element, '-has-value');
         } else {
             addClass(this.domCache.element, '-has-value');
@@ -110,5 +111,5 @@ export default class Textarea extends Component {
     getValue() {
         return this.state.value;
     }
-};
+}
 

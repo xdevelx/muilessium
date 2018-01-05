@@ -25,7 +25,7 @@ export function setAttribute(element, attribute, value) {
     return ifExists(element, () => {
         return element.setAttribute(attribute, value);
     });
-};
+}
 
 
 
@@ -37,7 +37,7 @@ export function getAttribute(element, attribute, defaultValue) {
     return ifExists(element, () => {
         return (element.getAttribute(attribute) || defaultValue);
     });
-};
+}
 
 
 
@@ -49,5 +49,5 @@ export function removeAttribute(element, attribute) {
     return ifExists(element, () => {
         return element.removeAttribute(attribute);
     });
-};
+}
 

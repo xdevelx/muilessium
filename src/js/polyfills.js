@@ -20,7 +20,7 @@ import * as smoothScrollPolyfill from 'smoothscroll-polyfill';
 
 function smoothScroll() {
     smoothScrollPolyfill.polyfill();
-};
+}
 
 
 // OBJECT FIT FOR IMAGES
@@ -31,16 +31,16 @@ import objectFitImages from 'object-fit-images';
 
 function objectFit() {
     objectFitImages();
-};
+}
 
 
 // Object.assign
 // https://github.com/sindresorhus/object-assign
 import assign from 'object-assign';
 
-function objectAssign() {
-    return assign.apply(null, arguments);
-};
+function objectAssign(...args) {
+    return assign(...args);
+}
 
 
 
@@ -49,19 +49,21 @@ function objectAssign() {
 // Notice: Really don't know why it's happening,
 //   but es6 import of this dependency brokes the tests.
 //   Use require instead.
-let convertToSlugCase = require('to-slug-case');
+const convertToSlugCase = require('to-slug-case');
 
 function toSlugCase(str) {
     return convertToSlugCase(str);
-};
+}
 
 
 // -----------------------------------------------------------------------------
 
-export let POLYFILLS = {
+const POLYFILLS = {
     smoothScroll,
-    objectFitImages,
+    objectFit,
     objectAssign,
     toSlugCase
 };
+
+export default POLYFILLS;
 

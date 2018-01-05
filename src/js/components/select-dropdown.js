@@ -17,23 +17,21 @@
 
 import Component from '../component';
 
-import { KEYBOARD } from '../controls/keyboard';
+import KEYBOARD from '../controls/keyboard';
 
-import { aria                         } from '../utils/aria';
+import aria from '../utils/aria';
+
 import { getAttribute                 } from '../utils/attributes';
 import { setAttribute                 } from '../utils/attributes';
 import { addClass                     } from '../utils/classes';
 import { removeClass                  } from '../utils/classes';
-import { toggleClass                  } from '../utils/classes';
 import { hasClass                     } from '../utils/classes';
 import { ifNodeList                   } from '../utils/checks';
 import { makeElementClickable         } from '../utils/focus-and-click';
 import { makeChildElementsClickable   } from '../utils/focus-and-click';
 import { makeElementsFocusable        } from '../utils/focus-and-click';
 import { makeElementsNotFocusable     } from '../utils/focus-and-click';
-import { getFocusableChilds           } from '../utils/focus-and-click';
 import { goToNextFocusableElement     } from '../utils/focus-and-click';
-import { goToPreviousFocusableElement } from '../utils/focus-and-click';
 import { onFocus                      } from '../utils/focus-and-click';
 import { onBlur                       } from '../utils/focus-and-click';
 import { extend                       } from '../utils/uncategorized';
@@ -71,8 +69,8 @@ export default class SelectDropdown extends Component {
 
 
     createHiddenSelect() {
-        let hiddenSelect = document.createElement('select'),
-            id = this.domCache.select.getAttribute('data-id');
+        const hiddenSelect = document.createElement('select');
+        const id = this.domCache.select.getAttribute('data-id');
 
         this.domCache.element.appendChild(hiddenSelect);
 
@@ -85,7 +83,7 @@ export default class SelectDropdown extends Component {
         aria.set(this.domCache.hiddenSelect, 'hidden', true);
 
         forEach(this.domCache.optionsList, (option) => {
-            let hiddenOption = document.createElement('option');
+            const hiddenOption = document.createElement('option');
 
             hiddenOption.value = getAttribute(option, 'data-value');
             
@@ -105,7 +103,7 @@ export default class SelectDropdown extends Component {
         });
 
         aria.set(this.domCache.select, 'activedescendant',
-                    getAttribute(this.domCache.optionsList[this.state.selectedIndex], 'id'));
+            getAttribute(this.domCache.optionsList[this.state.selectedIndex], 'id'));
         aria.set(this.domCache.state, 'hidden', true);
         aria.set(this.domCache.icon, 'hidden', true);
         aria.set(this.domCache.shadow, 'hidden', true);
@@ -126,17 +124,25 @@ export default class SelectDropdown extends Component {
     
     initControls() { 
         makeElementClickable(this.domCache.select,
-                        this.toggleDropdown.bind(this, { focusFirstWhenOpened: false }), { mouse: true, keyboard: false });
+            this.toggleDropdown.bind(this, {
+                focusFirstWhenOpened: false
+            }),
+            { mouse: true, keyboard: false }
+        );
 
         makeElementClickable(this.domCache.select,
-                        this.toggleDropdown.bind(this, { focusFirstWhenOpened: true }), { mouse: false, keyboard: true });
+            this.toggleDropdown.bind(this, {
+                focusFirstWhenOpened: true
+            }),
+            { mouse: false, keyboard: true }
+        );
 
         KEYBOARD.onSpacePressed(this.domCache.select, this.toggleDropdown.bind(this));
 
 
 
         makeElementClickable(this.domCache.shadow, this.toggleDropdown.bind(this),
-                        { mouse: true, keyboard: false });
+            { mouse: true, keyboard: false });
 
 
         ifNodeList(this.domCache.labels, () => {
@@ -153,7 +159,6 @@ export default class SelectDropdown extends Component {
             onBlur(this.domCache.select, () => {
                 makeElementsFocusable(this.domCache.labels);
             });
-            
         });
 
 
@@ -166,11 +171,11 @@ export default class SelectDropdown extends Component {
         });
 
         forEach(this.domCache.optionsList, (option, index) => {
-            let goToPrevOption = () => {
-                if (option == firstOfList(this.domCache.optionsList)) {
+            const goToPrevOption = () => {
+                if (option === firstOfList(this.domCache.optionsList)) {
                     this.closeDropdown();
                 } else {
-                    this.domCache.optionsList[index-1].focus();
+                    this.domCache.optionsList[index - 1].focus();
                 }
             };
 
@@ -178,11 +183,11 @@ export default class SelectDropdown extends Component {
             KEYBOARD.onShiftTabPressed(option, goToPrevOption);
 
 
-            let goToNextOption = () => {
-                if (option == lastOfList(this.domCache.optionsList)) {
+            const goToNextOption = () => {
+                if (option === lastOfList(this.domCache.optionsList)) {
                     this.closeDropdown();
                 } else {
-                    this.domCache.optionsList[index+1].focus();
+                    this.domCache.optionsList[index + 1].focus();
                 }
             };
 
@@ -269,11 +274,12 @@ export default class SelectDropdown extends Component {
         addClass(this.domCache.optionsList[newSelectedIndex], '-selected');
 
         this.state.selectedIndex = newSelectedIndex;
-        this.domCache.state.innerHTML = this.domCache.optionsList[this.state.selectedIndex].innerHTML;
+        this.domCache.state.innerHTML =
+            this.domCache.optionsList[this.state.selectedIndex].innerHTML;
         this.domCache.hiddenSelect.selectedIndex = this.state.selectedIndex.toString();
 
         aria.set(this.domCache.select, 'activedescendant',
-                    getAttribute(this.domCache.optionsList[this.state.selectedIndex], 'id'));
+            getAttribute(this.domCache.optionsList[this.state.selectedIndex], 'id'));
 
         return this;
     }
@@ -282,5 +288,5 @@ export default class SelectDropdown extends Component {
     getState() {
         return this.state.selectedIndex;
     }
-};
+}
 

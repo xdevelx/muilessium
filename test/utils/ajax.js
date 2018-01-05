@@ -21,7 +21,7 @@ require('jsdom-global')('', {
 
 
 var log = require('../../nodeunit.config.js').log,
-    _   = require('../../src/js/utils.js').UTILS;
+    _   = require('../../src/js/utils.js').default;
 
 
 module.exports = {

@@ -7,7 +7,7 @@
 // -----------------------------------------------------------------------------
 
 
-import { EVENTS } from './events';
+import EVENTS from './events';
 
 import { deepGet } from './utils/uncategorized';
 import { deepSet } from './utils/uncategorized';
@@ -31,11 +31,12 @@ class Store {
     get(path, data) {
         return deepGet(this.data, path);
     }
-};
+}
 
 
 // -----------------------------------------------------------------------------
 
-export let STORE = new Store();
+const STORE = new Store();
 
+export default STORE;
 

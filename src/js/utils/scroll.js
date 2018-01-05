@@ -22,13 +22,13 @@ import { callOnce        } from '../utils/uncategorized';
 
 export function scrollTo(element, callback) {
     ifExists(element, () => {
-        element.scrollIntoView({ 'behavior': 'smooth' });
+        element.scrollIntoView({ behavior: 'smooth' });
 
         if (typeof callback === 'function') {
             setTimeout(callback, 470); /* Default scroll time in smoothscroll-polyfill is 468ms */
         }
     });
-};
+}
 
 
 
@@ -37,12 +37,12 @@ export function scrollTo(element, callback) {
 // Scrolls to the top of page
 
 export function scrollToTop(callback) {
-    window.scroll({ top: 0, left: 0, 'behavior': 'smooth' });
+    window.scroll({ top: 0, left: 0, behavior: 'smooth' });
 
     if (typeof callback === 'function') {
         setTimeout(callback, 470); /* Default scroll time in smoothscroll-polyfill is 468ms */
     }
-};
+}
 
 
 
@@ -56,7 +56,7 @@ export function scrollFire(element, callback) {
             if (isInViewport(element) || isAboveViewport(element)) {
                 callback();
             } else {
-                let modifiedCallback = callOnce(callback);
+                const modifiedCallback = callOnce(callback);
 
                 document.addEventListener('scroll', () => {
                     if (isInViewport(element)) {
@@ -66,6 +66,6 @@ export function scrollFire(element, callback) {
             }
         }
     });
-};
+}
 
 

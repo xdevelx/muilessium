@@ -3,12 +3,12 @@
 // -----------------------------------------------------------------------------
 
 
+import * as SimpleBar from 'simplebar';
+
 import Component from '../component';
 
 import { setAttribute } from '../utils/attributes';
 import { extend       } from '../utils/uncategorized';
-
-import * as SimpleBar from 'simplebar';
 
 
 export default class CustomScroll extends Component {
@@ -28,5 +28,5 @@ export default class CustomScroll extends Component {
             })
         });
     }
-};
+}
 

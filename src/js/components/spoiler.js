@@ -14,7 +14,8 @@
 
 import Component from '../component';
 
-import { aria                 } from '../utils/aria';
+import aria from '../utils/aria';
+
 import { addClass             } from '../utils/classes';
 import { toggleClass          } from '../utils/classes';
 import { removeClass          } from '../utils/classes';
@@ -86,5 +87,5 @@ export default class Spoiler extends Component {
 
         return this;
     }
-};
+}
 

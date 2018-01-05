@@ -9,14 +9,12 @@
 //  - isNode(element)
 //  - isInPage(element)
 //  - isNotInPage(element)
-//  - ifExists(element, callback, printWarning = true)
-//  - ifNodeList(element, callback, printWarning = true)
+//  - ifExists(element, callback)
+//  - ifNodeList(element, callback)
 //  - isDescendant(parent, child)
 //
 // -----------------------------------------------------------------------------
 
-
-import { console } from '../utils/console';
 
 
 // Is Node
@@ -34,9 +32,10 @@ export function isNode(element) {
 // Returns true if elements exists in a document.body and false otherwise
 
 export function isInPage(element) {
-    /* Use this instead of document.contains because IE has only partial support of Node.contains. */
+    /* Use this instead of document.contains because IE
+       has only partial support of Node.contains. */
     return isNode(element) && ((element === document.body) || document.body.contains(element));
-};
+}
 
 
 
@@ -46,7 +45,7 @@ export function isInPage(element) {
 
 export function isNotInPage(element) {
     return !isInPage(element);
-};
+}
 
 
 
@@ -61,7 +60,7 @@ export function ifExists(element, callback) {
     }
 
     return null;
-};
+}
 
 
 
@@ -70,11 +69,11 @@ export function ifExists(element, callback) {
 // If the first parameter is NodeList or HTMLCollection or Array of HTMLElements
 // executes callback function and prints warning otherwise by default
 
-export function ifNodeList(x, callback, printWarning = true) {
+export function ifNodeList(x, callback) {
     if (((x instanceof NodeList) || (x instanceof HTMLCollection)) && (x.length > 0)) {
         return callback();
     } else if ((x instanceof Array) && (x.length) > 0) {
-        let isArrayOfElements = x.every((element) => {
+        const isArrayOfElements = x.every((element) => {
             return (element instanceof HTMLElement);
         });
 
@@ -84,7 +83,7 @@ export function ifNodeList(x, callback, printWarning = true) {
     }
 
     return null;
-};
+}
 
 
 
@@ -100,7 +99,7 @@ export function isDescendant(parent, child) {
             let node = child.parentNode;
 
             while (node != null) {
-                if (node == parent) {
+                if (node === parent) {
                     result = true;
                 }
 
@@ -110,5 +109,5 @@ export function isDescendant(parent, child) {
     });
 
     return result;
-};
+}
 

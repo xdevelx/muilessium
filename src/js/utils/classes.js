@@ -29,10 +29,11 @@ import { forEach } from '../utils/uncategorized';
 
 export function hasClass(element, classForTest) {
     return ifExists(element, () => {
-        /* Use className instead of classList because IE11 does not have support for slassList on SVG */
+        /* Use className instead of classList because IE11
+           does not have support for slassList on SVG */
         return (element.className.indexOf(classForTest) !== -1);
     });
-};
+}
 
 
 
@@ -44,7 +45,7 @@ export function hasNotClass(element, classForTest) {
     return ifExists(element, () => {
         return !hasClass(element, classForTest);
     });
-};
+}
 
 
 
@@ -58,10 +59,11 @@ export function addClass(element, newClass) {
             return;
         }
 
-        /* Use className instead of classList because IE11 does not have support for slassList on SVG */
-        element.className += ' ' + newClass;
+        /* Use className instead of classList because IE11
+           does not have support for slassList on SVG */
+        element.className += ` ${newClass}`;
     });
-};
+}
 
 
 
@@ -75,7 +77,7 @@ export function addClasses(element, ...newClasses) {
             addClass(element, c);
         });
     });
-};
+}
 
 
 
@@ -85,10 +87,11 @@ export function addClasses(element, ...newClasses) {
 
 export function removeClass(element, classForRemoving) {
     return ifExists(element, () => {
-        /* Use className instead of classList because IE11 does not have support for slassList on SVG */
+        /* Use className instead of classList because IE11
+           does not have support for slassList on SVG */
         element.className = element.className.replace(classForRemoving, '');
     });
-};
+}
 
 
 
@@ -102,7 +105,7 @@ export function removeClasses(element, ...classesForRemoving) {
             removeClass(element, c);
         });
     });
-};
+}
 
 
 
@@ -113,7 +116,7 @@ export function removeClasses(element, ...classesForRemoving) {
 export function replaceClass(element, classForRemoving, newClass) {
     removeClass(element, classForRemoving);
     addClass(element, newClass);
-};
+}
 
 
 
@@ -129,5 +132,5 @@ export function toggleClass(element, classForToggle) {
             removeClass(element, classForToggle);
         }
     });
-};
+}
 

@@ -15,15 +15,15 @@
 
 import Component from '../component';
 
-import { KEYBOARD } from '../controls/keyboard';
+import KEYBOARD from '../controls/keyboard';
 
-import { aria                  } from '../utils/aria';
+import aria from '../utils/aria';
+
 import { setAttribute          } from '../utils/attributes';
 import { addClass              } from '../utils/classes';
 import { removeClass           } from '../utils/classes';
 import { makeElementClickable  } from '../utils/focus-and-click';
 import { extend                } from '../utils/uncategorized';
-import { console               } from '../utils/console';
 
 
 
@@ -110,5 +110,5 @@ export default class Checkbox extends Component {
     getState() {
         return this.state.isChecked;
     }
-};
+}
 

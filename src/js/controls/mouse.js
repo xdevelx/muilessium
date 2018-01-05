@@ -21,7 +21,7 @@ function onClick(element, callback) {
         e.preventDefault();
         callback(e);
     });
-};
+}
 
 
 function onMouseOver(element, callback) {
@@ -29,7 +29,7 @@ function onMouseOver(element, callback) {
         e.preventDefault();
         callback(e);
     });
-};
+}
 
 
 function onMouseOut(element, callback) {
@@ -37,15 +37,17 @@ function onMouseOut(element, callback) {
         e.preventDefault();
         callback(e);
     });
-};
+}
 
 
 // -----------------------------------------------------------------------------
 
-export let MOUSE = {
+const MOUSE = {
     onClick,
     onMouseOver,
     onMouseOut
 };
+
+export default MOUSE;
 
 

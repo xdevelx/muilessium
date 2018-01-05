@@ -11,6 +11,7 @@ var gulp         = require('gulp'),
     postcss      = require('gulp-postcss'),
     doiuse       = require('doiuse'),
     cssnano      = require('gulp-cssnano'),
+    eslint       = require('gulp-eslint'),
     webpack      = require('webpack-stream'),
     browserSync  = require('browser-sync').create(),
     dss          = require('gulp-dss'),
@@ -49,6 +50,14 @@ gulp.task('js', () => {
         .pipe(rename('muilessium.min.js'))
         .pipe(gulp.dest('./dist/js'))
         .pipe(browserSync.stream());
+});
+
+
+gulp.task('lint-js', () => {
+    return gulp.src('./src/**/*.js')
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError());
 });
 
 
@@ -91,7 +100,7 @@ gulp.task('browser-sync', function() {
 
 gulp.task('default', () => {
     if (ENVIRONMENT === 'production') {
-        run('less', 'test', 'js', 'dss');
+        run('less', 'lint-js', 'test', 'js', 'dss');
     } else {
         run('less', 'js', 'dss');
     }

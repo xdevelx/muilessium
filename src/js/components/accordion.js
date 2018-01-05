@@ -16,9 +16,10 @@
 
 import Component from '../component';
 
-import { KEYBOARD } from '../controls/keyboard';
+import KEYBOARD from '../controls/keyboard';
 
-import { aria                       } from '../utils/aria';
+import aria from '../utils/aria';
+
 import { setAttribute               } from '../utils/attributes';
 import { addClass                   } from '../utils/classes';
 import { removeClass                } from '../utils/classes';
@@ -28,7 +29,6 @@ import { extend                     } from '../utils/uncategorized';
 import { forEach                    } from '../utils/uncategorized';
 import { firstOfList                } from '../utils/uncategorized';
 import { lastOfList                 } from '../utils/uncategorized';
-
 
 
 export default class Accordion extends Component {
@@ -79,15 +79,15 @@ export default class Accordion extends Component {
         forEach(this.domCache.titles, (title, index) => {
             KEYBOARD.onSpacePressed(title, this.toggleItem.bind(this, index));
 
-            if (title != firstOfList(this.domCache.titles)) {
+            if (title !== firstOfList(this.domCache.titles)) {
                 KEYBOARD.onArrowUpPressed(title, () => {
-                    this.domCache.titles[index-1].focus(); 
+                    this.domCache.titles[index - 1].focus(); 
                 });
             }
             
-            if (title != lastOfList(this.domCache.titles)) {
+            if (title !== lastOfList(this.domCache.titles)) {
                 KEYBOARD.onArrowDownPressed(title, () => {
-                    this.domCache.titles[index+1].focus(); 
+                    this.domCache.titles[index + 1].focus(); 
                 });
             }
         });
@@ -142,5 +142,5 @@ export default class Accordion extends Component {
 
         return this;
     }
-};
+}
 

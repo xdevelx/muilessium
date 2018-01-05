@@ -14,14 +14,14 @@
 
 import Component from '../component';
 
-import { KEYBOARD } from '../controls/keyboard';
+import KEYBOARD from '../controls/keyboard';
 
-import { aria                     } from '../utils/aria';
+import aria from '../utils/aria';
+
 import { addClass                 } from '../utils/classes';
 import { removeClass              } from '../utils/classes';
 import { onFocus                  } from '../utils/focus-and-click';
 import { makeElementClickable     } from '../utils/focus-and-click';
-import { makeElementsFocusable    } from '../utils/focus-and-click';
 import { getFocusableChilds       } from '../utils/focus-and-click';
 import { goToNextFocusableElement } from '../utils/focus-and-click';
 import { extend                   } from '../utils/uncategorized';
@@ -66,19 +66,20 @@ export default class ButtonDropdown extends Component {
 
     initControls() {
         makeElementClickable(this.domCache.button,
-                        this.toggleDropdown.bind(this, { focusFirstWhenOpened: false }),
-                                        { mouse: true, keyboard: false });
+            this.toggleDropdown.bind(this, { focusFirstWhenOpened: false }),
+            { mouse: true, keyboard: false });
 
         KEYBOARD.onEnterPressed(this.domCache.button,
-                        this.toggleDropdown.bind(this, { focusFirstWhenOpened: true }),
-                                        { mouse: false, keyboard: true });
+            this.toggleDropdown.bind(this, { focusFirstWhenOpened: true }),
+            { mouse: false, keyboard: true });
 
         KEYBOARD.onSpacePressed(this.domCache.button,
-                        this.toggleDropdown.bind(this, { focusFirstWhenOpened: true }),
-                                        { mouse: false, keyboard: true });
+            this.toggleDropdown.bind(this, { focusFirstWhenOpened: true }),
+            { mouse: false, keyboard: true });
 
-        makeElementClickable(this.domCache.shadow, this.toggleDropdown.bind(this),
-                        { mouse: true, keyboard: false });
+        makeElementClickable(this.domCache.shadow,
+            this.toggleDropdown.bind(this),
+            { mouse: true, keyboard: false });
 
 
         forEach(this.domCache.optionsList, (option, index) => {
@@ -87,20 +88,20 @@ export default class ButtonDropdown extends Component {
             });
 
             KEYBOARD.onArrowUpPressed(option, () => {
-                if (option == firstOfList(this.domCache.optionsList)) {
+                if (option === firstOfList(this.domCache.optionsList)) {
                     this.closeDropdown();
                     this.domCache.button.focus();
                 } else {
-                    this.domCache.optionsList[index-1].focus();
+                    this.domCache.optionsList[index - 1].focus();
                 }
             });
 
             KEYBOARD.onArrowDownPressed(option, () => {
-                if (option == lastOfList(this.domCache.optionsList)) {
+                if (option === lastOfList(this.domCache.optionsList)) {
                     this.closeDropdown();
                     this.domCache.button.focus();
                 } else {
-                    this.domCache.optionsList[index+1].focus();
+                    this.domCache.optionsList[index + 1].focus();
                 }
             });
         });
@@ -171,5 +172,5 @@ export default class ButtonDropdown extends Component {
 
         return this;
     }
-};
+}
 

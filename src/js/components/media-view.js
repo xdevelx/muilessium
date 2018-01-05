@@ -10,7 +10,8 @@
 
 import Component from '../component';
 
-import { aria   } from '../utils/aria';
+import aria from '../utils/aria';
+
 import { extend } from '../utils/uncategorized';
 
 
@@ -32,5 +33,5 @@ export default class MediaView extends Component {
 
         return this;
     }
-};
+}
 

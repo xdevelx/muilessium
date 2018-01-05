@@ -10,14 +10,14 @@
 
 import Component from '../component';
 
-import { aria } from '../utils/aria';
+import aria from '../utils/aria';
 
 
 export default class TagsList extends Component {
     constructor(element, options) {
         super(element, options);
 
-        this.initAria()
+        this.initAria();
     }
 
     initAria() {
@@ -25,5 +25,5 @@ export default class TagsList extends Component {
 
         return this;
     }
-};
+}
 

@@ -7,9 +7,10 @@
 // -----------------------------------------------------------------------------
 
 
-import * as ajax          from './utils/ajax';
-import * as animations    from './utils/animations.js';
-import * as aria          from './utils/aria';
+import ajax               from './utils/ajax';
+import aria               from './utils/aria';
+
+import * as animations    from './utils/animations';
 import * as attributes    from './utils/attributes';
 import * as checks        from './utils/checks';
 import * as classes       from './utils/classes';
@@ -22,11 +23,11 @@ import * as viewport      from './utils/viewport';
 
 // -----------------------------------------------------------------------------
 
-export let UTILS = uncategorized.extend(
+const UTILS = uncategorized.extend(
     {},
-    ajax,
+    { ajax },
+    { aria },
     animations,
-    aria,
     attributes,
     checks,
     classes,
@@ -36,4 +37,6 @@ export let UTILS = uncategorized.extend(
     uncategorized,
     viewport
 );
+
+export default UTILS;
 

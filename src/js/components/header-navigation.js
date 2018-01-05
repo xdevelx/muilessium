@@ -17,12 +17,13 @@
 
 import Component from '../component';
 
-import { EVENTS } from '../events';
+import EVENTS from '../events';
 
-import { TOUCHSCREEN } from '../controls/touchscreen';
-import { KEYBOARD    } from '../controls/keyboard';
+import TOUCHSCREEN from '../controls/touchscreen';
+import KEYBOARD    from '../controls/keyboard';
 
-import { aria                         } from '../utils/aria';
+import aria from '../utils/aria';
+
 import { addClass                     } from '../utils/classes';
 import { removeClass                  } from '../utils/classes';
 import { getFocusableChilds           } from '../utils/focus-and-click';
@@ -79,10 +80,10 @@ export default class HeaderNavigation extends Component {
     initControls() {
         makeElementClickable(this.domCache.hamburger, this.toggleNavigation.bind(this));
         makeElementClickable(this.domCache.shadow,    this.toggleNavigation.bind(this),
-                        { mouse: true, keyboard: false });
+            { mouse: true, keyboard: false });
 
         makeChildElementsClickable(this.domCache.element, this.domCache.linksList, (index) => {
-            let href = this.domCache.linksList[index].getAttribute('href');
+            const href = this.domCache.linksList[index].getAttribute('href');
 
             if (href[0] === '#') {
                 this.closeNavigation();
@@ -109,7 +110,7 @@ export default class HeaderNavigation extends Component {
             this.closeNavigation();
 
             goToNextFocusableElement(
-                            lastOfList(this.domCache.focusables));
+                lastOfList(this.domCache.focusables));
         });
 
         return this;
@@ -205,12 +206,13 @@ export default class HeaderNavigation extends Component {
 
         this.transformToDesktop();
 
-        let parentNode = this.domCache.element.parentNode,
-            parentWidth = parentNode.clientWidth,
-            childsWidth = 0;
+        const { parentNode } = this.domCache.element;
+        const parentWidth = parentNode.clientWidth;
+
+        let childsWidth = 0;
 
         forEach(parentNode.childNodes, (child) => {
-            let width = child.offsetWidth;
+            const width = child.offsetWidth;
 
             if (width) {
                 childsWidth += child.offsetWidth;
@@ -225,5 +227,5 @@ export default class HeaderNavigation extends Component {
 
         return this;
     }
-};
+}
 

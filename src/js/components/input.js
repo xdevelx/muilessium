@@ -14,7 +14,8 @@
 
 import Component from '../component';
 
-import { aria                     } from '../utils/aria';
+import aria from '../utils/aria';
+
 import { setAttribute             } from '../utils/attributes';
 import { getAttribute             } from '../utils/attributes';
 import { ifExists                 } from '../utils/checks';
@@ -117,7 +118,7 @@ export default class Input extends Component {
     changeValueHandler() { 
         this.state.value = this.domCache.input.value;
 
-        if (this.state.value == '') {
+        if (this.state.value === '') {
             removeClasses(this.domCache.element, '-has-value', '-valid', '-invalid');
 
             ifExists(this.domCache.hint, () => {
@@ -127,7 +128,7 @@ export default class Input extends Component {
         } else {
             addClass(this.domCache.element, '-has-value');
 
-            let validationTimeout = this.state.validationTimeout;
+            let { validationTimeout } = this.state;
 
             if (validationTimeout) {
                 clearTimeout(validationTimeout);
@@ -179,5 +180,5 @@ export default class Input extends Component {
 
         return this.state.isValid;
     }
-};
+}
 

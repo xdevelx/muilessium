@@ -2,44 +2,54 @@
 // Custom console
 // -----------------------------------------------------------------------------
 
-export const console = {
 
-    // Log
-    // ---
-    // Prints message to the standart browser console
+// Log
+// ---
+// Prints message to the standart browser console
 
-    log: (message) => {
-        window.console.log(`${message}`);
-    },
-
-
-
-    // Info
-    // ----
-    // Prints info message to the standart browser console
-
-    info: (message) => {
-        window.console.info(`[ INFO ] ${message}`);
-    },
+function log(message) {
+    window.console.log(`${message}`);
+}
 
 
 
-    // Warning
-    // -------
-    // Prints warning message to the standart browser console
+// Info
+// ----
+// Prints info message to the standart browser console
 
-    warning: (message) => {
-        window.console.warn(`[ WARNING ] ${message}`);
-    },
+function info(message) {
+    window.console.info(`[ INFO ] ${message}`);
+}
 
 
 
-    // Error
-    // -----
-    // Prints error message to the standart browser console
+// Warning
+// -------
+// Prints warning message to the standart browser console
 
-    error: (message) => {
-        window.console.error(`[ ERROR ] ${message}`);
-    }
+function warning(message) {
+    window.console.warn(`[ WARNING ] ${message}`);
+}
+
+
+
+// Error
+// -----
+// Prints error message to the standart browser console
+
+function error(message) {
+    window.console.error(`[ ERROR ] ${message}`);
+}
+
+
+// -----------------------------------------------------------------------------
+
+const console = {
+    log,
+    info,
+    warning,
+    error
 };
+
+export default console;
 

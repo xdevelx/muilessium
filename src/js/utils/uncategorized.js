@@ -21,8 +21,9 @@
 // -----------------------------------------------------------------------------
 
 
-import { POLYFILLS } from '../polyfills';
+import POLYFILLS from '../polyfills';
 
+import console from '../utils/console';
 
 import { addClass             } from '../utils/classes';
 import { makeElementClickable } from '../utils/focus-and-click';
@@ -33,47 +34,49 @@ import { scrollTo             } from '../utils/scroll';
 // --------------------
 
 export function normalizeTabIndex() {
-    var focusableElements = [].slice.call(
+    const focusableElements = [].slice.call(
         document.querySelectorAll('a, button, input, label, select, textarea, object')
     );
-    
+
     focusableElements.map((element) => {
         element.tabIndex = 0;
+
+        return element;
     });
-};
+}
 
 
 
 // Lazy load images
 // ----------------
 
-let imagesLoaded = require('imagesloaded');
+const imagesLoaded = require('imagesloaded');
 
 export function lazyLoadImages(callback) {
     forEach(document.querySelectorAll('.-js-lazy-load'), (image) => {
-        image.src    = image.getAttribute('data-src', '');
+        image.src = image.getAttribute('data-src', '');
 
-        let srcset = image.getAttribute('data-srcset', '');
+        const srcset = image.getAttribute('data-srcset', '');
 
         if (srcset) {
             image.srcset = srcset;
         }
 
-        let sizes = image.getAttribute('data-sizes', '');
+        const sizes = image.getAttribute('data-sizes', '');
 
         if (sizes) {
             image.sizes = sizes;
         }
 
-        image.addEventListener('load', function() {
-            addClass(this, '-loaded'); 
+        image.addEventListener('load', () => {
+            addClass(image, '-loaded');
         });
     });
 
     if (typeof callback === 'function') {
         imagesLoaded('body', callback);
     }
-};
+}
 
 
 
@@ -81,14 +84,14 @@ export function lazyLoadImages(callback) {
 // -----------------
 
 export function initAnchorLinks() {
-    let links = document.getElementsByTagName('a');
+    const links = document.getElementsByTagName('a');
 
     forEach(links, (link) => {
-        let href = link.getAttribute('href');
+        const href = link.getAttribute('href');
 
         if (href && href[0] === '#') {
             makeElementClickable(link, () => {
-                let targetElement = document.getElementById(href.substring(1));
+                const targetElement = document.getElementById(href.substring(1));
 
                 if (targetElement) {
                     scrollTo(targetElement, () => {
@@ -104,7 +107,7 @@ export function initAnchorLinks() {
             });
         }
     });
-};
+}
 
 
 
@@ -112,15 +115,16 @@ export function initAnchorLinks() {
 // ------------------------
 
 export function generateRandomString(length = 8) {
-    let str = '',
-        possibleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const possibleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    let str = '';
 
     for (let i = 0; i < length; i++) {
         str += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length));
     }
 
     return str;
-};
+}
 
 
 
@@ -136,10 +140,10 @@ export function stringify(object) {
         if (typeof value === 'function') {
             return 'function';
         }
-        
+ 
         return value;
     });
-};
+}
 
 
 
@@ -147,14 +151,14 @@ export function stringify(object) {
 // ------
 // Wrapper for the Object.assign method
 
-export function extend() {
+export function extend(...args) {
     // Here is a little fix for the polyfill
-    if (arguments[0] == undefined) {
+    if (args[0] === undefined || args[0] === null) {
         return {};
     }
 
-    return POLYFILLS.objectAssign.apply(null, arguments);
-};
+    return POLYFILLS.objectAssign(...args);
+}
 
 
 
@@ -164,12 +168,12 @@ export function extend() {
 export function debounce(func, ms) {
     let callAllowed = true;
 
-    return function() {
+    return (...args) => {
         if (!callAllowed) {
             return;
         }
 
-        func.apply(this, arguments);
+        func.apply(this, args);
 
         callAllowed = false;
 
@@ -177,7 +181,7 @@ export function debounce(func, ms) {
             callAllowed = true;
         }, ms);
     };
-};
+}
 
 
 
@@ -186,7 +190,7 @@ export function debounce(func, ms) {
 
 export function stringToBoolean(str) {
     return str === 'true';
-};
+}
 
 
 
@@ -197,14 +201,16 @@ export function stringToBoolean(str) {
 export function callOnce(callback) {
     let executed = false;
 
-    return function() {
+    return function wrapper() {
         if (!executed) {
             executed = true;
 
             return callback();
         }
+
+        return null;
     };
-};
+}
 
 
 
@@ -218,7 +224,7 @@ export function firstOfList(list) {
     }
 
     return list[0];
-};
+}
 
 
 
@@ -232,7 +238,7 @@ export function lastOfList(list) {
     }
 
     return list[list.length - 1];
-};
+}
 
 
 // For Each
@@ -254,12 +260,12 @@ export function forEach(list, callback, delay = 0) {
 
             counter++;
         });
-    } else {
-        return [].forEach.call(list, (item, index) => {
-            callback(item, index, list);
-        });
     }
-};
+
+    return [].forEach.call(list, (item, index) => {
+        callback(item, index, list);
+    });
+}
 
 
 // Deep Get
@@ -268,7 +274,7 @@ export function forEach(list, callback, delay = 0) {
 
 export function deepGet (obj, path) {
     if (!obj || !path) {
-        return;
+        return null;
     }
 
     const keys = path.split('.');
@@ -276,7 +282,7 @@ export function deepGet (obj, path) {
     for (let i = 0; i < keys.length; i++) {
         const key = keys[i];
 
-        if (!obj.hasOwnProperty(key)) {
+        if (!{}.hasOwnProperty.call(obj, key)) {
             obj = undefined;
             break;
         }
@@ -285,7 +291,7 @@ export function deepGet (obj, path) {
     }
 
     return obj;
-};
+}
 
 
 // Deep Set
@@ -294,15 +300,16 @@ export function deepGet (obj, path) {
 
 export function deepSet (obj, path, data) {
     if (!obj || !path) {
-        return;
+        return null;
     }
 
     const keys = path.split('.');
+    let i = 0;
 
-    for (var i = 0; i < keys.length - 1; i++) {
+    for (; i < keys.length - 1; i++) {
         const key = keys[i];
 
-        if (!obj.hasOwnProperty(key)) {
+        if (!{}.hasOwnProperty.call(obj, key)) {
             obj[key] = {};
         }
 
@@ -312,7 +319,7 @@ export function deepSet (obj, path, data) {
     obj[keys[i]] = data;
 
     return data;
-};
+}
 
 
 // To LispCase
@@ -325,5 +332,5 @@ export function toLispCase(str) {
     }
 
     return POLYFILLS.toSlugCase(str); 
-};
+}
 

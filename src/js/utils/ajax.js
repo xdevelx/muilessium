@@ -3,13 +3,16 @@
 // -----------------------------------------------------------------------------
 
 
+import console from '../utils/console';
+
+
 // Post
 // ----
 // Makes a POST request and executes a success or error callback when
 // the request state changes
 
 function post(url, data, successCallback, errorCallback) {
-    let request = new XMLHttpRequest();
+    const request = new XMLHttpRequest();
 
     request.open('POST', url, true);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
@@ -24,10 +27,10 @@ function post(url, data, successCallback, errorCallback) {
                 errorCallback(request.status, request.statusText);
             }
         }
-    }
+    };
 
     request.send(data);
-};
+}
 
 
 
@@ -37,13 +40,13 @@ function post(url, data, successCallback, errorCallback) {
 // and tries to repeat request otherwise
 
 function postProtected(url, data, callback) {
-    post(url, data, callback, (error) => {
+    post(url, data, callback, () => {
         setTimeout(
             postProtected.bind(null, url, data, callback),
             1500
         );
     });
-};
+}
 
 
 
@@ -53,13 +56,13 @@ function postProtected(url, data, callback) {
 // the request state changes
 
 function get(url, successCallback, errorCallback) {
-    let request = new XMLHttpRequest();
+    const request = new XMLHttpRequest();
 
     request.open('GET', url, true);
 
     request.onreadystatechange = () => {
         if (request.readyState === 4) {
-            /* Status 304 (Not Modified) is also a successful for the GET request.*/
+            /* Status 304 (Not Modified) is also a successful for the GET request. */
             if (((request.status >= 200) && (request.status < 300)) || (request.status === 304)) {
                 successCallback(request.responseText);
             } else {
@@ -70,7 +73,7 @@ function get(url, successCallback, errorCallback) {
     };
 
     request.send(null);
-};
+}
 
 
 
@@ -80,19 +83,23 @@ function get(url, successCallback, errorCallback) {
 // and tries to repeat request otherwise
 
 function getProtected(url, callback) {
-    get(url, callback, (error) => {
+    get(url, callback, () => {
         setTimeout(
             getProtected.bind(null, url, callback),
             1500
         );
     });
-};
+}
 
 
-export const ajax = {
+// -----------------------------------------------------------------------------
+
+const ajax = {
     post,
     postProtected,
     get,
     getProtected
 };
+
+export default ajax;
 

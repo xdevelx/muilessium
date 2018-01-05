@@ -15,8 +15,9 @@
 // -----------------------------------------------------------------------------
 
 
-import { COMPONENTS } from './components';
+import COMPONENTS from './components';
 
+import { forEach    } from './utils/uncategorized';
 import { toLispCase } from './utils/uncategorized';
 
 
@@ -37,39 +38,37 @@ class Factory {
 
 
     initComponents() {
-        for (let type in this.components) {
-            if (!this.components.hasOwnProperty(type)) {
-                continue;
-            }
-
-            this.create(type, '.mui-' + toLispCase(type), {});
-        }
+        forEach(Object.keys(this.components), (type) => {
+            this.create(type, `.mui-${toLispCase(type)}`, {});
+        });
     }
 
 
     create(type, selector, options) {
         if (typeof this.components[type] !== 'function') {
-            throw new Error('No such component: ' + type);
+            throw new Error(`No such component: ${type}`);
         }
 
         if (!this.componentsCache[type]) {
             this.componentsCache[type] = [];
         }
         
-        let elements = document.querySelectorAll(selector);
+        const elements = document.querySelectorAll(selector);
         
         return [].map.call(elements, (element) => {
-            let newComponent = new this.components[type](element, options);
+            const newComponent = new this.components[type](element, options);
 
             this.componentsCache[type].push(newComponent);
 
             return newComponent;
         });
-    };
-};
+    }
+}
 
 
 // -----------------------------------------------------------------------------
 
-export let FACTORY = new Factory();
+const FACTORY = new Factory();
+
+export default FACTORY;
 

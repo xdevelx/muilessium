@@ -13,7 +13,7 @@ require('jsdom-global/register');
 
 
 var log = require('../../nodeunit.config.js').log,
-    _   = require('../../src/js/utils.js').UTILS;
+    _   = require('../../src/js/utils.js').default;
 
 
 // This will fix the following error from jsdom runtime:

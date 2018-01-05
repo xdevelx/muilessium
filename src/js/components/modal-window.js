@@ -13,17 +13,16 @@
 
 import Component from '../component';
 
-import { KEYBOARD    } from '../controls/keyboard';
-import { TOUCHSCREEN } from '../controls/touchscreen';
+import KEYBOARD    from '../controls/keyboard';
+import TOUCHSCREEN from '../controls/touchscreen';
 
-import { aria                         } from '../utils/aria';
+import aria from '../utils/aria';
+
 import { addClass                     } from '../utils/classes';
 import { removeClass                  } from '../utils/classes';
 import { makeElementFocusable         } from '../utils/focus-and-click';
 import { makeElementNotFocusable      } from '../utils/focus-and-click';
 import { makeElementClickable         } from '../utils/focus-and-click';
-import { goToNextFocusableElement     } from '../utils/focus-and-click';
-import { goToPreviousFocusableElement } from '../utils/focus-and-click';
 import { extend                       } from '../utils/uncategorized';
 import { forEach                      } from '../utils/uncategorized';
 
@@ -71,14 +70,14 @@ export default class ModalWindow extends Component {
             });
         });
 
-        KEYBOARD.onEscapePressed  (this.domCache.modalWindow, this.closeModal.bind(this));
-        KEYBOARD.onTabPressed     (this.domCache.modalWindow, this.closeModal.bind(this));
+        KEYBOARD.onEscapePressed(this.domCache.modalWindow, this.closeModal.bind(this));
+        KEYBOARD.onTabPressed(this.domCache.modalWindow, this.closeModal.bind(this));
         KEYBOARD.onShiftTabPressed(this.domCache.modalWindow, this.closeModal.bind(this));
         
         makeElementClickable(this.domCache.closeIcon, this.closeModal.bind(this),
-                        { mouse: true, keyboard: false });
-        makeElementClickable(this.domCache.shadow,    this.closeModal.bind(this),
-                        { mouse: true, keyboard: false });
+            { mouse: true, keyboard: false });
+        makeElementClickable(this.domCache.shadow, this.closeModal.bind(this),
+            { mouse: true, keyboard: false });
 
         TOUCHSCREEN.onPinchOut(this.domCache.modalWindow, this.closeModal.bind(this));
 
@@ -121,5 +120,5 @@ export default class ModalWindow extends Component {
 
         return this;
     }
-};
+}
 

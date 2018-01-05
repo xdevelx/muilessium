@@ -21,7 +21,7 @@
 export default class Component {
     constructor(element, options) {
         this.domCache = {
-            element: element
+            element
         };
 
         this.state = {};

@@ -12,8 +12,8 @@ import { ifExists } from '../utils/checks';
 
 export function isInViewport(element) {
     return ifExists(element, () => {
-        let rect = element.getBoundingClientRect(),
-            html = document.documentElement;
+        const rect = element.getBoundingClientRect();
+        const html = document.documentElement;
 
         return (
             rect.top    >= 0 &&
@@ -22,7 +22,7 @@ export function isInViewport(element) {
             rect.right  <= (window.innerWidth  || html.clientWidth)
         );
     });
-};
+}
 
 
 // Is above viewport
@@ -35,6 +35,6 @@ export function isAboveViewport(element) {
             element.offsetTop + element.offsetHeight < window.pageYOffset
         );
     });
-};
+}
 
 

@@ -20,32 +20,34 @@ window.Hammer = require('hammerjs');
 
 
 function onSwipeLeft(element, callback) {
-    let hammertime = new Hammer(element);
+    const hammertime = new window.Hammer(element);
 
     hammertime.on('swipeleft', callback);
-};
+}
 
 
 function onSwipeRight(element, callback) {
-    let hammertime = new Hammer(element);
+    const hammertime = new window.Hammer(element);
 
     hammertime.on('swiperight', callback);
-};
+}
 
 
 function onPinchOut(element, callback) {
-    let hammertime = new Hammer(element);
+    const hammertime = new window.Hammer(element);
 
     hammertime.get('pinch').set({ enable: true });
     hammertime.on('pinchout', callback);
-};
+}
 
 
 // -----------------------------------------------------------------------------
 
-export let TOUCHSCREEN = {
+const TOUCHSCREEN = {
     onSwipeLeft,
     onSwipeRight,
     onPinchOut
 };
+
+export default TOUCHSCREEN;
 

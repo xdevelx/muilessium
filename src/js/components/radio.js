@@ -12,7 +12,8 @@
 
 import Component from '../component';
 
-import { aria                       } from '../utils/aria';
+import aria from '../utils/aria';
+
 import { setAttribute               } from '../utils/attributes';
 import { getAttribute               } from '../utils/attributes';
 import { ifExists                   } from '../utils/checks';
@@ -101,5 +102,5 @@ export default class Radio extends Component {
     getState() {
         return this.state.checkedIndex;
     }
-};
+}
 

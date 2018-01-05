@@ -22,77 +22,89 @@ import { getAttribute         } from '../utils/attributes';
 import { removeAttribute      } from '../utils/attributes';
 import { generateRandomString } from '../utils/uncategorized';
 import { stringToBoolean      } from '../utils/uncategorized';
-import { forEach              } from '../utils/uncategorized';
 
 
-export const aria = {
 
 
-    // Set property
-    // ------------
-    // Sets aria-property to the element
+// Set property
+// ------------
+// Sets aria-property to the element
 
-    set: (element, property, value = true) => {
-        return setAttribute(element, `aria-${property}`, value);
-    },
-
-
-    // Set role
-    // --------
-    // Sets aria-role to the element
-
-    setRole: (element, role) => {
-        return setAttribute(element, 'role', role);
-    },
+function set(element, property, value = true) {
+    return setAttribute(element, `aria-${property}`, value);
+}
 
 
-    // Remove role
-    // -----------
-    // Removes aria-role from the element
+// Set role
+// --------
+// Sets aria-role to the element
 
-    removeRole: (element) => {
-        return removeAttribute(element, 'role');
-    },
-
-
-    // Set id
-    // ------
-    // Sets ID to the element (generates a random ID if ID not passed as a parameter),
-    // returns this ID
-
-    setId: (element, id) => {
-        const newId = id || (`mui-id-${generateRandomString(6)}`);
-
-        setAttribute(element, 'id', newId);
-
-        return newId;
-    },
+function setRole(element, role) {
+    return setAttribute(element, 'role', role);
+}
 
 
-    // Get property
-    // ------------
-    // Gets aria-property from the element
+// Remove role
+// -----------
+// Removes aria-role from the element
 
-    get: (element, property) => {
-        return getAttribute(element, `aria-${property}`);
-    },
-
-
-    // Get role
-    // --------
-    // Gets aria-role from the element
-
-    getRole: (element) => {
-        return getAttribute(element, 'role');
-    },
+function removeRole(element) {
+    return removeAttribute(element, 'role');
+}
 
 
-    // Toggle state
-    // ------------
-    // Changes boolean state from true to false and from false to true.
+// Set id
+// ------
+// Sets ID to the element (generates a random ID if ID not passed as a parameter),
+// returns this ID
 
-    toggleState: (element, state) => {
-        setAttribute(element, `aria-${state}`, !stringToBoolean(getAttribute(element, `aria-${state}`)));
-    }
+function setId(element, id) {
+    const newId = id || (`mui-id-${generateRandomString(6)}`);
+
+    setAttribute(element, 'id', newId);
+
+    return newId;
+}
+
+
+// Get property
+// ------------
+// Gets aria-property from the element
+
+function get(element, property) {
+    return getAttribute(element, `aria-${property}`);
+}
+
+
+// Get role
+// --------
+// Gets aria-role from the element
+
+function getRole(element) {
+    return getAttribute(element, 'role');
+}
+
+
+// Toggle state
+// ------------
+// Changes boolean state from true to false and from false to true.
+
+function toggleState(element, state) {
+    setAttribute(element, `aria-${state}`, !stringToBoolean(getAttribute(element, `aria-${state}`)));
+}
+
+
+// -----------------------------------------------------------------------------
+
+const aria = {
+    set,
+    setRole,
+    removeRole,
+    setId,
+    get,
+    getRole,
+    toggleState
 };
+
+export default aria;
 

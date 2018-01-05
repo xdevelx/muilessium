@@ -11,9 +11,10 @@
 
 import Component from '../component';
 
-import { EVENTS } from '../events';
+import EVENTS from '../events';
 
-import { aria        } from '../utils/aria';
+import aria from '../utils/aria';
+
 import { addClass    } from '../utils/classes';
 import { removeClass } from '../utils/classes';
 
@@ -44,5 +45,5 @@ export default class ScrollFix extends Component {
             }, 300);
         });
     }
-};
+}
 

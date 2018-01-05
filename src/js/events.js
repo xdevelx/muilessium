@@ -65,7 +65,7 @@ class Events {
             const height = window.innerHeight;
             const width  = window.innerWidth;
 
-            if (this.data.window.height != height) {
+            if (this.data.window.height !== height) {
                 this.data.window.height = height;
                 clearTimeout(this.timeouts.resizeWindowHeight);
 
@@ -74,7 +74,7 @@ class Events {
                 }, 150);
             }
 
-            if (this.data.window.width != width) {
+            if (this.data.window.width !== width) {
                 this.data.window.width = width;
                 clearTimeout(this.timeouts.resizeWindowWidth);
 
@@ -150,6 +150,7 @@ class Events {
 
 // -----------------------------------------------------------------------------
 
-export let EVENTS = new Events;
+const EVENTS = new Events();
 
+export default EVENTS;
 

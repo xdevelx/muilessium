@@ -6,7 +6,7 @@
 //
 // -----------------------------------------------------------------------------
 
-import { MUILESSIUM } from './muilessium';
+import MUILESSIUM from './muilessium';
 
 document.addEventListener('DOMContentLoaded', () => {
     window.Muilessium = MUILESSIUM;

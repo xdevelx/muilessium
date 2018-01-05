@@ -24,8 +24,8 @@
 // -----------------------------------------------------------------------------
 
 
-import { MOUSE    } from '../controls/mouse';
-import { KEYBOARD } from '../controls/keyboard';
+import MOUSE    from '../controls/mouse';
+import KEYBOARD from '../controls/keyboard';
 
 import { ifExists       } from '../utils/checks';
 import { ifNodeList     } from '../utils/checks';
@@ -41,7 +41,7 @@ export function makeElementFocusable(element) {
     return ifExists(element, () => {
         element.tabIndex = 0;
     });
-};
+}
 
 
 
@@ -55,7 +55,7 @@ export function makeElementsFocusable(elements) {
             makeElementFocusable(element);
         });
     });
-};
+}
 
 
 
@@ -67,7 +67,7 @@ export function makeElementNotFocusable(element) {
     return ifExists(element, () => {
         element.tabIndex = -1;
     });
-};
+}
 
 
 
@@ -81,7 +81,7 @@ export function makeElementsNotFocusable(elements) {
             makeElementNotFocusable(element);
         });
     });
-};
+}
 
 
 
@@ -93,7 +93,7 @@ export function getFocusableChilds(element) {
     return ifExists(element, () => {
         return element.querySelectorAll('[tabindex]:not([tabindex="-1"])');
     });
-};
+}
 
 
 
@@ -103,7 +103,7 @@ export function getFocusableChilds(element) {
 
 export function getAllFocusableElements() {
     return document.querySelectorAll('[tabindex]:not([tabindex="-1"])');
-};
+}
 
 
 // Get next focusable element
@@ -112,16 +112,16 @@ export function getAllFocusableElements() {
 
 export function getNextFocusableElement(element) {
     return ifExists(element, () => {
-        let focusables = getAllFocusableElements(),
-            currentIndex = [].indexOf.call(focusables, element);
+        const focusables = getAllFocusableElements();
+        const currentIndex = [].indexOf.call(focusables, element);
 
         if ((currentIndex >= 0) && (currentIndex < focusables.length - 1)) {
             return focusables[currentIndex + 1];
-        } else {
-            return null;
         }
+
+        return null;
     });
-};
+}
 
 
 // Get previous focusable element
@@ -130,16 +130,16 @@ export function getNextFocusableElement(element) {
 
 export function getPreviousFocusableElement(element) {
     return ifExists(element, () => {
-        let focusables = getAllFocusableElements(),
-            currentIndex = [].indexOf.call(focusables, element);
+        const focusables = getAllFocusableElements();
+        const currentIndex = [].indexOf.call(focusables, element);
 
         if ((currentIndex >= 0) && (currentIndex > 0)) {
             return focusables[currentIndex - 1];
-        } else {
-            return null;
         }
+
+        return null;
     });
-};
+}
 
 
 
@@ -148,14 +148,14 @@ export function getPreviousFocusableElement(element) {
 // Focus next focusable element
 
 export function goToNextFocusableElement(element) {
-    let nextFocusable = getNextFocusableElement(element);
+    const nextFocusable = getNextFocusableElement(element);
 
     return ifExists(nextFocusable, () => {
         nextFocusable.focus();
 
         return nextFocusable;
     });
-};
+}
 
 
 
@@ -164,14 +164,14 @@ export function goToNextFocusableElement(element) {
 // Focus previous focusable element
 
 export function goToPreviousFocusableElement(element) {
-    let previousFocusable = getPreviousFocusableElement(element);
+    const previousFocusable = getPreviousFocusableElement(element);
 
     return ifExists(previousFocusable, () => {
         previousFocusable.focus();
 
         return previousFocusable;
     });
-};
+}
 
 
 
@@ -196,7 +196,7 @@ export function makeElementClickable(element, callback, { mouse = true, keyboard
             });
         }
     });
-};
+}
 
 
 
@@ -206,7 +206,8 @@ export function makeElementClickable(element, callback, { mouse = true, keyboard
 // and adds event listeners for the click and enter key press
 // with callback to the childs if they exists
 
-export function makeChildElementsClickable(element, childs, callback, { mouse = true, keyboard = true } = {}) {
+export function makeChildElementsClickable(element, childs, callback,
+    { mouse = true, keyboard = true } = {}) {
     return ifExists(element, () => {
         return ifNodeList(childs, () => {
             if (mouse) {
@@ -214,7 +215,7 @@ export function makeChildElementsClickable(element, childs, callback, { mouse = 
                     let index = -1;
 
                     forEach(childs, (child, i) => {
-                        if ((child == e.target) || isDescendant(child, e.target)) {
+                        if ((child === e.target) || isDescendant(child, e.target)) {
                             index = i;
                         }
                     });
@@ -234,7 +235,7 @@ export function makeChildElementsClickable(element, childs, callback, { mouse = 
             }
         });
     });
-};
+}
 
 
 // On focus
@@ -245,7 +246,7 @@ export function onFocus(element, callback) {
     return ifExists(element, () => {
         element.addEventListener('focus', callback);
     });
-};
+}
 
 
 // On blur
@@ -256,6 +257,6 @@ export function onBlur(element, callback) {
     return ifExists(element, () => {
         element.addEventListener('blur', callback);
     });
-};
+}
 
 

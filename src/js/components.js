@@ -32,7 +32,7 @@ import Rating            from './components/rating';
 
 // -----------------------------------------------------------------------------
 
-export let COMPONENTS = {
+const COMPONENTS = {
     Accordion,
     Breadcrumb,
     ButtonDropdown,
@@ -55,4 +55,6 @@ export let COMPONENTS = {
     Textarea,
     Rating
 };
+
+export default COMPONENTS;
 

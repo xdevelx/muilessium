@@ -10,7 +10,7 @@
 
 import Component from '../component';
 
-import { aria } from '../utils/aria';
+import aria from '../utils/aria';
 
 
 
@@ -23,11 +23,12 @@ export default class Button extends Component {
 
     initAria() {
         if (!aria.getRole(this.domCache.element)) {
-            /* Sometimes it is useful to add role=link to the button, we should not override it here */
+            /* Sometimes it is useful to add role=link to the button,
+               we should not override it here */
             aria.setRole(this.domCache.element, 'button');
         }
 
         return this;
     }
-};
+}
 

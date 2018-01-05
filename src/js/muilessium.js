@@ -3,14 +3,14 @@
 // -----------------------------------------------------------------------------
 
 
-import { UTILS       } from './utils';
-import { EVENTS      } from './events';
-import { STORE       } from './store';
-import { FACTORY     } from './factory';
-import { POLYFILLS   } from './polyfills';
-import { KEYBOARD    } from './controls/keyboard';
-import { MOUSE       } from './controls/mouse';
-import { TOUCHSCREEN } from './controls/touchscreen';
+import UTILS       from './utils';
+import EVENTS      from './events';
+import STORE       from './store';
+import FACTORY     from './factory';
+import POLYFILLS   from './polyfills';
+import KEYBOARD    from './controls/keyboard';
+import MOUSE       from './controls/mouse';
+import TOUCHSCREEN from './controls/touchscreen';
 
 
 class Muilessium {
@@ -51,6 +51,8 @@ class Muilessium {
         });
 
         EVENTS.addEventListener('images-loaded', POLYFILLS.objectFit);
+
+        return this;
     }
 
 
@@ -65,11 +67,12 @@ class Muilessium {
 
         return result;
     }
-};
+}
 
 
 // -----------------------------------------------------------------------------
 
-export let MUILESSIUM = new Muilessium;
+const MUILESSIUM = new Muilessium();
 
+export default MUILESSIUM;
 

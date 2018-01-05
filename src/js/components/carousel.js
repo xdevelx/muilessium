@@ -16,13 +16,12 @@
 
 import Component from '../component';
 
-import { MOUSE       } from '../controls/mouse';
-import { KEYBOARD    } from '../controls/keyboard';
-import { TOUCHSCREEN } from '../controls/touchscreen';
+import MOUSE       from '../controls/mouse';
+import KEYBOARD    from '../controls/keyboard';
+import TOUCHSCREEN from '../controls/touchscreen';
 
 import { addClass                   } from '../utils/classes';
 import { removeClass                } from '../utils/classes';
-import { console                    } from '../utils/console';
 import { makeElementFocusable       } from '../utils/focus-and-click';
 import { makeChildElementsClickable } from '../utils/focus-and-click';
 import { onFocus                    } from '../utils/focus-and-click';
@@ -96,9 +95,9 @@ export default class Carousel extends Component {
         });
 
         makeChildElementsClickable(this.domCache.element, this.domCache.controls.prev,
-                        this.rotate.bind(this, 'prev'), { mouse: true, keyboard: false });
+            this.rotate.bind(this, 'prev'), { mouse: true, keyboard: false });
         makeChildElementsClickable(this.domCache.element, this.domCache.controls.next,
-                        this.rotate.bind(this, 'next'), { mouse: true, keyboard: false });
+            this.rotate.bind(this, 'next'), { mouse: true, keyboard: false });
 
         makeChildElementsClickable(this.domCache.element, this.domCache.indicators, (index) => {
             this.rotate(index);
@@ -117,8 +116,8 @@ export default class Carousel extends Component {
     startRotation() {
         if (!this.state.isRotating) {
             this.state.rotateInterval = setInterval(
-                            this.rotate.bind(this, 'next'),
-                            this.state.interval * 1000);
+                this.rotate.bind(this, 'next'),
+                this.state.interval * 1000);
 
             this.state.isRotating = true;
         }
@@ -154,26 +153,25 @@ export default class Carousel extends Component {
 
 
     rotate(param) {
-        let currentSlide = this.state.currentSlide,
-            nextSlide = 0;
+        const { currentSlide } = this.state;
+        let nextSlide = 0;
 
         if (typeof param === 'string') {
             switch (param) {
-                case 'next':
-                    nextSlide = (currentSlide + 1) % this.state.numberOfSlides;
-                    break;
-                case 'prev':
-                    nextSlide = (currentSlide - 1 + this.state.numberOfSlides) % this.state.numberOfSlides;
-                    break;
-                default:
-                    Utils.console.error('wrong carousel rotate param');
-                    return;
+            case 'next':
+                nextSlide = (currentSlide + 1) % this.state.numberOfSlides;
+                break;
+            case 'prev':
+                nextSlide =
+                    ((currentSlide - 1) + this.state.numberOfSlides) % this.state.numberOfSlides;
+                break;
+            default:
+                return null;
             }
         } else if (typeof param === 'number' && param >= 0 && param < this.state.numberOfSlides) {
             nextSlide = param;
         } else {
-            console.warning('wrong carusel rotate param');
-            return;
+            return null;
         }
 
         this.makeSlideInactive(currentSlide);
@@ -183,5 +181,5 @@ export default class Carousel extends Component {
 
         return this;
     }
-};
+}
 

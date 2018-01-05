@@ -22,15 +22,16 @@ import { forEach     } from '../utils/uncategorized';
 // ---------
 // "Typing" effect for text in the element
 
-export function typeText(element, { text = '', delay = 120, cycle = false, times = -1} = {}, callback = null) {
+export function typeText(element,
+    { text = '', delay = 120, cycle = false, times = -1 } = {}, callback = null) {
     ifExists(element, () => {
-        
-        let lettersCounter = 0,
-            pauseCounter   = 0,
-            timesCounter   = 0,
-            direction = 'right';
+        let lettersCounter = 0;
+        let pauseCounter   = 0;
+        let timesCounter   = 0;
+
+        let direction = 'right';
             
-        let interval = setInterval(() => {
+        const interval = setInterval(() => {
             element.innerHTML = text.substring(0, lettersCounter) || ' ';
 
             if (direction === 'right') {
@@ -48,7 +49,7 @@ export function typeText(element, { text = '', delay = 120, cycle = false, times
                     } else {
                         clearInterval(interval);
 
-                        if (typeof callback == 'function') {
+                        if (typeof callback === 'function') {
                             callback();
                         }
                     }
@@ -70,7 +71,7 @@ export function typeText(element, { text = '', delay = 120, cycle = false, times
                     } else {
                         clearInterval(interval);
 
-                        if (typeof callback == 'function') {
+                        if (typeof callback === 'function') {
                             callback();
                         }
                     }
@@ -78,7 +79,7 @@ export function typeText(element, { text = '', delay = 120, cycle = false, times
             }
         }, delay);
     });    
-};
+}
 
 
 // Type multiple texts
@@ -87,21 +88,21 @@ export function typeText(element, { text = '', delay = 120, cycle = false, times
 
 export function typeTexts(element, texts) {
     ifExists(element, () => {
-        let textIndex = 0,
-            next = () => {
-                typeText(element,
-                        {
-                            text: texts[(textIndex++)%texts.length],
-                            delay: 120,
-                            cycle: true,
-                            times: 1
-                        },
-                        next);
-            };
+        let textIndex = 0;
+
+        const next = () => {
+            typeText(element, {
+                text: texts[(textIndex++) % texts.length],
+                delay: 120,
+                cycle: true,
+                times: 1
+            },
+            next);
+        };
 
         next();
     });
-};
+}
 
 
 // Activate animation
@@ -112,7 +113,7 @@ export function activateAnimation(element) {
     ifExists(element, () => {
         addClass(element, '-activated');
     });
-};
+}
 
 
 // Animate element
@@ -123,15 +124,16 @@ export function animateElement(element, animation) {
     ifExists(element, () => {
         addClass(element, '-js-animation');
 
-        forEach(['-fade-in',  '-fade-in-left',  '-fade-in-up',  '-fade-in-right',  '-fade-in-down',
-                 '-fade-out', '-fade-out-left', '-fade-out-up', '-fade-out-right', '-fade-out-down'], (name) => {
+        forEach([
+            '-fade-in',  '-fade-in-left',  '-fade-in-up',  '-fade-in-right',  '-fade-in-down',
+            '-fade-out', '-fade-out-left', '-fade-out-up', '-fade-out-right', '-fade-out-down'], (name) => {
             if (hasClass(element, name)) {
                 removeClass(element, name);
             }
         });
 
-        addClass(element, '-' + animation);
+        addClass(element, `-${animation}`);
         addClass(element, '-activated');
     });
-};
+}
 
