@@ -8,17 +8,32 @@
 //
 // @markup
 //  <div class='mui-rating' data-rating='3' aria-label='Rating: 3 stars of 5'>
-//      <span class='star'>&starf;</span>
-//      <span class='star'>&starf;</span>
-//      <span class='star'>&starf;</span>
-//      <span class='star'>&starf;</span>
-//      <span class='star'>&starf;</span>
+//      <span class='star'>
+//          <svg class='mui-svg-icon'><use xlink:href='#svg-icon--star'></use></svg>
+//      </span>
+//      <span class='star'>
+//          <svg class='mui-svg-icon'><use xlink:href='#svg-icon--star'></use></svg>
+//      </span>
+//      <span class='star'>
+//          <svg class='mui-svg-icon'><use xlink:href='#svg-icon--star'></use></svg>
+//      </span>
+//      <span class='star'>
+//          <svg class='mui-svg-icon'><use xlink:href='#svg-icon--star'></use></svg>
+//      </span>
+//      <span class='star'>
+//          <svg class='mui-svg-icon'><use xlink:href='#svg-icon--star'></use></svg>
+//      </span>
 //  </div>
 
 
 .@{muilessium-prefix}rating {
-    color: @grey-3;    
+    color: @grey-3;
     user-select: none;
+
+    > .star > .mui-svg-icon {
+        fill: @grey-3;
+    }
+
 
     &:not(.-js-disabled) {
         &:hover,
@@ -31,6 +46,10 @@
     &.-r1 {
         > .star:nth-of-type(1) {
             color: @black;
+
+            > .mui-svg-icon {
+                fill: @black;
+            }
         }
     }
     
@@ -38,6 +57,10 @@
         > .star:nth-of-type(1),
         > .star:nth-of-type(2) {
             color: @black;
+
+            > .mui-svg-icon {
+                fill: @black;
+            }
         }
     }
     
@@ -46,6 +69,10 @@
         > .star:nth-of-type(2),
         > .star:nth-of-type(3) {
             color: @black;
+
+            > .mui-svg-icon {
+                fill: @black;
+            }
         }
     }
     
@@ -55,12 +82,20 @@
         > .star:nth-of-type(3),
         > .star:nth-of-type(4) {
             color: @black;
+
+            > .mui-svg-icon {
+                fill: @black;
+            }
         }
     }
     
     &.-r5 {
         > .star {
             color: @black;
+
+            > .mui-svg-icon {
+                fill: @black;
+            }
         }
     }
 }

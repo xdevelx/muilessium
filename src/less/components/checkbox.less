@@ -10,7 +10,9 @@
 //      <input type='checkbox' id='dFrp7'>
 //      <label>
 //          <span class='icon'>
-//              <span class='symbol'>&check;</span>
+//              <span class='symbol'>
+//                  <svg class='mui-svg-icon -black'><use xlink:href="#svg-icon--check"></use></svg>
+//              </span>
 //          </span>
 //          <span class='text'>Lorem ipsum.</span>
 //      </label>
@@ -53,9 +55,6 @@
             > .icon {
                 border-color: @black;
                 
-                > .fa {
-                    color: @black;
-                }
             }
         }
     }
@@ -79,6 +78,9 @@
             color: @grey-4;
             opacity: 0;
             transition: all @default-animation-duration @default-animation-function;
+        }
+
+        > .symbol > .mui-svg-icon {
         }
     }
     
