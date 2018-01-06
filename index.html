@@ -185,7 +185,7 @@
             <div class='mui-header-logo _left'>
                 <img class='mui-image -logo -js-lazy-load' data-src='./muilessium.png' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt='logo'>
                 <a class='link -white -f-blue-3 _right' href='/'>
-                    <h1 class='heading _bigger-1'>muilessium <span class='_smaller-2'>v0.2.13</span></h1>
+                    <h1 class='heading _bigger-1'>muilessium <span class='_smaller-2'>v0.2.14</span></h1>
                 </a>
             </div>
             <!-- /header-logo -->
@@ -193,12 +193,11 @@
 
             <!-- header-navigation -->
             <nav class='mui-header-navigation -mobile-version _right'>
-                <div class='mui-navigation-toggle -hamburger -white -f-blue-3-bg -f-white' role='button' aria-label='Open navigation'>
-                    <span>&equiv;</span>
+                <div class='mui-navigation-toggle -hamburger -f-blue-3-bg' role='button' aria-label='Open navigation'>
+                    <svg class='mui-svg-icon -white'><use xlink:href='#svg-icon--hamburger'></use></svg>
                 </div>
                 <ul class='links-list'>
                     <li class='item'><a class='link -white -f-blue-3-bg -f-white' href='#overview' aria-label='Framework overview'>Overview</a></li>
-                    <li class='item'><a class='link -white -f-blue-3-bg -f-white' href='#utils' aria-label='Utils overview'>Utils</a></li>
                     <li class='item'><a class='link -white -f-blue-3-bg -f-white' href='#components' aria-label='Components'>Components</a></li>
                     <li class='item'><a class='link -white -f-blue-3-bg -f-white' href='#faq' aria-label='f.a.q.'>F.A.Q.</a></li>
                 </ul>
@@ -236,7 +235,8 @@
                     <li><a class='-f-blue-3' href='#store-overview'>Store</a></li>
                     <li><a class='-f-blue-3' href='#factory-overview'>Factory</a></li>
                     <li><a class='-f-blue-3' href='#controls-overview'>Controls</a></li>
-                    <li><a class='-f-blue-3' href='#lazy-loading-images-overview'>Lazy load</a></li>
+                    <li><a class='-f-blue-3' href='#lazy-loading-images-overview'>Lazy loading</a></li>
+                    <li><a class='-f-blue-3' href='#icons-overview'>Icons</a></li>
                 </ul>
                 <hr class='_separate-1'>
                 <a class='-f-blue-3' href='#utils'>Utils</a>
@@ -386,6 +386,12 @@
                         </li>
                         <li>
                             <a class='-f-blue-3' href='#../../src/less/components/spoiler.less'>Spoiler</a>
+                        </li>
+                        <li>
+                            <a class='-f-blue-3' href='#../../src/less/components/svg-icon.less'>SVG icon</a>
+                        </li>
+                        <li>
+                            <a class='-f-blue-3' href='#../../src/less/components/svg-sprite.less'>SVG sprite</a>
                         </li>
                         <li>
                             <a class='-f-blue-3' href='#../../src/less/components/table.less'>Table</a>
@@ -898,6 +904,39 @@
                 </div>
                 <!-- /lazy loading overview -->
 
+
+                <!-- icons overview -->
+                <div class='_separate-5'>
+                    <div class='mui-row'>
+                        <a class='anchor-link -black -f-blue-3' href='#lazy-loading-images-overview'>
+                            <h3 class='_bigger-2' id='icons-overview'>Icons</h3>
+                        </a>
+                    </div>
+                    <div class='_smaller-2 -grey-4'>/src/less/components/svg-icon.less</div>
+
+                    <p class='mui-p'>Muilessium uses Ionicons by default. You should put the following sprite at the end of your pages. You can create custom icons by replacing symbols in this SVG.</p>
+                    <div class='code-example _separate-2 _smaller-1'>
+                        <pre class='source-code'>
+
+&lt;div class='mui-svg-sprite'&gt;
+    &lt;svg version='1.1' xmlns='http://www.w3.org/2000/svg'&gt;
+        &lt;symbol viewBox='0 0 512 512' id='svg-icon--check'&gt;&lt;path d='M186.301 339.893L96 249.461l-32 30.507L186.301 402 448 140.506 416 110z'&gt;&lt;/path&gt;&lt;/symbol&gt;
+        &lt;symbol viewBox='0 0 512 512' id='svg-icon--close'&gt;&lt;path d='M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z'&gt;&lt;/path&gt;&lt;/symbol&gt;
+        &lt;symbol viewBox='0 0 512 512' id='svg-icon--arrow-down'&gt;&lt;path d='M277.375 85v259.704l119.702-119.702L427 256 256 427 85 256l29.924-29.922 119.701 118.626V85h42.75z'&gt;&lt;/path&gt;&lt;/symbol&gt;
+        &lt;symbol viewBox='0 0 512 512' id='svg-icon--arrow-right'&gt;&lt;path d='M85 277.375h259.704L225.002 397.077 256 427l171-171L256 85l-29.922 29.924 118.626 119.701H85v42.75z'&gt;&lt;/path&gt;&lt;/symbol&gt;
+        &lt;symbol viewBox='0 0 512 512' id='svg-icon--arrow-left'&gt;&lt;path d='M427 234.625H167.296l119.702-119.702L256 85 85 256l171 171 29.922-29.924-118.626-119.701H427v-42.75z'&gt;&lt;/path&gt;&lt;/symbol&gt;
+        &lt;symbol viewBox='0 0 512 512' id='svg-icon--arrow-up'&gt;&lt;path d='M277.375 427V167.296l119.702 119.702L427 256 256 85 85 256l29.924 29.922 119.701-118.626V427h42.75z'&gt;&lt;/path&gt;&lt;/symbol&gt;
+        &lt;symbol viewBox='0 0 512 512' id='svg-icon--star'&gt;&lt;path d='M256 372.686L380.83 448l-33.021-142.066L458 210.409l-145.267-12.475L256 64l-56.743 133.934L54 210.409l110.192 95.525L131.161 448z'&gt;&lt;/path&gt;&lt;/symbol&gt;
+        &lt;symbol viewBox='0 0 512 512' id='svg-icon--hamburger'&gt;&lt;path d='M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z'&gt;&lt;/path&gt;&lt;/symbol&gt;
+        &lt;symbol viewBox='0 0 512 512' id='svg-icon--tags'&gt;&lt;path d='M472 239.2s-.1 0 0 0L282.1 48.1l-1.4-1.4h-.5c-7.5-7.2-16.1-10.9-27.1-11.1l-89.9-3.3-3.9-.1c-10.1.1-20 4.1-27.7 11.8l-27.1 27.2c7.4-6.6 16.6-10 26-10.1l3.8.1 89.8 3.3c11 .2 19.7 3.9 27.2 11.1h.5l1.4 1.4L443 268.1c10 10.8 10.7 28.2 0 38.9l29-28.9c10.6-10.7 10-28.1 0-38.9z'&gt;&lt;/path&gt;&lt;path d='M428 282.5h.3L238.6 91.4l-1.3-1.4h-.3c-7.5-7.2-15.9-10.9-26.9-11.1L120 75.6l-4-.1c-9.2.1-18.2 3.4-25.6 9.8-.3.3-.7.6-1 .9l-1.2 1.2-44.3 44.5C35.8 140 32 150.8 32 161.4v.1l.1 3.8 5.9 87.9v1.9c1 7.9 4.2 15.6 9.6 22l5.1 4.9L239 470.4l2.8 2.8c10.7 9.4 27.1 9 37.3-1.3l13.1-13.2c.5-.4.9-.8 1.4-1.3l26.9-27c-.2.1-.3.2-.5.4l108.3-109.3c10.6-10.7 10.7-28.2-.3-39zm-317.4-143c6.6-4 14.3-6.3 22.6-6.3 23.9 0 43.4 19.4 43.4 43.4 0 8.3-2.3 16-6.3 22.6-7.6 12.5-21.3 20.8-37 20.8-23.9 0-43.4-19.4-43.4-43.4-.1-15.8 8.2-29.5 20.7-37.1z'&gt;&lt;/path&gt;&lt;/symbol&gt;
+    &lt;/svg&gt;
+&lt;/div&gt;
+                        </pre>
+                    </div>
+                </div>
+                <!-- /icons overview -->
+
+
                 <!-- components overview -->
                 <div class='_separate-5'>
                     <div class='mui-row'>
@@ -946,7 +985,7 @@
       <li class='item'>
           <div class='title'>
               <div class='indicator'>
-                  <span>&rarr;</span>
+                  <svg class='mui-svg-icon -black'><use xlink:href='#svg-icon--arrow-right'></use></svg>
               </div>
               <span>Lorem</span>
           </div>
@@ -955,7 +994,7 @@
       <li class='item'>
           <div class='title'>
               <div class='indicator'>
-                  <span>&rarr;</span>
+                  <svg class='mui-svg-icon -black'><use xlink:href='#svg-icon--arrow-right'></use></svg>
               </div>
               <span>Lorem</span>
           </div>
@@ -970,7 +1009,7 @@
       &lt;li class='item'&gt;
           &lt;div class='title'&gt;
               &lt;div class='indicator'&gt;
-                  &lt;span&gt;&rarr;&lt;/span&gt;
+                  &lt;svg class='mui-svg-icon -black'&gt;&lt;use xlink:href='#svg-icon--arrow-right'&gt;&lt;/use&gt;&lt;/svg&gt;
               &lt;/div&gt;
               &lt;span&gt;Lorem&lt;/span&gt;
           &lt;/div&gt;
@@ -979,7 +1018,7 @@
       &lt;li class='item'&gt;
           &lt;div class='title'&gt;
               &lt;div class='indicator'&gt;
-                  &lt;span&gt;&rarr;&lt;/span&gt;
+                  &lt;svg class='mui-svg-icon -black'&gt;&lt;use xlink:href='#svg-icon--arrow-right'&gt;&lt;/use&gt;&lt;/svg&gt;
               &lt;/div&gt;
               &lt;span&gt;Lorem&lt;/span&gt;
           &lt;/div&gt;
@@ -1112,7 +1151,8 @@
                                         <div class='example _separate-2'>  <div class='mui-button-dropdown'>
       <a class='mui-button' aria-label='Dropdown button'>
           <span>dropdown button</span>
-          <span>&nbsp;&nbsp;&darr;</span>
+          <span>&nbsp</span>
+          <svg class='mui-svg-icon -white'><use xlink:href='#svg-icon--arrow-down'></use></svg>
       </a>          
       <div class='mui-dropdown-options'>
           <div class='wrapper'>
@@ -1138,7 +1178,8 @@
                                                     <pre class='source-code'>  &lt;div class='mui-button-dropdown'&gt;
       &lt;a class='mui-button' aria-label='Dropdown button'&gt;
           &lt;span&gt;dropdown button&lt;/span&gt;
-          &lt;span&gt;&nbsp;&nbsp;&darr;&lt;/span&gt;
+          &lt;span&gt;&nbsp&lt;/span&gt;
+          &lt;svg class='mui-svg-icon -white'&gt;&lt;use xlink:href='#svg-icon--arrow-down'&gt;&lt;/use&gt;&lt;/svg&gt;
       &lt;/a&gt;          
       &lt;div class='mui-dropdown-options'&gt;
           &lt;div class='wrapper'&gt;
@@ -1406,8 +1447,12 @@
               </li>
           </ul>
           <div class='mui-carousel-controls'>
-              <div class='prev'>&larr;</div>
-              <div class='next'>&rarr;</div>
+              <div class='prev'>
+                  <svg class='mui-svg-icon -white'><use xlink:href='#svg-icon--arrow-left'></use></svg>
+              </div>
+              <div class='next'>
+                  <svg class='mui-svg-icon -white'><use xlink:href='#svg-icon--arrow-right'></use></svg>
+              </div>
           </div>
           <ul class='mui-carousel-indicators'>
               <li class='indicator'></li>
@@ -1444,8 +1489,12 @@
               &lt;/li&gt;
           &lt;/ul&gt;
           &lt;div class='mui-carousel-controls'&gt;
-              &lt;div class='prev'&gt;&larr;&lt;/div&gt;
-              &lt;div class='next'&gt;&rarr;&lt;/div&gt;
+              &lt;div class='prev'&gt;
+                  &lt;svg class='mui-svg-icon -white'&gt;&lt;use xlink:href='#svg-icon--arrow-left'&gt;&lt;/use&gt;&lt;/svg&gt;
+              &lt;/div&gt;
+              &lt;div class='next'&gt;
+                  &lt;svg class='mui-svg-icon -white'&gt;&lt;use xlink:href='#svg-icon--arrow-right'&gt;&lt;/use&gt;&lt;/svg&gt;
+              &lt;/div&gt;
           &lt;/div&gt;
           &lt;ul class='mui-carousel-indicators'&gt;
               &lt;li class='indicator'&gt;&lt;/li&gt;
@@ -1492,7 +1541,9 @@
       <input type='checkbox' id='dFrp7'>
       <label>
           <span class='icon'>
-              <span class='symbol'>&check;</span>
+              <span class='symbol'>
+                  <svg class='mui-svg-icon -black'><use xlink:href="#svg-icon--check"></use></svg>
+              </span>
           </span>
           <span class='text'>Lorem ipsum.</span>
       </label>
@@ -1505,7 +1556,9 @@
       &lt;input type='checkbox' id='dFrp7'&gt;
       &lt;label&gt;
           &lt;span class='icon'&gt;
-              &lt;span class='symbol'&gt;&check;&lt;/span&gt;
+              &lt;span class='symbol'&gt;
+                  &lt;svg class='mui-svg-icon -black'&gt;&lt;use xlink:href="#svg-icon--check"&gt;&lt;/use&gt;&lt;/svg&gt;
+              &lt;/span&gt;
           &lt;/span&gt;
           &lt;span class='text'&gt;Lorem ipsum.&lt;/span&gt;
       &lt;/label&gt;
@@ -1808,7 +1861,7 @@
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, excepturi!</p>
       </div>
       <div class='scroll-icon'>
-          <span>&darr;</span>
+          <svg class='mui-svg-icon -white'><use xlink:href='#svg-icon--arrow-down'></use></svg>
       </div>
   </div></div>
                                         <div class='mui-spoiler'>
@@ -1823,7 +1876,7 @@
           &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, excepturi!&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class='scroll-icon'&gt;
-          &lt;span&gt;&darr;&lt;/span&gt;
+          &lt;svg class='mui-svg-icon -white'&gt;&lt;use xlink:href='#svg-icon--arrow-down'&gt;&lt;/use&gt;&lt;/svg&gt;
       &lt;/div&gt;
   &lt;/div&gt;</pre>
                                                 </div>
@@ -2191,7 +2244,7 @@
               <img class='mui-image -js-lazy-load' data-src='https://placehold.it/800x600' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt='Image description'>
          </div>
          <div class='close-icon'>
-             <span>&cross;</span>
+              <svg class='mui-svg-icon -black'><use xlink:href='#svg-icon--close'></use></svg>
          </div>
      </div>
      <div class='mui-shadow-toggle'></div>
@@ -2207,7 +2260,7 @@
               &lt;img class='mui-image -js-lazy-load' data-src='https://placehold.it/800x600' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' alt='Image description'&gt;
          &lt;/div&gt;
          &lt;div class='close-icon'&gt;
-             &lt;span&gt;&cross;&lt;/span&gt;
+              &lt;svg class='mui-svg-icon -black'&gt;&lt;use xlink:href='#svg-icon--close'&gt;&lt;/use&gt;&lt;/svg&gt;
          &lt;/div&gt;
      &lt;/div&gt;
      &lt;div class='mui-shadow-toggle'&gt;&lt;/div&gt;
@@ -2305,7 +2358,7 @@
                                     <div class='_separate-1'>
                                         <div class='example _separate-2'>  <nav class='mui-header-navigation -mobile-version'>
       <div class='mui-navigation-toggle -hamburger' aria-label='Main website navigation'>
-          <span>&equiv;</span>
+          <svg class='mui-svg-icon'><use xlink:href='#svg-icon--hamburger'></use></svg>
       </div>
       <ul class='links-list'>
           <li class='item'><a class='link' href='' aria-label='Home page'>home</a></li>
@@ -2320,7 +2373,7 @@
                                                 <div class='code _separate-2 _smaller-1'>
                                                     <pre class='source-code'>  &lt;nav class='mui-header-navigation -mobile-version'&gt;
       &lt;div class='mui-navigation-toggle -hamburger' aria-label='Main website navigation'&gt;
-          &lt;span&gt;&equiv;&lt;/span&gt;
+          &lt;svg class='mui-svg-icon'&gt;&lt;use xlink:href='#svg-icon--hamburger'&gt;&lt;/use&gt;&lt;/svg&gt;
       &lt;/div&gt;
       &lt;ul class='links-list'&gt;
           &lt;li class='item'&gt;&lt;a class='link' href='' aria-label='Home page'&gt;home&lt;/a&gt;&lt;/li&gt;
@@ -2365,24 +2418,40 @@
                                 <div class='_smaller-2 -grey-4'>../../src/less/components/pagination.less</div>
                                     <div class='_separate-1'>
                                         <div class='example _separate-2'>  <div class='mui-pagination' aria-label='Pagination'>
-      <div class='page'         ><a class='link' href='' aria-label='Previous page'>&larr;</a></div>
+      <div class='page'>
+          <a class='link' href='' aria-label='Previous page'>
+              <svg class='mui-svg-icon -black'><use xlink:href='#svg-icon--arrow-left'></use></svg>
+          </a>
+      </div>
       <div class='page'         ><a class='link' href='' aria-label='Page number 1'>1</a></div>
       <div class='page'         ><a class='link' href='' aria-label='Page number 2'>2</a></div>
       <div class='page -current'><a class='link' href='' aria-label='Current page' >3</a></div>
       <div class='page'         ><a class='link' href='' aria-label='Page number 4'>4</a></div>
       <div class='page'         ><a class='link' href='' aria-label='Page number 5'>5</a></div>
-      <div class='page'         ><a class='link' href='' aria-label='Next page'>&rarr;</a></div>
+      <div class='page'>
+          <a class='link' href='' aria-label='Next page'>
+              <svg class='mui-svg-icon -black'><use xlink:href='#svg-icon--arrow-right'></use></svg>
+          </a>
+      </div>
   </div></div>
                                             <div class='state _separate-2'>
                                                 <h5 class='_smaller-1'> with -bordered option</h5>
                                                 <div class='example _separate-2' data-class='-bordered'>  <div class='mui-pagination' aria-label='Pagination'>
-      <div class='page'         ><a class='link' href='' aria-label='Previous page'>&larr;</a></div>
+      <div class='page'>
+          <a class='link' href='' aria-label='Previous page'>
+              <svg class='mui-svg-icon -black'><use xlink:href='#svg-icon--arrow-left'></use></svg>
+          </a>
+      </div>
       <div class='page'         ><a class='link' href='' aria-label='Page number 1'>1</a></div>
       <div class='page'         ><a class='link' href='' aria-label='Page number 2'>2</a></div>
       <div class='page -current'><a class='link' href='' aria-label='Current page' >3</a></div>
       <div class='page'         ><a class='link' href='' aria-label='Page number 4'>4</a></div>
       <div class='page'         ><a class='link' href='' aria-label='Page number 5'>5</a></div>
-      <div class='page'         ><a class='link' href='' aria-label='Next page'>&rarr;</a></div>
+      <div class='page'>
+          <a class='link' href='' aria-label='Next page'>
+              <svg class='mui-svg-icon -black'><use xlink:href='#svg-icon--arrow-right'></use></svg>
+          </a>
+      </div>
   </div></div>
                                             </div>
                                         <div class='mui-spoiler'>
@@ -2390,13 +2459,21 @@
                                             <div class='content'>
                                                 <div class='code _separate-2 _smaller-1'>
                                                     <pre class='source-code'>  &lt;div class='mui-pagination' aria-label='Pagination'&gt;
-      &lt;div class='page'         &gt;&lt;a class='link' href='' aria-label='Previous page'&gt;&larr;&lt;/a&gt;&lt;/div&gt;
+      &lt;div class='page'&gt;
+          &lt;a class='link' href='' aria-label='Previous page'&gt;
+              &lt;svg class='mui-svg-icon -black'&gt;&lt;use xlink:href='#svg-icon--arrow-left'&gt;&lt;/use&gt;&lt;/svg&gt;
+          &lt;/a&gt;
+      &lt;/div&gt;
       &lt;div class='page'         &gt;&lt;a class='link' href='' aria-label='Page number 1'&gt;1&lt;/a&gt;&lt;/div&gt;
       &lt;div class='page'         &gt;&lt;a class='link' href='' aria-label='Page number 2'&gt;2&lt;/a&gt;&lt;/div&gt;
       &lt;div class='page -current'&gt;&lt;a class='link' href='' aria-label='Current page' &gt;3&lt;/a&gt;&lt;/div&gt;
       &lt;div class='page'         &gt;&lt;a class='link' href='' aria-label='Page number 4'&gt;4&lt;/a&gt;&lt;/div&gt;
       &lt;div class='page'         &gt;&lt;a class='link' href='' aria-label='Page number 5'&gt;5&lt;/a&gt;&lt;/div&gt;
-      &lt;div class='page'         &gt;&lt;a class='link' href='' aria-label='Next page'&gt;&rarr;&lt;/a&gt;&lt;/div&gt;
+      &lt;div class='page'&gt;
+          &lt;a class='link' href='' aria-label='Next page'&gt;
+              &lt;svg class='mui-svg-icon -black'&gt;&lt;use xlink:href='#svg-icon--arrow-right'&gt;&lt;/use&gt;&lt;/svg&gt;
+          &lt;/a&gt;
+      &lt;/div&gt;
   &lt;/div&gt;</pre>
                                                 </div>
                                             </div>
@@ -2449,7 +2526,9 @@
       </div>
       <footer class='mui-post-footer'>
           <div class='mui-tags-list' aria-label='Tags list'>
-              <div class='mui-tag-wrapper -icon' role='presentation'>&lowast;</div>
+              <div class='mui-tag-wrapper -icon' role='presentation'>
+                  <svg class='mui-svg-icon'><use xlink:href='#svg-icon--tags'></use></svg>
+              </div>
               <div class='mui-tag-wrapper'><a href='' class='mui-tag' aria-label='Search by tag nature'>nature</a></div>
               <div class='mui-tag-wrapper'><a href='' class='mui-tag' aria-label='Search by tag art'>art</a></div>
               <div class='mui-tag-wrapper'><a href='' class='mui-tag' aria-label='Search by tag photography'>photography</a></div>
@@ -2475,7 +2554,9 @@
       &lt;/div&gt;
       &lt;footer class='mui-post-footer'&gt;
           &lt;div class='mui-tags-list' aria-label='Tags list'&gt;
-              &lt;div class='mui-tag-wrapper -icon' role='presentation'&gt;&lowast;&lt;/div&gt;
+              &lt;div class='mui-tag-wrapper -icon' role='presentation'&gt;
+                  &lt;svg class='mui-svg-icon'&gt;&lt;use xlink:href='#svg-icon--tags'&gt;&lt;/use&gt;&lt;/svg&gt;
+              &lt;/div&gt;
               &lt;div class='mui-tag-wrapper'&gt;&lt;a href='' class='mui-tag' aria-label='Search by tag nature'&gt;nature&lt;/a&gt;&lt;/div&gt;
               &lt;div class='mui-tag-wrapper'&gt;&lt;a href='' class='mui-tag' aria-label='Search by tag art'&gt;art&lt;/a&gt;&lt;/div&gt;
               &lt;div class='mui-tag-wrapper'&gt;&lt;a href='' class='mui-tag' aria-label='Search by tag photography'&gt;photography&lt;/a&gt;&lt;/div&gt;
@@ -2669,22 +2750,42 @@
                                     </div>
                                     <div class='_separate-1'>
                                         <div class='example _separate-2'>  <div class='mui-rating' data-rating='3' aria-label='Rating: 3 stars of 5'>
-      <span class='star'>&starf;</span>
-      <span class='star'>&starf;</span>
-      <span class='star'>&starf;</span>
-      <span class='star'>&starf;</span>
-      <span class='star'>&starf;</span>
+      <span class='star'>
+          <svg class='mui-svg-icon'><use xlink:href='#svg-icon--star'></use></svg>
+      </span>
+      <span class='star'>
+          <svg class='mui-svg-icon'><use xlink:href='#svg-icon--star'></use></svg>
+      </span>
+      <span class='star'>
+          <svg class='mui-svg-icon'><use xlink:href='#svg-icon--star'></use></svg>
+      </span>
+      <span class='star'>
+          <svg class='mui-svg-icon'><use xlink:href='#svg-icon--star'></use></svg>
+      </span>
+      <span class='star'>
+          <svg class='mui-svg-icon'><use xlink:href='#svg-icon--star'></use></svg>
+      </span>
   </div></div>
                                         <div class='mui-spoiler'>
                                             <div class='title'>Source code</div>
                                             <div class='content'>
                                                 <div class='code _separate-2 _smaller-1'>
                                                     <pre class='source-code'>  &lt;div class='mui-rating' data-rating='3' aria-label='Rating: 3 stars of 5'&gt;
-      &lt;span class='star'&gt;&starf;&lt;/span&gt;
-      &lt;span class='star'&gt;&starf;&lt;/span&gt;
-      &lt;span class='star'&gt;&starf;&lt;/span&gt;
-      &lt;span class='star'&gt;&starf;&lt;/span&gt;
-      &lt;span class='star'&gt;&starf;&lt;/span&gt;
+      &lt;span class='star'&gt;
+          &lt;svg class='mui-svg-icon'&gt;&lt;use xlink:href='#svg-icon--star'&gt;&lt;/use&gt;&lt;/svg&gt;
+      &lt;/span&gt;
+      &lt;span class='star'&gt;
+          &lt;svg class='mui-svg-icon'&gt;&lt;use xlink:href='#svg-icon--star'&gt;&lt;/use&gt;&lt;/svg&gt;
+      &lt;/span&gt;
+      &lt;span class='star'&gt;
+          &lt;svg class='mui-svg-icon'&gt;&lt;use xlink:href='#svg-icon--star'&gt;&lt;/use&gt;&lt;/svg&gt;
+      &lt;/span&gt;
+      &lt;span class='star'&gt;
+          &lt;svg class='mui-svg-icon'&gt;&lt;use xlink:href='#svg-icon--star'&gt;&lt;/use&gt;&lt;/svg&gt;
+      &lt;/span&gt;
+      &lt;span class='star'&gt;
+          &lt;svg class='mui-svg-icon'&gt;&lt;use xlink:href='#svg-icon--star'&gt;&lt;/use&gt;&lt;/svg&gt;
+      &lt;/span&gt;
   &lt;/div&gt;</pre>
                                                 </div>
                                             </div>
@@ -2800,7 +2901,7 @@
           </div>
           <div class='mui-shadow-toggle'></div>
           <div class='icon'>
-              <span>&darr;</span>
+              <svg class='mui-svg-icon -white'><use xlink:href='#svg-icon--arrow-down'></use></svg>
           </div>
       </div>
   </div></div>
@@ -2826,7 +2927,7 @@
           &lt;/div&gt;
           &lt;div class='mui-shadow-toggle'&gt;&lt;/div&gt;
           &lt;div class='icon'&gt;
-              &lt;span&gt;&darr;&lt;/span&gt;
+              &lt;svg class='mui-svg-icon -white'&gt;&lt;use xlink:href='#svg-icon--arrow-down'&gt;&lt;/use&gt;&lt;/svg&gt;
           &lt;/div&gt;
       &lt;/div&gt;
   &lt;/div&gt;</pre>
@@ -2907,6 +3008,56 @@
                                                     <pre class='source-code'>  &lt;div class='mui-spoiler'&gt;
       &lt;div class='title'&gt;spoiler&lt;/div&gt;
       &lt;div class='content'&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam et minus explicabo consectetur reprehenderit dolor dolorem quaerat necessitatibus optio aut, quas cum ex eveniet, quidem. Sunt ad eligendi numquam cupiditate asperiores quod, aspernatur delectus labore est? Nisi sapiente, doloremque cupiditate vel eos numquam aliquam possimus?&lt;/div&gt;
+  &lt;/div&gt;</pre>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        <div id='../../src/less/components/svg-icon.less' class='_allow-empty'></div>
+                            <div class='_separate-5'>
+                                <div class='mui-row'>
+                                    <a class='anchor-link -black -f-blue-3' href='#../../src/less/components/svg-icon.less'>
+                                        <h4 class='_bigger-1'>SVG icon</h4>
+                                    </a>
+                                </div>
+                                <div class='_smaller-2 -grey-4'>../../src/less/components/svg-icon.less</div>
+                                    <p class='mui-p _separate-1'>Internal component</p>
+                                    <div class='_separate-1'>
+                                        <div class='example _separate-2'><svg class='mui-svg-icon'><use xlink:href='#svg-icon--check'></use></svg></div>
+                                        <div class='mui-spoiler'>
+                                            <div class='title'>Source code</div>
+                                            <div class='content'>
+                                                <div class='code _separate-2 _smaller-1'>
+                                                    <pre class='source-code'>&lt;svg class='mui-svg-icon'&gt;&lt;use xlink:href='#svg-icon--check'&gt;&lt;/use&gt;&lt;/svg&gt;</pre>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        <div id='../../src/less/components/svg-sprite.less' class='_allow-empty'></div>
+                            <div class='_separate-5'>
+                                <div class='mui-row'>
+                                    <a class='anchor-link -black -f-blue-3' href='#../../src/less/components/svg-sprite.less'>
+                                        <h4 class='_bigger-1'>SVG sprite</h4>
+                                    </a>
+                                </div>
+                                <div class='_smaller-2 -grey-4'>../../src/less/components/svg-sprite.less</div>
+                                    <p class='mui-p _separate-1'>Internal component</p>
+                                    <div class='_separate-1'>
+                                        <div class='example _separate-2'>  <div class='mui-svg-sprite'>
+      <!--<svg>
+          <symbol>...</symbol>
+      </svg>-->
+  </div></div>
+                                        <div class='mui-spoiler'>
+                                            <div class='title'>Source code</div>
+                                            <div class='content'>
+                                                <div class='code _separate-2 _smaller-1'>
+                                                    <pre class='source-code'>  &lt;div class='mui-svg-sprite'&gt;
+      &lt;!--&lt;svg&gt;
+          &lt;symbol&gt;...&lt;/symbol&gt;
+      &lt;/svg&gt;--&gt;
   &lt;/div&gt;</pre>
                                                 </div>
                                             </div>
@@ -3026,7 +3177,9 @@
                                 <div class='_smaller-2 -grey-4'>../../src/less/components/tags-list.less</div>
                                     <div class='_separate-1'>
                                         <div class='example _separate-2'>      <div class='mui-tags-list' aria-label='Tags list'>
-          <div class='mui-tag-wrapper -icon' role='presentation'>&lowast;</div>
+          <div class='mui-tag-wrapper -icon' role='presentation'>
+              <svg class='mui-svg-icon'><use xlink:href='#svg-icon--tags'></use></svg>
+          </div>
           <div class='mui-tag-wrapper'><a href='' class='mui-tag' aria-label='Search by tag nature'>nature</a></div>
           <div class='mui-tag-wrapper'><a href='' class='mui-tag' aria-label='Search by tag art'>art</a></div>
           <div class='mui-tag-wrapper'><a href='' class='mui-tag' aria-label='Search by tag photography'>photography</a></div>
@@ -3038,7 +3191,9 @@
                                             <div class='content'>
                                                 <div class='code _separate-2 _smaller-1'>
                                                     <pre class='source-code'>      &lt;div class='mui-tags-list' aria-label='Tags list'&gt;
-          &lt;div class='mui-tag-wrapper -icon' role='presentation'&gt;&lowast;&lt;/div&gt;
+          &lt;div class='mui-tag-wrapper -icon' role='presentation'&gt;
+              &lt;svg class='mui-svg-icon'&gt;&lt;use xlink:href='#svg-icon--tags'&gt;&lt;/use&gt;&lt;/svg&gt;
+          &lt;/div&gt;
           &lt;div class='mui-tag-wrapper'&gt;&lt;a href='' class='mui-tag' aria-label='Search by tag nature'&gt;nature&lt;/a&gt;&lt;/div&gt;
           &lt;div class='mui-tag-wrapper'&gt;&lt;a href='' class='mui-tag' aria-label='Search by tag art'&gt;art&lt;/a&gt;&lt;/div&gt;
           &lt;div class='mui-tag-wrapper'&gt;&lt;a href='' class='mui-tag' aria-label='Search by tag photography'&gt;photography&lt;/a&gt;&lt;/div&gt;
@@ -3211,9 +3366,22 @@
         <span>Copyright &copy; Ivan Bogachev, 2016-2017</span>
     </div>
 
-    <link rel='stylesheet' href='./css/muilessium.min.css?v=0.2.13'>
-    <script src='./js/muilessium.min.js?v=0.2.13'></script>
+    <link rel='stylesheet' href='./css/muilessium.min.css?v=0.2.14'>
+    <script src='./js/muilessium.min.js?v=0.2.14'></script>
 
+    <div class='mui-svg-sprite'>
+        <svg version='1.1' xmlns='http://www.w3.org/2000/svg'>
+            <symbol viewBox='0 0 512 512' id='svg-icon--check'><path d='M186.301 339.893L96 249.461l-32 30.507L186.301 402 448 140.506 416 110z'></path></symbol>
+            <symbol viewBox='0 0 512 512' id='svg-icon--close'><path d='M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z'></path></symbol>
+            <symbol viewBox='0 0 512 512' id='svg-icon--arrow-down'><path d='M277.375 85v259.704l119.702-119.702L427 256 256 427 85 256l29.924-29.922 119.701 118.626V85h42.75z'></path></symbol>
+            <symbol viewBox='0 0 512 512' id='svg-icon--arrow-right'><path d='M85 277.375h259.704L225.002 397.077 256 427l171-171L256 85l-29.922 29.924 118.626 119.701H85v42.75z'></path></symbol>
+            <symbol viewBox='0 0 512 512' id='svg-icon--arrow-left'><path d='M427 234.625H167.296l119.702-119.702L256 85 85 256l171 171 29.922-29.924-118.626-119.701H427v-42.75z'></path></symbol>
+            <symbol viewBox='0 0 512 512' id='svg-icon--arrow-up'><path d='M277.375 427V167.296l119.702 119.702L427 256 256 85 85 256l29.924 29.922 119.701-118.626V427h42.75z'></path></symbol>
+            <symbol viewBox='0 0 512 512' id='svg-icon--star'><path d='M256 372.686L380.83 448l-33.021-142.066L458 210.409l-145.267-12.475L256 64l-56.743 133.934L54 210.409l110.192 95.525L131.161 448z'></path></symbol>
+            <symbol viewBox='0 0 512 512' id='svg-icon--hamburger'><path d='M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z'></path></symbol>
+            <symbol viewBox='0 0 512 512' id='svg-icon--tags'><path d='M472 239.2s-.1 0 0 0L282.1 48.1l-1.4-1.4h-.5c-7.5-7.2-16.1-10.9-27.1-11.1l-89.9-3.3-3.9-.1c-10.1.1-20 4.1-27.7 11.8l-27.1 27.2c7.4-6.6 16.6-10 26-10.1l3.8.1 89.8 3.3c11 .2 19.7 3.9 27.2 11.1h.5l1.4 1.4L443 268.1c10 10.8 10.7 28.2 0 38.9l29-28.9c10.6-10.7 10-28.1 0-38.9z'></path><path d='M428 282.5h.3L238.6 91.4l-1.3-1.4h-.3c-7.5-7.2-15.9-10.9-26.9-11.1L120 75.6l-4-.1c-9.2.1-18.2 3.4-25.6 9.8-.3.3-.7.6-1 .9l-1.2 1.2-44.3 44.5C35.8 140 32 150.8 32 161.4v.1l.1 3.8 5.9 87.9v1.9c1 7.9 4.2 15.6 9.6 22l5.1 4.9L239 470.4l2.8 2.8c10.7 9.4 27.1 9 37.3-1.3l13.1-13.2c.5-.4.9-.8 1.4-1.3l26.9-27c-.2.1-.3.2-.5.4l108.3-109.3c10.6-10.7 10.7-28.2-.3-39zm-317.4-143c6.6-4 14.3-6.3 22.6-6.3 23.9 0 43.4 19.4 43.4 43.4 0 8.3-2.3 16-6.3 22.6-7.6 12.5-21.3 20.8-37 20.8-23.9 0-43.4-19.4-43.4-43.4-.1-15.8 8.2-29.5 20.7-37.1z'></path></symbol>
+        </svg>
+    </div>
 
     <style>
         .mui-page-header {
