@@ -235,22 +235,10 @@
                     <li><a class='-f-blue-3' href='#store-overview'>Store</a></li>
                     <li><a class='-f-blue-3' href='#factory-overview'>Factory</a></li>
                     <li><a class='-f-blue-3' href='#controls-overview'>Controls</a></li>
+                    <li><a class='-f-blue-3' href='#utils'>Utils</a></li>
                     <li><a class='-f-blue-3' href='#lazy-loading-images-overview'>Lazy loading</a></li>
                     <li><a class='-f-blue-3' href='#icons-overview'>Icons</a></li>
-                </ul>
-                <hr class='_separate-1'>
-                <a class='-f-blue-3' href='#utils'>Utils</a>
-                <ul class='sub-list _separate-1'>
-                    <li><a class='-f-blue-3' href='#utils-ajax'>AJAX</a></li>
-                    <li><a class='-f-blue-3' href='#utils-animations'>Animations</a></li>
-                    <li><a class='-f-blue-3' href='#utils-aria'>ARIA</a></li>
-                    <li><a class='-f-blue-3' href='#utils-attributes'>Attributes</a></li>
-                    <li><a class='-f-blue-3' href='#utils-checks'>Checks</a></li>
-                    <li><a class='-f-blue-3' href='#utils-css-classes'>CSS Classes</a></li>
-                    <li><a class='-f-blue-3' href='#utils-focus-and-click'>Focus&amp;Click</a></li>
-                    <li><a class='-f-blue-3' href='#utils-scroll'>Scroll</a></li>
-                    <li><a class='-f-blue-3' href='#utils-viewport'>Viewport</a></li>
-                    <li><a class='-f-blue-3' href='#utils-uncategorized'>Uncategorized</a></li>
+                    <li><a class='-f-blue-3' href='#animations-overview'>Animations</a></li>
                 </ul>
                 <hr class='_separate-1'>
                 <a class='-f-blue-3' href='#components'>Components</a>
@@ -441,7 +429,7 @@
 
                     <p class='mui-p _separate-1'>A number of classes for painting. There are four types of classes:</p>
                     <ul class='mui-list _separate-1 _smaller-1'>
-                        <li class='item'><b>-color-number</b> - text color for the element</li>
+                        <li class='item'><b>-color-number</b> - text color for the element. For example "-blue-3"</li>
                         <li class='item'><b>-color-number-bg</b> - background for the element</li>
                         <li class='item'><b>-f-color-number</b> - text color for the :hover and :focus states of the element</li>
                         <li class='item'><b>-f-color-number-bg</b> - background color for the :hover and :focus states</li>
@@ -643,7 +631,7 @@
                         <li class='item'>addEventListener<span class='-grey-3'>(name, callback, executeIfAlreadyFired=false)</span></li>
                         <li class='item'>fireEvent<span class='-grey-3'>(name)</span></li>
                     </ul>
-                    <p class='mui-p _separate-1'>There are six default events:</p>
+                    <p class='mui-p _separate-1'>There are seven default events:</p>
                     <ol class='mui-list _smaller-1'>
                         <li class='item'>resize-window-height</li>
                         <li class='item'>resize-window-width</li>
@@ -651,6 +639,7 @@
                         <li class='item'>scroll-end</li>
                         <li class='item'>app-initialized</li>
                         <li class='item'>images-loaded</li>
+                        <li class='item'>store-updated</li>
                     </ol>
                 </div>
                 <!-- /events overview -->
@@ -681,13 +670,14 @@
                             <h3 class='_bigger-2' id='factory-overview'>Factory</h3>
                         </a>
                     </div>
-                    <div class='_smaller-2 -grey-4'>/src/js/factory.js</div>
+                    <div class='_smaller-2 -grey-4'>/src/js/factory.js<br>/src/js/component.js</div>
 
                     <p class='mui-p _separate-1'>Muilessium has a factory of components. It exports that system as <i>Muilessium.FACTORY</i>. The main methods are:</p>
                     <ul class='mui-list _separate-1 _smaller-1'>
                         <li class='item'>registerComponent<span class='-grey-3'>(type, component)</span></li>
                         <li class='item'>create<span class='-grey-3'>(type, selector, options)</span></li>
                     </ul>
+                    <p class='mui-p _separate-1'>All components should extend the base Component class. It should be exported as <i>Muilessium.FACTORY.BaseComponent</i>.</p>
                 </div>
                 <!-- /factory overview -->
 
@@ -699,9 +689,9 @@
                             <h3 class='_bigger-2' id='controls-overview'>Controls</h3>
                         </a>
                     </div>
-                    <div class='_smaller-2 -grey-4'>/src/js/controls/*.js</div>
+                    <div class='_smaller-2 -grey-4'>/src/js/controls/keyboard.js<br>/src/js/controls/mouse.js<br>/src/js/controls/touchpad.js</div>
 
-                    <p class='mui-p _separate-1'>Muilessium has a number of handy utilities for controls. It exports them as <i>Muilessium.KEYBOARD, Muilessium.MOUSE and Muilessium.TOUCHPAD</i>.</p>
+                    <p class='mui-p _separate-1'>Muilessium has a number of handy utilities for controls. It exports them as <i>Muilessium.KEYBOARD, Muilessium.MOUSE and Muilessium.TOUCHPAD</i>. They should be used to keep the code clean and readable.</p>
                 </div>
                 <!-- /controls overview -->
 
@@ -788,6 +778,33 @@
                 <!-- /icons overview -->
 
 
+                <!-- animations overview -->
+                <div class='_separate-5'>
+                    <div class='mui-row'>
+                        <a class='anchor-link -black -f-blue-3' href='#lazy-loading-images-overview'>
+                            <h3 class='_bigger-2' id='lazy-loading-images-overview'>Lazy loading images</h3>
+                        </a>
+                    </div>
+                    <div class='_smaller-2 -grey-4'>/src/js/utils/animations.js<br>/src/less/animations.less</div>
+
+                    <p class='mui-p _separate-1'>There are two ways to use animations. The first one:</p>
+                    <div class='code-example _separate-2 _smaller-1'>
+                        <pre class='source-code'>
+&lt;div class='-js-animation [ -hidden-by-default ]
+    [ -fade-in  | -fade-in-left  | -fade-in-right  | -fade-in-up  | -fade-in-down |
+      -fade-out | -fade-out-left | -fade-out-right | -fade-out-up | -fade-out-down ]'&gt;&lt;/div&gt;
+&lt;script&gt;Muilessium.UTILS.activateAnimation(element)&lt;/script&gt;</pre>
+                    </div>
+
+                    <p class='mui-p _separate-1'>The second one:</p>
+                    <div class='code-example _separate-2 _smaller-1'>
+                        <pre class='source-code'>
+&lt;script&gt;Muilessium.UTILS.animateElement(element, 'fade-in')&lt;/script&gt;</pre>
+                    </div>
+                    <p class='mui-p _separate-1'>Both ways have equal internal behavior and the names of the animations. The first one is useful if the elements should be animated once (in landing page or something similar). The second way is useful if you need to animate one element multiple times.</p>
+                </div>
+                <!-- /animations overview -->
+
                 <!-- components overview -->
                 <div class='_separate-5'>
                     <div class='mui-row'>
@@ -873,17 +890,17 @@
                     <div class='questions-list _separate-1'>
                         <div class='_separate-1'>
                             <div class='question'>Can I use Muilessium in my project?</div>
-                            <div class='answer'>Yes, Muilessium is distributed under the MIT license, so You can use it in Your projects.</div>
+                            <div class='answer'>Yes, Muilessium is distributed under the MIT license and you can use it in your projects for free.</div>
                         </div>
 
                         <div class='_separate-1'>
                             <div class='question'>What browsers are supported?</div>
-                            <div class='answer'>All modern browsers, including IE11.</div>
+                            <div class='answer'>All modern evergreen browsers and IE11.</div>
                         </div>
                         
                         <div class='_separate-1'>
                             <div class='question'>What can I do if I found a bug?</div>
-                            <div class='answer'>If you found a bug - don't worry, Muilessium is in pre-pre-release state and can have some bugs, You can open an issue on <a href='https://github.com/sfi0zy/muilessium' class='-f-blue-3'>GitHub</a> or send me an <a href='mailto:sfi0zy@gmail.com' class='-f-blue-3'>email</a> and I will fix a problem.</div>
+                            <div class='answer'>If you found a bug - don't worry, Muilessium is in not released yet and it can have bugs. You can open an issue on <a href='https://github.com/sfi0zy/muilessium' class='-f-blue-3'>GitHub</a> or send me an <a href='mailto:sfi0zy@gmail.com' class='-f-blue-3'>email</a> and I will fix a problem.</div>
                         </div>
                     </div>
                 </div>

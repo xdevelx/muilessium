@@ -17,13 +17,13 @@ class Store {
     constructor() {
         this.data = {};
 
-        EVENTS.addEvent('state-changed');
+        EVENTS.addEvent('store-updated');
     }
 
     set(path, data) {
         const result = deepSet(this.data, path, data);
 
-        EVENTS.fireEvent('state-changed');
+        EVENTS.fireEvent('store-updated');
 
         return result;
     }

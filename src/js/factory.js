@@ -16,6 +16,7 @@
 
 
 import COMPONENTS from './components';
+import BaseComponent from './component';
 
 import { forEach    } from './utils/uncategorized';
 import { toLispCase } from './utils/uncategorized';
@@ -23,6 +24,7 @@ import { toLispCase } from './utils/uncategorized';
 
 class Factory {
     constructor() {
+        this.BaseComponent = BaseComponent;
         this.components = COMPONENTS;
         this.componentsCache = {};
 
