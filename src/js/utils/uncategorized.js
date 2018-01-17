@@ -20,8 +20,8 @@
 //
 // -----------------------------------------------------------------------------
 
-
-import POLYFILLS from '../polyfills';
+import DEPENDENCIES from '../dependencies';
+import POLYFILLS    from '../polyfills';
 
 import console from '../utils/console';
 
@@ -50,7 +50,6 @@ export function normalizeTabIndex() {
 // Lazy load images
 // ----------------
 
-const imagesLoaded = require('imagesloaded');
 
 export function lazyLoadImages(callback) {
     forEach(document.querySelectorAll('.-js-lazy-load'), (image) => {
@@ -74,7 +73,7 @@ export function lazyLoadImages(callback) {
     });
 
     if (typeof callback === 'function') {
-        imagesLoaded('body', callback);
+        DEPENDENCIES.imagesLoaded('body', callback);
     }
 }
 
@@ -331,6 +330,6 @@ export function toLispCase(str) {
         return '';
     }
 
-    return POLYFILLS.toSlugCase(str); 
+    return DEPENDENCIES.toSlugCase(str); 
 }
 

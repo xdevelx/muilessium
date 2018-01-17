@@ -3,26 +3,28 @@
 // -----------------------------------------------------------------------------
 
 
-import UTILS       from './utils';
-import EVENTS      from './events';
-import STORE       from './store';
-import FACTORY     from './factory';
-import POLYFILLS   from './polyfills';
-import KEYBOARD    from './controls/keyboard';
-import MOUSE       from './controls/mouse';
-import TOUCHSCREEN from './controls/touchscreen';
+import UTILS        from './utils';
+import EVENTS       from './events';
+import STORE        from './store';
+import FACTORY      from './factory';
+import DEPENDENCIES from './dependencies';
+import POLYFILLS    from './polyfills';
+import KEYBOARD     from './controls/keyboard';
+import MOUSE        from './controls/mouse';
+import TOUCHSCREEN  from './controls/touchscreen';
 
 
 class Muilessium {
     constructor() {
-        this.UTILS       = UTILS;
-        this.EVENTS      = EVENTS;
-        this.STORE       = STORE;
-        this.FACTORY     = FACTORY;
-        this.POLYFILLS   = POLYFILLS;
-        this.KEYBOARD    = KEYBOARD;
-        this.MOUSE       = MOUSE;
-        this.TOUCHSCREEN = TOUCHSCREEN;
+        this.UTILS        = UTILS;
+        this.EVENTS       = EVENTS;
+        this.STORE        = STORE;
+        this.FACTORY      = FACTORY;
+        this.DEPENDENCIES = DEPENDENCIES;
+        this.POLYFILLS    = POLYFILLS;
+        this.KEYBOARD     = KEYBOARD;
+        this.MOUSE        = MOUSE;
+        this.TOUCHSCREEN  = TOUCHSCREEN;
 
         this.initEvents();
         this.initEventListeners();

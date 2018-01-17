@@ -24,7 +24,7 @@
 //   - app-initialized
 //   - images-loaded
 // Additional events (initialized in /src/js/store.js):
-//   - state-changed
+//   - store-updated
 //
 // -----------------------------------------------------------------------------
 

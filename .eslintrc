@@ -8,6 +8,7 @@
         "no-unused-vars":                    "warn",
         "import/first":                      "warn",
         "no-use-before-define":              "warn",
+        "no-underscore-dangle":              "warn",
         "no-duplicate-imports":              "off",
         "import/no-duplicates":              "off",
         "import/no-extraneous-dependencies": "off",

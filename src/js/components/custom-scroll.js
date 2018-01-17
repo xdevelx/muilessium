@@ -2,13 +2,14 @@
 // CUSTOM SCROLL COMPONENT
 // -----------------------------------------------------------------------------
 
-
-import * as SimpleBar from 'simplebar';
+import DEPENDENCIES from '../dependencies';
 
 import Component from '../component';
 
 import { setAttribute } from '../utils/attributes';
 import { extend       } from '../utils/uncategorized';
+
+const SimpleBar = DEPENDENCIES.SimpleBar();
 
 
 export default class CustomScroll extends Component {

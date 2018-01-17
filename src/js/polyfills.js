@@ -3,13 +3,13 @@
 // -----------------------------------------------------------------------------
 //
 // All polyfills used in the application should be imported here. Wrappers are
-// used for less dependence on polyfills realizations.
+// used for less dependence on the polyfills realizations. For other
+// dependencies see /src/js/dependencies.js
 //
 // Used polyfills:
 //   - smoothscroll-polyfill
 //   - object-fit-images
 //   - object-assign
-//   - to-slug-case
 //
 // -----------------------------------------------------------------------------
 
@@ -43,26 +43,12 @@ function objectAssign(...args) {
 }
 
 
-
-// toSlugCase
-// https://github.com/ianstormtaylor/to-slug-case
-// Notice: Really don't know why it's happening,
-//   but es6 import of this dependency brokes the tests.
-//   Use require instead.
-const convertToSlugCase = require('to-slug-case');
-
-function toSlugCase(str) {
-    return convertToSlugCase(str);
-}
-
-
 // -----------------------------------------------------------------------------
 
 const POLYFILLS = {
     smoothScroll,
     objectFit,
-    objectAssign,
-    toSlugCase
+    objectAssign
 };
 
 export default POLYFILLS;

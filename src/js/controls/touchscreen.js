@@ -16,25 +16,27 @@
 // -----------------------------------------------------------------------------
 
 
-window.Hammer = require('hammerjs');
+import DEPENDENCIES from '../dependencies';
+
+const Hammer = DEPENDENCIES.Hammer();
 
 
 function onSwipeLeft(element, callback) {
-    const hammertime = new window.Hammer(element);
+    const hammertime = new Hammer(element);
 
     hammertime.on('swipeleft', callback);
 }
 
 
 function onSwipeRight(element, callback) {
-    const hammertime = new window.Hammer(element);
+    const hammertime = new Hammer(element);
 
     hammertime.on('swiperight', callback);
 }
 
 
 function onPinchOut(element, callback) {
-    const hammertime = new window.Hammer(element);
+    const hammertime = new Hammer(element);
 
     hammertime.get('pinch').set({ enable: true });
     hammertime.on('pinchout', callback);
