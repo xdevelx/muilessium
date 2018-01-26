@@ -1,6 +1,6 @@
 {
   "name": "muilessium",
-  "version": "0.2.18",
+  "version": "0.2.19",
   "description": "UI Framework",
   "author": "Ivan Bogachev <sfi0zy@gmail.com>",
   "license": "MIT",
@@ -27,7 +27,7 @@
     "eslint-plugin-import": "^2.8.0",
     "gulp": "^3.9.1",
     "gulp-cssnano": "^2.1.2",
-    "gulp-dss": "github:sfi0zy/gulp-dss",
+    "gulp-dss": "git://github.com/sfi0zy/gulp-dss.git#v1.0",
     "gulp-eslint": "^4.0.0",
     "gulp-if": "^2.0.2",
     "gulp-less": "^3.3.2",
