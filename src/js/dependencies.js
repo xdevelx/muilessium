@@ -9,6 +9,7 @@
 //   - to-slug-case
 //   - imagesloaded
 //   - hammerjs
+//   - simplebar
 //
 // -----------------------------------------------------------------------------
 
@@ -31,7 +32,7 @@ function toSlugCase(str) {
 const _imagesLoaded = require('imagesloaded');
 
 function imagesLoaded(element, callback) {
-    _imagesLoaded(element, callback);
+    return _imagesLoaded(element, callback);
 }
 
 
@@ -43,9 +44,10 @@ function Hammer() {
     return _Hammer;
 }
 
+
 // SimpleBar
 // http://grsmto.github.io/simplebar/
-import * as _SimpleBar from 'simplebar';
+const _SimpleBar = require('simplebar');
 
 function SimpleBar() {
     return _SimpleBar;

@@ -16,10 +16,10 @@
 
 // SMOOTH SCROLL
 // https://iamdustan.com/smoothscroll/
-import * as smoothScrollPolyfill from 'smoothscroll-polyfill';
+const _smoothScroll = require('smoothscroll-polyfill').polyfill;
 
 function smoothScroll() {
-    smoothScrollPolyfill.polyfill();
+    return _smoothScroll();
 }
 
 
@@ -27,19 +27,19 @@ function smoothScroll() {
 // https://github.com/bfred-it/object-fit-images
 // There is a css class for this polyfill.
 // Take a look at src/css/utils.css for more information.
-import objectFitImages from 'object-fit-images';
+const _objectFit = require('object-fit-images');
 
 function objectFit() {
-    objectFitImages();
+    return _objectFit();
 }
 
 
 // Object.assign
 // https://github.com/sindresorhus/object-assign
-import assign from 'object-assign';
+const _objectAssign = require('object-assign');
 
 function objectAssign(...args) {
-    return assign(...args);
+    return _objectAssign(...args);
 }
 
 
