@@ -1,31 +1,17 @@
 # Muilessium UI Framework
-![license-badge](https://img.shields.io/github/license/sfi0zy/muilessium.svg?style=flat-square) ![state-badge](https://img.shields.io/badge/state-pre%20release-orange.svg?style=flat-square)
-
-![muilessium-logo](https://sfi0zy.github.io/images/c80e38f4f5704016aa53d2ce0dc2fdc2.jpg "Muilessium logo")
+![version-badge](https://img.shields.io/npm/v/muilessium.svg?style=flat-square&colorB=00b5d6) ![npm-downloads](https://img.shields.io/npm/dt/muilessium.svg?style=flat-square&colorB=00b5d6) ![license-badge](https://img.shields.io/badge/dynamic/json.svg?style=flat-square&label=license&colorB=00b5d6&prefix=&suffix=&query=license&uri=https://raw.githubusercontent.com/sfi0zy/muilessium/master/package.json)
 
 ## Description
-Muilessium is a UI framework for simple websites. This is a collection of components, utilities and helpers. Muilessium is under development now and it is not recommended to use it in production, because it hasn't backward compatibility and some features are not realized yet.
+Muilessium is a UI framework for simple websites. It's under development now and should be cautiously used in production.
 
-## Build instructions
-```sh
-git clone https://github.com/sfi0zy/muilessium.git
-cd muilessium
-npm i
-```
-### Development:
-```sh
-gulp server
-```
-### Production:
-```sh
-gulp --production
-```
+## Docs
+[https://sfi0zy.github.io/muilessium](https://sfi0zy.github.io/muilessium)
+
 
 ## CDN
-[https://unpkg.com/muilessium/dist/js/muilessium.min.js](https://unpkg.com/muilessium/dist/js/muilessium.min.js)
+JS: [https://unpkg.com/muilessium/dist/js/muilessium.min.js](https://unpkg.com/muilessium/dist/js/muilessium.min.js)
 
-
-[https://unpkg.com/muilessium/dist/css/muilessium.min.css](https://unpkg.com/muilessium/dist/css/muilessium.min.css)
+CSS: [https://unpkg.com/muilessium/dist/css/muilessium.min.css](https://unpkg.com/muilessium/dist/css/muilessium.min.css)
 
 
 ## NPM
@@ -40,9 +26,18 @@ node_modules/muilessium/dist/css/muilessium.min.css
 node_modules/muilessium/dist/js/muilessium.min.js
 ```
 
+## Development
+```sh
+git clone https://github.com/sfi0zy/muilessium.git
+cd muilessium
+npm i
+gulp server
+```
+### Build for production:
+```sh
+gulp --production
+```
+
 ## License
 Muilessium is distributed under the MIT license.
-
-## Docs
-[https://sfi0zy.github.io/muilessium](https://sfi0zy.github.io/muilessium)
 
