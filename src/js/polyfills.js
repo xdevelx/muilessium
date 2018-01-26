@@ -27,7 +27,8 @@ function smoothScroll() {
 // https://github.com/bfred-it/object-fit-images
 // There is a css class for this polyfill.
 // Take a look at src/css/utils.css for more information.
-const _objectFit = require('object-fit-images');
+// WTF: Require doesn't work with this module, but should.
+import _objectFit from 'object-fit-images';
 
 function objectFit() {
     return _objectFit();
