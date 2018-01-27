@@ -13,6 +13,8 @@
 
 
 .@{muilessium-prefix}button-group {
+    position: relative;
+
     > .@{muilessium-prefix}button {
         position: relative;
         border-radius: 0;
@@ -78,7 +80,7 @@
                 width: 1.2rem;
                 border-radius: 50%;
                 font-size: .7rem;
-                line-height: 1.2rem;
+                line-height: 1.71em; // It's (1rem * 0.7 * 1.71) = 1.2rem. IE11 doesn't support REM units in pseudo-elements.
                 text-align: center;
                 background: @grey-1;
                 color: @black;
