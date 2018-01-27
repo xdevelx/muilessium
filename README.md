@@ -7,19 +7,12 @@ Muilessium is a UI framework for simple websites. It's under development now and
 ## Docs
 [https://sfi0zy.github.io/muilessium](https://sfi0zy.github.io/muilessium)
 
-
-## CDN
-JS: [https://unpkg.com/muilessium/dist/js/muilessium.min.js](https://unpkg.com/muilessium/dist/js/muilessium.min.js)
-
-CSS: [https://unpkg.com/muilessium/dist/css/muilessium.min.css](https://unpkg.com/muilessium/dist/css/muilessium.min.css)
-
-
 ## NPM
 ```sh
 npm install muilessium
 ```
 
-To use Muilessium You should include two files into the bottom of Your page:
+To use Muilessium you should include two files into the bottom of your page:
 
 ```
 node_modules/muilessium/dist/css/muilessium.min.css
@@ -38,6 +31,24 @@ gulp server
 gulp --production
 ```
 
+### Changelog (since v0.2):
+#### Added:
+ - Improved development environment (dev/prod builds, sourcemaps, eslint, unit tests for utilities)
+ - Default SVG icons
+ - Simple global store
+ - New utilities - deepGet, deepSet, toLispCase
+ - New component - CustomScroll
+#### Changed:
+ - Structure of the global Muilessium object including names of the fields
+#### Removed:
+ - Warnings in the ifExists and ifNodeList utilities
+#### Fixed:
+ - Keyboard controls, infinite focus loops
+ - Logical errors in utilities
+ - IE11 support
+ - Different CSS bugs
+
+
 ## License
-Muilessium is distributed under the MIT license.
+MIT license.
 
