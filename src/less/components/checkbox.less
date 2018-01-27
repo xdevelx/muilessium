@@ -109,8 +109,8 @@
                 left: 0;
                 height: @default-ui-height;
                 width: @default-ui-height;
-                line-height: @default-ui-height;
-                font-size: @default-ui-height * .4;
+                font-size: @default-ui-height * .4; // 2rem * 0.4 = 0.8rem
+                line-height: 2.5; // It's 2rem (default ui height). IE11 doesn't support REM units in pseudo-elements.
                 text-align: center;
                 text-transform: uppercase;
                 background: @grey-5;
