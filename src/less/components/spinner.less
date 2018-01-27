@@ -1,33 +1,17 @@
 // @name Spinner
-// TODO: Fix spinner animation in IE11 
 //
 // @markup
-//  <svg class='mui-spinner' viewBox='0 0 100 100' role='presentation'>
-//      <circle class='path' cx='50' cy='50' r='40' fill='none' stroke-width='10'></circle>
-//  </svg>
+//  <div class='mui-spinner' role='presentation'>
+//      <svg class='mui-svg-icon -black'><use xlink:href='#svg-icon--spinner'></use></svg>
+//  </div>
 
 
 @keyframes spinner-rotate {
+    0% {
+        transform: rotate(0);
+    }
     100% {
         transform: rotate(360deg);
-    }
-}
-
-
-@keyframes spinner-dash-animation {
-    0% {
-        stroke-dasharray: 1, 300;
-        stroke-dashoffset: 0;
-    }
-
-    50% {
-        stroke-dasharray: 180, 300;
-        stroke-dashoffset: -70;
-    }
-
-    100% {
-        stroke-dasharray: 180, 300;
-        stroke-dashoffset: -250;
     }
 }
 
@@ -36,12 +20,13 @@
     display: inline-block;    
     height: @default-ui-height;
     width: @default-ui-height;
-    animation: spinner-rotate 2s linear infinite;
-    
-    > .path {
-        stroke: @black;
-        stroke-linecap: round;
-        animation: spinner-dash-animation 1.5s linear infinite;
+
+    > .mui-svg-icon {
+        height: @default-ui-height;
+        max-height: @default-ui-height;
+        width: @default-ui-height;
+        max-width: @default-ui-height;
+        animation: spinner-rotate 2s linear infinite;
     }
 }
 
