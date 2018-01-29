@@ -54,6 +54,14 @@ class Muilessium {
 
         EVENTS.addEventListener('images-loaded', POLYFILLS.objectFit);
 
+        EVENTS.addEventListener('images-loaded', () => {
+            if (window.location.hash) {
+                const anchor = document.getElementById(window.location.hash.substring(1));
+
+                UTILS.scrollTo(anchor);
+            }
+        });
+
         return this;
     }
 
