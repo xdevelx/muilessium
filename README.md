@@ -36,6 +36,7 @@ gulp --production
  - Improved development environment (dev/prod builds, sourcemaps, eslint, unit tests for utilities)
  - Default SVG icons
  - Simple global store
+ - Scroll to the default anchor
  - New utilities - deepGet, deepSet, toLispCase
  - New component - CustomScroll
 #### Changed:
