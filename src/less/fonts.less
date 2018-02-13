@@ -13,6 +13,10 @@ html {
     // size = ( 14px + (20 - 14) * ((100vw - 400px) / ( 1200 - 400)))
     font-size: ~'calc(' @min-font-size-px ~' + (' @max-font-size ~' - ' @min-font-size ~') * ((100vw - ' @grid-breakpoint-small-px ~') / (' @grid-breakpoint-large ~' - ' @grid-breakpoint-small ~')))';
 
+    @media screen and (max-width: @grid-breakpoint-small-px) {
+        font-size: @min-font-size-px;
+    }
+
     @media screen and (min-width: @grid-breakpoint-large-px) {
         font-size: @max-font-size-px;
     }
