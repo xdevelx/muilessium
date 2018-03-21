@@ -186,7 +186,8 @@
                     </div>
 
                     <div class='code-example _separate-2 _smaller-1'>
-                        <pre class='source-code'>
+                        <div class='mui-custom-scroll -source'>
+                            <pre class='source-code'>
 &lt;div class='mui-row'&gt;
     &lt;div class='mui-column -s1'&gt;-s1&lt;/div&gt;
     &lt;div class='mui-column -s11'&gt;-s11&lt;/div&gt;
@@ -203,6 +204,7 @@
     &lt;div class='mui-column -m6 -l2'&gt;-m6 -l2&lt;/div&gt;
     &lt;div class='mui-column -m6 -l10'&gt;-m6 -l10&lt;/div&gt;
 &lt;/div&gt;</pre>
+                        </div>
                     </div>
                 </div>
                 <!-- /grid overview -->
@@ -219,11 +221,13 @@
                     <p class='mui-p _separate-1'>The basic page layout includes header, page container and footer. This layout is the simplest way to create a sticky footer, but IE11 does not support flexbox greatly, so we have some incorrect behavior in it.</p>
 
                     <div class='code-example _separate-2 _smaller-1'>
-                        <pre class='source-code'>
+                        <div class='mui-custom-scroll -source'>
+                            <pre class='source-code'>
 &lt;div class='mui-scroll-fix'&gt;&lt;/div&gt;
 &lt;header class='mui-page-header'&gt;header&lt;/header&gt;
 &lt;div class='mui-page-container'&gt;...&lt;/div&gt;
 &lt;footer class='mui-page-footer'&gt;footer&lt;/footer&gt;</pre>
+                        </div>
                     </div>
                 </div>
                 <!-- /page layout overview -->
@@ -241,8 +245,10 @@
                     <p class='mui-p _separate-1'>Muilessium uses Hammer.js (exported in Muilessium.DEPENDENCIES), and it is recommended to use the following meta in your pages:</p>
 
                     <div class='code-example _separate-2 _smaller-1'>
-                        <pre class='source-code'>
+                        <div class='mui-custom-scroll -source'>
+                            <pre class='source-code'>
 &lt;meta name='viewport' content='user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1'&gt;</pre>
+                        </div>
                     </div>
                 </div>
                 <!-- /viewport overview -->
@@ -495,8 +501,10 @@
                     <div class='mui-spoiler'>
                         <div class='title'>Here is an example of usage of UTILS, EVENTS and STORE</div>
                         <div class='content'>
-                            <div class='code _separate-2 _smaller-1'>
-                                <pre class='source-code'>document.addEventListener('DOMContentLoaded', () =&gt; {
+                            <div class='_separate-2'>
+                                <div class='mui-custom-scroll -source'>
+                                    <div class='code _smaller-1'>
+                                        <pre class='source-code'>document.addEventListener('DOMContentLoaded', () =&gt; {
     let _      = window.Muilessium.UTILS,
         STORE  = window.Muilessium.STORE,
         EVENTS = window.Muilessium.EVENTS;
@@ -517,8 +525,9 @@
     }, (status, statusText) =&gt; {
         console.log(`${status} - ${statusText}`);
     });
-});
-                                </pre>
+});</pre>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -644,13 +653,15 @@
                     <div class='_smaller-2 -grey-4'>/src/js/utils/uncategorized.js</div>
 
                     <div class='code-example _separate-2 _smaller-1'>
-                        <pre class='source-code'>
+                        <div class='mui-custom-scroll -source'>
+                            <pre class='source-code'>
 &lt;img class='mui-image -js-lazy-load'
     data-src='....'
     data-srcset='....'
     data-sizes='....'
     alt='Lazy loaded image'
     src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'&gt;</pre>
+                        </div>
                     </div>
                 </div>
                 <!-- /lazy loading overview -->
@@ -667,7 +678,8 @@
 
                     <p class='mui-p'>Muilessium uses Ionicons by default. You should put the following sprite at the end of your pages. You can create custom icons by replacing symbols in this SVG.</p>
                     <div class='code-example _separate-2 _smaller-1'>
-                        <pre class='source-code'>
+                        <div class='mui-custom-scroll -source'>
+                            <pre class='source-code'>
 
 &lt;div class='mui-svg-sprite'&gt;
     &lt;svg version='1.1' xmlns='http://www.w3.org/2000/svg'&gt;
@@ -682,8 +694,8 @@
         &lt;symbol viewBox='0 0 512 512' id='svg-icon--spinner'&gt;&lt;path d='M256 48c-75.033 0-144.531 40.658-181.373 106.107l-1.963 3.485 20.915 11.771 1.962-3.485C128.138 107.973 189.621 72 256 72c101.458 0 184 82.542 184 184a185.48 185.48 0 0 1-3.749 37.147l-.803 3.918 23.511 4.819.804-3.919A209.53 209.53 0 0 0 464 256c0-114.691-93.309-208-208-208zM416.459 346.119C383.862 404.027 322.379 440 256 440c-101.458 0-184-82.542-184-184 0-12.512 1.262-25.011 3.75-37.15l.803-3.918-23.511-4.819-.804 3.918A209.445 209.445 0 0 0 48 256c0 114.691 93.309 208 208 208 75.033 0 144.531-40.658 181.373-106.109l1.963-3.485-20.915-11.771-1.962 3.484z'&gt;&lt;/path&gt;&lt;path d='M384 256l64 64 64-64zM0 256l64-64 64 64z'&gt;&lt;/path&gt;&lt;/symbol&gt;
         &lt;symbol viewBox='0 0 512 512' id='svg-icon--tags'&gt;&lt;path d='M472 239.2s-.1 0 0 0L282.1 48.1l-1.4-1.4h-.5c-7.5-7.2-16.1-10.9-27.1-11.1l-89.9-3.3-3.9-.1c-10.1.1-20 4.1-27.7 11.8l-27.1 27.2c7.4-6.6 16.6-10 26-10.1l3.8.1 89.8 3.3c11 .2 19.7 3.9 27.2 11.1h.5l1.4 1.4L443 268.1c10 10.8 10.7 28.2 0 38.9l29-28.9c10.6-10.7 10-28.1 0-38.9z'&gt;&lt;/path&gt;&lt;path d='M428 282.5h.3L238.6 91.4l-1.3-1.4h-.3c-7.5-7.2-15.9-10.9-26.9-11.1L120 75.6l-4-.1c-9.2.1-18.2 3.4-25.6 9.8-.3.3-.7.6-1 .9l-1.2 1.2-44.3 44.5C35.8 140 32 150.8 32 161.4v.1l.1 3.8 5.9 87.9v1.9c1 7.9 4.2 15.6 9.6 22l5.1 4.9L239 470.4l2.8 2.8c10.7 9.4 27.1 9 37.3-1.3l13.1-13.2c.5-.4.9-.8 1.4-1.3l26.9-27c-.2.1-.3.2-.5.4l108.3-109.3c10.6-10.7 10.7-28.2-.3-39zm-317.4-143c6.6-4 14.3-6.3 22.6-6.3 23.9 0 43.4 19.4 43.4 43.4 0 8.3-2.3 16-6.3 22.6-7.6 12.5-21.3 20.8-37 20.8-23.9 0-43.4-19.4-43.4-43.4-.1-15.8 8.2-29.5 20.7-37.1z'&gt;&lt;/path&gt;&lt;/symbol&gt;
     &lt;/svg&gt;
-&lt;/div&gt;
-                        </pre>
+&lt;/div&gt;</pre>
+                        </div>
                     </div>
                 </div>
                 <!-- /icons overview -->
@@ -700,17 +712,21 @@
 
                     <p class='mui-p _separate-1'>There are two ways to use animations. The first one:</p>
                     <div class='code-example _separate-2 _smaller-1'>
-                        <pre class='source-code'>
+                        <div class='mui-custom-scroll -source'>
+                            <pre class='source-code'>
 &lt;div class='-js-animation [ -hidden-by-default ]
     [ -fade-in  | -fade-in-left  | -fade-in-right  | -fade-in-up  | -fade-in-down |
       -fade-out | -fade-out-left | -fade-out-right | -fade-out-up | -fade-out-down ]'&gt;&lt;/div&gt;
 &lt;script&gt;Muilessium.UTILS.activateAnimation(element)&lt;/script&gt;</pre>
+                        </div>
                     </div>
 
                     <p class='mui-p _separate-1'>The second one:</p>
                     <div class='code-example _separate-2 _smaller-1'>
-                        <pre class='source-code'>
+                        <div class='mui-custom-scroll -source'>
+                            <pre class='source-code'>
 &lt;script&gt;Muilessium.UTILS.animateElement(element, 'fade-in')&lt;/script&gt;</pre>
+                        </div>
                     </div>
                     <p class='mui-p _separate-1'>Both ways have equal internal behavior and the names of the animations. The first one is useful if the elements should be animated once (in landing page or something similar). The second way is useful if you need to animate one element multiple times.</p>
                 </div>
@@ -775,8 +791,12 @@
                                         <div class='mui-spoiler'>
                                             <div class='title'>Source code</div>
                                             <div class='content'>
-                                                <div class='code _separate-2 _smaller-1'>
-                                                    <pre class='source-code'>{{{markup.escaped}}}</pre>
+                                                <div class='_separate-2'>
+                                                    <div class='mui-custom-scroll -source'>
+                                                        <div class='code _smaller-1'>
+                                                            <pre class='source-code'>{{{markup.escaped}}}</pre>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -935,9 +955,14 @@
             background: #f1f1f1;
             font-family: Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, monospace;
             font-size: .7rem;
-            padding: 1rem;
-            overflow-x: scroll;
+            padding: 1rem 1rem 0 1rem;
+            white-space: pre-wrap;
+            word-wrap: break-word;            
+        }
+
+        .mui-custom-scroll.-source {
             border-left: 3px solid #777;
+            background: #f1f1f1;
         }
 
         .color-preview {
