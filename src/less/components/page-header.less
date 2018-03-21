@@ -1,8 +1,26 @@
 // @name Page header
-// @description Some components like page-header-logo and page-header-navigation should be placed into this component.
+// @depends header-logo
+// @depends header-navigation
 //
 // @markup
-//  <header class='mui-page-header'></header>
+//  <header class='mui-page-header'>
+//      <div class='mui-header-logo _left'>
+//          <a class='link' href=''>
+//              <h1>Logo</h1>
+//          </a>
+//      </div>
+//      <nav class='mui-header-navigation -mobile-version _right'>
+//          <div class='mui-navigation-toggle -hamburger' aria-label='Main website navigation'>
+//              <svg class='mui-svg-icon'><use xlink:href='#svg-icon--hamburger'></use></svg>
+//          </div>
+//          <ul class='links-list'>
+//              <li class='item'><a class='link' href='' aria-label='Home page'>home</a></li>
+//              <li class='item'><a class='link' href='' aria-label='Page about me'>about</a></li>
+//              <li class='item'><a class='link' href='' aria-label='Page with my contacts'>contacts</a></li>
+//          </ul>
+//          <div class='mui-navigation-toggle mui-shadow-toggle'></div>
+//      </nav>
+//  </header>
 
 
 .@{muilessium-prefix}page-header {

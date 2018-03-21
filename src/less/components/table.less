@@ -1,6 +1,6 @@
 // @name Table
 //
-// @description Use -fixed option to create a table with fixed layout, -striped option to create a zebra-striped table;
+// @state -striped - zebra-striped table
 //
 // @markup
 //  <table class='mui-table'>
@@ -28,7 +28,7 @@
     }
 
     &.-striped {
-        tr:nth-child(even) {
+        tr:nth-child(2n-1) {
             background: @grey-1;
         }
     }
