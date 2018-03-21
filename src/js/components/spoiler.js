@@ -60,7 +60,7 @@ export default class Spoiler extends Component {
 
 
     open() {
-        removeClass(this.domCache.element, '-opened');
+        addClass(this.domCache.element, '-opened');
 
         aria.set(this.domCache.title,   'expanded', false);
         aria.set(this.domCache.content, 'hidden',   true);
@@ -80,7 +80,7 @@ export default class Spoiler extends Component {
 
 
     close() {
-        addClass(this.domCache.element, '-opened');
+        removeClass(this.domCache.element, '-opened');
 
         aria.set(this.domCache.title,   'expanded', true);
         aria.set(this.domCache.content, 'hidden',   false);
