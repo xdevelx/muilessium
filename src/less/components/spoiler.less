@@ -40,13 +40,9 @@
         will-change: opacity, max-height, transform;
     }
 
-    > .content > .mui-custom-scroll {
-        max-height: 20rem;
-    }
-
     &.-opened {
         > .content {
-            max-height: 20rem;
+            max-height: 13rem; // Max-height of the custom scroll + 3rem. WTF?
             opacity: 1;
             transform: rotateX(0) translateY(0);
         }
