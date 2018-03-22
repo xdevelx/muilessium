@@ -41,6 +41,7 @@ gulp --production
  - New component - CustomScroll
 #### Changed:
  - Structure of the global Muilessium object including names of the fields
+ - Markup for the custom-scroll
 #### Removed:
  - Warnings in the ifExists and ifNodeList utilities
 #### Fixed:
