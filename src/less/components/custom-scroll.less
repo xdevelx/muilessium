@@ -1,9 +1,14 @@
 // @name Custom scroll
-// @description Element with custom scrollbar (based on simplebar.js). Default max-height is 10rem;
+// @description Element with custom scrollbar (based on simplebar.js). Default max-height is 10rem, option -max-height-20 sets max-height to 20rem.
 //
 // @markup
 //  <div class='mui-custom-scroll-wrapper'>
-//      <div class='mui-custom-scroll'>
+//      <div class='mui-custom-scroll -max-height-20'>
+//          ...<br>...<br>...<br>
+//          ...<br>...<br>...<br>
+//          ...<br>...<br>...<br>
+//          ...<br>...<br>...<br>
+//          ...<br>...<br>...<br>
 //          ...<br>...<br>...<br>
 //          ...<br>...<br>...<br>
 //          ...<br>...<br>...<br>
@@ -25,6 +30,11 @@
     z-index: 0;
     overflow: hidden;
     -webkit-overflow-scrolling: touch;
+
+
+    &.-max-height-20 {
+        max-height: 20rem;
+    }
 
     > .scroll-content {
         min-width: 100%;

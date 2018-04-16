@@ -186,7 +186,7 @@
 
                     <div class='code-example _separate-2 _smaller-1'>
                         <div class='mui-custom-scroll-wrapper'>
-                        <div class='mui-custom-scroll -source'>
+                        <div class='mui-custom-scroll -max-height-20 -source'>
                             <pre class='source-code'>
 &lt;div class='mui-row'&gt;
     &lt;div class='mui-column -s1'&gt;-s1&lt;/div&gt;
@@ -223,7 +223,7 @@
 
                     <div class='code-example _separate-2 _smaller-1'>
                         <div class='mui-custom-scroll-wrapper'>
-                        <div class='mui-custom-scroll -source'>
+                        <div class='mui-custom-scroll -max-height-20 -source'>
                             <pre class='source-code'>
 &lt;div class='mui-scroll-fix'&gt;&lt;/div&gt;
 &lt;header class='mui-page-header'&gt;header&lt;/header&gt;
@@ -249,7 +249,7 @@
 
                     <div class='code-example _separate-2 _smaller-1'>
                         <div class='mui-custom-scroll-wrapper'>
-                        <div class='mui-custom-scroll -source'>
+                        <div class='mui-custom-scroll -max-height-20 -source'>
                             <pre class='source-code'>
 &lt;meta name='viewport' content='user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1'&gt;</pre>
                         </div>
@@ -503,14 +503,11 @@
                         <li class='item'>POLYFILLS - a number of polyfills for internal usage</li>
                     </ul>
 
-                    <div class='mui-spoiler'>
-                        <div class='title'>Here is an example of usage of UTILS, EVENTS and STORE</div>
-                        <div class='content'>
-                            <div class='_separate-2'>
-                                <div class='mui-custom-scroll-wrapper'>
-                                <div class='mui-custom-scroll -source'>
-                                    <div class='code _smaller-1'>
-                                        <pre class='source-code'>document.addEventListener('DOMContentLoaded', () =&gt; {
+                    <div class='_separate-2'>
+                        <div class='mui-custom-scroll-wrapper'>
+                        <div class='mui-custom-scroll -max-height-20 -source'>
+                            <div class='code _smaller-1'>
+                                <pre class='source-code'>document.addEventListener('DOMContentLoaded', () =&gt; {
     let _      = window.Muilessium.UTILS,
         STORE  = window.Muilessium.STORE,
         EVENTS = window.Muilessium.EVENTS;
@@ -532,10 +529,8 @@
         console.log(`${status} - ${statusText}`);
     });
 });</pre>
-                                    </div>
-                                </div>
-                                </div>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -661,7 +656,7 @@
 
                     <div class='code-example _separate-2 _smaller-1'>
                         <div class='mui-custom-scroll-wrapper'>
-                        <div class='mui-custom-scroll -source'>
+                        <div class='mui-custom-scroll -max-height-20 -source'>
                             <pre class='source-code'>
 &lt;img class='mui-image -js-lazy-load'
     data-src='....'
@@ -688,7 +683,7 @@
                     <p class='mui-p'>Muilessium uses Ionicons by default. You should put the following sprite at the end of your pages. You can create custom icons by replacing symbols in this SVG.</p>
                     <div class='code-example _separate-2 _smaller-1'>
                         <div class='mui-custom-scroll-wrapper'>
-                        <div class='mui-custom-scroll -source'>
+                        <div class='mui-custom-scroll -max-height-20 -source'>
                             <pre class='source-code'>
 
 &lt;div class='mui-svg-sprite'&gt;
@@ -724,7 +719,7 @@
                     <p class='mui-p _separate-1'>There are two ways to use animations. The first one:</p>
                     <div class='code-example _separate-2 _smaller-1'>
                         <div class='mui-custom-scroll-wrapper'>
-                        <div class='mui-custom-scroll -source'>
+                        <div class='mui-custom-scroll -max-height-20 -source'>
                             <pre class='source-code'>
 &lt;div class='-js-animation [ -hidden-by-default ]
     [ -fade-in | -fade-in-left | -fade-in-right | -fade-in-up | -fade-in-down |
@@ -737,7 +732,7 @@
                     <p class='mui-p _separate-1'>The second one:</p>
                     <div class='code-example _separate-2 _smaller-1'>
                         <div class='mui-custom-scroll-wrapper'>
-                        <div class='mui-custom-scroll -source'>
+                        <div class='mui-custom-scroll -max-height-20 -source'>
                             <pre class='source-code'>
 &lt;script&gt;Muilessium.UTILS.animateElement(element, 'fade-in')&lt;/script&gt;</pre>
                         </div>
@@ -803,12 +798,12 @@
                                                 <div class='example _separate-2' data-class='{{name}}'>{{{ ../markup.example }}}</div>
                                             </div>
                                         {{/state}}
-                                        <div class='mui-spoiler'>
+                                        <div class='mui-spoiler -max-height-20'>
                                             <div class='title'>Source code</div>
                                             <div class='content'>
                                                 <div class='_separate-2'>
                                                     <div class='mui-custom-scroll-wrapper'>
-                                                    <div class='mui-custom-scroll -source'>
+                                                    <div class='mui-custom-scroll -max-height-20 -source'>
                                                         <div class='_smaller-1'>
                                                             <pre class='source-code'>{{{markup.escaped}}}</pre>
                                                         </div>
